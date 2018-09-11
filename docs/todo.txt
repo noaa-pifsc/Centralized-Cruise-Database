@@ -1,0 +1,29 @@
+APEX Application
+
+_ DVM error annotation page
+_ DVM report page
+_ Cruise database data management page
+_ Cruise database report pages
+
+Database Update:
+
+_ Add Operational Information
+
+_ auditing fields and history package on all operational data tables
+
+X re-define views on CCD DB
+
+X grant statements for CEN_CTD schema
+
+
+
+DVM QC Criteria:
+_ same ship cannot have concurrent cruises
+_ missing field values
+_ date criteria (start/end dates, etc.)
+_ regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is in the same federal fiscal year as the departure or end date)
+
+
+
+
+
