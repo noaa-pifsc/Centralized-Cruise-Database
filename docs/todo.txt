@@ -4,10 +4,31 @@ _ DVM error annotation page
 _ DVM report page
 _ Cruise database data management page
 _ Cruise database report pages
+	_ cruise summary per year
+	_ activity summary per cruise (list page with all cruise activities) - allow filtering by cruise
+	_ allow searching by activity or data product
+
+_ LDAP
+
 
 Database Update:
 
 _ Add Operational Information
+	cruise - description, start port, end port, chief scientist, DOI - X View to get min/max dates to pull full cruise date range 
+		X cruise legs (e.g. HA1201 LEG III)
+		X cruise leg region(s)
+		X regions
+		
+	science party - name, role, affiliation
+	X data sets - specific instances on specific cruises that references the data set types record
+		X data set types (e.g. MOUSS video, CTD, water samples, coral belt, fish REA, etc.) - pull suitable categories from NCEI/NMFS
+			X data sets collected (description, data set type, etc.), DOI, link to data set, link to documentation, link to NMFS metadata, POC info, etc. - link to application for accessing the data directly (e.g. Reefbox)
+					X unique key constraint on data set type and cruise/cruise leg
+					
+				_ data products (e.g. biomass, richness, stereo video, coral cover, etc.) - Unique key constraint on data set and data product type
+				_ data set products (date available, access url, etc.) 
+				
+				X data set status (e.g. not collected, collected, processed, data products available, publicly accessible, archived)
 
 _ auditing fields and history package on all operational data tables
 
@@ -15,6 +36,10 @@ X re-define views on CCD DB
 
 X grant statements for CEN_CTD schema
 
+
+
+External User/Group management (request if the CEN_CRUISE schema can be granted select access to a non-confidential view that has user (first, last, email) and group information (div/prog) that can be used to
+	_ look into modifying the auth app views so that they use these tables for authentication/authorization so these don't need to be maintained separately.  Also need to assign admin privileges for specific SOD staff to be able to change anything in the DB
 
 
 DVM QC Criteria:
