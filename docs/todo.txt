@@ -8,7 +8,12 @@ _ Cruise database report pages
 	_ activity summary per cruise (list page with all cruise activities) - allow filtering by cruise
 	_ allow searching by activity or data product
 
+_ allow uploading/viewing of cruise instructions
+_ Phase 2-3: spatial components, bounding box, search for research activities
+_ bounding box -> range for individual sites
 _ LDAP
+	All users have view-only access, specific people can edit
+VPASS integration? (allocation) making the actual ship request - Nori will get me access to pull data
 
 
 Database Update:
@@ -28,7 +33,17 @@ _ Add Operational Information
 				_ data products (e.g. biomass, richness, stereo video, coral cover, etc.) - Unique key constraint on data set and data product type
 				_ data set products (date available, access url, etc.) 
 				
+				
+				_ cruise participants
+					_ participant permissions 
+					_ participant checklist (requirements including how often/timeframe)
+				_ cruise chief scientist
+				
+				
 				X data set status (e.g. not collected, collected, processed, data products available, publicly accessible, archived)
+	track pre- and post-cruise activities
+	
+
 
 _ auditing fields and history package on all operational data tables
 
@@ -36,6 +51,20 @@ X re-define views on CCD DB
 
 X grant statements for CEN_CTD schema
 
+Misc:
+	I could give a piece of project to Kimberly, she will generate GIS layers and populate data model
+	test best practices for data model
+	shape files from cruise activities -> standardizing these data products
+	point locations in DB for surveys
+	how to define working areas?
+	QC the region polygons for summary locations
+	historic sites -> proximity (e.g. CTD stations)
+		CTD historic sites could be indicated by text column for historic/not historic in the short term
+	participant list is in phase 2
+		Participants could be pulled from Peachy (non-confidential)
+		Ship profile for people - non-public info: TB info, MAC address, food restrictions, IT security awareness
+	associate data sets at the program level
+	chief scientist and POC for data defined per cruise
 
 
 External User/Group management (request if the CEN_CRUISE schema can be granted select access to a non-confidential view that has user (first, last, email) and group information (div/prog) that can be used to
@@ -46,9 +75,9 @@ DVM QC Criteria:
 _ same ship cannot have concurrent cruises
 _ missing field values
 _ date criteria (start/end dates, etc.)
-_ regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is in the same federal fiscal year as the departure or end date)
+_ regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is in the same federal fiscal year as the departure or end date
 
 
-
+_ RSS feed functionality - subscribe to a cruise leg's data set or type of data set/stream for all updates or just when ready for download
 
 
