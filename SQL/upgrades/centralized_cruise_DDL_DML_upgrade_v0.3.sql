@@ -278,11 +278,14 @@ This query returns all of the CTD cruises, associated research vessels where CTD
 
 
 
+ALTER TRIGGER CCD_CRUISES_AUTO_BRI COMPILE;
+
+
 
 
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.3', TO_DATE('11-DEC-18', 'DD-MON-YY'), 'Defined Cruise Years and Cruise Leg Years in the applicable database Views based on business rule updates');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.3', TO_DATE('11-DEC-18', 'DD-MON-YY'), 'Defined Cruise Years and Cruise Leg Years in the applicable database Views based on business rule updates.');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;
