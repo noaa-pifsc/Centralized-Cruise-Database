@@ -22,7 +22,9 @@ _ Add Operational Information
 	cruise - description, start port, end port, chief scientist, DOI - X View to get min/max dates to pull full cruise date range 
 		X cruise legs (e.g. HA1201 LEG III)
 		X cruise leg region(s)
-		X regions
+		X regions (store polygon, coordinates, etc.)
+			_ islands (store polygon, coordinates, etc.)
+			
 		
 	science party - name, role, affiliation
 	X data sets - specific instances on specific cruises that references the data set types record
@@ -43,6 +45,10 @@ _ Add Operational Information
 				X data set status (e.g. not collected, collected, processed, data products available, publicly accessible, archived)
 	track pre- and post-cruise activities
 	
+
+	X create a function that can easily be used by a given external schema to match a given cruise leg alias so it can be associated with a given cruise leg alias record (CRUISE_PKG.LEG_ALIAS_TO_CRUISE_LEG_ID)
+
+_ tabular form for the SOD data administrator to update the requirements for all cruise participants (TB, conduct, etc.) - allows the updating of multiple participants' information concurrently
 
 
 _ auditing fields and history package on all operational data tables
