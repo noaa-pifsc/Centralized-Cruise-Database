@@ -86,4 +86,5 @@ _ regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is
 
 _ RSS feed functionality - subscribe to a cruise leg's data set or type of data set/stream for all updates or just when ready for download
 
+_ utilize roles to grant the set of object permissions necessary to integrate the CCD into a given data set.  But this is problematic because roles are not enabled by default when executing PL/SQL code.  This needs more research
 
