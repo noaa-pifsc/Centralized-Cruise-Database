@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2EDC3306-D4C4-595E-0DC3-F9FC72878794" containerWithKeyObject="2944AC5F-F5B0-D125-8612-D8E8CDDBB4B7" localFKIndex="A08E0CAD-E030-1A09-F809-E1324C8C7D18" name="DVM_ERROR_TYPES_FK1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<referredTableLongName>CEN_CRUISE.DVM_QC_OBJECTS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>2F5EF1CE-8D7D-314D-97F9-7081F4123D7A</referredTableID>
+<keyObject>FDAF262C-633F-6237-128A-F8F919D5DDD7</keyObject>
+<referredKeyID>FDAF262C-633F-6237-128A-F8F919D5DDD7</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>QC_OBJECT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

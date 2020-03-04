@@ -1,0 +1,196 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D66A9CA0-A26E-7353-2501-D12BD23F9EA6" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_PLAT_TYPES">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_PLAT_TYPES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Platform Types
+
+This table stores the different types of platforms defined based on the FINSS system to be associated with cruise legs (referred to as Survey Cruise in the FINSS system)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PLAT_TYPE_ID" id="CE709B9F-110C-04F8-EDA6-E59305480FDD">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>PLAT_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the Platform Type table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLAT_TYPE_NAME" id="6B915856-750D-ED98-1B93-4BB6667F96DA">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>PLAT_TYPE_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given Platform Type]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PLAT_TYPE_DESC" id="633E06C8-04FA-F5BA-CB90-C5C1CD7E02F7">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>PLAT_TYPE_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given Platform Type]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FINSS_ID" id="B75BC6B3-A768-D55A-24E0-A01AB7A433CB">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>FINSS_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The ID value from the FINSS system]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="AD1BFBE3-6560-9A2E-6301-20C95F1E02EE">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="F181126F-1066-25E9-775A-C7ADBB98B512">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="AE06D925-367A-91B6-61E4-49A79F5B5030">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="619627F9-84A0-4847-F494-3DED9E5D8B17">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_PLAT_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6B88D782-2D6A-8ECC-7461-0A192B71F4C0" name="CCD_PLAT_TYPES_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_PLAT_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:34 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE709B9F-110C-04F8-EDA6-E59305480FDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2E515731-BCD7-ED2C-B678-B5DB55ED4663" name="CCD_PLAT_TYPES_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_PLAT_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:34 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B915856-750D-ED98-1B93-4BB6667F96DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4F7E345E-DC70-E450-DFF3-2DA1B4DF9396" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_PLAT_TYPES_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_PLAT_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CE709B9F-110C-04F8-EDA6-E59305480FDD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F8AC160-6321-157B-6A14-98A0420D5C86" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_PLAT_TYPES_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_PLAT_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B915856-750D-ED98-1B93-4BB6667F96DA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

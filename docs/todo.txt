@@ -14,7 +14,7 @@ _ bounding box -> range for individual sites
 _ LDAP
 	All users have view-only access, specific people can edit
 VPASS integration? (allocation) making the actual ship request - Nori will get me access to pull data
-
+FINSS - https://www.st.nmfs.noaa.gov/finss/si/siMain.jsp
 
 Database Update:
 
@@ -36,7 +36,7 @@ _ Add Operational Information
 				_ data set products (date available, access url, etc.) 
 				
 				
-				_ cruise participants
+				_ cruise participants (phase 2)
 					_ participant permissions 
 					_ participant checklist (requirements including how often/timeframe)
 				_ cruise chief scientist
@@ -48,7 +48,20 @@ _ Add Operational Information
 
 	X create a function that can easily be used by a given external schema to match a given cruise leg alias so it can be associated with a given cruise leg alias record (CRUISE_PKG.LEG_ALIAS_TO_CRUISE_LEG_ID)
 
+
+
+Questions:
+
+
+
+
+
 _ tabular form for the SOD data administrator to update the requirements for all cruise participants (TB, conduct, etc.) - allows the updating of multiple participants' information concurrently
+
+
+_ add/edit cruise page should also contain a tabular form with one record by default with the ability to add multiple cruise legs at the same time
+
+_ should we go with a more generic "Mission" database and each mission would essentially be a cruise and there would be a type field that would have values like NOAA Cruise, Nearshore Mission?  
 
 
 _ auditing fields and history package on all operational data tables
@@ -88,3 +101,85 @@ _ RSS feed functionality - subscribe to a cruise leg's data set or type of data 
 
 _ utilize roles to grant the set of object permissions necessary to integrate the CCD into a given data set.  But this is problematic because roles are not enabled by default when executing PL/SQL code.  This needs more research
 
+
+
+
+VPASS 
+	Logged in as a PI.  Could create a new ship request but couldn't see anything in the instructions to allow importing of ship requset data.
+	Can pull reports and filter by FY and project name (e.g. PIFSC) but there is no option to download the approved ship requests only so they can be exported to the CCD.  You can also sort as well but the data for exporting cruise information is not readily accessible.
+		Closest thing to being able to import a record seems to be copying an existing record in the system
+	Can export ship time requests as a .xlsx
+		VC Status seems to indicate if the project was approved or not (e.g. Certified by OU VC & Submitted to LO REP)
+		X look at fields to see which should be added to the Cruise/Leg tables (some of the fields displayed in the interface are not populated in the .xlsx export - e.g.  start date, end date, Org Unit 1, Piggyback Notes)
+			Some fields are shown on the searching interface and not in the Excel sheet (e.g. VC Status) and vice versa (e.g. staging port, staging day, staging day from, destaging port, destaging day, )
+		
+	
+	
+
+FINSS (planning system and reporting system) 
+	Logged in
+	Survey Instrance Reports:
+		Can filter the PIFSC cruises and then export as CSV file.  The CSV file does not contain the cruise dates.  This does contain valuable information like Categories, Gear, Vessels, days at sea, survey name, number of legs, etc.
+	Survey Instance Records:
+		Can filter the PIFSC cruises but there is no option to export the data.  Cannot export the data from the Survey instance search but it does contain information like Cruise dates in the Survey Cruises column.  But there is no way to readily export the data and import it into the CCD.  The cruise information is concatenated into a single field but this field could be parsed if it was available electronically.  Only other option is to copy and paste the dynamic HTML and then parse it using other means (e.g. programmatically but this is not recommended because this import process will need to change each time the interface changes).  Perhaps we could request a data dump for the PIFSC projects annually/periodically?
+		Can export KML (look into this more)
+		
+		
+		
+	Data elements:
+		Legs (called cruises in FINSS) - Leg Start/End date, days at sea (calculated), Platform Type (LOV), Vessel(LOV), Regional Ecosystem(LOV), Gear(LOV), Project Name in VPASS, Standard Survey Name (LOV),
+		Cruise (called survey instance in FINSS) - Center (LOV - should always be PIFSC), FY, Survey Frequency (LOV), Survey URL, Survey Contact Email, Primary survey category (LOV), Secondary Survey Category (LOV), Target Species - ESA (LOV), Target Species - MMPA (LOV), Target Species - FSSI (LOV), Target Species - Other Species (LOV), Expected Species Categories (LOV), Comments
+		
+
+	SQL code to calculate the numer of days at sea (document this and define in CEN_TOOLS_PKG or CRUISE_PKG pkg)
+		ex: select TO_DATE('20-JUL-19', 'DD-MON-YY') - TO_DATE('06-JUL-19', 'DD-MON-YY') + 1 from dual;
+		
+	Phase 2
+		Maybe allow preferences to be defined (e.g. ESD CRCP cruises automatically select the coral species of interest and then they can modify to streamline and provide templates
+		
+		
+		
+		
+		
+Ask Nori the intent of the CCD with respect to FINSS and VPASS - there is no import functionality so not sure how we would use the CCD other than to import the information from the other NOAA systems to populate the CCD.
+
+
+
+_ rename package CCD_PKG instead of CRUISE_PKG
+
+
+_ review the CTD app for features to implement (tooltips, downloads, etc.)
+	_ tooltips (_page 230)
+
+X default the sci center to PIFSC
+X default the survey type to NMFS Survey
+
+
+_ summary reports for the home page
+	_ (broken down by division/program, survey name, ) total number of days at sea, total number of cruises, cruise legs
+
+	_ dynamic reports?  Choose fields to group on and values to filter on (charts e.g. by region, regional ecosystems, target species, etc.)
+
+
+	X highlight background of the specific regions to show the active forms so people know what is available in a given window.	(_ document best practice)
+
+
+	X conditional QA on the standard survey name
+
+** _ document that the fiscal year is a field in FINSS but this can be automatically determined by the associated leg dates
+
+
+X reference table lists/form (build out examples)
+
+
+X add leg regions
+	
+
+
+_ package function to take the nth value in the delimited list (can even specify the delimiter if you want)
+
+
+_ document business rule for standard survey name other field (CCD_CRUISES.CTD_SURVEY_NAME_OTH) and how the STD_SURVEY_NAME_ID fields should be mutually exclusive (one or the other with precedence to foreign key)
+	X implemented in Views
+_ document business rule for CCD_CRUISE_SURVEY_CATS.PRIMARY_YN field and how it is implemented in the application (filtered into two categories based on flag)
+	X implement in Views

@@ -1,0 +1,352 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="2944AC5F-F5B0-D125-8612-D8E8CDDBB4B7" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:19 UTC</createdTime>
+<commentInRDBMS><![CDATA[Data Error Types
+
+	This is a reference table that defines the different QC Data Error Types that indicate how to identify QC errors and report them to end-users for resolution.  Each Data Error will have a corresponding Data Error Type.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ERROR_TYPE_ID" id="855F31C6-D62C-7631-D2D2-FC26D5C8EF9C">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERROR_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the SPT_ERROR_TYPES table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ERR_TYPE_NAME" id="884C64A9-2FD3-D635-EE90-AFED271F727D">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERR_TYPE_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name of the given QC validation criteria]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="QC_OBJECT_ID" id="D52D0FE2-D782-0E32-4944-C9E195E67F9A">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>QC_OBJECT_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Data QC Object that the error type is determined from.  If this is NULL it is not associated with a QC query validation constraint (e.g. DB error)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="2EDC3306-D4C4-595E-0DC3-F9FC72878794" referredColumn="6E759798-5003-AFA3-E029-AB3ABD33789E"/>
+</associations>
+</Column>
+<Column name="ERR_TYPE_DESC" id="84B0FCFE-98D2-00B6-D12F-047EC9663922">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERR_TYPE_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The description for the given QC validation error type]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="BA8C7C5B-3CD2-9D3A-FDD4-144F3AA66107">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="960B2E80-37A7-FF4F-D881-9224603422E3">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="D18778D9-8A3B-2D90-C4C5-B3F7844D23F3">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="9A5A1B8A-F226-0F67-9AB7-8CB9D329615C">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="IND_FIELD_NAME" id="20DDB95E-5E49-DE7E-B76F-4155465DB6A0">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>IND_FIELD_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The field in the result set that indicates if the current error type has been identified.  A 'Y' value indicates that the given error condition has been identified.  When XML_QC_OBJ_ID is NULL this is the constant name that is used to refer to the current error type]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ERR_SEVERITY_ID" id="89381261-04B5-36E1-D1EE-17BEC5A982E5">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERR_SEVERITY_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Severity of the given error type criteria.  These indicate the status of the given error (e.g. warnings, data errors, violations of law, etc.)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B6DF4D09-5016-193B-878A-A1A57A0A72DA" referredColumn="8CDBF164-9CB5-7062-32F6-305AB9B33085"/>
+</associations>
+</Column>
+<Column name="DATA_STREAM_ID" id="A6FFD9B6-84D8-EEA6-DBB8-762129F07EC9">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>DATA_STREAM_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Category for the given error type criteria.  This is used to filter error criteria based on the given context of the validation (e.g. eTunaLog XML data import, tracking QC, etc.)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="54028885-6D8F-3262-5B45-92E271E08920" referredColumn="44D63C15-9AAA-414D-E940-E1AB0F25CA6D"/>
+</associations>
+</Column>
+<Column name="ERR_TYPE_ACTIVE_YN" id="D0B0433F-D56B-5720-B567-5A612C101076">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERR_TYPE_ACTIVE_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate if the given error type criteria is active]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ERR_TYPE_COMMENT_TEMPLATE" id="843D7702-A3B1-2499-76DD-7A017C87F778">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DVM_ERROR_TYPES</sourceObjSchema>
+<sourceObjName>ERR_TYPE_COMMENT_TEMPLATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<commentInRDBMS><![CDATA[The template for the specific error description that exists in the specific error condition.  This field should contain placeholders in the form: [PLACEHOLDER] where PLACEHOLDER is the corresponding field name in the result set that will have its placeholder replaced by the corresponding result set field value.  This is NULL only when XML_QC_OBJ_ID is NULL]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="237BF610-4472-632B-E1ED-A42EB8984D33" name="DVM_ERROR_TYPES_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:36 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="855F31C6-D62C-7631-D2D2-FC26D5C8EF9C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9F26181D-37C9-917E-7C33-69146C7354CB" name="DVM_ERROR_TYPES_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:36 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="20DDB95E-5E49-DE7E-B76F-4155465DB6A0"/>
+<colUsage columnID="A6FFD9B6-84D8-EEA6-DBB8-762129F07EC9"/>
+<colUsage columnID="D52D0FE2-D782-0E32-4944-C9E195E67F9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8BD3117A-890B-939F-B76C-CA71F0B44119" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES_I1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:30 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D52D0FE2-D782-0E32-4944-C9E195E67F9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B8028212-9D41-59AA-F8FD-3B6E174A4101" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES_I2">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:30 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89381261-04B5-36E1-D1EE-17BEC5A982E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ABD5E463-32A3-ACD2-F401-23E9C0F7BB2C" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES_I3">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_I3</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:30 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6FFD9B6-84D8-EEA6-DBB8-762129F07EC9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7D526EFC-0375-099D-3DAF-C630C0EF6AEC" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:30 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="855F31C6-D62C-7631-D2D2-FC26D5C8EF9C"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C3F576FD-91A1-B0E6-0EB8-81693583138B" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="DVM_ERROR_TYPES_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_ERROR_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:30 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="20DDB95E-5E49-DE7E-B76F-4155465DB6A0"/>
+<colUsage columnID="A6FFD9B6-84D8-EEA6-DBB8-762129F07EC9"/>
+<colUsage columnID="D52D0FE2-D782-0E32-4944-C9E195E67F9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A08E0CAD-E030-1A09-F809-E1324C8C7D18" name="DVM_ERROR_TYPES_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D52D0FE2-D782-0E32-4944-C9E195E67F9A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4FE54FD-AF47-4603-A35D-A46BB89270FD" name="DVM_ERROR_TYPES_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="89381261-04B5-36E1-D1EE-17BEC5A982E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="625C4819-C275-59DA-2FDC-251BDBB1AD71" name="DVM_ERROR_TYPES_FK3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A6FFD9B6-84D8-EEA6-DBB8-762129F07EC9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

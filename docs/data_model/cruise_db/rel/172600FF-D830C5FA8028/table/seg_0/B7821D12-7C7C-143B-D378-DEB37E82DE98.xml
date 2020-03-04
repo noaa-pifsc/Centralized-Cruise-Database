@@ -1,0 +1,196 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B7821D12-7C7C-143B-D378-DEB37E82DE98" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_EXP_SPP_CATS">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:17 UTC</createdTime>
+<commentInRDBMS><![CDATA[Expected Species Categories
+
+This table stores the Expected Species Categories for a given cruise  (referred to as Survey Instance in FINSS) based on the FINSS system]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="EXP_SPP_CAT_ID" id="65751BD5-DE01-D549-6268-50D05480DE25">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>EXP_SPP_CAT_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the Expected Target Species table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EXP_SPP_CAT_NAME" id="4EB5F421-9E2F-2B2E-EC60-730604495797">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>EXP_SPP_CAT_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given Expected Target Species]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EXP_SPP_CAT_DESC" id="C64850B3-EC5A-72CD-3003-F27654BD68E0">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>EXP_SPP_CAT_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given Expected Target Species]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FINSS_ID" id="EB410859-1397-62BC-22EE-8ACF1ABFFA80">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>FINSS_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The ID value from the FINSS system]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="03F64D48-BCC3-85F9-492B-CFCE9E2FF2B1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="F7BD1099-F93F-C920-4020-B648545DA075">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="34A5680F-E240-DA85-9023-10A89BBA5074">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="C83CFB9F-BC87-050E-E725-4A15D8DF5A26">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_EXP_SPP_CATS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FE0A06B0-0CF5-CFBC-97B7-943B04D588CB" name="CCD_EXP_SPP_CATS_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:33 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65751BD5-DE01-D549-6268-50D05480DE25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E8C1358C-F4DB-B3A9-5D0D-146C53C2A631" name="CCD_EXP_SPP_CATS_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:33 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EB5F421-9E2F-2B2E-EC60-730604495797"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9A4F459B-FB50-5B37-A611-CD7FEDA50F05" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_EXP_SPP_CATS_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65751BD5-DE01-D549-6268-50D05480DE25"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8000ECC3-DD35-7D46-FCAC-2C936D94686C" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_EXP_SPP_CATS_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4EB5F421-9E2F-2B2E-EC60-730604495797"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,152 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="DVM_ERRORS" directorySegmentName="seg_0" id="C4D5DD16-BAB5-4E20-30ED-37325E0D20D3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>3B1D7895-3E1A-2D8A-9588-8EFA88333B81</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="PTA_ERROR_ID" id="1E5F28B7-81A9-0E25-1AA0-8A70F5120E34">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERROR_DESCRIPTION" id="32B9A70D-8C78-E8AC-EAD2-59858EF2A8F9">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="34EF3C6F-AEB1-8ECF-3C22-FDD52E447D06">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERROR_TYPE_ID" id="35194D07-DF8B-36FA-FB08-85438DAD32DE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="45B77221-7269-2A43-1292-C23B73687954">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="47C275FB-52C9-3430-11D0-E09CA01B2455">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERR_RES_TYPE_ID" id="6F32CD88-408A-AD2A-56E4-348AFBF44B5D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERROR_NOTES" id="C6F7E993-B765-52BA-CECD-4AF6B33F93FD">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="ECEABAB2-74DD-4133-FAFF-5118E68D7A9A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERROR_ID" id="F282768C-39B4-FE75-E46D-8FA7A249B83C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:23 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERRORS_I2" id="0AF8C3C1-67A4-546E-7FA8-F5874BF47D98">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:29 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>243041D5-E3EA-24D5-344B-CB12EEE05130</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERRORS_I3" id="4F96E934-3103-F33A-F179-AE7F4A3827D6">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:29 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>243041D5-E3EA-24D5-344B-CB12EEE05130</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERRORS_PK" id="A7B99677-421E-46BF-85AB-11D167A5000F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:29 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>243041D5-E3EA-24D5-344B-CB12EEE05130</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERRORS_I1" id="F5CCDDE8-320A-5238-61D0-70B08DC22843">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:29 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>243041D5-E3EA-24D5-344B-CB12EEE05130</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ERRORS_FK3" id="4896AAFE-6ED4-4B69-65A3-98897A1ACD7E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ERRORS_FK1" id="568EF12D-4DEF-F511-0793-AF11DC1F8D54">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ERRORS_FK2" id="A61BA987-5B7E-E281-4215-DCD49F29A1B4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<lobStorages>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000173957C00010$$" id="CBF3E7EE-AB96-45CE-BAAF-225F05AC9CBF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:44 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ERROR_DESCRIPTION</column>
+<logging>YES</logging>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000174201C00010$$" id="871EBB5C-FAE7-781E-E9E8-BCB40A03FB21">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 23:50:26 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ERROR_DESCRIPTION</column>
+<logging>YES</logging>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</LobStorage>
+</lobStorages>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ERRORS_PK" id="5CEFF3A2-05A7-B9C4-81F4-2BAA11E02918">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:36 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>243041D5-E3EA-24D5-344B-CB12EEE05130</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+<existingIndex>A7B99677-421E-46BF-85AB-11D167A5000F</existingIndex>
+<indexSegment>243041D5-E3EA-24D5-344B-CB12EEE05130</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

@@ -1,0 +1,118 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="CCD_LEG_ECOSYSTEMS" directorySegmentName="seg_0" id="457CEF92-5961-F4A4-B2B0-D8D3771D1C1D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>79FD06F5-2A7A-48CD-68E7-207572979EFF</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="CRUISE_LEG_ID" id="0A8E0EDB-8235-28E6-15AD-5711BB48A11C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REG_ECOSYSTEM_ID" id="2C57F081-E3A3-5A55-F285-159F4BCCE539">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="76284D3F-2C1C-AE89-A27A-10E91B8F4929">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LEG_ECOSYSTEM_ID" id="86982EA9-4305-3425-F99F-39989557257A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="C731A7D1-19B8-16BA-D7EE-7ACED9CFDF6A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LEG_ECOSYSTEM_NOTES" id="DAA417AF-B885-5DED-15D0-F1C97FB98F48">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_I2" id="357A0457-47E6-61E8-5688-C638DD3BC94A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_U1" id="643FF4CD-BE92-F564-1612-DA0FEAD50C79">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_PK" id="9C0C8363-6285-5DF1-6563-519B0D8F1519">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_I1" id="C7EB150D-2999-5645-7961-7A7E7C1DEC73">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_FK1" id="DA406A40-5185-64D9-0963-C8D57AD6AC8B">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_FK2" id="F64D7038-D79D-B550-8BF2-280471D88FDE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CCD_LEG_ECOSYSTEMS_PK" id="FFF30420-910E-E807-D734-7918D55DA2C4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:33 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+<existingIndex>9C0C8363-6285-5DF1-6563-519B0D8F1519</existingIndex>
+<indexSegment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CCD_LEG_ECOSYSTEMS_U1" id="936F2C18-DFA1-B004-B554-104406622595">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:33 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</segment>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+<existingIndex>643FF4CD-BE92-F564-1612-DA0FEAD50C79</existingIndex>
+<indexSegment>A692EA7F-1059-7CF3-5744-17C7B4EB724A</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev11g>

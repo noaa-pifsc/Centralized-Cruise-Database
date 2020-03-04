@@ -1,0 +1,15 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="172600FF-52E4-A6C6-733E-D830C5FA8028" mainViewID="8CC990B9-3752-D9EF-3DDE-EAA911CFAEE9">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:20:50 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+<importConnectionStamps>
+<importConnectionStamp class="oracle.dbtools.crest.imports.DBConnectionStamp">
+<connName>PICD_CEN_CRUISE</connName>
+<connUser>CEN_CRUISE</connUser>
+<connType>1</connType>
+</importConnectionStamp>
+</importConnectionStamps>
+</relationalModel>

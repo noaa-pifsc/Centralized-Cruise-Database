@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="CCD_EXP_SPP_CATS_AUTO_BRI" directorySegmentName="seg_0" id="85556863-BC39-9F9E-CB2F-CAFA229BC7E5">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_EXP_SPP_CATS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:38 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select CCD_EXP_SPP_CATS_SEQ.nextval into :new.EXP_SPP_CAT_ID from dual;
+  :NEW.CREATE_DATE := SYSDATE;
+  :NEW.CREATED_BY := nvl(v('APP_USER'),user);
+end;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>B022BB19-5E80-29EB-0A2C-69CEB99F30D2</owner>
+<table>B7821D12-7C7C-143B-D378-DEB37E82DE98</table>
+</TriggerOraclev10g>

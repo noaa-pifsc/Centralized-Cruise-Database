@@ -1,0 +1,214 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="4CA3B0BA-3F49-6041-9518-C2E444B33EA6" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SPP_MMPA">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:17 UTC</createdTime>
+<commentInRDBMS><![CDATA[Cruise Target Species - MMPA
+
+This intersection table defines the many-to-many relationship between a given cruise and the associated MMPA Target Species.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CRUISE_SPP_MMPA_ID" id="22E86D33-38B8-94FA-2D07-5EDAEACDCAE6">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>CRUISE_SPP_MMPA_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_CRUISE_SPP_MMPA table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_ID" id="1829DA7A-7603-8111-56CC-7355A89CEA66">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>CRUISE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The cruise the given MMPA Target Species is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A975B30D-5E88-4247-2EB7-77A0C43A1C7B" referredColumn="5E723CE6-B4E5-A7AB-431E-33EBAB0D029D"/>
+</associations>
+</Column>
+<Column name="TGT_SPP_MMPA_ID" id="108628F0-8E6B-DD2D-BD4C-3BEF8A3F7A2E">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>TGT_SPP_MMPA_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The MMPA Target Species the given cruise is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9CC51951-6490-5FF2-C240-209EF24F1071" referredColumn="2858E479-006E-0ED0-128B-C2A500A1AB04"/>
+</associations>
+</Column>
+<Column name="CRUISE_SPP_MMPA_NOTES" id="9244F400-3F81-E44C-6A29-7CAAB113429C">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>CRUISE_SPP_MMPA_NOTES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given Cruise MMPA Target Species]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="DBAB0525-9F57-2C32-40D4-73E40BF1F108">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="9F39A3BE-68C5-4491-5D0A-378D8F9100F4">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_SPP_MMPA</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:21 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F33FA344-5F78-6435-A7C5-DBCA0D6401EF" name="CCD_CRUISE_SPP_MMPA_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="22E86D33-38B8-94FA-2D07-5EDAEACDCAE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5539C8C7-2642-DA36-AACC-6DFCF27ECC49" name="CCD_CRUISE_SPP_MMPA_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1829DA7A-7603-8111-56CC-7355A89CEA66"/>
+<colUsage columnID="108628F0-8E6B-DD2D-BD4C-3BEF8A3F7A2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="21B26397-451E-7454-0368-ED3339F60DDF" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SPP_MMPA_I1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1829DA7A-7603-8111-56CC-7355A89CEA66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B9A64D01-502E-6481-8FDF-91E07A6AA65C" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SPP_MMPA_I2">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="108628F0-8E6B-DD2D-BD4C-3BEF8A3F7A2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DA1A3051-FB55-A88C-C99B-EC14C8DBD2D1" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SPP_MMPA_PK">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="22E86D33-38B8-94FA-2D07-5EDAEACDCAE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BFDD02D0-2AF7-1DE0-7AF6-59F801620A69" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SPP_MMPA_U1">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISE_SPP_MMPA_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1829DA7A-7603-8111-56CC-7355A89CEA66"/>
+<colUsage columnID="108628F0-8E6B-DD2D-BD4C-3BEF8A3F7A2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="27E07DE3-AFA2-5057-8A0B-0DECDFAF1500" name="CCD_CRUISE_SPP_MMPA_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1829DA7A-7603-8111-56CC-7355A89CEA66"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="31FF861B-892A-3669-FE5D-CDB8814891B5" name="CCD_CRUISE_SPP_MMPA_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:43 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="108628F0-8E6B-DD2D-BD4C-3BEF8A3F7A2E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

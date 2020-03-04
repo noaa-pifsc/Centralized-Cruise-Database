@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="CEN_CRUISE" directorySegmentName="seg_0" id="B022BB19-5E80-29EB-0A2C-69CEB99F30D2">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjName>CEN_CRUISE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:16 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<defTableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</defTableSpace>
+<privileges>CREATE JOB, CREATE DIMENSION, CREATE TRIGGER, CREATE VIEW, CREATE SEQUENCE, CREATE INDEXTYPE, ALTER SESSION, CREATE SESSION, CREATE PROCEDURE, CREATE SYNONYM, CREATE CLUSTER, CREATE TABLE, CREATE OPERATOR, CREATE TYPE, CREATE MATERIALIZED VIEW, CREATE DATABASE LINK</privileges>
+<quotaItems>
+<QuotaItem class="oracle.dbtools.crest.model.design.storage.oracle.v10g.QuotaItemOraclev10g" name="QuotaItem1" id="47EB4F0D-151F-F4BB-394F-C80F78925547">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 23:50:26 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<size>1048576000</size>
+<tableSpace>593E6C43-4F8B-8360-55C1-82AA392EE208</tableSpace>
+</QuotaItem>
+</quotaItems>
+</UserOraclev10g>

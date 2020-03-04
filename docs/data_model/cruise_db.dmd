@@ -1,0 +1,13 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="cruise_db" id="07AD71A5-2BBF-B263-7594-A4AE2429E969" version="3.5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:20:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<capitalNames>false</capitalNames>
+<designId>07AD71A5-2BBF-B263-7594-A4AE2429E969</designId>
+<usedDesignStorageDescriptors>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="FA7F9C5D-CC15-1A08-1297-B24C21840FEA">
+<designStoragePath>C:\Users\Jesse.Abdul\AppData\Local\Temp</designStoragePath>
+</designDescr>
+</usedDesignStorageDescriptors>
+</OSDM_Design>

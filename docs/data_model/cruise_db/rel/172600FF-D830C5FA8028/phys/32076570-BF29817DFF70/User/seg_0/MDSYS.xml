@@ -1,0 +1,11 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<UserOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UserOraclev10g" name="MDSYS" directorySegmentName="seg_0" id="MDSYS">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjName>MDSYS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:21:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>91276111-46BA-DA35-E672-F23D5E30A1D0</schemaObject>
+<nullInstance>true</nullInstance>
+<storableNullInstance>true</storableNullInstance>
+</UserOraclev10g>

@@ -1,0 +1,71 @@
+--run this from the CEN_CRUISE data schema
+grant select, insert, update, delete on CCD_CRUISES TO CEN_CRUISE_APP;
+
+grant execute on DB_LOG_PKG to CEN_CRUISE_APP;
+grant execute on CUST_ERR_PKG to CEN_CRUISE_APP;
+grant execute on AUTH_APP_PKG to CEN_CRUISE_APP;
+grant select on AUTH_APP_USERS_V to CEN_CRUISE_APP;
+grant select on AUTH_APP_USER_GROUPS_V to CEN_CRUISE_APP;
+
+
+grant select on CCD_CRUISE_SUMM_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_LEG_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_LEGS_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_V to CEN_CRUISE_APP;
+grant select on CCD_DATA_SETS_V to CEN_CRUISE_APP;
+grant select on CCD_LEG_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_LEG_V to CEN_CRUISE_APP;
+
+
+
+grant insert, delete, update, select on CCD_CRUISES to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_CRUISE_LEGS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_VESSELS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_PLAT_TYPES to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_LEG_GEAR to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_GEAR to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_LEG_ECOSYSTEMS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_REG_ECOSYSTEMS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_LEG_ALIASES to CEN_CRUISE_APP;
+
+
+grant insert, delete, update, select on CCD_REGIONS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_LEG_REGIONS to CEN_CRUISE_APP;
+
+
+
+grant insert, delete, update, select on CCD_SCI_CENTERS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_STD_SVY_NAMES to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SVY_FREQ to CEN_CRUISE_APP;
+
+grant insert, delete, update, select on CCD_CRUISE_EXP_SPP to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_CRUISE_LEGS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_CRUISE_SPP_ESA to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_CRUISE_SPP_FSSI to CEN_CRUISE_APP;
+
+grant insert, delete, update, select on CCD_CRUISE_SPP_MMPA to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_CRUISE_SVY_CATS to CEN_CRUISE_APP;
+
+
+
+grant insert, delete, update, select on CCD_TGT_SPP_ESA to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_TGT_SPP_FSSI to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_TGT_SPP_MMPA to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_TGT_SPP_OTHER to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_EXP_SPP_CATS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SVY_CATS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SVY_TYPES to CEN_CRUISE_APP;
+
+
+
+/*
+grant insert, delete, update, select on  to CEN_CRUISE_APP;
+
+
+*/
+
+
+
+
+--initial page is view all cruises (including info about assoc legs)

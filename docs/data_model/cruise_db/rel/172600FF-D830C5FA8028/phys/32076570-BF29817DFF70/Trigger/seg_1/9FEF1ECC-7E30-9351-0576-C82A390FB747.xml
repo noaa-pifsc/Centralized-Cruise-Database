@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_AUTH_APP_GROUPS_HIST" directorySegmentName="seg_1" id="9FEF1ECC-7E30-9351-0576-C82A390FB747">
+<sourceConnName>PICD_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>TRG_AUTH_APP_GROUPS_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-03-03 22:24:37 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO CEN_CRUISE.AUTH_APP_GROUPS_hist (
+      h_seqnum, APP_GROUP_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      AUTH_APP_GROUPS_hist_seq.NEXTVAL, :old.APP_GROUP_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO CEN_CRUISE.AUTH_APP_GROUPS_hist (
+      h_seqnum, APP_GROUP_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      AUTH_APP_GROUPS_hist_seq.NEXTVAL, :new.APP_GROUP_ID, 
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'app_group_name', :old.app_group_name);
+    insert_data('DELETE', 'app_group_code', :old.app_group_code);
+    insert_data('DELETE', 'app_group_desc', :old.app_group_desc);
+  ELSE
+    NULL;
+    check_update('APP_GROUP_NAME', :old.app_group_name, :new.app_group_name);
+    check_update('APP_GROUP_CODE', :old.app_group_code, :new.app_group_code);
+    check_update('APP_GROUP_DESC', :old.app_group_desc, :new.app_group_desc);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>B022BB19-5E80-29EB-0A2C-69CEB99F30D2</owner>
+<table>F57723E6-D652-1282-C3EA-9A02A6EC7105</table>
+</TriggerOraclev10g>
