@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   14:14 Tuesday March 3, 2020
+--   Date and Time:   07:12 Friday March 6, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200303134623'
+,p_last_upd_yyyymmddhh24miss=>'20200306065126'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -13168,7 +13168,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200303134623'
+,p_last_upd_yyyymmddhh24miss=>'20200306065126'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -14496,7 +14496,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Name'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, 1, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 1) - 1), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 1)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14525,7 +14525,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Science Center'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 1) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 2) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 1) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 2)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14544,7 +14544,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Standard Survey Name'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 2) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 3) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 2) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 3)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14562,7 +14562,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Start Date'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 3) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 4) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 3) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 4)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14580,7 +14580,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'End Date'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 4) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 5) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 4) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 5)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14599,7 +14599,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Fiscal Year'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 5) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 6) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 5) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 6)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14617,7 +14617,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Cruise Frequency'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 6) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 7) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 6) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 7)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14635,7 +14635,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Primary Survey Category'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 7) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 8) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 7) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 8)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14653,7 +14653,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Secondary Survey Category'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 8) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 9) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 8) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 9)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14672,7 +14672,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Target Species - ESA'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 9) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 10) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 9) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 10)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14690,7 +14690,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Target Species - MMPA'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 10) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 11) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 10) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 11)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14709,7 +14709,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Target Species - FSSI'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 11) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 12) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 11) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 12)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14727,7 +14727,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Target Species - Other Species'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 12) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 13) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 12) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 13)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14746,7 +14746,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Expected Species Categories'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 13) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 14) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 13) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 14)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14764,7 +14764,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Notes'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 14) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 15) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 14) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 15)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14782,7 +14782,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Days at Sea'
 ,p_source=>'P230_CRUISE_DAS'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 19) + 2), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 20)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14801,7 +14801,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'# Legs'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 15) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 16) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 15) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 16)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14819,7 +14819,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'URL'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 16) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 17) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 16) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 17)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -14836,7 +14836,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Contact Email'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 17) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 18) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 17) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 18)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -14854,7 +14854,7 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Survey Type'
 ,p_source=>'P230_CRUISE_ID'
 ,p_source_type=>'ITEM'
-,p_source_post_computation=>'nvl(SUBSTR(:P230_CRUISE_INFO, INSTR(:P230_CRUISE_INFO, ''\t'', 1, 18) + 2, (INSTR(:P230_CRUISE_INFO, ''\t'', 1, 19) - INSTR(:P230_CRUISE_INFO, ''\t'', 1, 18) - 2)), '' '')'
+,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 19)'
 ,p_display_as=>'NATIVE_DISPLAY_ONLY'
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)

@@ -1,6 +1,8 @@
---run this from the CEN_CRUISE data schema
-grant select, insert, update, delete on CCD_CRUISES TO CEN_CRUISE_APP;
+--execute this grant from the CEN_UTILS schema:
+grant execute on CEN_UTIL_PKG to cen_cruise_app;
 
+
+--run this from the CEN_CRUISE data schema
 grant execute on DB_LOG_PKG to CEN_CRUISE_APP;
 grant execute on CUST_ERR_PKG to CEN_CRUISE_APP;
 grant execute on AUTH_APP_PKG to CEN_CRUISE_APP;
@@ -64,8 +66,6 @@ grant insert, delete, update, select on  to CEN_CRUISE_APP;
 
 
 */
-
-
 
 
 --initial page is view all cruises (including info about assoc legs)

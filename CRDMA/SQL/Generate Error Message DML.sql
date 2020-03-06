@@ -44,4 +44,5 @@ AND user_constraints.CONSTRAINT_NAME NOT LIKE 'SYS_%'
 AND user_constraints.CONSTRAINT_NAME NOT LIKE 'BIN$%'
 AND user_constraints.TABLE_NAME NOT LIKE 'APEX$_%';
 
-
+--commit the transaction:
+COMMIT;
