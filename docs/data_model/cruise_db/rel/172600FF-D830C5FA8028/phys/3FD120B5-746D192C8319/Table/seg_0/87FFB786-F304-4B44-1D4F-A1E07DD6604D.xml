@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="CCD_REGION_PRE" directorySegmentName="seg_0" id="87FFB786-F304-4B44-1D4F-A1E07DD6604D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>607A09B2-C454-D6F9-D202-9FE44F48864F</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LAST_MOD_DATE" id="18951B03-42D7-8278-345E-C93BCC4CDBB8">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REGION_PRE_ID" id="3A1427BE-E1C3-A1D3-3953-83F281D65E02">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REGION_PRE_DESC" id="3AECAEFA-E8F9-ACE5-4631-499852D16075">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REGION_PRE_NAME" id="4FCE3467-FFF7-C23D-F6F7-E9300B665063">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="6E435438-3789-1696-5452-B783113F4FE3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="716FCD9A-D457-D2D3-B9CE-07E64F5C0378">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="AA095870-A3CB-85DD-0464-85FB6F2E6887">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_REGION_PRE_U1" id="0E0ED637-4861-85C7-F48E-B09CE10621E4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_REGION_PRE_PK" id="E8FAC49A-BBD7-5D46-6A53-A374C562ADBF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CCD_REGION_PRE_PK" id="23F8E3A8-0932-0665-EDD4-EF2FAF5B1C14">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>E8FAC49A-BBD7-5D46-6A53-A374C562ADBF</existingIndex>
+<indexSegment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CCD_REGION_PRE_U1" id="8926CE80-2FBB-201B-688E-C309006BE667">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>0E0ED637-4861-85C7-F48E-B09CE10621E4</existingIndex>
+<indexSegment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

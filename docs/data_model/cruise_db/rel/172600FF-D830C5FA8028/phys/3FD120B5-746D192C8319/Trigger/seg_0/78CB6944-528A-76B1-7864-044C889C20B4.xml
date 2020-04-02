@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="AUTH_APP_GROUPS_AUTO_BRI" directorySegmentName="seg_0" id="78CB6944-528A-76B1-7864-044C889C20B4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select AUTH_APP_GROUPS_SEQ.nextval into :new.APP_GROUP_ID from dual;
+  :NEW.CREATE_DATE := SYSDATE;
+  :NEW.CREATED_BY := nvl(v('APP_USER'),user);
+end;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>E4288604-0C3D-0DA0-3913-49C45057DA2F</owner>
+<table>F57723E6-D652-1282-C3EA-9A02A6EC7105</table>
+</TriggerOraclev10g>

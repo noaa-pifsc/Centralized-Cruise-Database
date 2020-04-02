@@ -152,6 +152,7 @@ This intersection table defines the many-to-many relationship between a given cr
 <indexColumnUsage>
 <colUsage columnID="5A4D8F8F-9189-15F0-4534-48A91D6FA0D4"/>
 <colUsage columnID="45ACCDA1-29CB-51D8-8127-04758C373BE2"/>
+<colUsage columnID="C4275AAD-3209-922E-5440-9767F7CD5348"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="71FE8117-B88B-D188-3B89-1311668F681F" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISE_SVY_CATS_I1">
@@ -203,6 +204,7 @@ This intersection table defines the many-to-many relationship between a given cr
 <indexColumnUsage>
 <colUsage columnID="5A4D8F8F-9189-15F0-4534-48A91D6FA0D4"/>
 <colUsage columnID="45ACCDA1-29CB-51D8-8127-04758C373BE2"/>
+<colUsage columnID="C4275AAD-3209-922E-5440-9767F7CD5348"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="23B5B5D1-675F-ECDA-F689-BA0B8B78F0D7" name="CCD_CRUISE_SVY_CATS_FK1">

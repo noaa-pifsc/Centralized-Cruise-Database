@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="CCD_GEAR_PRE_OPTS_AUTO_BRI" directorySegmentName="seg_0" id="F2AD8622-D1C0-28A4-482F-4486A8B7E8B1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select CCD_GEAR_PRE_OPTS_SEQ.nextval into :new.GEAR_PRE_OPT_ID from dual;
+end;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>E4288604-0C3D-0DA0-3913-49C45057DA2F</owner>
+<table>351F6F66-4C0D-20B7-780A-AC71735682F6</table>
+</TriggerOraclev10g>

@@ -1,0 +1,193 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F79C3CE5-C48E-225D-CF41-78AF1867029F" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SPP_MMPA_PRE">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[MMPA Target Species Presets
+
+This table defines MMPA Target Species Presets for implementation in the data management application]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0F0FEF33-FE2F-8A54-5B0F-95A4FE30A48F</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="MMPA_PRE_ID" id="05EBB21E-1F62-101D-1F10-2EA68913EAE6">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>MMPA_PRE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the MMPA Target Species Preset table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>53E1587F-A4AD-229B-6943-EC99BDB2FBA1</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MMPA_PRE_NAME" id="4E3DF4F6-EE3B-5B52-BE7D-32A868629104">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>MMPA_PRE_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given MMPA Target Species Preset]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>8F74E087-F419-D69D-DE74-071447896986</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MMPA_PRE_DESC" id="20EE68C9-9109-3949-016E-5692A9A2CDDE">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>MMPA_PRE_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given MMPA Target Species Preset]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>E9A8C811-7BB4-4DD8-5524-9A97102FC0A1</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="C69CA251-E62F-3790-AE3E-8678D4DA7707">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>4F2A5C89-104B-6922-141E-3A6231E0459E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="7CEFE01F-CDC2-393C-4369-2839F20805AF">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>E8B23DD0-C8C0-D957-2F08-E92AFC703DB4</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="063CECB7-BC34-7A4D-D525-C0A218663440">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>ADAABED8-9607-16D1-E9A6-3486DB7C0965</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="49A55E90-1C5A-7DFF-C6A8-50A7C3C31E8D">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_MMPA_PRE</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>D449BF25-6179-432E-4055-1630D6456006</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="8E55FE28-8366-0C63-F8E4-F76D0BF3EBE7" name="CCD_SPP_MMPA_PRE_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>2B0AFC4B-07BB-8B6B-8FFA-0CA5A8F5383E</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05EBB21E-1F62-101D-1F10-2EA68913EAE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4AC94A86-CD1B-29A0-0625-2BEE28EAEAA6" name="CCD_SPP_MMPA_PRE_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>5AA4BF04-8C9A-AB1B-98D0-656470E72C58</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4E3DF4F6-EE3B-5B52-BE7D-32A868629104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="475863DF-3F86-707E-B407-C1C99CEA6A40" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SPP_MMPA_PRE_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>55E49373-F9EE-F9A9-FA33-E532D31228A5</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="05EBB21E-1F62-101D-1F10-2EA68913EAE6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DE42689E-01D7-8A5F-2174-CC77ABFC2DE9" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SPP_MMPA_PRE_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>5A5ED9A4-675E-F2D3-7E1F-F441758681AD</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4E3DF4F6-EE3B-5B52-BE7D-32A868629104"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

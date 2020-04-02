@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="CUST_ERR_CONSTR_MSG_AUTO_BRI" directorySegmentName="seg_1" id="6FCA251F-3DB7-F9D4-7C16-845EF224AC6C">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:32 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select CUST_ERR_CONSTR_MSG_SEQ.nextval into :new.CONSTR_MSG_ID from dual;
+end;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>E4288604-0C3D-0DA0-3913-49C45057DA2F</owner>
+<table>5FB730E2-C25D-B95E-F0B1-1B2ED9E78D90</table>
+</TriggerOraclev10g>

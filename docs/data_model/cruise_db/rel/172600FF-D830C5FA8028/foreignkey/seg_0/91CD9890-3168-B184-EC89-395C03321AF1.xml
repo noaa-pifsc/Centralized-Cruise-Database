@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="91CD9890-3168-B184-EC89-395C03321AF1" containerWithKeyObject="05DCC118-973D-B9BE-DC10-541A6AE08C23" localFKIndex="71D75AE6-2E41-4FE9-26DA-D56E974B50A8" name="CCD_SPP_ESA_PRE_OPTS_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>FD9ED33C-ABFD-45DC-C1AC-201E36C5E211</importedID>
+<referredTableLongName>CEN_CRUISE.CCD_TGT_SPP_ESA</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>DD2FE38B-559F-50D2-F7EE-0B1B543BE96C</referredTableID>
+<keyObject>8A76243D-A1CA-D893-50C5-E05233EC299C</keyObject>
+<referredKeyID>8A76243D-A1CA-D893-50C5-E05233EC299C</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>TGT_SPP_ESA_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="2E896EAC-100C-3E48-4892-6F172CA5EF1D" containerWithKeyObject="9AE3DB60-C5E2-9689-CA17-13CE43C33D04" localFKIndex="589BE5C2-CD40-D903-AA2B-CA0B55FFEA7E" name="CCD_SPP_FSSI_PRE_OPTS_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>6617E03B-2ED4-8616-84A5-B15CFC4591CA</importedID>
+<referredTableLongName>CEN_CRUISE.CCD_TGT_SPP_FSSI</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A81621EE-BC2A-4750-2B5A-0E760D09C926</referredTableID>
+<keyObject>F91F423C-9BBB-06B4-26BE-DC90BCAD937F</keyObject>
+<referredKeyID>F91F423C-9BBB-06B4-26BE-DC90BCAD937F</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>TGT_SPP_FSSI_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

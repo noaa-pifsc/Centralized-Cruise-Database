@@ -1,0 +1,193 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="351F6F66-4C0D-20B7-780A-AC71735682F6" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_GEAR_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Gear Preset Options
+
+This intersection table defines the many-to-many relationship between gear presets and specific gear to allow groups of gear to be defined to make it easier for authorized application users to choose and define groups of gear for a given cruise leg]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>B99F3EE2-5799-CE02-0A85-9DD8F9049F48</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="GEAR_PRE_OPT_ID" id="063F5580-0F11-0E7E-6E4F-DAB6200B26B0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_GEAR_PRE_OPTS</sourceObjSchema>
+<sourceObjName>GEAR_PRE_OPT_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_GEAR_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>071DE9A2-F099-6531-E8B4-FF4D20B9A2DB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="GEAR_PRE_ID" id="3A3DE904-82C5-4C72-36E6-A86CB6AEF27F">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_GEAR_PRE_OPTS</sourceObjSchema>
+<sourceObjName>GEAR_PRE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Gear preset that the given gear is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>D791868D-564A-441B-9819-3541845A1DA6</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="1AF0FC9F-BBF7-F7D6-9025-1DBFB59D859B" referredColumn="1EFE05AB-6BB7-407A-0AF3-A676443D7548"/>
+</associations>
+</Column>
+<Column name="GEAR_ID" id="B24BF5E4-3FD6-A21E-5202-37ED8C18E0A9">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_GEAR_PRE_OPTS</sourceObjSchema>
+<sourceObjName>GEAR_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Gear that the given gear preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0356D844-0E31-13BD-15C1-3B7B5CB45220</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4E01EA3A-A8F5-CD7D-17F3-42DFE57B01E9" referredColumn="400B4D02-04C0-309F-0EF2-B74C1681D1C5"/>
+</associations>
+</Column>
+<Column name="GEAR_PRE_OPT_NOTES" id="12F87B41-57E0-3A77-410F-3548CDAF96FD">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_GEAR_PRE_OPTS</sourceObjSchema>
+<sourceObjName>GEAR_PRE_OPT_NOTES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given gear preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>1775D55A-05D4-C4B6-478B-971BF25B35EA</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="83DB5F21-2988-4D54-9661-770D8132B0F5" name="CCD_GEAR_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>412FCBCB-BF6B-B4EE-961F-4F99E6C61724</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="063F5580-0F11-0E7E-6E4F-DAB6200B26B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="559FF78D-869C-B811-F599-D45787F3D5F2" name="CCD_GEAR_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>B7656348-1F3E-D053-CF27-CAFC3110DAF6</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A3DE904-82C5-4C72-36E6-A86CB6AEF27F"/>
+<colUsage columnID="B24BF5E4-3FD6-A21E-5202-37ED8C18E0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E245ED91-87A8-8CF0-0EFE-A0A178D1465E" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_GEAR_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>296CC967-3D53-0DC9-A08D-B4ACF3C722A1</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A3DE904-82C5-4C72-36E6-A86CB6AEF27F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="800C9B39-D559-D050-ADE9-E1B226402AE2" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_GEAR_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>619F795B-080B-36F4-24B3-7BA5A51E9AAC</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B24BF5E4-3FD6-A21E-5202-37ED8C18E0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="59D91A3E-974C-033C-EFB6-00F06A433CB0" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_GEAR_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>48C2C8E9-8476-7048-A7B5-68D11EC22740</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="063F5580-0F11-0E7E-6E4F-DAB6200B26B0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3E1BC135-2E47-6383-8F81-96A474438680" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_GEAR_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>5021488B-4E63-BAA2-8F9D-5F2331BF7BD8</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A3DE904-82C5-4C72-36E6-A86CB6AEF27F"/>
+<colUsage columnID="B24BF5E4-3FD6-A21E-5202-37ED8C18E0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5061934-E6EF-929E-AFC6-EBE4E870648B" name="CCD_GEAR_PRE_OPTS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B24BF5E4-3FD6-A21E-5202-37ED8C18E0A9"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="41FAF555-3E37-A9C7-FF5E-33CFD8500F14" name="CCD_GEAR_PRE_OPTS_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A3DE904-82C5-4C72-36E6-A86CB6AEF27F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

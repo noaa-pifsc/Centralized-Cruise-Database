@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="DD5EBF20-03AB-B79C-00BA-F5E0EBFC7AF3" containerWithKeyObject="36A951F5-6BB3-1244-4CEF-D7791BAE15B7" localFKIndex="731C2031-CCBA-CFEB-B859-2ADA1A99F049" name="CCD_SVY_CAT_PRE_OPTS_FK2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_FK2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>A69CFFD1-201C-1F24-4F5F-6F3801946132</importedID>
+<referredTableLongName>CEN_CRUISE.CCD_SVY_CAT_PRE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>84038666-E8EF-90E3-D34F-A894B62D0193</referredTableID>
+<keyObject>BB2A1F3C-C3B9-03C3-FEF7-81DD353538D7</keyObject>
+<referredKeyID>BB2A1F3C-C3B9-03C3-FEF7-81DD353538D7</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>SVY_CAT_PRE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

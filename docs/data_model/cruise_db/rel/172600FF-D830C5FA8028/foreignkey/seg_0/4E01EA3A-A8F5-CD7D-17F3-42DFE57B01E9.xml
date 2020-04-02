@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="4E01EA3A-A8F5-CD7D-17F3-42DFE57B01E9" containerWithKeyObject="351F6F66-4C0D-20B7-780A-AC71735682F6" localFKIndex="B5061934-E6EF-929E-AFC6-EBE4E870648B" name="CCD_GEAR_PRE_OPTS_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_GEAR_PRE_OPTS_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:47 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7CFFB754-6D3D-6BEC-F91D-2CC5ED4D4974</importedID>
+<referredTableLongName>CEN_CRUISE.CCD_GEAR</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>14FF5952-9533-AC61-007A-5249644B44BA</referredTableID>
+<keyObject>BEC57CB9-F030-26BF-8987-57F52537B7B0</keyObject>
+<referredKeyID>BEC57CB9-F030-26BF-8987-57F52537B7B0</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>GEAR_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

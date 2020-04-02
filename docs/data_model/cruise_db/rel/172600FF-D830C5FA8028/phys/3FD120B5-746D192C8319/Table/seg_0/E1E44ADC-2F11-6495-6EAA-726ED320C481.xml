@@ -1,0 +1,120 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DVM_ERR_SEVERITY" directorySegmentName="seg_0" id="E1E44ADC-2F11-6495-6EAA-726ED320C481">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F210A33F-3B66-2948-3A71-9925E85AA3F9</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LAST_MOD_DATE" id="246CF290-99AC-616D-DA92-C10A2501D298">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="37A090C8-3083-2979-F621-C5C569873DAA">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERR_SEVERITY_ID" id="8CDBF164-9CB5-7062-32F6-305AB9B33085">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERR_SEVERITY_DESC" id="9D875A3C-7243-B20F-4282-A92EEE28067D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="A3D29CB9-BFAC-7691-7B13-E1ACB89EB91A">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERR_SEVERITY_NAME" id="AB47901A-6178-8148-D6F1-227E8C1D8149">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ERR_SEVERITY_CODE" id="B25D530D-6528-731E-EC5D-6F697EE91854">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="C9587ABE-9B1E-D9A4-AE26-A4C75BB72D2C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERR_SEVERITY_U1" id="5FA2E43A-2F23-C7E9-72BD-701F9E506AD5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERR_SEVERITY_PK" id="627B71C6-2652-C97C-1982-597F286EE231">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ERR_SEVERITY_U2" id="A0166A52-D26C-77FD-CE02-8CE7CEDC549F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ERR_SEVERITY_PK" id="FAE0EA97-AC56-D7CF-E4DE-969346343602">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>627B71C6-2652-C97C-1982-597F286EE231</existingIndex>
+<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DVM_ERR_SEVERITY_U1" id="77571DE2-C9EA-CE6C-B96D-E3E8BEC3F358">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>5FA2E43A-2F23-C7E9-72BD-701F9E506AD5</existingIndex>
+<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DVM_ERR_SEVERITY_U2" id="CD4A27CF-9B6B-3655-697F-1ECAAFE6FDF3">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>A0166A52-D26C-77FD-CE02-8CE7CEDC549F</existingIndex>
+<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

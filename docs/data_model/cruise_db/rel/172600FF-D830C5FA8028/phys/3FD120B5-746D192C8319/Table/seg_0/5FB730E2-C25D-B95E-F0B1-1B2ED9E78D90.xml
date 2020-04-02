@@ -1,0 +1,76 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="CUST_ERR_CONSTR_MSG" directorySegmentName="seg_0" id="5FB730E2-C25D-B95E-F0B1-1B2ED9E78D90">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>F210A33F-3B66-2948-3A71-9925E85AA3F9</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="CONSTR_NAME" id="02F2521C-9EC6-4A90-8B2B-58D21B11DCBD">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONSTR_MSG_ID" id="5CBBDD33-9D4B-4C7C-B02F-E1FB1DFC73DC">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONSTR_ERR_MESSAGE" id="C1AD3149-54E0-871E-2A76-F4AE05AECE35">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CUST_ERR_CONSTR_MSG_U1" id="49C046B0-83B3-BCD9-77B1-528F4461FBA7">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CUST_ERR_CONSTR_MSG_PK" id="520358C8-0BAC-9A67-96E6-B03D2F3A316E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CUST_ERR_CONSTR_MSG_PK" id="0B61F65E-4032-9577-3CB9-63621F8C290E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>520358C8-0BAC-9A67-96E6-B03D2F3A316E</existingIndex>
+<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CUST_ERR_CONSTR_MSG_U1" id="89C1C43D-4AEB-B06A-E73A-DBD741FE2F39">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-02 22:02:35 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<existingIndex>49C046B0-83B3-BCD9-77B1-528F4461FBA7</existingIndex>
+<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

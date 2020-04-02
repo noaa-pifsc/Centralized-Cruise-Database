@@ -3,6 +3,7 @@ grant execute on CEN_UTIL_PKG to cen_cruise_app;
 
 
 --run this from the CEN_CRUISE data schema
+grant execute on CRUISE_PKG to CEN_CRUISE_APP;
 grant execute on DB_LOG_PKG to CEN_CRUISE_APP;
 grant execute on CUST_ERR_PKG to CEN_CRUISE_APP;
 grant execute on AUTH_APP_PKG to CEN_CRUISE_APP;
@@ -59,6 +60,60 @@ grant insert, delete, update, select on CCD_EXP_SPP_CATS to CEN_CRUISE_APP;
 grant insert, delete, update, select on CCD_SVY_CATS to CEN_CRUISE_APP;
 grant insert, delete, update, select on CCD_SVY_TYPES to CEN_CRUISE_APP;
 
+
+grant insert, delete, update, select on CCD_GEAR_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_GEAR_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_GEAR_PRE_V to CEN_CRUISE_APP;
+
+grant insert, delete, update, select on CCD_REG_ECO_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_REG_ECO_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_REG_ECO_PRE_V to CEN_CRUISE_APP;
+
+grant insert, delete, update, select on CCD_REGION_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_REGION_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_REGION_PRE_V to CEN_CRUISE_APP;
+
+
+
+
+
+
+grant insert, delete, update, select on CCD_SVY_CAT_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SVY_CAT_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_SVY_CAT_PRE_V to CEN_CRUISE_APP;
+
+
+grant insert, delete, update, select on CCD_SPP_ESA_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SPP_ESA_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_SPP_ESA_PRE_V to CEN_CRUISE_APP;
+
+
+
+
+grant insert, delete, update, select on CCD_SPP_FSSI_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SPP_FSSI_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_SPP_FSSI_PRE_V to CEN_CRUISE_APP;
+
+
+grant insert, delete, update, select on CCD_SPP_MMPA_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SPP_MMPA_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_SPP_MMPA_PRE_V to CEN_CRUISE_APP;
+
+
+grant insert, delete, update, select on CCD_SPP_CAT_PRE to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SPP_CAT_PRE_OPTS to CEN_CRUISE_APP;
+grant select on CCD_SPP_CAT_PRE_V to CEN_CRUISE_APP;
+
+
+
+grant select on CCD_REG_ECO_PRE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_REGION_PRE_DELIM_V to CEN_CRUISE_APP;
+
+grant select on CCD_SPP_CAT_PRE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_SPP_ESA_PRE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_SPP_FSSI_PRE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_SPP_MMPA_PRE_DELIM_V to CEN_CRUISE_APP;
+grant select on CCD_SVY_CAT_PRE_DELIM_V to CEN_CRUISE_APP;
 
 
 /*
