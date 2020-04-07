@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   17:43 Monday April 6, 2020
+--   Date and Time:   07:52 Tuesday April 7, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406174223'
+,p_last_upd_yyyymmddhh24miss=>'20200407075210'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -374,6 +374,15 @@ wwv_flow_api.create_list(
  p_id=>wwv_flow_api.id(19785423494588627)
 ,p_name=>'Desktop Navigation Bar'
 ,p_list_status=>'PUBLIC'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(4220776557951977)
+,p_list_item_display_sequence=>5
+,p_list_item_link_text=>'End-User Doc'
+,p_list_item_link_target=>'https://drive.google.com/file/d/1IjAOnyUe-eY3SA6fWEu87-IBCWhEuSXV/view?usp=sharing" target="_blank" rel = "noopener noreferrer"'
+,p_list_item_icon=>'fa-file-text-o'
+,p_list_item_icon_attributes=>'target="_blank"'
+,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(19790602967769084)
