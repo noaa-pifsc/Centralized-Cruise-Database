@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   18:44 Thursday April 2, 2020
+--   Date and Time:   17:43 Monday April 6, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -37,13 +37,13 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 
 -- Application Statistics:
 --   Pages:                     49
---     Items:                  171
+--     Items:                  195
 --     Computations:            19
 --     Validations:              2
 --     Processes:              119
---     Regions:                147
+--     Regions:                145
 --     Buttons:                127
---     Dynamic Actions:         63
+--     Dynamic Actions:         79
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -67,7 +67,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --         Breadcrumb:           1
 --         Button:               3
 --         Report:               9
---       LOVs:                   1
+--       LOVs:                   2
 --       Shortcuts:              1
 --     Globalization:
 --     Reports:
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402182730'
+,p_last_upd_yyyymmddhh24miss=>'20200406174223'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -656,6 +656,23 @@ wwv_flow_api.create_list_of_values(
  p_id=>wwv_flow_api.id(20078494568938261)
 ,p_lov_name=>'AUTH_APP_GROUPS_LOV'
 ,p_lov_query=>'select distinct app_group_code display_value, app_group_code as return_value from LHP.AUTH_APP_USER_GROUPS_V'
+);
+wwv_flow_api.create_list_of_values(
+ p_id=>wwv_flow_api.id(3561502875785412)
+,p_lov_name=>'Y_N'
+,p_lov_query=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+);
+wwv_flow_api.create_static_lov_data(
+ p_id=>wwv_flow_api.id(3561879652785424)
+,p_lov_disp_sequence=>1
+,p_lov_disp_value=>'Yes'
+,p_lov_return_value=>'Y'
+);
+wwv_flow_api.create_static_lov_data(
+ p_id=>wwv_flow_api.id(3562272411785426)
+,p_lov_disp_sequence=>2
+,p_lov_disp_value=>'No'
+,p_lov_return_value=>'N'
 );
 end;
 /
@@ -9846,7 +9863,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200223115100'
+,p_last_upd_yyyymmddhh24miss=>'20200402213948'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7419197051645521)
@@ -9900,20 +9917,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_name=>'Cruises'
 ,p_data_source_type=>'REGION_SOURCE'
 ,p_items_value_column_name=>'NUM_CRUISES'
-,p_items_label_column_name=>'CRUISE_FISC_YEAR'
-,p_assigned_to_y2=>'off'
-,p_items_label_rendered=>true
-,p_items_label_position=>'auto'
-,p_link_target=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:RP:P10_FISCAL_YEAR:&CRUISE_FISC_YEAR.'
-,p_link_target_type=>'REDIRECT_PAGE'
-);
-wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7420132241645531)
-,p_chart_id=>wwv_flow_api.id(7419276416645522)
-,p_seq=>20
-,p_name=>'Legs'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
 ,p_items_label_column_name=>'CRUISE_FISC_YEAR'
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
@@ -10024,20 +10027,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
 wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7420695982645536)
-,p_chart_id=>wwv_flow_api.id(7420413762645534)
-,p_seq=>20
-,p_name=>'Legs'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
-,p_items_label_column_name=>'STD_SVY_NAME_VAL'
-,p_assigned_to_y2=>'off'
-,p_items_label_rendered=>true
-,p_items_label_position=>'auto'
-,p_link_target=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.:RP:P20_SURVEY_NAME:&STD_SVY_NAME_VAL.'
-,p_link_target_type=>'REDIRECT_PAGE'
-);
-wwv_flow_api.create_jet_chart_series(
  p_id=>wwv_flow_api.id(7420701195645537)
 ,p_chart_id=>wwv_flow_api.id(7420413762645534)
 ,p_seq=>30
@@ -10114,7 +10103,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200223115941'
+,p_last_upd_yyyymmddhh24miss=>'20200402214023'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7421111517645541)
@@ -10199,67 +10188,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_name=>'# Cruises'
 ,p_data_source_type=>'REGION_SOURCE'
 ,p_items_value_column_name=>'NUM_CRUISES'
-,p_items_label_column_name=>'STD_SVY_NAME_VAL'
-,p_items_label_rendered=>false
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(7421791720645547)
-,p_plug_name=>'# Legs'
-,p_parent_plug_id=>wwv_flow_api.id(7497570391111903)
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_escape_on_http_output=>'Y'
-,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>20
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_new_grid_row=>false
-,p_plug_display_point=>'BODY'
-,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select STD_SVY_NAME_VAL, SUM(NUM_LEGS) num_legs',
-'from',
-'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
-'',
-'AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
-'',
-'group by ',
-'STD_SVY_NAME_VAL',
-'order by UPPER(STD_SVY_NAME_VAL);',
-''))
-,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_plug_query_row_template=>1
-,p_plug_query_num_rows=>15
-,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-);
-wwv_flow_api.create_jet_chart(
- p_id=>wwv_flow_api.id(7421889739645548)
-,p_region_id=>wwv_flow_api.id(7421791720645547)
-,p_chart_type=>'pie'
-,p_animation_on_display=>'auto'
-,p_animation_on_data_change=>'auto'
-,p_data_cursor=>'auto'
-,p_data_cursor_behavior=>'auto'
-,p_hide_and_show_behavior=>'withRescale'
-,p_hover_behavior=>'none'
-,p_stack=>'off'
-,p_value_format_scaling=>'auto'
-,p_tooltip_rendered=>'Y'
-,p_show_series_name=>true
-,p_show_group_name=>true
-,p_show_value=>true
-,p_show_label=>true
-,p_legend_rendered=>'on'
-,p_legend_position=>'auto'
-,p_overview_rendered=>'off'
-,p_pie_other_threshold=>0
-,p_pie_selection_effect=>'highlight'
-);
-wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7421939263645549)
-,p_chart_id=>wwv_flow_api.id(7421889739645548)
-,p_seq=>10
-,p_name=>'# Cruises'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
 ,p_items_label_column_name=>'STD_SVY_NAME_VAL'
 ,p_items_label_rendered=>false
 );
@@ -10382,18 +10310,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_items_label_position=>'auto'
 );
 wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7476365353995847)
-,p_chart_id=>wwv_flow_api.id(7474004436995844)
-,p_seq=>20
-,p_name=>'Legs'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
-,p_items_label_column_name=>'CRUISE_FISC_YEAR'
-,p_assigned_to_y2=>'off'
-,p_items_label_rendered=>true
-,p_items_label_position=>'auto'
-);
-wwv_flow_api.create_jet_chart_series(
  p_id=>wwv_flow_api.id(7476982428995847)
 ,p_chart_id=>wwv_flow_api.id(7474004436995844)
 ,p_seq=>30
@@ -10486,7 +10402,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200223120038'
+,p_last_upd_yyyymmddhh24miss=>'20200402214110'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14927975248903605)
@@ -10571,67 +10487,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_name=>'# Cruises'
 ,p_data_source_type=>'REGION_SOURCE'
 ,p_items_value_column_name=>'NUM_CRUISES'
-,p_items_label_column_name=>'CRUISE_FISC_YEAR'
-,p_items_label_rendered=>false
-);
-wwv_flow_api.create_page_plug(
- p_id=>wwv_flow_api.id(14928655451903611)
-,p_plug_name=>'# Legs'
-,p_parent_plug_id=>wwv_flow_api.id(15004434122369967)
-,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
-,p_escape_on_http_output=>'Y'
-,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>20
-,p_include_in_reg_disp_sel_yn=>'N'
-,p_plug_new_grid_row=>false
-,p_plug_display_point=>'BODY'
-,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select CRUISE_FISC_YEAR, SUM(NUM_LEGS) NUM_LEGS',
-'from',
-'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
-'',
-'AND ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = STD_SVY_NAME_VAL))',
-'',
-'group by ',
-'CRUISE_FISC_YEAR',
-'order by CRUISE_FISC_YEAR;',
-''))
-,p_plug_source_type=>'NATIVE_JET_CHART'
-,p_plug_query_row_template=>1
-,p_plug_query_num_rows=>15
-,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-);
-wwv_flow_api.create_jet_chart(
- p_id=>wwv_flow_api.id(7512697097258072)
-,p_region_id=>wwv_flow_api.id(14928655451903611)
-,p_chart_type=>'pie'
-,p_animation_on_display=>'auto'
-,p_animation_on_data_change=>'auto'
-,p_data_cursor=>'auto'
-,p_data_cursor_behavior=>'auto'
-,p_hide_and_show_behavior=>'withRescale'
-,p_hover_behavior=>'none'
-,p_stack=>'off'
-,p_value_format_scaling=>'auto'
-,p_tooltip_rendered=>'Y'
-,p_show_series_name=>true
-,p_show_group_name=>true
-,p_show_value=>true
-,p_show_label=>true
-,p_legend_rendered=>'on'
-,p_legend_position=>'auto'
-,p_overview_rendered=>'off'
-,p_pie_other_threshold=>0
-,p_pie_selection_effect=>'highlight'
-);
-wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7513109592258072)
-,p_chart_id=>wwv_flow_api.id(7512697097258072)
-,p_seq=>10
-,p_name=>'# Cruises'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
 ,p_items_label_column_name=>'CRUISE_FISC_YEAR'
 ,p_items_label_rendered=>false
 );
@@ -10747,18 +10602,6 @@ wwv_flow_api.create_jet_chart_series(
 ,p_name=>'Cruises'
 ,p_data_source_type=>'REGION_SOURCE'
 ,p_items_value_column_name=>'NUM_CRUISES'
-,p_items_label_column_name=>'STD_SVY_NAME_VAL'
-,p_assigned_to_y2=>'off'
-,p_items_label_rendered=>true
-,p_items_label_position=>'auto'
-);
-wwv_flow_api.create_jet_chart_series(
- p_id=>wwv_flow_api.id(7510867900258071)
-,p_chart_id=>wwv_flow_api.id(7508569403258070)
-,p_seq=>20
-,p_name=>'Legs'
-,p_data_source_type=>'REGION_SOURCE'
-,p_items_value_column_name=>'NUM_LEGS'
 ,p_items_label_column_name=>'STD_SVY_NAME_VAL'
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
@@ -11254,7 +11097,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200325200648'
+,p_last_upd_yyyymmddhh24miss=>'20200406161450'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -12292,21 +12135,6 @@ wwv_flow_api.create_page_button(
 ,p_grid_new_column=>'Y'
 );
 wwv_flow_api.create_page_button(
- p_id=>wwv_flow_api.id(8703490389418713)
-,p_button_sequence=>20
-,p_button_plug_id=>wwv_flow_api.id(8703293520418711)
-,p_button_name=>'ADD_TGT_ESA_SPP'
-,p_button_action=>'DEFINED_BY_DA'
-,p_button_template_options=>'#DEFAULT#'
-,p_button_template_id=>wwv_flow_api.id(19774698947588608)
-,p_button_image_alt=>'Select Species Preset'
-,p_button_position=>'BODY'
-,p_button_execute_validations=>'N'
-,p_warn_on_unsaved_changes=>null
-,p_grid_new_row=>'N'
-,p_grid_new_column=>'Y'
-);
-wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(8704932616418728)
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(8704753448418726)
@@ -12345,6 +12173,21 @@ wwv_flow_api.create_page_button(
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
 ,p_button_image_alt=>'Select Category Preset'
+,p_button_position=>'BODY'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+,p_grid_new_row=>'N'
+,p_grid_new_column=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(8703490389418713)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(8703293520418711)
+,p_button_name=>'ADD_TGT_ESA_SPP'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_image_alt=>'Select Species Preset'
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
@@ -12472,6 +12315,153 @@ wwv_flow_api.create_page_branch(
 ,p_branch_sequence=>30
 );
 wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3124990864389839)
+,p_name=>'P220_ESA_SHOW_FILT_LIST'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(8702904624418708)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P220_ESA_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3125467068389844)
+,p_name=>'UPDATE_ESA_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8702904624418708)
+,p_source=>'UPDATE_ESA_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3801233462805811)
+,p_name=>'UPDATE_MMPA_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8704483985418723)
+,p_source=>'UPDATE_MMPA_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3801308759805812)
+,p_name=>'P220_MMPA_SHOW_FILT_LIST'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(8704483985418723)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P220_MMPA_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3950467572874101)
+,p_name=>'UPDATE_FSSI_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8706321477418742)
+,p_source=>'UPDATE_FSSI_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3950562062874102)
+,p_name=>'P220_FSSI_SHOW_FILT_LIST'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(8706321477418742)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P220_FSSI_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3989680591730307)
+,p_name=>'UPDATE_EXP_SPP_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8734510297997309)
+,p_source=>'UPDATE_EXP_SPP_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3989700049730308)
+,p_name=>'P220_EXP_SPP_SHOW_FILT_LIST'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(8734510297997309)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P220_EXP_SPP_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Expected Species Categories.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4040936904656805)
+,p_name=>'P220_STD_SVY_NAME_FILT'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_item_default=>'Y'
+,p_prompt=>'Filter Standard Survey Name List?'
+,p_source=>'P220_STD_SVY_NAME_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_lov=>'STATIC:Yes;Y'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Standard Survey Names. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4041437779656810)
+,p_name=>'P220_STD_SVY_NAME_TMP'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_source=>'P220_STD_SVY_NAME_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6253073221002220)
 ,p_name=>'P220_CRUISE_ID'
 ,p_item_sequence=>10
@@ -12506,7 +12496,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6254388300002233)
 ,p_name=>'P220_CRUISE_NOTES'
-,p_item_sequence=>100
+,p_item_sequence=>120
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Notes'
@@ -12559,7 +12549,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6254749721002237)
 ,p_name=>'P220_STD_SVY_NAME'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Standard Survey Name'
@@ -12567,14 +12557,46 @@ wwv_flow_api.create_page_item(
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT STD_SVY_NAME, STD_SVY_NAME_ID',
-' FROM CEN_CRUISE.CCD_STD_SVY_NAMES',
-'ORDER BY UPPER(STD_SVY_NAME)'))
+'DECLARE',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    V_TEMP_SQL VARCHAR2(2000);',
+'',
+'BEGIN',
+'',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME_FILT is: ''||:P220_STD_SVY_NAME_FILT, V_PROC_RETURN_CODE);',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME is: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The filter IS NULL value is: ''||CASE WHEN :P220_STD_SVY_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'',
+'V_TEMP_SQL := ''SELECT distinct',
+'    STD_SVY_NAME, STD_SVY_NAME_ID FROM CEN_CRUISE.CCD_STD_SVY_NAMES where (:P220_STD_SVY_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_STD_SVY_NAME_FILT IS NULL) OR (STD_SVY_NAME_ID = :P220_STD_SVY_NAME) OR (STD_SVY_NAME_ID = (SELECT STD_S'
+||'VY_NAME_ID from CEN_CRUISE.CCD_CRUISES WHERE CRUISE_ID = :P220_CRUISE_ID))',
+'',
+'    ORDER BY UPPER(STD_SVY_NAME)'';',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'RETURN V_TEMP_SQL;',
+'',
+'END;',
+''))
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
+,p_lov_cascade_parent_items=>'P220_STD_SVY_NAME_FILT'
+,p_ajax_items_to_submit=>'P220_STD_SVY_NAME_FILT,P220_STD_SVY_NAME,P220_CRUISE_ID'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'Standard Survey Name defined by NMFS (pick one from the list or type in the name)'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
@@ -12582,7 +12604,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6254863019002238)
 ,p_name=>'P220_SVY_FREQ_ID'
-,p_item_sequence=>60
+,p_item_sequence=>80
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Cruise Frequency'
@@ -12594,10 +12616,11 @@ wwv_flow_api.create_page_item(
 ' FROM CEN_CRUISE.CCD_SVY_FREQ',
 'ORDER BY UPPER(SVY_FREQ_NAME)'))
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'Frequency of the given cruise'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
@@ -12605,7 +12628,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7347819321226803)
 ,p_name=>'P220_STD_SVY_NAME_OTH'
-,p_item_sequence=>50
+,p_item_sequence=>70
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Standard Survey Name (Other)'
@@ -12627,7 +12650,7 @@ wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7417440299645504)
 ,p_name=>'P220_CRUISE_URL'
 ,p_is_required=>true
-,p_item_sequence=>80
+,p_item_sequence=>100
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'URL'
@@ -12647,7 +12670,7 @@ wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7417542221645505)
 ,p_name=>'P220_CRUISE_CONT_EMAIL'
 ,p_is_required=>true
-,p_item_sequence=>90
+,p_item_sequence=>110
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Contact Email'
@@ -12667,7 +12690,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7501792096111945)
 ,p_name=>'P220_SVY_TYPE_ID'
-,p_item_sequence=>70
+,p_item_sequence=>90
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_item_default=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -12686,11 +12709,12 @@ wwv_flow_api.create_page_item(
 'select svy_type_name, svy_type_id from CEN_CRUISE.CCD_SVY_TYPES',
 'ORDER BY UPPER(svy_type_name)'))
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
 ,p_cHeight=>1
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'Survey Type for the given cruise'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
@@ -12784,14 +12808,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8703020682418709)
 ,p_name=>'P220_TGT_ESA_SPP_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(8702904624418708)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'ESA Target Species'
 ,p_source=>'P220_TGT_ESA_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA ORDER BY UPPER(TGT_SPP_ESA_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_ESA_SHOW_FILT_LIST is: ''||:P220_ESA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_TGT_ESA_SPP_SHUTTLE is: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the MMPA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P220_TGT_ESA_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_ESA_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_ESA_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_ESA_ID',
+'        FROM',
+'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ((:P220_ESA_SHOW_FILT_LIST = ''''Y'''' OR :P220_ESA_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_ESA_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT TGT_SPP_ESA_ID from CEN_CRUISE.CCD_CRUISE_SPP_ESA where cruise_id = :P220_CRUISE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P220_ESA_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P220_ESA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_ESA_SPP_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -12826,14 +12915,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704521054418724)
 ,p_name=>'P220_TGT_MMPA_SPP_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(8704483985418723)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'MMPA Target Species'
 ,p_source=>'P220_TGT_MMPA_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA ORDER BY UPPER(TGT_SPP_MMPA_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_MMPA_SHOW_FILT_LIST is: ''||:P220_MMPA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_TGT_MMPA_SPP_SHUTTLE is: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the MMPA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P220_TGT_MMPA_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_MMPA_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_MMPA_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_MMPA_ID',
+'        FROM',
+'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ((:P220_MMPA_SHOW_FILT_LIST = ''''Y'''' OR :P220_MMPA_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_MMPA_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT TGT_SPP_MMPA_ID from CEN_CRUISE.CCD_CRUISE_SPP_MMPA where cruise_id = :P220_CRUISE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P220_MMPA_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P220_MMPA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_MMPA_SPP_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -12841,6 +12995,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the MMPA Target Species by moving options to the right-side of the field.  You can also use the Presets below to add one or more MMPA Target Species to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704890427418727)
 ,p_name=>'P220_TGT_MMPA_SPP_PRESETS'
@@ -12868,14 +13025,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8706478101418743)
 ,p_name=>'P220_TGT_FSSI_SPP_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(8706321477418742)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FSSI Target Species'
 ,p_source=>'P220_TGT_FSSI_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI ORDER BY UPPER(TGT_SPP_FSSI_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_FSSI_SHOW_FILT_LIST is: ''||:P220_FSSI_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_TGT_FSSI_SPP_SHUTTLE is: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the MMPA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P220_TGT_FSSI_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_FSSI_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_FSSI_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_FSSI_ID',
+'        FROM',
+'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ((:P220_FSSI_SHOW_FILT_LIST = ''''Y'''' OR :P220_FSSI_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_FSSI_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT TGT_SPP_FSSI_ID from CEN_CRUISE.CCD_CRUISE_SPP_FSSI where cruise_id = :P220_CRUISE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P220_FSSI_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P220_FSSI_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_FSSI_SPP_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -12910,14 +13132,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8734681835997310)
 ,p_name=>'P220_EXP_SPP_CAT_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>30
 ,p_item_plug_id=>wwv_flow_api.id(8734510297997309)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Expected Species Categories'
 ,p_source=>'P220_EXP_SPP_CAT_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS ORDER BY UPPER(EXP_SPP_CAT_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_SHOW_FILT_LIST is: ''||:P220_EXP_SPP_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_CAT_SHUTTLE is: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the MMPA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P220_EXP_SPP_CAT_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(EXP_SPP_CAT_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (EXP_SPP_CAT_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT EXP_SPP_CAT_ID',
+'        FROM',
+'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ((:P220_EXP_SPP_SHOW_FILT_LIST = ''''Y'''' OR :P220_EXP_SPP_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_EXP_SPP_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT EXP_SPP_CAT_ID from CEN_CRUISE.CCD_CRUISE_EXP_SPP where cruise_id = :P220_CRUISE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P220_EXP_SPP_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P220_EXP_SPP_SHOW_FILT_LIST,P220_CRUISE_ID,P220_EXP_SPP_CAT_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -13102,9 +13389,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8737247801997336)
 ,p_name=>'P220_TGT_ESA_SPP_DISP'
@@ -13509,6 +13793,9 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'change'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(8513590313017536)
 ,p_event_id=>wwv_flow_api.id(8513458440017535)
@@ -13831,6 +14118,391 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3125816392389848)
+,p_name=>'ESA Shuttle After Refresh'
+,p_event_sequence=>150
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_ESA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3125901806389849)
+,p_event_id=>wwv_flow_api.id(3125816392389848)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_TGT_ESA_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:UPDATE_ESA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_ESA_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_ESA_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3654601142650603)
+,p_name=>'ESA shuttle before refresh'
+,p_event_sequence=>160
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_ESA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3654794517650604)
+,p_event_id=>wwv_flow_api.id(3654601142650603)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_ESA_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P220_TGT_ESA_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P220_TGT_ESA_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3801430270805813)
+,p_name=>'MMPA Shuttle After Refresh'
+,p_event_sequence=>170
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_MMPA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3801571635805814)
+,p_event_id=>wwv_flow_api.id(3801430270805813)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_TGT_MMPA_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:UPDATE_MMPA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_MMPA_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_MMPA_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3950615701874103)
+,p_name=>'FSSI Shuttle After Refresh'
+,p_event_sequence=>180
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_FSSI_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3950758391874104)
+,p_event_id=>wwv_flow_api.id(3950615701874103)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_TGT_FSSI_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:UPDATE_FSSI_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_FSSI_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_FSSI_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3801631865805815)
+,p_name=>'MMPA shuttle before refresh'
+,p_event_sequence=>190
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_MMPA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3801713142805816)
+,p_event_id=>wwv_flow_api.id(3801631865805815)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_MMPA_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P220_TGT_MMPA_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P220_TGT_MMPA_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3950815705874105)
+,p_name=>'FSSI shuttle before refresh'
+,p_event_sequence=>200
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_TGT_FSSI_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3950905929874106)
+,p_event_id=>wwv_flow_api.id(3950815705874105)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_FSSI_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P220_TGT_FSSI_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P220_TGT_FSSI_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3989854703730309)
+,p_name=>'Expected Species Categories Shuttle After Refresh'
+,p_event_sequence=>210
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_EXP_SPP_CAT_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3989909528730310)
+,p_event_id=>wwv_flow_api.id(3989854703730309)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_EXP_SPP_CAT_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:UPDATE_EXP_SPP_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_EXP_SPP_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_EXP_SPP_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3990053084730311)
+,p_name=>'Expected Species Categories shuttle before refresh'
+,p_event_sequence=>220
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_EXP_SPP_CAT_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3990177023730312)
+,p_event_id=>wwv_flow_api.id(3990053084730311)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_EXP_SPP_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P220_EXP_SPP_CAT_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P220_EXP_SPP_CAT_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4041213791656808)
+,p_name=>'Before Refresh Standard Survey Name'
+,p_event_sequence=>230
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_STD_SVY_NAME'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4041319625656809)
+,p_event_id=>wwv_flow_api.id(4041213791656808)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_STD_SVY_NAME_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name Before Refresh Shuttle Options Event'', ''The Standard Survey Name Filter select field was changed: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P220_STD_SVY_NAME;',
+'',
+'END;'))
+,p_attribute_07=>'P220_STD_SVY_NAME'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4041519341656811)
+,p_name=>'After Refresh Standard Survey Name'
+,p_event_sequence=>240
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_STD_SVY_NAME'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4041663762656812)
+,p_event_id=>wwv_flow_api.id(4041519341656811)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_STD_SVY_NAME'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name After Refresh Event'', ''The Standard Survey Name Filter select field was restored: ''||:P220_STD_SVY_NAME_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P220_STD_SVY_NAME_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P220_STD_SVY_NAME_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348566949226810)
 ,p_process_sequence=>10
@@ -13958,9 +14630,6 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'ESA Target Species Saved<BR>'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8706217256418741)
 ,p_process_sequence=>50
@@ -14057,6 +14726,9 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Expected Species Categories Saved<BR>'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7417329183645503)
 ,p_process_sequence=>80
@@ -14111,7 +14783,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402172334'
+,p_last_upd_yyyymmddhh24miss=>'20200406174223'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -15105,6 +15777,91 @@ wwv_flow_api.create_page_item(
 ,p_attribute_04=>'Y'
 );
 wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3980517523476801)
+,p_name=>'UPDATE_GEAR_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8266649725098206)
+,p_source=>'UPDATE_GEAR_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3980640137476802)
+,p_name=>'P230_GEAR_SHOW_FILT_LIST'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(8266649725098206)
+,p_prompt=>'Filter List?'
+,p_source=>'P230_GEAR_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Gear.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3989031959730301)
+,p_name=>'UPDATE_REG_ECO_FILT_LIST_TMP'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(8269716470098237)
+,p_source=>'UPDATE_REG_ECO_FILT_LIST_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3989194994730302)
+,p_name=>'P230_REG_ECO_SHOW_FILT_LIST'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(8269716470098237)
+,p_prompt=>'Filter List?'
+,p_source=>'P230_REG_ECO_SHOW_FILT_LIST'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Regional Ecosystems.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4130132467563001)
+,p_name=>'P230_VESSEL_ID_TMP'
+,p_item_sequence=>110
+,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
+,p_source=>'P230_VESSEL_ID_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4130287388563002)
+,p_name=>'P230_VESSEL_NAME_FILT'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
+,p_item_default=>'Y'
+,p_prompt=>'Filter Vessel List?'
+,p_source=>'P230_VESSEL_NAME_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_lov=>'STATIC:Yes;Y'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Vessels. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7076101153077810)
 ,p_name=>'P230_CRUISE_LEG_ID'
 ,p_item_sequence=>30
@@ -15141,7 +15898,7 @@ wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7076984210077819)
 ,p_name=>'P230_LEG_START_DATE'
 ,p_is_required=>true
-,p_item_sequence=>70
+,p_item_sequence=>80
 ,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Start Date'
@@ -15161,7 +15918,7 @@ wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7077339737077820)
 ,p_name=>'P230_LEG_END_DATE'
 ,p_is_required=>true
-,p_item_sequence=>80
+,p_item_sequence=>90
 ,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'End Date'
@@ -15180,7 +15937,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7077754626077821)
 ,p_name=>'P230_LEG_DESC'
-,p_item_sequence=>90
+,p_item_sequence=>100
 ,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -15213,19 +15970,55 @@ wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7080166030077824)
 ,p_name=>'P230_VESSEL_ID'
 ,p_is_required=>true
-,p_item_sequence=>60
+,p_item_sequence=>70
 ,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Vessel'
 ,p_source=>'VESSEL_ID'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select VESSEL_NAME, VESSEL_ID from CEN_CRUISE.CCD_VESSELS order by UPPER(VESSEL_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    V_TEMP_SQL VARCHAR2(2000);',
+'',
+'BEGIN',
+'',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_NAME_FILT is: ''||:P230_VESSEL_NAME_FILT, V_PROC_RETURN_CODE);',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_ID is: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The filter IS NULL value is: ''||CASE WHEN :P230_VESSEL_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'',
+'V_TEMP_SQL := ''SELECT distinct',
+'    VESSEL_NAME, VESSEL_ID FROM CEN_CRUISE.CCD_VESSELS where (:P230_VESSEL_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_VESSEL_NAME_FILT IS NULL) OR (VESSEL_ID = :P230_VESSEL_ID) OR (VESSEL_ID = (SELECT VESSEL_ID from CEN_CRUISE.CCD_CRUIS'
+||'E_LEGS WHERE CRUISE_LEG_ID = :P230_CRUISE_LEG_ID))',
+'',
+'    ORDER BY UPPER(VESSEL_NAME)'';',
+'',
+'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'RETURN V_TEMP_SQL;',
+'',
+'END;',
+''))
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
+,p_lov_cascade_parent_items=>'P230_VESSEL_NAME_FILT'
+,p_ajax_items_to_submit=>'P230_VESSEL_NAME_FILT,P230_VESSEL_ID,P230_CRUISE_LEG_ID'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'Name of the given research vessel'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
@@ -15278,7 +16071,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7280571884273608)
 ,p_name=>'P230_CRUISE_INFO'
-,p_item_sequence=>100
+,p_item_sequence=>120
 ,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
@@ -15642,14 +16435,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8267476115098214)
 ,p_name=>'P230_GEAR_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(8266649725098206)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Gear'
 ,p_source=>'P230_GEAR_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'select GEAR_NAME, GEAR_ID from cen_cruise.ccd_gear order by upper(GEAR_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHOW_FILT_LIST is: ''||:P230_GEAR_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHUTTLE is: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the Gear from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P230_GEAR_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(GEAR_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (GEAR_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    GEAR_NAME, GEAR_ID FROM CEN_CRUISE.CCD_GEAR where GEAR_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT GEAR_ID',
+'        FROM',
+'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ((:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' OR :P230_GEAR_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT GEAR_ID from CEN_CRUISE.CCD_LEG_GEAR where CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(GEAR_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P230_GEAR_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P230_GEAR_SHOW_FILT_LIST,P230_CRUISE_LEG_ID,P230_GEAR_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -15684,14 +16542,79 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8269821240098238)
 ,p_name=>'P230_REG_ECO_SHUTTLE'
-,p_item_sequence=>10
+,p_item_sequence=>30
 ,p_item_plug_id=>wwv_flow_api.id(8269716470098237)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Regional Ecosystems'
 ,p_source=>'P230_REG_ECO_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'select REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID from cen_cruise.ccd_reg_ecosystems order by upper(REG_ECOSYSTEM_NAME)'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||:P230_REG_ECO_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the Regional Ecosystem from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P230_REG_ECO_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The current value of Regional Ecosystem is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT REG_ECOSYSTEM_ID',
+'        FROM',
+'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ((:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' OR :P230_REG_ECO_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST = ''''N'''')',
+'',
+'        UNION',
+'        SELECT REG_ECOSYSTEM_ID from CEN_CRUISE.CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P230_REG_ECO_SHOW_FILT_LIST'
+,p_ajax_items_to_submit=>'P230_REG_ECO_SHOW_FILT_LIST,P220_CRUISE_LEG_ID,P230_REG_ECO_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -15699,6 +16622,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Regional Ecosystems by moving options to the right-side of the field. You can also use the Presets below to add groups of Regional Ecosystems to the cruise leg at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8270087518098240)
 ,p_name=>'P230_REG_ECO_PRESETS'
@@ -15949,9 +16875,6 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
-end;
-/
-begin
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(7501410398111942)
 ,p_validation_name=>'Valid Leg Dates'
@@ -16204,6 +17127,237 @@ wwv_flow_api.create_page_da_action(
 ,p_affected_region_id=>wwv_flow_api.id(8510647736017507)
 ,p_stop_execution_on_error=>'Y'
 );
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3980783119476803)
+,p_name=>'Gear Shuttle After Refresh'
+,p_event_sequence=>90
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_GEAR_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3980897620476804)
+,p_event_id=>wwv_flow_api.id(3980783119476803)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P230_GEAR_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:UPDATE_GEAR_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_GEAR_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_GEAR_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3980981217476805)
+,p_name=>'Gear Shuttle Before Refresh'
+,p_event_sequence=>100
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_GEAR_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3981002956476806)
+,p_event_id=>wwv_flow_api.id(3980981217476805)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_GEAR_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P230_GEAR_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P230_GEAR_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3989217768730303)
+,p_name=>'Regional Ecosystem Shuttle After Refresh'
+,p_event_sequence=>110
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_REG_ECO_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3989318170730304)
+,p_event_id=>wwv_flow_api.id(3989217768730303)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P230_REG_ECO_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:UPDATE_REG_ECO_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :UPDATE_REG_ECO_FILT_LIST_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'UPDATE_REG_ECO_FILT_LIST_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(3989442414730305)
+,p_name=>'Regional Ecosystem Shuttle Before Refresh'
+,p_event_sequence=>120
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_REG_ECO_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(3989513343730306)
+,p_event_id=>wwv_flow_api.id(3989442414730305)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'UPDATE_REG_ECO_FILT_LIST_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P230_REG_ECO_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P230_REG_ECO_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4130369912563003)
+,p_name=>'Before Refresh Vessel List'
+,p_event_sequence=>130
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_VESSEL_ID'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4130407126563004)
+,p_event_id=>wwv_flow_api.id(4130369912563003)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P230_VESSEL_ID_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel Before Refresh Select Options Event'', ''The Vessel Filter select field was changed: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P230_VESSEL_ID;',
+'',
+'END;'))
+,p_attribute_07=>'P230_VESSEL_ID'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4130590493563005)
+,p_name=>'After Refresh Vessel List'
+,p_event_sequence=>140
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_VESSEL_ID'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4130619596563006)
+,p_event_id=>wwv_flow_api.id(4130590493563005)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P230_VESSEL_ID'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel After Refresh Event'', ''The Vessel Filter select field was restored: ''||:P230_VESSEL_ID_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P230_VESSEL_ID_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P230_VESSEL_ID_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7081375927077825)
 ,p_process_sequence=>10
@@ -16354,8 +17508,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402152919'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406132634'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7499261066111920)
@@ -16384,7 +17538,8 @@ wwv_flow_api.create_page_plug(
 'select "VESSEL_ID", ',
 '"VESSEL_NAME",',
 '"VESSEL_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_VESSELS" ',
 'ORDER BY UPPER(VESSEL_NAME)',
 '  ',
@@ -16446,6 +17601,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'NUMBER'
 ,p_help_text=>'View/Edit the given research vessel'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4040751825656803)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>24
+,p_column_identifier=>'E'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7627980795244643)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -16454,7 +17618,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'VESSEL_NAME:VESSEL_DESC:FINSS_ID:VESSEL_ID:'
+,p_report_columns=>'VESSEL_NAME:VESSEL_DESC:APP_SHOW_OPT_YN:FINSS_ID:VESSEL_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -16549,7 +17713,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200224092641'
+,p_last_upd_yyyymmddhh24miss=>'20200406133028'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7614252884233802)
@@ -16640,6 +17804,27 @@ wwv_flow_api.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4040857129656804)
+,p_name=>'P305_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(7614252884233802)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7617789343233807)
 ,p_name=>'P305_VESSEL_ID'
 ,p_item_sequence=>10
@@ -16675,7 +17860,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7618551792233816)
 ,p_name=>'P305_VESSEL_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(7614252884233802)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -16696,7 +17881,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7618949021233817)
 ,p_name=>'P305_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(7614252884233802)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -16792,8 +17977,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402153030'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406120142'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7644975931511225)
@@ -16807,7 +17992,8 @@ wwv_flow_api.create_page_plug(
 'select "REG_ECOSYSTEM_ID", ',
 '"REG_ECOSYSTEM_NAME",',
 '"REG_ECOSYSTEM_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_REG_ECOSYSTEMS" ',
 'order by upper(REG_ECOSYSTEM_NAME)',
 '  ',
@@ -16869,6 +18055,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'NUMBER'
 ,p_help_text=>'View/Edit the given regional ecosystem'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4021252807111205)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>24
+,p_column_identifier=>'E'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7649915356512049)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -16877,7 +18072,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'REG_ECOSYSTEM_NAME:REG_ECOSYSTEM_DESC:FINSS_ID:REG_ECOSYSTEM_ID:'
+,p_report_columns=>'REG_ECOSYSTEM_NAME:REG_ECOSYSTEM_DESC:APP_SHOW_OPT_YN:FINSS_ID:REG_ECOSYSTEM_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_plug(
@@ -16985,7 +18180,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402151045'
+,p_last_upd_yyyymmddhh24miss=>'20200406120259'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7636862441511200)
@@ -17075,6 +18270,27 @@ wwv_flow_api.create_page_button(
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4021302153111206)
+,p_name=>'P315_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(7636862441511200)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7640363835511203)
 ,p_name=>'P315_REG_ECOSYSTEM_ID'
 ,p_item_sequence=>10
@@ -17114,7 +18330,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7641141673511205)
 ,p_name=>'P315_REG_ECOSYSTEM_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(7636862441511200)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -17135,7 +18351,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7641535845511205)
 ,p_name=>'P315_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(7636862441511200)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -18945,8 +20161,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402153152'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406115401'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(13224476566696610)
@@ -18975,7 +20191,8 @@ wwv_flow_api.create_page_plug(
 'select "TGT_SPP_ESA_ID", ',
 '"TGT_SPP_ESA_NAME",',
 '"TGT_SPP_ESA_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_TGT_SPP_ESA" ',
 'ORDER BY UPPER(TGT_SPP_ESA_NAME)',
 '  ',
@@ -19038,6 +20255,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description of the given ESA Target Species'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(3124774342389837)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>44
+,p_column_identifier=>'K'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(13353196295829333)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -19046,7 +20272,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'TGT_SPP_ESA_NAME:TGT_SPP_ESA_DESC:FINSS_ID:TGT_SPP_ESA_ID:'
+,p_report_columns=>'TGT_SPP_ESA_NAME:TGT_SPP_ESA_DESC:APP_SHOW_OPT_YN:FINSS_ID:TGT_SPP_ESA_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -19143,7 +20369,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402154535'
+,p_last_upd_yyyymmddhh24miss=>'20200404004537'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(16430765788875766)
@@ -19233,7 +20459,7 @@ wwv_flow_api.create_page_button(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2664668051971146)
 ,p_name=>'P342_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(16430765788875766)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -19282,7 +20508,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3095079007053720)
 ,p_name=>'P342_TGT_SPP_ESA_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(16430765788875766)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -19299,6 +20525,27 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'N'
 ,p_attribute_03=>'N'
 ,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3124808198389838)
+,p_name=>'P342_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(16430765788875766)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3099463259053734)
@@ -19384,8 +20631,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402153617'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406115935'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(16169685772924473)
@@ -19414,7 +20661,8 @@ wwv_flow_api.create_page_plug(
 'select "TGT_SPP_MMPA_ID", ',
 '"TGT_SPP_MMPA_NAME",',
 '"TGT_SPP_MMPA_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_TGT_SPP_MMPA" ',
 'ORDER BY UPPER(TGT_SPP_MMPA_NAME)',
 '  ',
@@ -19448,10 +20696,19 @@ wwv_flow_api.create_worksheet_column(
 ,p_help_text=>'The ID value from the FINSS system'
 );
 wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(2662346761971123)
+ p_id=>wwv_flow_api.id(3800291196805801)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>44
+,p_column_identifier=>'N'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(3800618960805805)
 ,p_db_column_name=>'TGT_SPP_MMPA_ID'
-,p_display_order=>14
-,p_column_identifier=>'K'
+,p_display_order=>54
+,p_column_identifier=>'O'
 ,p_column_label=>'Edit'
 ,p_column_link=>'f?p=&APP_ID.:347:&SESSION.::&DEBUG.:RP:P347_TGT_SPP_MMPA_ID:#TGT_SPP_MMPA_ID#'
 ,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
@@ -19460,19 +20717,19 @@ wwv_flow_api.create_worksheet_column(
 ,p_help_text=>'View/Edit the given MMPA Target Species'
 );
 wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(2662442174971124)
+ p_id=>wwv_flow_api.id(3800775319805806)
 ,p_db_column_name=>'TGT_SPP_MMPA_NAME'
-,p_display_order=>24
-,p_column_identifier=>'L'
+,p_display_order=>64
+,p_column_identifier=>'P'
 ,p_column_label=>'Name'
 ,p_column_type=>'STRING'
 ,p_help_text=>'Name of the given MMPA Target Species'
 );
 wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(2662573560971125)
+ p_id=>wwv_flow_api.id(3800841651805807)
 ,p_db_column_name=>'TGT_SPP_MMPA_DESC'
-,p_display_order=>34
-,p_column_identifier=>'M'
+,p_display_order=>74
+,p_column_identifier=>'Q'
 ,p_column_label=>'Description'
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description of the given MMPA Target Species'
@@ -19485,7 +20742,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'TGT_SPP_MMPA_NAME:TGT_SPP_MMPA_DESC:FINSS_ID:TGT_SPP_MMPA_ID:'
+,p_report_columns=>'TGT_SPP_MMPA_NAME:TGT_SPP_MMPA_DESC:APP_SHOW_OPT_YN:FINSS_ID:TGT_SPP_MMPA_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -19580,7 +20837,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402154723'
+,p_last_upd_yyyymmddhh24miss=>'20200404004456'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(19651548168609195)
@@ -19703,7 +20960,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3222686651733459)
 ,p_name=>'P347_TGT_SPP_MMPA_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(19651548168609195)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -19724,7 +20981,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3223536158733459)
 ,p_name=>'P347_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(19651548168609195)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -19736,6 +20993,27 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_help_text=>'The ID value from the FINSS system'
 ,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3801124743805810)
+,p_name=>'P347_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(19651548168609195)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3227977422733479)
@@ -19821,8 +21099,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402155232'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406115422'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(16179932258951052)
@@ -19851,7 +21129,8 @@ wwv_flow_api.create_page_plug(
 'select "TGT_SPP_FSSI_ID", ',
 '"TGT_SPP_FSSI_NAME",',
 '"TGT_SPP_FSSI_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_TGT_SPP_FSSI" ',
 'ORDER BY UPPER(TGT_SPP_FSSI_NAME)',
 '  ',
@@ -19914,6 +21193,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description of the given FSSI Target Species'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(3800987629805808)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>44
+,p_column_identifier=>'N'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(16308651988083775)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -19922,7 +21210,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'TGT_SPP_FSSI_NAME:TGT_SPP_FSSI_DESC:FINSS_ID:TGT_SPP_FSSI_ID:'
+,p_report_columns=>'TGT_SPP_FSSI_NAME:TGT_SPP_FSSI_DESC:APP_SHOW_OPT_YN:FINSS_ID:TGT_SPP_FSSI_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -20017,7 +21305,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402135616'
+,p_last_upd_yyyymmddhh24miss=>'20200404004249'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10855117515201840)
@@ -20140,7 +21428,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3242881956968075)
 ,p_name=>'P352_TGT_SPP_FSSI_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(10855117515201840)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -20161,7 +21449,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3243748910968077)
 ,p_name=>'P352_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(10855117515201840)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -20174,6 +21462,27 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_help_text=>'The ID value from the FINSS system'
 ,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(3801070826805809)
+,p_name=>'P352_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(10855117515201840)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3248188747968099)
@@ -20259,8 +21568,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402155425'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406132119'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(19146379743231611)
@@ -20289,7 +21598,8 @@ wwv_flow_api.create_page_plug(
 'select "STD_SVY_NAME_ID", ',
 '"STD_SVY_NAME",',
 '"STD_SVY_DESC",',
-'"FINSS_ID"',
+'"FINSS_ID",',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from "CEN_CRUISE"."CCD_STD_SVY_NAMES" ',
 'ORDER BY UPPER(STD_SVY_NAME)',
 '  ',
@@ -20352,6 +21662,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description for the given Standard Survey Name'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4040524040656801)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>44
+,p_column_identifier=>'Q'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(19275099472364334)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -20360,7 +21679,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'STD_SVY_NAME:STD_SVY_DESC:FINSS_ID:STD_SVY_NAME_ID:'
+,p_report_columns=>'STD_SVY_NAME:STD_SVY_DESC:APP_SHOW_OPT_YN:FINSS_ID:STD_SVY_NAME_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -20455,7 +21774,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402160204'
+,p_last_upd_yyyymmddhh24miss=>'20200406132408'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10865865771224649)
@@ -20578,7 +21897,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3253608449990860)
 ,p_name=>'P357_STD_SVY_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(10865865771224649)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -20599,7 +21918,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3254591331990861)
 ,p_name=>'P357_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(10865865771224649)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -20612,6 +21931,27 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_help_text=>'The ID value from the FINSS system'
 ,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4040697152656802)
+,p_name=>'P357_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(10865865771224649)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3258995684990875)
@@ -21550,8 +22890,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402153804'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406115624'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(25314493030975057)
@@ -21580,7 +22920,8 @@ wwv_flow_api.create_page_plug(
 'select GEAR_ID,',
 'GEAR_NAME,',
 'GEAR_DESC,',
-'FINSS_ID',
+'FINSS_ID,',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from CEN_CRUISE.CCD_GEAR ',
 'ORDER BY UPPER(GEAR_NAME)',
 '  ',
@@ -21644,6 +22985,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_alignment=>'RIGHT'
 ,p_help_text=>'The ID value from the FINSS system'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4021090147111203)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>50
+,p_column_identifier=>'Y'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(25443212760107780)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -21652,7 +23002,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'GEAR_NAME:GEAR_DESC:FINSS_ID:GEAR_ID:'
+,p_report_columns=>'GEAR_NAME:GEAR_DESC:APP_SHOW_OPT_YN:FINSS_ID:GEAR_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -21747,7 +23097,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402141259'
+,p_last_upd_yyyymmddhh24miss=>'20200406115845'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10910249722337814)
@@ -21870,7 +23220,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3297930791104050)
 ,p_name=>'P372_GEAR_DESC'
-,p_item_sequence=>30
+,p_item_sequence=>40
 ,p_item_plug_id=>wwv_flow_api.id(10910249722337814)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Description'
@@ -21891,7 +23241,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3298877585104051)
 ,p_name=>'P372_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>60
 ,p_item_plug_id=>wwv_flow_api.id(10910249722337814)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -21904,6 +23254,27 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_help_text=>'The ID value from the FINSS system'
 ,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4021150734111204)
+,p_name=>'P372_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(10910249722337814)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3303132066104068)
@@ -21988,8 +23359,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402160459'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200406115348'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(28395055315969135)
@@ -22018,7 +23389,8 @@ wwv_flow_api.create_page_plug(
 'select EXP_SPP_CAT_ID,',
 'EXP_SPP_CAT_NAME,',
 'EXP_SPP_CAT_DESC,',
-'FINSS_ID',
+'FINSS_ID,',
+'(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
 'from CEN_CRUISE.CCD_EXP_SPP_CATS ',
 'ORDER BY UPPER(EXP_SPP_CAT_NAME)',
 '  ',
@@ -22082,6 +23454,15 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description for the given Expected Species Category'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4020898856111201)
+,p_db_column_name=>'APP_SHOW_OPT_YN'
+,p_display_order=>80
+,p_column_identifier=>'AB'
+,p_column_label=>'Visible in App?'
+,p_column_type=>'STRING'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(28523775045101858)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -22090,7 +23471,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'EXP_SPP_CAT_NAME:EXP_SPP_CAT_DESC:FINSS_ID:EXP_SPP_CAT_ID:'
+,p_report_columns=>'EXP_SPP_CAT_NAME:EXP_SPP_CAT_DESC:APP_SHOW_OPT_YN:FINSS_ID:EXP_SPP_CAT_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -22185,7 +23566,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402160347'
+,p_last_upd_yyyymmddhh24miss=>'20200406115311'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14217826990461158)
@@ -22329,7 +23710,7 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3310332491123359)
 ,p_name=>'P377_FINSS_ID'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(14217826990461158)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'FINSS ID'
@@ -22342,6 +23723,27 @@ wwv_flow_api.create_page_item(
 ,p_item_template_options=>'#DEFAULT#'
 ,p_help_text=>'The ID value from the FINSS system'
 ,p_attribute_03=>'right'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4020923131111202)
+,p_name=>'P377_APP_SHOW_OPT_YN'
+,p_is_required=>true
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(14217826990461158)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Visible in App?'
+,p_source=>'APP_SHOW_OPT_YN'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Flag to indicate whether or not to include this record in the data management application option lists by default (Yes) or not (No)'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3314735166123379)

@@ -243,3 +243,21 @@ X CCD_VESSELS
 X CCD_EXP_SPP_CATS
 
 X action processed notification on simple reference table modular windows when insert/edit/update occurs
+
+
+_ filtered lists functionality (many-to-many)
+X ESA
+X FSSI
+X MMPA
+X gear
+X expected species categories
+_ primary survey categories
+_ secondary survey categories
+X regional ecosystems
+regions
+
+
+
+_ filtered lists functionality (one-to-many)
+_ Vessels
+_ standard survey names

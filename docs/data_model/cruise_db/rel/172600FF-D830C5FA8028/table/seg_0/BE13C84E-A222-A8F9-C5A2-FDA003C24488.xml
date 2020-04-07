@@ -137,6 +137,23 @@ This table stores the different standard survey names defined based on the FINSS
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="APP_SHOW_OPT_YN" id="9709F2B7-1743-3876-F2EC-063C46F1AD32">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_STD_SVY_NAMES</sourceObjSchema>
+<sourceObjName>APP_SHOW_OPT_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-07 04:33:42 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate whether or not to include this record in the data management application option lists by default (Y) or not (N)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>1F0EAC50-9E91-F31E-4DC0-E7117B224641</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="2E65DB59-08A8-E982-47B2-8FEFF990DD76" name="CCD_STD_SVY_NAMES_PK">

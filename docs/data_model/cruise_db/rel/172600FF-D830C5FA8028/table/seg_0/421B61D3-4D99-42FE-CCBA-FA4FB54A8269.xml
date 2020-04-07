@@ -137,6 +137,23 @@ This table stores the different regional ecosystems defined based on the FINSS s
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="APP_SHOW_OPT_YN" id="66A51AEA-83D4-6B2E-B85B-77D14DC1DD01">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>APP_SHOW_OPT_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-07 04:33:42 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate whether or not to include this record in the data management application option lists by default (Y) or not (N)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>AC684FD6-55D1-EA69-8FCE-129A7346947C</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="593862DD-9FB1-AB3F-5D58-E36894F2CC16" name="CCD_REG_ECOSYSTEMS_PK">

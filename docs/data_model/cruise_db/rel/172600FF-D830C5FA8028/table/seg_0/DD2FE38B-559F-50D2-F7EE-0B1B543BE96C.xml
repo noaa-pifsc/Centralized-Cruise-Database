@@ -137,6 +137,23 @@ This table stores the Target Species - ESA for a given cruise  (referred to as S
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="APP_SHOW_OPT_YN" id="3520C32C-1899-1570-CFFF-7E06109CCF83">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_ESA</sourceObjSchema>
+<sourceObjName>APP_SHOW_OPT_YN</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-07 04:33:42 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate whether or not to include this record in the data management application option lists by default (Y) or not (N)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>02B14286-8C66-1F3E-58AA-866D749EE125</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="8A76243D-A1CA-D893-50C5-E05233EC299C" name="CCD_TGT_SPP_ESA_PK">
