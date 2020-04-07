@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   07:52 Tuesday April 7, 2020
+--   Date and Time:   09:43 Tuesday April 7, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -37,13 +37,13 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 
 -- Application Statistics:
 --   Pages:                     49
---     Items:                  195
+--     Items:                  205
 --     Computations:            19
 --     Validations:              2
 --     Processes:              119
 --     Regions:                145
 --     Buttons:                127
---     Dynamic Actions:         79
+--     Dynamic Actions:         89
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -67,7 +67,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --         Breadcrumb:           1
 --         Button:               3
 --         Report:               9
---       LOVs:                   2
+--       LOVs:                   3
 --       Shortcuts:              1
 --     Globalization:
 --     Reports:
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 1.0'
+,p_flow_version=>'release 0.6'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407075210'
+,p_last_upd_yyyymmddhh24miss=>'20200407094341'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -665,6 +665,17 @@ wwv_flow_api.create_list_of_values(
  p_id=>wwv_flow_api.id(20078494568938261)
 ,p_lov_name=>'AUTH_APP_GROUPS_LOV'
 ,p_lov_query=>'select distinct app_group_code display_value, app_group_code as return_value from LHP.AUTH_APP_USER_GROUPS_V'
+);
+wwv_flow_api.create_list_of_values(
+ p_id=>wwv_flow_api.id(4240538723089812)
+,p_lov_name=>'Y/N CHECKBOX'
+,p_lov_query=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+);
+wwv_flow_api.create_static_lov_data(
+ p_id=>wwv_flow_api.id(4240837731089830)
+,p_lov_disp_sequence=>1
+,p_lov_disp_value=>'Yes'
+,p_lov_return_value=>'Y'
 );
 wwv_flow_api.create_list_of_values(
  p_id=>wwv_flow_api.id(3561502875785412)
@@ -11106,7 +11117,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406161450'
+,p_last_upd_yyyymmddhh24miss=>'20200407081441'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -12453,7 +12464,8 @@ wwv_flow_api.create_page_item(
 ,p_source=>'P220_STD_SVY_NAME_FILT'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_CHECKBOX'
-,p_lov=>'STATIC:Yes;Y'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
@@ -12921,6 +12933,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704521054418724)
 ,p_name=>'P220_TGT_MMPA_SPP_SHUTTLE'
@@ -13004,9 +13019,6 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the MMPA Target Species by moving options to the right-side of the field.  You can also use the Presets below to add one or more MMPA Target Species to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704890427418727)
 ,p_name=>'P220_TGT_MMPA_SPP_PRESETS'
@@ -13681,6 +13693,9 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
+end;
+/
+begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8736258844997326)
 ,p_computation_sequence=>20
@@ -13802,9 +13817,6 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'change'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(8513590313017536)
 ,p_event_id=>wwv_flow_api.id(8513458440017535)
@@ -14639,6 +14651,9 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'ESA Target Species Saved<BR>'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8706217256418741)
 ,p_process_sequence=>50
@@ -14735,9 +14750,6 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Expected Species Categories Saved<BR>'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7417329183645503)
 ,p_process_sequence=>80
@@ -14792,7 +14804,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406174223'
+,p_last_upd_yyyymmddhh24miss=>'20200407085951'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -15863,7 +15875,8 @@ wwv_flow_api.create_page_item(
 ,p_source=>'P230_VESSEL_NAME_FILT'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_CHECKBOX'
-,p_lov=>'STATIC:Yes;Y'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
@@ -23973,7 +23986,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327183729'
+,p_last_upd_yyyymmddhh24miss=>'20200407093832'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2242258976734019)
@@ -24075,18 +24088,76 @@ wwv_flow_api.create_page_branch(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2122422362780315)
 ,p_name=>'P405_REG_ECO_SHUTTLE'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(2242258976734019)
 ,p_prompt=>'Regional Ecosystems'
 ,p_source=>'P405_REG_ECO_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select REG_ECOSYSTEM_NAME,',
-'REG_ECOSYSTEM_ID',
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS',
-'order by upper(REG_ECOSYSTEM_NAME)'))
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_FILT is: ''||:P405_REG_ECO_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_SHUTTLE is: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the Regional Ecosystems from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P405_REG_ECO_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The current value of Regional Ecosystems is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT REG_ECOSYSTEM_ID',
+'        FROM',
+'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ((:P405_REG_ECO_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P405_REG_ECO_FILT IS NULL)',
+'        UNION ',
+'        SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :P405_REG_ECO_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P405_REG_ECO_FILT'
+,p_ajax_items_to_submit=>'P405_REG_ECO_PRE_ID,P405_REG_ECO_FILT,P405_REG_ECO_SHUTTLE'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -24152,6 +24223,34 @@ wwv_flow_api.create_page_item(
 ,p_attribute_03=>'N'
 ,p_attribute_04=>'BOTH'
 );
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4133318050563033)
+,p_name=>'P405_REG_ECO_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(2242258976734019)
+,p_source=>'P405_REG_ECO_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4133485011563034)
+,p_name=>'P405_REG_ECO_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(2242258976734019)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P405_REG_ECO_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Regional Ecosystems. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(2122564363780316)
 ,p_computation_sequence=>10
@@ -24173,6 +24272,83 @@ wwv_flow_api.create_page_computation(
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4133501590563035)
+,p_name=>'Regional Ecosystem Before Refresh Shuttle'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P405_REG_ECO_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4133601606563036)
+,p_event_id=>wwv_flow_api.id(4133501590563035)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P405_REG_ECO_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P405_REG_ECO_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P405_REG_ECO_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4133713016563037)
+,p_name=>'Regional Ecosystem After Refresh Shuttle'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P405_REG_ECO_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4133879550563038)
+,p_event_id=>wwv_flow_api.id(4133713016563037)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P405_REG_ECO_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P405_REG_ECO_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P405_REG_ECO_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2246551415734053)
@@ -24880,7 +25056,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327190531'
+,p_last_upd_yyyymmddhh24miss=>'20200407092111'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6985018061011476)
@@ -25033,24 +25209,110 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2416654183827903)
 ,p_name=>'P425_EXP_SPP_CAT_SHUTTLE'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(6985018061011476)
 ,p_prompt=>'Expected Species Categories'
 ,p_source=>'P425_EXP_SPP_CAT_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select EXP_SPP_CAT_NAME,',
-'EXP_SPP_CAT_ID',
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'FROM CEN_CRUISE.CCD_EXP_SPP_CATS',
-'order by upper(EXP_SPP_CAT_NAME)'))
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_SPP_CAT_FILT is: ''||:P425_SPP_CAT_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_EXP_SPP_CAT_SHUTTLE is: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the Expected Species Categories from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P425_EXP_SPP_CAT_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(EXP_SPP_CAT_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (EXP_SPP_CAT_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT EXP_SPP_CAT_ID',
+'        FROM',
+'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ((:P425_SPP_CAT_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P425_SPP_CAT_FILT IS NULL)',
+'        UNION ',
+'        SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_SPP_CAT_PRE_OPTS where SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P425_SPP_CAT_FILT'
+,p_ajax_items_to_submit=>'P425_SPP_CAT_PRE_ID,P425_SPP_CAT_PRE_ID,P425_SPP_CAT_FILT'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Choose the Expected Species Category preset options by moving options to the right-side of the field'
 ,p_attribute_01=>'ALL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4132785149563027)
+,p_name=>'P425_SPP_CAT_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(6985018061011476)
+,p_source=>'P425_SPP_CAT_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4132863157563028)
+,p_name=>'P425_SPP_CAT_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(6985018061011476)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P425_SPP_CAT_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Expected Species Categories. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(2418258853827921)
@@ -25073,6 +25335,83 @@ wwv_flow_api.create_page_computation(
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4132904860563029)
+,p_name=>'Expected Species Categories Shuttle Before Refresh'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P425_EXP_SPP_CAT_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4133010091563030)
+,p_event_id=>wwv_flow_api.id(4132904860563029)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P425_SPP_CAT_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P425_EXP_SPP_CAT_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P425_EXP_SPP_CAT_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4133162767563031)
+,p_name=>'Expected Species Categories Shuttle After Refresh'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P425_EXP_SPP_CAT_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4133200606563032)
+,p_event_id=>wwv_flow_api.id(4133162767563031)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P425_EXP_SPP_CAT_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_SPP_CAT_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P425_SPP_CAT_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P425_SPP_CAT_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2418916756827923)
@@ -25330,7 +25669,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327191332'
+,p_last_upd_yyyymmddhh24miss=>'20200407084048'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(9565578274499020)
@@ -25483,24 +25822,110 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2584980306487591)
 ,p_name=>'P435_TGT_ESA_SPP_SHUTTLE'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(9565578274499020)
 ,p_prompt=>'ESA Target Species'
 ,p_source=>'P435_TGT_ESA_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_ESA_NAME,',
-'TGT_SPP_ESA_ID',
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'FROM CEN_CRUISE.CCD_TGT_SPP_ESA',
-'order by upper(TGT_SPP_ESA_NAME)'))
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_ESA_SPP_FILT is: ''||:P435_ESA_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_TGT_ESA_SPP_SHUTTLE is: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the ESA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P435_TGT_ESA_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_ESA_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_ESA_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_ESA_ID',
+'        FROM',
+'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ((:P435_ESA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P435_ESA_SPP_FILT IS NULL)',
+'        UNION ',
+'        SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_SPP_ESA_PRE_OPTS where ESA_PRE_ID = :P435_ESA_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P435_ESA_SPP_FILT'
+,p_ajax_items_to_submit=>'P435_ESA_SPP_FILT,P435_TGT_ESA_SPP_SHUTTLE,P435_ESA_PRE_ID'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Choose the ESA Target Species preset options by moving options to the right-side of the field'
 ,p_attribute_01=>'ALL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4130964639563009)
+,p_name=>'P435_ESA_SPP_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(9565578274499020)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P435_ESA_SPP_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of ESA Target Species. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4131015894563010)
+,p_name=>'P435_ESA_SPP_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(9565578274499020)
+,p_source=>'P435_ESA_SPP_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
 );
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(2586558518487597)
@@ -25523,6 +25948,83 @@ wwv_flow_api.create_page_computation(
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4131138121563011)
+,p_name=>'ESA Shuttle Before Refresh'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P435_TGT_ESA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4131200724563012)
+,p_event_id=>wwv_flow_api.id(4131138121563011)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P435_ESA_SPP_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P435_TGT_ESA_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P435_TGT_ESA_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4131333463563013)
+,p_name=>'ESA Shuttle After Refresh'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P435_TGT_ESA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4131451224563014)
+,p_event_id=>wwv_flow_api.id(4131333463563013)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P435_TGT_ESA_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_ESA_SPP_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P435_ESA_SPP_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P435_ESA_SPP_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2588429005487599)
@@ -25780,7 +26282,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327192753'
+,p_last_upd_yyyymmddhh24miss=>'20200407085607'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(12192627152143613)
@@ -25933,24 +26435,110 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2631537637644636)
 ,p_name=>'P445_TGT_MMPA_SPP_SHUTTLE'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(12192627152143613)
 ,p_prompt=>'MMPA Target Species'
 ,p_source=>'P445_TGT_MMPA_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_MMPA_NAME,',
-'TGT_SPP_MMPA_ID',
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'FROM CEN_CRUISE.CCD_TGT_SPP_MMPA',
-'order by upper(TGT_SPP_MMPA_NAME)'))
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_MMPA_SPP_FILT is: ''||:P445_MMPA_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_TGT_MMPA_SPP_SHUTTLE is: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the MMPA target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P445_TGT_MMPA_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_MMPA_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_MMPA_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_MMPA_ID',
+'        FROM',
+'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ((:P445_MMPA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P445_MMPA_SPP_FILT IS NULL)',
+'        UNION ',
+'        SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_SPP_MMPA_PRE_OPTS where MMPA_PRE_ID = :P445_MMPA_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P445_MMPA_SPP_FILT'
+,p_ajax_items_to_submit=>'P445_MMPA_SPP_FILT,P445_TGT_MMPA_SPP_SHUTTLE,P445_MMPA_PRE_ID'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Choose the MMPA Target Species preset options by moving options to the right-side of the field'
 ,p_attribute_01=>'ALL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4131522891563015)
+,p_name=>'P445_MMPA_SPP_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(12192627152143613)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P445_MMPA_SPP_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of MMPA Target Species. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4131616417563016)
+,p_name=>'P445_MMPA_SPP_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(12192627152143613)
+,p_source=>'P445_MMPA_SPP_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
 );
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(2633151565644642)
@@ -25973,6 +26561,83 @@ wwv_flow_api.create_page_computation(
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4131711848563017)
+,p_name=>'MMPA Shuttle Before Refresh'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P445_TGT_MMPA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4131871763563018)
+,p_event_id=>wwv_flow_api.id(4131711848563017)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P445_MMPA_SPP_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P445_TGT_MMPA_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P445_TGT_MMPA_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4131901049563019)
+,p_name=>'MMPA Shuttle After Refresh'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P445_TGT_MMPA_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4132070223563020)
+,p_event_id=>wwv_flow_api.id(4131901049563019)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P445_TGT_MMPA_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_MMPA_SPP_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P445_MMPA_SPP_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P445_MMPA_SPP_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2635092258644645)
@@ -26230,7 +26895,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327202623'
+,p_last_upd_yyyymmddhh24miss=>'20200407090716'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14865373608143832)
@@ -26383,24 +27048,110 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2677245285000237)
 ,p_name=>'P455_TGT_FSSI_SPP_SHUTTLE'
-,p_item_sequence=>40
+,p_item_sequence=>50
 ,p_item_plug_id=>wwv_flow_api.id(14865373608143832)
 ,p_prompt=>'FSSI Target Species'
 ,p_source=>'P455_TGT_FSSI_SPP_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_FSSI_NAME,',
-'TGT_SPP_FSSI_ID',
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'FROM CEN_CRUISE.CCD_TGT_SPP_FSSI',
-'order by upper(TGT_SPP_FSSI_NAME)'))
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_FSSI_SPP_FILT is: ''||:P455_FSSI_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_TGT_FSSI_SPP_SHUTTLE is: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the FSSI target species from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P455_TGT_FSSI_SPP_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(TGT_SPP_FSSI_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (TGT_SPP_FSSI_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT TGT_SPP_FSSI_ID',
+'        FROM',
+'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ((:P455_FSSI_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P455_FSSI_SPP_FILT IS NULL)',
+'        UNION ',
+'        SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_SPP_FSSI_PRE_OPTS where FSSI_PRE_ID = :P455_FSSI_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P455_FSSI_SPP_FILT'
+,p_ajax_items_to_submit=>'P455_FSSI_SPP_FILT,P455_TGT_FSSI_SPP_SHUTTLE,P455_FSSI_PRE_ID'
+,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Choose the FSSI Target Species preset options by moving options to the right-side of the field'
 ,p_attribute_01=>'ALL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4132169773563021)
+,p_name=>'P455_FSSI_SPP_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(14865373608143832)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P455_FSSI_SPP_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of FSSI Target Species. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4132223798563022)
+,p_name=>'P455_FSSI_SPP_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(14865373608143832)
+,p_source=>'P455_FSSI_SPP_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
 );
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(2678835482000252)
@@ -26423,6 +27174,83 @@ wwv_flow_api.create_page_computation(
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4132376930563023)
+,p_name=>'FSSI Shuttle Before Refresh'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P455_TGT_FSSI_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4132440232563024)
+,p_event_id=>wwv_flow_api.id(4132376930563023)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P455_FSSI_SPP_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P455_TGT_FSSI_SPP_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P455_TGT_FSSI_SPP_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(4132569583563025)
+,p_name=>'FSSI Shuttle After Refresh'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P455_TGT_FSSI_SPP_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(4132666365563026)
+,p_event_id=>wwv_flow_api.id(4132569583563025)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P455_TGT_FSSI_SPP_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_FSSI_SPP_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P455_FSSI_SPP_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P455_FSSI_SPP_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2680735883000254)
