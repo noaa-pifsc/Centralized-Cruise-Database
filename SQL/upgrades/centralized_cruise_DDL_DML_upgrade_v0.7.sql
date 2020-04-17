@@ -1718,7 +1718,7 @@ This view returns all Expected Species Categories Presets and the associated Exp
 
   BEGIN
 
-    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'executing APPEND_REF_PRE_OPTS_FN('||P_DELIM_VALUES||', '||P_OPTS_QUERY||', '||P_PRI_KEY_VAL||')', V_RETURN_CODE);
+    DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'executing APPEND_REF_PRE_OPTS_FN('||P_DELIM_VALUES||', '||P_OPTS_QUERY||', '||P_PRI_KEY_VAL||')', V_RETURN_CODE);
 
     --parse the P_DELIM_VALUES string into an array so they can be processed
    l_selected := apex_util.string_to_table(P_DELIM_VALUES);
@@ -1739,7 +1739,7 @@ This view returns all Expected Species Categories Presets and the associated Exp
         --loop through the l_selected array to check if there is a match for the current result set primary key value
         for i in 1..l_selected.count loop
 
---            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The current shuttle option is: '||l_selected(i), V_RETURN_CODE);
+--            DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The current shuttle option is: '||l_selected(i), V_RETURN_CODE);
 
             --check if the current l_selected array element matches the current result set primary key value
             IF (l_selected(i) = V_OPT_PRI_KEY) THEN
@@ -1752,7 +1752,7 @@ This view returns all Expected Species Categories Presets and the associated Exp
         IF NOT V_ID_FOUND THEN
           --a match has not been found, add the result set primary key value to the array:
 
---            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'None of the shuttle option values match the current option, add it to the l_selected array', V_RETURN_CODE);
+--            DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'None of the shuttle option values match the current option, add it to the l_selected array', V_RETURN_CODE);
 
             --add the ID to the list of selected values:
             l_selected(l_selected.count + 1) := V_OPT_PRI_KEY;
@@ -1764,7 +1764,7 @@ This view returns all Expected Species Categories Presets and the associated Exp
 
 
 
-     CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The return value is: '||apex_util.table_to_string(l_selected, ':'), V_RETURN_CODE);
+     DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The return value is: '||apex_util.table_to_string(l_selected, ':'), V_RETURN_CODE);
 
      --convert the array to a colon-delimited string so it can be used directly in a shuttle field
      return apex_util.table_to_string(l_selected, ':');

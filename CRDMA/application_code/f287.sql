@@ -15,7 +15,7 @@ begin
 wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2016.08.24'
 ,p_release=>'5.1.4.00.08'
-,p_default_workspace_id=>5570449313576705
+,p_default_workspace_id=>1940386727552193
 ,p_default_application_id=>287
 ,p_default_owner=>'CEN_CRUISE_APP'
 );
@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   09:43 Tuesday April 7, 2020
+--   Date and Time:   17:29 Thursday April 16, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,14 +36,14 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --
 
 -- Application Statistics:
---   Pages:                     49
---     Items:                  205
---     Computations:            19
---     Validations:              2
---     Processes:              119
---     Regions:                145
---     Buttons:                127
---     Dynamic Actions:         89
+--   Pages:                     53
+--     Items:                  220
+--     Computations:            20
+--     Validations:              3
+--     Processes:              134
+--     Regions:                154
+--     Buttons:                137
+--     Dynamic Actions:         97
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -51,7 +51,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --     Navigation:
 --       Lists:                  2
 --       Breadcrumbs:            1
---         Entries:             34
+--         Entries:             37
 --     Security:
 --       Authentication:         2
 --       Authorization:          1
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.6'
+,p_flow_version=>'release 0.7'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407094341'
+,p_last_upd_yyyymmddhh24miss=>'20200416172140'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -173,6 +173,15 @@ wwv_flow_api.create_list_item(
 ,p_list_item_link_text=>'Reference Lists'
 ,p_list_item_icon=>'fa-list'
 ,p_list_item_current_type=>'TARGET_PAGE'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(6211548550368057)
+,p_list_item_display_sequence=>5
+,p_list_item_link_text=>'Divisions'
+,p_list_item_link_target=>'f?p=&APP_ID.:380:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(7632355213259710)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'380'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(2935293166194332)
@@ -333,6 +342,15 @@ wwv_flow_api.create_list_item(
 ,p_parent_list_item_id=>wwv_flow_api.id(2234743017693807)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'450'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(6111164469867331)
+,p_list_item_display_sequence=>35
+,p_list_item_link_text=>'Gear'
+,p_list_item_link_target=>'f?p=&APP_ID.:470:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_api.id(2234743017693807)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'470'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(2610707988604877)
@@ -884,6 +902,26 @@ wwv_flow_api.create_menu_option(
 ,p_short_name=>'View Expected Species Categories'
 ,p_link=>'f?p=&APP_ID.:375:&SESSION.::&DEBUG.:::'
 ,p_page_id=>375
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(6114511060867359)
+,p_parent_id=>0
+,p_short_name=>'View Gear Presets'
+,p_link=>'f?p=&APP_ID.:470:&SESSION.::&DEBUG.:::'
+,p_page_id=>470
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(6128102720939644)
+,p_parent_id=>wwv_flow_api.id(6114511060867359)
+,p_short_name=>'View/Edit Gear Preset'
+,p_link=>'f?p=&APP_ID.:475:&SESSION.'
+,p_page_id=>475
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(6215023230368085)
+,p_short_name=>'View Divisions'
+,p_link=>'f?p=&APP_ID.:380:&SESSION.'
+,p_page_id=>380
 );
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7277627414219637)
@@ -10123,7 +10161,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402214023'
+,p_last_upd_yyyymmddhh24miss=>'20200415163105'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7421111517645541)
@@ -10399,6 +10437,7 @@ wwv_flow_api.create_page_item(
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'YES'
+,p_help_text=>'Selecting a Fiscal Year will refresh the charts on this page based on the selected fiscal year'
 ,p_attribute_01=>'SUBMIT'
 ,p_attribute_03=>'Y'
 );
@@ -10422,7 +10461,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402214110'
+,p_last_upd_yyyymmddhh24miss=>'20200415163152'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14927975248903605)
@@ -10697,6 +10736,7 @@ wwv_flow_api.create_page_item(
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'YES'
+,p_help_text=>'Selecting a Survey Name will refresh the charts on this page based on the selected Survey Name'
 ,p_attribute_01=>'SUBMIT'
 ,p_attribute_03=>'Y'
 );
@@ -10864,7 +10904,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200325191920'
+,p_last_upd_yyyymmddhh24miss=>'20200413115843'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6251861064002208)
@@ -10883,13 +10923,15 @@ wwv_flow_api.create_page_plug(
 '    ccd_cruise_summ_v.cruise_name,',
 '    ccd_cruise_summ_v.svy_type_name,',
 '    ccd_cruise_summ_v.cruise_notes,',
-'    ccd_cruise_summ_v.sci_center_name,',
+'    ccd_cruise_summ_v.sci_center_div_code,',
 '    ccd_cruise_summ_v.std_svy_name,',
 '    ccd_cruise_summ_v.cruise_fisc_year,',
 '    ccd_cruise_summ_v.LEG_NAME_DATES_BR_LIST,',
 '    ccd_cruise_summ_v.CRUISE_START_DATE,',
 '    ccd_cruise_summ_v.CRUISE_END_DATE,',
-'ccd_cruise_summ_v.CRUISE_DAS',
+'ccd_cruise_summ_v.CRUISE_DAS,',
+'    ccd_cruise_summ_v.cruise_id CRUISE_ID_COPY',
+'',
 '',
 'FROM',
 '    cen_cruise.ccd_cruise_summ_v',
@@ -10958,15 +11000,6 @@ wwv_flow_api.create_worksheet_column(
 ,p_help_text=>'Any notes for the given research cruise'
 );
 wwv_flow_api.create_worksheet_column(
- p_id=>wwv_flow_api.id(6252460722002214)
-,p_db_column_name=>'SCI_CENTER_NAME'
-,p_display_order=>40
-,p_column_identifier=>'E'
-,p_column_label=>'Science Center'
-,p_column_type=>'STRING'
-,p_help_text=>'The Science Center Responsible for the given Cruise'
-);
-wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(6252568401002215)
 ,p_db_column_name=>'STD_SVY_NAME'
 ,p_display_order=>50
@@ -11001,7 +11034,7 @@ wwv_flow_api.create_worksheet_column(
 ,p_display_order=>100
 ,p_column_identifier=>'B'
 ,p_column_label=>'Edit'
-,p_column_link=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID:#CRUISE_ID#'
+,p_column_link=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID,P220_CRUISE_ID_COPY:#CRUISE_ID#,'
 ,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'CENTER'
@@ -11048,6 +11081,27 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Survey Type for the given cruise'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4134192701563041)
+,p_db_column_name=>'SCI_CENTER_DIV_CODE'
+,p_display_order=>150
+,p_column_identifier=>'O'
+,p_column_label=>'Division'
+,p_column_type=>'STRING'
+,p_help_text=>'The Division Responsible for the given Cruise'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4134245248563042)
+,p_db_column_name=>'CRUISE_ID_COPY'
+,p_display_order=>160
+,p_column_identifier=>'P'
+,p_column_label=>'Copy'
+,p_column_link=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID_COPY,P220_CRUISE_ID:#CRUISE_ID#,'
+,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_help_text=>'Click to copy the cruise and associated records so they can be modified'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7044815454540143)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -11056,7 +11110,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'SCI_CENTER_NAME:CRUISE_NAME:SVY_TYPE_NAME:STD_SVY_NAME:CRUISE_START_DATE:CRUISE_END_DATE:CRUISE_DAS:CRUISE_FISC_YEAR:CRUISE_NOTES:LEG_NAME_DATES_BR_LIST:CRUISE_ID:'
+,p_report_columns=>'CRUISE_NAME:SCI_CENTER_DIV_CODE:SVY_TYPE_NAME:STD_SVY_NAME:CRUISE_START_DATE:CRUISE_END_DATE:CRUISE_DAS:CRUISE_FISC_YEAR:CRUISE_NOTES:LEG_NAME_DATES_BR_LIST:CRUISE_ID:CRUISE_ID_COPY:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_plug(
@@ -11085,8 +11139,7 @@ wwv_flow_api.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
-,p_button_redirect_url=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID:'
-,p_grid_new_grid=>false
+,p_button_redirect_url=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID,P220_CRUISE_ID_COPY:,'
 );
 end;
 /
@@ -11102,7 +11155,76 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
-,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';',
+'',
+'',
+'',
+'function get_oth_spp_cruise_copy (cruise_id_copy)',
+'{',
+'    console.log(''this is the other species cruise copy initialization code'');',
+'',
+'    ',
+'    apex.server.process(',
+'    ''get_oth_spp_cruise_copy'',                             // Process or AJAX Callback name',
+'    {x01: cruise_id_copy},  // Parameter "x01"',
+'    {',
+'      success: function (pData) ',
+'      {             ',
+'            // Success Javascript',
+'',
+'            console.log(''the value of pData is: ''+pData);  ',
+'          ',
+'            //parse the json array to get each record''s value:',
+'            var json_array = jQuery.parseJSON(pData);',
+'          ',
+'',
+'            var ig$ = apex.region("other_species_id").widget();',
+'            console.log(''ig is: ''+ig$);',
+'            var model = ig$.interactiveGrid("getViews", "grid").model;',
+'            console.log(''model is: ''+model);',
+'',
+'          ',
+'            //create a new blank row for each associated other species records:',
+'            for (var i = 0; i < json_array[''oth_spp''].length; i++)',
+'            {',
+'                var temp = ig$.interactiveGrid("getActions").invoke("row-add-row");',
+'            }',
+'          ',
+'            //re-initialize the counter for setting the values for each record',
+'            i = 0;',
+'            model.forEach(function(r)',
+'            {',
+'                console.log(''the current value of r is: '');',
+'                console.log(r);',
+'                ',
+'                console.log(''the value of row ID is: ''+r[1]);',
+'                ',
+'                ',
+'                $.each(json_array[''oth_spp''][i], function(i, item)',
+'                      {',
+'                            console.log(''set the field (''+i+'') value to item: ''+item);',
+'                            model.setValue(r, i, item);',
+'                    ',
+'                    ',
+'                            console.log(''set the focus to the newly set cell ("gotoCell", ''+r[1]+'', ''+i+'')'');',
+'                            apex.region("other_species_id").widget().interactiveGrid("getViews").grid.view$.grid("gotoCell", r[1], i);',
+'',
+'                      }',
+'                      );',
+'                //increment the counter:',
+'                i ++;',
+'            });',
+'',
+'            //set focus to the first enabled/visible form element:',
+'            $(document).find(''input[type=text],textarea,select'').filter('':visible:first'').focus();',
+'      },',
+'      dataType: "text"                        // Response type (here: plain text)',
+'    }',
+'  );    ',
+'    ',
+'    ',
+'}'))
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'div.active-form-class {background-color: #fffee6;}',
 'div#cruise_attributes_region {background-color: #ffffff; font-size: 1.6rem;',
@@ -11112,12 +11234,11 @@ wwv_flow_api.create_page(
 'ul.t-Tabs {margin-top: 10px;}'))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
-,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407081441'
+,p_last_upd_yyyymmddhh24miss=>'20200414131610'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -11146,8 +11267,6 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>'Cruise Attributes'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P220_CRUISE_ID'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -11175,7 +11294,8 @@ wwv_flow_api.create_page_plug(
 'GEAR_NAME_BR_LIST,',
 'LEG_ALIAS_BR_LIST,',
 'REGION_NAME_BR_LIST,',
-'CRUISE_ID',
+'CRUISE_ID,',
+'CRUISE_LEG_ID CRUISE_LEG_ID_COPY',
 'FROM ',
 'CEN_CRUISE.CCD_LEG_DELIM_V',
 'where CRUISE_ID = :P220_CRUISE_ID',
@@ -11233,7 +11353,7 @@ wwv_flow_api.create_worksheet_column(
 ,p_display_order=>10
 ,p_column_identifier=>'H'
 ,p_column_label=>'Edit'
-,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_LEG_ID,P230_CRUISE_ID:#CRUISE_LEG_ID#,#CRUISE_ID#'
+,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_LEG_ID,P230_CRUISE_ID,P230_CRUISE_LEG_ID_COPY:#CRUISE_LEG_ID#,#CRUISE_ID#,'
 ,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'CENTER'
@@ -11353,6 +11473,18 @@ wwv_flow_api.create_worksheet_column(
 ,p_display_text_as=>'WITHOUT_MODIFICATION'
 ,p_help_text=>'List of Regions associated with the given cruise leg'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(4134865376563048)
+,p_db_column_name=>'CRUISE_LEG_ID_COPY'
+,p_display_order=>170
+,p_column_identifier=>'Q'
+,p_column_label=>'Copy'
+,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_LEG_ID_COPY,P230_CRUISE_LEG_ID,P230_CRUISE_ID:#CRUISE_LEG_ID#,,#CRUISE_ID#'
+,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_help_text=>'Click to copy the cruise leg and associated records so they can be modified '
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7051413335669226)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -11361,12 +11493,13 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'LEG_NAME:PLAT_TYPE_NAME:VESSEL_NAME:FORMAT_LEG_START_DATE:FORMAT_LEG_END_DATE:LEG_DAS:LEG_FISC_YEAR:REG_ECOSYSTEM_BR_LIST:GEAR_NAME_BR_LIST:REGION_NAME_BR_LIST:LEG_ALIAS_BR_LIST:CRUISE_LEG_ID:'
+,p_report_columns=>'LEG_NAME:PLAT_TYPE_NAME:VESSEL_NAME:FORMAT_LEG_START_DATE:FORMAT_LEG_END_DATE:LEG_DAS:LEG_FISC_YEAR:REG_ECOSYSTEM_BR_LIST:GEAR_NAME_BR_LIST:REGION_NAME_BR_LIST:LEG_ALIAS_BR_LIST:CRUISE_LEG_ID::CRUISE_LEG_ID_COPY'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7394014059397341)
 ,p_plug_name=>'Target Species - Other Species'
+,p_region_name=>'other_species_id'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -11385,10 +11518,9 @@ wwv_flow_api.create_page_plug(
 'CEN_CRUISE.CCD_TGT_SPP_OTHER where ',
 'CRUISE_ID = :P220_CRUISE_ID'))
 ,p_plug_source_type=>'NATIVE_IG'
+,p_ajax_items_to_submit=>'P220_CRUISE_ID,P220_CRUISE_ID_COPY'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P220_CRUISE_ID'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7394218971397343)
@@ -11453,6 +11585,7 @@ wwv_flow_api.create_region_column(
 ,p_value_alignment=>'LEFT'
 ,p_attribute_05=>'BOTH'
 ,p_is_required=>true
+,p_max_length=>200
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -11479,6 +11612,7 @@ wwv_flow_api.create_region_column(
 ,p_value_alignment=>'LEFT'
 ,p_attribute_05=>'BOTH'
 ,p_is_required=>true
+,p_max_length=>200
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -11508,6 +11642,7 @@ wwv_flow_api.create_region_column(
 ,p_attribute_03=>'N'
 ,p_attribute_04=>'BOTH'
 ,p_is_required=>false
+,p_max_length=>500
 ,p_enable_filter=>true
 ,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
@@ -11703,6 +11838,8 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_plug_display_when_condition=>'P220_CRUISE_ID'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -11962,6 +12099,9 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8706617720418745)
 ,p_plug_name=>'Presets'
@@ -12056,9 +12196,6 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_api.create_report_region(
  p_id=>wwv_flow_api.id(8735542415997319)
 ,p_name=>'Expected Species Categories'
@@ -12136,6 +12273,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12151,6 +12289,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12166,6 +12305,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12181,6 +12321,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12196,6 +12337,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12211,6 +12353,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -12303,10 +12446,9 @@ wwv_flow_api.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
-,p_button_redirect_url=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_ID,P230_CRUISE_LEG_ID:&P220_CRUISE_ID.,'
+,p_button_redirect_url=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_ID,P230_CRUISE_LEG_ID,P230_CRUISE_LEG_ID_COPY:&P220_CRUISE_ID.,,'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7348499765226809)
@@ -12320,19 +12462,28 @@ wwv_flow_api.create_page_branch(
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7418804882645518)
 ,p_branch_name=>'Create Another - Clear CRUISE_ID and Stay on Page 220'
-,p_branch_action=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP,220:P220_CRUISE_ID:&success_msg=#SUCCESS_MSG#'
+,p_branch_action=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP,220:P220_CRUISE_ID,P220_CRUISE_ID_COPY:,&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
 ,p_branch_when_button_id=>wwv_flow_api.id(7418727883645517)
 ,p_branch_sequence=>20
 );
 wwv_flow_api.create_page_branch(
- p_id=>wwv_flow_api.id(7348640379226811)
-,p_branch_name=>'OTHERS - Stay on Page 220'
-,p_branch_action=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP::&success_msg=#SUCCESS_MSG#'
+ p_id=>wwv_flow_api.id(4135093662563050)
+,p_branch_name=>'Create - Stay on Page 220'
+,p_branch_action=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID,P220_CRUISE_ID_COPY:&P220_CRUISE_ID.,&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
+,p_branch_when_button_id=>wwv_flow_api.id(7348220558226807)
 ,p_branch_sequence=>30
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(7348640379226811)
+,p_branch_name=>'OTHERS - Stay on Page 220'
+,p_branch_action=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID,P220_CRUISE_ID_COPY:&P220_CRUISE_ID.,&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>40
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3124990864389839)
@@ -12343,16 +12494,14 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Filter List?'
 ,p_source=>'P220_ESA_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3125467068389844)
@@ -12383,16 +12532,14 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Filter List?'
 ,p_source=>'P220_MMPA_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3950467572874101)
@@ -12413,16 +12560,14 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Filter List?'
 ,p_source=>'P220_FSSI_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Toggle for filtering the list of Target Species.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3989680591730307)
@@ -12443,16 +12588,14 @@ wwv_flow_api.create_page_item(
 ,p_prompt=>'Filter List?'
 ,p_source=>'P220_EXP_SPP_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
 ,p_help_text=>'Toggle for filtering the list of Expected Species Categories.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(4040936904656805)
@@ -12481,6 +12624,59 @@ wwv_flow_api.create_page_item(
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4133952862563039)
+,p_name=>'P220_CRUISE_DESC'
+,p_is_required=>true
+,p_item_sequence=>120
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Description'
+,p_source=>'CRUISE_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cHeight=>5
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Description for the given research cruise'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4134057360563040)
+,p_name=>'P220_OBJ_BASED_METRICS'
+,p_is_required=>true
+,p_item_sequence=>130
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Objective Based Metrics'
+,p_source=>'OBJ_BASED_METRICS'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cHeight=>5
+,p_begin_on_new_line=>'N'
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'The Objective Based Metrics for the given research cruise'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4134303858563043)
+,p_name=>'P220_CRUISE_ID_COPY'
+,p_item_sequence=>150
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_source=>'P220_CRUISE_ID_COPY'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6253073221002220)
@@ -12517,14 +12713,14 @@ wwv_flow_api.create_page_item(
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6254388300002233)
 ,p_name=>'P220_CRUISE_NOTES'
-,p_item_sequence=>120
+,p_item_sequence=>140
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
 ,p_prompt=>'Notes'
 ,p_source=>'CRUISE_NOTES'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_TEXTAREA'
-,p_cSize=>30
+,p_cSize=>60
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -12536,34 +12732,27 @@ wwv_flow_api.create_page_item(
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(6254611286002236)
-,p_name=>'P220_SCIENCE_CENTER'
+,p_name=>'P220_SCIENCE_CENTER_DIV'
 ,p_is_required=>true
 ,p_item_sequence=>30
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_use_cache_before_default=>'NO'
-,p_item_default=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'    default_value number; ',
-'BEGIN ',
-'    SELECT sci_center_id INTO default_value FROM cen_cruise.ccd_sci_centers WHERE sci_center_name = ''PIFSC''; ',
-'    RETURN default_value; ',
-'END;'))
-,p_item_default_type=>'PLSQL_FUNCTION_BODY'
-,p_prompt=>'Science Center'
-,p_source=>'SCI_CENTER_ID'
+,p_prompt=>'Division'
+,p_source=>'SCI_CENTER_DIV_ID'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT SCI_CENTER_NAME, SCI_CENTER_ID FROM CEN_CRUISE.CCD_SCI_CENTERS',
-'ORDER BY UPPER(SCI_CENTER_NAME)',
+'SELECT SCI_CENTER_DIV_CODE, SCI_CENTER_DIV_ID FROM CEN_CRUISE.CCD_SCI_CENTER_DIVS',
+'ORDER BY UPPER(SCI_CENTER_DIV_CODE)',
 ''))
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
 ,p_cHeight=>1
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
-,p_help_text=>'The Science Center Responsible for the given Cruise'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'The Division Responsible for the given Cruise'
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
@@ -12597,7 +12786,7 @@ wwv_flow_api.create_page_item(
 '',
 'V_TEMP_SQL := ''SELECT distinct',
 '    STD_SVY_NAME, STD_SVY_NAME_ID FROM CEN_CRUISE.CCD_STD_SVY_NAMES where (:P220_STD_SVY_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_STD_SVY_NAME_FILT IS NULL) OR (STD_SVY_NAME_ID = :P220_STD_SVY_NAME) OR (STD_SVY_NAME_ID = (SELECT STD_S'
-||'VY_NAME_ID from CEN_CRUISE.CCD_CRUISES WHERE CRUISE_ID = :P220_CRUISE_ID))',
+||'VY_NAME_ID from CEN_CRUISE.CCD_CRUISES WHERE CRUISE_ID IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)))',
 '',
 '    ORDER BY UPPER(STD_SVY_NAME)'';',
 '',
@@ -12612,7 +12801,7 @@ wwv_flow_api.create_page_item(
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'-'
 ,p_lov_cascade_parent_items=>'P220_STD_SVY_NAME_FILT'
-,p_ajax_items_to_submit=>'P220_STD_SVY_NAME_FILT,P220_STD_SVY_NAME,P220_CRUISE_ID'
+,p_ajax_items_to_submit=>'P220_STD_SVY_NAME_FILT,P220_STD_SVY_NAME,P220_CRUISE_ID,P220_CRUISE_ID_COPY'
 ,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
@@ -12826,6 +13015,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8703020682418709)
 ,p_name=>'P220_TGT_ESA_SPP_SHUTTLE'
@@ -12882,10 +13074,10 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT TGT_SPP_ESA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ((:P220_ESA_SHOW_FILT_LIST = ''''Y'''' OR :P220_ESA_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_ESA_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where (:P220_ESA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_ESA_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_ESA_ID from CEN_CRUISE.CCD_CRUISE_SPP_ESA where cruise_id = :P220_CRUISE_ID',
+'        SELECT TGT_SPP_ESA_ID from CEN_CRUISE.CCD_CRUISE_SPP_ESA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -12900,7 +13092,7 @@ wwv_flow_api.create_page_item(
 '',
 'END;'))
 ,p_lov_cascade_parent_items=>'P220_ESA_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P220_ESA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_ESA_SPP_SHUTTLE'
+,p_ajax_items_to_submit=>'P220_ESA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_ESA_SPP_SHUTTLE,P220_CRUISE_ID_COPY'
 ,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -12933,9 +13125,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704521054418724)
 ,p_name=>'P220_TGT_MMPA_SPP_SHUTTLE'
@@ -12992,10 +13181,10 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT TGT_SPP_MMPA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ((:P220_MMPA_SHOW_FILT_LIST = ''''Y'''' OR :P220_MMPA_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_MMPA_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where (:P220_MMPA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_MMPA_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_MMPA_ID from CEN_CRUISE.CCD_CRUISE_SPP_MMPA where cruise_id = :P220_CRUISE_ID',
+'        SELECT TGT_SPP_MMPA_ID from CEN_CRUISE.CCD_CRUISE_SPP_MMPA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -13010,7 +13199,7 @@ wwv_flow_api.create_page_item(
 '',
 'END;'))
 ,p_lov_cascade_parent_items=>'P220_MMPA_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P220_MMPA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_MMPA_SPP_SHUTTLE'
+,p_ajax_items_to_submit=>'P220_MMPA_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_MMPA_SPP_SHUTTLE,P220_CRUISE_ID_COPY'
 ,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -13099,10 +13288,10 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT TGT_SPP_FSSI_ID',
 '        FROM',
-'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ((:P220_FSSI_SHOW_FILT_LIST = ''''Y'''' OR :P220_FSSI_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_FSSI_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where (:P220_FSSI_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_FSSI_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_FSSI_ID from CEN_CRUISE.CCD_CRUISE_SPP_FSSI where cruise_id = :P220_CRUISE_ID',
+'        SELECT TGT_SPP_FSSI_ID from CEN_CRUISE.CCD_CRUISE_SPP_FSSI where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -13117,7 +13306,7 @@ wwv_flow_api.create_page_item(
 '',
 'END;'))
 ,p_lov_cascade_parent_items=>'P220_FSSI_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P220_FSSI_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_FSSI_SPP_SHUTTLE'
+,p_ajax_items_to_submit=>'P220_FSSI_SHOW_FILT_LIST,P220_CRUISE_ID,P220_TGT_FSSI_SPP_SHUTTLE,P220_CRUISE_ID_COPY'
 ,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -13206,10 +13395,10 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT EXP_SPP_CAT_ID',
 '        FROM',
-'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ((:P220_EXP_SPP_SHOW_FILT_LIST = ''''Y'''' OR :P220_EXP_SPP_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_EXP_SPP_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where (:P220_EXP_SPP_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_EXP_SPP_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT EXP_SPP_CAT_ID from CEN_CRUISE.CCD_CRUISE_EXP_SPP where cruise_id = :P220_CRUISE_ID',
+'        SELECT EXP_SPP_CAT_ID from CEN_CRUISE.CCD_CRUISE_EXP_SPP where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -13224,7 +13413,7 @@ wwv_flow_api.create_page_item(
 '',
 'END;'))
 ,p_lov_cascade_parent_items=>'P220_EXP_SPP_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P220_EXP_SPP_SHOW_FILT_LIST,P220_CRUISE_ID,P220_EXP_SPP_CAT_SHUTTLE'
+,p_ajax_items_to_submit=>'P220_EXP_SPP_SHOW_FILT_LIST,P220_CRUISE_ID,P220_EXP_SPP_CAT_SHUTTLE,P220_CRUISE_ID_COPY'
 ,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
@@ -13570,7 +13759,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''Y'' AND cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''Y'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.svy_cat_id;',
 '      i := i + 1;',
 '   end loop;',
@@ -13581,6 +13770,9 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
+end;
+/
+begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8514391514017544)
 ,p_computation_sequence=>10
@@ -13593,7 +13785,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''N'' AND cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''N'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.svy_cat_id;',
 '      i := i + 1;',
 '   end loop;',
@@ -13616,7 +13808,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_ESA_ID from cen_cruise.CCD_CRUISE_SPP_ESA where cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select TGT_SPP_ESA_ID from cen_cruise.CCD_CRUISE_SPP_ESA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_ESA_ID;',
 '      i := i + 1;',
 '   end loop;',
@@ -13638,7 +13830,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_MMPA_ID from cen_cruise.CCD_CRUISE_SPP_MMPA where cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select TGT_SPP_MMPA_ID from cen_cruise.CCD_CRUISE_SPP_MMPA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_MMPA_ID;',
 '      i := i + 1;',
 '   end loop;',
@@ -13660,7 +13852,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_FSSI_ID from cen_cruise.CCD_CRUISE_SPP_FSSI where cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select TGT_SPP_FSSI_ID from cen_cruise.CCD_CRUISE_SPP_FSSI where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_FSSI_ID;',
 '      i := i + 1;',
 '   end loop;',
@@ -13682,7 +13874,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select EXP_SPP_CAT_ID from cen_cruise.CCD_CRUISE_EXP_SPP where cruise_id = :P220_CRUISE_ID) loop',
+'   for r in (select EXP_SPP_CAT_ID from cen_cruise.CCD_CRUISE_EXP_SPP where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.EXP_SPP_CAT_ID;',
 '      i := i + 1;',
 '   end loop;',
@@ -13693,9 +13885,6 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
-end;
-/
-begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8736258844997326)
 ,p_computation_sequence=>20
@@ -13807,6 +13996,18 @@ wwv_flow_api.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(8735542415997319)
 ,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(5592986717158823)
+,p_event_id=>wwv_flow_api.id(8513242013017533)
+,p_event_result=>'TRUE'
+,p_action_sequence=>70
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'            //set focus to the first enabled/visible form element:',
+'            $(document).find(''input[type=text],textarea,select'').filter('':visible:first'').focus();',
+''))
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8513458440017535)
@@ -14456,6 +14657,9 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexbeforerefresh'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(4041319625656809)
 ,p_event_id=>wwv_flow_api.id(4041213791656808)
@@ -14524,16 +14728,53 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(5592633642158820)
+,p_name=>'Target Species Other - Load copied cruise values'
+,p_event_sequence=>250
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+,p_display_when_type=>'ITEM_IS_NOT_NULL'
+,p_display_when_cond=>'P220_CRUISE_ID_COPY'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(5592769432158821)
+,p_event_id=>wwv_flow_api.id(5592633642158820)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''running get_oth_spp_cruise_copy(''+$v("P220_CRUISE_ID_COPY")+'')'');',
+'',
+'//send an ajax request for all of the associated other species records associated with the copied cruise ID: ',
+'get_oth_spp_cruise_copy($v("P220_CRUISE_ID_COPY"));'))
+);
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348566949226810)
 ,p_process_sequence=>10
 ,p_process_point=>'AFTER_HEADER'
 ,p_process_type=>'NATIVE_FORM_FETCH'
-,p_process_name=>'Featch Row from CCD_CRUISES'
+,p_process_name=>'Fetch Row from CCD_CRUISES'
 ,p_attribute_01=>'CEN_CRUISE'
 ,p_attribute_02=>'CCD_CRUISES'
 ,p_attribute_03=>'P220_CRUISE_ID'
 ,p_attribute_04=>'CRUISE_ID'
+,p_process_when=>'P220_CRUISE_ID'
+,p_process_when_type=>'ITEM_IS_NOT_NULL'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(4134547982563045)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from CCD_CRUISES (copy)'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_CRUISES'
+,p_attribute_03=>'P220_CRUISE_ID_COPY'
+,p_attribute_04=>'CRUISE_ID'
+,p_process_when=>'P220_CRUISE_ID_COPY'
+,p_process_when_type=>'ITEM_IS_NOT_NULL'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(6254138784002231)
@@ -14651,9 +14892,6 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'ESA Target Species Saved<BR>'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8706217256418741)
 ,p_process_sequence=>50
@@ -14751,28 +14989,150 @@ wwv_flow_api.create_page_process(
 ,p_process_success_message=>'Expected Species Categories Saved<BR>'
 );
 wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(7417329183645503)
+ p_id=>wwv_flow_api.id(5592440920158818)
 ,p_process_sequence=>80
 ,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'New'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Processing - right before other target species'', ''The value of P220_CRUISE_ID after the CCD_CRUISES row was processed is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'',
+'',
+'END;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(7417329183645503)
+,p_process_sequence=>90
+,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_api.id(7394014059397341)
-,p_process_type=>'NATIVE_IG_DML'
+,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Other Target Species - Save Interactive Grid Data'
-,p_attribute_01=>'REGION_SOURCE'
-,p_attribute_05=>'Y'
-,p_attribute_06=>'Y'
-,p_attribute_08=>'Y'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare ',
+'',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'begin  ',
+'',
+'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
+'',
+'     case :APEX$ROW_STATUS  ',
+'     when ''C'' then -- Note: In EA2 this has been changed from I to C for consistency with Tabular Forms  ',
+'',
+'',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
+'',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''insert into CEN_CRUISE.CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
+'         values ( ''||:TGT_SPP_OTHER_CNAME||'', ''||:TGT_SPP_OTHER_SNAME||'', ''||:TGT_SPP_OTHER_NOTES||'', ''||:P220_CRUISE_ID||'')  ',
+'         returning TGT_SPP_OTHER_ID into :TGT_SPP_OTHER_ID'', V_RETURN_CODE);',
+'',
+'         insert into CEN_CRUISE.CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
+'         values ( :TGT_SPP_OTHER_CNAME, :TGT_SPP_OTHER_SNAME, :TGT_SPP_OTHER_NOTES, TO_NUMBER(:P220_CRUISE_ID) )  ',
+'         returning TGT_SPP_OTHER_ID into :TGT_SPP_OTHER_ID;  ',
+'',
+'',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, the insert query has been sent (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
+'',
+'    when ''U'' then  ',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is an update action, use an update query'', V_RETURN_CODE);',
+'         update CEN_CRUISE.CCD_TGT_SPP_OTHER  ',
+'            set TGT_SPP_OTHER_CNAME = :TGT_SPP_OTHER_CNAME, ',
+'            TGT_SPP_OTHER_SNAME = :TGT_SPP_OTHER_SNAME, ',
+'            TGT_SPP_OTHER_NOTES = :TGT_SPP_OTHER_NOTES',
+'          where TGT_SPP_OTHER_ID  = :TGT_SPP_OTHER_ID;  ',
+'     when ''D'' then  ',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
+'         delete CEN_CRUISE.CCD_TGT_SPP_OTHER  ',
+'         where TGT_SPP_OTHER_ID = :TGT_SPP_OTHER_ID;  ',
+'     end case;  ',
+'     ',
+'     ',
+'     CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The current row has been processed, (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
+'',
+'     ',
+'end;  '))
+,p_process_error_message=>'Target Species - Other Error!!'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Target Species - Other Saved'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348346838226808)
-,p_process_sequence=>90
+,p_process_sequence=>100
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
 ,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7348021051226805)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(5592803881158822)
+,p_process_sequence=>10
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'get_oth_spp_cruise_copy'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    p_proc_return_code BINARY_INTEGER;',
+'    ',
+'    ',
+'    v_stmt_str CLOB;',
+'',
+'    TYPE CurTyp IS REF CURSOR;',
+'    v_cursor CurTyp;',
+'    ',
+'    ret_val CLOB;',
+'    ',
+'BEGIN',
+'    ',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_oth_spp_cruise_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
+'',
+'',
+'    v_stmt_str := ''SELECT TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES FROM CEN_CRUISE.CCD_TGT_SPP_OTHER where cruise_id = :cruise_id order by UPPER(TGT_SPP_OTHER_CNAME)'';',
+'    ',
+'',
+'',
+'    OPEN v_cursor FOR v_stmt_str USING apex_application.g_x01;',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
+'    ',
+'      --use the apex_json object to generate the JSON response:',
+'      apex_json.initialize_clob_output;',
+'      apex_json.open_object;',
+'      apex_json.write(''oth_spp'', v_cursor);',
+'',
+' ',
+'',
+'      apex_json.close_object;',
+'      ',
+'      --export the JSON string to ret_val variable:',
+'      ret_val := apex_json.get_clob_output;',
+' ',
+'      CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
+'',
+'      htp.prn(ret_val);',
+'',
+'      --release the apex_json object from memory:',
+'      apex_json.free_output;',
+'',
+'	    EXCEPTION',
+'	',
+'	        --catch all PL/SQL database exceptions:',
+'	        WHEN OTHERS THEN',
+'		  --catch all other errors:',
+'	        ',
+'		  --print out error message:',
+'		  CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
+'end;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 );
 end;
 /
@@ -14788,7 +15148,76 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
-,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';',
+'',
+'',
+'function get_leg_alias_copy (cruise_leg_id_copy)',
+'{',
+'    console.log(''this is the other species cruise copy initialization code'');',
+'',
+'    ',
+'    apex.server.process(',
+'    ''get_leg_alias_copy'',                             // Process or AJAX Callback name',
+'    {x01: cruise_leg_id_copy},  // Parameter "x01"',
+'    {',
+'      success: function (pData) ',
+'      {             ',
+'            // Success Javascript',
+'',
+'            console.log(''the value of pData is: ''+pData);  ',
+'          ',
+'            //parse the json array to get each record''s value:',
+'            var json_array = jQuery.parseJSON(pData);',
+'          ',
+'',
+'            var ig$ = apex.region("leg_alias_id").widget();',
+'            console.log(''ig is: ''+ig$);',
+'            var model = ig$.interactiveGrid("getViews", "grid").model;',
+'            console.log(''model is: ''+model);',
+'',
+'          ',
+'            //create a new blank row for each associated other species records:',
+'            for (var i = 0; i < json_array[''leg_alias''].length; i++)',
+'            {',
+'                console.log(json_array[''leg_alias''][i]);  ',
+'                var temp = ig$.interactiveGrid("getActions").invoke("row-add-row");',
+'            }',
+'          ',
+'            //re-initialize the counter for setting the values for each record',
+'            i = 0;',
+'            model.forEach(function(r)',
+'            {',
+'                console.log(''the current value of r is: '');',
+'                console.log(r);',
+'                ',
+'                console.log(''the value of row ID is: ''+r[1]);',
+'                ',
+'                ',
+'                $.each(json_array[''leg_alias''][i], function(i, item)',
+'                      {',
+'                            console.log(''set the field (''+i+'') value to item: ''+item);',
+'                            model.setValue(r, i, item);',
+'                    ',
+'                    ',
+'                            console.log(''set the focus to the newly set cell ("gotoCell", ''+r[1]+'', ''+i+'')'');',
+'                            apex.region("leg_alias_id").widget().interactiveGrid("getViews").grid.view$.grid("gotoCell", r[1], i);',
+'',
+'                      }',
+'                      );',
+'                //increment the counter:',
+'                i ++;',
+'            });',
+'',
+'            //set focus to the first enabled/visible form element:',
+'            $(document).find(''input[type=text],textarea,select'').filter('':visible:first'').focus();',
+'      },',
+'      dataType: "text"                        // Response type (here: plain text)',
+'    }',
+'  );    ',
+'    ',
+'    ',
+'}'))
 ,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'div.active-form-class {background-color: #fffee6;}',
@@ -14798,13 +15227,12 @@ wwv_flow_api.create_page(
 'padding: 1.6rem 1.2rem;}',
 'ul.t-Tabs {margin-top: 10px;}'))
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407085951'
+,p_last_upd_yyyymmddhh24miss=>'20200414134710'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -14892,7 +15320,8 @@ wwv_flow_api.create_report_region(
 'REGION_NAME_BR_LIST,',
 'LEG_ALIAS_BR_LIST,',
 'CRUISE_ID,',
-'LEG_FISC_YEAR',
+'LEG_FISC_YEAR,',
+'CRUISE_LEG_ID CRUISE_LEG_ID_COPY',
 '',
 'FROM ',
 'CEN_CRUISE.CCD_LEG_DELIM_V',
@@ -14920,7 +15349,7 @@ wwv_flow_api.create_report_columns(
 ,p_column_alias=>'CRUISE_LEG_ID_VAL'
 ,p_column_display_sequence=>13
 ,p_column_heading=>'Edit'
-,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP,230:P230_CRUISE_ID,P230_CRUISE_LEG_ID:#CRUISE_ID#,#CRUISE_LEG_ID_VAL#'
+,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP,230:P230_CRUISE_ID,P230_CRUISE_LEG_ID,P230_CRUISE_LEG_ID_COPY:#CRUISE_ID#,#CRUISE_LEG_ID_VAL#,'
 ,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
 ,p_derived_column=>'N'
 ,p_include_in_export=>'Y'
@@ -15054,6 +15483,17 @@ wwv_flow_api.create_report_columns(
 ,p_include_in_export=>'Y'
 ,p_column_comment=>'The NOAA fiscal year for the given cruise leg (based on the leg start date)'
 );
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(4134991147563049)
+,p_query_column_id=>14
+,p_column_alias=>'CRUISE_LEG_ID_COPY'
+,p_column_display_sequence=>14
+,p_column_heading=>'Copy'
+,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_LEG_ID_COPY,P230_CRUISE_LEG_ID,P230_CRUISE_ID:#CRUISE_LEG_ID_VAL#,,#CRUISE_ID#'
+,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8269480343098234)
 ,p_plug_name=>'Leg Attributes'
@@ -15064,9 +15504,8 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>'Leg Attributes'
+,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_LEG_ID'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -15079,13 +15518,17 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_sequence=>10
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_plug_display_when_condition=>'P230_CRUISE_LEG_ID'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7283631583273639)
 ,p_plug_name=>'Leg Aliases'
+,p_region_name=>'leg_alias_id'
 ,p_parent_plug_id=>wwv_flow_api.id(8269480343098234)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -15102,8 +15545,6 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_LEG_ID'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7284036893273643)
@@ -15224,6 +15665,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
+,p_max_row_count=>100000
 ,p_show_nulls_as=>'-'
 ,p_fixed_row_height=>true
 ,p_pagination_type=>'SCROLL'
@@ -15538,6 +15980,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -15553,6 +15996,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -15568,6 +16012,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'BODY'
 ,p_button_execute_validations=>'N'
 ,p_warn_on_unsaved_changes=>null
+,p_grid_new_grid=>false
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
@@ -15649,6 +16094,9 @@ wwv_flow_api.create_page_button(
 ,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7075723399077808)
 ,p_branch_name=>'DELETE - Go To Page 220'
@@ -15661,19 +16109,28 @@ wwv_flow_api.create_page_branch(
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7501633323111944)
 ,p_branch_name=>'Create Another - Maintain CRUISE_ID and Stay on Page 230'
-,p_branch_action=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP,230:P230_CRUISE_ID:&P230_CRUISE_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_action=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP,230:P230_CRUISE_ID,P230_CRUISE_LEG_ID,P230_CRUISE_LEG_ID_COPY:&P230_CRUISE_ID.,,&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
 ,p_branch_when_button_id=>wwv_flow_api.id(7501519674111943)
 ,p_branch_sequence=>11
 );
 wwv_flow_api.create_page_branch(
- p_id=>wwv_flow_api.id(7349214409226817)
-,p_branch_name=>'OTHERS - Stay on Page 220'
-,p_branch_action=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+ p_id=>wwv_flow_api.id(5593022189158824)
+,p_branch_name=>'Create - Stay on Page 230'
+,p_branch_action=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_ID,P230_CRUISE_LEG_ID,P230_CRUISE_LEG_ID_COPY:&P230_CRUISE_ID.,&P230_CRUISE_LEG_ID.,&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
+,p_branch_when_button_id=>wwv_flow_api.id(7073523941077795)
 ,p_branch_sequence=>21
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(7349214409226817)
+,p_branch_name=>'OTHERS - Stay on Page 220'
+,p_branch_action=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.::P230_CRUISE_LEG_ID_COPY,P230_CRUISE_LEG_ID,P230_CRUISE_ID:,&P230_CRUISE_LEG_ID.,&P230_CRUISE_ID.&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>31
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(1440369392521845)
@@ -15738,9 +16195,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(1440860873521850)
 ,p_name=>'P230_LEG_GEAR'
@@ -15884,6 +16338,16 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(4134670551563046)
+,p_name=>'P230_CRUISE_LEG_ID_COPY'
+,p_item_sequence=>130
+,p_item_plug_id=>wwv_flow_api.id(7073129349077795)
+,p_source=>'P230_CRUISE_LEG_ID_COPY'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7076101153077810)
 ,p_name=>'P230_CRUISE_LEG_ID'
 ,p_item_sequence=>30
@@ -16020,7 +16484,7 @@ wwv_flow_api.create_page_item(
 '',
 'V_TEMP_SQL := ''SELECT distinct',
 '    VESSEL_NAME, VESSEL_ID FROM CEN_CRUISE.CCD_VESSELS where (:P230_VESSEL_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_VESSEL_NAME_FILT IS NULL) OR (VESSEL_ID = :P230_VESSEL_ID) OR (VESSEL_ID = (SELECT VESSEL_ID from CEN_CRUISE.CCD_CRUIS'
-||'E_LEGS WHERE CRUISE_LEG_ID = :P230_CRUISE_LEG_ID))',
+||'E_LEGS WHERE CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)))',
 '',
 '    ORDER BY UPPER(VESSEL_NAME)'';',
 '',
@@ -16106,7 +16570,7 @@ wwv_flow_api.create_page_item(
 ,p_item_sequence=>20
 ,p_item_plug_id=>wwv_flow_api.id(7280309372273606)
 ,p_use_cache_before_default=>'NO'
-,p_prompt=>'Science Center'
+,p_prompt=>'Division'
 ,p_source=>'P230_CRUISE_INFO'
 ,p_source_type=>'ITEM'
 ,p_source_post_computation=>'CEN_UTILS.CEN_UTIL_PKG.EXT_DELIM_VAL_FN (:P230_CRUISE_INFO, 2)'
@@ -16114,7 +16578,7 @@ wwv_flow_api.create_page_item(
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_help_text=>'The Science Center Responsible for the given Cruise'
+,p_help_text=>'The Division responsible for the given Cruise'
 ,p_attribute_01=>'Y'
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
@@ -16513,7 +16977,7 @@ wwv_flow_api.create_page_item(
 '        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ((:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' OR :P230_GEAR_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST = ''''N'''')',
 '',
 '        UNION',
-'        SELECT GEAR_ID from CEN_CRUISE.CCD_LEG_GEAR where CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'        SELECT GEAR_ID from CEN_CRUISE.CCD_LEG_GEAR where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -16537,6 +17001,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Gear by moving options to the right-side of the field. You can also use the Presets below to add groups of gear to the cruise leg at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8268437134098224)
 ,p_name=>'P230_GEAR_PRESETS'
@@ -16620,7 +17087,7 @@ wwv_flow_api.create_page_item(
 '        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ((:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' OR :P230_REG_ECO_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST = ''''N'''')',
 '',
 '        UNION',
-'        SELECT REG_ECOSYSTEM_ID from CEN_CRUISE.CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'        SELECT REG_ECOSYSTEM_ID from CEN_CRUISE.CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
@@ -16644,9 +17111,6 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Regional Ecosystems by moving options to the right-side of the field. You can also use the Presets below to add groups of Regional Ecosystems to the cruise leg at once'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8270087518098240)
 ,p_name=>'P230_REG_ECO_PRESETS'
@@ -16786,6 +17250,7 @@ wwv_flow_api.create_page_item(
 ,p_begin_on_new_line=>'N'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
+,p_escape_on_http_output=>'N'
 ,p_help_text=>'List of leg names and the associated vessels and leg dates for the given cruise'
 ,p_attribute_01=>'Y'
 ,p_attribute_02=>'VALUE'
@@ -16818,9 +17283,9 @@ wwv_flow_api.create_page_computation(
 ,p_computation_type=>'QUERY'
 ,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select ',
-'CRUISE_NAME||''\t''||SCI_CENTER_NAME||''\t''||STD_SVY_NAME_VAL||''\t''||CRUISE_START_DATE||''\t''||CRUISE_END_DATE||''\t''||CRUISE_FISC_YEAR||''\t''||SVY_FREQ_NAME||''\t''||PRIM_SVY_CAT_NAME_BR_LIST||''\t''||SEC_SVY_CAT_NAME_BR_LIST||''\t''||SPP_ESA_NAME_BR_LIST||''\t'''
-||'||SPP_MMPA_NAME_BR_LIST||''\t''||SPP_FSSI_NAME_BR_LIST||''\t''||OTH_SPP_CNAME_BR_LIST||''\t''||EXP_SPP_NAME_BR_LIST||''\t''||CRUISE_NOTES||''\t''||NUM_LEGS||''\t''||CRUISE_URL||''\t''||CRUISE_CONT_EMAIL||''\t''||SVY_TYPE_NAME||''\t''||CRUISE_DAS||''\t''||REGION_NAME_BR_'
-||'LIST||''\t''||',
+'CRUISE_NAME||''\t''||SCI_CENTER_DIV_CODE||''\t''||STD_SVY_NAME_VAL||''\t''||CRUISE_START_DATE||''\t''||CRUISE_END_DATE||''\t''||CRUISE_FISC_YEAR||''\t''||SVY_FREQ_NAME||''\t''||PRIM_SVY_CAT_NAME_BR_LIST||''\t''||SEC_SVY_CAT_NAME_BR_LIST||''\t''||SPP_ESA_NAME_BR_LIST||'
+||'''\t''||SPP_MMPA_NAME_BR_LIST||''\t''||SPP_FSSI_NAME_BR_LIST||''\t''||OTH_SPP_CNAME_BR_LIST||''\t''||EXP_SPP_NAME_BR_LIST||''\t''||CRUISE_NOTES||''\t''||NUM_LEGS||''\t''||CRUISE_URL||''\t''||CRUISE_CONT_EMAIL||''\t''||SVY_TYPE_NAME||''\t''||CRUISE_DAS||''\t''||REGION_NAME'
+||'_BR_LIST||''\t''||',
 'CCD_CRUISE_SUMM_V.ECOSYSTEM_BR_LIST||''\t''||',
 'CCD_CRUISE_SUMM_V.GEAR_BR_LIST||''\t''||',
 'LEG_NAME_DATES_BR_LIST',
@@ -16840,7 +17305,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select gear_id from cen_cruise.ccd_leg_gear where cruise_leg_id = :p230_CRUISE_LEG_ID) loop',
+'   for r in (select gear_id from cen_cruise.ccd_leg_gear where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.gear_id;',
 '      i := i + 1;',
 '   end loop;',
@@ -16865,7 +17330,7 @@ wwv_flow_api.create_page_computation(
 '',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REGION_SHUTTLE before header'', ''Query for the leg regions associated with cruise leg id: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
 '',
-'    for r in (select region_id from cen_cruise.ccd_leg_regions where cruise_leg_id = :P230_CRUISE_LEG_ID) loop',
+'    for r in (select region_id from cen_cruise.ccd_leg_regions where cruise_leg_id = :P230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.region_id;',
 '      i := i + 1;',
 '   end loop;',
@@ -16887,7 +17352,7 @@ wwv_flow_api.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select REG_ECOSYSTEM_ID from cen_cruise.ccd_leg_ecosystems where cruise_leg_id = :p230_CRUISE_LEG_ID) loop',
+'   for r in (select REG_ECOSYSTEM_ID from cen_cruise.ccd_leg_ecosystems where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.REG_ECOSYSTEM_ID;',
 '      i := i + 1;',
 '   end loop;',
@@ -16905,6 +17370,44 @@ wwv_flow_api.create_page_validation(
 ,p_validation_type=>'SQL_EXPRESSION'
 ,p_error_message=>'Start Date must occur before End Date'
 ,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(5593604137158830)
+,p_tabular_form_region_id=>wwv_flow_api.id(7283631583273639)
+,p_validation_name=>'Unique Leg Alias Name'
+,p_validation_sequence=>30
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    rec_count PLS_INTEGER;',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'        ',
+'',
+'BEGIN',
+'',
+'',
+'    if :APEX$ROW_STATUS = ''C'' then',
+'        select count(*) into rec_count from cen_cruise.ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME;',
+'    elsif :APEX$ROW_STATUS = ''U'' then ',
+'        select count(*) into rec_count from cen_cruise.ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME and LEG_ALIAS_ID <> :LEG_ALIAS_ID;',
+'    end if;',
+'    ',
+'    ',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Alias Name Validation'', ''The count(*) value is: ''||rec_count, V_PROC_RETURN_CODE);',
+'    ',
+'    --check to see if there are any matches in the database:',
+'    IF rec_count > 0 THEN',
+'        return ''The Leg Alias "''||:LEG_ALIAS_NAME||''" already exists'';',
+'    ELSE',
+'        return NULL;',
+'    ',
+'    END IF;',
+'',
+'END;'))
+,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
+,p_always_execute=>'N'
+,p_only_for_changed_rows=>'Y'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
 wwv_flow_api.create_page_da_event(
@@ -16934,7 +17437,8 @@ wwv_flow_api.create_page_da_action(
 '$("#REGION_NAME_BR_LIST").attr("title", "List of Regions associated with the given cruise leg").addClass("custom_tooltip");',
 '$("#LEG_ALIAS_BR_LIST").attr("title", "List of aliases for the given cruise leg").addClass("custom_tooltip");',
 '$("#CRUISE_LEG_ID_VAL").attr("title", "Edit the given cruise leg").addClass("custom_tooltip");',
-'',
+'$("#CRUISE_LEG_ID_COPY").attr("title", "Click to copy the cruise leg and associated records so they can be modified").addClass("custom_tooltip");',
+' ',
 '',
 '',
 '',
@@ -17352,6 +17856,9 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexafterrefresh'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(4130619596563006)
 ,p_event_id=>wwv_flow_api.id(4130590493563005)
@@ -17380,6 +17887,28 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(5593297234158826)
+,p_name=>'Leg Alias - Load copied cruise leg values'
+,p_event_sequence=>150
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+,p_display_when_type=>'ITEM_IS_NOT_NULL'
+,p_display_when_cond=>'P230_CRUISE_LEG_ID_COPY'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(5593373569158827)
+,p_event_id=>wwv_flow_api.id(5593297234158826)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''running get_oth_spp_cruise_copy(''+$v("P230_CRUISE_LEG_ID_COPY")+'')'');',
+'',
+'//send an ajax request for all of the associated other species records associated with the copied cruise ID: ',
+'get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));'))
+);
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7081375927077825)
 ,p_process_sequence=>10
@@ -17390,6 +17919,21 @@ wwv_flow_api.create_page_process(
 ,p_attribute_02=>'CCD_CRUISE_LEGS'
 ,p_attribute_03=>'P230_CRUISE_LEG_ID'
 ,p_attribute_04=>'CRUISE_LEG_ID'
+,p_process_when=>'P230_CRUISE_LEG_ID'
+,p_process_when_type=>'ITEM_IS_NOT_NULL'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(4134714296563047)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from CCD_CRUISE_LEGS (Copy)'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_CRUISE_LEGS'
+,p_attribute_03=>'P230_CRUISE_LEG_ID_COPY'
+,p_attribute_04=>'CRUISE_LEG_ID'
+,p_process_when=>'P230_CRUISE_LEG_ID_COPY'
+,p_process_when_type=>'ITEM_IS_NOT_NULL'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7081799333077827)
@@ -17492,12 +18036,48 @@ wwv_flow_api.create_page_process(
 ,p_process_sequence=>130
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_api.id(7283631583273639)
-,p_process_type=>'NATIVE_IG_DML'
+,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Leg Aliases - Save Interactive Grid Data'
-,p_attribute_01=>'REGION_SOURCE'
-,p_attribute_05=>'Y'
-,p_attribute_06=>'Y'
-,p_attribute_08=>'Y'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare ',
+'',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'begin  ',
+'',
+'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
+'',
+'     case :APEX$ROW_STATUS  ',
+'     when ''C'' then -- Note: In EA2 this has been changed from I to C for consistency with Tabular Forms  ',
+'',
+'',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
+'',
+'         insert into CEN_CRUISE.CCD_LEG_ALIASES ( LEG_ALIAS_NAME, LEG_ALIAS_DESC, CRUISE_LEG_ID )  ',
+'         values ( :LEG_ALIAS_NAME, :LEG_ALIAS_DESC, TO_NUMBER(:P230_CRUISE_LEG_ID) )  ',
+'         returning LEG_ALIAS_ID into :LEG_ALIAS_ID;  ',
+'',
+'',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, the insert query has been sent (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
+'',
+'    when ''U'' then  ',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is an update action, use an update query'', V_RETURN_CODE);',
+'         update CEN_CRUISE.CCD_LEG_ALIASES  ',
+'            set LEG_ALIAS_NAME = :LEG_ALIAS_NAME, ',
+'            LEG_ALIAS_DESC = :LEG_ALIAS_DESC, ',
+'            CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'          where LEG_ALIAS_ID  = :LEG_ALIAS_ID;  ',
+'     when ''D'' then  ',
+'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
+'         delete CEN_CRUISE.CCD_LEG_ALIASES  ',
+'         where LEG_ALIAS_ID = :LEG_ALIAS_ID;  ',
+'     end case;  ',
+'     ',
+'     ',
+'     CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The current row has been processed, (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
+'',
+'     ',
+'end;  '))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Leg Aliases Saved<BR>'
 );
@@ -17510,6 +18090,68 @@ wwv_flow_api.create_page_process(
 ,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7073773135077795)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(5593186817158825)
+,p_process_sequence=>10
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'get_leg_alias_copy'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    p_proc_return_code BINARY_INTEGER;',
+'    ',
+'    ',
+'    v_stmt_str CLOB;',
+'',
+'    TYPE CurTyp IS REF CURSOR;',
+'    v_cursor CurTyp;',
+'    ',
+'    ret_val CLOB;',
+'    ',
+'BEGIN',
+'    ',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_leg_alias_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
+'',
+'',
+'    v_stmt_str := ''SELECT LEG_ALIAS_NAME, LEG_ALIAS_DESC FROM CEN_CRUISE.CCD_LEG_ALIASES where cruise_leg_id = :cruise_leg_id order by UPPER(LEG_ALIAS_NAME)'';',
+'   ',
+'',
+'',
+'    OPEN v_cursor FOR v_stmt_str USING apex_application.g_x01;',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
+'    ',
+'      --use the apex_json object to generate the JSON response:',
+'      apex_json.initialize_clob_output;',
+'      apex_json.open_object;',
+'      apex_json.write(''leg_alias'', v_cursor);',
+'',
+' ',
+'',
+'      apex_json.close_object;',
+'      ',
+'      --export the JSON string to ret_val variable:',
+'      ret_val := apex_json.get_clob_output;',
+' ',
+'      CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
+'',
+'      htp.prn(ret_val);',
+'',
+'      --release the apex_json object from memory:',
+'      apex_json.free_output;',
+'',
+'	    EXCEPTION',
+'	',
+'	        --catch all PL/SQL database exceptions:',
+'	        WHEN OTHERS THEN',
+'		  --catch all other errors:',
+'	        ',
+'		  --print out error message:',
+'		  CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
+'end;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 );
 end;
 /
@@ -17674,6 +18316,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123498383389824)
@@ -17684,6 +18327,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(7622539270233830)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(7625958873233839)
@@ -17702,6 +18346,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3121765925389807)
@@ -17712,6 +18357,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(7622539270233830)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -18142,6 +18788,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123550561389825)
@@ -18152,6 +18799,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(7644975931511225)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(7648304376511229)
@@ -18170,6 +18818,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3121897582389808)
@@ -18180,6 +18829,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(7644975931511225)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -18587,6 +19237,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:322:&SESSION.::&DEBUG.:322:P322_PLAT_TYPE_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2794436163390420)
@@ -18605,6 +19256,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123073716389820)
@@ -18615,6 +19267,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(10412936955624199)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2795350335390423)
@@ -18633,6 +19286,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3121902565389809)
@@ -18643,6 +19297,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(10412936955624199)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -18736,6 +19391,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P322_PLAT_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -18751,6 +19407,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P322_PLAT_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -18766,6 +19423,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P322_PLAT_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -19029,6 +19687,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:327:&SESSION.::&DEBUG.:327:P327_SVY_TYPE_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2836749265524549)
@@ -19047,6 +19706,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123676042389826)
@@ -19057,6 +19717,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13245537341148694)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2837650271524551)
@@ -19075,6 +19736,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122064745389810)
@@ -19085,6 +19747,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13245537341148694)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -19164,6 +19827,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P327_SVY_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -19179,6 +19843,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P327_SVY_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -19194,6 +19859,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P327_SVY_TYPE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -19450,6 +20116,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:332:&SESSION.::&DEBUG.:332:P332_SVY_CAT_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2864739148637934)
@@ -19468,6 +20135,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123742572389827)
@@ -19478,6 +20146,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13273630878262053)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2865697288637938)
@@ -19496,6 +20165,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122195680389811)
@@ -19506,6 +20176,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13273630878262053)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -19585,6 +20256,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P332_SVY_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -19600,6 +20272,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P332_SVY_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -19615,6 +20288,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P332_SVY_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -19878,6 +20552,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:337:&SESSION.::&DEBUG.:337:P337_SVY_FREQ_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2914471375139061)
@@ -19896,6 +20571,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123883482389828)
@@ -19906,6 +20582,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13323295252763204)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2915309122139064)
@@ -19924,6 +20601,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122253586389812)
@@ -19934,6 +20612,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13323295252763204)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -20013,6 +20692,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P337_SVY_FREQ_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -20028,6 +20708,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P337_SVY_FREQ_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -20043,6 +20724,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P337_SVY_FREQ_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -20309,6 +20991,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:342:&SESSION.::&DEBUG.:342:P342_TGT_SPP_ESA_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2938966782194351)
@@ -20327,6 +21010,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3123944377389829)
@@ -20337,6 +21021,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13347754770818520)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2939817228194354)
@@ -20357,6 +21042,7 @@ wwv_flow_api.create_page_da_action(
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'apex.message.showPageSuccess( "Action Processed." );',
 ''))
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(2940344030194355)
@@ -20367,6 +21053,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(13347754770818520)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -20446,6 +21133,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P342_TGT_SPP_ESA_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -20461,6 +21149,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P342_TGT_SPP_ESA_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -20476,6 +21165,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P342_TGT_SPP_ESA_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -20779,6 +21469,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:347:&SESSION.::&DEBUG.:347:P347_TGT_SPP_MMPA_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2949391198227887)
@@ -20797,6 +21488,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124021387389830)
@@ -20807,6 +21499,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(16292963977046383)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2950116076227888)
@@ -20825,6 +21518,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122371701389813)
@@ -20835,6 +21529,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(16292963977046383)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -20914,6 +21609,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P347_TGT_SPP_MMPA_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -20929,6 +21625,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P347_TGT_SPP_MMPA_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -20944,6 +21641,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P347_TGT_SPP_MMPA_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -21247,6 +21945,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:352:&SESSION.::&DEBUG.:352:P352_TGT_SPP_FSSI_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2959440324254488)
@@ -21265,6 +21964,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124104716389831)
@@ -21275,6 +21975,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(16303210463072962)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2960345762254490)
@@ -21293,6 +21994,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(2960810939254490)
@@ -21303,6 +22005,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(16303210463072962)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -21382,6 +22085,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P352_TGT_SPP_FSSI_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -21397,6 +22101,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P352_TGT_SPP_FSSI_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -21412,6 +22117,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P352_TGT_SPP_FSSI_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -21716,6 +22422,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:357:&SESSION.::&DEBUG.:357:P357_STD_SVY_NAME_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2970490074280590)
@@ -21734,6 +22441,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124211491389832)
@@ -21744,6 +22452,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(19269657947353521)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(2971381749280593)
@@ -21762,6 +22471,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122445395389814)
@@ -21772,6 +22482,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(19269657947353521)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -21851,6 +22562,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P357_STD_SVY_NAME_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -21866,6 +22578,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P357_STD_SVY_NAME_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -21881,6 +22594,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P357_STD_SVY_NAME_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -22059,8 +22773,8 @@ wwv_flow_api.create_page(
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402153730'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200415171054'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(19210241952580809)
@@ -22088,8 +22802,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select SCI_CENTER_ID,',
 'SCI_CENTER_NAME,',
-'SCI_CENTER_DESC',
-'from CEN_CRUISE.CCD_SCI_CENTERS ',
+'SCI_CENTER_DESC,',
+'DIV_NAME_BR_LIST',
+'from CEN_CRUISE.CCD_SCI_CENTER_DELIM_V ',
 'ORDER BY UPPER(SCI_CENTER_NAME)',
 '  ',
 ''))
@@ -22142,6 +22857,16 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_type=>'STRING'
 ,p_help_text=>'Description of the given Science Center'
 );
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(5594742521158841)
+,p_db_column_name=>'DIV_NAME_BR_LIST'
+,p_display_order=>40
+,p_column_identifier=>'Q'
+,p_column_label=>'Divisions'
+,p_column_type=>'STRING'
+,p_display_text_as=>'WITHOUT_MODIFICATION'
+,p_help_text=>'List of associated Divisions'
+);
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(19338961681713532)
 ,p_application_user=>'APXWS_DEFAULT'
@@ -22150,7 +22875,7 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_status=>'PUBLIC'
 ,p_is_default=>'Y'
 ,p_display_rows=>50
-,p_report_columns=>'SCI_CENTER_NAME:SCI_CENTER_DESC:SCI_CENTER_ID:'
+,p_report_columns=>'SCI_CENTER_NAME:SCI_CENTER_DESC:DIV_NAME_BR_LIST:SCI_CENTER_ID:'
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_button(
@@ -22165,6 +22890,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:362:&SESSION.::&DEBUG.:362:P362_SCI_CENTER_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3034448368629829)
@@ -22183,6 +22909,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124381214389833)
@@ -22193,6 +22920,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(19333520156702719)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3035337196629832)
@@ -22211,6 +22939,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122568586389815)
@@ -22221,6 +22950,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(19333520156702719)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -22229,14 +22959,16 @@ begin
 wwv_flow_api.create_page(
  p_id=>362
 ,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
-,p_name=>'View/Edit Science Centers'
+,p_name=>'View/Edit Science Center'
 ,p_page_mode=>'MODAL'
-,p_step_title=>'View/Edit Science Centers'
+,p_step_title=>'View/Edit Science Center'
 ,p_step_sub_title=>'View/Edit Science Centers'
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_dialog_chained=>'Y'
@@ -22245,7 +22977,68 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402155643'
+,p_last_upd_yyyymmddhh24miss=>'20200415171952'
+);
+wwv_flow_api.create_report_region(
+ p_id=>wwv_flow_api.id(5594814570158842)
+,p_name=>'Divisions'
+,p_template=>wwv_flow_api.id(19751945583588582)
+,p_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_component_template_options=>'#DEFAULT#:t-Report--altRowsDefault:t-Report--rowHighlight'
+,p_display_point=>'BODY'
+,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select SCI_CENTER_DIV_CODE,',
+'SCI_CENTER_DIV_NAME,',
+'SCI_CENTER_DIV_DESC',
+'FROM CEN_CRUISE.CCD_SCI_CENTER_DIVS where sci_center_id = :P362_SCI_CENTER_ID',
+'order by UPPER(SCI_CENTER_DIV_NAME);'))
+,p_source_type=>'NATIVE_SQL_REPORT'
+,p_display_when_condition=>'P362_SCI_CENTER_ID'
+,p_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_ajax_enabled=>'Y'
+,p_ajax_items_to_submit=>'P362_SCI_CENTER_ID'
+,p_query_row_template=>wwv_flow_api.id(19761929043588592)
+,p_query_num_rows=>15
+,p_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_query_show_nulls_as=>'-'
+,p_query_num_rows_type=>'ROW_RANGES_IN_SELECT_LIST'
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_csv_output=>'N'
+,p_prn_output=>'N'
+,p_sort_null=>'L'
+,p_plug_query_strip_html=>'N'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(5594997197158843)
+,p_query_column_id=>1
+,p_column_alias=>'SCI_CENTER_DIV_CODE'
+,p_column_display_sequence=>1
+,p_column_heading=>'Code'
+,p_use_as_row_header=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(5595081756158844)
+,p_query_column_id=>2
+,p_column_alias=>'SCI_CENTER_DIV_NAME'
+,p_column_display_sequence=>2
+,p_column_heading=>'Name'
+,p_use_as_row_header=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_api.create_report_columns(
+ p_id=>wwv_flow_api.id(5595137583158845)
+,p_query_column_id=>3
+,p_column_alias=>'SCI_CENTER_DIV_DESC'
+,p_column_display_sequence=>3
+,p_column_heading=>'Description'
+,p_use_as_row_header=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14130556463250378)
@@ -22300,6 +23093,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P362_SCI_CENTER_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -22315,6 +23109,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P362_SCI_CENTER_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -22330,6 +23125,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P362_SCI_CENTER_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -22403,6 +23199,37 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_DIALOG_CANCEL'
 ,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(5595221062158846)
+,p_name=>'Initialize Tooltips'
+,p_event_sequence=>20
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(5595390754158847)
+,p_event_id=>wwv_flow_api.id(5595221062158846)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'$("#SCI_CENTER_DIV_CODE").attr("title", "Abbreviated code for the given Science Center Division").addClass("custom_tooltip");',
+'$("#SCI_CENTER_DIV_NAME").attr("title", "Name of the given Science Center Division").addClass("custom_tooltip");',
+'$("#SCI_CENTER_DIV_DESC").attr("title", "Description for the given Science Center Division").addClass("custom_tooltip");',
+' ',
+'',
+'',
+'',
+'',
+'$("th.custom_tooltip, a.custom_tooltip").tooltip({',
+'	    position: {',
+'	      my: "center bottom-20",',
+'	      at: "center top",',
+'	      using: tooltip_arrows',
+'	    }',
+'	  });'))
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(3270219735025772)
@@ -22586,6 +23413,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:367:&SESSION.::&DEBUG.:367:P367_REGION_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3045949949660159)
@@ -22604,6 +23432,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124412112389834)
@@ -22614,6 +23443,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(22375910056362844)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3046804653660160)
@@ -22632,6 +23462,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122653299389816)
@@ -22642,6 +23473,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(22375910056362844)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -22721,6 +23553,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P367_REGION_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -22736,6 +23569,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P367_REGION_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -22751,6 +23585,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P367_REGION_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -23039,6 +23874,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:372:&SESSION.::&DEBUG.:372:P372_GEAR_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3065958110734184)
@@ -23057,6 +23893,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124540099389835)
@@ -23067,6 +23904,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(25437771235096967)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3066800679734187)
@@ -23085,6 +23923,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122796501389817)
@@ -23095,6 +23934,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(25437771235096967)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -23174,6 +24014,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P372_GEAR_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -23189,6 +24030,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P372_GEAR_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -23204,6 +24046,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P372_GEAR_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -23378,6 +24221,7 @@ wwv_flow_api.create_page(
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
@@ -23508,6 +24352,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:377:&SESSION.::&DEBUG.:377:P377_EXP_SPP_CAT_ID:'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3084679199994122)
@@ -23526,6 +24371,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3124686348389836)
@@ -23536,6 +24382,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(28518333520091045)
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3085552902994124)
@@ -23554,6 +24401,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3122864300389818)
@@ -23564,6 +24412,7 @@ wwv_flow_api.create_page_da_action(
 ,p_action=>'NATIVE_REFRESH'
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_api.id(28518333520091045)
+,p_stop_execution_on_error=>'Y'
 );
 end;
 /
@@ -23643,6 +24492,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P377_EXP_SPP_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -23658,6 +24508,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P377_EXP_SPP_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -23673,6 +24524,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_NEXT'
 ,p_button_condition=>'P377_EXP_SPP_CAT_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_item(
@@ -23833,6 +24685,532 @@ wwv_flow_api.create_page_process(
 );
 end;
 /
+prompt --application/pages/page_00380
+begin
+wwv_flow_api.create_page(
+ p_id=>380
+,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
+,p_name=>'View Divisions'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'View Divisions'
+,p_step_sub_title=>'View Divisions'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200416172140'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(28463818052608972)
+,p_plug_name=>'Division List'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19756296702588585)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(19786818051588651)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(19775264001588609)
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(28587096256730882)
+,p_plug_name=>'Divisions'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19751414833588582)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ',
+'SCI_CENTER_NAME,',
+'SCI_CENTER_DESC,',
+'SCI_CENTER_DIV_ID,',
+'SCI_CENTER_DIV_CODE,',
+'SCI_CENTER_DIV_NAME,',
+'SCI_CENTER_DIV_DESC,',
+'SCI_CENTER_ID',
+'from CEN_CRUISE.CCD_SCI_CENTER_DIV_V where SCI_CENTER_DIV_ID IS NOT NULL',
+'ORDER BY UPPER(SCI_CENTER_NAME), UPPER(SCI_CENTER_DIV_NAME)',
+'  ',
+''))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(28587550306730882)
+,p_name=>'Report 1'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_owner=>'CRUISE_DEV_JESSE'
+,p_internal_uid=>28587550306730882
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218273155378603)
+,p_db_column_name=>'SCI_CENTER_NAME'
+,p_display_order=>10
+,p_column_identifier=>'U'
+,p_column_label=>'Science Center'
+,p_column_link=>'f?p=&APP_ID.:362:&SESSION.::&DEBUG.:RP:P362_SCI_CENTER_ID:#SCI_CENTER_ID#'
+,p_column_linktext=>'#SCI_CENTER_NAME#'
+,p_column_type=>'STRING'
+,p_help_text=>'The Science Center for the given Division.  Click the Center if you would like to view/edit it'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218374459378604)
+,p_db_column_name=>'SCI_CENTER_DIV_ID'
+,p_display_order=>20
+,p_column_identifier=>'V'
+,p_column_label=>'Edit?'
+,p_column_link=>'f?p=&APP_ID.:382:&SESSION.::&DEBUG.:RP,382:P382_SCI_CENTER_DIV_ID:#SCI_CENTER_DIV_ID#'
+,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_help_text=>'View/Edit the given Division'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218436465378605)
+,p_db_column_name=>'SCI_CENTER_DIV_CODE'
+,p_display_order=>30
+,p_column_identifier=>'W'
+,p_column_label=>'Division Code'
+,p_column_type=>'STRING'
+,p_help_text=>'Abbreviated code for the given Science Center Division'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218514640378606)
+,p_db_column_name=>'SCI_CENTER_DIV_NAME'
+,p_display_order=>40
+,p_column_identifier=>'X'
+,p_column_label=>'Division Name'
+,p_column_type=>'STRING'
+,p_help_text=>'Name of the given Science Center Division'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218652164378607)
+,p_db_column_name=>'SCI_CENTER_DIV_DESC'
+,p_display_order=>50
+,p_column_identifier=>'Y'
+,p_column_label=>'Division Description'
+,p_column_type=>'STRING'
+,p_help_text=>'Description for the given Science Center Division'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218824327378609)
+,p_db_column_name=>'SCI_CENTER_ID'
+,p_display_order=>60
+,p_column_identifier=>'Z'
+,p_column_label=>'Sci center id'
+,p_column_type=>'NUMBER'
+,p_display_text_as=>'HIDDEN'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(6218901464378610)
+,p_db_column_name=>'SCI_CENTER_DESC'
+,p_display_order=>70
+,p_column_identifier=>'AA'
+,p_column_label=>'Science Center Description'
+,p_column_type=>'STRING'
+,p_help_text=>'Description of the given Science Center '
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(28592537781741695)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'62141'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'SCI_CENTER_NAME:SCI_CENTER_DESC:SCI_CENTER_DIV_CODE:SCI_CENTER_DIV_NAME:SCI_CENTER_DIV_DESC:SCI_CENTER_DIV_ID:'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6214556047368082)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(28587096256730882)
+,p_button_name=>'CREATE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:382:&SESSION.::&DEBUG.:382:P382_SCI_CENTER_DIV_ID:'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6215292192368088)
+,p_name=>'Edit Report - Dialog Closed'
+,p_event_sequence=>10
+,p_triggering_element_type=>'REGION'
+,p_triggering_region_id=>wwv_flow_api.id(28587096256730882)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6215798091368089)
+,p_event_id=>wwv_flow_api.id(6215292192368088)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6216203861368090)
+,p_event_id=>wwv_flow_api.id(6215292192368088)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(28587096256730882)
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6216681574368090)
+,p_name=>'Create Button - Dialog Closed'
+,p_event_sequence=>20
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(6214556047368082)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterclosedialog'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6217164521368091)
+,p_event_id=>wwv_flow_api.id(6216681574368090)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'apex.message.showPageSuccess( "Action Processed." );'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6217602678368091)
+,p_event_id=>wwv_flow_api.id(6216681574368090)
+,p_event_result=>'TRUE'
+,p_action_sequence=>20
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_api.id(28587096256730882)
+,p_stop_execution_on_error=>'Y'
+);
+end;
+/
+prompt --application/pages/page_00382
+begin
+wwv_flow_api.create_page(
+ p_id=>382
+,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
+,p_name=>'View/Edit Division'
+,p_page_mode=>'MODAL'
+,p_step_title=>'View/Edit Division'
+,p_step_sub_title=>'View/Edit Division'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200416122549'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(23737265215051399)
+,p_plug_name=>'Division List'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_plug_template=>wwv_flow_api.id(19756296702588585)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(23737977926051399)
+,p_plug_name=>'Buttons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19742302972588570)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_plug_query_row_template=>1
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6334597155757988)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(23737977926051399)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6334928285757990)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(23737977926051399)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P382_SCI_CENTER_DIV_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6335323226757991)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(23737977926051399)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P382_SCI_CENTER_DIV_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6335710862757991)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(23737977926051399)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_NEXT'
+,p_button_condition=>'P382_SCI_CENTER_DIV_ID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6218760290378608)
+,p_name=>'P382_SCI_CENTER_ID'
+,p_is_required=>true
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(23737265215051399)
+,p_use_cache_before_default=>'NO'
+,p_item_default=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare',
+'    v_return_val PLS_INTEGER;',
+'    v_proc_return_code PLS_INTEGER;',
+'',
+'begin',
+'',
+'',
+'--CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is: ''||:P382_SCI_CENTER_DIV_ID, v_proc_return_code);',
+'    --check to see if the P382_SCI_CENTER_DIV_ID value was specified',
+'    IF :P382_SCI_CENTER_DIV_ID IS NULL THEN    --the P382_SCI_CENTER_DIV_ID value was not specified, use the default value of "PIFSC"',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NULL'', v_proc_return_code);',
+'        ',
+'        SELECT SCI_CENTER_ID INTO v_return_val FROM CEN_CRUISE.CCD_SCI_CENTERS where sci_center_name = ''PIFSC'';',
+'    ',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of v_return_val is: ''||v_return_val, v_proc_return_code);',
+'',
+'        RETURN v_return_val;    ',
+'    ELSE    --the P382_SCI_CENTER_DIV_ID was specified, use the value stored in the database',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NOT NULL'', v_proc_return_code);',
+'',
+'        RETURN NULL;',
+'    END IF;',
+'end;'))
+,p_item_default_type=>'PLSQL_FUNCTION_BODY'
+,p_prompt=>'Science Center'
+,p_source=>'SCI_CENTER_ID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_lov=>'SELECT SCI_CENTER_NAME, SCI_CENTER_ID FROM CEN_CRUISE.CCD_SCI_CENTERS ORDER BY UPPER(SCI_CENTER_NAME);'
+,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Science Center for the given Division'
+,p_attribute_01=>'NONE'
+,p_attribute_02=>'N'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6331191988757982)
+,p_name=>'P382_SCI_CENTER_DIV_ID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(23737265215051399)
+,p_use_cache_before_default=>'NO'
+,p_source=>'SCI_CENTER_DIV_ID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6331514098757985)
+,p_name=>'P382_SCI_CENTER_DIV_NAME'
+,p_is_required=>true
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(23737265215051399)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Name'
+,p_source=>'SCI_CENTER_DIV_NAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>60
+,p_cMaxlength=>200
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Name of the given Division'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6332472595757987)
+,p_name=>'P382_SCI_CENTER_DIV_CODE'
+,p_is_required=>true
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(23737265215051399)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Code'
+,p_source=>'SCI_CENTER_DIV_CODE'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>60
+,p_cMaxlength=>20
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Code for the given Division'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6333385068757987)
+,p_name=>'P382_SCI_CENTER_DIV_DESC'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(23737265215051399)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Description'
+,p_source=>'SCI_CENTER_DIV_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>500
+,p_cHeight=>4
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Description for the given Division'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6337779693758008)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(6334597155757988)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6338227047758009)
+,p_event_id=>wwv_flow_api.id(6337779693758008)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+,p_stop_execution_on_error=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6336155892758004)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from CCD_SCI_CENTER_DIVS'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_SCI_CENTER_DIVS'
+,p_attribute_03=>'P382_SCI_CENTER_DIV_ID'
+,p_attribute_04=>'SCI_CENTER_DIV_ID'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6336597814758005)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Process Row of CCD_SCI_CENTER_DIVS'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_SCI_CENTER_DIVS'
+,p_attribute_03=>'P382_SCI_CENTER_DIV_ID'
+,p_attribute_04=>'SCI_CENTER_DIV_ID'
+,p_attribute_11=>'I:U:D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Action Processed.'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6336913934758005)
+,p_process_sequence=>40
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(6334928285757990)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6337365873758008)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'Close Dialog'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+);
+end;
+/
 prompt --application/pages/page_00400
 begin
 wwv_flow_api.create_page(
@@ -23964,6 +25342,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:405:&SESSION.::&DEBUG.:RP:P405_REG_ECO_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -24583,6 +25962,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:415:&SESSION.::&DEBUG.:RP:P415_REGION_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -24649,6 +26029,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P415_REGION_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -24662,6 +26043,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:410:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2332417492449611)
@@ -24676,6 +26058,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P415_REGION_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -24692,6 +26075,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P415_REGION_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -25033,6 +26417,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:425:&SESSION.::&DEBUG.:RP:P425_SPP_CAT_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -25099,6 +26484,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P425_SPP_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -25112,6 +26498,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:420:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2414016357827896)
@@ -25126,6 +26513,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P425_SPP_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -25142,6 +26530,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P425_SPP_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -25646,6 +27035,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:435:&SESSION.::&DEBUG.:RP:P435_ESA_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -25712,6 +27102,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P435_ESA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -25725,6 +27116,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:430:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2582446714487583)
@@ -25739,6 +27131,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P435_ESA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -25755,6 +27148,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P435_ESA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -26259,6 +27653,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:445:&SESSION.::&DEBUG.:RP:P445_MMPA_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -26325,6 +27720,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P445_MMPA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -26338,6 +27734,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:440:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2628992243644629)
@@ -26352,6 +27749,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P445_MMPA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -26368,6 +27766,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P445_MMPA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -26872,6 +28271,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:455:&SESSION.::&DEBUG.:RP:P455_FSSI_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -26938,6 +28338,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P455_FSSI_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -26951,6 +28352,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:450:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2674674604000232)
@@ -26965,6 +28367,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P455_FSSI_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -26981,6 +28384,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P455_FSSI_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -27495,6 +28899,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:465:&SESSION.::&DEBUG.:RP:P465_SVY_CAT_PRE_ID:'
+,p_grid_new_grid=>false
 );
 end;
 /
@@ -27561,6 +28966,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P465_SVY_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
@@ -27574,6 +28980,7 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:460:&SESSION.::&DEBUG.:::'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(2732471334147673)
@@ -27588,6 +28995,7 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P465_SVY_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
@@ -27604,6 +29012,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P465_SVY_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -27832,6 +29241,619 @@ wwv_flow_api.create_page_process(
 ,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2731248988147671)
+);
+end;
+/
+prompt --application/pages/page_00470
+begin
+wwv_flow_api.create_page(
+ p_id=>470
+,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
+,p_name=>'Gear Presets'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'Gear Presets'
+,p_step_sub_title=>'Gear Presets'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20200414164241'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(13292502432762972)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19756296702588585)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(19786818051588651)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(19775264001588609)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(13293093095762975)
+,p_plug_name=>'Gear Presets'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19751414833588582)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select GEAR_PRE_ID,',
+'       GEAR_PRE_NAME,',
+'       GEAR_PRE_DESC,',
+'       GEAR_NAME_BR_LIST',
+'  from CEN_CRUISE.CCD_GEAR_PRE_DELIM_V order by upper(GEAR_PRE_NAME)'))
+,p_plug_source_type=>'NATIVE_IR'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_worksheet(
+ p_id=>wwv_flow_api.id(13293208304762975)
+,p_name=>'View Regional Ecosystem Presets'
+,p_max_row_count=>'1000000'
+,p_max_row_count_message=>'The maximum row count for this report is #MAX_ROW_COUNT# rows.  Please apply a filter to reduce the number of records in your query.'
+,p_no_data_found_message=>'No data found.'
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'ROWS_X_TO_Y'
+,p_pagination_display_pos=>'BOTTOM_RIGHT'
+,p_report_list_mode=>'TABS'
+,p_show_detail_link=>'N'
+,p_download_formats=>'CSV:HTML:EMAIL:XLS:PDF:RTF'
+,p_owner=>'CRUISE_DEV_JESSE'
+,p_internal_uid=>13293208304762975
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(5594302861158837)
+,p_db_column_name=>'GEAR_PRE_ID'
+,p_display_order=>10
+,p_column_identifier=>'M'
+,p_column_label=>'View/Edit'
+,p_column_link=>'f?p=&APP_ID.:475:&SESSION.::&DEBUG.:RP:P475_GEAR_PRE_ID:#GEAR_PRE_ID#'
+,p_column_linktext=>'<img src="#IMAGE_PREFIX#app_ui/img/icons/apex-edit-pencil.png" class="apex-edit-pencil" alt="">'
+,p_column_type=>'NUMBER'
+,p_column_alignment=>'RIGHT'
+,p_help_text=>'View/Edit the corresponding Gear preset'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(5594433739158838)
+,p_db_column_name=>'GEAR_PRE_NAME'
+,p_display_order=>20
+,p_column_identifier=>'N'
+,p_column_label=>'Preset Name'
+,p_column_type=>'STRING'
+,p_help_text=>'Name for the Gear preset'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(5594588763158839)
+,p_db_column_name=>'GEAR_PRE_DESC'
+,p_display_order=>30
+,p_column_identifier=>'O'
+,p_column_label=>'Preset Description'
+,p_column_type=>'STRING'
+,p_help_text=>'Description for the Gear preset'
+);
+wwv_flow_api.create_worksheet_column(
+ p_id=>wwv_flow_api.id(5594625769158840)
+,p_db_column_name=>'GEAR_NAME_BR_LIST'
+,p_display_order=>40
+,p_column_identifier=>'P'
+,p_column_label=>'Gear'
+,p_column_type=>'STRING'
+,p_display_text_as=>'WITHOUT_MODIFICATION'
+,p_help_text=>'List of Gear associated with the Gear preset'
+);
+wwv_flow_api.create_worksheet_rpt(
+ p_id=>wwv_flow_api.id(13301550198772936)
+,p_application_user=>'APXWS_DEFAULT'
+,p_report_seq=>10
+,p_report_alias=>'61136'
+,p_status=>'PUBLIC'
+,p_is_default=>'Y'
+,p_display_rows=>50
+,p_report_columns=>'GEAR_PRE_NAME:GEAR_PRE_DESC:GEAR_NAME_BR_LIST:GEAR_PRE_ID:'
+,p_flashback_enabled=>'N'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6114061977867356)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(13293093095762975)
+,p_button_name=>'P470_CREATE_GEAR_PRE'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
+,p_button_redirect_url=>'f?p=&APP_ID.:475:&SESSION.::&DEBUG.:RP:P475_GEAR_PRE_ID:'
+);
+end;
+/
+prompt --application/pages/page_00475
+begin
+wwv_flow_api.create_page(
+ p_id=>475
+,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
+,p_name=>'View/Edit Gear Preset'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'View/Edit Gear Preset'
+,p_step_sub_title=>'View/Edit Gear Preset'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_page_template_options=>'#DEFAULT#'
+,p_dialog_chained=>'Y'
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_protection_level=>'C'
+,p_cache_mode=>'NOCACHE'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200414165542'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(15686671525438639)
+,p_plug_name=>'Gear Preset'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(19751945583588582)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_attribute_01=>'N'
+,p_attribute_02=>'TEXT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(15692164515438676)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19756296702588585)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(19786818051588651)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(19775264001588609)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6121722034939633)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Apply Changes'
+,p_button_position=>'REGION_TEMPLATE_CHANGE'
+,p_button_condition=>'P475_GEAR_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'UPDATE'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6122139741939633)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_button_name=>'CANCEL'
+,p_button_action=>'REDIRECT_PAGE'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_image_alt=>'Cancel'
+,p_button_position=>'REGION_TEMPLATE_CLOSE'
+,p_button_redirect_url=>'f?p=&APP_ID.:470:&SESSION.::&DEBUG.:::'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6122555643939634)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Create'
+,p_button_position=>'REGION_TEMPLATE_CREATE'
+,p_button_condition=>'P475_GEAR_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_database_action=>'INSERT'
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6122993582939634)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_button_name=>'DELETE'
+,p_button_action=>'REDIRECT_URL'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_api.id(19774698947588608)
+,p_button_image_alt=>'Delete'
+,p_button_position=>'REGION_TEMPLATE_DELETE'
+,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
+,p_button_execute_validations=>'N'
+,p_button_condition=>'P475_GEAR_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'DELETE'
+);
+wwv_flow_api.create_page_branch(
+ p_id=>wwv_flow_api.id(6133025170939653)
+,p_branch_name=>'Go To Page 470'
+,p_branch_action=>'f?p=&APP_ID.:470:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+,p_branch_point=>'AFTER_PROCESSING'
+,p_branch_type=>'REDIRECT_URL'
+,p_branch_sequence=>1
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6123342665939635)
+,p_name=>'P475_GEAR_PRE_ID'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_use_cache_before_default=>'NO'
+,p_source=>'GEAR_PRE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6123731760939638)
+,p_name=>'P475_GEAR_PRE_NAME'
+,p_is_required=>true
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Preset Name'
+,p_source=>'GEAR_PRE_NAME'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>60
+,p_cMaxlength=>200
+,p_field_template=>wwv_flow_api.id(19774448074588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Name for the Gear preset'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6124652837939639)
+,p_name=>'P475_GEAR_PRE_DESC'
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_use_cache_before_default=>'NO'
+,p_prompt=>'Preset Description'
+,p_source=>'GEAR_PRE_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_display_as=>'NATIVE_TEXTAREA'
+,p_cSize=>60
+,p_cMaxlength=>500
+,p_cHeight=>4
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_help_text=>'Description for the Gear preset'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6125590688939640)
+,p_name=>'P475_GEAR_FILT'
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_item_default=>'Y'
+,p_prompt=>'Filter List?'
+,p_source=>'P475_GEAR_FILT'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Toggle for filtering the list of Gear. Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6126452828939641)
+,p_name=>'P475_GEAR_SHUTTLE'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_prompt=>'Gear'
+,p_source=>'P475_GEAR_SHUTTLE'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SHUTTLE'
+,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_TEMP_SQL VARCHAR2(4000);',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'',
+'BEGIN',
+'',
+'',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_FILT is: ''||:P475_GEAR_FILT, V_PROC_RETURN_CODE);',
+'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'    --retrieve all of the Gear from the shuttle field:',
+'    l_selected := apex_util.string_to_table(:P475_GEAR_SHUTTLE);',
+'',
+'   for i in 1..l_selected.count loop',
+'',
+'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'',
+'        --check if this is the first loop (do not need to append the "OR" operator)',
+'        IF (i = 1) THEN',
+'            V_QUERY_FRAG := ''(GEAR_ID  = ''||l_selected(i)||'')'';',
+'        ELSE    --this is not the first value, add the "OR" operator:',
+'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (GEAR_ID  = ''||l_selected(i)||'')'';',
+'        END IF;',
+'    end loop;',
+'',
+'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
+'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
+'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ''||V_QUERY_FRAG;',
+'    END IF;',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
+'    V_TEMP_SQL := ''SELECT',
+'    GEAR_NAME, GEAR_ID FROM CEN_CRUISE.CCD_GEAR where GEAR_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT GEAR_ID',
+'        FROM',
+'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ((:P475_GEAR_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P475_GEAR_FILT IS NULL)',
+'        UNION ',
+'        SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID',
+'        ''||V_QUERY_FRAG||'')',
+'    )',
+'',
+'    ORDER BY UPPER(GEAR_NAME)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'',
+'',
+'    RETURN V_TEMP_SQL;',
+'',
+'',
+'END;'))
+,p_lov_cascade_parent_items=>'P475_GEAR_FILT'
+,p_ajax_items_to_submit=>'P475_GEAR_FILT,P475_GEAR_SHUTTLE,P475_GEAR_PRE_ID'
+,p_ajax_optimize_refresh=>'N'
+,p_cHeight=>5
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Choose the Gear preset options by moving options to the right-side of the field'
+,p_attribute_01=>'ALL'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6127306993939642)
+,p_name=>'P475_GEAR_TMP'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_api.id(15686671525438639)
+,p_source=>'P475_GEAR_TMP'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'N'
+);
+wwv_flow_api.create_page_computation(
+ p_id=>wwv_flow_api.id(6128428863939646)
+,p_computation_sequence=>10
+,p_computation_item=>'P475_GEAR_SHUTTLE'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'   SS_CHANGED_LIST apex_application_global.vc_arr2;',
+'   i    number := 1;',
+'   V_PROC_RETURN_CODE PLS_INTEGER;',
+'begin',
+'   for r in (select GEAR_ID from cen_cruise.CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID) loop',
+'      SS_CHANGED_LIST(i) := r.GEAR_ID;',
+'      i := i + 1;',
+'   end loop;',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P475_GEAR_PRE_ID before header'', ''the initial Gear query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
+'',
+'end;'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6131144971939649)
+,p_name=>'Gear Shuttle Before Refresh'
+,p_event_sequence=>10
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P475_GEAR_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexbeforerefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6131653892939651)
+,p_event_id=>wwv_flow_api.id(6131144971939649)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P475_GEAR_TMP'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'',
+'',
+'',
+'',
+'        RETURN :P475_GEAR_SHUTTLE;',
+'',
+'END;'))
+,p_attribute_07=>'P475_GEAR_SHUTTLE'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6132033894939652)
+,p_name=>'Gear Shuttle After Refresh'
+,p_event_sequence=>20
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P475_GEAR_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'apexafterrefresh'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6132560673939652)
+,p_event_id=>wwv_flow_api.id(6132033894939652)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_SET_VALUE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P475_GEAR_SHUTTLE'
+,p_attribute_01=>'FUNCTION_BODY'
+,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE ',
+'',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'    ',
+'',
+'BEGIN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_TMP, V_PROC_RETURN_CODE);',
+'',
+'RETURN :P475_GEAR_TMP;',
+'',
+'END;'))
+,p_attribute_07=>'P475_GEAR_TMP'
+,p_attribute_08=>'Y'
+,p_attribute_09=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6130333261939649)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_HEADER'
+,p_process_type=>'NATIVE_FORM_FETCH'
+,p_process_name=>'Fetch Row from CCD_SPP_ESA_PRE'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_GEAR_PRE'
+,p_attribute_03=>'P475_GEAR_PRE_ID'
+,p_attribute_04=>'GEAR_PRE_ID'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6128758953939646)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Insert Row of CCD_GEAR_PRE'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_GEAR_PRE'
+,p_attribute_03=>'P475_GEAR_PRE_ID'
+,p_attribute_04=>'GEAR_PRE_ID'
+,p_attribute_09=>'P475_GEAR_PRE_ID'
+,p_attribute_11=>'I'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(6122555643939634)
+,p_process_success_message=>'Gear Preset Processed<BR>'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6129508119939648)
+,p_process_sequence=>30
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Update Row of CCD_GEAR_PRE'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_GEAR_PRE'
+,p_attribute_03=>'P475_GEAR_PRE_ID'
+,p_attribute_04=>'GEAR_PRE_ID'
+,p_attribute_09=>'P475_GEAR_PRE_ID'
+,p_attribute_11=>'U'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(6121722034939633)
+,p_process_success_message=>'Gear Preset Processed<BR>'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6129988381939648)
+,p_process_sequence=>50
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Save ESA Target Species Preset Options'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare',
+'   l_selected apex_application_global.vc_arr2;',
+'   V_RETURN_CODE PLS_INTEGER;',
+'begin',
+'   l_selected := apex_util.string_to_table(:P475_GEAR_SHUTTLE);',
+'  ',
+'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Gear Preset Options'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_RETURN_CODE);',
+'  ',
+'  ',
+'   delete from cen_cruise.CCD_GEAR_PRE_OPTS ',
+'   where ',
+'   GEAR_PRE_ID = :P475_GEAR_PRE_ID;',
+'  ',
+'   for i in 1..l_selected.count loop',
+'      insert into cen_cruise.CCD_GEAR_PRE_OPTS',
+'         (GEAR_PRE_ID,',
+'         GEAR_ID)',
+'      values',
+'         (:P475_GEAR_PRE_ID,',
+'         l_selected(i));',
+'   end loop;',
+'end;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Gear Preset Options Saved<BR>'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6129138196939648)
+,p_process_sequence=>70
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_FORM_PROCESS'
+,p_process_name=>'Delete Row of CCD_GEAR_PRE'
+,p_attribute_01=>'CEN_CRUISE'
+,p_attribute_02=>'CCD_GEAR_PRE'
+,p_attribute_03=>'P475_GEAR_PRE_ID'
+,p_attribute_04=>'GEAR_PRE_ID'
+,p_attribute_09=>'P475_GEAR_PRE_ID'
+,p_attribute_11=>'D'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(6122993582939634)
+,p_process_success_message=>'Gear Preset Processed<BR>'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(6130712606939649)
+,p_process_sequence=>90
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_SESSION_STATE'
+,p_process_name=>'reset page'
+,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(6122993582939634)
 );
 end;
 /

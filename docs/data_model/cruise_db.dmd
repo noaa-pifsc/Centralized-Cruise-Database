@@ -15,5 +15,8 @@
 <designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="B854498D-8938-3706-261F-0166E4A484F2">
 <designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\centralized-cruise-database\docs\data_model</designStoragePath>
 </designDescr>
+<designDescr class="oracle.dbtools.crest.model.design.Design$DesignStorageDesc" id="317EA7E1-43B0-F887-3445-CB58C3B32535">
+<designStoragePath>C:\Users\Jesse.Abdul\Documents\Version Control\Git\centralized-cruise-database\docs\data_model</designStoragePath>
+</designDescr>
 </usedDesignStorageDescriptors>
 </OSDM_Design>

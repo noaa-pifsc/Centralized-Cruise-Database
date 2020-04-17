@@ -39,6 +39,7 @@ grant insert, delete, update, select on CCD_LEG_REGIONS to CEN_CRUISE_APP;
 
 
 grant insert, delete, update, select on CCD_SCI_CENTERS to CEN_CRUISE_APP;
+grant insert, delete, update, select on CCD_SCI_CENTER_DIVS to CEN_CRUISE_APP;
 grant insert, delete, update, select on CCD_STD_SVY_NAMES to CEN_CRUISE_APP;
 grant insert, delete, update, select on CCD_SVY_FREQ to CEN_CRUISE_APP;
 
@@ -115,6 +116,12 @@ grant select on CCD_SPP_FSSI_PRE_DELIM_V to CEN_CRUISE_APP;
 grant select on CCD_SPP_MMPA_PRE_DELIM_V to CEN_CRUISE_APP;
 grant select on CCD_SVY_CAT_PRE_DELIM_V to CEN_CRUISE_APP;
 
+grant select on CCD_GEAR_PRE_DELIM_V to CEN_CRUISE_APP;
+
+
+grant select on CCD_SCI_CENTER_DIV_V to CEN_CRUISE_APP;
+
+grant select on CCD_SCI_CENTER_DELIM_V to CEN_CRUISE_APP;
 
 /*
 grant insert, delete, update, select on  to CEN_CRUISE_APP;

@@ -245,7 +245,7 @@ X CCD_EXP_SPP_CATS
 X action processed notification on simple reference table modular windows when insert/edit/update occurs
 
 
-_ filtered lists functionality (many-to-many)
+_ filtered lists functionality (many-to-many) _ change to checkbox instead of y/n select field
 X ESA
 X FSSI
 X MMPA
@@ -258,6 +258,33 @@ regions
 
 
 
-_ filtered lists functionality (one-to-many)
+X filtered lists functionality (one-to-many)
 X Vessels
 X standard survey names
+
+
+_ add cruise fields:
+	X description
+	X Org - PIFSC Division (child of CCD_SCI_CENTERS)
+	X Objective Based Metrics
+
+
+**_ need to figure out how to deal with the presets if the selected value is not included in the shuttle field (add it to shuttle field?? - yes)
+
+
+_ copy cruises and cruise legs
+	X figure out how to copy the other species and leg aliases into the pending other species records:
+	X cruise
+	X leg
+	_ cruise (deep copy)
+
+_ validation -
+	_ legs can't have overlapping dates for the same cruise
+	_ vessels can't have two concurrent legs
+
+
+_ transactions in cruise and cruise leg processing
+
+_ add the reference table management page for science center divisions
+
+X tooltips on the report pages for the filtering select fields

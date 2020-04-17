@@ -6,7 +6,7 @@
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>F210A33F-3B66-2948-3A71-9925E85AA3F9</segment>
+<segment>607A09B2-C454-D6F9-D202-9FE44F48864F</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -50,7 +50,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DB_LOG_ENTRIES_I1" id="E4C3D82E-993A-BCAC-F209-6A8B5225C36A">
@@ -58,7 +58,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -70,6 +70,19 @@
 </ForeignKey>
 </foreignKeys>
 <lobStorages>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000105682C00004$$" id="EE854BCC-58AF-4D3F-8377-799FB2CAF6C7">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:20 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ENTRY_CONTENT</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 <LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000105973C00004$$" id="C634E922-8506-2438-FBD3-47B839ADF110">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2020-04-02 22:02:47 UTC</createdTime>
@@ -89,10 +102,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <existingIndex>D99CC7E8-881B-4454-A613-B78C4138A372</existingIndex>
-<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSegment>8AFFC4A3-892F-7F1B-EF01-46A13978241E</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>

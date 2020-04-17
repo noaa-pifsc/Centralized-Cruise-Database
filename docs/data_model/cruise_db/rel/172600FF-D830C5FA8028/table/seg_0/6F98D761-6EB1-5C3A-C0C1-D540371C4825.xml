@@ -1,0 +1,280 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6F98D761-6EB1-5C3A-C0C1-D540371C4825" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SCI_CENTER_DIVS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Reference Table for storing Science Center Division information]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>E52C4B3D-D58E-4FC7-96CA-14A43D2561EB</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SCI_CENTER_DIV_ID" id="6B225259-BBE7-3BDE-C656-14FA8E174E59">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>SCI_CENTER_DIV_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the Science Center Division table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>4A11011C-1E36-7D4F-C41C-BAC4F62295AB</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCI_CENTER_DIV_CODE" id="097612C9-2446-4A66-9184-D131C00A6218">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>SCI_CENTER_DIV_CODE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Abbreviated code for the given Science Center Division]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>A56CC750-CC38-7A4D-9FE3-106F8F827292</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCI_CENTER_DIV_NAME" id="2BA793E0-5099-53EE-CB93-FBEB443071D1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>SCI_CENTER_DIV_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given Science Center Division]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>9E38A5A5-3455-A677-E039-F9AF8BF26D05</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCI_CENTER_DIV_DESC" id="F67D040C-D563-21AC-806F-AFBD593ADC15">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>SCI_CENTER_DIV_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given Science Center Division]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>82DE989D-C5C4-6D58-6BCE-3F6D8DCF7699</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="FC6927EF-28C5-4D78-B7E6-191269657E79">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>6630851F-E902-B3D2-33A9-B25E4D63FB9E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="3B87F0DC-0188-1EF6-21EF-8EE1EA4F61B7">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>BD97DE8E-EC23-BEE1-BFB5-8E3F13B17517</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="DC102310-96BC-2BE8-15E5-DC39FD015892">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>92A1870D-B5D8-1299-EC12-EFA896926F1E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="907D0217-66B5-23EF-96B7-5AF20E92E31C">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>6D87BEA6-D1D1-5D45-A866-11B0E0DFA65F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SCI_CENTER_ID" id="65A08E24-E60F-6002-B883-8970AA31209B">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SCI_CENTER_DIVS</sourceObjSchema>
+<sourceObjName>SCI_CENTER_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<commentInRDBMS><![CDATA[Science Center for the given division]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>AF801A21-F33B-6FB6-7E84-B33F2728D366</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7381EC6A-A78A-6C8F-CFE9-DF4FFED490EF" referredColumn="0A218AA8-AE98-33DB-AB27-EF0E86AE0D73"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="13EE41B7-46B9-FCCC-D110-F915A45AFE33" name="CCD_SCI_CENTER_DIVS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>EA60B2A4-9CC5-E9CD-B41E-5CFFD7CD8BAB</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B225259-BBE7-3BDE-C656-14FA8E174E59"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AE12B2D3-AD6D-8086-B05E-0EF3FA8FCDE1" name="CCD_SCI_CENTER_DIVS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>B3732880-C14A-20F8-101F-B7A7A420696F</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2BA793E0-5099-53EE-CB93-FBEB443071D1"/>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05F29900-32CC-5B5C-4B7D-EE48E6A2ABAA" name="CCD_SCI_CENTER_DIVS_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>44B4A817-97D0-543A-4AC0-EDD5D79BCA2E</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="097612C9-2446-4A66-9184-D131C00A6218"/>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="98DC1354-FE8F-8293-76BC-D1C773408317" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SCI_CENTER_DIVS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>951BEEB7-6081-81A9-66EB-9377ECD8382E</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="84322177-DFB5-8379-7738-D355D17F15C6" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SCI_CENTER_DIVS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>548DDF88-4D95-B0DF-37D2-90B7711592E3</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6B225259-BBE7-3BDE-C656-14FA8E174E59"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2E3AC01B-7EC2-CAD6-CEDE-E2F801059ADA" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SCI_CENTER_DIVS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>934F5E3C-3205-BA7B-5914-99C90FDEB0C3</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2BA793E0-5099-53EE-CB93-FBEB443071D1"/>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="832D640A-C695-AB62-7C8A-9130DAF36F8B" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_SCI_CENTER_DIVS_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SCI_CENTER_DIVS_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>371880E9-9CE6-2A88-BD54-66DA233C7B6F</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="097612C9-2446-4A66-9184-D131C00A6218"/>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E7D63E63-45A2-3136-0D00-6D6B2A325EE3" name="CCD_SCI_CENTER_DIVS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-16 22:24:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="65A08E24-E60F-6002-B883-8970AA31209B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
