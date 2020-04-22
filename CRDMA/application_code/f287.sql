@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   17:29 Thursday April 16, 2020
+--   Date and Time:   08:36 Wednesday April 22, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -37,13 +37,13 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 
 -- Application Statistics:
 --   Pages:                     53
---     Items:                  220
+--     Items:                  223
 --     Computations:            20
---     Validations:              3
---     Processes:              134
+--     Validations:              4
+--     Processes:              133
 --     Regions:                154
---     Buttons:                137
---     Dynamic Actions:         97
+--     Buttons:                138
+--     Dynamic Actions:         99
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.7'
+,p_flow_version=>'release 0.8'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200416172140'
+,p_last_upd_yyyymmddhh24miss=>'20200422083650'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -10904,7 +10904,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200413115843'
+,p_last_upd_yyyymmddhh24miss=>'20200417154330'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6251861064002208)
@@ -11100,7 +11100,8 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'RIGHT'
-,p_help_text=>'Click to copy the cruise and associated records so they can be modified'
+,p_help_text=>'Click to copy the cruise and associated records so they can be modified and saved to streamline data entry.  This will only copy the cruise information and the copied cruise is not saved until you click the "Create" or "Create Another" button on the '
+||'View/Edit Cruise page and the action is successfully processed.  If you would like to copy all of the associated legs as well click the Edit icon and click the "Deep Copy" button on the View/Edit Cruise page'
 );
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7044815454540143)
@@ -11155,10 +11156,11 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';',
 '',
-'',
+'var lSpinner$; ',
 '',
 'function get_oth_spp_cruise_copy (cruise_id_copy)',
 '{',
@@ -11225,6 +11227,7 @@ wwv_flow_api.create_page(
 '    ',
 '    ',
 '}'))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'div.active-form-class {background-color: #fffee6;}',
 'div#cruise_attributes_region {background-color: #ffffff; font-size: 1.6rem;',
@@ -11238,7 +11241,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200414131610'
+,p_last_upd_yyyymmddhh24miss=>'20200422083650'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -11483,7 +11486,8 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'RIGHT'
-,p_help_text=>'Click to copy the cruise leg and associated records so they can be modified '
+,p_help_text=>'Click to copy the cruise leg and associated records so they can be modified and saved to streamline data entry.  The copied cruise leg is not saved until you click the "Create" or "Create Another" button on the View/Edit Cruise Leg page and the actio'
+||'n is successfully processed '
 );
 wwv_flow_api.create_worksheet_rpt(
  p_id=>wwv_flow_api.id(7051413335669226)
@@ -12359,7 +12363,7 @@ wwv_flow_api.create_page_button(
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348105260226806)
-,p_button_sequence=>30
+,p_button_sequence=>40
 ,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_button_name=>'SAVE'
 ,p_button_action=>'SUBMIT'
@@ -12370,12 +12374,11 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CHANGE'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'UPDATE'
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7347962248226804)
-,p_button_sequence=>50
+,p_button_sequence=>60
 ,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_button_name=>'Cancel'
 ,p_button_action=>'REDIRECT_PAGE'
@@ -12384,11 +12387,27 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Cancel'
 ,p_button_position=>'REGION_TEMPLATE_CLOSE'
 ,p_button_redirect_url=>'f?p=&APP_ID.:210:&SESSION.::&DEBUG.:RP::'
-,p_grid_new_grid=>false
+);
+wwv_flow_api.create_page_button(
+ p_id=>wwv_flow_api.id(6219191710378612)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_button_name=>'DEEP_COPY_CRUISE'
+,p_button_static_id=>'deep_copy_cruise_id'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#:t-Button--iconRight'
+,p_button_template_id=>wwv_flow_api.id(19774827884588608)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Deep Copy'
+,p_button_position=>'REGION_TEMPLATE_COPY'
+,p_button_execute_validations=>'N'
+,p_warn_on_unsaved_changes=>null
+,p_button_condition=>'P220_CRUISE_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348220558226807)
-,p_button_sequence=>10
+,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_button_name=>'CREATE'
 ,p_button_action=>'SUBMIT'
@@ -12399,12 +12418,11 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7418727883645517)
-,p_button_sequence=>20
+,p_button_sequence=>30
 ,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_button_name=>'CREATE_ANOTHER'
 ,p_button_action=>'SUBMIT'
@@ -12415,12 +12433,11 @@ wwv_flow_api.create_page_button(
 ,p_button_position=>'REGION_TEMPLATE_CREATE'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'INSERT'
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348021051226805)
-,p_button_sequence=>40
+,p_button_sequence=>50
 ,p_button_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_button_name=>'DELETE'
 ,p_button_action=>'REDIRECT_URL'
@@ -12432,7 +12449,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -12674,6 +12690,36 @@ wwv_flow_api.create_page_item(
 ,p_item_sequence=>150
 ,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
 ,p_source=>'P220_CRUISE_ID_COPY'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6219889383378619)
+,p_name=>'P220_DEEP_COPY_RET_CODE'
+,p_item_sequence=>160
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_source=>'P220_DEEP_COPY_RET_CODE'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6219954148378620)
+,p_name=>'P220_DEEP_COPY_RET_MSG'
+,p_item_sequence=>170
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_source=>'P220_DEEP_COPY_RET_MSG'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(6220199194378622)
+,p_name=>'P220_DEEP_COPY_CRUISE_URL'
+,p_item_sequence=>180
+,p_item_plug_id=>wwv_flow_api.id(26846518738559434)
+,p_source=>'P220_DEEP_COPY_CRUISE_URL'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_attribute_01=>'Y'
@@ -12990,6 +13036,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Secondary Survey Categories by moving options to the right-side of the field.  You can also use the Presets below to add one or more Secondary Survey Categories to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8514565525017546)
 ,p_name=>'P220_SECONDARY_SVY_CAT_PRESETS'
@@ -13015,9 +13064,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8703020682418709)
 ,p_name=>'P220_TGT_ESA_SPP_SHUTTLE'
@@ -13747,6 +13793,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8513980629017540)
 ,p_computation_sequence=>10
@@ -13770,9 +13819,6 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
-end;
-/
-begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8514391514017544)
 ,p_computation_sequence=>10
@@ -14054,7 +14100,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_PRIM_SVY_CAT_SHUTTLE) and the values associated with the gear preset (P220_PRIMARY_SVY_CAT_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_PRIM_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''Y'''' AND svy_cat_pre_id = :id'', :P220_PRIMARY_SVY_CAT_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_PRIM_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''Y'''' AND svy_cat_pre_id = :id'', :P220_PRIMARY_SVY_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_PRIM_SVY_CAT_SHUTTLE,P220_PRIMARY_SVY_CAT_PRESETS'
@@ -14107,7 +14153,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_SEC_SVY_CAT_SHUTTLE) and the values associated with the gear preset (P220_SECONDARY_SVY_CAT_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_SEC_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''N'''' AND svy_cat_pre_id = :id'', :P220_SECONDARY_SVY_CAT_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_SEC_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''N'''' AND svy_cat_pre_id = :id'', :P220_SECONDARY_SVY_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_SEC_SVY_CAT_SHUTTLE,P220_SECONDARY_SVY_CAT_PRESETS'
@@ -14163,7 +14209,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_ESA_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_ESA_SPP_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_ESA_SPP_SHUTTLE, ''SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_SPP_ESA_PRE_V where ESA_PRE_ID = :id'', :P220_TGT_ESA_SPP_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_ESA_SPP_SHUTTLE, ''SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_SPP_ESA_PRE_V where ESA_PRE_ID = :id'', :P220_TGT_ESA_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_ESA_SPP_SHUTTLE,P220_TGT_ESA_SPP_PRESETS'
@@ -14219,7 +14265,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_MMPA_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_MMPA_SPP_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_MMPA_SPP_SHUTTLE, ''SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_SPP_MMPA_PRE_V where MMPA_PRE_ID = :id'', :P220_TGT_MMPA_SPP_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_MMPA_SPP_SHUTTLE, ''SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_SPP_MMPA_PRE_V where MMPA_PRE_ID = :id'', :P220_TGT_MMPA_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_MMPA_SPP_SHUTTLE,P220_TGT_MMPA_SPP_PRESETS'
@@ -14275,7 +14321,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_FSSI_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_FSSI_SPP_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_FSSI_SPP_SHUTTLE, ''SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_SPP_FSSI_PRE_V where FSSI_PRE_ID = :id'', :P220_TGT_FSSI_SPP_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_FSSI_SPP_SHUTTLE, ''SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_SPP_FSSI_PRE_V where FSSI_PRE_ID = :id'', :P220_TGT_FSSI_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_FSSI_SPP_SHUTTLE,P220_TGT_FSSI_SPP_PRESETS'
@@ -14331,7 +14377,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_EXP_SPP_CAT_SHUTTLE) and the values associated with the gear preset (P220_EXP_SPP_CAT_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_EXP_SPP_CAT_SHUTTLE, ''SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_SPP_CAT_PRE_V where SPP_CAT_PRE_ID = :id'', :P220_EXP_SPP_CAT_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_EXP_SPP_CAT_SHUTTLE, ''SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_SPP_CAT_PRE_V where SPP_CAT_PRE_ID = :id'', :P220_EXP_SPP_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_EXP_SPP_CAT_SHUTTLE,P220_EXP_SPP_CAT_PRESETS'
@@ -14648,6 +14694,9 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(4041213791656808)
 ,p_name=>'Before Refresh Standard Survey Name'
@@ -14657,9 +14706,6 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexbeforerefresh'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(4041319625656809)
 ,p_event_id=>wwv_flow_api.id(4041213791656808)
@@ -14749,6 +14795,155 @@ wwv_flow_api.create_page_da_action(
 '',
 '//send an ajax request for all of the associated other species records associated with the copied cruise ID: ',
 'get_oth_spp_cruise_copy($v("P220_CRUISE_ID_COPY"));'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6219264785378613)
+,p_name=>'Deep Copy DA'
+,p_event_sequence=>260
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_api.id(6219191710378612)
+,p_bind_type=>'bind'
+,p_bind_event_type=>'click'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6219443943378615)
+,p_event_id=>wwv_flow_api.id(6219264785378613)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'lSpinner$ = apex.util.showSpinner();  '
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6219363159378614)
+,p_event_id=>wwv_flow_api.id(6219264785378613)
+,p_event_result=>'TRUE'
+,p_action_sequence=>30
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_EXECUTE_PLSQL_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'	    V_PROC_RETURN_CODE PLS_INTEGER;',
+'        V_PROC_RETURN_MSG VARCHAR2(4000);',
+'	    V_PROC_RETURN_CRUISE_ID PLS_INTEGER;',
+'        ',
+'        ',
+'        V_RETURN_CODE PLS_INTEGER;',
+'	BEGIN',
+'',
+'        --execute the deep copy procedure:',
+'	    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(:P220_CRUISE_ID, V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
+'',
+'        --set the return code and message to the corresponding page items:',
+'        :P220_DEEP_COPY_RET_CODE := V_PROC_RETURN_CODE;',
+'        :P220_DEEP_COPY_RET_MSG := V_PROC_RETURN_MSG;',
+'',
+'',
+'	    IF (V_PROC_RETURN_CODE = 1) THEN',
+'	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The deep copy was successful'', V_RETURN_CODE);',
+'	    ELSE',
+'	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 - Deep Copy'', ''The deep copy was NOT successful'', V_RETURN_CODE);',
+'',
+'	    END IF;',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', V_PROC_RETURN_MSG, V_RETURN_CODE);',
+'        ',
+'        ',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
+'        --generate the URL:',
+'        :P220_DEEP_COPY_CRUISE_URL := APEX_UTIL.PREPARE_URL(p_url => ''f?p='' || :APP_ID || '':220:''|| :APP_SESSION||''::NO::P220_CRUISE_ID,P220_CRUISE_ID_COPY:''||V_PROC_RETURN_CRUISE_ID||'','');',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
+'        ',
+'',
+'	END;'))
+,p_attribute_02=>'P220_CRUISE_ID'
+,p_attribute_03=>'P220_DEEP_COPY_RET_CODE,P220_DEEP_COPY_RET_MSG,P220_DEEP_COPY_CRUISE_URL'
+,p_attribute_04=>'N'
+,p_stop_execution_on_error=>'Y'
+,p_wait_for_result=>'Y'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6219513123378616)
+,p_event_id=>wwv_flow_api.id(6219264785378613)
+,p_event_result=>'TRUE'
+,p_action_sequence=>40
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+' ',
+'',
+'console.log(''the value of P220_DEEP_COPY_RET_CODE is: ''+$v("P220_DEEP_COPY_RET_CODE"));',
+'console.log(''the value of P220_DEEP_COPY_RET_MSG is: ''+$v("P220_DEEP_COPY_RET_MSG"));',
+'',
+'//check the return code:',
+'if ($v("P220_DEEP_COPY_RET_CODE") == "1") //this was a successful action, show the success message:',
+'{',
+'    ',
+'    apex.message.showPageSuccess($v("P220_DEEP_COPY_RET_MSG")+''<BR>You will be redirected to View/Edit this new Cruise shortly'');    ',
+'',
+'    //redirect the user to the view/edit cruise page:',
+'    setTimeout(redirect_to_page, 2000);',
+'}',
+'else',
+'{',
+'    // First clear the errors',
+'    apex.message.clearErrors();',
+'    ',
+'    //show the APEX error message ',
+'    apex.message.showErrors([{',
+'        type:       "error",',
+'        location:   "page",',
+'        message:    $v("P220_DEEP_COPY_RET_MSG"),',
+'        unsafe:     false ',
+'    }]);',
+'',
+'    //remove the processing spinner:',
+'    lSpinner$.remove();',
+'',
+'}',
+'',
+'',
+'function redirect_to_page()',
+'{',
+'    //remove the processing spinner:',
+'    lSpinner$.remove();',
+'',
+'    window.location = $v("P220_DEEP_COPY_CRUISE_URL");    ',
+'    ',
+'}',
+'',
+''))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6220570113378626)
+,p_name=>'Initialize Tooltips'
+,p_event_sequence=>270
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6220611894378627)
+,p_event_id=>wwv_flow_api.id(6220570113378626)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'$("#deep_copy_cruise_id").attr("title", "Click the button if you would like to copy the Cruise and all of the associated Legs as well, unsaved changes to the Cruise will not be included in the copied cruise.  Following successful processing you will '
+||'be redirected to the View/Edit Cruise page for the copied Cruise so it can be modified accordingly").addClass("custom_tooltip");',
+' ',
+'',
+'',
+'',
+'',
+'$("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'	    position: {',
+'	      my: "center bottom-20",',
+'	      at: "center top",',
+'	      using: tooltip_arrows',
+'	    }',
+'	  });',
+''))
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348566949226810)
@@ -14989,25 +15184,6 @@ wwv_flow_api.create_page_process(
 ,p_process_success_message=>'Expected Species Categories Saved<BR>'
 );
 wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(5592440920158818)
-,p_process_sequence=>80
-,p_process_point=>'AFTER_SUBMIT'
-,p_process_type=>'NATIVE_PLSQL'
-,p_process_name=>'New'
-,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'    ',
-'',
-'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Processing - right before other target species'', ''The value of P220_CRUISE_ID after the CCD_CRUISES row was processed is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
-'',
-'',
-'END;'))
-,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-);
-wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7417329183645503)
 ,p_process_sequence=>90
 ,p_process_point=>'AFTER_SUBMIT'
@@ -15154,7 +15330,7 @@ wwv_flow_api.create_page(
 '',
 'function get_leg_alias_copy (cruise_leg_id_copy)',
 '{',
-'    console.log(''this is the other species cruise copy initialization code'');',
+'    console.log(''this is the get leg aliases initialization code'');',
 '',
 '    ',
 '    apex.server.process(',
@@ -15232,7 +15408,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200414134710'
+,p_last_upd_yyyymmddhh24miss=>'20200422081034'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -16266,19 +16442,18 @@ wwv_flow_api.create_page_item(
 ,p_name=>'P230_GEAR_SHOW_FILT_LIST'
 ,p_item_sequence=>30
 ,p_item_plug_id=>wwv_flow_api.id(8266649725098206)
+,p_item_default=>'Y'
 ,p_prompt=>'Filter List?'
 ,p_source=>'P230_GEAR_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
-,p_help_text=>'Toggle for filtering the list of Gear.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_help_text=>'Toggle for filtering the list of Gear.  Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3989031959730301)
@@ -16295,19 +16470,18 @@ wwv_flow_api.create_page_item(
 ,p_name=>'P230_REG_ECO_SHOW_FILT_LIST'
 ,p_item_sequence=>20
 ,p_item_plug_id=>wwv_flow_api.id(8269716470098237)
+,p_item_default=>'Y'
 ,p_prompt=>'Filter List?'
 ,p_source=>'P230_REG_ECO_SHOW_FILT_LIST'
 ,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_SELECT_LIST'
-,p_named_lov=>'Y_N'
-,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
-,p_cHeight=>1
+,p_display_as=>'NATIVE_CHECKBOX'
+,p_named_lov=>'Y/N CHECKBOX'
+,p_lov=>'.'||wwv_flow_api.id(4240538723089812)||'.'
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
-,p_help_text=>'Toggle for filtering the list of Regional Ecosystems.  Selecting "Yes" will display the filtered list to streamline data entry and selecting "No" will show all available options'
-,p_attribute_01=>'NONE'
-,p_attribute_02=>'N'
+,p_help_text=>'Toggle for filtering the list of Regional Ecosystems.  Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
+,p_attribute_01=>'1'
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(4130132467563001)
@@ -16974,7 +17148,7 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT GEAR_ID',
 '        FROM',
-'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ((:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' OR :P230_GEAR_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where (:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
 '        SELECT GEAR_ID from CEN_CRUISE.CCD_LEG_GEAR where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
@@ -17084,7 +17258,7 @@ wwv_flow_api.create_page_item(
 '',
 '        SELECT DISTINCT REG_ECOSYSTEM_ID',
 '        FROM',
-'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ((:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' OR :P230_REG_ECO_SHOW_FILT_LIST IS NULL) AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST = ''''N'''')',
+'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where (:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
 '        SELECT REG_ECOSYSTEM_ID from CEN_CRUISE.CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
@@ -17410,6 +17584,95 @@ wwv_flow_api.create_page_validation(
 ,p_only_for_changed_rows=>'Y'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6220887960378629)
+,p_validation_name=>'Overlapping Leg Dates'
+,p_validation_sequence=>40
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    rec_count PLS_INTEGER;',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'    TYPE CRUISE_QC_RT IS RECORD (',
+'    CRUISE_NAME VARCHAR2 (2000),',
+'    VESSEL_NAME VARCHAR2 (2000),',
+'    LEG_NAME VARCHAR2 (2000),',
+'    LEG_START_DATE DATE,',
+'    LEG_END_DATE DATE,',
+'    CRUISE_OVERLAP_YN char(1),',
+'    VESSEL_OVERLAP_YN char(1));',
+'    ',
+'    TYPE CRUISE_QC_RECS IS TABLE OF CRUISE_QC_RT INDEX BY BINARY_INTEGER;',
+'    ',
+'    V_CRUISE_QC_RECS CRUISE_QC_RECS;',
+'    ',
+'    ',
+'    V_RETURN_MSG VARCHAR2(2000) := NULL;',
+'',
+'    V_SQL VARCHAR2(4000);',
+'',
+'BEGIN',
+'',
+'    --check if there are any vessels or cruise legs that have overlapping leg dates:',
+'    ',
+'    V_SQL := ''SELECT CRUISE_NAME, VESSEL_NAME, LEG_NAME, LEG_START_DATE, LEG_END_DATE, CASE WHEN CRUISE_ID = :P230_CRUISE_ID THEN ''''Y'''' ELSE ''''N'''' END CRUISE_OVERLAP_YN, CASE WHEN VESSEL_ID = :P230_VESSEL_ID THEN ''''Y'''' ELSE ''''N'''' END VESSEL_OVERLAP_Y'
+||'N ',
+'        ',
+'        from cen_cruise.ccd_cruise_legs_v where ',
+'        (VESSEL_ID = :P230_VESSEL_ID OR CRUISE_ID = :P230_CRUISE_ID)',
+'        ''||(CASE WHEN :P230_CRUISE_LEG_ID IS NULL THEN '''' ELSE ''AND CRUISE_LEG_ID <> ''||:P230_CRUISE_LEG_ID END)||''',
+'        AND (LEG_START_DATE BETWEEN  :P230_LEG_START_DATE AND :P230_LEG_END_DATE',
+'        OR',
+'        LEG_END_DATE BETWEEN  :P230_LEG_START_DATE AND :P230_LEG_END_DATE)'';',
+'',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The query is: ''||V_SQL, V_RETURN_CODE);',
+'',
+'    EXECUTE IMMEDIATE V_SQL BULK COLLECT INTO V_CRUISE_QC_RECS USING :P230_CRUISE_ID, :P230_VESSEL_ID, :P230_VESSEL_ID, :P230_CRUISE_ID, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_LEG_END_DATE;',
+'',
+'    FOR i in 1..V_CRUISE_QC_RECS.COUNT loop',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''Processing row #''||i||'' of the query results: ''||V_CRUISE_QC_RECS(i).CRUISE_NAME, V_RETURN_CODE);',
+'',
+'        if (V_CRUISE_QC_RECS(i).CRUISE_OVERLAP_YN = ''Y'') THEN',
+'',
+'',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a cruise overlap instance'', V_RETURN_CODE);',
+'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''The pending Leg Start Date and End Date overlap with another cruise leg with the same Cruise (''||V_CRUISE_QC_RECS(i).CRUISE_NAME||''), Leg Informa'
+||'tion: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
+'',
+'        END IF;',
+'',
+'        IF (V_CRUISE_QC_RECS(i).VESSEL_OVERLAP_YN = ''Y'') THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a vessel overlap instance'', V_RETURN_CODE);',
+'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''The pending Leg Start Date and End Date overlap with another cruise leg for the same Vessel (''||V_CRUISE_QC_RECS(i).VESSEL_NAME||''), Leg Informat'
+||'ion: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
+'        END IF;',
+'    ',
+'    end loop;',
+'',
+'    --return the constructed error message (if any)',
+'    RETURN V_RETURN_MSG;',
+'        ',
+'',
+'    EXCEPTION',
+'        WHEN NO_DATA_FOUND THEN',
+'            --there were no records returne by the query, there is no overlap with the current cruise leg that is attempting to be saved:',
+'',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''There were no records returned by the query, the error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
+'            RETURN NULL;',
+'        ',
+'        WHEN OTHERS THEN',
+'',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
+'            RETURN ''There was an error validating the current cruise leg'';',
+'        ',
+'END;'))
+,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
+,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(7499021701111918)
 ,p_name=>'Initialize Tooltips'
@@ -17437,7 +17700,8 @@ wwv_flow_api.create_page_da_action(
 '$("#REGION_NAME_BR_LIST").attr("title", "List of Regions associated with the given cruise leg").addClass("custom_tooltip");',
 '$("#LEG_ALIAS_BR_LIST").attr("title", "List of aliases for the given cruise leg").addClass("custom_tooltip");',
 '$("#CRUISE_LEG_ID_VAL").attr("title", "Edit the given cruise leg").addClass("custom_tooltip");',
-'$("#CRUISE_LEG_ID_COPY").attr("title", "Click to copy the cruise leg and associated records so they can be modified").addClass("custom_tooltip");',
+'$("#CRUISE_LEG_ID_COPY").attr("title", "Click to copy the cruise leg and associated records so they can be modified and saved to streamline data entry.  The copied cruise leg is not saved until you click the \"Create\" or \"Create Another\" button on'
+||' the View/Edit Cruise Leg page and the action is successfully processed").addClass("custom_tooltip");',
 ' ',
 '',
 '',
@@ -17474,7 +17738,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_GEAR_SHUTTLE) and the values associated with the gear preset (P230_GEAR_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_GEAR_SHUTTLE, ''SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR_PRE_OPTS where gear_pre_id = :id'', :P230_GEAR_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_GEAR_SHUTTLE, ''SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR_PRE_OPTS where gear_pre_id = :id'', :P230_GEAR_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_GEAR_SHUTTLE,P230_GEAR_PRESETS'
@@ -17506,7 +17770,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_REGION_SHUTTLE) and the values associated with the gear preset (P230_REGION_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REGION_SHUTTLE, ''SELECT REGION_ID FROM CEN_CRUISE.CCD_REGION_PRE_OPTS where region_pre_id = :id'', :P230_REGION_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REGION_SHUTTLE, ''SELECT REGION_ID FROM CEN_CRUISE.CCD_REGION_PRE_OPTS where region_pre_id = :id'', :P230_REGION_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_REGION_SHUTTLE,P230_REGION_PRESETS'
@@ -17538,7 +17802,7 @@ wwv_flow_api.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_REG_ECO_SHUTTLE) and the values associated with the preset (P230_REG_ECO_PRESETS)',
-'    return CEN_CRUISE.CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REG_ECO_SHUTTLE, ''SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :id'', :P230_REG_ECO_PRESETS);',
+'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REG_ECO_SHUTTLE, ''SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :id'', :P230_REG_ECO_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_REG_ECO_SHUTTLE,P230_REG_ECO_PRESETS'
@@ -17690,6 +17954,9 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3980981217476805)
 ,p_name=>'Gear Shuttle Before Refresh'
@@ -17856,9 +18123,6 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexafterrefresh'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(4130619596563006)
 ,p_event_id=>wwv_flow_api.id(4130590493563005)
@@ -17904,7 +18168,7 @@ wwv_flow_api.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'console.log(''running get_oth_spp_cruise_copy(''+$v("P230_CRUISE_LEG_ID_COPY")+'')'');',
+'console.log(''running get_leg_alias_copy(''+$v("P230_CRUISE_LEG_ID_COPY")+'')'');',
 '',
 '//send an ajax request for all of the associated other species records associated with the copied cruise ID: ',
 'get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));'))

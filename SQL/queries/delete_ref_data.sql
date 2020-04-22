@@ -17,6 +17,7 @@ delete FROM ccd_leg_regions;
 delete FROM ccd_leg_aliases;
 delete FROM ccd_cruise_legs;
 delete FROM ccd_cruises;
+delete from ccd_sci_center_divs;
 delete FROM CCD_SCI_CENTERS;
 
 

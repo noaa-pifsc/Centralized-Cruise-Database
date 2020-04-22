@@ -263,7 +263,7 @@ X Vessels
 X standard survey names
 
 
-_ add cruise fields:
+X add cruise fields:
 	X description
 	X Org - PIFSC Division (child of CCD_SCI_CENTERS)
 	X Objective Based Metrics
@@ -277,14 +277,31 @@ _ copy cruises and cruise legs
 	X cruise
 	X leg
 	_ cruise (deep copy)
+		X handle the leg alias names by adding (copy) at the end of them
+		X tooltip for the Deep Copy button so it is clear what this button does (warn about unsaved changes and that the saved changes are the ones that will be copied, unsaved changes will not be included)
+		_ confirm dialog for the deep copy action
+		use cases:
+			X cruise (copy) already exists
+			X cruise leg (copy) already exists
+			X cruise leg alias name (copy) already exists
+			X cruise only (no legs)
+			X cruise only (no legs, no attributes)
+			X cruise and legs (no cruise attributes)
+			X cruise and legs (no leg attributes)
+			X cruise and legs (cruise and leg attributes)
+			X cruise doesn't exist
+X switch leg attributes to use y/n checkboxes
+
+_ implement deep copy in the interactive report (Page 210) as well
 
 _ validation -
-	_ legs can't have overlapping dates for the same cruise
-	_ vessels can't have two concurrent legs
+	X QA _ QC legs can't have overlapping dates for the same cruise
+	X QA _ QC vessels can't have two concurrent legs
+	_ look for cruise/legs with names containing "(copy)" as this should not naturally occur in the data
 
 
 _ transactions in cruise and cruise leg processing
 
-_ add the reference table management page for science center divisions
+X add the reference table management page for science center divisions
 
 X tooltips on the report pages for the filtering select fields

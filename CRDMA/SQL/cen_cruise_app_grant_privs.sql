@@ -3,7 +3,7 @@ grant execute on CEN_UTIL_PKG to cen_cruise_app;
 
 
 --run this from the CEN_CRUISE data schema
-grant execute on CRUISE_PKG to CEN_CRUISE_APP;
+grant execute on CCD_CRUISE_PKG to CEN_CRUISE_APP;
 grant execute on DB_LOG_PKG to CEN_CRUISE_APP;
 grant execute on CUST_ERR_PKG to CEN_CRUISE_APP;
 grant execute on AUTH_APP_PKG to CEN_CRUISE_APP;
