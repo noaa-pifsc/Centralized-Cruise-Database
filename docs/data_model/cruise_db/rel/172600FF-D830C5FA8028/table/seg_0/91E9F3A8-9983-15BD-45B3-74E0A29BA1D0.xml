@@ -271,6 +271,25 @@ This table defines the different PIFSC research cruises where data was collected
 <ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
+<Column name="PTA_ERROR_ID" id="B7EEFD7E-8EB4-40B4-DB5B-35D7A2C5B077">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>PTA_ERROR_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-24 03:36:28 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the Errors (PTA) intersection table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>51E3BB9D-4622-FADD-F01F-B1E99768EC89</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FB430FEA-963B-D72C-2D36-3B1785B93D34" referredColumn="6179B81C-BCCB-A1B2-F664-64ABE5046D94"/>
+</associations>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="C1A7344F-D511-F090-4980-51B628294573" name="CCD_CRUISES_PK">
@@ -298,6 +317,20 @@ This table defines the different PIFSC research cruises where data was collected
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="108B4736-120E-E6C0-B652-F15220F4088B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DFCD2878-B26E-F637-CC35-248B7D194620" name="CCD_CRUISES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-24 03:36:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>1FED537A-3F05-5EE6-C89A-5588EDD9438B</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B7EEFD7E-8EB4-40B4-DB5B-35D7A2C5B077"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="531F32EC-96FA-D960-C7E4-0F9A2F25EC9A" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISES_I1">
@@ -375,6 +408,20 @@ This table defines the different PIFSC research cruises where data was collected
 <colUsage columnID="B0303202-BCC8-1BC3-21BB-F62CC984D7AA"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="C2BB55C2-430B-64A8-535C-F102DD585DB4" schemaObject="63360D28-3200-DB09-F975-DF1283933161" name="CCD_CRUISES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-24 03:36:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>3398649A-9551-5FC2-6CCC-00C30DD910CE</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B7EEFD7E-8EB4-40B4-DB5B-35D7A2C5B077"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="061888E3-826A-355B-BB62-750001BB862D" name="CCD_CRUISES_FK1">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2020-03-03 22:24:43 UTC</createdTime>
@@ -413,6 +460,16 @@ This table defines the different PIFSC research cruises where data was collected
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="B0303202-BCC8-1BC3-21BB-F62CC984D7AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C9505A37-E7E3-D656-AD5D-CB89BDC37293" name="CCD_CRUISES_FK5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-24 03:36:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B7EEFD7E-8EB4-40B4-DB5B-35D7A2C5B077"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

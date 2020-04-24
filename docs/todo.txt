@@ -295,9 +295,16 @@ X switch leg attributes to use y/n checkboxes
 _ implement deep copy in the interactive report (Page 210) as well
 
 _ validation -
-	X QA _ QC legs can't have overlapping dates for the same cruise
-	X QA _ QC vessels can't have two concurrent legs
-	_ look for cruise/legs with names containing "(copy)" as this should not naturally occur in the data
+	X QA X QC legs can't have overlapping dates for the same cruise
+	X QA X QC vessels can't have two concurrent legs
+	X look for cruise/legs with names containing "(copy)" as this should not naturally occur in the data
+	DAS/Cruise Length:
+		X need to implement the secondary warning only if there is error:
+		X warning where a cruise leg is more than 30 days?
+		X warning where a cruise is more than 120 days?
+	attribute validation
+		_ cruise without primary objective?
+		_ cruise leg without gear?
 
 
 _ transactions in cruise and cruise leg processing
@@ -305,3 +312,13 @@ _ transactions in cruise and cruise leg processing
 X add the reference table management page for science center divisions
 
 X tooltips on the report pages for the filtering select fields
+
+_ show validation errors in a different pane so it can be viewed and addressed
+	_ link to APEX application pages with the corresponding IDs
+
+_ add accessor DVM functions into CCD_CRUISE_PKG so it already has the CCD defined for it
+
+_ execute the validation module each time a cruise record is saved or cruise leg is saved or deep copied
+
+DVM
+	_ implement the duplicate check that was developed for CTDs so we ensure that the error will exist on both sides

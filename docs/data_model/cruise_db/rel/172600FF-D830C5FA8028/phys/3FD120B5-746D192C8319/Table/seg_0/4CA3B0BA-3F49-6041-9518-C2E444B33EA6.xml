@@ -6,7 +6,7 @@
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>F210A33F-3B66-2948-3A71-9925E85AA3F9</segment>
+<segment>B8878041-EB37-11E8-BE62-ACB24DECEA6B</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -50,7 +50,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISE_SPP_MMPA_I2" id="B9A64D01-502E-6481-8FDF-91E07A6AA65C">
@@ -58,7 +58,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISE_SPP_MMPA_U1" id="BFDD02D0-2AF7-1DE0-7AF6-59F801620A69">
@@ -66,7 +66,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISE_SPP_MMPA_PK" id="DA1A3051-FB55-A88C-C99B-EC14C8DBD2D1">
@@ -74,7 +74,7 @@
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>63360D28-3200-DB09-F975-DF1283933161</schemaObject>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -95,10 +95,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <existingIndex>DA1A3051-FB55-A88C-C99B-EC14C8DBD2D1</existingIndex>
-<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSegment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
@@ -108,10 +108,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2020-04-02 22:02:35 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</segment>
+<segment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</segment>
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <existingIndex>BFDD02D0-2AF7-1DE0-7AF6-59F801620A69</existingIndex>
-<indexSegment>5A0FFEF8-E9F5-AAE7-0C7E-BC44D5E27933</indexSegment>
+<indexSegment>40CE7091-96E0-1CC4-3061-FC2D560AA9D0</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </UniqueKey>

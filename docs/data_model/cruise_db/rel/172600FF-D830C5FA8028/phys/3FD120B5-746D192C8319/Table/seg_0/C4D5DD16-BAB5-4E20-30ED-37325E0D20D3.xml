@@ -142,6 +142,19 @@
 <tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000110533C00010$$" id="4C7061C4-FEF9-3054-BC64-E58CB326091B">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-04-24 03:36:28 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ERROR_DESCRIPTION</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>AC0C4D15-4902-3BC0-8455-1AB060CF280B</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ERRORS_PK" id="5CEFF3A2-05A7-B9C4-81F4-2BAA11E02918">
