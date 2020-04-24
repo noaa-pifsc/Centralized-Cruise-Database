@@ -2152,7 +2152,7 @@ COMMENT ON COLUMN CCD_CRUISE_SUMM_ERR_V.ERR_RES_TYPE_DESC IS 'The Error Resoluti
 
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.11', TO_DATE('', 'DD-MON-YY'), 'Enabled the CCD_CRUISES table for the Data Validation Module (DVM).  Updated the following views to add the PTA_ERROR_ID column: CCD_CRUISE_V, CCD_CRUISE_DELIM_V, CCD_CRUISE_SUMM_V, CCD_CRUISE_LEGS_V, CCD_CRUISE_LEG_DELIM_V.  Developed QC queries to be implemented in the DVM: CCD_QC_LEG_OVERLAP_V, CCD_QC_LEG_V, CCD_QC_CRUISE_V, CCD_QC_LEG_ALIAS_V.  Developed a new query (CCD_CRUISE_SUMM_ERR_V) to unify the CCD_CRUISE_SUMM_V view with the DVM error view (DVM_PTA_ERRORS_V)');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.11', TO_DATE('23-APR-20', 'DD-MON-YY'), 'Enabled the CCD_CRUISES table for the Data Validation Module (DVM).  Updated the following views to add the PTA_ERROR_ID column: CCD_CRUISE_V, CCD_CRUISE_DELIM_V, CCD_CRUISE_SUMM_V, CCD_CRUISE_LEGS_V, CCD_CRUISE_LEG_DELIM_V.  Developed QC queries to be implemented in the DVM: CCD_QC_LEG_OVERLAP_V, CCD_QC_LEG_V, CCD_QC_CRUISE_V, CCD_QC_LEG_ALIAS_V.  Developed a new query (CCD_CRUISE_SUMM_ERR_V) to unify the CCD_CRUISE_SUMM_V view with the DVM error view (DVM_PTA_ERRORS_V)');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;
