@@ -302,9 +302,11 @@ _ validation -
 		X need to implement the secondary warning only if there is error:
 		X warning where a cruise leg is more than 30 days?
 		X warning where a cruise is more than 120 days?
+		X cruise name validations
+		X cruise name fiscal year and cruise fiscal year mismatch
 	attribute validation
-		_ cruise without primary objective?
-		_ cruise leg without gear?
+		X cruise without primary objective?
+		X cruise leg without gear?
 
 
 _ transactions in cruise and cruise leg processing
@@ -322,3 +324,16 @@ _ execute the validation module each time a cruise record is saved or cruise leg
 
 DVM
 	_ implement the duplicate check that was developed for CTDs so we ensure that the error will exist on both sides
+
+X update the QC Criteria and update/verify the test cases
+
+X Update the business rules documentation
+
+
+
+Implement the error report/annotation functionality in APEX
+
+
+Implement the QA criteria
+
+Testing documentation for QA criteria
