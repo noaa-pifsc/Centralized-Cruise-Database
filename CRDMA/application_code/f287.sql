@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   08:36 Wednesday April 22, 2020
+--   Date and Time:   10:59 Wednesday April 29, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -39,11 +39,11 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --   Pages:                     53
 --     Items:                  223
 --     Computations:            20
---     Validations:              4
+--     Validations:             10
 --     Processes:              133
 --     Regions:                154
 --     Buttons:                138
---     Dynamic Actions:         99
+--     Dynamic Actions:        105
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.8'
+,p_flow_version=>'release 0.9'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200422083650'
+,p_last_upd_yyyymmddhh24miss=>'20200429090216'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>9
 ,p_ui_type_name => null
@@ -11241,7 +11241,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200422083650'
+,p_last_upd_yyyymmddhh24miss=>'20200429085421'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -13962,11 +13962,45 @@ wwv_flow_api.create_page_computation(
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(7497785590111905)
-,p_validation_name=>'Standard Survey Name'
+,p_validation_name=>'Standard Survey Name Select'
 ,p_validation_sequence=>10
 ,p_validation=>':P220_STD_SVY_NAME_OTH IS NOT NULL OR :P220_STD_SVY_NAME IS NOT NULL'
 ,p_validation_type=>'SQL_EXPRESSION'
-,p_error_message=>'A survey name must be specified'
+,p_error_message=>'Missing Standard Survey Name: A survey name must be specified in either field'
+,p_always_execute=>'N'
+,p_associated_item=>wwv_flow_api.id(6254749721002237)
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(7391054477592908)
+,p_validation_name=>'Standard Survey Name Other'
+,p_validation_sequence=>20
+,p_validation=>':P220_STD_SVY_NAME_OTH IS NOT NULL OR :P220_STD_SVY_NAME IS NOT NULL'
+,p_validation_type=>'SQL_EXPRESSION'
+,p_error_message=>'Missing Standard Survey Name: A survey name must be specified in either field'
+,p_always_execute=>'N'
+,p_associated_item=>wwv_flow_api.id(7347819321226803)
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6220925618378630)
+,p_validation_name=>'Invalid Copied Cruise Name'
+,p_validation_sequence=>30
+,p_validation=>'UPPER(:P220_CRUISE_NAME) NOT LIKE ''%(COPY)%'''
+,p_validation_type=>'SQL_EXPRESSION'
+,p_error_message=>'Invalid Copied Cruise Name: The Cruise Name contains "(copy)" which indicates it was created using the "Deep Copy" feature and should be renamed'
+,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6221073240378631)
+,p_validation_name=>'Invalid Cruise Name'
+,p_validation_sequence=>40
+,p_validation=>'REGEXP_LIKE(:P220_CRUISE_NAME, ''^[A-Z]{2}\-[0-9]{2}\-[0-9]{2}$'', ''i'')'
+,p_validation_type=>'SQL_EXPRESSION'
+,p_error_message=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'Invalid Cruise Name: The Cruise Name does not follow the naming convention {SN}-{YR}-{##} where {SN} is a valid abbreviation for a NOAA ship name, {YR} is a two digit year with a leading zero, and {##} is a sequential number with a leading zero',
+''))
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
@@ -14617,6 +14651,9 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3989854703730309)
 ,p_name=>'Expected Species Categories Shuttle After Refresh'
@@ -14694,9 +14731,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(4041213791656808)
 ,p_name=>'Before Refresh Standard Survey Name'
@@ -14944,6 +14978,115 @@ wwv_flow_api.create_page_da_action(
 '	    }',
 '	  });',
 ''))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6221327803378634)
+,p_name=>'Change Primary Survey Categories'
+,p_event_sequence=>280
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P220_PRIM_SVY_CAT_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'change'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6221443745378635)
+,p_event_id=>wwv_flow_api.id(6221327803378634)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P220_PRIM_SVY_CAT_SHUTTLE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''change Primary Survey Category DA'');',
+'',
+'//retrieve the selected primary survey category options',
+'myArr = $v2("P220_PRIM_SVY_CAT_SHUTTLE");',
+'',
+'/*',
+'for (idx=0; idx<myArr.length; idx++) {',
+'  //do something with myArr[idx];',
+'    ',
+'  console.log (''the current value of the primary survey category is: ''+myArr[idx]);',
+'}',
+'*/',
+'',
+'//check if there are any options selected',
+'if (myArr.length > 0)',
+'{',
+'    console.log(''there is at least one item primary survey category shuttle field option selected'');',
+'    //clear the errors from the last evaluation',
+'    apex.message.clearErrors();',
+'    ',
+'}',
+'else',
+'{',
+'',
+'    console.log(''there are no options selected in the primary survey category shuttle field'');',
+'    ',
+'    //there are no options selected in the primary survey category shuttle field:',
+'    apex.message.clearErrors();',
+'',
+'    apex.message.showErrors([',
+'        {',
+'            type:       "error",',
+'            location:   [ "inline" ],',
+'            pageItem:   "P220_PRIM_SVY_CAT_SHUTTLE",',
+'            message:    "Warning (Missing Cruise Primary Survey Category): one or more Primary Survey Categories should be chosen for this Cruise",',
+'            unsafe:     false',
+'        }]);',
+'}',
+''))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6222945525378650)
+,p_name=>'Check Initial Primary Survey Category Warning'
+,p_event_sequence=>290
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(7390363004592901)
+,p_event_id=>wwv_flow_api.id(6222945525378650)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''Initialize Primary Survey Category Warning DA'');',
+'',
+'//retrieve all selected primary survey category options',
+'myArr = $v2("P220_PRIM_SVY_CAT_SHUTTLE");',
+'',
+'/*',
+'for (idx=0; idx<myArr.length; idx++) {',
+'  //do something with myArr[idx];',
+'    ',
+'  console.log (''the current value of the primary survey category is: ''+myArr[idx]);',
+'}',
+'*/',
+'',
+'//check if there are any primary survey categories selected on the page load:',
+'if (myArr.length == 0)',
+'{',
+'',
+'    console.log(''there are no options selected in the primary survey category shuttle field'');',
+'',
+'    //there are no options selected in the primary survey category shuttle field:',
+'    apex.message.clearErrors();',
+'',
+'    apex.message.showErrors([',
+'        {',
+'            type:       "error",',
+'            location:   [ "inline" ],',
+'            pageItem:   "P220_PRIM_SVY_CAT_SHUTTLE",',
+'            message:    "Warning (Missing Cruise Primary Survey Category): one or more Primary Survey Categories should be chosen for this Cruise",',
+'            unsafe:     false',
+'        }]);',
+'    ',
+'    //show the success message if there was one',
+'    $("#APEX_SUCCESS_MESSAGE").removeClass("u-hidden");',
+'}'))
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348566949226810)
@@ -15393,6 +15536,53 @@ wwv_flow_api.create_page(
 '  );    ',
 '    ',
 '    ',
+'}',
+'',
+'function check_DAS_warning()',
+'{',
+'    var date1 = new Date($v("P230_LEG_START_DATE"));',
+'    var date2 = new Date($v("P230_LEG_END_DATE"));',
+'',
+'    // To calculate the time difference of two dates ',
+'    var Difference_In_Time = date2.getTime() - date1.getTime();     ',
+'    ',
+'    //calculate the difference in days between the two dates and then include the start date (add 1 day)',
+'    var Difference_In_Days = (Difference_In_Time / (1000 * 3600 * 24)) + 1;     ',
+'',
+'    console.log(''the value of Difference_In_Days is: ''+Difference_In_Days);',
+'',
+'    if (Difference_In_Days > 30)',
+'    {',
+'        console.log(''This is more than 30 days'');',
+'',
+'        //there are no options selected in the gear shuttle field:',
+'        apex.message.clearErrors();',
+'',
+'        apex.message.showErrors([',
+'            {',
+'                type:       "error",',
+'                location:   [ "inline" ],',
+'                pageItem:   "P230_LEG_START_DATE",',
+'                message:    "Warning (Unusually High Leg Days at Sea): The Leg is unusually long (> 30 days), based on start and end dates: "+Difference_In_Days+" days",',
+'                unsafe:     false',
+'            },',
+'            {',
+'                type:       "error",',
+'                location:   [ "inline" ],',
+'                pageItem:   "P230_LEG_END_DATE",',
+'                message:    "Warning (Unusually High Leg Days at Sea): The Leg is unusually long (> 30 days), based on start and end dates: "+Difference_In_Days+" days",',
+'                unsafe:     false',
+'            }]);',
+'    }',
+'    else',
+'    {',
+'',
+'        console.log(''This is less than or equal to 30 days'');',
+'',
+'        //clear the errors from the last evaluation',
+'        apex.message.clearErrors();',
+'',
+'    }',
 '}'))
 ,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -15408,7 +15598,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200422081034'
+,p_last_upd_yyyymmddhh24miss=>'20200429090216'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -16221,6 +16411,9 @@ wwv_flow_api.create_page_button(
 ,p_button_redirect_url=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:::'
 ,p_grid_new_grid=>false
 );
+end;
+/
+begin
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7073523941077795)
 ,p_button_sequence=>40
@@ -16270,9 +16463,6 @@ wwv_flow_api.create_page_button(
 ,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7075723399077808)
 ,p_branch_name=>'DELETE - Go To Page 220'
@@ -17538,11 +17728,11 @@ wwv_flow_api.create_page_computation(
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(7501410398111942)
-,p_validation_name=>'Valid Leg Dates'
+,p_validation_name=>'Invalid Leg Dates'
 ,p_validation_sequence=>10
-,p_validation=>':P230_LEG_START_DATE <= :P230_LEG_END_DATE'
+,p_validation=>'TO_DATE(:P230_LEG_START_DATE) <= TO_DATE(:P230_LEG_END_DATE)'
 ,p_validation_type=>'SQL_EXPRESSION'
-,p_error_message=>'Start Date must occur before End Date'
+,p_error_message=>'Invalid Leg Dates: Start Date must occur before End Date'
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
@@ -17572,7 +17762,7 @@ wwv_flow_api.create_page_validation(
 '    ',
 '    --check to see if there are any matches in the database:',
 '    IF rec_count > 0 THEN',
-'        return ''The Leg Alias "''||:LEG_ALIAS_NAME||''" already exists'';',
+'        return ''Unique Leg Alias Name: The Leg Alias "''||:LEG_ALIAS_NAME||''" already exists'';',
 '    ELSE',
 '        return NULL;',
 '    ',
@@ -17590,7 +17780,6 @@ wwv_flow_api.create_page_validation(
 ,p_validation_sequence=>40
 ,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
-'',
 '    rec_count PLS_INTEGER;',
 '    V_RETURN_CODE PLS_INTEGER;',
 '',
@@ -17602,23 +17791,16 @@ wwv_flow_api.create_page_validation(
 '    LEG_END_DATE DATE,',
 '    CRUISE_OVERLAP_YN char(1),',
 '    VESSEL_OVERLAP_YN char(1));',
-'    ',
 '    TYPE CRUISE_QC_RECS IS TABLE OF CRUISE_QC_RT INDEX BY BINARY_INTEGER;',
-'    ',
 '    V_CRUISE_QC_RECS CRUISE_QC_RECS;',
-'    ',
-'    ',
 '    V_RETURN_MSG VARCHAR2(2000) := NULL;',
-'',
 '    V_SQL VARCHAR2(4000);',
 '',
 'BEGIN',
 '',
 '    --check if there are any vessels or cruise legs that have overlapping leg dates:',
-'    ',
 '    V_SQL := ''SELECT CRUISE_NAME, VESSEL_NAME, LEG_NAME, LEG_START_DATE, LEG_END_DATE, CASE WHEN CRUISE_ID = :P230_CRUISE_ID THEN ''''Y'''' ELSE ''''N'''' END CRUISE_OVERLAP_YN, CASE WHEN VESSEL_ID = :P230_VESSEL_ID THEN ''''Y'''' ELSE ''''N'''' END VESSEL_OVERLAP_Y'
 ||'N ',
-'        ',
 '        from cen_cruise.ccd_cruise_legs_v where ',
 '        (VESSEL_ID = :P230_VESSEL_ID OR CRUISE_ID = :P230_CRUISE_ID)',
 '        ''||(CASE WHEN :P230_CRUISE_LEG_ID IS NULL THEN '''' ELSE ''AND CRUISE_LEG_ID <> ''||:P230_CRUISE_LEG_ID END)||''',
@@ -17626,30 +17808,24 @@ wwv_flow_api.create_page_validation(
 '        OR',
 '        LEG_END_DATE BETWEEN  :P230_LEG_START_DATE AND :P230_LEG_END_DATE)'';',
 '',
-'',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The query is: ''||V_SQL, V_RETURN_CODE);',
 '',
 '    EXECUTE IMMEDIATE V_SQL BULK COLLECT INTO V_CRUISE_QC_RECS USING :P230_CRUISE_ID, :P230_VESSEL_ID, :P230_VESSEL_ID, :P230_CRUISE_ID, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_LEG_END_DATE;',
 '',
 '    FOR i in 1..V_CRUISE_QC_RECS.COUNT loop',
-'',
 '        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''Processing row #''||i||'' of the query results: ''||V_CRUISE_QC_RECS(i).CRUISE_NAME, V_RETURN_CODE);',
 '',
 '        if (V_CRUISE_QC_RECS(i).CRUISE_OVERLAP_YN = ''Y'') THEN',
-'',
-'',
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a cruise overlap instance'', V_RETURN_CODE);',
-'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''The pending Leg Start Date and End Date overlap with another cruise leg with the same Cruise (''||V_CRUISE_QC_RECS(i).CRUISE_NAME||''), Leg Informa'
-||'tion: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
-'',
+'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''Cruise Leg Overlap: The pending Leg Start Date and End Date overlap with another cruise leg with the same Cruise (''||V_CRUISE_QC_RECS(i).CRUISE_N'
+||'AME||''), Leg Information: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
 '        END IF;',
 '',
 '        IF (V_CRUISE_QC_RECS(i).VESSEL_OVERLAP_YN = ''Y'') THEN',
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a vessel overlap instance'', V_RETURN_CODE);',
-'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''The pending Leg Start Date and End Date overlap with another cruise leg for the same Vessel (''||V_CRUISE_QC_RECS(i).VESSEL_NAME||''), Leg Informat'
-||'ion: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
+'            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''Vessel Leg Overlap: The pending Leg Start Date and End Date overlap with another cruise leg for the same Vessel (''||V_CRUISE_QC_RECS(i).VESSEL_NA'
+||'ME||''), Leg Information: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
 '        END IF;',
-'    ',
 '    end loop;',
 '',
 '    --return the constructed error message (if any)',
@@ -17671,6 +17847,85 @@ wwv_flow_api.create_page_validation(
 'END;'))
 ,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
 ,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6222093312378641)
+,p_validation_name=>'Invalid Copied Leg Name'
+,p_validation_sequence=>50
+,p_validation=>'UPPER(:P230_LEG_NAME) NOT LIKE ''%(COPY)%'''
+,p_validation_type=>'SQL_EXPRESSION'
+,p_error_message=>'Invalid Copied Leg Name: The Leg Name contains "(copy)" which indicates it was created using the "Deep Copy" feature and should be renamed'
+,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6222104691378642)
+,p_validation_name=>'Invalid Leg Days at Sea'
+,p_validation_sequence=>60
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'    V_NUM_DAYS PLS_INTEGER;',
+'',
+'BEGIN',
+'',
+'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value of P230_LEG_START_DATE is: ''||:P230_LEG_START_DATE||'', P230_LEG_END_DATE is: ''||:P230_LEG_END_DATE, V_RETURN_CODE);',
+'',
+'    --calculate the number of days between the start and end date',
+'    V_NUM_DAYS := TO_DATE(:P230_LEG_END_DATE) - TO_DATE(:P230_LEG_START_DATE) + 1;',
+'',
+'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value V_NUM_DAYS is: ''||V_NUM_DAYS, V_RETURN_CODE);',
+'',
+'    --check to see if the number of days is less than or equal to 90 days',
+'    IF (V_NUM_DAYS <= 90) THEN',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''the number of days between the start and end date is less than or equal to 90 days: ''||V_NUM_DAYS , V_RETURN_CODE);',
+'        RETURN NULL;',
+'',
+'    ELSE',
+'',
+'        --the leg length is too long, number of days between the start and end date is more than 90 days:',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The Leg is too long (> 90 days), based on start and end dates: ''||V_NUM_DAYS||'' days'' , V_RETURN_CODE);',
+'          ',
+'        ',
+'        RETURN ''Invalid Leg Days at Sea: The Leg is too long (> 90 days), based on start and end dates: ''||V_NUM_DAYS||'' days'';',
+'    END IF;',
+'',
+'END;'))
+,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
+,p_always_execute=>'N'
+,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+);
+wwv_flow_api.create_page_validation(
+ p_id=>wwv_flow_api.id(6222803948378649)
+,p_tabular_form_region_id=>wwv_flow_api.id(7283631583273639)
+,p_validation_name=>'Invalid Copied Leg Alias Name'
+,p_validation_sequence=>70
+,p_validation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    rec_count PLS_INTEGER;',
+'    V_PROC_RETURN_CODE PLS_INTEGER;',
+'        ',
+'',
+'BEGIN',
+'',
+'    --check what type of record action was performed for the current row:',
+'    if (:APEX$ROW_STATUS = ''C'' OR :APEX$ROW_STATUS = ''U'') then',
+'        --this is a create or update record action:',
+'',
+'        --check if the current leg alias name contains the string "(copy)"',
+'        IF UPPER(:LEG_ALIAS_NAME) LIKE ''%(COPY)%'' THEN',
+'            return ''Invalid Copied Leg Alias Name: The Leg Alias Name contains "(copy)" which indicates it was created using the "Deep Copy" feature and should be renamed'';',
+'        END IF;',
+'',
+'    END IF;',
+'END;'))
+,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
+,p_always_execute=>'N'
+,p_only_for_changed_rows=>'Y'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
 wwv_flow_api.create_page_da_event(
@@ -17855,6 +18110,9 @@ wwv_flow_api.create_page_da_action(
 ''))
 ,p_stop_execution_on_error=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8511702099017518)
 ,p_name=>'Change Regional Ecosystem Preset'
@@ -17954,9 +18212,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3980981217476805)
 ,p_name=>'Gear Shuttle Before Refresh'
@@ -18172,6 +18427,152 @@ wwv_flow_api.create_page_da_action(
 '',
 '//send an ajax request for all of the associated other species records associated with the copied cruise ID: ',
 'get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6222210665378643)
+,p_name=>'Change Gear'
+,p_event_sequence=>160
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_GEAR_SHUTTLE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'change'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6222399646378644)
+,p_event_id=>wwv_flow_api.id(6222210665378643)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_affected_elements_type=>'ITEM'
+,p_affected_elements=>'P230_GEAR_SHUTTLE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''change Gear DA'');',
+'',
+'//retrieve the select gear options',
+'myArr = $v2("P230_GEAR_SHUTTLE");',
+'',
+'/*',
+'for (idx=0; idx<myArr.length; idx++) {',
+'  //do something with myArr[idx];',
+'    ',
+'  console.log (''the current value of the Gear is: ''+myArr[idx]);',
+'}',
+'*/',
+'',
+'',
+'if (myArr.length > 0)',
+'{',
+'    console.log(''there is at least one gear shuttle field option selected'');',
+'    //clear the errors from the last evaluation',
+'    apex.message.clearErrors();',
+'    ',
+'}',
+'else',
+'{',
+'',
+'    console.log(''there are no options selected in the gear shuttle field'');',
+'    ',
+'    //there are no options selected in the gear shuttle field:',
+'    apex.message.clearErrors();',
+'',
+'    apex.message.showErrors([',
+'        {',
+'            type:       "error",',
+'            location:   [ "inline" ],',
+'            pageItem:   "P230_GEAR_SHUTTLE",',
+'            message:    "Warning (Missing Leg Gear): one or more Gear types should be chosen for this Cruise Leg",',
+'            unsafe:     false',
+'        }]);',
+'    ',
+'}',
+''))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(6222402384378645)
+,p_name=>'Leg Start/End Date Change'
+,p_event_sequence=>170
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_LEG_START_DATE,P230_LEG_END_DATE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'change'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(6222521982378646)
+,p_event_id=>wwv_flow_api.id(6222402384378645)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'check_DAS_warning();'
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(7390431063592902)
+,p_name=>'Check Initial Gear Warning'
+,p_event_sequence=>190
+,p_bind_type=>'bind'
+,p_bind_event_type=>'ready'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(7390545729592903)
+,p_event_id=>wwv_flow_api.id(7390431063592902)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log(''Initialize Gear Warning DA'');',
+'',
+'//retrieve the selected gear options',
+'myArr = $v2("P230_GEAR_SHUTTLE");',
+'',
+'/*',
+'for (idx=0; idx<myArr.length; idx++) {',
+'  //do something with myArr[idx];',
+'    ',
+'  console.log (''the current value of the gear is: ''+myArr[idx]);',
+'}',
+'*/',
+'',
+'//check if there is any gear selected on the page load:',
+'if (myArr.length == 0)',
+'{',
+'',
+'    console.log(''there are no options selected in the gear shuttle field'');',
+'',
+'    //there are no options selected in the gear shuttle field:',
+'    apex.message.clearErrors();',
+'',
+'    apex.message.showErrors([',
+'        {',
+'            type:       "error",',
+'            location:   [ "inline" ],',
+'            pageItem:   "P230_GEAR_SHUTTLE",',
+'            message:    "Warning (Missing Leg Gear): one or more Gear types should be chosen for this Cruise",',
+'            unsafe:     false',
+'        }]);',
+'    ',
+'    //show the success message if there was one',
+'    $("#APEX_SUCCESS_MESSAGE").removeClass("u-hidden");',
+'}'))
+);
+wwv_flow_api.create_page_da_event(
+ p_id=>wwv_flow_api.id(7390691316592904)
+,p_name=>'Start/End Date Lose Focus'
+,p_event_sequence=>200
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_LEG_START_DATE,P230_LEG_END_DATE'
+,p_bind_type=>'bind'
+,p_bind_event_type=>'focusout'
+);
+wwv_flow_api.create_page_da_action(
+ p_id=>wwv_flow_api.id(7390741367592905)
+,p_event_id=>wwv_flow_api.id(7390691316592904)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>'check_DAS_warning();'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7081375927077825)

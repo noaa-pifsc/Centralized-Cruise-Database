@@ -308,6 +308,7 @@ _ validation -
 		X cruise without primary objective?
 		X cruise leg without gear?
 
+	_ store ship name and validate cruise name has the appropriate abbreviation
 
 _ transactions in cruise and cruise leg processing
 
@@ -334,6 +335,10 @@ X Update the business rules documentation
 Implement the error report/annotation functionality in APEX
 
 
-Implement the QA criteria
+X Implement the QA criteria
 
-Testing documentation for QA criteria
+X Testing documentation for QA criteria
+
+_ testing documentation for the CRDMA
+
+X bug fix: when the onload warning fires it removes any success message so it is not visible at all
