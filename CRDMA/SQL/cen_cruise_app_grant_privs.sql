@@ -123,6 +123,14 @@ grant select on CCD_SCI_CENTER_DIV_V to CEN_CRUISE_APP;
 
 grant select on CCD_SCI_CENTER_DELIM_V to CEN_CRUISE_APP;
 
+
+
+grant select, update on DVM_ERRORS to CEN_CRUISE_APP;
+grant select on dvm_err_severity to CEN_CRUISE_APP;
+grant select on dvm_error_types to CEN_CRUISE_APP;
+grant select on dvm_err_res_types to CEN_CRUISE_APP;
+
+grant execute on CCD_DVM_PKG to CEN_CRUISE_APP;
 /*
 grant insert, delete, update, select on  to CEN_CRUISE_APP;
 

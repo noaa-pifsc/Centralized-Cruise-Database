@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   10:59 Wednesday April 29, 2020
+--   Date and Time:   18:10 Thursday April 30, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,14 +36,14 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --
 
 -- Application Statistics:
---   Pages:                     53
---     Items:                  223
+--   Pages:                     54
+--     Items:                  225
 --     Computations:            20
 --     Validations:             10
---     Processes:              133
---     Regions:                154
+--     Processes:              137
+--     Regions:                157
 --     Buttons:                138
---     Dynamic Actions:        105
+--     Dynamic Actions:        103
 --   Shared Components:
 --     Logic:
 --       Items:                  1
@@ -51,7 +51,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --     Navigation:
 --       Lists:                  2
 --       Breadcrumbs:            1
---         Entries:             37
+--         Entries:             38
 --     Security:
 --       Authentication:         2
 --       Authorization:          1
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.9'
+,p_flow_version=>'release 0.10'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,9 +117,9 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200429090216'
+,p_last_upd_yyyymmddhh24miss=>'20200430181016'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
-,p_files_version=>9
+,p_files_version=>11
 ,p_ui_type_name => null
 );
 end;
@@ -166,6 +166,15 @@ wwv_flow_api.create_list_item(
 ,p_list_item_icon=>'fa-ship'
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'210'
+);
+wwv_flow_api.create_list_item(
+ p_id=>wwv_flow_api.id(7560508728972422)
+,p_list_item_display_sequence=>40
+,p_list_item_link_text=>'QC Issues'
+,p_list_item_link_target=>'f?p=&APP_ID.:250:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-database-check'
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'250'
 );
 wwv_flow_api.create_list_item(
  p_id=>wwv_flow_api.id(7632355213259710)
@@ -955,6 +964,12 @@ wwv_flow_api.create_menu_option(
 ,p_short_name=>'Survey Name Summary'
 ,p_link=>'f?p=&APP_ID.:20:&SESSION.'
 ,p_page_id=>20
+);
+wwv_flow_api.create_menu_option(
+ p_id=>wwv_flow_api.id(7561448777972431)
+,p_short_name=>'Data QC Validation Issues'
+,p_link=>'f?p=&APP_ID.:250:&SESSION.'
+,p_page_id=>250
 );
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7633071935273140)
@@ -11226,7 +11241,49 @@ wwv_flow_api.create_page(
 '  );    ',
 '    ',
 '    ',
-'}'))
+'}',
+'',
+'',
+'//code to execute once the APEX objects have been initialized',
+'apex.jQuery(window).on(''theme42ready'', function() {',
+'',
+'    //call the initialize all tooltips code',
+'    setTimeout(initialize_all_tooltips, 500);',
+'    ',
+'    ',
+'',
+'});',
+'',
+'//initialize all tooltips',
+'function initialize_all_tooltips ()',
+'{',
+'    //tab tooltip definitions:',
+'    $("#SR_cruise_summary_tab > a.t-Tabs-link").attr("title", "Click to view the Summary information for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_qc_tab > a.t-Tabs-link").attr("title", "Click to view the QC Validation Issues for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_cruise_legs_tab > a.t-Tabs-link").attr("title", "Click to view the associated Cruise Legs or create a new Cruise Leg for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_pri_svy_cat_tab > a.t-Tabs-link").attr("title", "Click to view/define the Primary Survey Categories for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_sec_svy_cat_tab > a.t-Tabs-link").attr("title", "Click to view/define the Secondary Survey Categories for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_esa_spp_tab > a.t-Tabs-link").attr("title", "Click to view/define the ESA Target Species for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_mmpa_spp_tab > a.t-Tabs-link").attr("title", "Click to view/define the MMPA Target Species for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_fssi_spp_tab > a.t-Tabs-link").attr("title", "Click to view/define the FSSI Target Species for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_exp_spp_cat_tab > a.t-Tabs-link").attr("title", "Click to view/define the Expected Species Categories for the current Cruise").addClass("custom_tooltip");',
+'    $("#SR_other_species_id_tab > a.t-Tabs-link").attr("title", "Click to view/define the Target Species - Other Species for the current Cruise").addClass("custom_tooltip");',
+'    ',
+'    //button tooltip definitions:',
+'    $("#deep_copy_cruise_id").attr("title", "Click the button if you would like to copy the Cruise and all of the associated Legs as well, unsaved changes to the Cruise will not be included in the copied cruise.  Following successful processing you w'
+||'ill be redirected to the View/Edit Cruise page for the copied Cruise so it can be modified accordingly").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+'}',
+''))
 ,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'div.active-form-class {background-color: #fffee6;}',
@@ -11234,14 +11291,40 @@ wwv_flow_api.create_page(
 'font-weight: 400;',
 'line-height: 1.6rem;',
 'padding: 1.6rem 1.2rem;}',
-'ul.t-Tabs {margin-top: 10px;}'))
+'ul.t-Tabs {margin-top: 10px;}',
+'',
+'',
+'#qc .a-GV-cell {',
+'    height: 120px;',
+'}',
+'.wrap-cell {',
+'    max-height: 100px;',
+'    white-space: normal;',
+'    overflow: hidden;',
+'}',
+'',
+'.active_error',
+'{',
+'background-color: #f9dede;',
+'}',
+'',
+'.annotated',
+'{',
+'background-color: #e7f4e4;',
+'}',
+'',
+'.warning',
+'{',
+'background-color: #fff1d2;',
+'}',
+''))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200429085421'
+,p_last_upd_yyyymmddhh24miss=>'20200430173349'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -11276,11 +11359,12 @@ wwv_flow_api.create_page_plug(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6252814188002218)
 ,p_plug_name=>'Cruise Legs'
+,p_region_name=>'cruise_legs'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>20
+,p_plug_display_sequence=>30
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -11501,6 +11585,460 @@ wwv_flow_api.create_worksheet_rpt(
 ,p_flashback_enabled=>'N'
 );
 wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(7392674930592924)
+,p_plug_name=>'QC Validation Issues'
+,p_region_name=>'qc'
+,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
+,p_region_template_options=>'#DEFAULT#'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19751414833588582)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ERROR_ID,',
+'',
+'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) LEG_NAME_DATES_BR_LIST,',
+'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_FISC_YEAR,',
+'(SELECT ERR_SEVERITY_NAME from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) ERR_SEVERITY,      '
+||' ',
+'(SELECT ERR_TYPE_NAME FROM CEN_CRUISE.DVM_ERROR_TYPES WHERE DVM_ERROR_TYPES.ERROR_TYPE_ID = DVM_ERRORS.ERROR_TYPE_ID) ERROR_TYPE,       ',
+'ERR_RES_TYPE_ID,',
+'CREATE_DATE,',
+'LAST_MOD_DATE,',
+'ERROR_NOTES,',
+'ERROR_DESCRIPTION,',
+'CASE WHEN (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'' '
+||'THEN ''Warning'' ',
+'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = D'
+||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
+'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
+||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
+'ELSE NULL END ISSUE_CATEGORY',
+'       ',
+'  from CEN_CRUISE.DVM_ERRORS',
+'  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P220_CRUISE_ID)'))
+,p_plug_source_type=>'NATIVE_IG'
+,p_ajax_items_to_submit=>'P220_CRUISE_ID'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_plug_display_when_condition=>'P220_CRUISE_ID'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7392880369592926)
+,p_name=>'ERROR_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>30
+,p_attribute_01=>'Y'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393080042592928)
+,p_name=>'LEG_NAME_DATES_BR_LIST'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LEG_NAME_DATES_BR_LIST'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Legs'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>50
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&LEG_NAME_DATES_BR_LIST.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'List of leg names, the associated leg dates and vessel name associated with the given cruise'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393131254592929)
+,p_name=>'CRUISE_FISC_YEAR'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_FISC_YEAR'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Fiscal Year'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>60
+,p_value_alignment=>'RIGHT'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The NOAA fiscal year for the given cruise (based on the earliest associated cruise leg''s start date)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393295567592930)
+,p_name=>'ERR_SEVERITY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERR_SEVERITY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Severity'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>70
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERR_SEVERITY.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The severity of the associated issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393309023592931)
+,p_name=>'ERROR_TYPE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_TYPE'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Type'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>80
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERROR_TYPE.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393438563592932)
+,p_name=>'ERR_RES_TYPE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERR_RES_TYPE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Issue Resolution'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>90
+,p_value_alignment=>'RIGHT'
+,p_is_required=>false
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select err_res_type_name,',
+'       err_res_type_id',
+'  from cen_cruise.dvm_err_res_types',
+' order by upper(err_res_type_name)'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_lov_null_text=>'-'
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393509163592933)
+,p_name=>'CREATE_DATE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CREATE_DATE'
+,p_data_type=>'DATE'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Created'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>100
+,p_value_alignment=>'CENTER'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_date_ranges=>'ALL'
+,p_filter_lov_type=>'DISTINCT'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The Date that the validation issue was created'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393684505592934)
+,p_name=>'LAST_MOD_DATE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LAST_MOD_DATE'
+,p_data_type=>'DATE'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Modified'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>110
+,p_value_alignment=>'CENTER'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_date_ranges=>'ALL'
+,p_filter_lov_type=>'DISTINCT'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The Date that the validation issue was last updated'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393725935592935)
+,p_name=>'ERROR_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Error Notes'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>120
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_item_width=>50
+,p_is_required=>false
+,p_max_length=>500
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Any user-defined notes about the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393880909592936)
+,p_name=>'ERROR_DESCRIPTION'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_DESCRIPTION'
+,p_data_type=>'CLOB'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Description'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>130
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERROR_DESCRIPTION.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'A detailed description for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7393960736592937)
+,p_name=>'ISSUE_CATEGORY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISSUE_CATEGORY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue category'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>140
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISSUE_CATEGORY.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'Issue Category based on annotation and Issue Severity: Warning (any warning), Active Error (non-annotated errors), and Annotated Error (annotated errors)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7394045171592938)
+,p_name=>'APEX$ROW_SELECTOR'
+,p_item_type=>'NATIVE_ROW_SELECTOR'
+,p_display_sequence=>10
+,p_attribute_01=>'Y'
+,p_attribute_02=>'Y'
+,p_attribute_03=>'N'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7394149067592939)
+,p_name=>'APEX$ROW_ACTION'
+,p_item_type=>'NATIVE_ROW_ACTION'
+,p_display_sequence=>20
+);
+wwv_flow_api.create_interactive_grid(
+ p_id=>wwv_flow_api.id(7392752305592925)
+,p_internal_uid=>7392752305592925
+,p_is_editable=>true
+,p_edit_operations=>'u'
+,p_update_authorization_scheme=>wwv_flow_api.id(19789246675762711)
+,p_lost_update_check_type=>'VALUES'
+,p_submit_checked_rows=>false
+,p_lazy_loading=>false
+,p_requires_filter=>false
+,p_show_nulls_as=>'-'
+,p_pagination_type=>'SCROLL'
+,p_show_total_row_count=>true
+,p_no_data_found_message=>'No QC Validation Issues'
+,p_show_toolbar=>true
+,p_toolbar_buttons=>'RESET'
+,p_enable_save_public_report=>false
+,p_enable_subscriptions=>true
+,p_enable_download=>true
+,p_enable_mail_download=>true
+,p_fixed_header=>'PAGE'
+,p_show_icon_view=>false
+,p_show_detail_view=>false
+);
+wwv_flow_api.create_ig_report(
+ p_id=>wwv_flow_api.id(7843682287513228)
+,p_interactive_grid_id=>wwv_flow_api.id(7392752305592925)
+,p_type=>'PRIMARY'
+,p_default_view=>'GRID'
+,p_show_row_number=>false
+,p_settings_area_expanded=>true
+);
+wwv_flow_api.create_ig_report_view(
+ p_id=>wwv_flow_api.id(7843795033513230)
+,p_report_id=>wwv_flow_api.id(7843682287513228)
+,p_view_type=>'GRID'
+,p_srv_exclude_null_values=>false
+,p_srv_only_display_columns=>true
+,p_edit_mode=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7844137358513235)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>1
+,p_column_id=>wwv_flow_api.id(7392880369592926)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7845192578513242)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>3
+,p_column_id=>wwv_flow_api.id(7393080042592928)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>151
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7845658112513244)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>2
+,p_column_id=>wwv_flow_api.id(7393131254592929)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>79
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7846161459513247)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>4
+,p_column_id=>wwv_flow_api.id(7393295567592930)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>91
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7846678482513249)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>5
+,p_column_id=>wwv_flow_api.id(7393309023592931)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>117
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7847141194513251)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>8
+,p_column_id=>wwv_flow_api.id(7393438563592932)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>120
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7847607583513253)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>10
+,p_column_id=>wwv_flow_api.id(7393509163592933)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>106
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7848113789513255)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>11
+,p_column_id=>wwv_flow_api.id(7393684505592934)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>74
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7848677098513258)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>9
+,p_column_id=>wwv_flow_api.id(7393725935592935)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>314
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7849131352513260)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>6
+,p_column_id=>wwv_flow_api.id(7393880909592936)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7849631987513262)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(7393960736592937)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>101
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7850450212520772)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>0
+,p_column_id=>wwv_flow_api.id(7394149067592939)
+,p_is_visible=>true
+,p_is_frozen=>true
+);
+wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7394014059397341)
 ,p_plug_name=>'Target Species - Other Species'
 ,p_region_name=>'other_species_id'
@@ -11509,7 +12047,7 @@ wwv_flow_api.create_page_plug(
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>90
+,p_plug_display_sequence=>100
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -11544,6 +12082,9 @@ wwv_flow_api.create_region_column(
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
 );
+end;
+/
+begin
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7394330234397344)
 ,p_name=>'APEX$ROW_SELECTOR'
@@ -11753,11 +12294,12 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8512425577017525)
 ,p_plug_name=>'Primary Survey Categories'
+,p_region_name=>'pri_svy_cat'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>30
+,p_plug_display_sequence=>40
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -11834,6 +12376,7 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8514085948017541)
 ,p_plug_name=>'Cruise Summary'
+,p_region_name=>'cruise_summary'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
@@ -11850,11 +12393,12 @@ wwv_flow_api.create_page_plug(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8514139989017542)
 ,p_plug_name=>'Secondary Survey Categories'
+,p_region_name=>'sec_svy_cat'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>40
+,p_plug_display_sequence=>50
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -11931,11 +12475,12 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8702904624418708)
 ,p_plug_name=>'ESA Target Species'
+,p_region_name=>'esa_spp'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>50
+,p_plug_display_sequence=>60
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -12011,11 +12556,12 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8704483985418723)
 ,p_plug_name=>'MMPA Target Species'
+,p_region_name=>'mmpa_spp'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>70
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -12091,11 +12637,12 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8706321477418742)
 ,p_plug_name=>'FSSI Target Species'
+,p_region_name=>'fssi_spp'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>70
+,p_plug_display_sequence=>80
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -12103,9 +12650,6 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8706617720418745)
 ,p_plug_name=>'Presets'
@@ -12174,11 +12718,12 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8734510297997309)
 ,p_plug_name=>'Expected Species Categories'
+,p_region_name=>'exp_spp_cat'
 ,p_parent_plug_id=>wwv_flow_api.id(8512365766017524)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
-,p_plug_display_sequence=>80
+,p_plug_display_sequence=>90
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
@@ -12493,6 +13038,9 @@ wwv_flow_api.create_page_branch(
 ,p_branch_when_button_id=>wwv_flow_api.id(7348220558226807)
 ,p_branch_sequence=>30
 );
+end;
+/
+begin
 wwv_flow_api.create_page_branch(
  p_id=>wwv_flow_api.id(7348640379226811)
 ,p_branch_name=>'OTHERS - Stay on Page 220'
@@ -13036,9 +13584,6 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Secondary Survey Categories by moving options to the right-side of the field.  You can also use the Presets below to add one or more Secondary Survey Categories to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8514565525017546)
 ,p_name=>'P220_SECONDARY_SVY_CAT_PRESETS'
@@ -13361,6 +13906,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the FSSI Target Species by moving options to the right-side of the field.  You can also use the Presets below to add one or more FSSI Target Species to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8706726130418746)
 ,p_name=>'P220_TGT_FSSI_SPP_PRESETS'
@@ -13793,9 +14341,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8513980629017540)
 ,p_computation_sequence=>10
@@ -14164,6 +14709,9 @@ wwv_flow_api.create_page_da_action(
 'apex.event.trigger( "#sec_svy_cat_preset_report_id", "apexrefresh" );'))
 ,p_stop_execution_on_error=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8514971983017550)
 ,p_name=>'Secondary Survey Category Preset DA'
@@ -14651,9 +15199,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3989854703730309)
 ,p_name=>'Expected Species Categories Shuttle After Refresh'
@@ -14949,37 +15494,6 @@ wwv_flow_api.create_page_da_action(
 ''))
 );
 wwv_flow_api.create_page_da_event(
- p_id=>wwv_flow_api.id(6220570113378626)
-,p_name=>'Initialize Tooltips'
-,p_event_sequence=>270
-,p_bind_type=>'bind'
-,p_bind_event_type=>'ready'
-);
-wwv_flow_api.create_page_da_action(
- p_id=>wwv_flow_api.id(6220611894378627)
-,p_event_id=>wwv_flow_api.id(6220570113378626)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_JAVASCRIPT_CODE'
-,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'$("#deep_copy_cruise_id").attr("title", "Click the button if you would like to copy the Cruise and all of the associated Legs as well, unsaved changes to the Cruise will not be included in the copied cruise.  Following successful processing you will '
-||'be redirected to the View/Edit Cruise page for the copied Cruise so it can be modified accordingly").addClass("custom_tooltip");',
-' ',
-'',
-'',
-'',
-'',
-'$("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
-'	    position: {',
-'	      my: "center bottom-20",',
-'	      at: "center top",',
-'	      using: tooltip_arrows',
-'	    }',
-'	  });',
-''))
-);
-wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(6221327803378634)
 ,p_name=>'Change Primary Survey Categories'
 ,p_event_sequence=>280
@@ -15128,7 +15642,11 @@ wwv_flow_api.create_page_process(
 ,p_attribute_11=>'I:U:D'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Cruise Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
+end;
+/
+begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8513885336017539)
 ,p_process_sequence=>20
@@ -15162,6 +15680,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Primary Survey Categories Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8702888631418707)
@@ -15197,6 +15716,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Secondary Survey Categories Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8706117683418740)
@@ -15229,6 +15749,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'ESA Target Species Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8706217256418741)
@@ -15261,6 +15782,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'MMPA Target Species Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8734428145997308)
@@ -15293,6 +15815,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'FSSI Target Species Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8736107605997325)
@@ -15325,6 +15848,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Expected Species Categories Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7417329183645503)
@@ -15380,10 +15904,55 @@ wwv_flow_api.create_page_process(
 ,p_process_error_message=>'Target Species - Other Error!!'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Target Species - Other Saved'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(7394224985592940)
+,p_process_sequence=>100
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_api.id(7392674930592924)
+,p_process_type=>'NATIVE_IG_DML'
+,p_process_name=>'QC Validation Issues - Save Interactive Grid Data'
+,p_attribute_01=>'REGION_SOURCE'
+,p_attribute_05=>'Y'
+,p_attribute_06=>'Y'
+,p_attribute_08=>'Y'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_only_for_changed_rows=>'N'
+,p_process_success_message=>'QC Validation Issues Updated<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(7392362153592921)
+,p_process_sequence=>110
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Validate Cruise Record'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'BEGIN',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (:P220_CRUISE_ID, V_RETURN_CODE);',
+'    IF (V_RETURN_CODE = 1) THEN ',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    ELSE',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P220_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'',
+'    END IF;',
+'',
+'',
+'END;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348346838226808)
-,p_process_sequence=>100
+,p_process_sequence=>120
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
@@ -15583,6 +16152,71 @@ wwv_flow_api.create_page(
 '        apex.message.clearErrors();',
 '',
 '    }',
+'}',
+'',
+'',
+'',
+'',
+'//code to execute once the APEX objects have been initialized',
+'apex.jQuery(window).on(''theme42ready'', function() {',
+'',
+'    //call the initialize all tooltips code',
+'    setTimeout(initialize_all_tooltips, 500);',
+'    ',
+'    ',
+'',
+'});',
+'',
+'//initialize all tooltips',
+'function initialize_all_tooltips ()',
+'{',
+'    //tab tooltip definitions:',
+'    $("#SR_leg_summary_tab > a.t-Tabs-link").attr("title", "Click to view the Summary information for the current Cruise Leg").addClass("custom_tooltip");',
+'    $("#SR_regional_ecosystems_tab > a.t-Tabs-link").attr("title", "Click to view/define Regional Ecosystems for the current Cruise Leg").addClass("custom_tooltip");',
+'    $("#SR_gear_tab > a.t-Tabs-link").attr("title", "Click to view/define Gear for the current Cruise Leg").addClass("custom_tooltip");',
+'    $("#SR_regions_tab > a.t-Tabs-link").attr("title", "Click to view/define Regions for the current Cruise Leg").addClass("custom_tooltip");',
+'    $("#SR_leg_alias_id_tab > a.t-Tabs-link").attr("title", "Click to view/define Leg Aliases for the current Cruise").addClass("custom_tooltip");',
+'',
+'    ',
+'    ',
+'    //classic report tooltip definitions:    ',
+'    $("#LEG_NAME").attr("title", "The name of the given cruise leg").addClass("custom_tooltip");',
+'    $("#FORMAT_LEG_START_DATE").attr("title", "The start date for the given research cruise leg in MM/DD/YYYY format").addClass("custom_tooltip");',
+'    $("#FORMAT_LEG_END_DATE").attr("title", "The end date for the given research cruise leg in MM/DD/YYYY format").addClass("custom_tooltip");',
+'    $("#LEG_DAS").attr("title", "The total number of days at sea for the given cruise leg (based on the start and end dates of the leg)").addClass("custom_tooltip");',
+'    $("#LEG_FISC_YEAR").attr("title", "The NOAA fiscal year for the given cruise leg (based on the leg start date)").addClass("custom_tooltip");',
+'    $("#PLAT_TYPE_NAME").attr("title", "Platform Type for the given research cruise leg").addClass("custom_tooltip");',
+'    $("#VESSEL_NAME").attr("title", "Name of the given research vessel").addClass("custom_tooltip");',
+'    $("#REG_ECOSYSTEM_BR_LIST").attr("title", "List of Regional Ecosystems associated with the given cruise leg").addClass("custom_tooltip");',
+'    $("#GEAR_NAME_BR_LIST").attr("title", "List of Gear associated with the given cruise leg").addClass("custom_tooltip");',
+'    $("#REGION_NAME_BR_LIST").attr("title", "List of Regions associated with the given cruise leg").addClass("custom_tooltip");',
+'    $("#LEG_ALIAS_BR_LIST").attr("title", "List of aliases for the given cruise leg").addClass("custom_tooltip");',
+'    $("#CRUISE_LEG_ID_VAL").attr("title", "Edit the given cruise leg").addClass("custom_tooltip");',
+'    $("#CRUISE_LEG_ID_COPY").attr("title", "Click to copy the cruise leg and associated records so they can be modified and saved to streamline data entry.  The copied cruise leg is not saved until you click the \"Create\" or \"Create Another\" butto'
+||'n on the View/Edit Cruise Leg page and the action is successfully processed").addClass("custom_tooltip");',
+' ',
+'',
+'',
+'',
+'    //initialize the tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });    ',
+'    ',
+'    ',
+' ',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
 '}'))
 ,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -15598,7 +16232,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200429090216'
+,p_last_upd_yyyymmddhh24miss=>'20200430173130'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -15878,6 +16512,7 @@ wwv_flow_api.create_page_plug(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(1440290045521844)
 ,p_plug_name=>'Leg Summary'
+,p_region_name=>'leg_summary'
 ,p_parent_plug_id=>wwv_flow_api.id(8269480343098234)
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
@@ -16106,6 +16741,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8266649725098206)
 ,p_plug_name=>'Gear'
+,p_region_name=>'gear'
 ,p_parent_plug_id=>wwv_flow_api.id(8269480343098234)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -16183,6 +16819,7 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8269716470098237)
 ,p_plug_name=>'Regional Ecosystems'
+,p_region_name=>'regional_ecosystems'
 ,p_parent_plug_id=>wwv_flow_api.id(8269480343098234)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -16260,6 +16897,7 @@ wwv_flow_api.create_report_columns(
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8510177726017502)
 ,p_plug_name=>'Regions'
+,p_region_name=>'regions'
 ,p_parent_plug_id=>wwv_flow_api.id(8269480343098234)
 ,p_region_css_classes=>'active-form-class'
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
@@ -16314,6 +16952,9 @@ wwv_flow_api.create_report_region(
 ,p_sort_null=>'L'
 ,p_plug_query_strip_html=>'N'
 );
+end;
+/
+begin
 wwv_flow_api.create_report_columns(
  p_id=>wwv_flow_api.id(8510954708017510)
 ,p_query_column_id=>1
@@ -16411,9 +17052,6 @@ wwv_flow_api.create_page_button(
 ,p_button_redirect_url=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:::'
 ,p_grid_new_grid=>false
 );
-end;
-/
-begin
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7073523941077795)
 ,p_button_sequence=>40
@@ -17229,6 +17867,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7498141307111909)
 ,p_name=>'P230_CRUISE_URL'
@@ -17365,9 +18006,6 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the Gear by moving options to the right-side of the field. You can also use the Presets below to add groups of gear to the cruise leg at once'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8268437134098224)
 ,p_name=>'P230_GEAR_PRESETS'
@@ -17929,48 +18567,6 @@ wwv_flow_api.create_page_validation(
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 );
 wwv_flow_api.create_page_da_event(
- p_id=>wwv_flow_api.id(7499021701111918)
-,p_name=>'Initialize Tooltips'
-,p_event_sequence=>10
-,p_bind_type=>'bind'
-,p_bind_event_type=>'ready'
-);
-wwv_flow_api.create_page_da_action(
- p_id=>wwv_flow_api.id(7499189730111919)
-,p_event_id=>wwv_flow_api.id(7499021701111918)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_JAVASCRIPT_CODE'
-,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'$("#LEG_NAME").attr("title", "The name of the given cruise leg").addClass("custom_tooltip");',
-'$("#FORMAT_LEG_START_DATE").attr("title", "The start date for the given research cruise leg in MM/DD/YYYY format").addClass("custom_tooltip");',
-'$("#FORMAT_LEG_END_DATE").attr("title", "The end date for the given research cruise leg in MM/DD/YYYY format").addClass("custom_tooltip");',
-'$("#LEG_DAS").attr("title", "The total number of days at sea for the given cruise leg (based on the start and end dates of the leg)").addClass("custom_tooltip");',
-'$("#LEG_FISC_YEAR").attr("title", "The NOAA fiscal year for the given cruise leg (based on the leg start date)").addClass("custom_tooltip");',
-'$("#PLAT_TYPE_NAME").attr("title", "Platform Type for the given research cruise leg").addClass("custom_tooltip");',
-'$("#VESSEL_NAME").attr("title", "Name of the given research vessel").addClass("custom_tooltip");',
-'$("#REG_ECOSYSTEM_BR_LIST").attr("title", "List of Regional Ecosystems associated with the given cruise leg").addClass("custom_tooltip");',
-'$("#GEAR_NAME_BR_LIST").attr("title", "List of Gear associated with the given cruise leg").addClass("custom_tooltip");',
-'$("#REGION_NAME_BR_LIST").attr("title", "List of Regions associated with the given cruise leg").addClass("custom_tooltip");',
-'$("#LEG_ALIAS_BR_LIST").attr("title", "List of aliases for the given cruise leg").addClass("custom_tooltip");',
-'$("#CRUISE_LEG_ID_VAL").attr("title", "Edit the given cruise leg").addClass("custom_tooltip");',
-'$("#CRUISE_LEG_ID_COPY").attr("title", "Click to copy the cruise leg and associated records so they can be modified and saved to streamline data entry.  The copied cruise leg is not saved until you click the \"Create\" or \"Create Another\" button on'
-||' the View/Edit Cruise Leg page and the action is successfully processed").addClass("custom_tooltip");',
-' ',
-'',
-'',
-'',
-'',
-'$("th.custom_tooltip, a.custom_tooltip").tooltip({',
-'	    position: {',
-'	      my: "center bottom-20",',
-'	      at: "center top",',
-'	      using: tooltip_arrows',
-'	    }',
-'	  });'))
-);
-wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8267908509098219)
 ,p_name=>'GEAR_PRESET_DA'
 ,p_event_sequence=>20
@@ -18034,6 +18630,9 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8270687831098246)
 ,p_name=>'REG_ECO_PRESET_DA'
@@ -18110,9 +18709,6 @@ wwv_flow_api.create_page_da_action(
 ''))
 ,p_stop_execution_on_error=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8511702099017518)
 ,p_name=>'Change Regional Ecosystem Preset'
@@ -18614,6 +19210,7 @@ wwv_flow_api.create_page_process(
 ,p_attribute_11=>'I:U:D'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Cruise Leg Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8510094595017501)
@@ -18641,6 +19238,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Regional Ecosystems saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8267503556098215)
@@ -18668,6 +19266,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Gear saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(8511659735017517)
@@ -18695,6 +19294,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Regions saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7284790110273650)
@@ -18745,10 +19345,39 @@ wwv_flow_api.create_page_process(
 'end;  '))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Leg Aliases Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(7392563778592923)
+,p_process_sequence=>140
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Validate Parent Cruise Record'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'BEGIN',
+'',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (:P230_CRUISE_ID, V_RETURN_CODE);',
+'    IF (V_RETURN_CODE = 1) THEN ',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    ELSE',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'',
+'    END IF;',
+'',
+'',
+'END;'))
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7082158373077827)
-,p_process_sequence=>140
+,p_process_sequence=>150
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
@@ -18817,6 +19446,617 @@ wwv_flow_api.create_page_process(
 '		  CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+end;
+/
+prompt --application/pages/page_00250
+begin
+wwv_flow_api.create_page(
+ p_id=>250
+,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
+,p_name=>'QC Issues'
+,p_page_mode=>'NORMAL'
+,p_step_title=>'QC Issues'
+,p_step_sub_title=>'QC Issues'
+,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
+,p_first_item=>'NO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_inline_css=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'#qc .a-GV-cell {',
+'    height: 120px;',
+'}',
+'.wrap-cell {',
+'    max-height: 100px;',
+'    white-space: normal;',
+'    overflow: hidden;',
+'}',
+'',
+'.active_error',
+'{',
+'background-color: #f9dede;',
+'}',
+'',
+'.annotated',
+'{',
+'background-color: #e7f4e4;',
+'}',
+'',
+'.warning',
+'{',
+'background-color: #fff1d2;',
+'}',
+''))
+,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_overwrite_navigation_list=>'N'
+,p_page_is_public_y_n=>'N'
+,p_cache_mode=>'NOCACHE'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200430151501'
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(7561081312972430)
+,p_plug_name=>'Breadcrumb'
+,p_region_template_options=>'#DEFAULT#:t-BreadcrumbRegion--useBreadcrumbTitle'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19756296702588585)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_menu_id=>wwv_flow_api.id(19786818051588651)
+,p_plug_source_type=>'NATIVE_BREADCRUMB'
+,p_menu_template_id=>wwv_flow_api.id(19775264001588609)
+,p_plug_query_row_template=>1
+);
+wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(7561546094972432)
+,p_plug_name=>'QC Issues'
+,p_region_name=>'qc'
+,p_region_template_options=>'#DEFAULT#:t-Region--removeHeader:t-Region--scrollBody'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_api.id(19751945583588582)
+,p_plug_display_sequence=>20
+,p_include_in_reg_disp_sel_yn=>'N'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select ERROR_ID,',
+'',
+'(SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_NAME,',
+'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) LEG_NAME_DATES_BR_LIST,',
+'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_FISC_YEAR,',
+'(SELECT ERR_SEVERITY_NAME from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) ERR_SEVERITY,      '
+||' ',
+'(SELECT ERR_TYPE_NAME FROM CEN_CRUISE.DVM_ERROR_TYPES WHERE DVM_ERROR_TYPES.ERROR_TYPE_ID = DVM_ERRORS.ERROR_TYPE_ID) ERROR_TYPE,       ',
+'ERR_RES_TYPE_ID,',
+'CREATE_DATE,',
+'LAST_MOD_DATE,',
+'ERROR_NOTES,',
+'ERROR_DESCRIPTION,',
+'CASE WHEN (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'' '
+||'THEN ''Warning'' ',
+'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = D'
+||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
+'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
+||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
+'ELSE NULL END ISSUE_CATEGORY',
+'       ',
+'  from CEN_CRUISE.DVM_ERRORS',
+'  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
+'    AND (:P250_ISSUE_CATEGORIES IS NULL OR (:P250_ISSUE_CATEGORIES = ''warning'' AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id '
+||'where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'') OR (:P250_ISSUE_CATEGORIES = ''active_error'' AND DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_erro'
+||'r_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''ERROR'') OR (:P250_ISSUE_CATEGORIES = ''annotated'' AND DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT E'
+||'RR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''ERROR''))'))
+,p_plug_source_type=>'NATIVE_IG'
+,p_ajax_items_to_submit=>'P250_FISCAL_YEAR,P250_ISSUE_CATEGORIES'
+,p_plug_query_row_template=>1
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7391132940592909)
+,p_name=>'CRUISE_NAME'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_NAME'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Cruise'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>40
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&CRUISE_NAME.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The name of the given cruise designated by NOAA (e.g. SE-15-01)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7391289668592910)
+,p_name=>'LEG_NAME_DATES_BR_LIST'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LEG_NAME_DATES_BR_LIST'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Legs'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>100
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&LEG_NAME_DATES_BR_LIST.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'List of leg names, the associated leg dates and vessel name associated with the given cruise'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7391369787592911)
+,p_name=>'CRUISE_FISC_YEAR'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_FISC_YEAR'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Fiscal Year'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>110
+,p_value_alignment=>'RIGHT'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_lov_type=>'DISTINCT'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The NOAA fiscal year for the given cruise (based on the earliest associated cruise leg''s start date)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7391405377592912)
+,p_name=>'ERR_SEVERITY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERR_SEVERITY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Severity'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>120
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERR_SEVERITY.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The severity of the associated issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7391508831592913)
+,p_name=>'ERROR_TYPE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_TYPE'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Type'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>130
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERROR_TYPE.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7392260128592920)
+,p_name=>'ISSUE_CATEGORY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISSUE_CATEGORY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue category'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>140
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISSUE_CATEGORY.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'Issue Category based on annotation and Issue Severity: Warning (any warning), Active Error (non-annotated errors), and Annotated Error (annotated errors)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7562737602972440)
+,p_name=>'APEX$ROW_SELECTOR'
+,p_item_type=>'NATIVE_ROW_SELECTOR'
+,p_display_sequence=>10
+,p_attribute_01=>'Y'
+,p_attribute_02=>'Y'
+,p_attribute_03=>'N'
+,p_is_primary_key=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7563282916972441)
+,p_name=>'APEX$ROW_ACTION'
+,p_item_type=>'NATIVE_ROW_ACTION'
+,p_label=>'Actions'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>20
+,p_value_alignment=>'CENTER'
+,p_is_primary_key=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7563869664972442)
+,p_name=>'ERROR_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>30
+,p_attribute_01=>'Y'
+,p_enable_filter=>false
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7565050961972443)
+,p_name=>'CREATE_DATE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CREATE_DATE'
+,p_data_type=>'DATE'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Created'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>50
+,p_value_alignment=>'CENTER'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_date_ranges=>'ALL'
+,p_filter_lov_type=>'DISTINCT'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The Date that the validation issue was created'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7566275954972444)
+,p_name=>'LAST_MOD_DATE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LAST_MOD_DATE'
+,p_data_type=>'DATE'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Modified'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>60
+,p_value_alignment=>'CENTER'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_is_required=>false
+,p_filter_date_ranges=>'ALL'
+,p_filter_lov_type=>'DISTINCT'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The Date that the validation issue was last updated'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7568013791972445)
+,p_name=>'ERROR_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Error Notes'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>70
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_item_width=>50
+,p_is_required=>false
+,p_max_length=>500
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Any user-defined notes about the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7568614248972446)
+,p_name=>'ERR_RES_TYPE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERR_RES_TYPE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Issue Resolution'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>80
+,p_value_alignment=>'RIGHT'
+,p_is_required=>false
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select err_res_type_name,',
+'       err_res_type_id',
+'  from cen_cruise.dvm_err_res_types',
+' order by upper(err_res_type_name)'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_lov_null_text=>'-'
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(7569291038972446)
+,p_name=>'ERROR_DESCRIPTION'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ERROR_DESCRIPTION'
+,p_data_type=>'CLOB'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Issue Description'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>90
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ERROR_DESCRIPTION.</div>'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_pivot=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'A detailed description for the given validation issue'
+);
+wwv_flow_api.create_interactive_grid(
+ p_id=>wwv_flow_api.id(7562082865972434)
+,p_internal_uid=>7562082865972434
+,p_is_editable=>true
+,p_edit_operations=>'u'
+,p_update_authorization_scheme=>wwv_flow_api.id(19789246675762711)
+,p_lost_update_check_type=>'VALUES'
+,p_submit_checked_rows=>false
+,p_lazy_loading=>false
+,p_requires_filter=>false
+,p_show_nulls_as=>'-'
+,p_fixed_row_height=>true
+,p_pagination_type=>'SCROLL'
+,p_show_total_row_count=>true
+,p_no_data_found_message=>'No QC Validation Issues'
+,p_show_toolbar=>true
+,p_enable_save_public_report=>false
+,p_enable_subscriptions=>true
+,p_enable_download=>true
+,p_enable_mail_download=>true
+,p_fixed_header=>'PAGE'
+,p_show_icon_view=>false
+,p_show_detail_view=>false
+);
+wwv_flow_api.create_ig_report(
+ p_id=>wwv_flow_api.id(7562446077972437)
+,p_interactive_grid_id=>wwv_flow_api.id(7562082865972434)
+,p_type=>'PRIMARY'
+,p_default_view=>'GRID'
+,p_show_row_number=>false
+,p_settings_area_expanded=>true
+);
+wwv_flow_api.create_ig_report_view(
+ p_id=>wwv_flow_api.id(7562585229972438)
+,p_report_id=>wwv_flow_api.id(7562446077972437)
+,p_view_type=>'GRID'
+,p_srv_exclude_null_values=>false
+,p_srv_only_display_columns=>true
+,p_edit_mode=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7563681434972441)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>0
+,p_column_id=>wwv_flow_api.id(7563282916972441)
+,p_is_visible=>true
+,p_is_frozen=>true
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7564260011972443)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>1
+,p_column_id=>wwv_flow_api.id(7563869664972442)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7565495957972444)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>11
+,p_column_id=>wwv_flow_api.id(7565050961972443)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>95
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7566676563972444)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>12
+,p_column_id=>wwv_flow_api.id(7566275954972444)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>157
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7568416956972446)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>10
+,p_column_id=>wwv_flow_api.id(7568013791972445)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>304
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7569090642972446)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>9
+,p_column_id=>wwv_flow_api.id(7568614248972446)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>120
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7569605877972446)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(7569291038972446)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>426
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7581371858213629)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>3
+,p_column_id=>wwv_flow_api.id(7391132940592909)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>58
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7581788033213634)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>5
+,p_column_id=>wwv_flow_api.id(7391289668592910)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>171
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7582241343213637)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>3
+,p_column_id=>wwv_flow_api.id(7391369787592911)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>79
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7582797835213639)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>5
+,p_column_id=>wwv_flow_api.id(7391405377592912)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>79
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7583290096213641)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>6
+,p_column_id=>wwv_flow_api.id(7391508831592913)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>132
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(7654803044915825)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>8
+,p_column_id=>wwv_flow_api.id(7392260128592920)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>112
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(7391628391592914)
+,p_name=>'P250_FISCAL_YEAR'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(7561546094972432)
+,p_prompt=>'Fiscal Year'
+,p_source=>'P250_FISCAL_YEAR'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_lov=>'select distinct CRUISE_FISC_YEAR, CRUISE_FISC_YEAR id FROM CEN_CRUISE.CCD_CRUISE_V WHERE CRUISE_FISC_YEAR IS NOT NULL ORDER BY CRUISE_FISC_YEAR;'
+,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Changing the Fiscal Year will reload the page and display only the Validation issues for Cruises with the selected Fiscal Year and Validation issues for the selected Issue Category'
+,p_attribute_01=>'SUBMIT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(7391729461592915)
+,p_name=>'P250_ISSUE_CATEGORIES'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_api.id(7561546094972432)
+,p_prompt=>'Issue Category'
+,p_source=>'P250_ISSUE_CATEGORIES'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_lov=>'STATIC:Active Error;active_error,Annotated Error;annotated,Warning;warning'
+,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-'
+,p_cHeight=>1
+,p_field_template=>wwv_flow_api.id(19774241368588604)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_help_text=>'Changing the Issue Category will reload the page and display only the Validation issues for the selected Issue Category and for Cruises with the selected Fiscal Year'
+,p_attribute_01=>'SUBMIT'
+,p_attribute_03=>'Y'
+);
+wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(7569869168972447)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_api.id(7561546094972432)
+,p_process_type=>'NATIVE_IG_DML'
+,p_process_name=>' - Save Interactive Grid Data'
+,p_attribute_01=>'REGION_SOURCE'
+,p_attribute_05=>'Y'
+,p_attribute_06=>'Y'
+,p_attribute_08=>'Y'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Validation Issues Updated'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 end;
 /

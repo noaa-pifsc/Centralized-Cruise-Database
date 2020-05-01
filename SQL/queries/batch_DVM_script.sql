@@ -8,36 +8,25 @@ exec DBMS_OUTPUT.ENABLE(NULL);
 
 DECLARE
 
-    --declare variable for storing data stream codes
-    P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	V_PROC_RETURN_CODE PLS_INTEGER;
 
-    --declare variable for numeric surrogate primary key
-    P_PK_ID NUMBER;
 BEGIN
     -- Modify the code to initialize the variable
 
-    --define the data stream codes for the given data stream (hard-coded due to RPL data stream):
-    P_DATA_STREAM_CODE(1) := 'CCD';
---  for all validations on data entered via APEX use only the RPL data stream rules:
---    P_DATA_STREAM_CODE(2) := 'XML';
 
-    --query for VESS_TRIP_ID values that are to be batch processed (currently for processing all 2016 RPL data):
-    FOR rec IN (SELECT CRUISE_ID FROM CCD_CRUISES)
-    --WHERE TO_CHAR(VESS_TRIP_DEPART_DTM, 'YYYY') IN ('2016'))
+		CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_SP (V_PROC_RETURN_CODE);
 
-    --loop through each VESS_TRIP_ID returned by the SELECT query:
-    LOOP
+		IF (V_PROC_RETURN_CODE = 1) then
+			dbms_output.put_line('The DVM batch execution was successful');
+		else
+			dbms_output.put_line('The DVM batch execution was NOT successful');
+		END IF;
 
-      DBMS_OUTPUT.put_line ('running VALIDATE_PARENT_RECORD('||rec.CRUISE_ID||')');
+EXCEPTION
+	when others THEN
 
-      P_PK_ID := rec.CRUISE_ID;
+		dbms_output.put_line('The DVM batch execution was NOT successful: '|| SQLCODE || '- ' || SQLERRM);
 
-      --run the validator procedure on the given data stream(s) and primary key value:
-      DVM_PKG.VALIDATE_PARENT_RECORD(
-      P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-      P_PK_ID => P_PK_ID
-      );
 
-    END LOOP;
 
 END;
