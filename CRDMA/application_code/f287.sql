@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   18:10 Thursday April 30, 2020
+--   Date and Time:   09:57 Tuesday May 5, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.10'
+,p_flow_version=>'release 0.11'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200430181016'
+,p_last_upd_yyyymmddhh24miss=>'20200505095319'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>11
 ,p_ui_type_name => null
@@ -835,8 +835,9 @@ wwv_flow_api.create_menu_option(
 );
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(2736378705147682)
+,p_parent_id=>wwv_flow_api.id(2704766318068346)
 ,p_short_name=>'View/Edit Survey Category Preset'
-,p_link=>'f?p=&APP_ID.:465:&SESSION.'
+,p_link=>'f?p=&APP_ID.:465:&SESSION.::&DEBUG.:::'
 ,p_page_id=>465
 );
 wwv_flow_api.create_menu_option(
@@ -936,11 +937,12 @@ wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7277627414219637)
 ,p_parent_id=>0
 ,p_short_name=>'Cruise List'
+,p_link=>'f?p=&APP_ID.:210:&SESSION.::&DEBUG.:::'
 ,p_page_id=>210
 );
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7278203398228708)
-,p_parent_id=>0
+,p_parent_id=>wwv_flow_api.id(7277627414219637)
 ,p_short_name=>'View/Update Cruise'
 ,p_link=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.::P220_CRUISE_ID:&P220_CRUISE_ID.'
 ,p_page_id=>220
@@ -974,13 +976,14 @@ wwv_flow_api.create_menu_option(
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7633071935273140)
 ,p_parent_id=>0
-,p_short_name=>'Vessel List'
+,p_short_name=>'View Vessels'
 ,p_page_id=>300
 );
 wwv_flow_api.create_menu_option(
  p_id=>wwv_flow_api.id(7649297102511229)
-,p_short_name=>'Regional Ecosystems'
-,p_link=>'f?p=&APP_ID.:310:&SESSION.'
+,p_parent_id=>0
+,p_short_name=>'View Regional Ecosystems'
+,p_link=>'f?p=&APP_ID.:310:&SESSION.::&DEBUG.:::'
 ,p_page_id=>310
 );
 wwv_flow_api.create_menu_option(
@@ -9936,7 +9939,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402213948'
+,p_last_upd_yyyymmddhh24miss=>'20200501083603'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7419197051645521)
@@ -10050,13 +10053,12 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
+'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
 'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE CRUISE_FISC_YEAR IS NOT NULL',
 'group by ',
-'STD_SVY_NAME_VAL',
-'order by UPPER(STD_SVY_NAME_VAL)'))
+'NVL(STD_SVY_NAME_VAL, ''N/A'')',
+'order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''))'))
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
@@ -10176,7 +10178,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200415163105'
+,p_last_upd_yyyymmddhh24miss=>'20200501084123'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7421111517645541)
@@ -10215,7 +10217,7 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select STD_SVY_NAME_VAL, count(*) num_cruises',
+'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises',
 'from',
 'CEN_CRUISE.CCD_CRUISE_V',
 'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
@@ -10223,8 +10225,8 @@ wwv_flow_api.create_page_plug(
 'AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
 '',
 'group by ',
-'STD_SVY_NAME_VAL',
-'order by UPPER(STD_SVY_NAME_VAL);',
+'NVL(STD_SVY_NAME_VAL, ''N/A'')',
+'order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));',
 ''))
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_plug_query_row_template=>1
@@ -10276,7 +10278,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_new_grid_row=>false
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select STD_SVY_NAME_VAL, SUM(CRUISE_DAS) num_DAS',
+'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, SUM(CRUISE_DAS) num_DAS',
 'from',
 'CEN_CRUISE.CCD_CRUISE_V',
 'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
@@ -10284,8 +10286,8 @@ wwv_flow_api.create_page_plug(
 'AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
 '',
 'group by ',
-'STD_SVY_NAME_VAL',
-'order by UPPER(STD_SVY_NAME_VAL);',
+'NVL(STD_SVY_NAME_VAL, ''N/A'')',
+'order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));',
 ''))
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_plug_query_row_template=>1
@@ -10476,7 +10478,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200415163152'
+,p_last_upd_yyyymmddhh24miss=>'20200501083950'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14927975248903605)
@@ -10518,9 +10520,8 @@ wwv_flow_api.create_page_plug(
 'select CRUISE_FISC_YEAR, count(*) num_cruises',
 'from',
 'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
-'',
-'AND ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = STD_SVY_NAME_VAL))',
+'WHERE  ',
+'((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 '',
 'group by ',
 'CRUISE_FISC_YEAR',
@@ -10578,9 +10579,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select CRUISE_FISC_YEAR, SUM(CRUISE_DAS) num_das from',
 'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
-'',
-'AND ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = STD_SVY_NAME_VAL))',
+'WHERE ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 '',
 'group by ',
 'CRUISE_FISC_YEAR',
@@ -10634,13 +10633,13 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
+'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
 'CEN_CRUISE.CCD_CRUISE_V',
-'WHERE (CRUISE_FISC_YEAR IS NOT NULL) AND ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = STD_SVY_NAME_VAL))',
+'WHERE ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 'group by ',
-'STD_SVY_NAME_VAL',
-'order by UPPER(STD_SVY_NAME_VAL);'))
+'NVL(STD_SVY_NAME_VAL, ''N/A'')',
+'order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));'))
 ,p_plug_source_type=>'NATIVE_JET_CHART'
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
@@ -10743,14 +10742,14 @@ wwv_flow_api.create_page_item(
 ,p_item_plug_id=>wwv_flow_api.id(14927975248903605)
 ,p_prompt=>'Survey Name'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select distinct STD_SVY_NAME_VAL disp, STD_SVY_NAME_VAL val FROM CEN_CRUISE.CCD_CRUISE_V where cruise_fisc_year IS NOT NULL order by UPPER(STD_SVY_NAME_VAL);'
+,p_lov=>'select distinct NVL(STD_SVY_NAME_VAL, ''N/A'') disp, NVL(STD_SVY_NAME_VAL, ''N/A'') val FROM CEN_CRUISE.CCD_CRUISE_V order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));'
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'--All Surveys--'
 ,p_cHeight=>1
 ,p_grid_column=>1
 ,p_field_template=>wwv_flow_api.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'Selecting a Survey Name will refresh the charts on this page based on the selected Survey Name'
 ,p_attribute_01=>'SUBMIT'
 ,p_attribute_03=>'Y'
@@ -11324,7 +11323,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200430173349'
+,p_last_upd_yyyymmddhh24miss=>'20200501162858'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -15903,7 +15902,7 @@ wwv_flow_api.create_page_process(
 'end;  '))
 ,p_process_error_message=>'Target Species - Other Error!!'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-,p_process_success_message=>'Target Species - Other Saved'
+,p_process_success_message=>'Target Species - Other Saved<BR>'
 ,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
@@ -16227,12 +16226,13 @@ wwv_flow_api.create_page(
 'padding: 1.6rem 1.2rem;}',
 'ul.t-Tabs {margin-top: 10px;}'))
 ,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200430173130'
+,p_last_upd_yyyymmddhh24miss=>'20200501173742'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -16506,6 +16506,8 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>'Leg Attributes'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_plug_display_when_condition=>'P230_CRUISE_ID'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -18373,6 +18375,7 @@ wwv_flow_api.create_page_validation(
 ,p_error_message=>'Invalid Leg Dates: Start Date must occur before End Date'
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(5593604137158830)
@@ -18411,6 +18414,7 @@ wwv_flow_api.create_page_validation(
 ,p_always_execute=>'N'
 ,p_only_for_changed_rows=>'Y'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(6220887960378629)
@@ -18486,6 +18490,7 @@ wwv_flow_api.create_page_validation(
 ,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(6222093312378641)
@@ -18496,6 +18501,7 @@ wwv_flow_api.create_page_validation(
 ,p_error_message=>'Invalid Copied Leg Name: The Leg Name contains "(copy)" which indicates it was created using the "Deep Copy" feature and should be renamed'
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(6222104691378642)
@@ -18535,6 +18541,7 @@ wwv_flow_api.create_page_validation(
 ,p_validation_type=>'FUNC_BODY_RETURNING_ERR_TEXT'
 ,p_always_execute=>'N'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(6222803948378649)
@@ -18565,6 +18572,7 @@ wwv_flow_api.create_page_validation(
 ,p_always_execute=>'N'
 ,p_only_for_changed_rows=>'Y'
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8267908509098219)
@@ -18598,6 +18606,9 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8511391653017514)
 ,p_name=>'REGION_PRESET_DA'
@@ -18630,9 +18641,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(8270687831098246)
 ,p_name=>'REG_ECO_PRESET_DA'
@@ -19384,6 +19392,7 @@ wwv_flow_api.create_page_process(
 ,p_attribute_01=>'CLEAR_CACHE_CURRENT_PAGE'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7073773135077795)
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(5593186817158825)
@@ -19492,7 +19501,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200430151501'
+,p_last_upd_yyyymmddhh24miss=>'20200505084740'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7561081312972430)
@@ -19538,7 +19547,9 @@ wwv_flow_api.create_page_plug(
 ||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
 'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
 ||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'ELSE NULL END ISSUE_CATEGORY',
+'ELSE NULL END ISSUE_CATEGORY,',
+'(SELECT CRUISE_ID FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_ID',
+'',
 '       ',
 '  from CEN_CRUISE.DVM_ERRORS',
 '  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
@@ -19558,18 +19569,24 @@ wwv_flow_api.create_region_column(
 ,p_source_expression=>'CRUISE_NAME'
 ,p_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_item_type=>'NATIVE_LINK'
 ,p_heading=>'Cruise'
 ,p_heading_alignment=>'LEFT'
 ,p_display_sequence=>40
 ,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&CRUISE_NAME.</div>'
+,p_link_target=>'f?p=&APP_ID.:220:&SESSION.::&DEBUG.:RP:P220_CRUISE_ID,P220_CRUISE_ID_COPY:&CRUISE_ID.,'
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
 ,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'DISTINCT'
 ,p_use_as_row_header=>false
 ,p_enable_sort_group=>true
 ,p_is_primary_key=>false
 ,p_include_in_export=>true
-,p_help_text=>'The name of the given cruise designated by NOAA (e.g. SE-15-01)'
+,p_escape_on_http_output=>true
+,p_help_text=>'The name of the given cruise designated by NOAA (e.g. SE-15-01).  Click on the Cruise to load the View/Edit Cruise page to resolve the associated QC Validation Issues'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7391289668592910)
@@ -19848,6 +19865,21 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_help_text=>'A detailed description for the given validation issue'
 );
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(8770196230313201)
+,p_name=>'CRUISE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>150
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>false
+);
 wwv_flow_api.create_interactive_grid(
  p_id=>wwv_flow_api.id(7562082865972434)
 ,p_internal_uid=>7562082865972434
@@ -19957,6 +19989,9 @@ wwv_flow_api.create_ig_report_column(
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>58
+,p_sort_order=>2
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7581788033213634)
@@ -19970,11 +20005,14 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7582241343213637)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>3
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_api.id(7391369787592911)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>79
+,p_sort_order=>1
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7582797835213639)
@@ -20002,6 +20040,14 @@ wwv_flow_api.create_ig_report_column(
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>112
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(8776121286318930)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>13
+,p_column_id=>wwv_flow_api.id(8770196230313201)
+,p_is_visible=>true
+,p_is_frozen=>false
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7391628391592914)
@@ -20546,12 +20592,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200406120142'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200504112726'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7644975931511225)
@@ -20751,13 +20797,14 @@ wwv_flow_api.create_page(
 ,p_autocomplete_on_off=>'OFF'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
 ,p_page_template_options=>'#DEFAULT#'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406120259'
+,p_last_upd_yyyymmddhh24miss=>'20200504112812'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7636862441511200)
@@ -20985,6 +21032,7 @@ wwv_flow_api.create_page_process(
 ,p_attribute_11=>'I:U:D'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Action Processed.'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7643141160511207)
@@ -24396,9 +24444,9 @@ begin
 wwv_flow_api.create_page(
  p_id=>357
 ,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
-,p_name=>'View/Edit Standard Survey Names'
+,p_name=>'View/Edit Standard Survey Name'
 ,p_page_mode=>'MODAL'
-,p_step_title=>'View/Edit Standard Survey Names'
+,p_step_title=>'View/Edit Standard Survey Name'
 ,p_step_sub_title=>'View/Edit Standard Survey Names'
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
@@ -24412,7 +24460,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406132408'
+,p_last_upd_yyyymmddhh24miss=>'20200505091149'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(10865865771224649)
@@ -25387,9 +25435,9 @@ begin
 wwv_flow_api.create_page(
  p_id=>367
 ,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
-,p_name=>'View/Edit Regions'
+,p_name=>'View/Edit Region'
 ,p_page_mode=>'MODAL'
-,p_step_title=>'View/Edit Regions'
+,p_step_title=>'View/Edit Region'
 ,p_step_sub_title=>'View/Edit Regions'
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
@@ -25403,7 +25451,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200402141756'
+,p_last_upd_yyyymmddhh24miss=>'20200505091030'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(17406818822293454)
@@ -26326,9 +26374,9 @@ begin
 wwv_flow_api.create_page(
  p_id=>377
 ,p_user_interface_id=>wwv_flow_api.id(19785573868588627)
-,p_name=>'View/Edit Species Categories'
+,p_name=>'View/Edit Expected Species Category'
 ,p_page_mode=>'MODAL'
-,p_step_title=>'View/Edit Species Categories'
+,p_step_title=>'View/Edit Expected Species Category'
 ,p_step_sub_title=>'View/Edit Species Categories'
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
@@ -26342,7 +26390,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200406115311'
+,p_last_upd_yyyymmddhh24miss=>'20200505091459'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14217826990461158)
@@ -27129,12 +27177,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327170109'
+,p_last_upd_yyyymmddhh24miss=>'20200504160004'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2231062173688029)
@@ -27262,15 +27310,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407093832'
+,p_last_upd_yyyymmddhh24miss=>'20200504155642'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(2242258976734019)
@@ -27350,6 +27415,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(2242258976734019)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -27359,7 +27425,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P405_REG_ECO_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -27660,6 +27725,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2242664701734022)
 ,p_process_success_message=>'Regional Ecosystem Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124558978780336)
@@ -27676,6 +27742,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2242719144734022)
 ,p_process_success_message=>'Regional Ecosystem Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2122649914780317)
@@ -27708,6 +27775,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Regional Ecosystem Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124690931780337)
@@ -27724,6 +27792,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2242876035734022)
 ,p_process_success_message=>'Regional Ecosystem Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2247375578734054)
@@ -27750,12 +27819,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327172336'
+,p_last_upd_yyyymmddhh24miss=>'20200504160018'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(4531433894832065)
@@ -27883,15 +27952,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327190548'
+,p_last_upd_yyyymmddhh24miss=>'20200504162501'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(4572819996183604)
@@ -27971,6 +28057,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(4572819996183604)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -27980,7 +28067,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P415_REGION_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -28115,6 +28201,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2332417492449611)
 ,p_process_success_message=>'Region Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124733554780338)
@@ -28131,6 +28218,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2332009589449611)
 ,p_process_success_message=>'Region Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2336931697449624)
@@ -28163,6 +28251,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Region Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124859435780339)
@@ -28179,6 +28268,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2331610246449610)
 ,p_process_success_message=>'Region Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2338130088449626)
@@ -28205,12 +28295,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200327172420'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200504162054'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(4631377349469808)
@@ -28278,7 +28368,7 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_identifier=>'F'
 ,p_column_label=>'Preset Name'
 ,p_column_type=>'STRING'
-,p_help_text=>'Name for the Region preset'
+,p_help_text=>'Name for the Expected Species Category preset'
 );
 wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(2123474925780325)
@@ -28338,15 +28428,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407092111'
+,p_last_upd_yyyymmddhh24miss=>'20200504162434'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6985018061011476)
@@ -28426,6 +28533,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(6985018061011476)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -28435,7 +28543,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P425_SPP_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -28733,6 +28840,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2414016357827896)
 ,p_process_success_message=>'Expected Species Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124424086780335)
@@ -28749,6 +28857,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2413668481827895)
 ,p_process_success_message=>'Expected Species Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2418577562827922)
@@ -28781,13 +28890,14 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Expected Species Category Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2124066537780331)
 ,p_process_sequence=>70
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
-,p_process_name=>'Delete Row of CCD_SPP_CAT_PRE_1'
+,p_process_name=>'Delete Row of CCD_SPP_CAT_PRE'
 ,p_attribute_01=>'CEN_CRUISE'
 ,p_attribute_02=>'CCD_SPP_CAT_PRE'
 ,p_attribute_03=>'P425_SPP_CAT_PRE_ID'
@@ -28797,6 +28907,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2413257829827895)
 ,p_process_success_message=>'Expected Species Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2419763353827924)
@@ -28823,12 +28934,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327185533'
+,p_last_upd_yyyymmddhh24miss=>'20200504154655'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7181733438895657)
@@ -28940,7 +29051,6 @@ wwv_flow_api.create_page_button(
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'RIGHT_OF_IR_SEARCH_BAR'
 ,p_button_redirect_url=>'f?p=&APP_ID.:435:&SESSION.::&DEBUG.:RP:P435_ESA_PRE_ID:'
-,p_grid_new_grid=>false
 );
 end;
 /
@@ -28956,15 +29066,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407084048'
+,p_last_upd_yyyymmddhh24miss=>'20200504154550'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(9565578274499020)
@@ -29044,6 +29171,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(9565578274499020)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -29053,7 +29181,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P435_ESA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -29351,6 +29478,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2582446714487583)
 ,p_process_success_message=>'ESA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2587607237487599)
@@ -29367,6 +29495,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2582005372487582)
 ,p_process_success_message=>'ESA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2588028349487599)
@@ -29399,6 +29528,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'ESA Target Species Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2587282238487599)
@@ -29415,6 +29545,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2581653555487582)
 ,p_process_success_message=>'ESA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2588800467487600)
@@ -29441,12 +29572,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200327192141'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200504160227'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7241734458074652)
@@ -29574,15 +29705,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407085607'
+,p_last_upd_yyyymmddhh24miss=>'20200504162530'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(12192627152143613)
@@ -29662,6 +29810,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(12192627152143613)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -29671,7 +29820,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P445_MMPA_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -29969,6 +30117,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2628992243644629)
 ,p_process_success_message=>'MMPA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2634226905644644)
@@ -29985,6 +30134,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2628558337644629)
 ,p_process_success_message=>'MMPA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2634657904644645)
@@ -30017,6 +30167,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'MMPA Target Species Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2633893665644644)
@@ -30033,6 +30184,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2628113511644628)
 ,p_process_success_message=>'MMPA Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2635423776644645)
@@ -30059,12 +30211,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200327202131'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200504163130'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(9892084342042018)
@@ -30132,7 +30284,7 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_identifier=>'N'
 ,p_column_label=>'Preset Name'
 ,p_column_type=>'STRING'
-,p_help_text=>'Name for the ESA Target Species preset'
+,p_help_text=>'Name for the FSSI Target Species preset'
 );
 wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(2125993452780350)
@@ -30192,15 +30344,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200407090716'
+,p_last_upd_yyyymmddhh24miss=>'20200504162541'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14865373608143832)
@@ -30280,6 +30449,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(14865373608143832)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -30289,7 +30459,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P455_FSSI_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -30587,6 +30756,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2674674604000232)
 ,p_process_success_message=>'FSSI Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2679959563000254)
@@ -30603,6 +30773,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2674217183000232)
 ,p_process_success_message=>'FSSI Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2680306607000254)
@@ -30635,6 +30806,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'FSSI Target Species Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2679577052000253)
@@ -30651,6 +30823,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2673807338000232)
 ,p_process_success_message=>'FSSI Target Species Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2681137399000254)
@@ -30677,12 +30850,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327204107'
+,p_last_upd_yyyymmddhh24miss=>'20200505083351'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(15282901969155972)
@@ -30710,7 +30883,7 @@ wwv_flow_api.create_page_plug(
 'select SVY_CAT_PRE_ID,',
 '       SVY_CAT_PRE_NAME,',
 '       SVY_CAT_PRE_DESC,',
-'       SVY_CAT_PRIMARY_YN,',
+'       CASE WHEN SVY_CAT_PRIMARY_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END SVY_CAT_PRIMARY_YN,',
 '       SVY_CAT_NAME_BR_LIST',
 '  from CEN_CRUISE.CCD_SVY_CAT_PRE_DELIM_V order by upper(SVY_CAT_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
@@ -30769,7 +30942,7 @@ wwv_flow_api.create_worksheet_column(
 ,p_column_identifier=>'T'
 ,p_column_label=>'Primary Survey Category?'
 ,p_column_type=>'STRING'
-,p_help_text=>'Survey Category preset type, a "Y" value indicates it''s a primary survey type and a "N" indicates it''s a secondary survey type'
+,p_help_text=>'Survey Category preset type, a "Yes" value indicates it''s a primary survey type and a "No" value indicates it''s a secondary survey type'
 );
 wwv_flow_api.create_worksheet_column(
  p_id=>wwv_flow_api.id(2703464123068339)
@@ -30820,15 +30993,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200327212016'
+,p_last_upd_yyyymmddhh24miss=>'20200505083816'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(20316879158413116)
@@ -30908,6 +31098,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(20316879158413116)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -30917,7 +31108,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P465_SVY_CAT_PRE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_branch(
@@ -30939,12 +31129,13 @@ wwv_flow_api.create_page_item(
 ,p_source=>'SVY_CAT_PRIMARY_YN'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'STATIC:Y;Y,N;N'
+,p_named_lov=>'Y_N'
+,p_lov=>'.'||wwv_flow_api.id(3561502875785412)||'.'
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_api.id(19774448074588604)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
-,p_help_text=>'Survey Category preset type, a "Y" value indicates it''s a primary survey type and a "N" indicates it''s a secondary survey type '
+,p_help_text=>'Survey Category preset type, a "Yes" value indicates it''s a primary survey type and a "No" value indicates it''s a secondary survey type '
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
@@ -31072,6 +31263,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2732471334147673)
 ,p_process_success_message=>'Survey Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2737769910147686)
@@ -31088,6 +31280,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2732027931147673)
 ,p_process_success_message=>'Survey Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2738022575147686)
@@ -31120,6 +31313,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Survey Category Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2737388705147686)
@@ -31136,6 +31330,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(2731248988147671)
 ,p_process_success_message=>'Survey Category Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(2738873225147687)
@@ -31162,12 +31357,12 @@ wwv_flow_api.create_page(
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200414164241'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20200504160319'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(13292502432762972)
@@ -31294,15 +31489,32 @@ wwv_flow_api.create_page(
 ,p_step_sub_title_type=>'TEXT_WITH_SUBSTITUTIONS'
 ,p_first_item=>'NO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
+,p_javascript_file_urls=>'#APP_IMAGES#js/tooltip.js'
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
+,p_javascript_code_onload=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'    ',
+'    //button tooltip definitions:',
+'    $("#delete_preset_id").attr("title", "Click to delete the current Preset, you must remove all options before deleting the preset otherwise the deletion will fail").addClass("custom_tooltip");',
+' ',
+'    //initialize tooltips:',
+'    $("th.custom_tooltip, a.custom_tooltip, button.custom_tooltip").tooltip({',
+'            position: {',
+'              my: "center bottom-20",',
+'              at: "center top",',
+'              using: tooltip_arrows',
+'            }',
+'          });',
+'',
+''))
+,p_css_file_urls=>'#APP_IMAGES#css/tooltip.css'
 ,p_page_template_options=>'#DEFAULT#'
-,p_dialog_chained=>'Y'
+,p_required_role=>wwv_flow_api.id(19789246675762711)
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200414165542'
+,p_last_upd_yyyymmddhh24miss=>'20200504162600'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(15686671525438639)
@@ -31379,6 +31591,7 @@ wwv_flow_api.create_page_button(
 ,p_button_sequence=>20
 ,p_button_plug_id=>wwv_flow_api.id(15686671525438639)
 ,p_button_name=>'DELETE'
+,p_button_static_id=>'delete_preset_id'
 ,p_button_action=>'REDIRECT_URL'
 ,p_button_template_options=>'#DEFAULT#'
 ,p_button_template_id=>wwv_flow_api.id(19774698947588608)
@@ -31685,6 +31898,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(6122555643939634)
 ,p_process_success_message=>'Gear Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(6129508119939648)
@@ -31701,6 +31915,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(6121722034939633)
 ,p_process_success_message=>'Gear Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(6129988381939648)
@@ -31733,6 +31948,7 @@ wwv_flow_api.create_page_process(
 'end;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_success_message=>'Gear Preset Options Saved<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(6129138196939648)
@@ -31749,6 +31965,7 @@ wwv_flow_api.create_page_process(
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(6122993582939634)
 ,p_process_success_message=>'Gear Preset Processed<BR>'
+,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(6130712606939649)
