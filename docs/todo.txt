@@ -354,7 +354,7 @@ X Implement the QA criteria
 
 X Testing documentation for QA criteria
 
-_ testing documentation for the CRDMA
+X testing documentation for the CRDMA
 
 X bug fix: when the onload warning fires it removes any success message so it is not visible at all
 
@@ -367,6 +367,7 @@ _ reports by vessel
 
 
 _ separate javascript code into include file functions
+	X view/edit preset pages
 _ separate css code into include files
 
 
@@ -377,12 +378,40 @@ X change Y/N to Yes/No select fields (primary category for survey category prese
 X implement links in the QC report (standalone page only) to link the cruise name to the corresponding view/edit cruise
 
 
-_ tooltip for delete button on the 220 and 230 to inform the user that the related records will prevent the cruise or leg from being deleted
+X tooltip for delete button on the 220 and 230 to inform the user that the related records will prevent the cruise or leg from being deleted
 X tooltips for preset delete buttons to indicate that the preset options must be removed before deleting these presets otherwise it will throw an error (otherwise you can always delete a preset record)
 
-_ valid cruise indicator (color coded?) with counts for annotated errors, etc.
+X valid cruise indicator (color coded?) with counts for annotated errors, etc.
 
-**_ qc queries for orphaned DVM records
+**_ qc queries for orphaned DVM records (DVM view)
 
 
 _ export calendar information (e.g. Google Calendar format, outlook, thunderbird, etc.)
+
+X insert/update/delete cases for cruises in the testing documentation ->
+	X ensure that the attributes are processed first in the proceessing order for deletions
+		X delete cruise must remove all associated DVM error records before deleting the cruise
+	X ensure that the attributes are processed after the cruise update/insert for new/updated cruises
+
+X insert/update/delete cases for cruise legs in the testing documentation ->
+	X ensure that the attributes are processed first in the proceessing order for deletions
+		X delete cruise executes the DVM on the parent cruise record after the cruise leg is deleted
+	X ensure that the attributes are processed after the cruise update/insert for new/updated cruises
+
+X business rules:
+	X when a cruise is deleted the PTA error recs associated with it are deleted
+
+X (look into the settimeout version to ensure that the tabular form is loaded before populating it)
+	X applied fix to P220 and P230 (5/5/20) using setTimeout
+		X other species javascript for the copy cruise functionality is buggy (not consistent)
+		X leg aliases javascript for the copy cruise leg functionality is buggy (not consistent) -> reloading page seems to resolve but this is problematic because people can save everything without realizing they need to define the leg aliases manually
+	** _ maybe even check to see if it's loaded and then if not do another setTimeout loop until it executes and set a boolean or hard exit)
+
+_ QA for valid email address
+
+Gameplan (5/6/20):
+	_ test the JS code setTimeout code for the ajax other species and leg aliases request/population code to make sure it works.
+		_Document the bug fix, document the fix,
+	X implement the valid/invalid cruise indicators in the reports and summary pages, document the update,
+	_ update the documentation and commit the code, push the code, deploy the code to MIDD/MIDT
+	X do we need to re-evaluate the validation - no (the only things that will change will not be functional, I've already tested the functionality on 220, 230 on 5/5/20)
