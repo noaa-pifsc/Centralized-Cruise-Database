@@ -138,7 +138,11 @@ grant execute on CCD_DVM_PKG to CEN_CRUISE_APP;
 grant select on DVM_PTA_ERRORS_V to CEN_CRUISE_APP;
 
 
-grant select on CCD_CRUISE_SUMM_ERR_V to CEN_CRUISE_APP;/*
+grant select on CCD_CRUISE_SUMM_ERR_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_ERR_SUMM_V to CEN_CRUISE_APP;
+
+
+/*
 grant insert, delete, update, select on  to CEN_CRUISE_APP;
 
 

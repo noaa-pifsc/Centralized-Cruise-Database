@@ -1,17 +1,17 @@
 APEX Application
 
-_ DVM error annotation page
-_ DVM report page
-_ Cruise database data management page
-_ Cruise database report pages
-	_ cruise summary per year
+X DVM error annotation page
+X DVM report page
+X Cruise database data management page
+X Cruise database report pages
+	X cruise summary per year
 	_ activity summary per cruise (list page with all cruise activities) - allow filtering by cruise
 	_ allow searching by activity or data product
 
 _ allow uploading/viewing of cruise instructions
 _ Phase 2-3: spatial components, bounding box, search for research activities
 _ bounding box -> range for individual sites
-_ LDAP
+X ICAM
 	All users have view-only access, specific people can edit
 VPASS integration? (allocation) making the actual ship request - Nori will get me access to pull data
 FINSS - https://www.st.nmfs.noaa.gov/finss/si/siMain.jsp
@@ -92,10 +92,10 @@ External User/Group management (request if the CEN_CRUISE schema can be granted 
 
 
 DVM QC Criteria:
-_ same ship cannot have concurrent cruises
-_ missing field values
-_ date criteria (start/end dates, etc.)
-_ regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is in the same federal fiscal year as the departure or end date
+X same ship cannot have concurrent cruises
+X missing field values
+X date criteria (start/end dates, etc.)
+X regex for the cruise name to make sure that the cruise name (e.g. SE-15-01) is in the same federal fiscal year as the departure or end date
 
 
 _ RSS feed functionality - subscribe to a cruise leg's data set or type of data set/stream for all updates or just when ready for download
@@ -200,8 +200,8 @@ X package function to take the nth value in the delimited list (can even specify
 
 
 
-_ populate DVM QC criteria for DB to determine when there are cases that should be reviewed
-	_ implement the review/annotation system
+X populate DVM QC criteria for DB to determine when there are cases that should be reviewed
+	X implement the review/annotation system
 
 _ tooltips on the tabs in each of the view/edit Forms
 _
@@ -410,8 +410,15 @@ X (look into the settimeout version to ensure that the tabular form is loaded be
 _ QA for valid email address
 
 Gameplan (5/6/20):
-	_ test the JS code setTimeout code for the ajax other species and leg aliases request/population code to make sure it works.
-		_Document the bug fix, document the fix,
+	X test the JS code for the ajax other species and leg aliases request/population code to make sure it works.
+		X Document the bug fix, document the fix,
 	X implement the valid/invalid cruise indicators in the reports and summary pages, document the update,
-	_ update the documentation and commit the code, push the code, deploy the code to MIDD/MIDT
+	X update the documentation and commit the code, push the code, deploy the code to MIDD/MIDT
 	X do we need to re-evaluate the validation - no (the only things that will change will not be functional, I've already tested the functionality on 220, 230 on 5/5/20)
+
+
+_ create a view for returning all cruise information and related DVM issues
+X QC Validation Issues Reports
+	X implement default sorting for the QC validation issues
+	X make sure the field order on all QC vaidation reports is the same
+X add QC validation issues data grid to View/Edit Cruise Legs
