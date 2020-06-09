@@ -12,7 +12,7 @@
 
 
 
---Installing version 0.2 of Database Version Control  (Git URL: git@pichub.pifsc.gov:application-development/centralized-tools.git in the DB_version_control folder)--
+--Installing version 0.2 of Database Version Control  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_version_control folder)--
 @@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.1.sql";
 
 @@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.2.sql";
@@ -22,7 +22,7 @@
 
 
 
---Installing version 0.6 of Application Authorization Database  (Git URL: git@pichub.pifsc.gov:application-development/centralized-tools.git in the auth_app folder)--
+--Installing version 0.6 of Application Authorization Database  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the auth_app folder)--
 
 @@"./external_modules/auth_app_DB_DDL_DML_update_v0.1.sql";
 @@"./external_modules/auth_app_DB_DDL_DML_update_v0.2.sql";
@@ -33,7 +33,7 @@
 
 
 
---Installing version 0.3 of Data Validation Module  (Git URL: Git URL: git@pichub.pifsc.gov:centralized-data-tools/data-validation-module.git)--
+--Installing version 0.3 of Data Validation Module  (Git URL: Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)--
 @@"./external_modules/DVM_DDL_DML_upgrade_v0.1.sql";
 @@"./external_modules/DVM_DDL_DML_upgrade_v0.2.sql";
 @@"./external_modules/DVM_DDL_DML_upgrade_v0.3.sql";

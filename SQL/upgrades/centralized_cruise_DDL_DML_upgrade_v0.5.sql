@@ -11,7 +11,7 @@
 --------------------------------------------------------
 
 
---Installed Version 0.7 of the Authorization Application Module Database (Git URL: git@pichub.pifsc.gov:application-development/centralized-tools.git in the auth_app folder)
+--Installed Version 0.7 of the Authorization Application Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the auth_app folder)
 @@"./external_modules/auth_app_DB_DDL_DML_update_v0.7.sql";
 
 --define the upgrade version in the database upgrade log table:
