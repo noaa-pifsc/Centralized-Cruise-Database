@@ -1,0 +1,212 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="08ED343D-BF75-B61D-BCB7-7D2628055397" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_TGT_SPP_FSSI">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_TGT_SPP_FSSI</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Target Species - FSSI
+
+This table stores the Target Species - FSSI for a given cruise  (referred to as Survey Instance in FINSS) based on the FINSS system]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TGT_SPP_FSSI_ID" id="AC4BC630-4E8A-B67F-30B4-40982BDD75B1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>TGT_SPP_FSSI_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the Target Species - FSSI table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TGT_SPP_FSSI_NAME" id="375580BC-DC78-A420-E3AE-ED453AE477A1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>TGT_SPP_FSSI_NAME</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given Target Species - FSSI]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TGT_SPP_FSSI_DESC" id="DBD5F619-3BFE-34FE-0696-4EBDE910D095">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>TGT_SPP_FSSI_DESC</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given Target Species - FSSI]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FINSS_ID" id="E87DC028-64BE-6799-D36C-DA233AE27F01">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>FINSS_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The ID value from the FINSS system]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="B39CFE4E-F127-9743-24B4-91688498FF57">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="2086C12D-1C8C-1E91-8DC0-D6A6DC59A5C2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="FD6A6C7D-0FD1-0728-E71C-4DD53E986D43">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="01D4DAA0-76AD-4BB1-43B3-5CABF679117B">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_SHOW_OPT_YN" id="82AAFF38-E171-1E57-0104-432EE5A5E99F">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_TGT_SPP_FSSI</sourceObjSchema>
+<sourceObjName>APP_SHOW_OPT_YN</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Flag to indicate whether or not to include this record in the data management application option lists by default (Y) or not (N)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<defaultValue>&apos;Y&apos;</defaultValue>
+<ownDataTypeParameters>1 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D76E5368-0D16-01A7-B1A0-38DF1C9855B7" name="CCD_TGT_SPP_FSSI_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_TGT_SPP_FSSI_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC4BC630-4E8A-B67F-30B4-40982BDD75B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2B357734-8E69-5FC4-2B9F-9D94F8A1F479" name="CCD_TGT_SPP_FSSI_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_TGT_SPP_FSSI_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="375580BC-DC78-A420-E3AE-ED453AE477A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="511313E6-A77E-B2B8-6CE7-ACCA27A29279" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_TGT_SPP_FSSI_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_TGT_SPP_FSSI_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AC4BC630-4E8A-B67F-30B4-40982BDD75B1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="97F08780-4067-2F93-795B-5D695B78F74D" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_TGT_SPP_FSSI_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_TGT_SPP_FSSI_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="375580BC-DC78-A420-E3AE-ED453AE477A1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B56BF9A7-0B84-F18D-C78A-F7B061F96678" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_FSSI_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[FSSI Target Species Preset Options
+
+This intersection table defines the many-to-many relationship between FSSI Target Species Presets and specific FSSI Target Species to allow groups of FSSI Target Species to be defined to make it easier for authorized application users to choose and define groups of FSSI Target Species for a given cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="FSSI_PRE_OPT_ID" id="522DA9A0-6A82-DFE9-B672-FA61F754E91D">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_FSSI_PRE_OPTS</sourceObjSchema>
+<sourceObjName>FSSI_PRE_OPT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_SPP_FSSI_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="FSSI_PRE_ID" id="214DAB21-C28C-A3C8-7AB5-7513162EF606">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_FSSI_PRE_OPTS</sourceObjSchema>
+<sourceObjName>FSSI_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The FSSI Target Species Preset that the given FSSI Target Species is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="91DF21B5-05BA-ECD4-9653-F7547990EE3B" referredColumn="7F67CB12-2A63-083A-BA05-2435DAC845D4"/>
+</associations>
+</Column>
+<Column name="TGT_SPP_FSSI_ID" id="DAE40714-A01D-FE5D-5F00-27455676CBA6">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_FSSI_PRE_OPTS</sourceObjSchema>
+<sourceObjName>TGT_SPP_FSSI_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The FSSI Target Species that the given FSSI Target Species Preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="6DE5316E-4643-5A86-1873-9D88F0E7D68E" referredColumn="AC4BC630-4E8A-B67F-30B4-40982BDD75B1"/>
+</associations>
+</Column>
+<Column name="FSSI_PRE_OPT_NOTES" id="125590CD-5785-1215-7D3B-932FEA3A3E88">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_FSSI_PRE_OPTS</sourceObjSchema>
+<sourceObjName>FSSI_PRE_OPT_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given FSSI Target Species Preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="40D45F74-FF66-9F59-2B0C-A9094BB1AB95" name="CCD_SPP_FSSI_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="522DA9A0-6A82-DFE9-B672-FA61F754E91D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="89A9D61C-B440-D130-54E1-79ADB66AAFED" name="CCD_SPP_FSSI_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="214DAB21-C28C-A3C8-7AB5-7513162EF606"/>
+<colUsage columnID="DAE40714-A01D-FE5D-5F00-27455676CBA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="528D5078-8084-6585-DF99-159ACD0ED880" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_FSSI_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="214DAB21-C28C-A3C8-7AB5-7513162EF606"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A008BD26-A940-E472-E46C-AD3C832B7C17" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_FSSI_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DAE40714-A01D-FE5D-5F00-27455676CBA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7F07C6FA-C80A-185E-C582-EB5512C16B0E" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_FSSI_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="522DA9A0-6A82-DFE9-B672-FA61F754E91D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3C5FF6B1-FE83-05EA-8C33-89828D74F9EC" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_FSSI_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_FSSI_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="214DAB21-C28C-A3C8-7AB5-7513162EF606"/>
+<colUsage columnID="DAE40714-A01D-FE5D-5F00-27455676CBA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A931EE23-D65A-350B-D7DF-A829727778C3" name="CCD_SPP_FSSI_PRE_OPTS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="DAE40714-A01D-FE5D-5F00-27455676CBA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0C39A631-E4F7-9AF7-A72D-4FCA12BA3317" name="CCD_SPP_FSSI_PRE_OPTS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="214DAB21-C28C-A3C8-7AB5-7513162EF606"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

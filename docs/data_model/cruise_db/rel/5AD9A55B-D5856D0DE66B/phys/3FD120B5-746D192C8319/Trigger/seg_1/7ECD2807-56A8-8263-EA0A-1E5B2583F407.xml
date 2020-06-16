@@ -1,0 +1,18 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="CCD_SVY_TYPES_AUTO_BRU" directorySegmentName="seg_1" id="7ECD2807-56A8-8263-EA0A-1E5B2583F407">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_TYPES_AUTO_BRU</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:20 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>UPDATE</actions>
+<body><![CDATA[BEGIN
+      :NEW.LAST_MOD_DATE := SYSDATE;
+      :NEW.LAST_MOD_BY := nvl(v('APP_USER'),user);
+END;
+]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>2191BF3B-4E56-02A7-73A9-EBAB3BA13196</owner>
+<table>6EAA4231-D6D4-C4FC-9CD9-DBB38DE31600</table>
+</TriggerOraclev10g>

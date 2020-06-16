@@ -1,0 +1,223 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="00B8B4E3-97ED-506E-68FD-ACD2153779EA" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AUTH_APP_GROUPS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Application Permission Groups
+
+This table contains all permission groups for the given application that are used to determine what each user is able to do within the application.  Based on the logged in Application Users role they are allowed to perform certain functions.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="APP_GROUP_ID" id="913A105E-C79B-3EC2-B378-E04CBBC553F7">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>APP_GROUP_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the AUTH_APP_GROUPS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_GROUP_NAME" id="411DD338-3CC0-BE45-D0EA-4DDFA3D754AB">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>APP_GROUP_NAME</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name of the given Application Permission Group]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_GROUP_CODE" id="A9010392-552B-830A-826F-5ABB554D1434">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>APP_GROUP_CODE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The code of the given Application Permission Group]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_GROUP_DESC" id="F5F1735B-84C5-5304-908B-A3CCC700F12E">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>APP_GROUP_DESC</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The description of the given Application Permission Group]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1000 BYTE</dataTypeSize>
+<ownDataTypeParameters>1000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="D8340B7A-5B11-F361-050D-A7F271D73E48">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="411F5C71-300C-C2EB-1176-14808B1684DD">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="BB096DF2-D16B-31E6-554F-EBF00961F92C">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="8319DE52-CA38-980B-7BF7-580DDF187AD3">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AUTH_APP_GROUPS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0B6F16E6-4F79-89E0-02C2-2127439FDF18" name="AUTH_APP_GROUPS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="913A105E-C79B-3EC2-B378-E04CBBC553F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95D3A187-D39D-53A1-DD4B-049F0D31B4AC" name="AUTH_APP_GROUPS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="411DD338-3CC0-BE45-D0EA-4DDFA3D754AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0139470-5AB5-E849-C44E-33E9CB9D38F7" name="AUTH_APP_GROUPS_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_U2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9010392-552B-830A-826F-5ABB554D1434"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7354F8DE-9EE7-B4E7-FADB-D647CB269FE6" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AUTH_APP_GROUPS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="913A105E-C79B-3EC2-B378-E04CBBC553F7"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1D768473-78D2-BB60-B8CD-51DBD711CCC5" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AUTH_APP_GROUPS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="411DD338-3CC0-BE45-D0EA-4DDFA3D754AB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="60A26338-92FC-CE3C-411F-EDDDC4C0C578" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AUTH_APP_GROUPS_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AUTH_APP_GROUPS_U2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A9010392-552B-830A-826F-5ABB554D1434"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

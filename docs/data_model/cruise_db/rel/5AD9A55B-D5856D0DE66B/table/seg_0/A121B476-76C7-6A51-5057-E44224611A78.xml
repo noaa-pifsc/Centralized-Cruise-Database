@@ -1,0 +1,181 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A121B476-76C7-6A51-5057-E44224611A78" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_CAT_PRE">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_CAT_PRE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Expected Species Categories Presets
+
+This table defines Expected Species Categories Presets for implementation in the data management application]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SPP_CAT_PRE_ID" id="299FD27C-3EFA-E7C3-3DE2-FCDF2EC65E77">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>SPP_CAT_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the Expected Species Categories Preset table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPP_CAT_PRE_NAME" id="E8B891AA-CA6C-2F22-7D42-36EFFF55FC10">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>SPP_CAT_PRE_NAME</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given Expected Species Categories Preset]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SPP_CAT_PRE_DESC" id="0D53CBA4-DEFF-15D1-FA2C-9AE01F211554">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>SPP_CAT_PRE_DESC</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given Expected Species Categories Preset]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="6EED25B0-E100-D126-DF9E-2EA67854B4DB">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="EDF8AF28-437E-9CC8-8DE3-D99724F040FB">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="E5FB9396-5E33-8AB0-F59E-08B075BAB9B0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="0FE9A363-C548-D6B2-DBF0-FDC6ED0CA3BA">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_CAT_PRE</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="99B2F403-2A73-FFC0-D590-9B311CDDC315" name="CCD_SPP_CAT_PRE_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_CAT_PRE_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="299FD27C-3EFA-E7C3-3DE2-FCDF2EC65E77"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E7E11CD-53C1-A27A-71C9-99EB106DEB2B" name="CCD_SPP_CAT_PRE_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_CAT_PRE_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E8B891AA-CA6C-2F22-7D42-36EFFF55FC10"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A8904CAD-0B74-0DE5-938C-B94BFBFD1C16" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_CAT_PRE_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_CAT_PRE_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="299FD27C-3EFA-E7C3-3DE2-FCDF2EC65E77"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00AAD154-47FB-3F58-AD01-711BE096BC4C" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_CAT_PRE_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_CAT_PRE_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E8B891AA-CA6C-2F22-7D42-36EFFF55FC10"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

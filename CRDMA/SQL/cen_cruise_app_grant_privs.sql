@@ -125,21 +125,21 @@ grant select on CCD_SCI_CENTER_DELIM_V to CEN_CRUISE_APP;
 
 
 
-grant select, update, delete on DVM_ERRORS to CEN_CRUISE_APP;
-grant select, delete on DVM_PTA_ERR_TYP_ASSOC to CEN_CRUISE_APP;
-grant select, delete on DVM_PTA_ERRORS to CEN_CRUISE_APP;
+grant select, update, delete on DVM_ISSUES to CEN_CRUISE_APP;
+grant select, delete on DVM_ISS_TYP_ASSOC to CEN_CRUISE_APP;
+grant select, delete on DVM_PTA_ISSUES to CEN_CRUISE_APP;
 
 
-grant select on dvm_err_severity to CEN_CRUISE_APP;
-grant select on dvm_error_types to CEN_CRUISE_APP;
-grant select on dvm_err_res_types to CEN_CRUISE_APP;
+grant select on dvm_iss_severity to CEN_CRUISE_APP;
+grant select on dvm_iss_types to CEN_CRUISE_APP;
+grant select on dvm_iss_res_types to CEN_CRUISE_APP;
 
 grant execute on CCD_DVM_PKG to CEN_CRUISE_APP;
-grant select on DVM_PTA_ERRORS_V to CEN_CRUISE_APP;
+grant select on DVM_PTA_ISSUES_V to CEN_CRUISE_APP;
 
 
-grant select on CCD_CRUISE_SUMM_ERR_V to CEN_CRUISE_APP;
-grant select on CCD_CRUISE_ERR_SUMM_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_SUMM_ISS_V to CEN_CRUISE_APP;
+grant select on CCD_CRUISE_ISS_SUMM_V to CEN_CRUISE_APP;
 
 
 /*

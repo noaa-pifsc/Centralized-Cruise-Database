@@ -1,0 +1,96 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="CCD_SPP_FSSI_PRE" directorySegmentName="seg_0" id="BBCB4F43-4D75-6F20-CD06-05BF7DC3F96E">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>C9150F13-333A-A5BD-7828-ECF06883F851</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="CREATE_DATE" id="4E3974A4-13BB-3685-C7CD-8CF30F33A86D">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FSSI_PRE_DESC" id="766F9DD1-E845-07CE-107D-8898ACE0B6E9">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FSSI_PRE_ID" id="7F67CB12-2A63-083A-BA05-2435DAC845D4">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="88BE7614-53A0-176C-B72A-180BA1AD352E">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="9DFEC406-3916-7D32-2CA6-A93F93DD8324">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="FSSI_PRE_NAME" id="A140DA2D-F8B9-6176-B292-7711B8EA948D">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="A7A500DE-FE2A-CBFD-01F3-2E27EB0E711A">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_SPP_FSSI_PRE_PK" id="BF0A4190-277D-8796-81BF-9E5221BB33F2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_SPP_FSSI_PRE_U1" id="F1D1D5CC-6E7E-10EF-C10D-C05D64CF30FC">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+</indexProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CCD_SPP_FSSI_PRE_PK" id="F3F15E2B-7193-8B0F-1827-FF035DDCFA49">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<existingIndex>BF0A4190-277D-8796-81BF-9E5221BB33F2</existingIndex>
+<indexSegment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CCD_SPP_FSSI_PRE_U1" id="02511797-7E34-B3BC-2617-7F7DFC365DF5">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<existingIndex>F1D1D5CC-6E7E-10EF-C10D-C05D64CF30FC</existingIndex>
+<indexSegment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

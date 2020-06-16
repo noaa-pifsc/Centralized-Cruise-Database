@@ -1,0 +1,469 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="CDA64095-068A-A46F-825A-E0FF391C3DDE" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Research Cruises
+
+This table defines the different PIFSC research cruises where data was collected]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CRUISE_ID" id="53F77E8A-7B6F-1C76-98DC-CFC53454D27D">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_CRUISES table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_NAME" id="ACC79B49-B099-AC13-FF2B-01272D7EDA40">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_NAME</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The name of the given cruise designated by NOAA (e.g. SE-15-01)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_NOTES" id="4ACCACE1-196C-3979-6507-C4D0B884EC91">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Any notes for the given research cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="1E734A51-E084-4840-9F46-0F3D4CE373A2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="0BF0A45F-8FF6-DF15-E7C2-AB5E234D7AD7">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="83CF1B45-2D64-3609-9BB2-1B198CF3E739">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="CFEF0847-6D13-412E-BCD9-36B0A2F432B3">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SVY_TYPE_ID" id="86CEF306-49E2-38FC-6002-61BE07C23290">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>SVY_TYPE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Survey Type for the given cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C8F33386-396C-DBB9-2F12-50C4FBE12FAE" referredColumn="A77FFAEB-4C89-CCF6-313F-BBDE1038EDD5"/>
+</associations>
+</Column>
+<Column name="SCI_CENTER_DIV_ID" id="2FA58095-91DB-ED39-2120-FD7E90AC35EF">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>SCI_CENTER_DIV_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Science Center Division Responsible for the given Cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="62B9E78A-3B89-0A34-2184-E0E5BECC37AE" referredColumn="6F8E0466-E5E2-36C3-3B0D-6C79568C0BFB"/>
+</associations>
+</Column>
+<Column name="STD_SVY_NAME_ID" id="47026B5C-A46A-4973-CF1D-7877DE190D37">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>STD_SVY_NAME_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Standard Survey Name defined by NMFS]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CC843DF4-69E5-45F3-9685-59A833A6F0E1" referredColumn="F1FBD675-B37E-BC76-5CD5-4A333024478D"/>
+</associations>
+</Column>
+<Column name="SVY_FREQ_ID" id="973C2E2B-12AD-D631-9190-6CEBA1284627">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>SVY_FREQ_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Frequency of the given cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F96B42F7-2500-7751-3A98-231F34E099CE" referredColumn="C2AA9AFE-59EB-8985-534F-2B2F398022D8"/>
+</associations>
+</Column>
+<Column name="CRUISE_URL" id="951AFB57-2897-BF12-34E5-40B3FB257CF3">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_URL</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_CONT_EMAIL" id="A2405CA4-041C-5D79-B830-8E7A706AD688">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_CONT_EMAIL</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STD_SVY_NAME_OTH" id="6AB9FF2C-E2DF-6212-72F9-C48F5DEC393C">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>STD_SVY_NAME_OTH</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Field defines a Standard Survey Name that is not included in the Standard Survey Name table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_DESC" id="F4755735-E36D-2082-6194-0EAFB55AE1F1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>CRUISE_DESC</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given research cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="OBJ_BASED_METRICS" id="42EC5A8F-20BA-9671-6AEF-B828E440B9FF">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>OBJ_BASED_METRICS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Objective Based Metrics for the given research cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PTA_ISS_ID" id="3B41ECF0-1D8F-E648-535A-CBF5AA4C3BAA">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISES</sourceObjSchema>
+<sourceObjName>PTA_ISS_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key reference to the Issues (PTA) intersection table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F4A65DF2-6326-E333-64B4-309C7FE5E17D" referredColumn="66183A9B-3F40-3EE0-A3C5-9589AA372499"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C0DA31B1-A58C-3FC0-6BC3-AC5DD11280B0" name="CCD_CRUISES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53F77E8A-7B6F-1C76-98DC-CFC53454D27D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8B3EC31B-6916-7805-3F4E-7357C163E357" name="CCD_CRUISES_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ACC79B49-B099-AC13-FF2B-01272D7EDA40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CF148600-862A-D4DC-0C47-F832AFEBD425" name="CCD_CRUISES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B41ECF0-1D8F-E648-535A-CBF5AA4C3BAA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="9EA062BC-A784-F4CE-497A-1599C5F838FD" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2FA58095-91DB-ED39-2120-FD7E90AC35EF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A63B1263-79C9-6A04-953D-CEE67AA48F79" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47026B5C-A46A-4973-CF1D-7877DE190D37"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="5812BAFE-E872-F65A-BFB2-FA27FA866AB1" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_I3">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_I3</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="973C2E2B-12AD-D631-9190-6CEBA1284627"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="988B5974-01B5-E91C-8225-087E32C16970" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_I4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_I4</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="86CEF306-49E2-38FC-6002-61BE07C23290"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7A9665C4-F13D-09FA-D176-9AE1ACDAC392" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="53F77E8A-7B6F-1C76-98DC-CFC53454D27D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2EDBBA01-47C2-3F84-2EC4-A8C41D475AF2" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="ACC79B49-B099-AC13-FF2B-01272D7EDA40"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87C0C940-DE39-4693-E9F2-E9D727DE4C03" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_CRUISES_U2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B41ECF0-1D8F-E648-535A-CBF5AA4C3BAA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2A8C8A4B-1662-F14F-8C4A-AB0F76BCE956" name="CCD_CRUISES_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="2FA58095-91DB-ED39-2120-FD7E90AC35EF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AFA909F0-36D2-0CBC-366F-C26EDED53324" name="CCD_CRUISES_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="47026B5C-A46A-4973-CF1D-7877DE190D37"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7E0E566B-0668-A28A-7ECB-342036DA7981" name="CCD_CRUISES_FK3">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="973C2E2B-12AD-D631-9190-6CEBA1284627"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="00A6DAC9-F30A-7C39-D1E2-A1D2813E31B1" name="CCD_CRUISES_FK4">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="86CEF306-49E2-38FC-6002-61BE07C23290"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D13A5911-5EC9-A3C0-3D06-679FF6D1FCF4" name="CCD_CRUISES_FK5">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3B41ECF0-1D8F-E648-535A-CBF5AA4C3BAA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

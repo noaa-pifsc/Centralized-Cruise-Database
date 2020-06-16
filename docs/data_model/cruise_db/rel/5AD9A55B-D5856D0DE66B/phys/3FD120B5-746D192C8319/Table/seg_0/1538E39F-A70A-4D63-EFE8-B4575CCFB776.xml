@@ -1,0 +1,188 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="DVM_ISS_TYPES" directorySegmentName="seg_0" id="1538E39F-A70A-4D63-EFE8-B4575CCFB776">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>C9150F13-333A-A5BD-7828-ECF06883F851</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="ISS_TYPE_DESC" id="0AFD56FA-9166-913C-A244-3D7782A40E00">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="APP_LINK_TEMPLATE" id="14E3586B-940A-B3F6-553D-FE05A54B0760">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_BY" id="3D5B06C1-05F5-283F-DA5F-60DA7314A6C6">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ISS_TYPE_ACTIVE_YN" id="4BA40813-3D8A-390E-17FF-D7EC1F7B5C56">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<defaultValue>&apos;Y&apos;</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="540CA974-BFA5-9671-F861-138EF085B0D0">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ISS_SEVERITY_ID" id="78C597AF-CCD0-1D9E-686B-C3A2AD93E639">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="QC_OBJECT_ID" id="83E044BD-05E5-5FAC-A901-12F26E664A2B">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="8B92C64A-02C7-03FA-A61B-1B59C3C26081">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ISS_TYPE_NAME" id="8E5AE89F-55D1-3F3A-36B0-85A1D07E970C">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_STREAM_ID" id="9C87DCF2-B350-C136-AC18-DB6191C39FC4">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ISS_TYPE_ID" id="A93857D2-627C-A60C-A113-BDF8FCC1482C">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="ISS_TYPE_COMMENT_TEMPLATE" id="CC446500-4088-E324-73E7-D74C139BA9A5">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="IND_FIELD_NAME" id="D0C50B81-BA8C-AF14-B76D-072F402787A1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="D294DBF9-F963-5AE9-D395-8619035DB030">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISS_TYPES_I2" id="7A77A15A-2012-856A-F603-864DC3D1B581">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISS_TYPES_I1" id="7C66E02E-FEE9-05D4-77D0-D13D738B1021">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISS_TYPES_U1" id="7D2A5EC0-E70A-41F2-A955-44FFCC73EDC2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISS_TYPES_PK" id="A19FBC6E-772C-6F84-A41D-A507F5DCCFB6">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISS_TYPES_I3" id="DAC12A50-D482-92CA-DD9D-9519931D40FA">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ISS_TYPES_FK3" id="329F0302-C1F1-F10A-5ADD-0165C7A7B1EE">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ISS_TYPES_FK1" id="4AFE0263-AB53-49C8-BF09-DBFF7DB50C64">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="DVM_ISS_TYPES_FK2" id="F48F4C90-9748-F115-477A-8D98A60E1F41">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<lobStorages>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000136160C00013$$" id="4669F727-BEE2-2129-A7F1-CACF4D50B9D6">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:22 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ISS_TYPE_COMMENT_TEMPLATE</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
+</lobStorages>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ISS_TYPES_PK" id="B811C22F-6372-A3C5-CB77-4BE256155F62">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<existingIndex>A19FBC6E-772C-6F84-A41D-A507F5DCCFB6</existingIndex>
+<indexSegment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="DVM_ISS_TYPES_U1" id="DEA10E59-E7CD-C943-00E3-DA5842DC8A33">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+<existingIndex>7D2A5EC0-E70A-41F2-A955-44FFCC73EDC2</existingIndex>
+<indexSegment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

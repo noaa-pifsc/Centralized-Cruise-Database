@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="E7DFC972-7AAF-C695-3EF7-FC71F82BF8DC" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGION_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Region Preset Options
+
+This intersection table defines the many-to-many relationship between region presets and specific regions to allow groups of regions to be defined to make it easier for authorized application users to choose and define groups of regions for a given cruise leg]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="REGION_PRE_OPT_ID" id="BD8B0CBB-9300-098F-B6D3-5EB4852E36EA">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REGION_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REGION_PRE_OPT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_REGION_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REGION_PRE_ID" id="34910AAC-E161-89FA-11FF-DE46C69DF0FB">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REGION_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REGION_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Region preset that the given region is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EBC19AA4-0D2E-222B-2FF4-5C4611B6AC3C" referredColumn="E46D9309-59F1-BA3E-9729-0E1947B6D7B4"/>
+</associations>
+</Column>
+<Column name="REGION_ID" id="D25B3051-D422-7DF5-79CC-11532F31C881">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REGION_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REGION_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Region that the given region preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="86F49999-1429-693B-BE4A-72498539E193" referredColumn="B426D74B-F2DC-6343-A8E2-535A7F20017C"/>
+</associations>
+</Column>
+<Column name="REGION_PRE_OPT_NOTES" id="A8BED748-9759-4F71-B0B4-8DA3CE1D8068">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REGION_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REGION_PRE_OPT_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given region preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="C2AF728E-0FB9-80C5-5693-263083CDFD70" name="CCD_REGION_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD8B0CBB-9300-098F-B6D3-5EB4852E36EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A4E1F4A1-B60C-C212-38D8-12CF6EE2AB81" name="CCD_REGION_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34910AAC-E161-89FA-11FF-DE46C69DF0FB"/>
+<colUsage columnID="D25B3051-D422-7DF5-79CC-11532F31C881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1F993E1F-3F72-DED0-E369-F18E2568949C" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGION_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34910AAC-E161-89FA-11FF-DE46C69DF0FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3DCDA651-6A8D-FCCD-FA2C-23014265B661" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGION_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D25B3051-D422-7DF5-79CC-11532F31C881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8C77B336-F5DF-B65B-2AEC-ADE127A0EC54" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGION_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD8B0CBB-9300-098F-B6D3-5EB4852E36EA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECC2C7CA-7280-0942-405B-6552A12A747D" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGION_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34910AAC-E161-89FA-11FF-DE46C69DF0FB"/>
+<colUsage columnID="D25B3051-D422-7DF5-79CC-11532F31C881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D0209D05-EBEF-AF97-ED06-0413DEE67737" name="CCD_REGION_PRE_OPTS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D25B3051-D422-7DF5-79CC-11532F31C881"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="16BC561F-7ACE-E64D-3F33-A187E0BF2BD9" name="CCD_REGION_PRE_OPTS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="34910AAC-E161-89FA-11FF-DE46C69DF0FB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

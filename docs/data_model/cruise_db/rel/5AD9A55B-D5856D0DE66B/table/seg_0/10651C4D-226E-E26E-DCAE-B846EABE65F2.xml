@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="10651C4D-226E-E26E-DCAE-B846EABE65F2" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_ESA_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[ESA Target Species Preset Options
+
+This intersection table defines the many-to-many relationship between ESA Target Species Presets and specific ESA Target Species to allow groups of ESA Target Species to be defined to make it easier for authorized application users to choose and define groups of ESA Target Species for a given cruise]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ESA_PRE_OPT_ID" id="8D965505-F54F-7D64-4EF9-CE8FF3C18587">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_ESA_PRE_OPTS</sourceObjSchema>
+<sourceObjName>ESA_PRE_OPT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_SPP_ESA_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ESA_PRE_ID" id="AB1F9443-49A5-1EE3-AC70-BAE837DE76F0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_ESA_PRE_OPTS</sourceObjSchema>
+<sourceObjName>ESA_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The ESA Target Species Preset that the given ESA Target Species is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C919D93B-BFCC-DE23-9587-8C88F962D05E" referredColumn="2EB88587-CC3E-9B8B-4D35-28BC3FBDBF52"/>
+</associations>
+</Column>
+<Column name="TGT_SPP_ESA_ID" id="BB0890DB-85C7-F3F0-BC31-3EAF1C17062F">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_ESA_PRE_OPTS</sourceObjSchema>
+<sourceObjName>TGT_SPP_ESA_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The ESA Target Species that the given ESA Target Species Preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="061A961B-0BB4-A3E0-4F1B-D36D2F587EFC" referredColumn="B8392A86-DB1D-4CCC-C843-4B07953EFA97"/>
+</associations>
+</Column>
+<Column name="ESA_PRE_OPT_NOTES" id="A9650C05-0AFD-3D69-E8CD-B0912BFC9A36">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SPP_ESA_PRE_OPTS</sourceObjSchema>
+<sourceObjName>ESA_PRE_OPT_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given ESA Target Species Preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F080B91A-F988-897D-0E51-EB9E7694A888" name="CCD_SPP_ESA_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8D965505-F54F-7D64-4EF9-CE8FF3C18587"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3C535F7A-52E0-106A-87FF-71158D8DB594" name="CCD_SPP_ESA_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB1F9443-49A5-1EE3-AC70-BAE837DE76F0"/>
+<colUsage columnID="BB0890DB-85C7-F3F0-BC31-3EAF1C17062F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BD87FBB8-FEFA-A2D3-8626-96C373FBF140" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_ESA_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB1F9443-49A5-1EE3-AC70-BAE837DE76F0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="16649484-E52D-E237-3F88-AFAC11949BE6" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_ESA_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB0890DB-85C7-F3F0-BC31-3EAF1C17062F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7775AF36-E7DF-E4E1-365C-06A9309595D3" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_ESA_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8D965505-F54F-7D64-4EF9-CE8FF3C18587"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C17905A5-524A-835A-ADE8-BE3359677093" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SPP_ESA_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_ESA_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB1F9443-49A5-1EE3-AC70-BAE837DE76F0"/>
+<colUsage columnID="BB0890DB-85C7-F3F0-BC31-3EAF1C17062F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="32635661-8879-65AD-C444-13867FFF037E" name="CCD_SPP_ESA_PRE_OPTS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BB0890DB-85C7-F3F0-BC31-3EAF1C17062F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3F9FC627-58E1-EC48-68CA-973B4B8F17AF" name="CCD_SPP_ESA_PRE_OPTS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AB1F9443-49A5-1EE3-AC70-BAE837DE76F0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

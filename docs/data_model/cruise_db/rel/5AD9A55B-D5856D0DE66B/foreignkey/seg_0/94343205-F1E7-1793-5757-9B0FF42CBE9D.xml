@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="94343205-F1E7-1793-5757-9B0FF42CBE9D" containerWithKeyObject="882A4FD9-DFC1-AEE5-DAA6-6D5DD5A198AB" localFKIndex="E2DDADCF-04AE-FB52-9C0E-A56AFD67827B" name="CCD_SVY_CAT_PRE_OPTS_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_FK1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<referredTableLongName>CEN_CRUISE.CCD_SVY_CATS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>4F2005FB-318B-3435-96B7-6E223EF45E63</referredTableID>
+<keyObject>D3BA070E-FEE9-1ED4-3296-F60B7248480B</keyObject>
+<referredKeyID>D3BA070E-FEE9-1ED4-3296-F60B7248480B</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>SVY_CAT_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

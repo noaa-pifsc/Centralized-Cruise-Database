@@ -1,0 +1,116 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="DCD8D511-474E-7513-2431-45847C50F307" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CUST_ERR_CONSTR_MSG">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[APEX Custom Database Constraint Error Messages
+
+This table contains the different database constraint error messages that will serve to provide an informative message to the end user while not exposing sensitive information that could potentially be used to launch attacks on the underlying application/database servers.  This was originally developed in response to the SI-11 security control]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="CONSTR_MSG_ID" id="A3E75DE1-FFB5-A675-27F8-31295D253EC0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CUST_ERR_CONSTR_MSG</sourceObjSchema>
+<sourceObjName>CONSTR_MSG_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary Key for the APX_ERR_CONSTR_MSG table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONSTR_NAME" id="57B7B305-D2B8-64A2-EB72-71A5DCD01C9D">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CUST_ERR_CONSTR_MSG</sourceObjSchema>
+<sourceObjName>CONSTR_NAME</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The database constraint name the given custom error message is defined for.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CONSTR_ERR_MESSAGE" id="FFCDE3B9-F36F-1E1A-71E9-86AB0EAD66C9">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CUST_ERR_CONSTR_MSG</sourceObjSchema>
+<sourceObjName>CONSTR_ERR_MESSAGE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The user-defined error message that will be shown to the application users when the given CONSTRAINT_NAME is violated]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="E6E84B01-D0C1-E612-C871-A9B53EEEF541" name="CUST_ERR_CONSTR_MSG_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A3E75DE1-FFB5-A675-27F8-31295D253EC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="4D5CCCBC-3745-1C9F-1149-A36C79B933B4" name="CUST_ERR_CONSTR_MSG_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57B7B305-D2B8-64A2-EB72-71A5DCD01C9D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3BA252AD-99DC-ADF2-F17A-33FA68E9BDBF" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CUST_ERR_CONSTR_MSG_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A3E75DE1-FFB5-A675-27F8-31295D253EC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="87014151-A7D7-B8E5-4E01-279C9F2EA4F7" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CUST_ERR_CONSTR_MSG_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CUST_ERR_CONSTR_MSG_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="57B7B305-D2B8-64A2-EB72-71A5DCD01C9D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

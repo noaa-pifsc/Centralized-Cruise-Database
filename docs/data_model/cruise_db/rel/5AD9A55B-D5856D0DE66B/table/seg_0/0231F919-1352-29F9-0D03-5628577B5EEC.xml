@@ -1,0 +1,214 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0231F919-1352-29F9-0D03-5628577B5EEC" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_ECOSYSTEMS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Cruise Leg Regional Ecosystems
+
+This intersection table defines the many-to-many relationship between a given cruise leg and the associated regional ecosystems.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LEG_ECOSYSTEM_ID" id="54EAF8B5-E204-6957-9975-5A65B8358442">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>LEG_ECOSYSTEM_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_LEG_ECOSYSTEMS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_LEG_ID" id="E70E1830-0FA9-EB63-F08C-C6A1A52F7CBD">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>CRUISE_LEG_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The cruise leg the regional ecosystem is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="39CAF9E4-D9B9-8874-61D8-FA8CEB396D5F" referredColumn="DF172437-2527-5B1D-B775-EDA1F661B551"/>
+</associations>
+</Column>
+<Column name="REG_ECOSYSTEM_ID" id="A788B4D7-3946-ED48-C44D-586A5D166174">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>REG_ECOSYSTEM_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The regional ecosystem the given cruise leg is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="38838E2E-897D-2FBE-622D-0948A6325B90" referredColumn="8CBB4124-9BFF-934D-BB9D-42A1FCB2F226"/>
+</associations>
+</Column>
+<Column name="LEG_ECOSYSTEM_NOTES" id="50778225-3860-70EC-CD20-4FB38CE43759">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>LEG_ECOSYSTEM_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given Cruise Leg's regional ecosystems]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="29FE712F-D530-91D4-88EC-9BA4AB3399ED">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="FF002BAC-E281-4A3F-878B-2E2104F66F3F">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_ECOSYSTEMS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="2AA6BB39-1CBC-EE57-3771-1AE901639CF4" name="CCD_LEG_ECOSYSTEMS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54EAF8B5-E204-6957-9975-5A65B8358442"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3875CFB8-5772-A6A3-2049-9D197A133F6F" name="CCD_LEG_ECOSYSTEMS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E70E1830-0FA9-EB63-F08C-C6A1A52F7CBD"/>
+<colUsage columnID="A788B4D7-3946-ED48-C44D-586A5D166174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F1084059-51A6-8D1C-25B9-11CE21D04C68" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_ECOSYSTEMS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E70E1830-0FA9-EB63-F08C-C6A1A52F7CBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="54F8620A-6936-EA20-65E7-AF2F5CCA2E5D" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_ECOSYSTEMS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A788B4D7-3946-ED48-C44D-586A5D166174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="83F47805-34D8-33BD-04C3-2BA438AA63CC" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_ECOSYSTEMS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="54EAF8B5-E204-6957-9975-5A65B8358442"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3A184451-B12F-2EFB-A83E-D447C3C06269" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_ECOSYSTEMS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_ECOSYSTEMS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:17 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E70E1830-0FA9-EB63-F08C-C6A1A52F7CBD"/>
+<colUsage columnID="A788B4D7-3946-ED48-C44D-586A5D166174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DB398699-B996-7610-408A-C9BC823D858C" name="CCD_LEG_ECOSYSTEMS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E70E1830-0FA9-EB63-F08C-C6A1A52F7CBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DB8520C3-423D-3A0B-9518-86811A23C161" name="CCD_LEG_ECOSYSTEMS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A788B4D7-3946-ED48-C44D-586A5D166174"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

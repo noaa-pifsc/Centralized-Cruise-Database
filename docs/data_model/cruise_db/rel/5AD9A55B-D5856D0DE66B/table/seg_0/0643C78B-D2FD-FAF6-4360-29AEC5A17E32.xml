@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0643C78B-D2FD-FAF6-4360-29AEC5A17E32" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REG_ECO_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Regional Ecosystem Preset Options
+
+This intersection table defines the many-to-many relationship between regional ecosystem presets and specific regional ecosystems to allow groups of regional ecosystems to be defined to make it easier for authorized application users to choose and define groups of regional ecosystems for a given cruise leg]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="REG_ECO_PRE_OPT_ID" id="E5095E31-520C-2E45-88E6-D9E52EC09336">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REG_ECO_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REG_ECO_PRE_OPT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_REG_ECO_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="REG_ECO_PRE_ID" id="F871C549-39CF-3170-0A7B-8845FADD9E0F">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REG_ECO_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REG_ECO_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Regional Ecosystem preset that the given regional ecosystem is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FB4BB71C-9CD7-4A56-6943-99180A68E8B4" referredColumn="5AAC84E0-B71C-BD13-71B2-214768AEDC57"/>
+</associations>
+</Column>
+<Column name="REG_ECOSYSTEM_ID" id="CD257294-E3DD-BCE2-C581-55DD3437CEA0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REG_ECO_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REG_ECOSYSTEM_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Regional Ecosystem that the given regional ecosystem preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9CA2DA37-6F22-7063-0319-B9AA4F4C6353" referredColumn="8CBB4124-9BFF-934D-BB9D-42A1FCB2F226"/>
+</associations>
+</Column>
+<Column name="REG_ECO_PRE_OPT_NOTES" id="414190EB-622F-7021-D0CD-DB0DFDD50040">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_REG_ECO_PRE_OPTS</sourceObjSchema>
+<sourceObjName>REG_ECO_PRE_OPT_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given Regional Ecosystem preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A20074B9-0CBC-FE75-ACA5-8A636A642EBF" name="CCD_REG_ECO_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E5095E31-520C-2E45-88E6-D9E52EC09336"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8D87FC29-27F6-9D8A-C432-24AA83338EC5" name="CCD_REG_ECO_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F871C549-39CF-3170-0A7B-8845FADD9E0F"/>
+<colUsage columnID="CD257294-E3DD-BCE2-C581-55DD3437CEA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6FA0E06D-48B2-516C-3FE6-E1F1E0C2F049" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REG_ECO_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F871C549-39CF-3170-0A7B-8845FADD9E0F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BE6AAE7E-5EFD-D916-363C-9AB030DF3E16" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REG_ECO_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD257294-E3DD-BCE2-C581-55DD3437CEA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="418460F0-821B-ABAC-A249-65872A29A923" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REG_ECO_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E5095E31-520C-2E45-88E6-D9E52EC09336"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="52E369A8-5195-A014-70C0-54A31C2EFB8E" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REG_ECO_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REG_ECO_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F871C549-39CF-3170-0A7B-8845FADD9E0F"/>
+<colUsage columnID="CD257294-E3DD-BCE2-C581-55DD3437CEA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B7A8E3B0-234E-A6C7-DECF-8CE8900A0A3E" name="CCD_REG_ECO_PRE_OPTS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="CD257294-E3DD-BCE2-C581-55DD3437CEA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C8017122-7479-38BF-B397-9C21F0A21CEA" name="CCD_REG_ECO_PRE_OPTS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F871C549-39CF-3170-0A7B-8845FADD9E0F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

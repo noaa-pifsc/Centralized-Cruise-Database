@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="86F49999-1429-693B-BE4A-72498539E193" containerWithKeyObject="E7DFC972-7AAF-C695-3EF7-FC71F82BF8DC" localFKIndex="D0209D05-EBEF-AF97-ED06-0413DEE67737" name="CCD_REGION_PRE_OPTS_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_REGION_PRE_OPTS_FK1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<referredTableLongName>CEN_CRUISE.CCD_REGIONS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>E36080F7-DC22-390F-6EA1-E4925F596055</referredTableID>
+<keyObject>80AB7B18-64DE-19DF-FF30-8E0F346B7520</keyObject>
+<referredKeyID>80AB7B18-64DE-19DF-FF30-8E0F346B7520</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>REGION_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

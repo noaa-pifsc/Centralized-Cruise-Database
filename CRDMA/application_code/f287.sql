@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   10:26 Tuesday June 9, 2020
+--   Date and Time:   11:44 Monday June 15, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.13'
+,p_flow_version=>'release 0.14'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200520112717'
+,p_last_upd_yyyymmddhh24miss=>'20200610140752'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>16
 ,p_ui_type_name => null
@@ -14717,7 +14717,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200512150805'
+,p_last_upd_yyyymmddhh24miss=>'20200610140752'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6251861064002208)
@@ -14732,18 +14732,18 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_id,',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_name,',
-'    CCD_CRUISE_ERR_SUMM_V.svy_type_name,',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_notes,',
-'    CCD_CRUISE_ERR_SUMM_V.sci_center_div_code,',
-'    CCD_CRUISE_ERR_SUMM_V.std_svy_name,',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_fisc_year,',
-'    CCD_CRUISE_ERR_SUMM_V.LEG_NAME_DATES_BR_LIST,',
-'    CCD_CRUISE_ERR_SUMM_V.CRUISE_START_DATE,',
-'    CCD_CRUISE_ERR_SUMM_V.CRUISE_END_DATE,',
-'    CCD_CRUISE_ERR_SUMM_V.CRUISE_DAS,',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_id CRUISE_ID_COPY,',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_id,',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_name,',
+'    CCD_CRUISE_ISS_SUMM_V.svy_type_name,',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_notes,',
+'    CCD_CRUISE_ISS_SUMM_V.sci_center_div_code,',
+'    CCD_CRUISE_ISS_SUMM_V.std_svy_name,',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_fisc_year,',
+'    CCD_CRUISE_ISS_SUMM_V.LEG_NAME_DATES_BR_LIST,',
+'    CCD_CRUISE_ISS_SUMM_V.CRUISE_START_DATE,',
+'    CCD_CRUISE_ISS_SUMM_V.CRUISE_END_DATE,',
+'    CCD_CRUISE_ISS_SUMM_V.CRUISE_DAS,',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_id CRUISE_ID_COPY,',
 '    NUM_WARNINGS,',
 '    NUM_ACTIVE_ERRORS,',
 '    NUM_ANNOT_ERRORS,',
@@ -14751,7 +14751,7 @@ wwv_flow_api.create_page_plug(
 '    (CASE WHEN NUM_ACTIVE_ERRORS IS NULL OR NUM_ACTIVE_ERRORS = 0 THEN ''valid_cruise'' ELSE ''invalid_cruise'' END) CRUISE_VALID_CLASS',
 '',
 'FROM',
-'    cen_cruise.CCD_CRUISE_ERR_SUMM_V',
+'    cen_cruise.CCD_CRUISE_ISS_SUMM_V',
 '    order by cruise_start_date, cruise_name'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_row_template=>1
@@ -15234,7 +15234,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200512150927'
+,p_last_upd_yyyymmddhh24miss=>'20200610104829'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -15506,51 +15506,36 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select ERROR_ID,',
-'',
-'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) LEG_NAME_DATES_BR_LIST,',
-'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_FISC_YEAR,',
-'(SELECT ERR_SEVERITY_NAME from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) ERR_SEVERITY,      '
-||' ',
-'(SELECT ERR_TYPE_NAME FROM CEN_CRUISE.DVM_ERROR_TYPES WHERE DVM_ERROR_TYPES.ERROR_TYPE_ID = DVM_ERRORS.ERROR_TYPE_ID) ERROR_TYPE,       ',
-'ERR_RES_TYPE_ID,',
-'CREATE_DATE,',
-'LAST_MOD_DATE,',
-'ERROR_NOTES,',
-'ERROR_DESCRIPTION,',
-'CASE WHEN (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'' '
-||'THEN ''Warning'' ',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = D'
-||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
-||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'ELSE NULL END ISSUE_CATEGORY,',
-'(APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL',
-'       ',
-'  from CEN_CRUISE.DVM_ERRORS',
-'  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P220_CRUISE_ID)'))
+'  select ISS_ID,',
+'  ',
+'  (SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'  (SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'  (SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'  (SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'  (SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'  ISS_RES_TYPE_ID,',
+'  CREATE_DATE,',
+'  LAST_MOD_DATE,',
+'  ISS_NOTES,',
+'  ISS_DESC,',
+'  CASE WHEN (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'' THEN ''Wa'
+||'rning'' ',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
+||'UES.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
+||'_ISSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
+'  ELSE NULL END ISSUE_CATEGORY,',
+'  (APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL',
+'  ',
+'  ',
+'         ',
+'    from CEN_CRUISE.DVM_ISSUES',
+'    WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P220_CRUISE_ID)'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P220_CRUISE_ID'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
 ,p_plug_display_when_condition=>'P220_CRUISE_ID'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7392880369592926)
-,p_name=>'ERROR_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>30
-,p_attribute_01=>'Y'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>true
-,p_duplicate_value=>true
-,p_include_in_export=>false
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7393080042592928)
@@ -15594,81 +15579,6 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
 ,p_help_text=>'The NOAA fiscal year for the given cruise (based on the earliest associated cruise leg''s start date)'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7393295567592930)
-,p_name=>'ERR_SEVERITY'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_SEVERITY'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Severity'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>70
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERR_SEVERITY.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The severity of the associated issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7393309023592931)
-,p_name=>'ERROR_TYPE'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_TYPE'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Type'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>80
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_TYPE.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7393438563592932)
-,p_name=>'ERR_RES_TYPE_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_RES_TYPE_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_SELECT_LIST'
-,p_heading=>'Resolution'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>90
-,p_value_alignment=>'RIGHT'
-,p_is_required=>false
-,p_lov_type=>'SQL_QUERY'
-,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select err_res_type_name,',
-'       err_res_type_id',
-'  from cen_cruise.dvm_err_res_types',
-' order by upper(err_res_type_name)'))
-,p_lov_display_extra=>false
-,p_lov_display_null=>true
-,p_lov_null_text=>'-'
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'LOV'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7393509163592933)
@@ -15717,57 +15627,6 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
 ,p_help_text=>'The Date that the validation issue was last updated'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7393725935592935)
-,p_name=>'ERROR_NOTES'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_NOTES'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXTAREA'
-,p_heading=>'Notes'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>120
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'Y'
-,p_attribute_02=>'N'
-,p_attribute_03=>'N'
-,p_attribute_04=>'BOTH'
-,p_item_width=>50
-,p_is_required=>false
-,p_max_length=>500
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_lov_type=>'NONE'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>false
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'Any user-defined notes about the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7393880909592936)
-,p_name=>'ERROR_DESCRIPTION'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_DESCRIPTION'
-,p_data_type=>'CLOB'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Description'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>130
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_DESCRIPTION.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>false
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'A detailed description for the given validation issue'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7393960736592937)
@@ -15823,6 +15682,169 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_help_text=>'Click the link to load the Cruise or Cruise Leg that caused the given Validation Issue so it can be resolved or annotated.  **Note: unsaved changes on this page will be lost'
 );
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150716378763907)
+,p_name=>'ISS_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>160
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150808541763908)
+,p_name=>'CRUISE_NAME'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_NAME'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_DISPLAY_ONLY'
+,p_heading=>'Cruise'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>170
+,p_value_alignment=>'LEFT'
+,p_attribute_02=>'VALUE'
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_escape_on_http_output=>true
+,p_help_text=>'The name of the given cruise designated by NOAA (e.g. SE-15-01)'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150959394763909)
+,p_name=>'ISS_SEVERITY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_SEVERITY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Severity'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>180
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_SEVERITY.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The severity of the associated issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151069285763910)
+,p_name=>'ISS_TYPE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_TYPE'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Type'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>190
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_TYPE.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151111197763911)
+,p_name=>'ISS_RES_TYPE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_RES_TYPE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Resolution'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>200
+,p_value_alignment=>'RIGHT'
+,p_is_required=>false
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select iss_res_type_name,',
+'       iss_res_type_id',
+'  from cen_cruise.dvm_iss_res_types',
+' order by upper(iss_res_type_name)'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151256566763912)
+,p_name=>'ISS_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Notes'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>210
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_item_width=>100
+,p_is_required=>false
+,p_max_length=>500
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Any user-defined notes about the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151378815763913)
+,p_name=>'ISS_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_DESC'
+,p_data_type=>'CLOB'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Description'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>220
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_DESC.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'A detailed description for the given validation issue'
+);
 wwv_flow_api.create_interactive_grid(
  p_id=>wwv_flow_api.id(7392752305592925)
 ,p_internal_uid=>7392752305592925
@@ -15863,14 +15885,9 @@ wwv_flow_api.create_ig_report_view(
 ,p_srv_only_display_columns=>true
 ,p_edit_mode=>false
 );
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7844137358513235)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>1
-,p_column_id=>wwv_flow_api.id(7392880369592926)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
+end;
+/
+begin
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7845192578513242)
 ,p_view_id=>wwv_flow_api.id(7843795033513230)
@@ -15883,7 +15900,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7845658112513244)
 ,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>3
+,p_display_seq=>1
 ,p_column_id=>wwv_flow_api.id(7393131254592929)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -15891,42 +15908,6 @@ wwv_flow_api.create_ig_report_column(
 ,p_sort_order=>1
 ,p_sort_direction=>'ASC'
 ,p_sort_nulls=>'LAST'
-);
-end;
-/
-begin
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7846161459513247)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>5
-,p_column_id=>wwv_flow_api.id(7393295567592930)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>91
-,p_sort_order=>2
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7846678482513249)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>6
-,p_column_id=>wwv_flow_api.id(7393309023592931)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>105
-,p_sort_order=>3
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7847141194513251)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>8
-,p_column_id=>wwv_flow_api.id(7393438563592932)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>120
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7847607583513253)
@@ -15947,26 +15928,9 @@ wwv_flow_api.create_ig_report_column(
 ,p_width=>74
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7848677098513258)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>9
-,p_column_id=>wwv_flow_api.id(7393725935592935)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>314
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7849131352513260)
-,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>6
-,p_column_id=>wwv_flow_api.id(7393880909592936)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7849631987513262)
 ,p_view_id=>wwv_flow_api.id(7843795033513230)
-,p_display_seq=>7
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_api.id(7393960736592937)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -15988,6 +15952,73 @@ wwv_flow_api.create_ig_report_column(
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>64
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10211393308917913)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>13
+,p_column_id=>wwv_flow_api.id(10150716378763907)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10211845063917924)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>4
+,p_column_id=>wwv_flow_api.id(10150808541763908)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>100
+,p_sort_order=>2
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10212350754917929)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>6
+,p_column_id=>wwv_flow_api.id(10150959394763909)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>75
+,p_sort_order=>3
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10212872773917932)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(10151069285763910)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_sort_order=>4
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10213379269917937)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>8
+,p_column_id=>wwv_flow_api.id(10151111197763911)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10213891465917940)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>9
+,p_column_id=>wwv_flow_api.id(10151256566763912)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10214371581917943)
+,p_view_id=>wwv_flow_api.id(7843795033513230)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(10151378815763913)
+,p_is_visible=>true
+,p_is_frozen=>false
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7394014059397341)
@@ -16854,6 +16885,9 @@ wwv_flow_api.create_page_button(
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348105260226806)
 ,p_button_sequence=>40
@@ -16898,9 +16932,6 @@ wwv_flow_api.create_page_button(
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348220558226807)
 ,p_button_sequence=>20
@@ -18504,30 +18535,30 @@ wwv_flow_api.create_page_computation(
 ,p_computation_type=>'QUERY'
 ,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_start_date||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_end_date||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_fisc_year||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.NUM_LEGS||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.leg_name_dates_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.prim_svy_cat_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.sec_svy_cat_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.cruise_das||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_start_date||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_end_date||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_fisc_year||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.NUM_LEGS||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.leg_name_dates_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.prim_svy_cat_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.sec_svy_cat_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.cruise_das||''\t''||',
 '',
-'    CCD_CRUISE_ERR_SUMM_V.spp_esa_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.spp_mmpa_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.spp_fssi_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.oth_spp_cname_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.exp_spp_name_br_list||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.REGION_NAME_BR_LIST||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.ECOSYSTEM_BR_LIST||''\t''||',
-'    CCD_CRUISE_ERR_SUMM_V.GEAR_BR_LIST||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.spp_esa_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.spp_mmpa_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.spp_fssi_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.oth_spp_cname_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.exp_spp_name_br_list||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.REGION_NAME_BR_LIST||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.ECOSYSTEM_BR_LIST||''\t''||',
+'    CCD_CRUISE_ISS_SUMM_V.GEAR_BR_LIST||''\t''||',
 '    NUM_WARNINGS||''\t''||',
 '    NUM_ACTIVE_ERRORS||''\t''||',
 '    NUM_ANNOT_ERRORS||''\t''||',
 '    ''<span class="''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''valid_cruise'' ELSE ''invalid_cruise'' END)||''">''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END)||''</span>''',
 '    CRUISE_VALS',
 'FROM',
-'    cen_cruise.CCD_CRUISE_ERR_SUMM_V where cruise_id = :P220_CRUISE_ID;'))
+'    cen_cruise.CCD_CRUISE_ISS_SUMM_V where cruise_id = :P220_CRUISE_ID;'))
 );
 end;
 /
@@ -20487,7 +20518,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200512151052'
+,p_last_upd_yyyymmddhh24miss=>'20200610110220'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -21244,52 +21275,33 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select ERROR_ID,',
-'',
-'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) LEG_NAME_DATES_BR_LIST,',
-'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_FISC_YEAR,',
-'(SELECT ERR_SEVERITY_NAME from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) ERR_SEVERITY,      '
-||' ',
-'(SELECT ERR_TYPE_NAME FROM CEN_CRUISE.DVM_ERROR_TYPES WHERE DVM_ERROR_TYPES.ERROR_TYPE_ID = DVM_ERRORS.ERROR_TYPE_ID) ERROR_TYPE,       ',
-'ERR_RES_TYPE_ID,',
-'CREATE_DATE,',
-'LAST_MOD_DATE,',
-'ERROR_NOTES,',
-'ERROR_DESCRIPTION,',
-'CASE WHEN (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'' '
-||'THEN ''Warning'' ',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = D'
-||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
-||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'ELSE NULL END ISSUE_CATEGORY,',
-'(APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL,',
-'(SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_NAME',
-'       ',
-'  from CEN_CRUISE.DVM_ERRORS',
-'  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P230_CRUISE_ID)'))
+'  select ISS_ID,',
+'  ',
+'  (SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'  (SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'  (SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'  (SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'  (SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'  ISS_RES_TYPE_ID,',
+'  CREATE_DATE,',
+'  LAST_MOD_DATE,',
+'  ISS_NOTES,',
+'  ISS_DESC,',
+'  CASE WHEN (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'' THEN ''Wa'
+||'rning'' ',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
+||'UES.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
+||'_ISSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
+'  ELSE NULL END ISSUE_CATEGORY,',
+'  (APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL',
+'  from CEN_CRUISE.DVM_ISSUES',
+'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P230_CRUISE_ID)'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P230_CRUISE_ID'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
 ,p_plug_display_when_condition=>'P230_CRUISE_LEG_ID'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9092510728044625)
-,p_name=>'ERROR_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>30
-,p_attribute_01=>'Y'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>true
-,p_duplicate_value=>true
-,p_include_in_export=>false
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(9092662292044626)
@@ -21333,81 +21345,6 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
 ,p_help_text=>'The NOAA fiscal year for the given cruise (based on the earliest associated cruise leg''s start date)'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9092866814044628)
-,p_name=>'ERR_SEVERITY'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_SEVERITY'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Severity'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>60
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERR_SEVERITY.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The severity of the associated issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9092930130044629)
-,p_name=>'ERROR_TYPE'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_TYPE'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Type'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>70
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_TYPE.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9093076506044630)
-,p_name=>'ERR_RES_TYPE_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_RES_TYPE_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_SELECT_LIST'
-,p_heading=>'Resolution'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>80
-,p_value_alignment=>'RIGHT'
-,p_is_required=>false
-,p_lov_type=>'SQL_QUERY'
-,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select err_res_type_name,',
-'       err_res_type_id',
-'  from cen_cruise.dvm_err_res_types',
-' order by upper(err_res_type_name)'))
-,p_lov_display_extra=>false
-,p_lov_display_null=>true
-,p_lov_null_text=>'-'
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'LOV'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(9093141349044631)
@@ -21456,57 +21393,6 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_escape_on_http_output=>true
 ,p_help_text=>'The Date that the validation issue was last updated'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9093327274044633)
-,p_name=>'ERROR_NOTES'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_NOTES'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXTAREA'
-,p_heading=>'Notes'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>110
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'Y'
-,p_attribute_02=>'N'
-,p_attribute_03=>'N'
-,p_attribute_04=>'BOTH'
-,p_item_width=>50
-,p_is_required=>false
-,p_max_length=>500
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_lov_type=>'NONE'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>false
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'Any user-defined notes about the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(9093478191044634)
-,p_name=>'ERROR_DESCRIPTION'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_DESCRIPTION'
-,p_data_type=>'CLOB'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Description'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>120
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_DESCRIPTION.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>false
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'A detailed description for the given validation issue'
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(9093515281044635)
@@ -21589,6 +21475,144 @@ wwv_flow_api.create_region_column(
 ,p_escape_on_http_output=>true
 ,p_help_text=>'The name of the given cruise designated by NOAA (e.g. SE-15-01).  Click on the Cruise to load the View/Edit Cruise page to resolve the associated QC Validation Issues.  **Note: unsaved changes on this page will be lost'
 );
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151546033763915)
+,p_name=>'ISS_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>160
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151662659763916)
+,p_name=>'ISS_SEVERITY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_SEVERITY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Severity'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>170
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_SEVERITY.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The severity of the associated issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151759942763917)
+,p_name=>'ISS_TYPE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_TYPE'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Type'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>180
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_TYPE.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151865820763918)
+,p_name=>'ISS_RES_TYPE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_RES_TYPE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Resolution'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>190
+,p_value_alignment=>'RIGHT'
+,p_is_required=>false
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select iss_res_type_name,',
+'       iss_res_type_id',
+'  from cen_cruise.dvm_iss_res_types',
+' order by upper(iss_res_type_name)'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10151982276763919)
+,p_name=>'ISS_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Notes'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>200
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_item_width=>100
+,p_is_required=>false
+,p_max_length=>500
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Any user-defined notes about the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10152046340763920)
+,p_name=>'ISS_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_DESC'
+,p_data_type=>'CLOB'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Description'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>210
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_DESC.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'A detailed description for the given validation issue'
+);
 wwv_flow_api.create_interactive_grid(
  p_id=>wwv_flow_api.id(9092485375044624)
 ,p_internal_uid=>9092485375044624
@@ -21630,17 +21654,9 @@ wwv_flow_api.create_ig_report_view(
 ,p_edit_mode=>false
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9712398420927160)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>1
-,p_column_id=>wwv_flow_api.id(9092510728044625)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9712817304927180)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>4
+,p_display_seq=>3
 ,p_column_id=>wwv_flow_api.id(9092662292044626)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21648,7 +21664,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9713397843927190)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>4
+,p_display_seq=>1
 ,p_column_id=>wwv_flow_api.id(9092794973044627)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21658,41 +21674,9 @@ wwv_flow_api.create_ig_report_column(
 ,p_sort_nulls=>'LAST'
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9713709210927198)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>6
-,p_column_id=>wwv_flow_api.id(9092866814044628)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>105
-,p_sort_order=>3
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9714250135927203)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>7
-,p_column_id=>wwv_flow_api.id(9092930130044629)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>121
-,p_sort_order=>4
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9714761774927212)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>9
-,p_column_id=>wwv_flow_api.id(9093076506044630)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9715204280927218)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>12
+,p_display_seq=>11
 ,p_column_id=>wwv_flow_api.id(9093141349044631)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21701,33 +21685,15 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9715701384927226)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>13
+,p_display_seq=>12
 ,p_column_id=>wwv_flow_api.id(9093296679044632)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9716247335927230)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>10
-,p_column_id=>wwv_flow_api.id(9093327274044633)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>309
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(9716718130927238)
-,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>7
-,p_column_id=>wwv_flow_api.id(9093478191044634)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>318
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9717216720927246)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>8
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_api.id(9093515281044635)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21736,7 +21702,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9717778911927252)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>11
+,p_display_seq=>10
 ,p_column_id=>wwv_flow_api.id(9093658518044636)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21753,7 +21719,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9782415475092490)
 ,p_view_id=>wwv_flow_api.id(9711881529927112)
-,p_display_seq=>3
+,p_display_seq=>2
 ,p_column_id=>wwv_flow_api.id(9094083509044640)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -21761,6 +21727,60 @@ wwv_flow_api.create_ig_report_column(
 ,p_sort_order=>2
 ,p_sort_direction=>'ASC'
 ,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10231084158001002)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>14
+,p_column_id=>wwv_flow_api.id(10151546033763915)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10231586487001012)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>6
+,p_column_id=>wwv_flow_api.id(10151662659763916)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_sort_order=>3
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10232035260001016)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(10151759942763917)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_sort_order=>4
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10232514128001021)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>8
+,p_column_id=>wwv_flow_api.id(10151865820763918)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10233045150001026)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>9
+,p_column_id=>wwv_flow_api.id(10151982276763919)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10233565754001029)
+,p_view_id=>wwv_flow_api.id(9711881529927112)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(10152046340763920)
+,p_is_visible=>true
+,p_is_frozen=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(8510541222017506)
@@ -22023,9 +22043,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(2121105567780302)
 ,p_name=>'P230_LEG_ALIASES'
@@ -22045,6 +22062,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(3980517523476801)
 ,p_name=>'UPDATE_GEAR_FILT_LIST_TMP'
@@ -23175,7 +23195,7 @@ wwv_flow_api.create_page_computation(
 'NUM_ANNOT_ERRORS||''\t''||',
 '''<span class="''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''valid_cruise'' ELSE ''invalid_cruise'' END)||''">''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END)||''</span>''',
 'VAL',
-'FROM CEN_CRUISE.CCD_CRUISE_ERR_SUMM_V',
+'FROM CEN_CRUISE.CCD_CRUISE_ISS_SUMM_V',
 'where CRUISE_ID = :P230_CRUISE_ID'))
 );
 wwv_flow_api.create_page_computation(
@@ -24425,7 +24445,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200511165753'
+,p_last_upd_yyyymmddhh24miss=>'20200610103322'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7561081312972430)
@@ -24452,37 +24472,36 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'N'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select ERROR_ID,',
+'select ISS_ID,',
 '',
-'(SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_NAME,',
-'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) LEG_NAME_DATES_BR_LIST,',
-'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_FISC_YEAR,',
-'(SELECT ERR_SEVERITY_NAME from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) ERR_SEVERITY,      '
-||' ',
-'(SELECT ERR_TYPE_NAME FROM CEN_CRUISE.DVM_ERROR_TYPES WHERE DVM_ERROR_TYPES.ERROR_TYPE_ID = DVM_ERRORS.ERROR_TYPE_ID) ERROR_TYPE,       ',
-'ERR_RES_TYPE_ID,',
+'(SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'(SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'(SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'ISS_RES_TYPE_ID,',
 'CREATE_DATE,',
 'LAST_MOD_DATE,',
-'ERROR_NOTES,',
-'ERROR_DESCRIPTION,',
-'CASE WHEN (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'' '
-||'THEN ''Warning'' ',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = D'
-||'VM_ERRORS.error_type_id) = ''ERROR'' THEN ''Active Error''',
-'WHEN DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id'
-||' = DVM_ERRORS.error_type_id) = ''ERROR'' THEN ''Annotated Error''',
+'ISS_NOTES,',
+'ISS_DESC,',
+'CASE WHEN (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'' THEN ''Warn'
+||'ing'' ',
+'WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUE'
+||'S.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
+'WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_I'
+||'SSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
 'ELSE NULL END ISSUE_CATEGORY,',
-'(SELECT CRUISE_ID FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ERROR_ID = DVM_ERRORS.PTA_ERROR_ID) CRUISE_ID,',
+'(SELECT CRUISE_ID FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_ID,',
 '(APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL',
 '',
 '',
 '       ',
-'  from CEN_CRUISE.DVM_ERRORS',
-'  WHERE DVM_ERRORS.PTA_ERROR_ID IN (SELECT DISTINCT PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
-'    AND (:P250_ISSUE_CATEGORIES IS NULL OR (:P250_ISSUE_CATEGORIES = ''warning'' AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id '
-||'where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''WARN'') OR (:P250_ISSUE_CATEGORIES = ''active_error'' AND DVM_ERRORS.ERR_RES_TYPE_ID IS NULL AND (SELECT ERR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_erro'
-||'r_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''ERROR'') OR (:P250_ISSUE_CATEGORIES = ''annotated'' AND DVM_ERRORS.ERR_RES_TYPE_ID IS NOT NULL AND (SELECT E'
-||'RR_SEVERITY_CODE from CEN_CRUISE.dvm_err_severity inner join CEN_CRUISE.dvm_error_types on dvm_err_severity.err_severity_id = dvm_error_types.err_severity_id where dvm_error_types.error_type_id = DVM_ERRORS.error_type_id) = ''ERROR''))'))
+'  from CEN_CRUISE.DVM_ISSUES',
+'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
+'    AND (:P250_ISSUE_CATEGORIES IS NULL OR (:P250_ISSUE_CATEGORIES = ''warning'' AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id wher'
+||'e dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'') OR (:P250_ISSUE_CATEGORIES = ''active_error'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on d'
+||'vm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR'') OR (:P250_ISSUE_CATEGORIES = ''annotated'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE fro'
+||'m CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR''))'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P250_FISCAL_YEAR,P250_ISSUE_CATEGORIES'
 ,p_plug_query_row_template=>1
@@ -24558,46 +24577,6 @@ wwv_flow_api.create_region_column(
 ,p_help_text=>'The NOAA fiscal year for the given cruise (based on the earliest associated cruise leg''s start date)'
 );
 wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7391405377592912)
-,p_name=>'ERR_SEVERITY'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_SEVERITY'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Severity'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>120
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERR_SEVERITY.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The severity of the associated issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7391508831592913)
-,p_name=>'ERROR_TYPE'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_TYPE'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Type'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>130
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_TYPE.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'The issue type for the given validation issue'
-);
-wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7392260128592920)
 ,p_name=>'ISSUE_CATEGORY'
 ,p_source_type=>'DB_COLUMN'
@@ -24636,21 +24615,6 @@ wwv_flow_api.create_region_column(
 ,p_display_sequence=>20
 ,p_value_alignment=>'CENTER'
 ,p_is_primary_key=>false
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7563869664972442)
-,p_name=>'ERROR_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_HIDDEN'
-,p_display_sequence=>30
-,p_attribute_01=>'Y'
-,p_enable_filter=>false
-,p_is_primary_key=>true
-,p_duplicate_value=>true
-,p_include_in_export=>false
 );
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(7565050961972443)
@@ -24703,95 +24667,6 @@ wwv_flow_api.create_region_column(
 ,p_help_text=>'The Date that the validation issue was last updated'
 );
 wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7568013791972445)
-,p_name=>'ERROR_NOTES'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_NOTES'
-,p_data_type=>'VARCHAR2'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_TEXTAREA'
-,p_heading=>'Notes'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>70
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'Y'
-,p_attribute_02=>'N'
-,p_attribute_03=>'N'
-,p_attribute_04=>'BOTH'
-,p_item_width=>50
-,p_is_required=>false
-,p_max_length=>500
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_lov_type=>'NONE'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>false
-,p_enable_pivot=>false
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'Any user-defined notes about the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7568614248972446)
-,p_name=>'ERR_RES_TYPE_ID'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERR_RES_TYPE_ID'
-,p_data_type=>'NUMBER'
-,p_is_query_only=>false
-,p_item_type=>'NATIVE_SELECT_LIST'
-,p_heading=>'Resolution'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>80
-,p_value_alignment=>'RIGHT'
-,p_is_required=>false
-,p_lov_type=>'SQL_QUERY'
-,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select err_res_type_name,',
-'       err_res_type_id',
-'  from cen_cruise.dvm_err_res_types',
-' order by upper(err_res_type_name)'))
-,p_lov_display_extra=>false
-,p_lov_display_null=>true
-,p_lov_null_text=>'-'
-,p_enable_filter=>true
-,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
-,p_filter_is_required=>false
-,p_filter_text_case=>'MIXED'
-,p_filter_exact_match=>true
-,p_filter_lov_type=>'LOV'
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_enable_pivot=>false
-,p_is_primary_key=>false
-,p_duplicate_value=>true
-,p_include_in_export=>true
-,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
-);
-wwv_flow_api.create_region_column(
- p_id=>wwv_flow_api.id(7569291038972446)
-,p_name=>'ERROR_DESCRIPTION'
-,p_source_type=>'DB_COLUMN'
-,p_source_expression=>'ERROR_DESCRIPTION'
-,p_data_type=>'CLOB'
-,p_is_query_only=>true
-,p_item_type=>'NATIVE_HTML_EXPRESSION'
-,p_heading=>'Description'
-,p_heading_alignment=>'CENTER'
-,p_display_sequence=>90
-,p_value_alignment=>'LEFT'
-,p_attribute_01=>'<div class="wrap-cell">&ERROR_DESCRIPTION.</div>'
-,p_filter_is_required=>false
-,p_use_as_row_header=>false
-,p_enable_sort_group=>true
-,p_enable_pivot=>false
-,p_is_primary_key=>false
-,p_include_in_export=>true
-,p_help_text=>'A detailed description for the given validation issue'
-);
-wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(8770196230313201)
 ,p_name=>'CRUISE_ID'
 ,p_source_type=>'DB_COLUMN'
@@ -24825,6 +24700,142 @@ wwv_flow_api.create_region_column(
 ,p_is_primary_key=>false
 ,p_include_in_export=>true
 ,p_help_text=>'Click the link to load the Cruise or Cruise Leg that caused the given Validation Issue so it can be resolved or annotated.  **Note: unsaved changes on this page will be lost'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150116904763901)
+,p_name=>'ISS_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>170
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150260014763902)
+,p_name=>'ISS_SEVERITY'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_SEVERITY'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Severity'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>180
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_SEVERITY.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The severity of the associated issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150394350763903)
+,p_name=>'ISS_TYPE'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_TYPE'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Type'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>190
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_TYPE.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'The issue type for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150484271763904)
+,p_name=>'ISS_RES_TYPE_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_RES_TYPE_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Resolution'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>200
+,p_value_alignment=>'RIGHT'
+,p_is_required=>false
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select iss_res_type_name,',
+'       iss_res_type_id',
+'  from cen_cruise.dvm_iss_res_types',
+' order by upper(iss_res_type_name)'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150503832763905)
+,p_name=>'ISS_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Notes'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>210
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_is_required=>false
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Any user-defined notes about the given validation issue'
+);
+wwv_flow_api.create_region_column(
+ p_id=>wwv_flow_api.id(10150672092763906)
+,p_name=>'ISS_DESC'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'ISS_DESC'
+,p_data_type=>'CLOB'
+,p_is_query_only=>true
+,p_item_type=>'NATIVE_HTML_EXPRESSION'
+,p_heading=>'Description'
+,p_heading_alignment=>'CENTER'
+,p_display_sequence=>220
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'<div class="wrap-cell">&ISS_DESC.</div>'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>false
+,p_include_in_export=>true
+,p_help_text=>'A detailed description for the given validation issue'
 );
 wwv_flow_api.create_interactive_grid(
  p_id=>wwv_flow_api.id(7562082865972434)
@@ -24875,17 +24886,9 @@ wwv_flow_api.create_ig_report_column(
 ,p_is_frozen=>true
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7564260011972443)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>1
-,p_column_id=>wwv_flow_api.id(7563869664972442)
-,p_is_visible=>true
-,p_is_frozen=>false
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7565495957972444)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>12
+,p_display_seq=>11
 ,p_column_id=>wwv_flow_api.id(7565050961972443)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -24894,38 +24897,11 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7566676563972444)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>13
+,p_display_seq=>12
 ,p_column_id=>wwv_flow_api.id(7566275954972444)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>84
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7568416956972446)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>10
-,p_column_id=>wwv_flow_api.id(7568013791972445)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>212
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7569090642972446)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>9
-,p_column_id=>wwv_flow_api.id(7568614248972446)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>120
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7569605877972446)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>7
-,p_column_id=>wwv_flow_api.id(7569291038972446)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>426
 );
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7581371858213629)
@@ -24942,7 +24918,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7581788033213634)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>4
+,p_display_seq=>3
 ,p_column_id=>wwv_flow_api.id(7391289668592910)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -24951,7 +24927,7 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7582241343213637)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>3
+,p_display_seq=>1
 ,p_column_id=>wwv_flow_api.id(7391369787592911)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -24961,33 +24937,9 @@ wwv_flow_api.create_ig_report_column(
 ,p_sort_nulls=>'LAST'
 );
 wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7582797835213639)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>6
-,p_column_id=>wwv_flow_api.id(7391405377592912)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>96
-,p_sort_order=>3
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
- p_id=>wwv_flow_api.id(7583290096213641)
-,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>6
-,p_column_id=>wwv_flow_api.id(7391508831592913)
-,p_is_visible=>true
-,p_is_frozen=>false
-,p_width=>132
-,p_sort_order=>4
-,p_sort_direction=>'ASC'
-,p_sort_nulls=>'LAST'
-);
-wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(7654803044915825)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>8
+,p_display_seq=>4
 ,p_column_id=>wwv_flow_api.id(7392260128592920)
 ,p_is_visible=>true
 ,p_is_frozen=>false
@@ -25004,11 +24956,69 @@ wwv_flow_api.create_ig_report_column(
 wwv_flow_api.create_ig_report_column(
  p_id=>wwv_flow_api.id(9581011125140869)
 ,p_view_id=>wwv_flow_api.id(7562585229972438)
-,p_display_seq=>11
+,p_display_seq=>10
 ,p_column_id=>wwv_flow_api.id(9092184845044621)
 ,p_is_visible=>true
 ,p_is_frozen=>false
 ,p_width=>70
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10200872665808311)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>14
+,p_column_id=>wwv_flow_api.id(10150116904763901)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10201307754808321)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>5
+,p_column_id=>wwv_flow_api.id(10150260014763902)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>85
+,p_sort_order=>3
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10201827968808326)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>6
+,p_column_id=>wwv_flow_api.id(10150394350763903)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>245
+,p_sort_order=>4
+,p_sort_direction=>'ASC'
+,p_sort_nulls=>'LAST'
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10202357558808331)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>8
+,p_column_id=>wwv_flow_api.id(10150484271763904)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>201
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10202858112808335)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>9
+,p_column_id=>wwv_flow_api.id(10150503832763905)
+,p_is_visible=>true
+,p_is_frozen=>false
+,p_width=>216
+);
+wwv_flow_api.create_ig_report_column(
+ p_id=>wwv_flow_api.id(10203371584808340)
+,p_view_id=>wwv_flow_api.id(7562585229972438)
+,p_display_seq=>7
+,p_column_id=>wwv_flow_api.id(10150672092763906)
+,p_is_visible=>true
+,p_is_frozen=>false
 );
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(7391628391592914)

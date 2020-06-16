@@ -1,0 +1,182 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="882A4FD9-DFC1-AEE5-DAA6-6D5DD5A198AB" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SVY_CAT_PRE_OPTS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:13 UTC</createdTime>
+<commentInRDBMS><![CDATA[Survey Category Preset Options
+
+This intersection table defines the many-to-many relationship between survey category presets and specific survey categories to allow groups of survey categories to be defined to make it easier for authorized application users to choose and define groups of survey categories for a given cruise leg]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="SVY_CAT_PRE_OPT_ID" id="28411EA4-E999-9BBD-43DA-07BD70684421">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SVY_CAT_PRE_OPTS</sourceObjSchema>
+<sourceObjName>SVY_CAT_PRE_OPT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_SVY_CAT_PRE_OPTS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="SVY_CAT_PRE_ID" id="C6E2B3B3-D91F-324D-7B45-0BEC4A2D6CC1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SVY_CAT_PRE_OPTS</sourceObjSchema>
+<sourceObjName>SVY_CAT_PRE_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Gear preset that the given survey category is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="90EBD4A0-617D-0771-1602-535C52A70FF6" referredColumn="4482637C-B707-8372-A2A2-AEC1387B0D36"/>
+</associations>
+</Column>
+<Column name="SVY_CAT_ID" id="51EE7CCD-10FE-4FD8-C35C-90A738D49215">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SVY_CAT_PRE_OPTS</sourceObjSchema>
+<sourceObjName>SVY_CAT_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Gear that the given survey category preset is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="94343205-F1E7-1793-5757-9B0FF42CBE9D" referredColumn="A49AE7F1-CA39-6714-807E-F4A85BB51BDF"/>
+</associations>
+</Column>
+<Column name="SVY_CAT_PRE_OPT_NOTES" id="A926DEFA-E5D9-0BCA-D614-4135821ADCC0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_SVY_CAT_PRE_OPTS</sourceObjSchema>
+<sourceObjName>SVY_CAT_PRE_OPT_NOTES</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given survey category preset option]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D2BB3B8C-D077-F422-96EA-B0D0485ECC9F" name="CCD_SVY_CAT_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="28411EA4-E999-9BBD-43DA-07BD70684421"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A07D9642-67E5-DB9B-C991-DCFA87A16CF5" name="CCD_SVY_CAT_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6E2B3B3-D91F-324D-7B45-0BEC4A2D6CC1"/>
+<colUsage columnID="51EE7CCD-10FE-4FD8-C35C-90A738D49215"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="05BE8A68-F83B-56E0-FC4B-EE77FFC67CCB" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SVY_CAT_PRE_OPTS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_I1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6E2B3B3-D91F-324D-7B45-0BEC4A2D6CC1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BF80C92D-47C6-99F5-A777-6ED888EFD01F" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SVY_CAT_PRE_OPTS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_I2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="51EE7CCD-10FE-4FD8-C35C-90A738D49215"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="B5707265-33AC-DD71-F036-47A03A19316E" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SVY_CAT_PRE_OPTS_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_PK</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="28411EA4-E999-9BBD-43DA-07BD70684421"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C2F7BEAE-E21A-3AE2-8795-00C0D51C51E1" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SVY_CAT_PRE_OPTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SVY_CAT_PRE_OPTS_U1</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:18 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6E2B3B3-D91F-324D-7B45-0BEC4A2D6CC1"/>
+<colUsage columnID="51EE7CCD-10FE-4FD8-C35C-90A738D49215"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E2DDADCF-04AE-FB52-9C0E-A56AFD67827B" name="CCD_SVY_CAT_PRE_OPTS_FK1">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="51EE7CCD-10FE-4FD8-C35C-90A738D49215"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="ECA4F518-132C-96F3-9893-C3E49B4A443A" name="CCD_SVY_CAT_PRE_OPTS_FK2">
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="C6E2B3B3-D91F-324D-7B45-0BEC4A2D6CC1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

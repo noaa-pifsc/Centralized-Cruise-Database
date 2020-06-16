@@ -1,0 +1,19 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="1B96AE93-C23B-AA07-4A07-D97485149250" containerWithKeyObject="4859A524-1253-0743-39D4-8AAC50EBCA92" localFKIndex="A335D4F5-A075-5686-DA54-E97DC71A72FC" name="CCD_SPP_MMPA_PRE_OPTS_FK2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_SPP_MMPA_PRE_OPTS_FK2</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:21 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<referredTableLongName>CEN_CRUISE.CCD_SPP_MMPA_PRE</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A0BF074F-57D9-150B-0080-4C8774614E13</referredTableID>
+<keyObject>46D41120-C95E-984F-6AB9-E1F46078E05D</keyObject>
+<referredKeyID>46D41120-C95E-984F-6AB9-E1F46078E05D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>MMPA_PRE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>
