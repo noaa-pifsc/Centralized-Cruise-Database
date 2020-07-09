@@ -1,3 +1,7 @@
+DVM configuration:
+	_ update the description template to remove the cruise dates as these will change as associated cruise legs are modified
+
+
 APEX Application
 
 X DVM error annotation page
