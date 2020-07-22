@@ -1,0 +1,139 @@
+executing test case for ORA-20201
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20201: The data stream code (TEST) was not found in the database: ORA-01403: no data found
+The parent record was NOT evaluated successfully
+completed test case for ORA-20201
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20202
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20202: The current data stream has a parent table (CCD_CRUISES_TEMP) that does not exist, this must be resolved before the DVM can execute successfully
+The parent record was NOT evaluated successfully
+completed test case for ORA-20202
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20203
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20203: The current data stream has a parent table (CCD_CRUISE_LEGS) that has not been enabled in the DVM, this must be resolved before the DVM can execute successfully
+The parent record was NOT evaluated successfully
+completed test case for ORA-20203
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20204
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20204: The associated parent table (CCD_CRUISES AND CCD_CRUISE_LEGS) and parent table's primary key field (CRUISE_ID AND CRUISE_LEG_ID) for the current and previous data stream codes (CCD_TEST AND CCD) are not the same, this indicates that the data stream codes are for different parent tables so this procedure call is invalid
+The parent record was NOT evaluated successfully
+completed test case for ORA-20204
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20206
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20206: The parent record (CCD_CRUISES) for the data stream code(s) (CCD) and parent record PK (-1) was not found in the database
+The parent record was NOT evaluated successfully
+completed test case for ORA-20206
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20210
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20210: there are more than one active validation rule set for the data stream code (CCD)
+The parent record was NOT evaluated successfully
+completed test case for ORA-20210
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20211
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20211: there are no active validation criteria for the data stream code (CCD)
+The parent record was NOT evaluated successfully
+completed test case for ORA-20211
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20211
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20211: there are no active validation criteria for the data stream code (CCD)
+The parent record was NOT evaluated successfully
+completed test case for ORA-20211
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20220
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20220: The QC view (CCD_QC_CRUISE_TEMP_V) does not exist: ORA-00942: table or view does not exist
+The parent record was NOT evaluated successfully
+completed test case for ORA-20220
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20221
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20221: The QC view (CCD_QC_CRUISE_V) is invalid: ORA-04063: view "CEN_CRUISE.CCD_QC_CRUISE_V" has errors
+The parent record was NOT evaluated successfully
+completed test case for ORA-20221
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20224
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20222: The QC view (CCD_QC_CRUISE_V) could not be processed successfully:
+ORA-20223: The validation issue record could not be successfully populated:
+ORA-20224: The following application link template placeholders were not found in the QC Object (CCD_QC_CRUISE_V): ABC, DEF
+The parent record was NOT evaluated successfully
+completed test case for ORA-20224
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20224
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20222: The QC view (CCD_QC_LEG_OVERLAP_V) could not be processed successfully:
+ORA-20223: The validation issue record could not be successfully populated:
+ORA-20224: The following application link template placeholders were not found in the QC Object (CCD_QC_LEG_OVERLAP_V): GHI, JKL
+The parent record was NOT evaluated successfully
+completed test case for ORA-20224
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20225
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20222: The QC view (CCD_QC_CRUISE_V) could not be processed successfully:
+ORA-20223: The validation issue record could not be successfully populated:
+ORA-20225: The following issue description template placeholders were not found in the QC Object (CCD_QC_CRUISE_V): ABC, DEF
+The parent record was NOT evaluated successfully
+completed test case for ORA-20225
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20225
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20219: The QC criteria could not be processed for the parent record:
+ORA-20222: The QC view (CCD_QC_LEG_OVERLAP_V) could not be processed successfully:
+ORA-20223: The validation issue record could not be successfully populated:
+ORA-20225: The following issue description template placeholders were not found in the QC Object (CCD_QC_LEG_OVERLAP_V): XYZ
+The parent record was NOT evaluated successfully
+completed test case for ORA-20225
+
+
+PL/SQL procedure successfully completed.

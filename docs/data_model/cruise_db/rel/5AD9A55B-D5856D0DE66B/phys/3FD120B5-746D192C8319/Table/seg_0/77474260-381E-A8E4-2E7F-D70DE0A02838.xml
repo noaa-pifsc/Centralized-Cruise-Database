@@ -84,6 +84,14 @@
 <segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
 <tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
 </IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_DATA_STREAMS_I1" id="EC9B8F8B-ADFE-2A58-408B-24F9C5AC7E61">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-07-22 21:19:50 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>687F436C-5F7B-6CDC-1F07-F3C33514D7DE</segment>
+<tableSpace>485C6F01-0033-B06E-D25A-AC085FF11097</tableSpace>
+</IndexProxy>
 </indexProxies>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_DATA_STREAMS_PK" id="B4BA7356-AB27-C2D7-FA8F-A510164C5525">

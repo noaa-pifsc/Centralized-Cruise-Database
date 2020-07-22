@@ -145,7 +145,6 @@ This is a reference table that defines all data streams that are implemented in 
 <createdTime>2020-06-10 23:31:14 UTC</createdTime>
 <commentInRDBMS><![CDATA[The Data stream's parent table name (used when evaluating QC validation criteria to specify a given parent table)]]></commentInRDBMS>
 <ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
@@ -232,6 +231,19 @@ This is a reference table that defines all data streams that are implemented in 
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="0FC5AAA7-941B-74CD-2BC0-95FF24DF19BB"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="EC9B8F8B-ADFE-2A58-408B-24F9C5AC7E61" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="DVM_DATA_STREAMS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_DATA_STREAMS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2020-07-22 21:19:50 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>80B4B218-3C34-F905-0981-6BCEF0DFD910</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="76BF94E4-DB4E-596D-7D63-ACE9E29BB3CF"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>
