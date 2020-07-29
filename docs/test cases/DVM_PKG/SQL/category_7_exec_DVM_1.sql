@@ -85,6 +85,39 @@ DROP CONSTRAINT DVM_ISS_TYP_ASSOC_PK;
 
 
 
+--set a compoung primary key for a parent table (NUMBER, VARCHAR2):
+ALTER TABLE DVM_ISSUES_HIST
+MODIFY (H_SEQNUM NOT NULL);
+
+ALTER TABLE DVM_ISSUES_HIST
+MODIFY (H_TYPE_OF_CHANGE NOT NULL);
+
+ALTER TABLE DVM_ISSUES_HIST
+ADD CONSTRAINT DVM_ISSUES_HIST_PK PRIMARY KEY
+(
+  H_SEQNUM
+, H_TYPE_OF_CHANGE
+)
+ENABLE;
+
+--set a compound primary key for a parent table (NUMBER, NUMBER)
+ALTER TABLE DVM_ISS_SEVERITY_HIST
+MODIFY (H_SEQNUM NOT NULL);
+
+ALTER TABLE DVM_ISS_SEVERITY_HIST
+MODIFY (ISS_SEVERITY_ID NOT NULL);
+
+ALTER TABLE DVM_ISS_SEVERITY_HIST
+ADD CONSTRAINT DVM_ISS_SEVERITY_HIST_PK PRIMARY KEY
+(
+  ISS_SEVERITY_ID
+, H_SEQNUM
+)
+ENABLE;
+
+
+
+
 	--recompile invalid views:
 	ALTER VIEW CCD_CRUISE_V COMPILE;
 	ALTER VIEW CCD_QC_CRUISE_V COMPILE;
@@ -120,8 +153,16 @@ UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'DVM_ISS_TYP_ASSOC' WHERE DA
 --update the data stream to a parent table that is not enabled in the DVM (no PTA_ISS_ID field)
 UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISE_LEGS' WHERE DATA_STREAM_CODE = 'CCD_TEST2';
 
-
+--add a new data stream that does not have a parent table that exists:
 INSERT INTO DVM_DATA_STREAMS (DATA_STREAM_CODE, DATA_STREAM_NAME, DATA_STREAM_DESC, DATA_STREAM_PAR_TABLE) VALUES ('CCD_TEST3', 'CCD Test Data Stream #3', 'test', 'CCD_ABC');
+
+
+
+--add a new data stream that has a parent table with a compound primary key (number, VARCHAR2):
+INSERT INTO DVM_DATA_STREAMS (DATA_STREAM_CODE, DATA_STREAM_NAME, DATA_STREAM_DESC, DATA_STREAM_PAR_TABLE) VALUES ('CCD_TEST4', 'CCD Test Data Stream #4', 'test 4', 'DVM_ISSUES_HIST');
+
+--add a new data stream that has a parent table with a compound primary key (number, number):
+INSERT INTO DVM_DATA_STREAMS (DATA_STREAM_CODE, DATA_STREAM_NAME, DATA_STREAM_DESC, DATA_STREAM_PAR_TABLE) VALUES ('CCD_TEST5', 'CCD Test Data Stream #5', 'test 5', 'DVM_ISS_SEVERITY_HIST');
 
 
 	--update an issue type's comment template to add additional placeholders not in the QC query:

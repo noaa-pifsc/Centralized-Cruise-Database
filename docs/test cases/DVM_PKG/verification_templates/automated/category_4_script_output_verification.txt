@@ -137,3 +137,159 @@ completed test case for ORA-20225
 
 
 PL/SQL procedure successfully completed.
+
+executing test case for ORA-20232
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20232: The current data stream has a parent table (DVM_ISSUES_HIST) that does not have a single numeric primary key defined for it, this must be resolved before the DVM can execute successfully
+The parent record was NOT evaluated successfully
+completed test case for ORA-20232
+
+
+PL/SQL procedure successfully completed.
+
+
+Table DVM_ISSUES_HIST altered.
+
+
+Table DVM_ISSUES_HIST altered.
+
+
+Table DVM_ISSUES_HIST altered.
+
+
+Table DVM_ISSUES_HIST altered.
+
+
+View CCD_CRUISE_V altered.
+
+
+View CCD_QC_CRUISE_V altered.
+
+
+View CCD_QC_LEG_ALIAS_V altered.
+
+
+View CCD_QC_LEG_OVERLAP_V altered.
+
+
+View CCD_QC_LEG_V altered.
+
+
+View CCD_CRUISE_DELIM_V altered.
+
+
+View CCD_CRUISE_ISS_SUMM_V altered.
+
+
+View CCD_CRUISE_LEG_DELIM_V altered.
+
+
+View CCD_CRUISE_LEGS_V altered.
+
+
+View CCD_CRUISE_SUMM_ISS_V altered.
+
+
+View CCD_CRUISE_SUMM_V altered.
+
+
+View CCD_CRUISE_DVM_EVAL_RPT_V altered.
+
+
+View CCD_CRUISE_DVM_RULE_EVAL_V altered.
+
+
+View CCD_CRUISE_DVM_RULE_EVAL_RPT_V altered.
+
+
+View CCD_CRUISE_DVM_RULES_V altered.
+
+
+View CCD_CRUISE_DVM_RULES_RPT_V altered.
+
+
+Package CCD_CRUISE_PKG altered.
+
+
+Package DVM_PKG altered.
+
+
+Package CCD_DVM_PKG altered.
+
+executing test case for ORA-20232
+DVM_PKG error: The parent record could not be validated successfully:
+ORA-20232: The current data stream has a parent table (DVM_ISS_SEVERITY_HIST) that does not have a single numeric primary key defined for it, this must be resolved before the DVM can execute successfully
+The parent record was NOT evaluated successfully
+completed test case for ORA-20232
+
+
+PL/SQL procedure successfully completed.
+
+
+Table DVM_ISS_SEVERITY_HIST altered.
+
+
+Table DVM_ISS_SEVERITY_HIST altered.
+
+
+Table DVM_ISS_SEVERITY_HIST altered.
+
+
+Table DVM_ISS_SEVERITY_HIST altered.
+
+
+View CCD_CRUISE_V altered.
+
+
+View CCD_QC_CRUISE_V altered.
+
+
+View CCD_QC_LEG_ALIAS_V altered.
+
+
+View CCD_QC_LEG_OVERLAP_V altered.
+
+
+View CCD_QC_LEG_V altered.
+
+
+View CCD_CRUISE_DELIM_V altered.
+
+
+View CCD_CRUISE_ISS_SUMM_V altered.
+
+
+View CCD_CRUISE_LEG_DELIM_V altered.
+
+
+View CCD_CRUISE_LEGS_V altered.
+
+
+View CCD_CRUISE_SUMM_ISS_V altered.
+
+
+View CCD_CRUISE_SUMM_V altered.
+
+
+View CCD_CRUISE_DVM_EVAL_RPT_V altered.
+
+
+View CCD_CRUISE_DVM_RULE_EVAL_V altered.
+
+
+View CCD_CRUISE_DVM_RULE_EVAL_RPT_V altered.
+
+
+View CCD_CRUISE_DVM_RULES_V altered.
+
+
+View CCD_CRUISE_DVM_RULES_RPT_V altered.
+
+
+Package CCD_CRUISE_PKG altered.
+
+
+Package DVM_PKG altered.
+
+
+Package CCD_DVM_PKG altered.
