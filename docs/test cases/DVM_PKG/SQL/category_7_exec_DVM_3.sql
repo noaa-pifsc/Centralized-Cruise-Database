@@ -39,5 +39,46 @@ ALTER TABLE CCD_CRUISES RENAME COLUMN CRUISE_URL2 TO CRUISE_URL;
 	ALTER PACKAGE CCD_DVM_PKG COMPILE;
 
 
+--restore the CCD_QC_LEG_ALIAS_V data QC view:
+CREATE OR REPLACE View
+CCD_QC_LEG_ALIAS_V
+AS
+SELECT
+CCD_CRUISE_LEGS_V.CRUISE_LEG_ID,
+CRUISE_ID,
+CRUISE_NAME,
+LEG_NAME,
+FORMAT_LEG_START_DATE,
+FORMAT_LEG_END_DATE,
+VESSEL_NAME,
+LEG_ALIAS_NAME,
+LEG_ALIAS_DESC,
+CASE WHEN UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%' then 'Y' ELSE 'N' END INV_LEG_ALIAS_COPY_YN
+
+FROM CCD_CRUISE_LEGS_V
+INNER JOIN
+CCD_LEG_ALIASES
+ON CCD_CRUISE_LEGS_V.CRUISE_LEG_ID = CCD_LEG_ALIASES.CRUISE_LEG_ID
+
+WHERE
+UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%'
+ORDER BY LEG_NAME
+;
+
+COMMENT ON TABLE CCD_QC_LEG_ALIAS_V IS 'Leg Alias (QC View)
+
+This query identifies data validation issues with Cruise Leg Aliases (e.g. invalid alias name).  This QC View is implemented in the Data Validation Module';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_LEG_ID IS 'Primary key for the CCD_CRUISE_LEGS table';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_NAME IS 'The name of the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_START_DATE IS 'The start date for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_END_DATE IS 'The end date for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.VESSEL_NAME IS 'Name of the given research vessel';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_NAME IS 'The cruise leg alias name for the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_DESC IS 'The cruise leg alias description for the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.INV_LEG_ALIAS_COPY_YN IS 'Field to indicate if there is an Invalid Copied Leg Alias Name error (Y) or not (N) based on whether or not the value of LEG_ALIAS_NAME contains "(copy)"';
+
+
 --delete the DVM records:
 @@"../../../../SQL/queries/delete_all_DVM_recs.sql";

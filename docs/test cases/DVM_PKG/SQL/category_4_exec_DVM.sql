@@ -871,3 +871,291 @@ DROP COLUMN PTA_ISS_ID;
 	ALTER PACKAGE CCD_CRUISE_PKG COMPILE;
 	ALTER PACKAGE DVM_PKG COMPILE;
 	ALTER PACKAGE CCD_DVM_PKG COMPILE;
+
+
+
+
+
+--ORA-20234 test case:
+
+DECLARE
+	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	P_PK_ID NUMBER;
+	V_SP_RET_CODE PLS_INTEGER;
+	V_CRUISE_NAME VARCHAR2(2000) := 'HI1101';
+BEGIN
+	-- Modify the code to initialize the variable
+	P_DATA_STREAM_CODE(1) := 'CCD';
+
+	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20234');
+
+ --update the issue type to an indicator field that does not exist
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'MISSING_IND_FIELD_YN' WHERE ISS_TYPE_NAME = 'Cruise Leg Overlap';
+
+
+	--retrieve the PK ID of the specified cruise:
+	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
+
+	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
+	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
+	P_PK_ID => P_PK_ID,
+	P_SP_RET_CODE => V_SP_RET_CODE
+	);
+	IF (V_SP_RET_CODE = 1) then
+		DBMS_output.put_line('The parent record was evaluated successfully');
+	ELSE
+		DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+	END IF;
+
+
+	--restore the issue type record to its former state:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'CRUISE_OVERLAP_YN' WHERE ISS_TYPE_NAME = 'Cruise Leg Overlap';
+
+
+	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
+
+	--rollback;
+END;
+/
+
+
+
+--ORA-20234 test case:
+
+DECLARE
+	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	P_PK_ID NUMBER;
+	V_SP_RET_CODE PLS_INTEGER;
+	V_CRUISE_NAME VARCHAR2(2000) := 'HI1101';
+BEGIN
+	-- Modify the code to initialize the variable
+	P_DATA_STREAM_CODE(1) := 'CCD';
+
+	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20234');
+
+ --update the issue type to an indicator field that does not exist
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'MISSING_IND_FIELD2_YN' WHERE ISS_TYPE_NAME = 'Missing Leg Gear';
+
+
+	--retrieve the PK ID of the specified cruise:
+	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
+
+	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
+	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
+	P_PK_ID => P_PK_ID,
+	P_SP_RET_CODE => V_SP_RET_CODE
+	);
+	IF (V_SP_RET_CODE = 1) then
+		DBMS_output.put_line('The parent record was evaluated successfully');
+	ELSE
+		DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+	END IF;
+
+
+	--restore the issue type record to its former state:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'MISS_GEAR_YN' WHERE ISS_TYPE_NAME = 'Missing Leg Gear';
+
+
+	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
+
+	--rollback;
+END;
+/
+
+
+--ORA-20235 test case:
+
+DECLARE
+	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	P_PK_ID NUMBER;
+	V_SP_RET_CODE PLS_INTEGER;
+	V_CRUISE_NAME VARCHAR2(2000) := 'HI1101';
+BEGIN
+	-- Modify the code to initialize the variable
+	P_DATA_STREAM_CODE(1) := 'CCD';
+
+	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20235');
+
+--update the indicator field to make it a non-character data type:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'CRUISE_ID' WHERE ISS_TYPE_NAME = 'Mismatched Cruise Name and Fiscal Year';
+
+
+	--retrieve the PK ID of the specified cruise:
+	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
+
+	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
+	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
+	P_PK_ID => P_PK_ID,
+	P_SP_RET_CODE => V_SP_RET_CODE
+	);
+	IF (V_SP_RET_CODE = 1) then
+		DBMS_output.put_line('The parent record was evaluated successfully');
+	ELSE
+		DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+	END IF;
+
+
+	--restore the issue type record to its former state:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_CRUISE_NAME_FY_YN' WHERE ISS_TYPE_NAME = 'Mismatched Cruise Name and Fiscal Year';
+
+
+	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
+
+	--rollback;
+END;
+/
+
+
+
+
+
+--ORA-20235 test case:
+
+DECLARE
+	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	P_PK_ID NUMBER;
+	V_SP_RET_CODE PLS_INTEGER;
+	V_CRUISE_NAME VARCHAR2(2000) := 'HI1101';
+BEGIN
+	-- Modify the code to initialize the variable
+	P_DATA_STREAM_CODE(1) := 'CCD';
+
+	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20235');
+
+--update the indicator field to make it a non-character data type:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'CRUISE_LEG_ID' WHERE ISS_TYPE_NAME = 'Invalid Leg Dates';
+
+
+	--retrieve the PK ID of the specified cruise:
+	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
+
+	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
+	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
+	P_PK_ID => P_PK_ID,
+	P_SP_RET_CODE => V_SP_RET_CODE
+	);
+	IF (V_SP_RET_CODE = 1) then
+		DBMS_output.put_line('The parent record was evaluated successfully');
+	ELSE
+		DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+	END IF;
+
+
+	--restore the issue type record to its former state:
+	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_LEG_DATES_YN' WHERE ISS_TYPE_NAME = 'Invalid Leg Dates';
+
+	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
+
+	--rollback;
+END;
+/
+
+
+
+--remove the parent table primary key field from data QC view:
+CREATE OR REPLACE View
+CCD_QC_LEG_ALIAS_V
+AS
+SELECT
+CCD_CRUISE_LEGS_V.CRUISE_LEG_ID,
+CRUISE_NAME,
+LEG_NAME,
+FORMAT_LEG_START_DATE,
+FORMAT_LEG_END_DATE,
+VESSEL_NAME,
+LEG_ALIAS_NAME,
+LEG_ALIAS_DESC,
+CASE WHEN UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%' then 'Y' ELSE 'N' END INV_LEG_ALIAS_COPY_YN
+
+FROM CCD_CRUISE_LEGS_V
+INNER JOIN
+CCD_LEG_ALIASES
+ON CCD_CRUISE_LEGS_V.CRUISE_LEG_ID = CCD_LEG_ALIASES.CRUISE_LEG_ID
+
+WHERE
+UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%'
+ORDER BY LEG_NAME
+;
+
+--ORA-20236 test case:
+
+DECLARE
+	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	P_PK_ID NUMBER;
+	V_SP_RET_CODE PLS_INTEGER;
+	V_CRUISE_NAME VARCHAR2(2000) := 'HI1101';
+BEGIN
+	-- Modify the code to initialize the variable
+	P_DATA_STREAM_CODE(1) := 'CCD';
+
+	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20236');
+
+
+
+	--retrieve the PK ID of the specified cruise:
+	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
+
+	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
+	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
+	P_PK_ID => P_PK_ID,
+	P_SP_RET_CODE => V_SP_RET_CODE
+	);
+	IF (V_SP_RET_CODE = 1) then
+		DBMS_output.put_line('The parent record was evaluated successfully');
+	ELSE
+		DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+	END IF;
+
+
+
+	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20236');
+
+	--rollback;
+END;
+/
+
+
+--restore the CCD_QC_LEG_ALIAS_V data QC view:
+CREATE OR REPLACE View
+CCD_QC_LEG_ALIAS_V
+AS
+SELECT
+CCD_CRUISE_LEGS_V.CRUISE_LEG_ID,
+CRUISE_ID,
+CRUISE_NAME,
+LEG_NAME,
+FORMAT_LEG_START_DATE,
+FORMAT_LEG_END_DATE,
+VESSEL_NAME,
+LEG_ALIAS_NAME,
+LEG_ALIAS_DESC,
+CASE WHEN UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%' then 'Y' ELSE 'N' END INV_LEG_ALIAS_COPY_YN
+
+FROM CCD_CRUISE_LEGS_V
+INNER JOIN
+CCD_LEG_ALIASES
+ON CCD_CRUISE_LEGS_V.CRUISE_LEG_ID = CCD_LEG_ALIASES.CRUISE_LEG_ID
+
+WHERE
+UPPER(LEG_ALIAS_NAME) LIKE '% (COPY)%'
+ORDER BY LEG_NAME
+;
+
+COMMENT ON TABLE CCD_QC_LEG_ALIAS_V IS 'Leg Alias (QC View)
+
+This query identifies data validation issues with Cruise Leg Aliases (e.g. invalid alias name).  This QC View is implemented in the Data Validation Module';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.CRUISE_LEG_ID IS 'Primary key for the CCD_CRUISE_LEGS table';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_NAME IS 'The name of the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_START_DATE IS 'The start date for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_END_DATE IS 'The end date for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.VESSEL_NAME IS 'Name of the given research vessel';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_NAME IS 'The cruise leg alias name for the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_DESC IS 'The cruise leg alias description for the given cruise leg';
+COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.INV_LEG_ALIAS_COPY_YN IS 'Field to indicate if there is an Invalid Copied Leg Alias Name error (Y) or not (N) based on whether or not the value of LEG_ALIAS_NAME contains "(copy)"';
