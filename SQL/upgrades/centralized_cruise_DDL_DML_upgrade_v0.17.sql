@@ -11,7 +11,7 @@
 --------------------------------------------------------
 
 
---Installing Version 0.2 (Git tag: db_log_db_v0.2) of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_log folder)
+--Installing Version 0.2 (Git tag: db_log_db_v0.2) of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git)
 @@"./external_modules/DB_log_DDL_DML_upgrade_v0.2.sql";
 
 --Installing Version 0.7 (Git tag: DVM_db_v0.7) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
@@ -309,7 +309,7 @@
 
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.17', TO_DATE('09-JUL-20', 'DD-MON-YY'), 'Installed Version 0.2 (Git tag: db_log_db_v0.2) of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_log folder).  Installed Version 0.7 (Git tag: DVM_db_v0.7) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git).  Updated the CCD_DVM_PKG to use the updated DVM DB and implemented improved error logging/handling');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.17', TO_DATE('09-JUL-20', 'DD-MON-YY'), 'Installed Version 0.2 (Git tag: db_log_db_v0.2) of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git).  Installed Version 0.7 (Git tag: DVM_db_v0.7) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git).  Updated the CCD_DVM_PKG to use the updated DVM DB and implemented improved error logging/handling');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;

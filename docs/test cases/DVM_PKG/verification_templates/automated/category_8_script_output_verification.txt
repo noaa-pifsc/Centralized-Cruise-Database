@@ -1,0 +1,108 @@
+executing test case for ORA-20501
+The cruise leg was NOT deleted or the associated cruise (and any previously overlapping cruises) was NOT evaluated using the DVM successfully
+ORA-20501: The Cruise Leg ID parameter was not specified
+completed test case for ORA-20501
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20502
+The cruise leg was NOT deleted or the associated cruise (and any previously overlapping cruises) was NOT evaluated using the DVM successfully
+ORA-20502: The cruise leg record was not found in the database
+completed test case for ORA-20502
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20501
+The cruise leg was NOT deleted or the associated cruise (and any previously overlapping cruises) was NOT evaluated using the DVM successfully
+ORA-20501: The Leg Name parameter was not specified
+completed test case for ORA-20501
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20502
+The cruise leg was NOT deleted or the associated cruise (and any previously overlapping cruises) was NOT evaluated using the DVM successfully
+ORA-20502: A cruise leg record with a name "AB-12-21 Leg 1" could not be found in the database
+completed test case for ORA-20502
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20505
+The cruise leg was NOT deleted or the associated cruise (and any previously overlapping cruises) was NOT evaluated using the DVM successfully
+ORA-20505: One or more child records exist for the cruise leg record, you must delete them before you can delete the cruise leg
+completed test case for ORA-20505
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20507
+The cruise record was NOT evaluated successfully
+ORA-20507: The Cruise ID parameter was not specified
+completed test case for ORA-20507
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20508
+The cruise record was NOT evaluated successfully
+ORA-20508: The Cruise could not be successfully processed by the DVM:
+ORA-20237: The parent record could not be validated successfully:
+ORA-20206: The parent record (CCD_CRUISES) for the data stream code(s) (CCD) and parent record PK (-1) was not found in the database
+completed test case for ORA-20508
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20507
+The cruise record was NOT evaluated successfully
+ORA-20507: The Cruise Name parameter was not specified
+completed test case for ORA-20507
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20509
+The cruise record was NOT evaluated successfully
+ORA-20509: A cruise record with a cruise name "ABC-123" could not be found in the database
+completed test case for ORA-20509
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20510
+The cruise record (and any overlapping records) were NOT evaluated successfully
+ORA-20510: The Cruise ID parameter was not specified
+completed test case for ORA-20510
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20511
+The cruise record (and any overlapping records) were NOT evaluated successfully
+ORA-20511: The DVM procedure could not be successfully processed for the cruise(s):
+ORA-20508: The Cruise could not be successfully processed by the DVM:
+ORA-20237: The parent record could not be validated successfully:
+ORA-20206: The parent record (CCD_CRUISES) for the data stream code(s) (CCD) and parent record PK (-1) was not found in the database
+completed test case for ORA-20511
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20510
+The cruise record (and any overlapping records) were NOT evaluated successfully
+ORA-20510: The Cruise Name parameter was not specified
+completed test case for ORA-20510
+
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20512
+The cruise record (and any overlapping records) were NOT evaluated successfully
+ORA-20512: A cruise record with a cruise name "ABC-123" could not be found in the database
+completed test case for ORA-20512
+
+
+PL/SQL procedure successfully completed.

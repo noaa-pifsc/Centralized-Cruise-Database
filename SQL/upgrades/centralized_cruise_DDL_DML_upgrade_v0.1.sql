@@ -12,7 +12,7 @@
 
 
 
---Installing version 0.2 of Database Version Control  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_version_control folder)--
+--Installing version 0.2 of Database Version Control  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-version-control-module.git)--
 @@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.1.sql";
 
 @@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.2.sql";
@@ -22,7 +22,7 @@
 
 
 
---Installing version 0.6 of Application Authorization Database  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the auth_app folder)--
+--Installing version 0.6 of Application Authorization Database  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git)--
 
 @@"./external_modules/auth_app_DB_DDL_DML_update_v0.1.sql";
 @@"./external_modules/auth_app_DB_DDL_DML_update_v0.2.sql";

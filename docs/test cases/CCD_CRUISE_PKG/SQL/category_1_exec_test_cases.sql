@@ -1,0 +1,265 @@
+set serveroutput on;
+
+
+DECLARE
+    V_SP_RET_CODE PLS_INTEGER;
+    V_PROC_RETURN_MSG VARCHAR2(4000);
+    V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+		V_EXC_CODE VARCHAR2(30) :=  'ORA-20601';
+		V_CRUISE_ID PLS_INTEGER := NULL;
+
+ BEGIN
+
+		DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+     --execute the deep copy procedure:
+    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_ID, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+		DBMS_output.put_line('The deep copy was successful');
+
+
+		EXCEPTION
+
+			WHEN OTHERS THEN
+
+
+	      DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+	      DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+				DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+				DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+ END;
+/
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(30) :=  'ORA-20601';
+	 V_CRUISE_NAME VARCHAR2(1000) := NULL;
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_NAME, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+	 DBMS_output.put_line('The deep copy was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+DECLARE
+    V_SP_RET_CODE PLS_INTEGER;
+    V_PROC_RETURN_MSG VARCHAR2(4000);
+    V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+		V_EXC_CODE VARCHAR2(30) :=  'ORA-20602';
+		V_CRUISE_ID PLS_INTEGER := 0;
+
+ BEGIN
+
+		DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+     --execute the deep copy procedure:
+    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_ID, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+		DBMS_output.put_line('The deep copy was successful');
+
+
+		EXCEPTION
+
+			WHEN OTHERS THEN
+
+
+	      DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+	      DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+				DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+				DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+ END;
+/
+
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(30) :=  'ORA-20602';
+	 V_CRUISE_NAME VARCHAR2 (1000) := 'XYZ-789';
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_NAME, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+	 DBMS_output.put_line('The deep copy was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+
+
+
+
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(30) :=  'ORA-20603';
+	 V_CRUISE_NAME VARCHAR2 (1000) := 'HA1007';
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_NAME, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+	 DBMS_output.put_line('The deep copy was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(30) :=  'ORA-20605';
+	 V_CRUISE_NAME VARCHAR2 (1000) := 'OES0407';
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_NAME, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+	 DBMS_output.put_line('The deep copy was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(30) :=  'ORA-20608';
+	 V_CRUISE_NAME VARCHAR2 (1000) := 'OES0410';
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(V_CRUISE_NAME, V_SP_RET_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);
+
+
+	 DBMS_output.put_line('The deep copy was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The deep copy was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/

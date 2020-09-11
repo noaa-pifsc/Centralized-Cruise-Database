@@ -1,0 +1,20 @@
+/*resolved (annotated) error class*/
+tr.resolved-issue td.a-GV-cell {background-color: #e7f4e4 !important;}
+
+/*unresolved (non-annotated) error class*/
+tr.unresolved-error td.a-GV-cell {background-color: #f9dede !important;}
+
+/*unresolved (non-annotated) warning class*/
+tr.unresolved-warning td.a-GV-cell {background-color: #fff1d2 !important;}
+
+/*IG cells with wrapped content*/
+.wrap-cell {
+    max-height: 100px;
+    white-space: normal;
+    overflow: hidden;
+}
+
+/*cell height for all rows containing at least one wrapped cell (requires the Interactive Grid to have a static ID of data_validation_issues)*/
+#data_validation_issues .a-GV-cell {
+    height: 120px;
+}

@@ -1,5 +1,6 @@
 --execute this grant from the CEN_UTILS schema:
 grant execute on CEN_UTIL_PKG to cen_cruise_app;
+grant execute on CEN_UTIL_ARRAY_PKG to cen_cruise_app;
 
 
 --run this from the CEN_CRUISE data schema
@@ -134,13 +135,14 @@ grant select on dvm_iss_severity to CEN_CRUISE_APP;
 grant select on dvm_iss_types to CEN_CRUISE_APP;
 grant select on dvm_iss_res_types to CEN_CRUISE_APP;
 
+grant execute on DVM_PKG to CEN_CRUISE_APP;
 grant execute on CCD_DVM_PKG to CEN_CRUISE_APP;
 grant select on DVM_PTA_ISSUES_V to CEN_CRUISE_APP;
 
 
 grant select on CCD_CRUISE_SUMM_ISS_V to CEN_CRUISE_APP;
 grant select on CCD_CRUISE_ISS_SUMM_V to CEN_CRUISE_APP;
-
+grant select on CCD_QC_LEG_OVERLAP_V to CEN_CRUISE_APP;
 
 /*
 grant insert, delete, update, select on  to CEN_CRUISE_APP;

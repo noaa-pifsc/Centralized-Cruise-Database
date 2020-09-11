@@ -16,17 +16,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -48,17 +48,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -80,17 +80,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -112,17 +112,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -142,17 +142,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -172,17 +172,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -204,17 +204,18 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
+
 END;
 /
 
@@ -234,17 +235,16 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
 END;
 /
 
@@ -266,17 +266,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -298,17 +298,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -330,17 +330,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -361,17 +361,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
 END;
 /
 
@@ -390,16 +390,17 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	--rollback;
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+
+
 END;
 /

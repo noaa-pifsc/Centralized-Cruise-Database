@@ -17,20 +17,21 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
-
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20201');
 
-	--rollback;
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20201');
+
 END;
 /
 
@@ -55,22 +56,23 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
-
-	UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
-
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20202');
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--rollback;
+	EXCEPTION
+		WHEN OTHERS THEN
+
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20202');
+
 END;
 /
 
@@ -96,21 +98,22 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	UPDATE DVM_DATA_STREAMS SET data_stream_par_table = 'CCD_CRUISES';
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20203');
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	--rollback;
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			UPDATE DVM_DATA_STREAMS SET data_stream_par_table = 'CCD_CRUISES';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20203');
+
 END;
 /
 
@@ -141,24 +144,25 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	delete from dvm_data_streams where DATA_STREAM_CODE = 'CCD_TEST';
 
-	execute immediate 'ALTER TABLE CCD_CRUISE_LEGS
-	DROP COLUMN PTA_ISS_ID';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20204');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	--rollback;
+			delete from dvm_data_streams where DATA_STREAM_CODE = 'CCD_TEST';
+
+			execute immediate 'ALTER TABLE CCD_CRUISE_LEGS
+			DROP COLUMN PTA_ISS_ID';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20204');
+
 END;
 /
 
@@ -180,19 +184,19 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20206');
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	--rollback;
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20206');
+
 END;
 /
 
@@ -232,23 +236,27 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
-
-	DELETE FROM DVM_RULE_SETS WHERE RULE_SET_CREATE_DATE = (SELECT MAX(RULE_SET_CREATE_DATE) FROM DVM_RULE_SETS WHERE RULE_SET_ACTIVE_YN = 'Y');
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20210');
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			DELETE FROM DVM_RULE_SETS WHERE RULE_SET_CREATE_DATE = (SELECT MAX(RULE_SET_CREATE_DATE) FROM DVM_RULE_SETS WHERE RULE_SET_ACTIVE_YN = 'Y');
 
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20210');
+
+
+
+
+
 END;
 /
 
@@ -279,25 +287,23 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
-
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--re-enable all QC object validation rules:
-	UPDATE DVM_QC_OBJECTS SET QC_OBJ_ACTIVE_YN = 'Y';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--re-enable all QC object validation rules:
+			UPDATE DVM_QC_OBJECTS SET QC_OBJ_ACTIVE_YN = 'Y';
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20211');
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20211');
 
-
-	--rollback;
 END;
 /
 
@@ -328,25 +334,23 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	--re-enable all QC object validation rules:
-	UPDATE DVM_ISS_TYPES SET ISS_TYPE_ACTIVE_YN = 'Y';
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20211');
+			--re-enable all QC object validation rules:
+			UPDATE DVM_ISS_TYPES SET ISS_TYPE_ACTIVE_YN = 'Y';
 
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20211');
+
 END;
 /
 
@@ -377,22 +381,22 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
-
-	END IF;
-
-	UPDATE DVM_QC_OBJECTS SET OBJECT_NAME = 'CCD_QC_CRUISE_V' WHERE OBJECT_NAME = 'CCD_QC_CRUISE_TEMP_V';
-
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20220');
 
 
-	--rollback;
+	DBMS_output.put_line('The parent record was evaluated successfully');
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			UPDATE DVM_QC_OBJECTS SET OBJECT_NAME = 'CCD_QC_CRUISE_V' WHERE OBJECT_NAME = 'CCD_QC_CRUISE_TEMP_V';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20220');
+
 END;
 /
 
@@ -419,46 +423,49 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--restore the table to its former state:
-	execute immediate 'ALTER TABLE CCD_CRUISES RENAME COLUMN CRUISE_URL2 TO CRUISE_URL';
 
 
-	--recompile invalid views:
-	execute immediate 'ALTER VIEW CCD_CRUISE_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_QC_CRUISE_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_QC_LEG_ALIAS_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_QC_LEG_OVERLAP_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_QC_LEG_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_DELIM_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_ISS_SUMM_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_LEG_DELIM_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_LEGS_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_SUMM_ISS_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_SUMM_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_DVM_EVAL_RPT_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULE_EVAL_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULE_EVAL_RPT_V COMPILE';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULES_V COMPILE';
-	execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULES_RPT_V COMPILE';
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	execute immediate 'ALTER PACKAGE CCD_CRUISE_PKG COMPILE';
-	execute immediate 'ALTER PACKAGE CCD_DVM_PKG COMPILE';
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20221');
+			--restore the table to its former state:
+			execute immediate 'ALTER TABLE CCD_CRUISES RENAME COLUMN CRUISE_URL2 TO CRUISE_URL';
 
-	--rollback;
+
+			--recompile invalid views:
+			execute immediate 'ALTER VIEW CCD_CRUISE_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_QC_CRUISE_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_QC_LEG_ALIAS_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_QC_LEG_OVERLAP_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_QC_LEG_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_DELIM_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_ISS_SUMM_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_LEG_DELIM_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_LEGS_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_SUMM_ISS_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_SUMM_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_DVM_EVAL_RPT_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULE_EVAL_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULE_EVAL_RPT_V COMPILE';
+
+			execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULES_V COMPILE';
+			execute immediate 'ALTER VIEW CCD_CRUISE_DVM_RULES_RPT_V COMPILE';
+
+			execute immediate 'ALTER PACKAGE CCD_CRUISE_PKG COMPILE';
+			execute immediate 'ALTER PACKAGE CCD_DVM_PKG COMPILE';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20221');
+
 END;
 /
 
@@ -490,25 +497,24 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-
-	--revert the issue type's comment template :
-	UPDATE DVM_ISS_TYPES SET APP_LINK_TEMPLATE = REPLACE(APP_LINK_TEMPLATE, '[CRUISE_ID][ABC][DEF]', '[CRUISE_ID]') WHERE IND_FIELD_NAME = 'INV_CRUISE_NAME_YN';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20224');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--revert the issue type's comment template :
+			UPDATE DVM_ISS_TYPES SET APP_LINK_TEMPLATE = REPLACE(APP_LINK_TEMPLATE, '[CRUISE_ID][ABC][DEF]', '[CRUISE_ID]') WHERE IND_FIELD_NAME = 'INV_CRUISE_NAME_YN';
 
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20224');
+
 END;
 /
 
@@ -539,25 +545,30 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-
-	--revert the issue type's comment template :
-	UPDATE DVM_ISS_TYPES SET APP_LINK_TEMPLATE = REPLACE(APP_LINK_TEMPLATE, '[CRUISE_LEG_ID1][GHI][JKL]', '[CRUISE_LEG_ID1]') WHERE IND_FIELD_NAME = 'VESSEL_OVERLAP_YN';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20224');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--revert the issue type's comment template :
+			UPDATE DVM_ISS_TYPES SET APP_LINK_TEMPLATE = REPLACE(APP_LINK_TEMPLATE, '[CRUISE_LEG_ID1][GHI][JKL]', '[CRUISE_LEG_ID1]') WHERE IND_FIELD_NAME = 'VESSEL_OVERLAP_YN';
 
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20224');
+
+
+
+
+
+
+
 END;
 /
 
@@ -587,25 +598,25 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--revert the issue type's comment template :
-	UPDATE DVM_ISS_TYPES SET ISS_TYPE_COMMENT_TEMPLATE = REPLACE(ISS_TYPE_COMMENT_TEMPLATE, '[CRUISE_NAME][ABC][DEF]', '[CRUISE_NAME]') WHERE IND_FIELD_NAME = 'INV_CRUISE_NAME_YN';
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--revert the issue type's comment template :
+			UPDATE DVM_ISS_TYPES SET ISS_TYPE_COMMENT_TEMPLATE = REPLACE(ISS_TYPE_COMMENT_TEMPLATE, '[CRUISE_NAME][ABC][DEF]', '[CRUISE_NAME]') WHERE IND_FIELD_NAME = 'INV_CRUISE_NAME_YN';
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20225');
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20225');
 
-
-	--rollback;
 END;
 /
 
@@ -637,25 +648,25 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--revert the issue type's comment template :
-	UPDATE DVM_ISS_TYPES SET ISS_TYPE_COMMENT_TEMPLATE = REPLACE(ISS_TYPE_COMMENT_TEMPLATE, '[CRUISE_NAME1][XYZ]', '[CRUISE_NAME1]') WHERE IND_FIELD_NAME = 'VESSEL_OVERLAP_YN';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20225');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--revert the issue type's comment template :
+			UPDATE DVM_ISS_TYPES SET ISS_TYPE_COMMENT_TEMPLATE = REPLACE(ISS_TYPE_COMMENT_TEMPLATE, '[CRUISE_NAME1][XYZ]', '[CRUISE_NAME1]') WHERE IND_FIELD_NAME = 'VESSEL_OVERLAP_YN';
 
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20225');
+
 END;
 /
 
@@ -703,24 +714,24 @@ ADD (PTA_ISS_ID NUMBER )';
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--restore the data stream record to its former state:
-	UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--restore the data stream record to its former state:
+			UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20232');
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20232');
 
-	--rollback;
 END;
 /
 
@@ -809,24 +820,24 @@ ADD (PTA_ISS_ID NUMBER )';
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
-
-	--restore the data stream record to its former state:
-	UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20232');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	--rollback;
+			--restore the data stream record to its former state:
+			UPDATE DVM_DATA_STREAMS SET DATA_STREAM_PAR_TABLE = 'CCD_CRUISES' WHERE DATA_STREAM_CODE = 'CCD';
+
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20232');
+
 END;
 /
 
@@ -898,24 +909,24 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--restore the issue type record to its former state:
-	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'CRUISE_OVERLAP_YN' WHERE ISS_TYPE_NAME = 'Cruise Leg Overlap';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--restore the issue type record to its former state:
+			UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'CRUISE_OVERLAP_YN' WHERE ISS_TYPE_NAME = 'Cruise Leg Overlap';
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
 
-	--rollback;
 END;
 /
 
@@ -943,24 +954,24 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--restore the issue type record to its former state:
-	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'MISS_GEAR_YN' WHERE ISS_TYPE_NAME = 'Missing Leg Gear';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+			--restore the issue type record to its former state:
+			UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'MISS_GEAR_YN' WHERE ISS_TYPE_NAME = 'Missing Leg Gear';
 
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20234');
 
-	--rollback;
 END;
 /
 
@@ -987,24 +998,23 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
+
+		--restore the issue type record to its former state:
+		UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_CRUISE_NAME_FY_YN' WHERE ISS_TYPE_NAME = 'Mismatched Cruise Name and Fiscal Year';
 
 
-	--restore the issue type record to its former state:
-	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_CRUISE_NAME_FY_YN' WHERE ISS_TYPE_NAME = 'Mismatched Cruise Name and Fiscal Year';
+		DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
 
-
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
-
-	--rollback;
 END;
 /
 
@@ -1034,23 +1044,23 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
-	--restore the issue type record to its former state:
-	UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_LEG_DATES_YN' WHERE ISS_TYPE_NAME = 'Invalid Leg Dates';
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	--rollback;
+			--restore the issue type record to its former state:
+			UPDATE DVM_ISS_TYPES SET IND_FIELD_NAME = 'INV_LEG_DATES_YN' WHERE ISS_TYPE_NAME = 'Invalid Leg Dates';
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20235');
+
 END;
 /
 
@@ -1101,21 +1111,20 @@ BEGIN
 
 	DVM_PKG.VALIDATE_PARENT_RECORD_SP(
 	P_DATA_STREAM_CODES => P_DATA_STREAM_CODE,
-	P_PK_ID => P_PK_ID,
-	P_SP_RET_CODE => V_SP_RET_CODE
+	P_PK_ID => P_PK_ID
 	);
-	IF (V_SP_RET_CODE = 1) then
-		DBMS_output.put_line('The parent record was evaluated successfully');
-	ELSE
-		DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	END IF;
+	DBMS_output.put_line('The parent record was evaluated successfully');
 
 
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line(SQLERRM);
 
-	DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20236');
+			DBMS_output.put_line('The parent record was NOT evaluated successfully');
 
-	--rollback;
+			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20236');
+
 END;
 /
 

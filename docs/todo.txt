@@ -1,5 +1,18 @@
+X document business rules for the delete, update, insert actions (automatic overlap checks)
+
 DVM configuration:
 	_ update the description template to remove the cruise dates as these will change as associated cruise legs are modified
+
+X CCD_DVM_PKG procedure for deleting DVM records (implement in CRDMA in "Delete DVM Recs" Process)
+	X CCD_DVM_PKG procedure to query for all overlapping cruises before deletion and then batch DVM execution on all overlapping records after the record is deleted
+
+X update the procedure definitions for CCD_DVM_PKG and CCD_CRUISE_PKG
+
+_ cruise leg delete bug in the APEX app
+
+_ document the business rules for the reference tables and presets/preset options
+
+_ CRDMA test cases for the CCD_CRUISE_PKG and CCD_DVM_PKG
 
 
 APEX Application
@@ -221,6 +234,10 @@ _ document business rule for standard survey name other field (CCD_CRUISES.CTD_S
 _ document business rule for CCD_CRUISE_SURVEY_CATS.PRIMARY_YN field and how it is implemented in the application (filtered into two categories based on flag)
 	X implement in Views
 
+X document the business rule for automatically evaluating the overlapping cruises when using the overlap CCD_DVM_PKG package procedure
+	X update the DVM documentation to reference this overlap procedure as a new use case example
+X document the business rule for in-port surveys/data collection activities (reference Nori's explanation about shore based missions from meeting on 8/24/20)
+
 
 
 **X fix FY 2099 problem with TC9905 (this was due to the two-digit year defaulting 99 to 2099 instead of 1999)
@@ -393,14 +410,10 @@ X valid cruise indicator (color coded?) with counts for annotated errors, etc.
 _ export calendar information (e.g. Google Calendar format, outlook, thunderbird, etc.)
 
 X insert/update/delete cases for cruises in the testing documentation ->
-	X ensure that the attributes are processed first in the proceessing order for deletions
+	X ensure that the attributes are processed first in the processing order for deletions
 		X delete cruise must remove all associated DVM error records before deleting the cruise
 	X ensure that the attributes are processed after the cruise update/insert for new/updated cruises
 
-X insert/update/delete cases for cruise legs in the testing documentation ->
-	X ensure that the attributes are processed first in the proceessing order for deletions
-		X delete cruise executes the DVM on the parent cruise record after the cruise leg is deleted
-	X ensure that the attributes are processed after the cruise update/insert for new/updated cruises
 
 X business rules:
 	X when a cruise is deleted the PTA error recs associated with it are deleted
@@ -426,3 +439,34 @@ X QC Validation Issues Reports
 	X implement default sorting for the QC validation issues
 	X make sure the field order on all QC vaidation reports is the same
 X add QC validation issues data grid to View/Edit Cruise Legs
+
+
+
+(7/1/20) Meeting Feedback:
+Kyle - Not having much involvement in creation of cruises/cruise legs
+
+Kristin - Suggestion: cruise summary cover page (description of what we are looking at)
+
+Number of cruises and
+(_ color coding - cruise summary page - color code the bars on the reports - or maybe a different way to show it)
+(Easier on the eyes)
+
+
+Possible Bug: following deep copy did not report the overlap errors for the associated legs in the DVM
+
+
+8/17/20 feedback from RR:
+
+I just looked at the validation rules. They seem good to me!
+
+I don't know how historical records may have been (cruises from long ago), but recent cruises are divided into legs that usually don't exceed 35 days.  (The maximum duration of our ships is 30-35 DAS before they need to reprovision.)  The fact you have it warning on legs longer than 30 days is good.
+
+I assume in-ports are counted as part of an overall cruise length, but not as part of an individual leg.  (An entire cruise would consist of individual Legs (DAS) and in-ports, as applicable.)
+
+What happens if work was done during an in-port? I know we had an ASRAMP or two where that happened.  It was definitely the exception and not the rule, but in thoseoccasions data was collected that was not during a DAS (cruise leg). Does that matter at all for this?
+
+My response:
+
+I'll leave the 30 days at sea warning in place for cruise legs.  The data system will currently not allow cruise legs to exceed 90 days at sea, should this be adjusted to 45 or is there a more reasonable number you could recommend?  Also, yes in-ports between legs are included as part of the overall cruise length.
+
+That's a good point, I recommend that the in-port work be attributed to the previous leg in the event that there is work done in-port following the last leg of a cruise.  I have documented the pending cruise data system business rule for in-port work to ensure we are consistent moving forward.

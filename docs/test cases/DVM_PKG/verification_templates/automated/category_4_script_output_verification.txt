@@ -1,5 +1,5 @@
 executing test case for ORA-20201
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20201: The specified data stream code (TEST) was not found in the database: ORA-01403: no data found
 The parent record was NOT evaluated successfully
 completed test case for ORA-20201
@@ -8,7 +8,7 @@ completed test case for ORA-20201
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20202
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20202: The current data stream has a parent table (CCD_CRUISES_TEMP) that does not exist, this must be resolved before the DVM can execute successfully
 The parent record was NOT evaluated successfully
 completed test case for ORA-20202
@@ -17,7 +17,7 @@ completed test case for ORA-20202
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20203
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20203: The current data stream has a parent table (CCD_CRUISE_LEGS) that has not been enabled in the DVM (this requires the parent table to have a NUMBER field named PTA_ISS_ID)
 The parent record was NOT evaluated successfully
 completed test case for ORA-20203
@@ -26,7 +26,7 @@ completed test case for ORA-20203
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20204
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20204: The associated parent table (CCD_CRUISES AND CCD_CRUISE_LEGS) and parent table's primary key field (CRUISE_ID AND CRUISE_LEG_ID) for the current and previous data stream codes (CCD_TEST AND CCD) are not the same, this indicates that the data stream codes are for different parent tables so this procedure call is invalid
 The parent record was NOT evaluated successfully
 completed test case for ORA-20204
@@ -35,7 +35,7 @@ completed test case for ORA-20204
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20206
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20206: The parent record (CCD_CRUISES) for the data stream code(s) (CCD) and parent record PK (-1) was not found in the database
 The parent record was NOT evaluated successfully
 completed test case for ORA-20206
@@ -44,7 +44,7 @@ completed test case for ORA-20206
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20210
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20210: The data stream code (CCD) has more than one active validation rule set associated with it
 The parent record was NOT evaluated successfully
 completed test case for ORA-20210
@@ -53,7 +53,7 @@ completed test case for ORA-20210
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20211
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20211: The data stream code (CCD) has no associated active validation rules
 The parent record was NOT evaluated successfully
 completed test case for ORA-20211
@@ -62,7 +62,7 @@ completed test case for ORA-20211
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20211
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20211: The data stream code (CCD) has no associated active validation rules
 The parent record was NOT evaluated successfully
 completed test case for ORA-20211
@@ -71,7 +71,7 @@ completed test case for ORA-20211
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20220
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20220: The data QC view (CCD_QC_CRUISE_TEMP_V) does not exist: ORA-00942: table or view does not exist
 The parent record was NOT evaluated successfully
@@ -81,7 +81,7 @@ completed test case for ORA-20220
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20221
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20221: The data QC view (CCD_QC_CRUISE_V) is invalid: ORA-04063: view "CEN_CRUISE.CCD_QC_CRUISE_V" has errors
 The parent record was NOT evaluated successfully
@@ -91,7 +91,7 @@ completed test case for ORA-20221
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20224
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20222: The data QC view (CCD_QC_CRUISE_V) could not be processed successfully:
 ORA-20223: The data QC validation issue record could not be successfully populated:
@@ -103,7 +103,7 @@ completed test case for ORA-20224
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20224
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20222: The data QC view (CCD_QC_LEG_OVERLAP_V) could not be processed successfully:
 ORA-20223: The data QC validation issue record could not be successfully populated:
@@ -115,7 +115,7 @@ completed test case for ORA-20224
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20225
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20222: The data QC view (CCD_QC_CRUISE_V) could not be processed successfully:
 ORA-20223: The data QC validation issue record could not be successfully populated:
@@ -127,7 +127,7 @@ completed test case for ORA-20225
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20225
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20222: The data QC view (CCD_QC_LEG_OVERLAP_V) could not be processed successfully:
 ORA-20223: The data QC validation issue record could not be successfully populated:
@@ -139,7 +139,7 @@ completed test case for ORA-20225
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20232
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20232: The current data stream has a parent table (DVM_ISSUES_HIST) that does not have a single numeric primary key defined for it, this must be resolved before the DVM can execute successfully
 The parent record was NOT evaluated successfully
 completed test case for ORA-20232
@@ -217,7 +217,7 @@ Package DVM_PKG altered.
 Package CCD_DVM_PKG altered.
 
 executing test case for ORA-20232
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20232: The current data stream has a parent table (DVM_ISS_SEVERITY_HIST) that does not have a single numeric primary key defined for it, this must be resolved before the DVM can execute successfully
 The parent record was NOT evaluated successfully
 completed test case for ORA-20232
@@ -295,7 +295,7 @@ Package DVM_PKG altered.
 Package CCD_DVM_PKG altered.
 
 executing test case for ORA-20234
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20234: The validation rule (Cruise Leg Overlap) indicator field (MISSING_IND_FIELD_YN) was not found in the data QC view (CCD_QC_LEG_OVERLAP_V):
 ORA-01403: no data found
@@ -306,7 +306,7 @@ completed test case for ORA-20234
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20234
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20234: The validation rule (Missing Leg Gear) indicator field (MISSING_IND_FIELD2_YN) was not found in the data QC view (CCD_QC_LEG_V):
 ORA-01403: no data found
@@ -317,7 +317,7 @@ completed test case for ORA-20234
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20235
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20235: The validation rule (Mismatched Cruise Name and Fiscal Year) indicator field (CRUISE_ID) has an invalid data type in the data QC view (CCD_QC_CRUISE_V), the DVM requires a character data type for indicator fields:
 ORA-06562: type of out argument must match type of column or bind variable
@@ -328,7 +328,7 @@ completed test case for ORA-20235
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20235
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20235: The validation rule (Invalid Leg Dates) indicator field (CRUISE_LEG_ID) has an invalid data type in the data QC view (CCD_QC_LEG_V), the DVM requires a character data type for indicator fields:
 ORA-06562: type of out argument must match type of column or bind variable
@@ -342,7 +342,7 @@ PL/SQL procedure successfully completed.
 View CCD_QC_LEG_ALIAS_V created.
 
 executing test case for ORA-20236
-DVM_PKG error: The parent record could not be validated successfully:
+ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20236: The Data QC View (CCD_QC_LEG_ALIAS_V) does not contain the primary key field (CRUISE_ID) of the parent table (CCD_CRUISES), the DVM requires each Data QC View to include the parent table primary key:
 ORA-00904: "CRUISE_ID": invalid identifier

@@ -14,7 +14,7 @@
 
 
 
---Installed Version 0.1 of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_log folder)
+--Installed Version 0.1 of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git)
 
 
 @@"./external_modules/DB_log_DDL_DML_upgrade_v0.1.sql"
@@ -3011,7 +3011,7 @@ drop view CCD_CRUISE_LEG_ALIASES_V;
 ALTER TRIGGER CCD_CRUISES_AUTO_BRU compile;
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.6', TO_DATE('04-MAR-20', 'DD-MON-YY'), 'This version requires version 0.7 of the Centralized Utilities Database (URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the centralized_utilities folder, git tag: cen_utils_db_v0.6) to be installed on the CEN_UTILS schema with the appropriate permissions.  Installed Version 0.1 of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-tools.git in the DB_log folder).  Installed Version 0.2 of the Error Handler Module (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder).  Updated data model based on the FINSS system (https://www.st.nmfs.noaa.gov/finss/si/siMain.jsp), added multiple reference tables and defined the one-to-many and many-to-many relationships for the CCD_CRUISES and CCD_CRUISE_LEGS tables.  Replaced the cruise-vessel foreign key to a leg-vessel relationship.  Updated the main CCD_CRUISES and CCD_CRUISE_LEGS tables to add in FINSS fields.  Redefined the database views based on the data model updates and organized them so they can be used in different cases (delimited reference values at the cruise and cruise leg levels) as well as summary information used in the APEX application.');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.6', TO_DATE('04-MAR-20', 'DD-MON-YY'), 'This version requires version 0.7 of the Centralized Utilities Database (URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-utilities.git, git tag: cen_utils_db_v0.7) to be installed on the CEN_UTILS schema with the appropriate permissions.  Installed Version 0.1 of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git).  Installed Version 0.2 of the Error Handler Module (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder).  Updated data model based on the FINSS system (https://www.st.nmfs.noaa.gov/finss/si/siMain.jsp), added multiple reference tables and defined the one-to-many and many-to-many relationships for the CCD_CRUISES and CCD_CRUISE_LEGS tables.  Replaced the cruise-vessel foreign key to a leg-vessel relationship.  Updated the main CCD_CRUISES and CCD_CRUISE_LEGS tables to add in FINSS fields.  Redefined the database views based on the data model updates and organized them so they can be used in different cases (delimited reference values at the cruise and cruise leg levels) as well as summary information used in the APEX application.');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;

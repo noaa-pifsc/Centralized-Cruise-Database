@@ -1,0 +1,8 @@
+/*css code to change login form logo to NOAA Fisheries as default (css file must be included in the login form's page)*/
+span.t-Login-logo
+{
+    background-image: url(https://www.fisheries.noaa.gov/themes/custom/noaa_components/images/fisheries_header_logo_jul2019.png);
+    background-size: cover;
+    width: 325px;
+    height: 130px;
+}
