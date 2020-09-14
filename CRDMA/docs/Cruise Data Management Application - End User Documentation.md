@@ -1,0 +1,184 @@
+# Cruise Data Management Application End User Documentation
+
+## Overview:
+The Cruise Data Management Application (CRDMA) was developed to allow PIFSC users to view summary reports and authorized users to manage cruise information.
+
+## Application URLs:
+-   Test Application: https://midt.pic.gov/apex_pict/f?p=287
+-   Production Application: TBD
+
+## Requirements:
+-   A connection to the PIFSC network is required to access the application
+-   Google Chrome or Firefox must be used to access the application in order to avoid PIFSC SSL certificate issues
+
+## DVM Issue Policies:
+-   The DVM QC validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QC"
+-   The relevant DVM business rules (see "Rule ID" column) for the CRDMA are defined in the specific [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) listed below:
+    -   <span id="DVM_issue_categories" class="anchor"></span>Validation Issue Categories (CR-DB-003)
+    -   DVM Execution (CR-DB-005)
+    -   Validation Errors (CR-DB-009)
+    -   Validation Warnings (CR-DB-010)
+    -   DVM Reports (CR-DB-011)
+    -   QC Validation Issue Authentication (CR-DMA-001)
+    -   Validation Issue Annotation Policy (CR-DMA-002)
+    -   Automated Cruise Data Validation Policy (CR-DMA-007)
+    -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
+    -   Validation Issue Display Policy (CR-DMA-009)
+    -   Validation Issue Record Policy (CR-DMA-010)
+    -   Validation Issue Update Policy (CR-DMA-011)
+    -   Validation Issue Application Link Policy (CR-DMA-012)
+    -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
+    -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)
+    -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
+
+## Application Pages:
+-   Public Pages (requires no login):
+    -   Cruise Summary Full Summary
+        -   This summary reporting page contains two chart reports displaying the days at sea and number of cruises grouped by fiscal year and survey name respectively.
+        -   Clicking on a given bar on the fiscal year chart will forward the user to the Fiscal Year Summary Page with the given fiscal year selected.
+        -   Clicking on a given bar on the survey name chart will forward the user to the Survey Name Summary Page with the given survey name selected.
+    -   Fiscal Year Summary
+        -   This summary reporting page contains a select field to choose a given fiscal year based on the data in the database, updating the select field will reload the chart reports based on the selected fiscal year.
+        -   The bar chart report shows the number of cruises and days at sea for the selected fiscal year.
+        -   The two pie chart reports shows the number of cruises and days at sea respectively grouped by survey name for the selected fiscal year
+    -   Survey Name Summary
+        -   This summary reporting page contains a select field to choose a given Survey Name based on the data in the database, updating the select field will reload the chart reports based on the selected Survey Name.
+        -   The bar chart report shows the number of cruises and days at sea for the selected Survey Name.
+        -   The two pie chart reports shows the number of cruises and days at sea respectively grouped by fiscal year for the selected Survey Name
+-   Data Administrator Pages (Data management pages)
+    -   These pages require authorization, when prompted authorized users may login using their email credentials (username without the "@noaa.gov")
+    -   All forms that have a light yellow background can be used to add/edit a given record, all other forms are read-only
+    -   Cruise List
+        -   This page contains a report showing all research cruises and associated aggregate information that allows users to filter, sort, and download cruise information.
+        -   Clicking the "Create" button will forward the user to the View/Edit Cruise page so they can create a new cruise
+        -   Clicking the Edit icon for a given cruise will forward the user to the View/Edit Cruise page so they can update or delete the selected cruise
+        -   Clicking the Copy icon for a given cruise will forward the user to the View/Edit Cruise page with the corresponding cruise's values in the form so they can be modified appropriately and saved.
+            -   **Note: the new cruise record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
+    -   View/Edit Cruise
+        -   Certain drop down fields (e.g. Standard Survey Name) have a corresponding "Filter List" checkbox to filter the values available; checking the box will update the select field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+        -   This page contains a data form for the cruise table, if the user clicked the "Create" button to reach this page a new cruise record can be created.
+            -   If the "Copy" icon was clicked on the Cruise List page the values from the corresponding Cruise will be used to populate the data form as well as the attribute forms so they can be modified by the user and saved.
+            -   Clicking on the "Create" button will save the record and reload the page with the new cruise selected allowing the user to create records (e.g. cruise legs, target species, etc.) associated with the new cruise
+            -   Clicking on the "Create Another" button will save the record and reload the page with no cruise selected to allow the user to create another cruise record.
+        -   If the user clicked the edit icon to reach this page the cruise record can be updated/deleted.
+            -   Clicking on the "Delete" button will prompt the user to confirm if they want to delete the selected cruise record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified Cruise record, if it is successful the user is forwarded to the Cruise List page. Clicking the "Cancel" button will cancel the delete action.
+            -   Clicking on the "Apply Changes" button will attempt to save the record and reload the page.
+        -   Cruise Attributes Region Tabs:
+            -   When the mouse pointer hovers over any of the Region Tabs the associated tooltip will be displayed
+            -   Cruise Summary:
+                -   **Note: this region is only visible if the Edit icon was clicked on the Cruise List page or if the record was just created using the "Create" button
+                -   This read-only region shows aggregate information for the given cruise
+            -   Cruise Legs:
+                -   **Note: this region is only visible if the Edit icon was clicked on the Cruise List page or if the record was just created using the "Create" button
+                -   The user can create a new cruise leg associated with the selected Cruise record by clicking the "Create" button on the Cruise Legs section
+                -   The user can view or edit a given cruise leg by clicking the Edit icon for a given cruise leg which will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg selected
+                -   Authorized users can copy the values from an existing cruise leg by clicking the Copy icon for the given leg which will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg's values in the form so they can be modified appropriately and saved.
+                    -   **Note: the new cruise leg record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
+            -   QC Validation Issues:
+                -   **Note: this region is only visible if the Edit icon was clicked on the Cruise List page or if the record was just created using the "Create" button
+                -   This region contains an interactive grid report that displays all QC validation issues identified by the DVM that are associated with the given Cruise so they can be reviewed and/or annotated.
+                    -   [DVM Issue Policies](#dvm-issue-policies)
+                -   Clicking on the "Apply Changes" button will attempt to save the associated records.
+            -   Shuttle Fields and Preset Options:
+                -   This setup is implemented for all many-to-many cruise table relationships with the following reference tables:
+                    -   Primary Survey Category, Secondary Survey Category, Target Species - ESA, Target Species - MMPA, Target Species - FSSI, Expected Species Categories
+                -   A shuttle field is available showing all of the options for a given reference table (e.g. Expected Species Categories). Users select records to associate with the given cruise by moving options to the right side of the field.
+                -   Preset Region:
+                    -   The preset region contains a select field that lists all defined presets for the given reference table.
+                    -   A classic report containing the reference table options defined for the given preset is displayed below the select field.
+                    -   Changing the select field value will reload the report with the corresponding reference table options defined for the chosen preset
+                    -   Clicking the Select Preset button will update the shuttle field to select the options defined for the chosen preset
+                -   Filtering:
+                    -   Certain shuttle fields have a corresponding "Filter List?" checkbox field. Checking the box will update the shuttle field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+                -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
+            -   Target Species - Other Species
+                -   This tabular form can be used to associate new target other species or edit associated target other species for the selected cruise
+                -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
+        -   Data Validation:
+            -   Specific QA criteria are documented in the [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx), with a scope of "Data QA"
+            -   Create/Create Another/Apply Changes:
+                -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented when a Cruise record is created or saved:
+                    -   Automated Cruise Data Validation Policy (CR-DMA-007)
+            -   Delete:
+                -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise functionality:
+                    -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
+    -   View/Edit Cruise Leg
+        -   Certain drop down fields (e.g. Vessel) have a corresponding "Filter List" checkbox to filter the values available; checking the box will update the select field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+        -   This page displays all Cruise information and specific associated record values (e.g. cruise start/end dates, number of associated legs, fiscal year, URL, etc.) for the specified Cruise.
+            -   The Cruise Legs section of the page will display all associated Cruise Legs for the specified Cruise.
+            -   Clicking the Edit icon next to a given Cruise Leg will reload the page with the given Cruise Leg specified.
+            -   Clicking the Copy icon next to a given Cruise Leg will reload the page with the corresponding Cruise Leg's values in the form so they can be modified appropriately and saved.
+                -   **Note: the new cruise leg record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
+            -   When the mouse pointer hovers over any column heading the associated tooltip will be displayed.
+        -   If the "Create" button was clicked to reach this page the Leg Info form can be used to create a new cruise leg
+            -   If the "Copy" icon was clicked on the View/Edit Cruise or View/Edit Cruise Leg page the values from the corresponding Cruise Leg will be used to populate the data form as well as the attribute forms so they can be modified by the user and saved.
+            -   Clicking on the "Create" button will save the record and reload the page with the new cruise leg selected allowing the user to create records (e.g. regions, gear, regional ecosystems, etc.) associated with the new cruise leg
+            -   Clicking on the "Create Another" button will save the record and reload the page with no cruise leg selected to allow the user to create another cruise leg record for the specified cruise.
+        -   If a Cruise Leg was specified this form can be used to edit the selected cruise leg record and all associated records.
+            -   Clicking on the "Delete" button will prompt the user to confirm if they want to delete the selected cruise leg record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference with the specified Cruise Leg record, if it is successful the user is forwarded to the Cruise List page. Clicking the "Cancel" button will cancel the delete action.
+            -   Clicking on the "Apply Changes" button will attempt to save the record and reload the page
+        -   Leg Attributes Region Tabs:
+            -   When the mouse pointer hovers over any of the Region Tabs the associated tooltip will be displayed
+            -   Leg Summary:
+                -   **Note: this region is only visible if the Edit icon was clicked on the Cruise Legs report or if the record was just created using the "Create" button
+                -   This read-only region shows aggregate information for the given cruise leg
+            -   QC Validation Issues:
+                -   **Note: this region is only visible if the Edit icon was clicked on the View/Edit Cruise page or if the record was just created using the "Create" button
+                -   This region contains an interactive grid report that displays all QC validation issues identified by the DVM that are associated with the given Leg's Cruise so they can be reviewed and/or annotated.
+                    -   [DVM Issue Policies](#dvm-issue-policies)
+                -   Clicking on the "Apply Changes" button will attempt to save the associated records.
+            -   Shuttle Fields and Preset Options:
+                -   This setup is implemented for all many-to-many cruise leg table relationships with the following reference tables:
+                    -   Regional Ecosystems, Gear, Regions
+                -   A shuttle field is available showing all of the options for a given reference table (e.g. Gear). Users select records to associate with the given cruise leg by moving options to the right side of the field.
+                -   Preset Region:
+                    -   The preset region contains a select field that lists all defined presets for the given reference table.
+                    -   A classic report containing the reference table options defined for the given preset is displayed below the select field.
+                    -   Changing the select field value will reload the report with the corresponding reference table options defined for the chosen preset
+                    -   Clicking the Select Preset button will update the shuttle field to select the options defined for the chosen preset
+                -   Filtering:
+                    -   Certain shuttle fields have a corresponding "Filter List?" checkbox field. Checking the box will update the shuttle field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+                -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
+            -   Leg Aliases
+                -   This tabular form can be used to create new Leg Aliases or edit existing Leg Aliases for the selected cruise leg
+                -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
+        -   Data Validation:
+            -   Specific QA criteria are documented in the [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QA"
+            -   Create/Create Another/Apply Changes:
+                -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the corresponding Cruise Leg functionality:
+                    -   Create/Create Another:
+                        -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
+                    -   Apply Changes:
+                        -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)
+            -   Delete:
+                -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise Leg functionality:
+                    -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
+    -   Data QC Validation Issues
+        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#DVM_issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
+            -   [DVM Issue Policies](#dvm-issue-policies)
+        -   Clicking on the "Save" button will attempt to save the modified records.
+    -   Reference List Management Pages
+        -   The "View" pages (e.g. View Vessels) are listed under the "Reference Lists" navigation menu item in alphabetical order
+        -   All Reference List Management pages have the same functionality for the given type of reference list:
+            -   View Reference Record Page:
+                -   This page lists all of the records in the database for the reference record type using an interactive report with an edit icon next to each row. Clicking on the edit icon will open a modular window containing the View/Edit form with the corresponding record's information.
+                    -   Clicking the "Cancel" button will close the modular window
+                    -   Clicking the "Delete" button will prompt the user to confirm if they want to delete the selected record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified record, if it is successful the modular window is closed and the list is updated.
+                    -   Clicking the "Apply Changes" button will attempt to save the updated record values. If the values are valid the modular window will be closed.
+                -   Clicking the "Create" button at the top of the report will open the modular window with a form to create the new reference record.
+                    -   Clicking the "Cancel" button will close the modular window
+                    -   Clicking the "Apply Changes" button will attempt to save the new record values. If the values are valid the modular window will be closed.
+                -   For the Divisions page clicking a Science Center name will open the View/Edit Science Center form as a modular window
+    -   Reference List Preset Management Pages
+        -   The "View" pages (e.g. View Regional Ecosystems) are listed under the "Presets" navigation menu item in alphabetical order
+        -   All Preset Management pages have the same functionality for the given type of reference list:
+            -   View Reference Preset Record Page:
+                -   This page lists all of the preset records in the database for the reference record type using an interactive report with an edit icon next to each row. Clicking on the edit icon will redirect the user to a View/Edit Preset Page with a form displaying the corresponding record's information.
+                -   Clicking the "Create" button at the top of the report will redirect the user to a View/Edit Preset page with a blank form to create the new reference record.
+            -   View/Edit Reference Preset Record Page:
+                -   This page contains a form to define the given reference preset record's information (e.g. name, description). The form also contains a shuttle field that allows the user to define the corresponding reference records for the given preset record.
+                    -   Certain reference tables have a "Filter List" checkbox that allows the user to toggle the filtered/full list of options in the shuttle field (e.g. ESA Target Species)
+                -   Clicking the "Cancel" button will redirect the user back to the corresponding View Reference Preset Record page
+                -   If the "Edit" icon on the View Reference Preset Record page was clicked the user will see a "Delete" button. Clicking the "Delete" button will prompt the user to confirm if they want to delete the selected record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified record, if it is successful the user is redirected to the View Reference Preset Record Page.
+                    -   The "Delete" button has a tooltip to warn the user that any associated preset options will cause the given preset record deletion to fail
+                -   Clicking the "Apply Changes" button will attempt to save the updated record values if the record already exists and it will attempt to save the new record values if the record does not already exist. If the values are valid the user is redirected to the View Reference Preset Record Page.

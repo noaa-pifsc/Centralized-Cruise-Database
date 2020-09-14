@@ -1,0 +1,74 @@
+# Centralized Cruise Database Naming Conventions
+
+## Overview:
+When developing a database it is important to use consistent naming conventions so that database objects and associated fields are easily understandable. Consistent prefixes can be used to differentiate between the core data objects being managed in the database and the data objects for the various modules installed. Consistent object suffixes indicate what each object represents and what type of data each field contains. Oracle requires object names and field names to have a maximum of 30 characters so abbreviations are required to keep the length within the acceptable range, consistent abbreviations improve the usability of the database. The underscore character should be used to separate the various abbreviations for objects/fields. The [PIFSC-ITS DB naming and coding standards](https://drive.google.com/file/d/1KCOST_uNqcBVuw3GV3Wz0BuzBGKPvDwD/view?usp=sharing) defines database naming standards for PIFSC. For all installed database modules refer to the corresponding modules’ database naming convention documentation. This document defines the database naming conventions for the Centralized Cruise Database (CCD).
+
+## Naming Conventions:
+-   ### Object Prefixes:
+    -   CCD: Centralized Cruise Database
+-   ### Object Suffixes:
+    -   BRI: Before Row Insert (for triggers)
+    -   BRU: Before Row Update (for triggers)
+    -   FN: Function
+    -   HIST: Historical table
+    -   PKG: Package
+    -   SEQ: Sequence
+    -   SP: Stored Procedure
+    -   V: View
+-   ### Field Suffixes:
+    -   CODE: Code field
+    -   DATE: Date field
+    -   DESC: Description field
+    -   ID: Primary/foreign keys (e.g. LOC_ID, SPECIES_ID)
+    -   YN: Yes/No field (Boolean)
+-   ### Abbreviations:
+    -   ANNOT: Annotated
+    -   APP: Application
+    -   BR: &lt;BR&gt; web tag
+    -   CAT: Category
+    -   CD: Comma-delimited
+    -   CMP: Compare
+    -   CNAME: Common Name
+    -   CONT: Contact
+    -   DAS: Days at Sea
+    -   DB: Database
+    -   DESC: Description
+    -   DIV: Division
+    -   DOC: Documentation
+    -   DOI: Digital Object Identifier
+    -   DVM: Data Validation Module
+    -   ECO: Ecosystem
+    -   ESA: Endangered Species Act
+    -   EXP: Expected
+    -   FINSS: Fisheries Independent Surveys System
+    -   FISC: Fiscal
+    -   FREQ: Frequency
+    -   FSSI: Fish Stock Sustainability Index
+    -   FY: Fiscal Year
+    -   ISS: Issue
+    -   LEN: Length
+    -   MISS: Missing
+    -   MMPA: Marine Mammal Protection Act
+    -   MOD: Modified
+    -   NUM: Number
+    -   OBJ: Objective
+    -   OPTS: Options
+    -   ORIG: Original
+    -   OTH: Other
+    -   PLAT: Platform
+    -   PRE: Preset
+    -   PRIM: Primary
+    -   PTA: Point in Time Architecture
+    -   RC: Return Carriage
+    -   REG: Regional
+    -   RNG: Range
+    -   RPT: Report
+    -   SCD: Semicolon-delimited
+    -   SCI: Science
+    -   SNAME: Scientific Name
+    -   SPP: Species
+    -   STD: Standard
+    -   SVY: Survey
+    -   TGT: Target
+    -   TRUNC: Truncated
+    -   URL: Uniform Resource Locator
