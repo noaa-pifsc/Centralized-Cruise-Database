@@ -27,7 +27,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   06:57 Thursday September 10, 2020
+--   Date and Time:   13:20 Monday September 21, 2020
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -37,11 +37,11 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 
 -- Application Statistics:
 --   Pages:                     54
---     Items:                  236
---     Computations:            20
+--     Items:                  238
+--     Computations:            22
 --     Validations:             10
---     Processes:              150
---     Regions:                158
+--     Processes:              149
+--     Regions:                159
 --     Buttons:                138
 --     Dynamic Actions:        102
 --   Shared Components:
@@ -106,7 +106,7 @@ wwv_flow_api.create_flow(
 ,p_application_tab_set=>0
 ,p_logo_image=>'TEXT:PIFSC Cruise App'
 ,p_proxy_server=> nvl(wwv_flow_application_install.get_proxy,'')
-,p_flow_version=>'release 0.16'
+,p_flow_version=>'release 0.17'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200910064851'
+,p_last_upd_yyyymmddhh24miss=>'20200921124809'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>35
 ,p_ui_type_name => null
@@ -13782,7 +13782,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200501083603'
+,p_last_upd_yyyymmddhh24miss=>'20200914065843'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7419197051645521)
@@ -13805,6 +13805,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruises and Cruise Days at Sea (DAS) for each fiscal year</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7419276416645522)
@@ -13906,6 +13907,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<p><strong>This chart shows the number of Cruises and Cruise Days at Sea (DAS) for each Standard Survey Name</strong></p>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7420413762645534)
@@ -14021,7 +14023,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200501084123'
+,p_last_upd_yyyymmddhh24miss=>'20200914070500'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7421111517645541)
@@ -14075,6 +14077,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruises for each Standard Survey Name for the selected Fiscal Year(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7421300867645543)
@@ -14136,6 +14139,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruise Days at Sea (DAS) for each Standard Survey Name for the selected Fiscal Year(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7497324058111901)
@@ -14191,6 +14195,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruises and Cruise Days at Sea (DAS) for the selected Fiscal Year(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7474004436995844)
@@ -14321,7 +14326,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'Y'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200501083950'
+,p_last_upd_yyyymmddhh24miss=>'20200914070614'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(14927975248903605)
@@ -14374,6 +14379,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruises for each Fiscal Year for the selected Standard Survey Name(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7514045303258074)
@@ -14432,6 +14438,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruise Days at Sea (DAS) for each Fiscal Year for the selected Standard Survey Name(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7515435530258075)
@@ -14487,6 +14494,7 @@ wwv_flow_api.create_page_plug(
 ,p_plug_query_row_template=>1
 ,p_plug_query_num_rows=>15
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<strong>This chart shows the number of Cruises and Cruise Days at Sea (DAS) for the selected Standard Survey Name(s)</strong>'
 );
 wwv_flow_api.create_jet_chart(
  p_id=>wwv_flow_api.id(7508569403258070)
@@ -15275,7 +15283,7 @@ wwv_flow_api.create_page(
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200910064851'
+,p_last_upd_yyyymmddhh24miss=>'20200921124809'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(6255917868002249)
@@ -15304,6 +15312,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>'Cruise Attributes'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'1'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -15883,6 +15894,9 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_help_text=>'The validation issue resolution type (if any) for the given validation issue'
 );
+end;
+/
+begin
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(10151256566763912)
 ,p_name=>'ISS_NOTES'
@@ -15914,9 +15928,6 @@ wwv_flow_api.create_region_column(
 ,p_include_in_export=>true
 ,p_help_text=>'Any user-defined notes about the given validation issue'
 );
-end;
-/
-begin
 wwv_flow_api.create_region_column(
  p_id=>wwv_flow_api.id(10151378815763913)
 ,p_name=>'ISS_DESC'
@@ -16882,6 +16893,25 @@ wwv_flow_api.create_report_columns(
 ,p_include_in_export=>'Y'
 );
 wwv_flow_api.create_page_plug(
+ p_id=>wwv_flow_api.id(11201159877391911)
+,p_plug_name=>'Invalid Cruise/Cruise Copy ID'
+,p_region_template_options=>'#DEFAULT#:t-Region--removeHeader:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_api.id(19751945583588582)
+,p_plug_display_sequence=>40
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_display_point=>'BODY'
+,p_plug_source=>'<p style="font-weight: bold;">You have reached this page incorrectly, please use the navigation menu on the left side of the screen.</p>'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'0'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
+);
+end;
+/
+begin
+wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(26846518738559434)
 ,p_plug_name=>'Cruise Information'
 ,p_region_css_classes=>'active-form-class'
@@ -16892,6 +16922,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'1'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -16927,9 +16960,6 @@ wwv_flow_api.create_page_button(
 ,p_grid_new_row=>'N'
 ,p_grid_new_column=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(8704932616418728)
 ,p_button_sequence=>20
@@ -17039,7 +17069,6 @@ wwv_flow_api.create_page_button(
 ,p_warn_on_unsaved_changes=>null
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348220558226807)
@@ -17088,7 +17117,6 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
-,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -17785,6 +17813,9 @@ wwv_flow_api.create_page_item(
 ,p_help_text=>'Choose the ESA Target Species by moving options to the right-side of the field.  You can also use the Presets below to add one or more ESA Target Species to the cruise at once'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8703315301418712)
 ,p_name=>'P220_TGT_ESA_SPP_PRESETS'
@@ -17809,9 +17840,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(8704521054418724)
 ,p_name=>'P220_TGT_MMPA_SPP_SHUTTLE'
@@ -18522,6 +18550,17 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(11201562079391915)
+,p_name=>'P220_VALID_PAGE_ARGS'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(11201159877391911)
+,p_use_cache_before_default=>'NO'
+,p_source=>'P220_VALID_PAGE_ARGS'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8513980629017540)
 ,p_computation_sequence=>10
@@ -18568,6 +18607,9 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
+end;
+/
+begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8703184407418710)
 ,p_computation_sequence=>10
@@ -18590,9 +18632,6 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
-end;
-/
-begin
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(8704632786418725)
 ,p_computation_sequence=>10
@@ -18694,6 +18733,46 @@ wwv_flow_api.create_page_computation(
 '    CRUISE_VALS',
 'FROM',
 '    cen_cruise.CCD_CRUISE_ISS_SUMM_V where cruise_id = :P220_CRUISE_ID;'))
+);
+wwv_flow_api.create_page_computation(
+ p_id=>wwv_flow_api.id(11201452773391914)
+,p_computation_sequence=>30
+,p_computation_item=>'P220_VALID_PAGE_ARGS'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    V_CRUISE_ID NUMBER;',
+'',
+'BEGIN',
+'    ',
+'    --check if the two cruise_id page arguments are blank:',
+'    IF (:P220_CRUISE_ID IS NULL AND :P220_CRUISE_ID_COPY IS NULL) THEN',
+'        --both arguments are blank, do not show the error region:',
+'',
+'        RETURN 1;',
+'    ELSE',
+'',
+'        ',
+'        select cruise_id INTO V_CRUISE_ID from cen_cruise.ccd_cruises where ccd_cruises.CRUISE_ID = :P220_CRUISE_ID OR ccd_cruises.CRUISE_ID = :P220_CRUISE_ID_COPY;',
+'        ',
+'        --a single cruise was returned for the cruise ID/cruise ID copy, do not show the error region:',
+'        RETURN 1;',
+'',
+'',
+'    ',
+'    END IF;',
+'',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'',
+'            --this exception indicates an error with the cruise ID/cruise ID copy provided',
+'            RETURN 0;',
+'',
+'',
+'',
+'END;'))
 );
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(7497785590111905)
@@ -19396,6 +19475,9 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'apexafterrefresh'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(3989909528730310)
 ,p_event_id=>wwv_flow_api.id(3989854703730309)
@@ -19464,9 +19546,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(4041213791656808)
 ,p_name=>'Before Refresh Standard Survey Name'
@@ -19581,28 +19660,43 @@ wwv_flow_api.create_page_da_action(
 '	BEGIN',
 '',
 '        --execute the deep copy procedure:',
-'	    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(:P220_CRUISE_ID, V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
+'	    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(TO_NUMBER(:P220_CRUISE_ID), V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
 '',
 '        --set the return code and message to the corresponding page items:',
 '        :P220_DEEP_COPY_RET_CODE := V_PROC_RETURN_CODE;',
 '        :P220_DEEP_COPY_RET_MSG := V_PROC_RETURN_MSG;',
 '',
 '',
-'	    IF (V_PROC_RETURN_CODE = 1) THEN',
-'	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The deep copy was successful'', V_RETURN_CODE);',
-'	    ELSE',
-'	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 - Deep Copy'', ''The deep copy was NOT successful'', V_RETURN_CODE);',
-'',
-'	    END IF;',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', V_PROC_RETURN_MSG, V_RETURN_CODE);',
-'        ',
-'        ',
 '        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
 '        --generate the URL:',
 '        :P220_DEEP_COPY_CRUISE_URL := APEX_UTIL.PREPARE_URL(p_url => ''f?p='' || :APP_ID || '':220:''|| :APP_SESSION||''::NO::P220_CRUISE_ID,P220_CRUISE_ID_COPY:''||V_PROC_RETURN_CRUISE_ID||'','');',
 '',
 '        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
+'',
 '        ',
+'        EXCEPTION',
+'            WHEN OTHERS THEN',
+'            ',
+'                --log the unsuccessful deep copy procedure:',
+'    	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 - Deep Copy'', ''The deep copy was NOT successful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'',
+'                --set the error code:',
+'                :P220_DEEP_COPY_RET_CODE := 0;',
+'',
+'                --check if these are the special codes for the Deep Copy procedure, if so then raise the error message directly:',
+'                IF (SQLCODE IN (-20603, -20605, -20608)) THEN',
+'                    --this is a special error code for the Deep Copy procedure, raise the error message directly:',
+'',
+'                    --pass the exception text to the page item so it can be used to notify the user of the error',
+'                    :P220_DEEP_COPY_RET_MSG := SQLERRM;',
+'                ELSE',
+'                ',
+'                ',
+'                    :P220_DEEP_COPY_RET_MSG := ''The Deep Copy process was not successful'';',
+'                END IF;',
+'        ',
+'                --raise the exception:',
+'--                RAISE;',
 '',
 '	END;'))
 ,p_attribute_02=>'P220_CRUISE_ID'
@@ -19628,7 +19722,7 @@ wwv_flow_api.create_page_da_action(
 'if ($v("P220_DEEP_COPY_RET_CODE") == "1") //this was a successful action, show the success message:',
 '{',
 '    ',
-'    apex.message.showPageSuccess($v("P220_DEEP_COPY_RET_MSG")+''<BR>You will be redirected to View/Edit this new Cruise shortly'');    ',
+'    apex.message.showPageSuccess($v("P220_DEEP_COPY_RET_MSG")+''<BR>You will be redirected to View/Update this new Cruise shortly'');    ',
 '',
 '    //redirect the user to the view/edit cruise page:',
 '    setTimeout(redirect_to_page, 2000);',
@@ -19656,13 +19750,14 @@ wwv_flow_api.create_page_da_action(
 '{',
 '    //remove the processing spinner:',
 '    lSpinner$.remove();',
+'    ',
+'    apex.navigation.redirect ($v("P220_DEEP_COPY_CRUISE_URL"));',
 '',
-'    window.location = $v("P220_DEEP_COPY_CRUISE_URL");    ',
+'//    window.location = $v("P220_DEEP_COPY_CRUISE_URL");    ',
 '    ',
 '}',
 '',
 ''))
-,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(6221327803378634)
@@ -20132,75 +20227,31 @@ wwv_flow_api.create_page_process(
 ,p_process_sequence=>120
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
-,p_process_name=>'Delete DVM Recs'
+,p_process_name=>'Delete Cruise and DVM Recs'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
 '',
 '    V_RETURN_CODE PLS_INTEGER;',
 '',
-'    V_PTA_ERROR_ID PLS_INTEGER;',
-'',
 'BEGIN',
 '',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Delete Cruise and DVM Records Processing'', ''Delete the Cruise (CRUISE_ID: ''||:P220_CRUISE_ID||'') and associated DVM records'', V_RETURN_CODE);',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''Deleting DVM records for the Cruise ID: ''||:P220_CRUISE_ID, V_RETURN_CODE);',
-'',
-'    --retrieve the PTA_ERROR_ID into the V_PTA_ERROR_ID variable so it can be used to remove the ',
-'    SELECT PTA_ERROR_ID INTO V_PTA_ERROR_ID FROM CEN_CRUISE.CCD_CRUISES where cruise_id = :P220_CRUISE_ID;',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''The PTA_ERROR_ID is: ''||V_PTA_ERROR_ID, V_RETURN_CODE);',
-'',
-'    --Update the CCD_CRUISES record to clear the PTA_ERROR_ID value:',
-'    UPDATE CEN_CRUISE.CCD_CRUISES SET PTA_ERROR_ID = NULL WHERE CRUISE_ID = :P220_CRUISE_ID;',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''Cleared the PTA_ERROR_ID from the CCD_CRUISES record'', V_RETURN_CODE);',
-'',
-'',
-'    --delete the DVM error records:',
-'    DELETE FROM CEN_CRUISE.DVM_ERRORS WHERE PTA_ERROR_ID = V_PTA_ERROR_ID;',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''Deleted DVM errors for the Cruise ID: ''||:P220_CRUISE_ID, V_RETURN_CODE);',
-'',
-'    --delete the DVM associated error types:',
-'    DELETE FROM CEN_CRUISE.DVM_PTA_ERR_TYP_ASSOC WHERE PTA_ERROR_ID = V_PTA_ERROR_ID;',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''Deleted DVM Associated Error Types for the Cruise ID: ''||:P220_CRUISE_ID, V_RETURN_CODE);',
-'',
-'    --delete the DVM intersection record',
-'    DELETE FROM CEN_CRUISE.DVM_PTA_ERRORS WHERE PTA_ERROR_ID = V_PTA_ERROR_ID;',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Remove DVM Records Processing'', ''Deleted DVM Intersection Record for the Cruise ID: ''||:P220_CRUISE_ID, V_RETURN_CODE);',
-'',
-'EXCEPTION ',
-'    WHEN NO_DATA_FOUND THEN',
-'    	CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 Remove DVM Records Processing'', ''The CCD_CRUISES record (''||:P220_CRUISE_ID||'') does not exist'', V_RETURN_CODE);',
+'    CEN_CRUISE.CCD_DVM_PKG.DELETE_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
 '    ',
-'    WHEN OTHERS THEN',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''SUCCESS'', ''P220 Delete Cruise and DVM Records Processing'', ''The Cruise and associated DVM records were deleted successfully'', V_RETURN_CODE);',
 '    ',
-'    	CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 Remove DVM Records Processing'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
-'',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 Remove DVM Records Processing'', ''The Cruise and associated DVM records were not deleted successfully: ''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'               ',
+'            --raise the exception',
+'            RAISE;',
 '',
 'END;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7348021051226805)
-,p_process_success_message=>'QC Validation Issues Removed<BR>'
-);
-wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(7394759559592945)
-,p_process_sequence=>140
-,p_process_point=>'AFTER_SUBMIT'
-,p_process_type=>'NATIVE_FORM_PROCESS'
-,p_process_name=>'Delete Row of CCD_CRUISES'
-,p_attribute_01=>'CEN_CRUISE'
-,p_attribute_02=>'CCD_CRUISES'
-,p_attribute_03=>'P220_CRUISE_ID'
-,p_attribute_04=>'CRUISE_ID'
-,p_attribute_09=>'P220_CRUISE_ID'
-,p_attribute_11=>'D'
-,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-,p_process_when_button_id=>wwv_flow_api.id(7348021051226805)
-,p_process_success_message=>'Cruise Deleted<BR>'
-,p_security_scheme=>wwv_flow_api.id(19789246675762711)
+,p_process_success_message=>'Cruise and associated QC Validation Issues Removed<BR>'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7392362153592921)
@@ -20224,6 +20275,9 @@ wwv_flow_api.create_page_process(
 '            ',
 '',
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'',
+'            --raise the exception:',
+'            RAISE;',
 '',
 '',
 'END;'))
@@ -20255,6 +20309,8 @@ wwv_flow_api.create_page_process(
 '',
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create Another'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '',
+'            --raise the exception:',
+'            RAISE;',
 '',
 'END;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -20284,7 +20340,9 @@ wwv_flow_api.create_page_process(
 '            ',
 '',
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Update'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
-'',
+'            ',
+'            --raise the exception:',
+'            RAISE;',
 '',
 'END;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -20292,6 +20350,9 @@ wwv_flow_api.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
+end;
+/
+begin
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7348346838226808)
 ,p_process_sequence=>180
@@ -20637,7 +20698,7 @@ wwv_flow_api.create_page(
 ,p_protection_level=>'C'
 ,p_cache_mode=>'NOCACHE'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200908071035'
+,p_last_upd_yyyymmddhh24miss=>'20200918145654'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7073129349077795)
@@ -20650,8 +20711,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_ID'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'1'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -20681,14 +20743,15 @@ wwv_flow_api.create_page_plug(
 ,p_plug_display_point=>'BODY'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_ID'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'1'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(7417635178645506)
-,p_plug_name=>'Missing Cruise ID'
+,p_plug_name=>'Missing Cruise or Cruise Leg'
 ,p_region_template_options=>'#DEFAULT#:t-Region--removeHeader:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_api.id(19751945583588582)
 ,p_plug_display_sequence=>100
@@ -20697,8 +20760,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>'<p style="font-weight: bold;">You have reached this page incorrectly, please use the navigation menu on the left side of the screen.</p>'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_ID'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'0'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -20733,8 +20797,9 @@ wwv_flow_api.create_report_region(
 'where CRUISE_ID = :P230_CRUISE_ID',
 'order by leg_start_date'))
 ,p_source_type=>'NATIVE_SQL_REPORT'
-,p_display_when_condition=>'P230_CRUISE_ID'
-,p_display_condition_type=>'ITEM_IS_NOT_NULL'
+,p_display_when_condition=>'P230_VALID_PAGE_ARGS'
+,p_display_when_cond2=>'1'
+,p_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_ajax_enabled=>'Y'
 ,p_query_row_template=>wwv_flow_api.id(19761929043588592)
 ,p_query_num_rows=>15
@@ -20911,8 +20976,9 @@ wwv_flow_api.create_page_plug(
 ,p_plug_source=>'Leg Attributes'
 ,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_display_condition_type=>'ITEM_IS_NOT_NULL'
-,p_plug_display_when_condition=>'P230_CRUISE_ID'
+,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
+,p_plug_display_when_cond2=>'1'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -21239,6 +21305,9 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(8269942656098239)
 ,p_plug_name=>'Presets'
@@ -21253,9 +21322,6 @@ wwv_flow_api.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_api.create_report_region(
  p_id=>wwv_flow_api.id(8270377036098243)
 ,p_name=>'reg ecosystem preset report'
@@ -22153,6 +22219,9 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(1440627936521848)
 ,p_name=>'P230_LEG_FISC_YEAR'
@@ -22170,9 +22239,6 @@ wwv_flow_api.create_page_item(
 ,p_attribute_02=>'VALUE'
 ,p_attribute_04=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_item(
  p_id=>wwv_flow_api.id(1440796102521849)
 ,p_name=>'P230_LEG_REG_ECOSYS'
@@ -23348,6 +23414,17 @@ wwv_flow_api.create_page_item(
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_attribute_01=>'Y'
 );
+wwv_flow_api.create_page_item(
+ p_id=>wwv_flow_api.id(11201373900391913)
+,p_name=>'P230_VALID_PAGE_ARGS'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_api.id(7417635178645506)
+,p_use_cache_before_default=>'NO'
+,p_source=>'P230_VALID_PAGE_ARGS'
+,p_source_type=>'ITEM'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
 wwv_flow_api.create_page_computation(
  p_id=>wwv_flow_api.id(1440412321521846)
 ,p_computation_sequence=>10
@@ -23477,6 +23554,73 @@ wwv_flow_api.create_page_computation(
 '',
 'end;'))
 );
+wwv_flow_api.create_page_computation(
+ p_id=>wwv_flow_api.id(11201202075391912)
+,p_computation_sequence=>40
+,p_computation_item=>'P230_VALID_PAGE_ARGS'
+,p_computation_point=>'BEFORE_HEADER'
+,p_computation_type=>'FUNCTION_BODY'
+,p_computation=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'    V_CRUISE_ID NUMBER;',
+'',
+'    V_CRUISE_LEG_ID NUMBER;',
+'',
+'    V_SPT_RET_CODE PLS_INTEGER;',
+'',
+'BEGIN',
+'    ',
+'    --check if the two cruise_leg_id or cruise_id page arguments are blank:',
+'    IF (:P230_CRUISE_ID IS NULL) THEN',
+'        --the CRUISE_ID is required, hide the content:',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is blank'', V_SPT_RET_CODE);',
+'        RETURN 0;',
+'    ',
+'    ELSIF (:P230_CRUISE_LEG_ID_COPY IS NULL AND :P230_CRUISE_LEG_ID_COPY IS NULL) THEN',
+'        --both cruise leg ID arguments are blank but the cruise id is not:',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''both cruise leg ID arguments are blank but the cruise id is not'', V_SPT_RET_CODE);',
+'',
+'        --check if the cruise_id is valid:',
+'        select cruise_id INTO V_CRUISE_ID from cen_cruise.ccd_cruises where ccd_cruises.CRUISE_ID = :P230_CRUISE_ID;',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is valid'', V_SPT_RET_CODE);',
+'',
+'        --if there is no exception it means the cruise ID record exists:',
+'        RETURN 1;',
+'',
+'',
+'    ELSE',
+'        --one of the cruise leg ID arguments and the cruise_id argument are provided:',
+'        ',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''query to see if the cruise leg exists'', V_SPT_RET_CODE);',
+'',
+'        --query to see if the cruise leg exists',
+'        select cruise_leg_id INTO V_CRUISE_LEG_ID from cen_cruise.ccd_cruise_legs where ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID OR ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID_COPY;',
+'',
+'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is valid'', V_SPT_RET_CODE);',
+'',
+'        --a single cruise leg was returned for the cruise leg ID/cruise leg ID copy, show the content:',
+'        RETURN 1;',
+'',
+'',
+'    ',
+'    END IF;',
+'',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is not valid:''||chr(10)||SQLERRM, V_SPT_RET_CODE);',
+'',
+'            --this exception indicates an error with the cruise ID/cruise leg ID/cruise leg ID copy provided',
+'            RETURN 0;',
+'',
+'',
+'',
+'END;'))
+);
 wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(7501410398111942)
 ,p_validation_name=>'Invalid Leg Dates'
@@ -23568,7 +23712,8 @@ wwv_flow_api.create_page_validation(
 '',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The query is: ''||V_SQL, V_RETURN_CODE);',
 '',
-'    EXECUTE IMMEDIATE V_SQL BULK COLLECT INTO V_CRUISE_QC_RECS USING :P230_CRUISE_ID, :P230_VESSEL_ID, :P230_VESSEL_ID, :P230_CRUISE_ID, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_LEG_END_DATE;',
+'    EXECUTE IMMEDIATE V_SQL BULK COLLECT INTO V_CRUISE_QC_RECS USING :P230_CRUISE_ID, :P230_VESSEL_ID, :P230_VESSEL_ID, :P230_CRUISE_ID, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_L'
+||'EG_END_DATE;',
 '',
 '    FOR i in 1..V_CRUISE_QC_RECS.COUNT loop',
 '',
@@ -23816,6 +23961,9 @@ wwv_flow_api.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'change'
 );
+end;
+/
+begin
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(8512037245017521)
 ,p_event_id=>wwv_flow_api.id(8511917035017520)
@@ -23928,9 +24076,6 @@ wwv_flow_api.create_page_da_action(
 ,p_stop_execution_on_error=>'Y'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(3980981217476805)
 ,p_name=>'Gear Shuttle Before Refresh'
@@ -24344,31 +24489,25 @@ wwv_flow_api.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
 '',
-'    V_OVERLAP_CRUISE_IDS apex_application_global.vc_arr2;',
-'',
 '    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
 'BEGIN',
 '',
-'    --initialize the page item to hold the comma-delimited list of cruise ID values for overlapping cruises:',
-'    :P230_OVERLAP_CRUISE_IDS := NULL;',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Save the overlapping cruise IDs'', V_PROC_RETURN_CODE);',
 '',
-'    --query for any leg/vessel overlap for the specified cruise (do not revalidate the same cruise if there is an overlap with another associated cruise leg since the initial execution will identify those validation issues)',
-'    FOR rec IN (SELECT DISTINCT CRUISE_ID FROM CEN_CRUISE.CCD_QC_LEG_OVERLAP_V WHERE CRUISE_ID2 = :P230_CRUISE_ID AND CRUISE_ID <> :P230_CRUISE_ID)',
+'    --identify all overlapping cruises for the current cruise leg''s cruise:',
+'    CEN_CRUISE.CCD_DVM_PKG.PRE_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    --loop through each CRUISE_ID returned by the SELECT query so these overlapping cruise IDs can be re-evaluated by the DVM after the cruise leg is updated:',
-'    LOOP',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Pre Update Cruise Leg Record'', ''The current value of V_OVERLAP_CRUISE_IDS is: ''||rec.CRUISE_ID, V_PROC_RETURN_CODE);',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
 '',
-'        V_OVERLAP_CRUISE_IDS(V_OVERLAP_CRUISE_IDS.COUNT + 1) :=  rec.CRUISE_ID;',
-'',
-'    END LOOP;',
-'',
-'    :P230_OVERLAP_CRUISE_IDS := apex_util.table_to_string(V_OVERLAP_CRUISE_IDS,'','');',
-'',
-'',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Pre Update Cruise Leg Record'', ''The current value of P230_OVERLAP_CRUISE_IDS is: ''||:P230_OVERLAP_CRUISE_IDS, V_PROC_RETURN_CODE);',
+'            --raise the exception:',
+'            RAISE;',
+'        ',
+'        ',
 '',
 '',
 'END;',
@@ -24390,6 +24529,7 @@ wwv_flow_api.create_page_process(
 ,p_attribute_08=>'Y'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7073637388077795)
+,p_process_success_message=>'QC Validation Issues Updated<BR>'
 ,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
@@ -24557,15 +24697,19 @@ wwv_flow_api.create_page_process(
 '',
 'BEGIN',
 '',
+'',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID), V_RETURN_CODE);',
-'    IF (V_RETURN_CODE = 1) THEN ',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
-'    ELSE',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    END IF;',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    ',
 '',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'',
+'            --raise the exception:',
+'            RAISE;',
 '',
 'END;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -24586,15 +24730,19 @@ wwv_flow_api.create_page_process(
 '',
 'BEGIN',
 '',
+'',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID), V_RETURN_CODE);',
-'    IF (V_RETURN_CODE = 1) THEN ',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
-'    ELSE',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    END IF;',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    ',
 '',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'',
+'            --raise the exception:',
+'            RAISE;',
 '',
 'END;'))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -24613,72 +24761,30 @@ wwv_flow_api.create_page_process(
 '',
 '    V_PROC_RETURN_CODE PLS_INTEGER;',
 '',
-'    V_FOUND_CODE PLS_INTEGER;',
-'',
-'    V_OVERLAP_CRUISE_IDS apex_application_global.vc_arr2;',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record (:P230_OVERLAP_CRUISE_IDS = ''||:P230_OVERLAP_CRUISE_IDS||'')'', ''The current value of P230_OVERLAP_CRUISE_IDS is: ''||:P230_OVERLAP_CRUISE_IDS, V_PROC_RETURN_CODE);',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Retrieve the overlapping cruise IDs and execute the DVM on the overlapping and current cruises'', V_PROC_RETURN_CODE);',
 '',
-'    --parse the comma-delimited string so they can be used to re-evaluate the overlapping records after the cruise leg has been updated:',
-'    V_OVERLAP_CRUISE_IDS := apex_util.string_to_table(:P230_OVERLAP_CRUISE_IDS, '','');',
+'    --identify all overlapping cruises for the current cruise leg''s cruise:',
+'    CEN_CRUISE.CCD_DVM_PKG.POST_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
+'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
 '',
-'    --query for any leg/vessel overlap for the specified cruise (do not revalidate the same cruise if there is an overlap with another associated cruise leg since the initial execution will identify those validation issues)',
-'    FOR rec IN (SELECT DISTINCT CRUISE_ID FROM CEN_CRUISE.CCD_QC_LEG_OVERLAP_V WHERE CRUISE_ID2 = :P230_CRUISE_ID AND CRUISE_ID <> :P230_CRUISE_ID)',
+'    EXCEPTION',
+'        WHEN OTHERS THEN',
+'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
 '',
-'    --loop through each CRUISE_ID returned by the SELECT query so these overlapping cruise IDs can be re-evaluated by the DVM after the cruise leg is updated:',
-'    LOOP',
-'',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record'', ''The current value of rec.CRUISE_ID is: ''||rec.CRUISE_ID, V_PROC_RETURN_CODE);',
-'',
-'',
-'        --determine if the current cruise ID has already been identified as overlapping before the update, if so then do not add it to the array:',
-'        V_FOUND_CODE := CEN_UTILS.CEN_UTIL_ARRAY_PKG.ARRAY_VAL_EXISTS_FN (V_OVERLAP_CRUISE_IDS, TO_CHAR(rec.CRUISE_ID));',
-'',
-'        --check if the array element was found',
-'        IF (V_FOUND_CODE = 0) THEN',
-'            --the current CRUISE_ID value was not found in the array, add it to the array:',
-'',
-'            V_OVERLAP_CRUISE_IDS(V_OVERLAP_CRUISE_IDS.COUNT + 1) :=  rec.CRUISE_ID;',
-'',
-'        ELSIF (V_FOUND_CODE IS NULL) THEN',
-'            --there was a processing error for the array:',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Post Update Cruise Leg Record (:P230_OVERLAP_CRUISE_IDS = ''||:P230_OVERLAP_CRUISE_IDS||'')'', ''The array could not be searched successfully for the current cruise ID value'', V_PROC_RETURN_'
-||'CODE);',
-'            ',
-'            --raise a custom exception:',
-'            RAISE_APPLICATION_ERROR (-20402, ''The array could not be searched successfully for the current cruise ID value'');',
-'',
-'        END IF;',
-'',
-'',
-'    END LOOP;',
-'',
-'',
-'',
-'    --loop through the overlapping cruise IDs and re-evaluate them:',
-'    for i in 1..V_OVERLAP_CRUISE_IDS.count',
-'    loop',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record (CRUISE_ID: ''||V_OVERLAP_CRUISE_IDS(i)||'')'', ''Run the DVM on the CRUISE_ID: ''||V_OVERLAP_CRUISE_IDS(i), V_PROC_RETURN_CODE);',
+'            --raise the exception:',
+'            RAISE;',
 '        ',
-'        --execute the DVM on the current cruise:',
-'        CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(V_OVERLAP_CRUISE_IDS(i)), V_PROC_RETURN_CODE);',
-'',
-'        IF (V_PROC_RETURN_CODE = 1) THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record'', ''The DVM was successfully executed'', V_PROC_RETURN_CODE);',
 '        ',
-'        ELSE',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Post Update Cruise Leg Record'', ''The DVM was NOT successfully executed'', V_PROC_RETURN_CODE);',
-'    ',
-'        END IF;',
 '',
-'    end loop;',
 '',
 'END;',
 ''))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7073637388077795)
+,p_process_success_message=>'Data Validation Module was processed on the updated Cruise Leg along with any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(
@@ -24696,7 +24802,7 @@ wwv_flow_api.create_page_process(
 '',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''Running DELETE_LEG_OVERLAP_SP (''||:P230_CRUISE_LEG_ID||'')'', V_SP_RET_CODE);',
 '    ',
-'    CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (:P230_CRUISE_LEG_ID);',
+'    CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_LEG_ID));',
 '',
 '    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was deleted successfully'', V_SP_RET_CODE);',
 '    ',
@@ -24705,11 +24811,15 @@ wwv_flow_api.create_page_process(
 '            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was not deleted successfully'', V_SP_RET_CODE);',
 '    ',
 '			DBMS_output.put_line(SQLERRM);',
+'            ',
+'            --raise the application error:',
+'            RAISE;',
 '',
 'END;',
 ''))
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
 ,p_process_when_button_id=>wwv_flow_api.id(7073773135077795)
+,p_process_success_message=>'The Cruise Leg was deleted and the Data Validation Module was processed on the associated Cruise as well as any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_api.id(19789246675762711)
 );
 wwv_flow_api.create_page_process(

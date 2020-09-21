@@ -1,3 +1,13 @@
+9/18/20:
+X Updated the CRDMA CCDP testing documentation to reuse the data from CCDP test data scripts to simplify things
+	X test that the CRDMA test cases still work with the CCDP automated test case data
+X Finish compiling SOP information on CRDMA CDVM Testing Documentation.md using the CDVM testing and CRDMA CCDP testing documentation
+	X finished verifying the CRDMA CDVM test cases on 9/18/20
+_ document update and commit code and documentation
+_ ** do a pull request for this one so I can verify that the markdown links are working correctly
+
+
+
 X document business rules for the delete, update, insert actions (automatic overlap checks)
 
 DVM configuration:
@@ -8,11 +18,77 @@ X CCD_DVM_PKG procedure for deleting DVM records (implement in CRDMA in "Delete 
 
 X update the procedure definitions for CCD_DVM_PKG and CCD_CRUISE_PKG
 
-_ cruise leg delete bug in the APEX app
+X cruise leg delete bug in the APEX app (did not have the TO_NUMBER() data type conversion for the overloaded procedure definition)
 
 _ document the business rules for the reference tables and presets/preset options
 
-_ CRDMA test cases for the CCD_CRUISE_PKG and CCD_DVM_PKG
+X CRDMA test cases for the CCD_CRUISE_PKG and CCD_DVM_PKG
+
+_ QC view for orphaned DVM_PTA_ISSUES records (not associated with a CCD_CRUISES record)
+
+
+X package documentation updates (compile and reference the applicable business rules):
+
+	X CCD DVM Documentation.md X
+	X CCDP Documentation.md X
+	X CRDMA CCDP Testing Documentation.md (finish up the SOP portion) X
+	X CRDMA DVM Testing Documentation.md (work on test cases and SOP, etc.) X
+	X CCDP Testing Documentation.md (X update to indicate which sheets are used in which test cases and rename the sheets) X
+	X Centralized Cruise Database DVM Testing Documentation.md X
+	X Centralized Cruise Database - Technical Documentation.md X
+	X Cruise Data Management Application - Technical Documentation.md X
+	X Cruise Data Management Application - End User Documentation.md X
+	X Cruise Data Management Application - Testing Documentation.md X
+
+_ **Maybe some of the stuff in DVM category 1 can be integrated into the CRDMA validation and then in QA testing
+
+
+X ** ensure all testing SOPs make it clear that this is not intended for production use -> only on dev and test where the data loss is not a problem
+
+
+X
+
+
+X bug with redirect warning on deep copy:
+	X look to see if we can use apex.navigation to resolve the issue -> it only occurs when there has been interaction with the form even if it's only to navigate using the tabbed container
+
+future plans:
+	_ CRDMA - another view to help schedule ship time (be able to see some type of Google Calendar type of view to show overlaps of vessel legs/cruise legs).  Maybe allow the cruise leg dates to be updated in one unified interface.  Perhaps even adjust the dates with a slider with warnings/errors for conflicts.  Maybe even implement business rules for warnings/errors where there is a short/no in-port between cruises
+
+
+
+_ CCD_CCDP_DEEP_COPY_CMP_V has an error after running the test cases and v0.26 upgrade
+
+
+
+Documentation consolidation:
+_ Update the testing documentation to generalize it so the CCD and DVM packages can share the SOP (CCDP, CDVM in both the backend and the CRDMA tests - there is a lot of repetitive information)
+
+
+
+
+
+
+
+
+
+X delete cruise test cases (automated error handling and processing test cases)
+
+X update cruise leg test cases procedures (for identifying the pre and post update overlaps and executing the DVM accordingly)
+ 	X automated error handling and processing test cases (modify the existing ones and add more if necessary)
+
+
+_ CRDMA tests for:
+	_ CCD_DVM_PKG
+	_ CCD_CRUISE_PKG
+
+
+
+_ QC validation:
+	_ No legs for a cruise
+	_ time between legs over a certain number of days - unusually long or invalid (warning and error)
+
+
 
 
 APEX Application
@@ -32,6 +108,8 @@ X ICAM
 	All users have view-only access, specific people can edit
 VPASS integration? (allocation) making the actual ship request - Nori will get me access to pull data
 FINSS - https://www.st.nmfs.noaa.gov/finss/si/siMain.jsp
+
+X Bug - Load view/edit cruise page with invalid ID still allows edit/delete, etc.
 
 Database Update:
 
@@ -445,14 +523,14 @@ X add QC validation issues data grid to View/Edit Cruise Legs
 (7/1/20) Meeting Feedback:
 Kyle - Not having much involvement in creation of cruises/cruise legs
 
-Kristin - Suggestion: cruise summary cover page (description of what we are looking at)
+Kristin - Suggestion: X (ended up labeling each of the charts in the interface) cruise summary cover page (description of what we are looking at)
 
 Number of cruises and
 (_ color coding - cruise summary page - color code the bars on the reports - or maybe a different way to show it)
 (Easier on the eyes)
 
 
-Possible Bug: following deep copy did not report the overlap errors for the associated legs in the DVM
+X Possible Bug: following deep copy did not report the overlap errors for the associated legs in the DVM
 
 
 8/17/20 feedback from RR:

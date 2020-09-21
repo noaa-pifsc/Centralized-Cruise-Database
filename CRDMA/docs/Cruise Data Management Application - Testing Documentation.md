@@ -4,7 +4,9 @@
 The Cruise Data Management Application (CRDMA) has a series of tests on each of the application pages to confirm that they all function as expected before deploying the application for formal testing/production use. These test cases are intended to be executed in addition to module test cases provided in the [Resources](#resources) section.
 
 ## Resources:
--   CRDMA CCD Oracle Package Testing
+-   [CRDMA Documentation](./Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md)
+-   [CRDMA CCD Oracle Package (CCDP) Testing](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
+-   [CRDMA CCD DVM (CDVM) Testing](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 -   [CRDMA QA Testing](./test_cases/CRDMA%20QA%20Testing%20Documentation.md)
 
 ## Test Cases:
@@ -38,6 +40,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   Confirmed that unauthorized users cannot save changes to the database
         -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Create Another/Apply Changes buttons
         -   Logout in new browser tab and click the Create/Create Another/Apply Changes buttons (session has expired error)
+    -   Invalid Page Arguments:
+        -   Confirm the page displays a "You have reached this page incorrectly" when the P220_CRUISE_ID, or P220_CRUISE_ID_COPY parameters are invalid (not a cruise_ID for an existing cruise record)
     -   View/Edit Cruise Form
         -   Confirm the tab tooltips are working properly
         -   Data Form
@@ -62,6 +66,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm "Create" button will reload the page with the new cruise selected
                 -   Confirm the cruise and attributes were saved successfully
                 -   Confirm QC Validation Issues are added (if any warnings)
+            -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Insert Cruise" functionality
         -   Selected Cruise:
             -   Confirm "Cruise Summary", and "QC Validation Issues", and "Cruise Legs" tabs are visible
             -   Cruise Summary
@@ -83,6 +88,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Update Cruise
                 -   Confirm the cruise and attributes can be saved successfully
                     -   Confirm QC Validation Issues are updated
+                -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Update Cruise" functionality
             -   Delete Cruise
                 -   Confirm the deletion works properly if there are no related record (cruise record only)
                     -   Confirm the deletion works properly if there are attributes associated with the cruise leg and the field options are de-selected and the delete button is clicked
@@ -90,9 +96,10 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                 -   Confirmed that unauthorized users cannot commit changes to the database
                     -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
                     -   Logout in new browser tab and click Delete button (session has expired error)
+                -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Delete Cruise" functionality
             -   Deep Copy
                 -   Confirm the tooltip is working properly
-                -   Consult [CCD Oracle Package (CCDP) Testing Documentation](../../docs/test cases/CCD_CRUISE_PKG/CCDP%20Testing%20Documentation.md) for testing SOP for the "Deep Copy" functionality
+                -   Consult [CCD Oracle Package (CCDP) Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md) for a testing SOP for the "Deep Copy" functionality
 -   Page 230
     -   Confirmed that if there is no CRUISE_ID argument then the page shows a warning
     -   Confirmed that only authorized users can access this page
@@ -101,6 +108,10 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   Confirmed that unauthorized users cannot save changes to the database
         -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Create Another/Apply Changes buttons
         -   Logout in new browser tab and click the Create/Create Another/Apply Changes buttons (session has expired error)
+    -   Invalid Page Arguments:
+        -   Confirm the page displays a "You have reached this page incorrectly" when the P230_CRUISE_LEG_ID, or P230_CRUISE_LEG_ID_COPY parameters are invalid (not a cruise_leg_ID for an existing cruise leg record)
+            -   This can be accomplished by opening the View/Edit Cruise Leg page with the Create Leg, Update Cruise Leg, and Copy Cruise Leg buttons and then deleting/reloading cruise/cruise leg data (e.g. execute [execute_all_CRDMA_test_scripts.sql](./test_cases/SQL/execute_all_CRDMA_test_scripts.sql))
+                -   **\*\*Note**: The test data script need to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
     -   View/Edit Cruise Leg Form
         -   Cruise Legs
             -   Confirm that the report is rendered successfully
@@ -130,6 +141,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm "Create" button will reload the page with the new cruise selected
                 -   Confirm the cruise leg and attributes were saved successfully
                 -   Confirm QC Validation Issues are added (if any warnings)
+            -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Insert Cruise Leg" functionality
         -   Selected Cruise Leg:
             -   Cruise Leg Summary
                 -   Confirm the cruise leg summary information is displayed
@@ -141,6 +153,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Update Cruise Leg
                 -   Confirm the cruise leg and attributes can be saved successfully
                     -   Confirm QC Validation Issues are updated (if any)
+                -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Update Cruise Leg" functionality
             -   Delete Cruise Leg
                 -   Confirm the deletion works properly if there are no related record (cruise leg record only)
                     -   Confirm that the related warnings/errors are removed from cruise after deletion (if any)
@@ -150,6 +163,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                 -   Confirmed that unauthorized users cannot commit changes to the database
                     -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
                     -   Logout in new browser tab and click Delete button (session has expired error)
+                -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Delete Cruise Leg" functionality
+
 -   Page 250
     -   Confirmed that only authorized users can access this page
         -   Logout in new browser tab and reload page

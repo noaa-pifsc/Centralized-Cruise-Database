@@ -1,12 +1,12 @@
 # Cruise Data Management Application - Technical Documentation
 
 ## Overview:
-The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC users to view and download summary and detailed reports for PIFSC cruise operations. The CRDMA allows authorized users to manage cruise information.
+The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC users to view and download summary and detailed reports for PIFSC cruise operations. The CRDMA allows authorized users to manage data stored in the Centralized Cruise Database (CCD).
 
 ## Resources:
 -   Version Control Information:
     -   URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git in the [CRDMA](../) folder
-    -   Application: 0.16 (Git tag: cen_cruise_web_app_v0.16)
+    -   Application: 0.17 (Git tag: cen_cruise_web_app_v0.17)
 -   [End User Documentation](./Cruise%20Data%20Management%20Application%20-%20End%20User%20Documentation.md)
 -   [Testing Documentation](./Cruise%20Data%20Management%20Application%20-%20Testing%20Documentation.md)
     -   [Quality Assurance (QA) Testing Documentation](./test_cases/CRDMA%20QA%20Testing%20Documentation.md)
@@ -14,6 +14,10 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 -   [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx)
 -   [Data Validation Module (DVM)](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module)
+-   [CCD Oracle Package (CCDP) Documentation](../../docs/packages/CCDP/CCDP%20Documentation.md)
+    -   [CRDMA CCDP Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
+-   [CCD DVM (CDVM) Documentation](../../docs/packages/CDVM/CDVM%20Documentation.md)
+    -   [CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Application URLs:
 -   Development Application: https://midd.pic.gov/apex_picd/f?p=287
@@ -26,8 +30,9 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 -   APEX 5.1 must be installed on the given APEX instance
 
 ## Features:
--   Installed Modules (see [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md) for more information):
-Data Flow:
+-   Installed Modules (see [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md) for more information)
+
+## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/Centralized%20Cruise%20DFD.pdf)
 -   [DFD Documentation](../../docs/DFD/Centralized%20Cruise%20Data%20Flow%20Diagram%20Documentation.md)
 
