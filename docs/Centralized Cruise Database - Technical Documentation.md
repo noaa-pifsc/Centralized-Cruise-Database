@@ -6,7 +6,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 ## Resources:
 -   CCD Version Control Information:
     -   URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git
-    -   Database: 0.26 (Git tag: cen_cruise_db_v0.26)
+    -   Database: 0.27 (Git tag: cen_cruise_db_v0.27)
 -   [CCD View Comments](./centralized_cruise_DB_view_comments.xlsx)
 -   [Cruise Data Management Application (CRDMA)](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md)
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)
@@ -30,6 +30,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
 -   [Centralized CTD Database](https://gitlab.pifsc.gov/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
     -   **\*\*Note**: The automated test cases require this script to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
+
 ## Features:
 -   The database requires the Centralized Utilities to be deployed on the CEN_UTILS schema in order for the database views to work properly when querying the cruise and cruise leg information
     -   Version Control Information:
@@ -38,7 +39,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The Data Validation Module (DVM) is used to perform QC validation on the Centralized Cruise Database data managed in this database. Custom data validation criteria were developed for this operational data set.
     -   Version Control Information:
         -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git
-        -   Database: 1.2 (Git tag: DVM_db_v1.2)
+        -   Database: 1.3 (Git tag: DVM_db_v1.3)
 -   The Database Version Control Module is used to track the database version installed on a given database schema.
     -   Version Control Information:
         -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/database-version-control-module.git
@@ -51,7 +52,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The Authorization Application Module was originally designed to manage application access and permissions within the application. This is a flexible method that allows users and permission groups to be defined that will determine if a user has enabled access to the application and what permission(s) they have in the application.
     -   Version Control Information:
         -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git
-        -   Database: 0.7 (Git tag: auth_app_db_v0.7)
+        -   Database: 0.8 (Git tag: auth_app_db_v0.8)
 -   The PIFSC APEX custom error handling function has been implemented on the application to suppress sensitive error information within the database application to satisfy Security Control: SI-11.
     -   Version Control Information:
         -   URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder
