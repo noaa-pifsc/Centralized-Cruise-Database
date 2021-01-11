@@ -15,7 +15,7 @@ begin
 wwv_flow_api.import_begin (
  p_version_yyyy_mm_dd=>'2016.08.24'
 ,p_release=>'5.1.4.00.08'
-,p_default_workspace_id=>1940386727552193
+,p_default_workspace_id=>20705590410247834
 ,p_default_application_id=>287
 ,p_default_owner=>'CEN_CRUISE_APP'
 );
@@ -27,12 +27,12 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   13:20 Monday September 21, 2020
+--   Date and Time:   08:53 Monday January 11, 2021
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
 --   Version:         5.1.4.00.08
---   Instance ID:     123876793830338
+--   Instance ID:     218290088424133
 --
 
 -- Application Statistics:
@@ -117,7 +117,7 @@ wwv_flow_api.create_flow(
 ,p_auto_time_zone=>'N'
 ,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20200921124809'
+,p_last_upd_yyyymmddhh24miss=>'20210111084550'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>35
 ,p_ui_type_name => null
@@ -13727,7 +13727,7 @@ wwv_flow_api.create_authentication(
  p_id=>wwv_flow_api.id(19788629893695855)
 ,p_name=>'AAM Authentication'
 ,p_scheme_type=>'NATIVE_CUSTOM'
-,p_attribute_03=>'CEN_CRUISE.AUTH_APP_PKG. APX_CUST_AUTH_USER'
+,p_attribute_03=>'CEN_CRUISE.AUTH_APP_PKG.APX_CUST_AUTH_USER'
 ,p_attribute_05=>'N'
 ,p_invalid_session_type=>'LOGIN'
 ,p_use_secure_cookie_yn=>'N'
@@ -15279,6 +15279,7 @@ wwv_flow_api.create_page(
 ''))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
@@ -15957,6 +15958,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
+,p_max_row_count=>100000
 ,p_show_nulls_as=>'-'
 ,p_fixed_row_height=>true
 ,p_pagination_type=>'SCROLL'
@@ -16901,6 +16903,7 @@ wwv_flow_api.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_display_point=>'BODY'
 ,p_plug_source=>'<p style="font-weight: bold;">You have reached this page incorrectly, please use the navigation menu on the left side of the screen.</p>'
+,p_plug_query_row_template=>1
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
@@ -17069,6 +17072,7 @@ wwv_flow_api.create_page_button(
 ,p_warn_on_unsaved_changes=>null
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 );
 wwv_flow_api.create_page_button(
  p_id=>wwv_flow_api.id(7348220558226807)
@@ -17117,6 +17121,7 @@ wwv_flow_api.create_page_button(
 ,p_button_execute_validations=>'N'
 ,p_button_condition=>'P220_CRUISE_ID'
 ,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_grid_new_grid=>false
 ,p_database_action=>'DELETE'
 );
 wwv_flow_api.create_page_button(
@@ -19758,6 +19763,7 @@ wwv_flow_api.create_page_da_action(
 '}',
 '',
 ''))
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(6221327803378634)
@@ -20693,6 +20699,7 @@ wwv_flow_api.create_page(
 ''))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_protection_level=>'C'
@@ -21853,6 +21860,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
+,p_max_row_count=>100000
 ,p_show_nulls_as=>'-'
 ,p_fixed_row_height=>true
 ,p_pagination_type=>'SCROLL'
@@ -24939,6 +24947,7 @@ wwv_flow_api.create_page(
 ''))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_api.id(19789246675762711)
+,p_dialog_chained=>'Y'
 ,p_overwrite_navigation_list=>'N'
 ,p_page_is_public_y_n=>'N'
 ,p_cache_mode=>'NOCACHE'
@@ -25380,6 +25389,7 @@ wwv_flow_api.create_interactive_grid(
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
+,p_max_row_count=>100000
 ,p_show_nulls_as=>'-'
 ,p_fixed_row_height=>true
 ,p_pagination_type=>'SCROLL'
@@ -25623,6 +25633,7 @@ wwv_flow_api.create_page_da_action(
 '',
 '//wait until the interactive grid has refreshed and then update the CSS classes for the report rows',
 'setTimeout(update_DVM_IG_row_colors, 1000);'))
+,p_stop_execution_on_error=>'Y'
 );
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(7569869168972447)
