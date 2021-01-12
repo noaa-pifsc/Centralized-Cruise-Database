@@ -64,7 +64,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
         -   Description: These Verification Export files contain the script output for the PL/SQL verification test cases.
         -   SOP:
             -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
-                -   [Cruise_Leg_DDL_DML_generator](../../../docs/Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the test data records in to the corresponding data loading script
+                -   [Cruise_Leg_DDL_DML_generator](../../../Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the test data records in to the corresponding data loading script
                 -   **Note: do not include any database fields in the verification queries that has a random element like primary key values or date/time values that depend on when the script was executed otherwise the automated test case verification approach will not work properly.
             -   Update the corresponding DVM test script(s) (e.g. [category_1_exec_test_cases.sql](./SQL/category_1_exec_test_cases.sql)) to include the PL/SQL code to execute the new test cases and produce the desired script output
             -   (For new test case categories only) Define a naming convention for the Verification Export

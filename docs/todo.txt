@@ -3,8 +3,8 @@ X Updated the CRDMA CCDP testing documentation to reuse the data from CCDP test 
 	X test that the CRDMA test cases still work with the CCDP automated test case data
 X Finish compiling SOP information on CRDMA CDVM Testing Documentation.md using the CDVM testing and CRDMA CCDP testing documentation
 	X finished verifying the CRDMA CDVM test cases on 9/18/20
-_ document update and commit code and documentation
-_ ** do a pull request for this one so I can verify that the markdown links are working correctly
+X document update and commit code and documentation
+X ** do a pull request for this one so I can verify that the markdown links are working correctly (ended up forking the repository and using the GitLab interface to verify the links were valid)
 
 
 
@@ -41,12 +41,12 @@ X package documentation updates (compile and reference the applicable business r
 	X Cruise Data Management Application - Testing Documentation.md X
 
 _ **Maybe some of the stuff in DVM category 1 can be integrated into the CRDMA validation and then in QA testing
+	_ probably only the cruise name - fiscal year validation is feasible
+	_ high cruise DAS/length is probably not feasible from the view/edit cruise leg page
 
 
 X ** ensure all testing SOPs make it clear that this is not intended for production use -> only on dev and test where the data loss is not a problem
 
-
-X
 
 
 X bug with redirect warning on deep copy:
@@ -57,7 +57,7 @@ future plans:
 
 
 
-_ CCD_CCDP_DEEP_COPY_CMP_V has an error after running the test cases and v0.26 upgrade
+X CCD_CCDP_DEEP_COPY_CMP_V has an error after running the test cases and v0.26 upgrade
 
 
 

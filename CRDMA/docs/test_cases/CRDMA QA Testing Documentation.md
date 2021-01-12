@@ -19,7 +19,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Test Case Verification SOP:
 -   Setup Test Cases:
-    -   For convenience the [execute_all_CRDMA_test_scripts.sql](./execute_all_CRDMA_test_scripts.sql) is provided to execute all of the test case setup scripts:
+    -   For convenience the [execute_all_CRDMA_test_scripts.sql](./SQL/execute_all_CRDMA_test_scripts.sql) is provided to execute all of the test case setup scripts:
         -   Delete the DVM data (for any existing Cruises being purged)
             -   Execute [delete_DVM_data.sql](../../../SQL/queries/delete_DVM_data.sql)
         -   Purge CCD data from the database

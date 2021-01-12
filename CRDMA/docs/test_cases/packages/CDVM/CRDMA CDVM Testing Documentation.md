@@ -89,7 +89,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Load test data:
             -   Test data: [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_5_load_test_data.sql)
             -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)
-            -   Execute the DVM script: [category_1_exec_DVM.sql](./category_1_exec_DVM.sql)
+            -   Execute the DVM script: [category_1_exec_DVM.sql](./SQL/category_1_exec_DVM.sql)
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CDVM%20Test%20Cases.xlsx):
         -   Open the "Category 1 DVM Tests" worksheet and execute the indicated process for each of the cruises or cruise legs listed on the spreadsheet:
             -   Insert Cruise:
