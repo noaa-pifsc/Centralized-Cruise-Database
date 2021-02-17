@@ -4,7 +4,7 @@
 The Cruise Data Management Application (CRDMA) was developed to allow PIFSC users to view summary reports and authorized users to manage cruise information.
 
 ## Application URLs:
--   Test Application: https://midt.pic.gov/apex_pict/f?p=287
+-   Test Application: http://midt.pic.gov/pict/f?p=287
 -   Production Application: TBD
 
 ## Requirements:
@@ -25,7 +25,6 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
     -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
     -   Validation Issue Display Policy (CR-DMA-009)
     -   Validation Issue Record Policy (CR-DMA-010)
-    -   Validation Issue Update Policy (CR-DMA-011)
     -   Validation Issue Application Link Policy (CR-DMA-012)
     -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
     -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)

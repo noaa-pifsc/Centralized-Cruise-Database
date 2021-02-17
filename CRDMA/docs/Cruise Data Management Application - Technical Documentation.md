@@ -20,8 +20,8 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
     -   [CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Application URLs:
--   Development Application: https://midd.pic.gov/apex_picd/f?p=287
--   Test Application: https://midt.pic.gov/apex_pict/f?p=287
+-   Development Application: http://midd.pic.gov/picd/f?p=287
+-   Test Application: http://midt.pic.gov/pict/f?p=287
 -   Production Application: TBD
 
 ## Requirements:
@@ -63,7 +63,6 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
     -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
     -   Validation Issue Display Policy (CR-DMA-009)
     -   Validation Issue Record Policy (CR-DMA-010)
-    -   Validation Issue Update Policy (CR-DMA-011)
     -   Validation Issue Application Link Policy (CR-DMA-012)
     -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
     -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)
@@ -238,9 +237,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 ## Security:
 -   Application Security:
     -   [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
-        -   **Note: The [Application Pages](#application-pages) section outlines any exceptions to the security controls defined in the [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
-            -   The results of the APEX Advisor for the given application version are available in the CDMA\docs\release\[MAJOR].[MINOR]\ folder where [MAJOR] is the major version and [MINOR] is the minor version of the application.
-                -   Advisor Report: CDMA v[MAJOR].[MINOR] - APEX Advisor Report.pdf
-                -   Advisor Report Explanation: CDMA v[MAJOR].[MINOR] - APEX Advisor Report.pdf
+        -   This project utilizes the security documentation from version 0.3 (Git tag: APX_sec_v0.3) of the [APEX security project](https://gitlab.pifsc.gov/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
+        -   \*\*Note: The [Application Pages](#application-pages) section outlines any exceptions to the security controls defined in the [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
     -   Authentication and Authorization Policy is implemented using the Authorization Application Module and is referenced in the [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
     -   [Principle of least privilege](https://docs.google.com/document/d/15qW2pDHM8bebmNJ76AfC-SgICKQPGmKSiUkXbrZ7OVQ/edit?usp=sharing): All of the data tables and support objects are defined in the CEN_CRUISE data schema, the APEX application's parsing schema (shadow schema) which is used to actually interact with the underlying database is CEN_CRUISE_APP. CEN_CRUISE_APP has very limited permissions on the CEN_CRUISE schema based on the required functionality of the application (see [CEN_CRUISE_APP_permissions](./CEN_CRUISE_APP_permissions.xlsx)) to implement the principle of least privilege. Both schemas have not been granted any roles in the database instance.

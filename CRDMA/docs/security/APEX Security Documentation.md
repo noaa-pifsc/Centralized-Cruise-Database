@@ -6,4 +6,4 @@ This documentation project was created to provide standard security documentatio
 ## Resources:
 -   Version Control Information:
     -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git
-    -   Database: 0.2 (Git tag: APX_sec_v0.2)
+    -   Database: 0.3 (Git tag: APX_sec_v0.3)
