@@ -8,6 +8,10 @@ X ** do a pull request for this one so I can verify that the markdown links are 
 
 
 
+_ Data Integration SOP:
+	Include scripts/functions for integrating directly with cruise data in addition to the existing cruise legs
+
+
 X document business rules for the delete, update, insert actions (automatic overlap checks)
 
 DVM configuration:

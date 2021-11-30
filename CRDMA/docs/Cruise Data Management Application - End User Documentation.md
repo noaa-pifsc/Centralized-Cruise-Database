@@ -4,7 +4,7 @@
 The Cruise Data Management Application (CRDMA) was developed to allow PIFSC users to view summary reports and authorized users to manage cruise information.
 
 ## Application URLs:
--   Test Application: http://midt.pic.gov/pict/f?p=287
+-   Test Application: http://picmidt.nmfs.local/pict/f?p=287
 -   Production Application: TBD
 
 ## Requirements:

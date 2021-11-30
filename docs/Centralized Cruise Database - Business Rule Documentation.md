@@ -5,9 +5,9 @@ There are multiple modules that utilize the Cruise database for various purposes
 
 ## Scope Descriptions:
 -   Cruise DB - these business rules apply to the underlying shared database that is used by all associated Cruise application modules
--   Data QC - these business rules are the specific quality control (QC) validation criteria implemented on the Cruise database using the [Data Validation Module (DVM)](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module)
+-   Data QC - these business rules are the specific quality control (QC) validation criteria implemented on the Cruise database using the [Data Validation Module (DVM)](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule)
 -   CRDMA - these business rules apply to the Cruise Data Management Application (CRDMA) and the way the application functions
--   Data QA - these business rules are the specific quality assurance (QA) validation criteria implemented on the Cruise database using the [DVM](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module)
+-   Data QA - these business rules are the specific quality assurance (QA) validation criteria implemented on the Cruise database using the CRDMA
 -   CCD Oracle PKG - these business rules apply to the [CCD Oracle Package (CCDP)](./packages/CCDP/CCDP%20Documentation.md)
 -   CCD PKG Errors - these business rules apply to error conditions while executing the [CCDP](./packages/CCDP/CCDP%20Documentation.md)
 -   CCD Custom DVM - these business rules apply to the [CCD Custom DVM (CDVM)](./packages/CDVM/CDVM%20Documentation.md)

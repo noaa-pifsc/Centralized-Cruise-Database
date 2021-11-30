@@ -58,6 +58,10 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
         -   URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder
         -   Database: 0.2 (Git tag: APX_Cust_Err_Handler_db_v0.2)
 
+## Database Diagram:
+-   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)
+    -   [CCD Diagram](./data_model/cruise_db_diagram.pdf)
+
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](./DFD/Centralized%20Cruise%20DFD.pdf)
 -   [DFD Documentation](./DFD/Centralized%20Cruise%20Data%20Flow%20Diagram%20Documentation.md)
