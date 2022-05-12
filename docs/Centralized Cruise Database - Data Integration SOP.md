@@ -4,8 +4,10 @@
 The Centralized Cruise Database (CCD) was developed to manage all operational cruise-level information in the PIFSC enterprise database that other scientific data schemas can reference directly. The CCD Data Integration SOP was developed to define the process of integrating the CCD data into any scientific enterprise database schema with cruise-based data collection using Cruise Legs as the integration point. Integrating data across database schemas has some additional considerations that should be handled with a standard approach to ensure maintainability and security. In this SOP the CCD will be referred to as the Source Schema and the scientific data schema that will reference the CCD will be referred to as the Referring Schema. The Centralized CTD Data System was integrated with the CCD and is provided as an example of a Referring Schema in the SOP.
 
 ## Resources:
+-   Version Control Information:
+    -   Git Repository URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git
+    -   Version: 1.1 (Git tag: CCD_data_integration_SOP_v1.1)
 -   [Centralized Cruise Database - Technical Documentation](./Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
--   Git Repository URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git
 
 ## Procedure:
 1.  ### Grant the Referring Schema permissions
