@@ -11,8 +11,8 @@ This application requires version 0.6 of the Cruise Database to be installed (Gi
     -   Execute the statements in the [cen_cruise_app_grant_privs.sql](../SQL/cen_cruise_app_grant_privs.sql) file using the corresponding schemas indicated in the comments.
 -   Load the Authorization Application Module groups/users
     -   Execute the [load_users_groups.sql](../SQL/load_user_groups.sql) script in the Cruise Database schema (CEN_CRUISE) to define the groups, users, and corresponding associations
-    -   *Note: More information can be found the Authorization Application Module documentation in the Git repository (URL: git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git)
+    -   *Note: More information can be found the Authorization Application Module documentation in the Git repository (URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git)
 -   Load the APEX Custom Error Handler module records
-    -   Execute the [Generate Error Message DML.sql](../SQL/Generate%20Error%20Message%20DML.sql) script in the APEX Custom Error Handler Git repository (URL: <git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git> in the "Error Handling" folder) using the Cruise Database schema (CEN_CRUISE) to load the custom error information for the application to comply with the SI-11 security requirement.
+    -   Execute the [Generate Error Message DML.sql](../SQL/Generate%20Error%20Message%20DML.sql) script in the APEX Custom Error Handler Git repository (URL: <git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git> in the "Error Handling" folder) using the Cruise Database schema (CEN_CRUISE) to load the custom error information for the application to comply with the SI-11 security requirement.
     -   *Note: More information can be found in the APEX Custom Error Handler module documentation in the Git repository
 -   **Note: you can optionally execute the [grant_reload_CRDMA_data.sql](../SQL/grant_reload_CRDMA_data.sql) script to grant the necessary privileges and then purge and reload the application data from the scripts referenced above.

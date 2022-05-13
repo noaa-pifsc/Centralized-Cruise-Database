@@ -1,11 +1,11 @@
 # Centralized Cruise Database DVM Testing Documentation
 
 ## Overview:
-The Centralized Cruise Database (CCD) was developed to manage cruise information for PIFSC. The CCD Data Validation Module (CDVM) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules.  The CDVM is utilized to perform automated data Quality Control (QC) on the CCD to help ensure the quality of the data. There are two different methods for test case verification: SQL and PL/SQL. The standard method for defining formal, repeatable test cases and verifying them for both the DVM and CDVM are defined in this document.
+The Centralized Cruise Database (CCD) was developed to manage cruise information for PIFSC. The CCD Data Validation Module (CDVM) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules.  The CDVM is utilized to perform automated data Quality Control (QC) on the CCD to help ensure the quality of the data. There are two different methods for test case verification: SQL and PL/SQL. The standard method for defining formal, repeatable test cases and verifying them for both the DVM and CDVM are defined in this document.
 
 ## Resources:
 -   [CDVM Documentation](../CDVM%20Documentation.md)
-    -   [DVM](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module)
+    -   [DVM](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module)
 -   [CCD Documentation](../../../Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 -   [PL/SQL Coding Conventions](../../../Centralized%20Cruise%20Database%20-%20PLSQL%20Coding%20Conventions.md)
 -   [CDVM Automated Test Cases](./CDVM%20Test%20Cases.xlsx)
@@ -118,7 +118,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
                 -   Export: [category_3_DVM_issue_verification.csv](./verification_templates/automated/category_3_DVM_issue_verification.csv)
     -   Category 4 Cases (PL/SQL verification)
         -   These test cases verify the different error conditions that can be feasibly tested are handled correctly
-            -   A list of DVM error codes that are tested in this category for the DVM_PKG package can be found in the [DVM](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module) in the [Business Rules List](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Processing Errors" and "Test Case Exists?" column values are "yes"
+            -   A list of DVM error codes that are tested in this category for the DVM_PKG package can be found in the [DVM](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) in the [Business Rules List](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Processing Errors" and "Test Case Exists?" column values are "yes"
         -   Test cases setup
             -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute all individual scripts listed below to setup the test cases for this test case category: [category_4_exec_all_scripts.sql](./SQL/category_4_exec_all_scripts.sql)
                 -   Load test data:
@@ -177,7 +177,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
                 -   Export: [category_6_DVM_PTA_rule_verification.csv](./verification_templates/automated/category_6_DVM_PTA_rule_verification.csv)
     -   Category 7 Cases (SQL verification)
         -   These test cases verify the invalid DVM configuration QC checks that can be feasibly tested are identified correctly
-            -   A list of DVM configuration criteria that are tested in this test case category for the DVM_PKG package can be found in the https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module in the [Business Rules List](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Configuration QC"
+            -   A list of DVM configuration criteria that are tested in this test case category for the DVM_PKG package can be found in the https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module in the [Business Rules List](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Configuration QC"
             -   **Note: after processing this test case category all DVM rules and DVM data will be purged
             -   **Note: All DVM test scripts for this test case category must be executed or the data model will have been changed by the first DVM test script
         -   Test cases setup

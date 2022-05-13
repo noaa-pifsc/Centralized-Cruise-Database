@@ -5,7 +5,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## Resources:
 -   CCD Version Control Information:
-    -   URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git
+    -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git
     -   Database: 0.27 (Git tag: cen_cruise_db_v0.27)
 -   [CCD View Comments](./centralized_cruise_DB_view_comments.xlsx)
 -   [Cruise Data Management Application (CRDMA)](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md)
@@ -28,34 +28,34 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
--   [Centralized CTD Database](https://gitlab.pifsc.gov/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
+-   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
     -   **\*\*Note**: The automated test cases require this script to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
 
 ## Features:
 -   The database requires the Centralized Utilities to be deployed on the CEN_UTILS schema in order for the database views to work properly when querying the cruise and cruise leg information
     -   Version Control Information:
-        -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/centralized-utilities.git
+        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/centralized-utilities.git
         -   Database: 0.9 (Git tag: cen_utils_db_v0.9)
 -   The Data Validation Module (DVM) is used to perform QC validation on the Centralized Cruise Database data managed in this database. Custom data validation criteria were developed for this operational data set.
     -   Version Control Information:
-        -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git
+        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/data-validation-module.git
         -   Database: 1.3 (Git tag: DVM_db_v1.3)
 -   The Database Version Control Module is used to track the database version installed on a given database schema.
     -   Version Control Information:
-        -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/database-version-control-module.git
+        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-version-control-module.git
         -   Application: 0.14 (Git tag: db_vers_ctrl_v0.14)
         -   Database: 0.2 (Git tag: db_vers_ctrl_db_v0.2)
 -   The Database Logging Module is used to log CDIM execution information in the database.
     -   Version Control Information:
-        -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git
+        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-logging-module.git
         -   Database: 0.2 (Git tag: db_log_db_v0.2)
 -   The Authorization Application Module was originally designed to manage application access and permissions within the application. This is a flexible method that allows users and permission groups to be defined that will determine if a user has enabled access to the application and what permission(s) they have in the application.
     -   Version Control Information:
-        -   URL (Git): git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git
+        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git
         -   Database: 0.8 (Git tag: auth_app_db_v0.8)
 -   The PIFSC APEX custom error handling function has been implemented on the application to suppress sensitive error information within the database application to satisfy Security Control: SI-11.
     -   Version Control Information:
-        -   URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder
+        -   URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
         -   Database: 0.2 (Git tag: APX_Cust_Err_Handler_db_v0.2)
 
 ## Database Diagram:
@@ -70,7 +70,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The business rules for the CCD are defined in the [Business Rule Documentation](./Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a Scope of "Cruise DB" apply to the underlying database and rules with a Scope of "Data QC" apply to the QC criteria used to evaluate Cruise data in the underlying database.
 
 ## Custom CCD Oracle Packages:
--   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules
+-   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules
 -   The [CCDP](./packages/CCDP/CCDP%20Documentation.md) was developed to provide functions and stored procedures for the CCD to provide functionality for the database and associated module(s)
 
 ## Cruise Database Reference Data:
@@ -83,5 +83,5 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   An [APEX application](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md) is available to manage the cruises, cruise legs, and leg aliases
 
 ## Test Data Set:
--   The [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script provides the test data for [version 0.27](https://gitlab.pifsc.gov/centralized-data-tools/centralized-cruise-database/-/tags/cen_cruise_db_v0.27) of the CCD for the [Centralized Utilities Database (CUD)](https://gitlab.pifsc.gov/centralized-data-tools/centralized-utilities) [Data Package (UDP)](https://gitlab.pifsc.gov/centralized-data-tools/centralized-utilities/-/blob/master/docs/packages/UDP_UDLP/UDP%20UDLP%20Documentation.md) starting in [version 0.10](https://gitlab.pifsc.gov/centralized-data-tools/centralized-utilities/-/tags/cen_utils_db_v0.10) of the CUD  
-    -   The [test_data-cen_utils_db_v0.10](https://gitlab.pifsc.gov/centralized-data-tools/centralized-cruise-database/-/tags/test_data-cen_utils_db_v0.10) tag on the CCD repository indicates the version of the CCD that was developed for version 0.10 of the CUD
+-   The [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script provides the test data for [version 0.27](https://picgitlab.nmfs.local/centralized-data-tools/centralized-cruise-database/-/tags/cen_cruise_db_v0.27) of the CCD for the [Centralized Utilities Database (CUD)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities) [Data Package (UDP)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/blob/master/docs/packages/UDP_UDLP/UDP%20UDLP%20Documentation.md) starting in [version 0.10](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/tags/cen_utils_db_v0.10) of the CUD  
+    -   The [test_data-cen_utils_db_v0.10](https://picgitlab.nmfs.local/centralized-data-tools/centralized-cruise-database/-/tags/test_data-cen_utils_db_v0.10) tag on the CCD repository indicates the version of the CCD that was developed for version 0.10 of the CUD

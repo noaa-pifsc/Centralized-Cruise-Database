@@ -5,7 +5,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Resources:
 -   Version Control Information:
-    -   URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git in the [CRDMA](../) folder
+    -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git in the [CRDMA](../) folder
     -   Application: 0.17 (Git tag: cen_cruise_web_app_v0.17)
 -   [End User Documentation](./Cruise%20Data%20Management%20Application%20-%20End%20User%20Documentation.md)
 -   [Testing Documentation](./Cruise%20Data%20Management%20Application%20-%20Testing%20Documentation.md)
@@ -13,7 +13,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 -   [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 -   [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx)
--   [Data Validation Module (DVM)](https://gitlab.pifsc.gov/centralized-data-tools/data-validation-module)
+-   [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module)
 -   [CCD Oracle Package (CCDP) Documentation](../../docs/packages/CCDP/CCDP%20Documentation.md)
     -   [CRDMA CCDP Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
 -   [CCD DVM (CDVM) Documentation](../../docs/packages/CDVM/CDVM%20Documentation.md)
@@ -237,7 +237,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 ## Security:
 -   Application Security:
     -   [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
-        -   This project utilizes the security documentation from version 0.3 (Git tag: APX_sec_v0.3) of the [APEX security project](https://gitlab.pifsc.gov/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
+        -   This project utilizes the security documentation from version 0.5 (Git tag: APX_sec_v0.5) of the [APEX security project](https://picgitlab.nmfs.local/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
         -   \*\*Note: The [Application Pages](#application-pages) section outlines any exceptions to the security controls defined in the [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
     -   Authentication and Authorization Policy is implemented using the Authorization Application Module and is referenced in the [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
     -   [Principle of least privilege](https://docs.google.com/document/d/15qW2pDHM8bebmNJ76AfC-SgICKQPGmKSiUkXbrZ7OVQ/edit?usp=sharing): All of the data tables and support objects are defined in the CEN_CRUISE data schema, the APEX application's parsing schema (shadow schema) which is used to actually interact with the underlying database is CEN_CRUISE_APP. CEN_CRUISE_APP has very limited permissions on the CEN_CRUISE schema based on the required functionality of the application (see [CEN_CRUISE_APP_permissions](./CEN_CRUISE_APP_permissions.xlsx)) to implement the principle of least privilege. Both schemas have not been granted any roles in the database instance.

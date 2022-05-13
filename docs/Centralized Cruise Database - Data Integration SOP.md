@@ -5,7 +5,7 @@ The Centralized Cruise Database (CCD) was developed to manage all operational cr
 
 ## Resources:
 -   Version Control Information:
-    -   Git Repository URL: git@gitlab.pifsc.gov:centralized-data-tools/centralized-cruise-database.git
+    -   Git Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git
     -   Version: 1.1 (Git tag: CCD_data_integration_SOP_v1.1)
 -   [Centralized Cruise Database - Technical Documentation](./Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 
