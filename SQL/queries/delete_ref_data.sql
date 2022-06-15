@@ -15,6 +15,13 @@ delete FROM CCD_CRUISE_SPP_ESA;
 delete FROM CCD_CRUISE_SVY_CATS;
 delete FROM ccd_leg_regions;
 delete FROM ccd_leg_aliases;
+
+
+delete from ccd_data_sets;
+delete from ccd_data_set_types;
+delete from ccd_data_set_status;
+
+
 delete FROM ccd_cruise_legs;
 delete FROM ccd_cruises;
 delete from ccd_sci_center_divs;
@@ -51,13 +58,3 @@ delete FROM CCD_GEAR;
 delete FROM CCD_REG_ECOSYSTEMS;
 delete FROM CCD_PLAT_TYPES;
 delete FROM ccd_regions;
-
-
-
-
-
-
-
- delete from ccd_data_sets;
- delete from ccd_data_set_types;
- delete from ccd_data_set_status;

@@ -12,16 +12,16 @@
 
 
 --Installed Version 0.5 of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.5_pt1.sql"
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.5_pt1.sql"
 
 --migrate the DVM data from the previous data model
-@@"./external_modules/migrate_error_type_assoc_values.sql"
+@@"./upgrades/external_modules/migrate_error_type_assoc_values.sql"
 
 --finish upgrading the DVM database to version 0.5
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.5_pt2.sql"
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.5_pt2.sql"
 
 --Installed Version 0.6 of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.6.sql"
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.6.sql"
 
 
 ALTER TABLE CCD_CRUISES RENAME COLUMN PTA_ERROR_ID TO PTA_ISS_ID;

@@ -17,16 +17,16 @@
 --Installed Version 0.1 of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git)
 
 
-@@"./external_modules/DB_log_DDL_DML_upgrade_v0.1.sql"
+@@"./upgrades/external_modules/DB_log_DDL_DML_upgrade_v0.1.sql"
 
 
 --Installed Version 0.2 of the Error Handler Module (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/apex_tools.git in the "Error Handling" folder)
 
 
-@@"./external_modules/Error_Handler_DDL_DML_upgrade_v0.1.sql"
+@@"./upgrades/external_modules/Error_Handler_DDL_DML_upgrade_v0.1.sql"
 
 
-@@"./external_modules/Error_Handler_DDL_DML_upgrade_v0.2.sql"
+@@"./upgrades/external_modules/Error_Handler_DDL_DML_upgrade_v0.2.sql"
 
 
 
@@ -533,80 +533,185 @@ This table stores the Expected Species Categories for a given cruise  (referred 
 
 --add auditing fields:
 
-ALTER TABLE CCD_EXP_SPP_CATS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_EXP_SPP_CATS
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_EXP_SPP_CATS
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_EXP_SPP_CATS
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_EXP_SPP_CATS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_EXP_SPP_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_EXP_SPP_CATS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_EXP_SPP_CATS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_EXP_SPP_CATS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_EXP_SPP_CATS
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_EXP_SPP_CATS
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_EXP_SPP_CATS
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_EXP_SPP_CATS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_EXP_SPP_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_EXP_SPP_CATS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_EXP_SPP_CATS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 
 
-ALTER TABLE CCD_PLAT_TYPES ADD (CREATE_DATE DATE );	ALTER TABLE CCD_PLAT_TYPES
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_PLAT_TYPES
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_PLAT_TYPES
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_PLAT_TYPES.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_PLAT_TYPES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_PLAT_TYPES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_PLAT_TYPES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_REG_ECOSYSTEMS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_REG_ECOSYSTEMS
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_REG_ECOSYSTEMS
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_REG_ECOSYSTEMS
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_PLAT_TYPES ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_PLAT_TYPES
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_PLAT_TYPES
+ADD (LAST_MOD_DATE DATE );
 
-ALTER TABLE CCD_GEAR ADD (CREATE_DATE DATE );	ALTER TABLE CCD_GEAR
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_GEAR
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_GEAR
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_GEAR.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_GEAR.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_GEAR.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_GEAR.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_STD_SVY_NAMES ADD (CREATE_DATE DATE );	ALTER TABLE CCD_STD_SVY_NAMES
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_STD_SVY_NAMES
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_STD_SVY_NAMES
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_STD_SVY_NAMES.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_STD_SVY_NAMES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_STD_SVY_NAMES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_STD_SVY_NAMES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_SVY_FREQ ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SVY_FREQ
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SVY_FREQ
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SVY_FREQ
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_SVY_FREQ.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SVY_FREQ.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SVY_FREQ.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SVY_FREQ.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_PLAT_TYPES
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_PLAT_TYPES.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_PLAT_TYPES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_PLAT_TYPES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_PLAT_TYPES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_REG_ECOSYSTEMS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_REG_ECOSYSTEMS
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_REG_ECOSYSTEMS
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_REG_ECOSYSTEMS
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_REG_ECOSYSTEMS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+
+ALTER TABLE CCD_GEAR ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_GEAR
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_GEAR
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_GEAR
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_GEAR.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_GEAR.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_GEAR.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_GEAR.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_STD_SVY_NAMES ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_STD_SVY_NAMES
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_STD_SVY_NAMES
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_STD_SVY_NAMES
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_STD_SVY_NAMES.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_STD_SVY_NAMES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_STD_SVY_NAMES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_STD_SVY_NAMES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_SVY_FREQ ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SVY_FREQ
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SVY_FREQ
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_SVY_FREQ
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_SVY_FREQ.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SVY_FREQ.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SVY_FREQ.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SVY_FREQ.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 
-ALTER TABLE CCD_SVY_CATS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SVY_CATS
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SVY_CATS
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SVY_CATS
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_SVY_CATS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SVY_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SVY_CATS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SVY_CATS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_SVY_CATS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SVY_CATS
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SVY_CATS
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_SVY_CATS
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_SVY_CATS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SVY_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SVY_CATS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SVY_CATS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 
 
-ALTER TABLE CCD_TGT_SPP_ESA ADD (CREATE_DATE DATE );	ALTER TABLE CCD_TGT_SPP_ESA
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_TGT_SPP_ESA
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_TGT_SPP_ESA
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_TGT_SPP_ESA.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_TGT_SPP_ESA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_TGT_SPP_ESA.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_TGT_SPP_ESA.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_TGT_SPP_MMPA ADD (CREATE_DATE DATE );	ALTER TABLE CCD_TGT_SPP_MMPA
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_TGT_SPP_MMPA
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_TGT_SPP_MMPA
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_TGT_SPP_MMPA.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_TGT_SPP_MMPA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_TGT_SPP_MMPA.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_TGT_SPP_MMPA.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_TGT_SPP_FSSI ADD (CREATE_DATE DATE );	ALTER TABLE CCD_TGT_SPP_FSSI
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_TGT_SPP_FSSI
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_TGT_SPP_FSSI
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_TGT_SPP_FSSI.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_TGT_SPP_FSSI.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_TGT_SPP_FSSI.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_TGT_SPP_FSSI.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_TGT_SPP_OTHER ADD (CREATE_DATE DATE );	ALTER TABLE CCD_TGT_SPP_OTHER
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_TGT_SPP_OTHER
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_TGT_SPP_OTHER
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_TGT_SPP_OTHER.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_TGT_SPP_OTHER.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_TGT_SPP_OTHER.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_TGT_SPP_OTHER.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_TGT_SPP_ESA ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_TGT_SPP_ESA
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_TGT_SPP_ESA
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_TGT_SPP_ESA
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_TGT_SPP_ESA.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_ESA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_ESA.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_TGT_SPP_ESA.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_TGT_SPP_MMPA ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_TGT_SPP_MMPA
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_TGT_SPP_MMPA
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_TGT_SPP_MMPA
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_TGT_SPP_MMPA.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_MMPA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_MMPA.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_TGT_SPP_MMPA.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_TGT_SPP_FSSI ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_TGT_SPP_FSSI
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_TGT_SPP_FSSI
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_TGT_SPP_FSSI
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_TGT_SPP_FSSI.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_FSSI.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_FSSI.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_TGT_SPP_FSSI.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_TGT_SPP_OTHER ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_TGT_SPP_OTHER
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_TGT_SPP_OTHER
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_TGT_SPP_OTHER
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_TGT_SPP_OTHER.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_TGT_SPP_OTHER.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	
+COMMENT ON COLUMN CCD_TGT_SPP_OTHER.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_TGT_SPP_OTHER.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 
 
-ALTER TABLE CCD_SVY_TYPES ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SVY_TYPES
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SVY_TYPES
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SVY_TYPES
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_SVY_TYPES.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SVY_TYPES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SVY_TYPES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SVY_TYPES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';	COMMENT ON TABLE CCD_SVY_TYPES IS 'Survey Types
+ALTER TABLE CCD_SVY_TYPES ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SVY_TYPES
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SVY_TYPES
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_SVY_TYPES
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_SVY_TYPES.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SVY_TYPES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SVY_TYPES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SVY_TYPES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON TABLE CCD_SVY_TYPES IS 'Survey Types
 
 This table stores the different survey types for a given cruise  (referred to as Survey Instance in FINSS) based on the FINSS system';
 
 
 
 
-ALTER TABLE CCD_SCI_CENTERS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SCI_CENTERS
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SCI_CENTERS
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SCI_CENTERS
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_SCI_CENTERS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SCI_CENTERS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SCI_CENTERS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SCI_CENTERS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_SCI_CENTERS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SCI_CENTERS
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SCI_CENTERS
+ADD (LAST_MOD_DATE DATE );
+
+ALTER TABLE CCD_SCI_CENTERS
+ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_SCI_CENTERS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SCI_CENTERS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SCI_CENTERS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SCI_CENTERS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 --define sequences:
@@ -1317,23 +1422,33 @@ CREATE SEQUENCE CCD_CRUISE_EXP_SPP_SEQ INCREMENT BY 1 START WITH 1;
 
 
 --add created by auditing fields for cruise intersection tables:
-ALTER TABLE CCD_CRUISE_SVY_CATS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_SVY_CATS
+ALTER TABLE CCD_CRUISE_SVY_CATS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_SVY_CATS
 ADD (CREATED_BY VARCHAR2(30) );
-ALTER TABLE CCD_CRUISE_SPP_ESA ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_SPP_ESA
+ALTER TABLE CCD_CRUISE_SPP_ESA ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_SPP_ESA
 ADD (CREATED_BY VARCHAR2(30) );
-ALTER TABLE CCD_CRUISE_SPP_MMPA ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_SPP_MMPA
+ALTER TABLE CCD_CRUISE_SPP_MMPA ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_SPP_MMPA
 ADD (CREATED_BY VARCHAR2(30) );
-ALTER TABLE CCD_CRUISE_SPP_FSSI ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_SPP_FSSI
+ALTER TABLE CCD_CRUISE_SPP_FSSI ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_SPP_FSSI
 ADD (CREATED_BY VARCHAR2(30) );
-ALTER TABLE CCD_CRUISE_EXP_SPP ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_EXP_SPP
+ALTER TABLE CCD_CRUISE_EXP_SPP ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_EXP_SPP
 ADD (CREATED_BY VARCHAR2(30) );
 
 
-COMMENT ON COLUMN CCD_CRUISE_SVY_CATS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_SVY_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
-COMMENT ON COLUMN CCD_CRUISE_SPP_ESA.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_SPP_ESA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
-COMMENT ON COLUMN CCD_CRUISE_SPP_MMPA.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_SPP_MMPA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
-COMMENT ON COLUMN CCD_CRUISE_SPP_FSSI.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_SPP_FSSI.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
-COMMENT ON COLUMN CCD_CRUISE_EXP_SPP.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_EXP_SPP.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_SVY_CATS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_SVY_CATS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_ESA.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_ESA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_MMPA.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_MMPA.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_FSSI.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_SPP_FSSI.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_EXP_SPP.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_EXP_SPP.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
 
 
 
@@ -1513,13 +1628,17 @@ This intersection table defines the many-to-many relationship between a given cr
 CREATE SEQUENCE CCD_LEG_GEAR_SEQ INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE CCD_LEG_ECOSYSTEMS_SEQ INCREMENT BY 1 START WITH 1;
 
-ALTER TABLE CCD_LEG_GEAR ADD (CREATE_DATE DATE );	ALTER TABLE CCD_LEG_GEAR
+ALTER TABLE CCD_LEG_GEAR ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_LEG_GEAR
 ADD (CREATED_BY VARCHAR2(30) );
-ALTER TABLE CCD_LEG_ECOSYSTEMS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_LEG_ECOSYSTEMS
+ALTER TABLE CCD_LEG_ECOSYSTEMS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_LEG_ECOSYSTEMS
 ADD (CREATED_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_LEG_GEAR.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_LEG_GEAR.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
-COMMENT ON COLUMN CCD_LEG_ECOSYSTEMS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_LEG_ECOSYSTEMS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_LEG_GEAR.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_LEG_GEAR.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_LEG_ECOSYSTEMS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_LEG_ECOSYSTEMS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
 
 
 create or replace TRIGGER CCD_LEG_GEAR_AUTO_BRI

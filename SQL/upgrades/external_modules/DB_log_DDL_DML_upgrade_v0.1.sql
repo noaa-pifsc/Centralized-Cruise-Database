@@ -13,18 +13,18 @@
 
 
 
-CREATE TABLE DB_LOG_ENTRIES 
+CREATE TABLE DB_LOG_ENTRIES
 (
-  LOG_ENTRY_ID NUMBER NOT NULL 
-, ENTRY_TYPE_ID NUMBER NOT NULL 
-, LOG_SOURCE VARCHAR2(200) NOT NULL 
-, ENTRY_CONTENT CLOB NOT NULL 
-, ENTRY_DTM DATE NOT NULL 
-, CONSTRAINT DB_LOG_ENTRIES_PK PRIMARY KEY 
+  LOG_ENTRY_ID NUMBER NOT NULL
+, ENTRY_TYPE_ID NUMBER NOT NULL
+, LOG_SOURCE VARCHAR2(200) NOT NULL
+, ENTRY_CONTENT CLOB NOT NULL
+, ENTRY_DTM DATE NOT NULL
+, CONSTRAINT DB_LOG_ENTRIES_PK PRIMARY KEY
   (
-    LOG_ENTRY_ID 
+    LOG_ENTRY_ID
   )
-  ENABLE 
+  ENABLE
 );
 
 COMMENT ON COLUMN DB_LOG_ENTRIES.ENTRY_TYPE_ID IS 'Foreign key reference to the DB_ENTRY_TYPES table that defines the type of database log entry';
@@ -35,7 +35,7 @@ COMMENT ON COLUMN DB_LOG_ENTRIES.ENTRY_CONTENT IS 'The content of the database l
 
 COMMENT ON COLUMN DB_LOG_ENTRIES.ENTRY_DTM IS 'The date/time the database log entry was made';
 
-ALTER TABLE DB_LOG_ENTRIES 
+ALTER TABLE DB_LOG_ENTRIES
 ADD (CREATED_BY VARCHAR2(30) );
 
 COMMENT ON COLUMN DB_LOG_ENTRIES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
@@ -58,30 +58,30 @@ begin
 end;
 /
 
-CREATE TABLE DB_LOG_ENTRY_TYPES 
+CREATE TABLE DB_LOG_ENTRY_TYPES
 (
-  ENTRY_TYPE_ID NUMBER NOT NULL 
-, ENTRY_TYPE_CODE VARCHAR2(10) NOT NULL 
-, ENTRY_TYPE_NAME VARCHAR2(100) NOT NULL 
-, ENTRY_TYPE_DESC VARCHAR2(500) 
-, CONSTRAINT DB_LOG_ENTRY_TYPES_PK PRIMARY KEY 
+  ENTRY_TYPE_ID NUMBER NOT NULL
+, ENTRY_TYPE_CODE VARCHAR2(10) NOT NULL
+, ENTRY_TYPE_NAME VARCHAR2(100) NOT NULL
+, ENTRY_TYPE_DESC VARCHAR2(500)
+, CONSTRAINT DB_LOG_ENTRY_TYPES_PK PRIMARY KEY
   (
-    ENTRY_TYPE_ID 
+    ENTRY_TYPE_ID
   )
-  ENABLE 
+  ENABLE
 );
 
 ALTER TABLE DB_LOG_ENTRY_TYPES
-ADD CONSTRAINT DB_LOG_ENTRY_TYPES_U1 UNIQUE 
+ADD CONSTRAINT DB_LOG_ENTRY_TYPES_U1 UNIQUE
 (
-  ENTRY_TYPE_CODE 
+  ENTRY_TYPE_CODE
 )
 ENABLE;
 
 ALTER TABLE DB_LOG_ENTRY_TYPES
-ADD CONSTRAINT DB_LOG_ENTRY_TYPES_U2 UNIQUE 
+ADD CONSTRAINT DB_LOG_ENTRY_TYPES_U2 UNIQUE
 (
-  ENTRY_TYPE_NAME 
+  ENTRY_TYPE_NAME
 )
 ENABLE;
 
@@ -97,19 +97,22 @@ CREATE INDEX DB_LOG_ENTRIES_I1 ON DB_LOG_ENTRIES (ENTRY_TYPE_ID);
 ALTER TABLE DB_LOG_ENTRIES
 ADD CONSTRAINT DB_LOG_ENTRIES_FK1 FOREIGN KEY
 (
-  ENTRY_TYPE_ID 
+  ENTRY_TYPE_ID
 )
 REFERENCES DB_LOG_ENTRY_TYPES
 (
-  ENTRY_TYPE_ID 
+  ENTRY_TYPE_ID
 )
 ENABLE;
 
 CREATE SEQUENCE DB_LOG_ENTRY_TYPES_SEQ INCREMENT BY 1 START WITH 1;
 
-ALTER TABLE DB_LOG_ENTRY_TYPES ADD (CREATE_DATE DATE );	ALTER TABLE DB_LOG_ENTRY_TYPES 
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE DB_LOG_ENTRY_TYPES 
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE DB_LOG_ENTRY_TYPES 
+ALTER TABLE DB_LOG_ENTRY_TYPES ADD (CREATE_DATE DATE );
+ALTER TABLE DB_LOG_ENTRY_TYPES
+ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE DB_LOG_ENTRY_TYPES
+ADD (LAST_MOD_DATE DATE );
+ALTER TABLE DB_LOG_ENTRY_TYPES
 ADD (LAST_MOD_BY VARCHAR2(30) );
 COMMENT ON COLUMN DB_LOG_ENTRY_TYPES.CREATE_DATE IS 'The date on which this record was created in the database';
 COMMENT ON COLUMN DB_LOG_ENTRY_TYPES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
@@ -131,8 +134,8 @@ end;
 /
 CREATE OR REPLACE TRIGGER DB_LOG_ENTRY_TYPES_AUTO_BRU BEFORE
   UPDATE
-    ON DB_LOG_ENTRY_TYPES FOR EACH ROW 
-    BEGIN 
+    ON DB_LOG_ENTRY_TYPES FOR EACH ROW
+    BEGIN
       :NEW.LAST_MOD_DATE := SYSDATE;
       :NEW.LAST_MOD_BY := nvl(v('APP_USER'),user);
 END;
@@ -210,7 +213,7 @@ AS
       P_ENTRY_TYPE_CODE := 'DEBUG';
       P_LOG_SOURCE := 'Module Name';
       P_ENTRY_CONTENT := 'Content for DB Log Entry';
-    
+
       DB_LOG_PKG.ADD_LOG_ENTRY(
         P_ENTRY_TYPE_CODE => P_ENTRY_TYPE_CODE,
         P_LOG_SOURCE => P_LOG_SOURCE,
@@ -220,17 +223,17 @@ AS
     END;
     */
     PROCEDURE ADD_LOG_ENTRY (p_entry_type_code IN VARCHAR2, p_log_source IN VARCHAR2, p_entry_content IN CLOB, p_proc_return_code OUT PLS_INTEGER) IS
-        
+
         --procedure variable to store the return codes from each procedure call to determine the results of the procedure execution
         v_proc_return_code PLS_INTEGER;
-    
+
         --DECLARE THIS AS AN AUTONOMOUS TRANSACTION:
         PRAGMA AUTONOMOUS_TRANSACTION;
-        
-    
+
+
     BEGIN
 
-    
+
         --insert the db_log_entries record based on the procedure parameters:
         INSERT INTO DB_LOG_ENTRIES (ENTRY_TYPE_ID, LOG_SOURCE, ENTRY_CONTENT, ENTRY_DTM) VALUES ((select entry_type_id from db_log_entry_types where upper(entry_type_code) = upper(p_entry_type_code)), p_log_source, p_entry_content, SYSDATE);
 
@@ -240,16 +243,16 @@ AS
         --define the return code that indicates that the database log entry was successfully added to the database:
         p_proc_return_code := 1;
 
-    
+
     EXCEPTION
 
         --catch all PL/SQL database exceptions:
         WHEN OTHERS THEN
             --catch all other errors:
-        
+
             --print out error message:
             DBMS_OUTPUT.PUT_LINE('The error code is ' || SQLCODE || '- ' || SQLERRM);
-    
+
             --define the return code that indicates that the database log entry was not successfully added to the database:
             p_proc_return_code := 0;
 
@@ -263,8 +266,8 @@ end DB_LOG_PKG;
 
 --view to return all database log entries:
 create or replace view DB_LOG_ENTRIES_V
-AS 
-select 
+AS
+select
 db_log_entries.LOG_ENTRY_ID,
 db_log_entry_types.ENTRY_TYPE_ID,
 db_log_entry_types.ENTRY_TYPE_CODE,

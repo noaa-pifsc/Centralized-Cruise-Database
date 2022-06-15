@@ -6,8 +6,8 @@
 --------------------------------------------------------
 
 --Installing Version 0.9 (Git tag: DVM_db_v0.9) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.8.sql";
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.9.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.8.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.9.sql";
 
 
 --recompile invalid trigger:

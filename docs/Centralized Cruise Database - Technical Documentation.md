@@ -39,24 +39,30 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The Data Validation Module (DVM) is used to perform QC validation on the Centralized Cruise Database data managed in this database. Custom data validation criteria were developed for this operational data set.
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/data-validation-module.git
-        -   Database: 1.3 (Git tag: DVM_db_v1.3)
+        -   Database: 1.4 (Git tag: DVM_db_v1.4)
 -   The Database Version Control Module is used to track the database version installed on a given database schema.
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-version-control-module.git
-        -   Application: 0.14 (Git tag: db_vers_ctrl_v0.14)
+        -   SOP: 1.0 (Git tag: db_vers_ctrl_v1.0)
         -   Database: 0.2 (Git tag: db_vers_ctrl_db_v0.2)
 -   The Database Logging Module is used to log CDIM execution information in the database.
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-logging-module.git
-        -   Database: 0.2 (Git tag: db_log_db_v0.2)
+        -   Database: 0.3 (Git tag: db_log_db_v0.3)
 -   The Authorization Application Module was originally designed to manage application access and permissions within the application. This is a flexible method that allows users and permission groups to be defined that will determine if a user has enabled access to the application and what permission(s) they have in the application.
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git
-        -   Database: 0.8 (Git tag: auth_app_db_v0.8)
+        -   Database: 1.2 (Git tag: auth_app_db_v1.2)
 -   The PIFSC APEX custom error handling function has been implemented on the application to suppress sensitive error information within the database application to satisfy Security Control: SI-11.
     -   Version Control Information:
         -   URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
-        -   Database: 0.2 (Git tag: APX_Cust_Err_Handler_db_v0.2)
+        -   Database: 0.4 (Git tag: APX_Cust_Err_Handler_db_v0.4)
+-   The APEX Feedback Form (AFF) provides a database for logging user feedback within a given APEX application
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex-feedback-form.git
+    -   Version: 0.1 (git tag: apex_feedback_form_db_v0.1)
+-   The Centralized Configuration (CC) project provides a database module to define configuration options that can be used by any Oracle database modules
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
+    -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
 
 ## Database Diagram:
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)

@@ -13,9 +13,9 @@
 
 
 --Installing version 0.2 of Database Version Control  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-version-control-module.git)--
-@@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.1.sql";
+@@"./upgrades/external_modules/DB_version_control_DDL_DML_upgrade_v0.1.sql";
 
-@@"./external_modules/DB_version_control_DDL_DML_upgrade_v0.2.sql";
+@@"./upgrades/external_modules/DB_version_control_DDL_DML_upgrade_v0.2.sql";
 
 
 
@@ -24,19 +24,19 @@
 
 --Installing version 0.6 of Application Authorization Database  (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git)--
 
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.1.sql";
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.2.sql";
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.3.sql";
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.4.sql";
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.5.sql";
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.6.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.1.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.2.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.3.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.4.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.5.sql";
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.6.sql";
 
 
 
 --Installing version 0.3 of Data Validation Module  (Git URL: Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)--
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.1.sql";
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.2.sql";
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.3.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.1.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.2.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.3.sql";
 
 
 
@@ -170,18 +170,30 @@ COMMENT ON COLUMN CCD_CRUISE_ALIASES.CRUISE_ALIAS_DESC IS 'The cruise alias desc
 COMMENT ON COLUMN CCD_CRUISE_ALIASES.CRUISE_ID IS 'Foreign key reference to the CCD_CRUISES table that the given cruise name alias is associated with';
 
 
-ALTER TABLE CCD_VESSELS ADD (CREATE_DATE DATE );	ALTER TABLE CCD_VESSELS
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_VESSELS
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_VESSELS
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_VESSELS.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_VESSELS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_VESSELS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_VESSELS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_CRUISES ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISES
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_CRUISES
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_CRUISES
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_CRUISES.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_CRUISES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_CRUISES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
-ALTER TABLE CCD_CRUISE_ALIASES ADD (CREATE_DATE DATE );	ALTER TABLE CCD_CRUISE_ALIASES
-ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_CRUISE_ALIASES
-ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_CRUISE_ALIASES
-ADD (LAST_MOD_BY VARCHAR2(30) );	COMMENT ON COLUMN CCD_CRUISE_ALIASES.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_CRUISE_ALIASES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_CRUISE_ALIASES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_CRUISE_ALIASES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_VESSELS ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_VESSELS ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_VESSELS ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_VESSELS ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_VESSELS.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_VESSELS.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_VESSELS.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_VESSELS.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_CRUISES ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISES ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_CRUISES ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_CRUISES ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_CRUISES.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_CRUISES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+ALTER TABLE CCD_CRUISE_ALIASES ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_CRUISE_ALIASES ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_CRUISE_ALIASES ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_CRUISE_ALIASES ADD (LAST_MOD_BY VARCHAR2(30) );
+COMMENT ON COLUMN CCD_CRUISE_ALIASES.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_CRUISE_ALIASES.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_CRUISE_ALIASES.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_CRUISE_ALIASES.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 CREATE SEQUENCE CCD_CRUISES_SEQ INCREMENT BY 1 START WITH 1;

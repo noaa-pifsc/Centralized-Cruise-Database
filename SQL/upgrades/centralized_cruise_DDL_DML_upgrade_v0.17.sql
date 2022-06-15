@@ -12,10 +12,10 @@
 
 
 --Installing Version 0.2 (Git tag: db_log_db_v0.2) of the Database Logging Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/database-logging-module.git)
-@@"./external_modules/DB_log_DDL_DML_upgrade_v0.2.sql";
+@@"./upgrades/external_modules/DB_log_DDL_DML_upgrade_v0.2.sql";
 
 --Installing Version 0.7 (Git tag: DVM_db_v0.7) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.7.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.7.sql";
 
 
 	--CCD DVM Package Specification:
