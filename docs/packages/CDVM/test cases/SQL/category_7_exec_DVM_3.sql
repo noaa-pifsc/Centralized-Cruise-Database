@@ -79,6 +79,7 @@ COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_NAME IS 'The cruise leg alias nam
 COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.LEG_ALIAS_DESC IS 'The cruise leg alias description for the given cruise leg';
 COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.INV_LEG_ALIAS_COPY_YN IS 'Field to indicate if there is an Invalid Copied Leg Alias Name error (Y) or not (N) based on whether or not the value of LEG_ALIAS_NAME contains "(copy)"';
 
+ALTER VIEW CCD_CCDP_DEEP_COPY_CMP_V COMPILE;
 
 --delete the DVM records:
 @@"../../../../../SQL/queries/delete_all_DVM_recs.sql";

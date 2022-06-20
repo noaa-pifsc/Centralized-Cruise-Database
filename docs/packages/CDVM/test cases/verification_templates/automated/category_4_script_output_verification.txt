@@ -160,9 +160,6 @@ Table DVM_ISSUES_HIST altered.
 Table DVM_ISSUES_HIST altered.
 
 
-Table DVM_ISSUES_HIST altered.
-
-
 View CCD_CRUISE_V altered.
 
 
@@ -227,9 +224,6 @@ completed test case for ORA-20232
 
 
 PL/SQL procedure successfully completed.
-
-
-Table DVM_ISS_SEVERITY_HIST altered.
 
 
 Table DVM_ISS_SEVERITY_HIST altered.
