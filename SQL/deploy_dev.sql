@@ -38,9 +38,9 @@ PROMPT granting privileges to CRDMA parsing schema
 @@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
 
 PROMPT loading data
---@@queries/load_ref_data.sql
---@@queries/load_data_set_info.sql
---@@queries/load_DVM_rules.sql
+@@queries/load_ref_data.sql
+@@queries/load_data_set_info.sql
+@@queries/load_DVM_rules.sql
 
 
 
