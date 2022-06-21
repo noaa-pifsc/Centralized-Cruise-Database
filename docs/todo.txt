@@ -7,6 +7,14 @@ X document update and commit code and documentation
 X ** do a pull request for this one so I can verify that the markdown links are working correctly (ended up forking the repository and using the GitLab interface to verify the links were valid)
 
 
+App Updates:
+	_ implement APEX feedback form
+	_ Implement the AAM user interface for managing user permissions
+	_ implement template app updated code
+	_ upgrade app to use interactive grids instead of interactive reports, etc.
+
+
+
 
 _ Data Integration SOP:
 	Include scripts/functions for integrating directly with cruise data in addition to the existing cruise legs
