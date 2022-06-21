@@ -11,7 +11,7 @@
 
 
 --Installing Version 0.11 (Git tag: DVM_db_v0.11) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v0.11.sql";
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v0.11.sql";
 
 
 

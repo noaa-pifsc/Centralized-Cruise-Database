@@ -59,9 +59,16 @@ ALTER TABLE CCD_GEAR_PRE ADD CONSTRAINT CCD_GEAR_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_GEAR_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_GEAR_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_GEAR_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_GEAR_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_GEAR_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_GEAR_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_GEAR_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_GEAR_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_GEAR_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_GEAR_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_GEAR_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_GEAR_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_GEAR_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_GEAR_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_GEAR_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_GEAR_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_GEAR_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_GEAR_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_GEAR_PRE_AUTO_BRI
@@ -254,9 +261,16 @@ ALTER TABLE CCD_REG_ECO_PRE ADD CONSTRAINT CCD_REG_ECO_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_REG_ECO_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_REG_ECO_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_REG_ECO_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_REG_ECO_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_REG_ECO_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_REG_ECO_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_REG_ECO_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_REG_ECO_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_REG_ECO_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_REG_ECO_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_REG_ECO_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_REG_ECO_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_REG_ECO_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_REG_ECO_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_REG_ECO_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_REG_ECO_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_REG_ECO_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_REG_ECO_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_REG_ECO_PRE_AUTO_BRI
@@ -452,9 +466,16 @@ ALTER TABLE CCD_REGION_PRE ADD CONSTRAINT CCD_REGION_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_REGION_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_REGION_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_REGION_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_REGION_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_REGION_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_REGION_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_REGION_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_REGION_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_REGION_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_REGION_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_REGION_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_REGION_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_REGION_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_REGION_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_REGION_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_REGION_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_REGION_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_REGION_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_REGION_PRE_AUTO_BRI
@@ -656,9 +677,16 @@ ALTER TABLE CCD_SVY_CAT_PRE ADD CONSTRAINT CCD_SVY_CAT_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_SVY_CAT_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_SVY_CAT_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SVY_CAT_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SVY_CAT_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SVY_CAT_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_SVY_CAT_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_SVY_CAT_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SVY_CAT_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SVY_CAT_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_SVY_CAT_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_SVY_CAT_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SVY_CAT_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SVY_CAT_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SVY_CAT_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_SVY_CAT_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SVY_CAT_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SVY_CAT_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SVY_CAT_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_SVY_CAT_PRE_AUTO_BRI
@@ -858,9 +886,16 @@ ALTER TABLE CCD_SPP_MMPA_PRE ADD CONSTRAINT CCD_SPP_MMPA_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_SPP_MMPA_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_SPP_MMPA_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SPP_MMPA_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SPP_MMPA_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SPP_MMPA_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_SPP_MMPA_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_SPP_MMPA_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SPP_MMPA_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SPP_MMPA_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_SPP_MMPA_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_SPP_MMPA_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SPP_MMPA_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SPP_MMPA_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SPP_MMPA_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_SPP_MMPA_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SPP_MMPA_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SPP_MMPA_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SPP_MMPA_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_SPP_MMPA_PRE_AUTO_BRI
@@ -1057,9 +1092,16 @@ ALTER TABLE CCD_SPP_ESA_PRE ADD CONSTRAINT CCD_SPP_ESA_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_SPP_ESA_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_SPP_ESA_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SPP_ESA_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SPP_ESA_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SPP_ESA_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_SPP_ESA_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_SPP_ESA_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SPP_ESA_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SPP_ESA_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_SPP_ESA_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_SPP_ESA_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SPP_ESA_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SPP_ESA_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SPP_ESA_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_SPP_ESA_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SPP_ESA_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SPP_ESA_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SPP_ESA_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_SPP_ESA_PRE_AUTO_BRI
@@ -1255,9 +1297,16 @@ ALTER TABLE CCD_SPP_FSSI_PRE ADD CONSTRAINT CCD_SPP_FSSI_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_SPP_FSSI_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_SPP_FSSI_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SPP_FSSI_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SPP_FSSI_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SPP_FSSI_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_SPP_FSSI_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_SPP_FSSI_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SPP_FSSI_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SPP_FSSI_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_SPP_FSSI_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_SPP_FSSI_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SPP_FSSI_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SPP_FSSI_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SPP_FSSI_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_SPP_FSSI_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SPP_FSSI_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SPP_FSSI_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SPP_FSSI_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_SPP_FSSI_PRE_AUTO_BRI
@@ -1461,9 +1510,16 @@ ALTER TABLE CCD_SPP_CAT_PRE ADD CONSTRAINT CCD_SPP_CAT_PRE_U1 UNIQUE
 ENABLE;
 
 
-CREATE SEQUENCE CCD_SPP_CAT_PRE_SEQ INCREMENT BY 1 START WITH 1;	ALTER TABLE CCD_SPP_CAT_PRE ADD (CREATE_DATE DATE );	ALTER TABLE CCD_SPP_CAT_PRE ADD (CREATED_BY VARCHAR2(30) );	ALTER TABLE CCD_SPP_CAT_PRE ADD (LAST_MOD_DATE DATE );	ALTER TABLE CCD_SPP_CAT_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
+CREATE SEQUENCE CCD_SPP_CAT_PRE_SEQ INCREMENT BY 1 START WITH 1;
+ALTER TABLE CCD_SPP_CAT_PRE ADD (CREATE_DATE DATE );
+ALTER TABLE CCD_SPP_CAT_PRE ADD (CREATED_BY VARCHAR2(30) );
+ALTER TABLE CCD_SPP_CAT_PRE ADD (LAST_MOD_DATE DATE );
+ALTER TABLE CCD_SPP_CAT_PRE ADD (LAST_MOD_BY VARCHAR2(30) );
 
-COMMENT ON COLUMN CCD_SPP_CAT_PRE.CREATE_DATE IS 'The date on which this record was created in the database';	COMMENT ON COLUMN CCD_SPP_CAT_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';	COMMENT ON COLUMN CCD_SPP_CAT_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';	COMMENT ON COLUMN CCD_SPP_CAT_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
+COMMENT ON COLUMN CCD_SPP_CAT_PRE.CREATE_DATE IS 'The date on which this record was created in the database';
+COMMENT ON COLUMN CCD_SPP_CAT_PRE.CREATED_BY IS 'The Oracle username of the person creating this record in the database';
+COMMENT ON COLUMN CCD_SPP_CAT_PRE.LAST_MOD_DATE IS 'The last date on which any of the data in this record was changed';
+COMMENT ON COLUMN CCD_SPP_CAT_PRE.LAST_MOD_BY IS 'The Oracle username of the person making the most recent change to this record';
 
 
 create or replace TRIGGER CCD_SPP_CAT_PRE_AUTO_BRI

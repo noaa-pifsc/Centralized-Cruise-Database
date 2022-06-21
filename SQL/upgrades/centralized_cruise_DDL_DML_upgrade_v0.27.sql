@@ -10,10 +10,10 @@
 --------------------------------------------------------
 
 --Upgraded from Version 1.2 (Git tag: DVM_db_v1.2) to  Version 1.3 (Git tag: DVM_db_v1.3) of the Data Validation Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/data-validation-module.git)
-@@"./external_modules/DVM_DDL_DML_upgrade_v1.3.sql"
+@@"./upgrades/external_modules/DVM_DDL_DML_upgrade_v1.3.sql"
 
 --Upgraded from Version 0.7 (Git tag: auth_app_db_v0.7) to  Version 0.8 (Git tag: auth_app_db_v0.8) of the Authorization Application Module Database (Git URL: git@gitlab.pifsc.gov:centralized-data-tools/authorization-application-module.git)
-@@"./external_modules/auth_app_DB_DDL_DML_update_v0.8.sql"
+@@"./upgrades/external_modules/auth_app_DB_DDL_DML_update_v0.8.sql"
 
 
 
