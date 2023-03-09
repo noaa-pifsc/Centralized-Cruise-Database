@@ -9,6 +9,7 @@ This application requires version 0.6 of the Cruise Database to be installed (Gi
 ## SOP:
 -   Grant the necessary permissions to the APEX application parsing schema (CEN_CRUISE_APP)
     -   Execute the statements in the [cen_cruise_app_grant_privs.sql](../SQL/cen_cruise_app_grant_privs.sql) file using the corresponding schemas indicated in the comments.
+    -   Execute the statements in the [grant_info.sql](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/blob/master/SQL/queries/grant_info.sql) file in the Centralized Utilities project using the CEN_UTILS schema
 -   Load the Authorization Application Module groups/users
     -   Execute the [load_users_groups.sql](../SQL/load_user_groups.sql) script in the Cruise Database schema (CEN_CRUISE) to define the groups, users, and corresponding associations
     -   *Note: More information can be found the Authorization Application Module documentation in the Git repository (URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git)

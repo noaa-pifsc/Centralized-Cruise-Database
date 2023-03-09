@@ -12,6 +12,8 @@ App Updates:
 	_ Implement the AAM user interface for managing user permissions
 	_ implement template app updated code
 	_ upgrade app to use interactive grids instead of interactive reports, etc.
+	_ implement synonyms and automated application deployment
+	_ implement database upgrade and rollback SOP
 
 
 
