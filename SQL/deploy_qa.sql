@@ -42,7 +42,7 @@ PROMPT loading data
 @@queries/load_data_set_info.sql
 @@queries/load_DVM_rules.sql
 @@../CRDMA/SQL/load_user_groups.sql
-
+@@../CRDMA/SQL/load_test_user_groups.sql
 
 
 DISCONNECT;
