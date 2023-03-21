@@ -7,16 +7,35 @@ X document update and commit code and documentation
 X ** do a pull request for this one so I can verify that the markdown links are working correctly (ended up forking the repository and using the GitLab interface to verify the links were valid)
 
 
-App Updates:
+App Updates: (2 weeks)
+
+	(1 week)
 	_ implement APEX feedback form
 	_ Implement the AAM user interface for managing user permissions
 	_ implement template app updated code
-	_ upgrade app to use interactive grids instead of interactive reports, etc.
 	_ implement synonyms and automated application deployment
-	_ implement database upgrade and rollback SOP
+	_ reduce unnecessary logging
+
+	(1 week)
+	_ upgrade app to use interactive grids instead of interactive reports, etc.
+	_ implement database upgrade and rollback SOP (1 week)
 
 
+DB Updates (1 day):
+	_ DVM
+	_ DLM
+	_ AAM
 
+
+Test (1.5 weeks)
+	_ DVM (automated test cases) - 3 days
+	_ APEX app - 3 days
+	
+ 
+ 3.5 weeks (could go more quickly -> need to get started and I'll update estimate as I make progress)
+ 
+ 
+ 
 
 _ Data Integration SOP:
 	Include scripts/functions for integrating directly with cruise data in addition to the existing cruise legs
