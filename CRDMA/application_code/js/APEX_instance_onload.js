@@ -18,7 +18,7 @@ $( document ).ready(function()
 		//this is the development server, use the development background image and append a string to the header logo to indicate it is the development server
 
 		//set the background image to the development background
-		$("div.t-Body").css("background-image", 'url("'+dev_bg_image+'")');
+		$("div.t-Body-content-devtest-bg-image").css("background-image", 'url("'+dev_bg_image+'")');
 
 		//append the " (DEVELOPMENT VERSION)" string to the end of the logo content
 		$("div.t-Header-logo a.t-Header-logo-link span").append(" (DEVELOPMENT VERSION)");
@@ -29,7 +29,7 @@ $( document ).ready(function()
 		//this is the test server, use the test background image and append a string to the header logo to indicate it is the test server
 
 		//set the background image to the test background
-		$("div.t-Body").css("background-image", 'url("'+test_bg_image+'")');
+		$("div.t-Body-content-devtest-bg-image").css("background-image", 'url("'+test_bg_image+'")');
 
 		//append the " (TEST VERSION)" string to the end of the logo content
 		$("div.t-Header-logo a.t-Header-logo-link span").append(" (TEST VERSION)");
@@ -37,3 +37,14 @@ $( document ).ready(function()
 	}
 
 });
+
+//function to show the background images on the standard page template to avoid a flash of unstyled content
+function show_page_background()
+{
+	console.log('running show_page_background()');
+
+//	alert('running show_page_background()');
+
+	$("div.t-Body-content-devtest-bg-image").css("display", "block");
+	$("div.t-Body-content-bg-image").css("display", "block");
+}

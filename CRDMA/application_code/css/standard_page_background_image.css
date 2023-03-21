@@ -1,0 +1,4 @@
+/*The standard page template starts hidden to ensure that the flash of unstlyed content is not shown when the navigation bar initializes*/
+div.t-Body-content-bg-image,  div.t-Body-content-devtest-bg-image {
+	display: none;
+}

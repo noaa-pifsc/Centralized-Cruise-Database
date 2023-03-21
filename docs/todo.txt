@@ -12,7 +12,7 @@ App Updates: (2 weeks)
 	(1 week)
 	_ implement APEX feedback form
 	_ Implement the AAM user interface for managing user permissions
-	_ implement template app updated code
+	X implement template app updated code
 	_ implement synonyms and automated application deployment
 	_ reduce unnecessary logging
 
@@ -21,11 +21,14 @@ App Updates: (2 weeks)
 	_ implement database upgrade and rollback SOP (1 week)
 
 
-DB Updates (1 day):
-	_ DVM
-	_ DLM
-	_ AAM
+X DB Updates (1 day):
+	X DVM
+	X DLM
+	X DPM (APEX use case)
 
+
+Documentation:
+	X DB documentation (DB modules upgraded and uses DB Module Packager project)
 
 Test (1.5 weeks)
 	_ DVM (automated test cases) - 3 days

@@ -147,3 +147,8 @@ grant insert, delete, update, select on  to CEN_CRUISE_APP;
 
 
 --initial page is view all cruises (including info about assoc legs)
+
+--apex feedback form:
+grant select on AFF_RESP_TYPES to CEN_CRUISE_APP;
+grant select, insert on AFF_RESPONSES to CEN_CRUISE_APP;
+grant select on AFF_RESPONSES_V to CEN_CRUISE_APP;

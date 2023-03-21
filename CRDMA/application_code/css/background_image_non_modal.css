@@ -1,0 +1,4 @@
+/*The standard/login page template requires z-index to be negative to prevent the background image from covering the navigation menu.  Also make the elements hidden until they are shown to avoid a flash of unstyled content*/
+div.t-Body-content-bg-image,  div.t-Body-content-devtest-bg-image {
+	z-index: -1;
+}

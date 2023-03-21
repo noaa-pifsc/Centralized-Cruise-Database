@@ -24,7 +24,15 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Grant the Cruise database schema permissions
     -   Execute the sections of the [grant_info.sql](../SQL/queries/grant_info.sql) file using the schemas based on the comments to grant the CEN_CRUISE schema the necessary permissions
     -   *Note: the permissions granted to the CEN_CRUISE schema are listed in [CEN_CRUISE_permissions](./CEN_CRUISE_permissions.xlsx)
--   [Installing or Upgrading the Database](./Installing%20or%20Upgrading%20the%20Database.md)
+-   ### Installation Options
+    -   #### Automated Installation
+        -   The automated database deployments utilize the [Database Version Control Module SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule/blob/master/docs/DB%20Version%20Control%20Module%20SOP.MD)
+        -   open a command line window and switch the directory to the [SQL folder](../SQL/) of your working copy of this repository
+        -   Execute the corresponding deployment script for the given database instance using the "@" syntax (e.g. [deploy_dev.sql](../SQL/deploy_dev.sql) for the development database instance) and enter the data schema credentials to deploy the database
+    -   #### Manual Installation
+        -   \*\*Note: the scripts to create/upgrade the database objects are executed on the data schema (e.g. CEN_CRUISE)
+        -   [Installing or Upgrading the Database](./Installing%20or%20Upgrading%20the%20Database.md)
+        -   Execute [cen_cruise_app_grant_privs.sql](../CRDMA/SQL/cen_cruise_app_grant_privs.sql)
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
@@ -32,6 +40,10 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   **\*\*Note**: The automated test cases require this script to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
 
 ## Features:
+-   The DB Module Packager (DMP) project was utilized to streamline the installation of the custom database modules listed below:
+    -   The DMP APEX Application use case was implemented on the template project
+        -   Repository URL: <git@picgitlab.nmfs.local:centralized-data-tools/db-module-packager.git> in the use_cases\\APEX folder
+        -   Database: 1.2 (Git tag: DMP_APX_v1.2)
 -   The database requires the Centralized Utilities to be deployed on the CEN_UTILS schema in order for the database views to work properly when querying the cruise and cruise leg information
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/centralized-utilities.git
