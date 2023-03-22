@@ -32,7 +32,10 @@ Documentation:
 	X DB documentation (DB modules upgraded and uses DB Module Packager project)
 
 Test (1.5 weeks)
-	_ DVM (automated test cases) - 3 days
+	_ DVM (automated test cases) - 3 days -> update the automated verification method to spool the output to a given directory (SQLPlus script to produce the same output
+	Maybe even script the diff comparisons and check the output
+	
+	
 	_ APEX app - 3 days
 	
  
