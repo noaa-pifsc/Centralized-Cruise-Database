@@ -70,9 +70,8 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Application Page Numbering Policy:
 -   Public Pages: 0 - 199
--   Data Administrator Pages: 200 - 399
--   Participant Pages: 400 - 499
--   ITS Pages: 500 - 599
+-   Data Write Pages: 200 - 299, 400 - 499
+-   Data Administrator Pages: 300 - 399, 500 - 699
 
 ## Application Pages:
 -   Public Pages (reporting pages - able to navigate to different cruises and view/download information):
@@ -87,7 +86,9 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
         -   Select field to choose a given Survey Name based on the data in the database
         -   Chart report of the number of cruises and days at sea for the selected Survey Name
         -   2 Chart reports for the selected Survey Name display the number of cruises and days at sea respectively grouped by fiscal year
--   Data Administrator Pages (Data management pages)
+    -   (Page ID: 101) Login Page
+        -   Description: this is the default login page that APEX generates when a new application is created that requires authentication. No custom coding/customization has been applied to this page.
+-   Data Management Pages (Requires Data Write Role)
     -   (Page ID: 210) Cruise List
         -   Interactive report that shows all research cruises with some aggregate information like start/end dates, days at sea, and associated cruise legs
         -   Authorized users can create a new cruise by clicking the Create button which will forward them to the View/Edit Cruise page with no cruise selected.
@@ -202,7 +203,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
         -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
             -   [DVM Issue Policies](#dvm-issue-policies)
         -   Clicking on the "Save" button will attempt to save the modified records.
-    -   Reference List Management Pages
+    -   Reference List Management Pages (Requires Data Admin Role: CR-DMA-004)
         -   The "View" pages (e.g. View Vessels) are listed under the "Reference Lists" navigation menu item
         -   All Reference List Management pages have the same functionality for the given type of reference list:
             -   View Reference Record Page List:
@@ -216,7 +217,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                     -   Clicking the "Cancel" button will close the modular window
                     -   Clicking the "Apply Changes" button will attempt to save the new record values. If the values are valid the modular window will be closed.
                 -   For the Divisions page clicking a Science Center name will open the View/Edit Science Center form as a modular window
-    -   Reference List Preset Management Pages
+    -   Reference List Preset Management Pages (Requires Data Write Role: CR-DMA-019)
         -   The "View" pages (e.g. View Regional Ecosystems) are listed under the "Presets" navigation menu item
         -   All Preset Management pages have the same functionality for the given type of reference list:
             -   View Reference Preset Record Page List:
@@ -231,8 +232,18 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                 -   If the "Edit" button on the View Reference Preset Record page was clicked the user will see a "Delete" button. Clicking the "Delete" button will prompt the user to confirm if they want to delete the selected record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified record, if it is successful the user is redirected to the View Reference Preset Record Page.
                     -   The "Delete" button has a tooltip to warn the user that any associated preset options will cause the given preset record deletion to fail
                 -   Clicking the "Apply Changes" button will attempt to save the updated record values if the record already exists and it will attempt to save the new record values if the record does not already exist. If the values are valid the user is redirected to the View Reference Preset Record Page.
--   Login Page (Page ID: 101):
-    -   Description: this is the default login page that APEX generates when a new application is created that requires authentication. No custom coding/customization has been applied to this page.
+-   Feedback Form (Page ID: 500)
+    -   Authentication/Authorization: public page - no authentication/authorization required
+    -   Description: Simple feedback form that will create a record with the user's feedback that is stored in a database table along with information about the application and page the user submitted feedback for.
+-   Feedback Report (Page ID: 505)
+    -   Authentication/Authorization: Requires Data Admin Role (CR-DMA-004)
+    -   Description: Simple read-only interactive grid report that displays all Feedback Form submissions.
+-   Users/Permissions Master-Detail Forms (Page ID: 600)
+    -   Authentication/Authorization: protected page - Requires Data Admin Role (CR-DMA-004)
+    -   Description: Two interactive grids in master-detail configuration for the authorized users and user groups respectively.  Administrators can add/update/delete users and assign/revoke group permissions from users.  
+-   Authorization Groups (Page ID: 605)
+    -   Authentication/Authorization: protected page - Requires Data Admin Role (CR-DMA-004)
+    -   Description: An interactive grid allows administrators to add/update/delete authorization groups that can be assigned to user accounts in Page ID 600.
 
 ## Security:
 -   Application Security:
