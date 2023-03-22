@@ -47,5 +47,5 @@ This document defines the work items required to finish development and deployme
 
 ## Current Processing Time Estimate
 -   16.75 days => ~ 3.25 weeks
--   + 1 week of padding for unforeseen issues
+-   \+ 1 week of padding for unforeseen issues
 -   = 4.25 weeks as the total estimate for remaining work
