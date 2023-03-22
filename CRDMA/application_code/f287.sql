@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   14:25 Tuesday March 21, 2023
+--   Date and Time:   14:38 Tuesday March 21, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -119,7 +119,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321142317'
+,p_last_upd_yyyymmddhh24miss=>'20230321143548'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>45
 ,p_print_server_type=>'INSTANCE'
@@ -39110,7 +39110,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321133416'
+,p_last_upd_yyyymmddhh24miss=>'20230321142913'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(2121971069921532020)
@@ -39147,7 +39147,6 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(19751945583588582)
 ,p_plug_display_sequence=>10
 ,p_query_type=>'TABLE'
-,p_query_owner=>'TEMPL_PROJ'
 ,p_query_table=>'AFF_RESPONSES'
 ,p_include_rowid_column=>false
 ,p_is_editable=>true
@@ -39729,7 +39728,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(19789246675762711)
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321135939'
+,p_last_upd_yyyymmddhh24miss=>'20230321143548'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1150690343382848442)
@@ -40251,6 +40250,7 @@ wwv_flow_imp_page.create_page_plug(
 '       LAST_MOD_BY',
 '  from AUTH_APP_USER_GROUPS'))
 ,p_plug_source_type=>'NATIVE_IG'
+,p_master_region_id=>wwv_flow_imp.id(1150691751915848448)
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
 ,p_prn_units=>'INCHES'
@@ -40390,10 +40390,10 @@ wwv_flow_imp_page.create_region_column(
 ,p_item_type=>'NATIVE_HIDDEN'
 ,p_display_sequence=>40
 ,p_attribute_01=>'Y'
-,p_enable_filter=>false
-,p_enable_hide=>true
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
 ,p_is_primary_key=>false
-,p_duplicate_value=>true
+,p_parent_column_id=>wwv_flow_imp.id(1150694511742848516)
 ,p_include_in_export=>false
 );
 wwv_flow_imp_page.create_region_column(
