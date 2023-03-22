@@ -10,10 +10,10 @@ X ** do a pull request for this one so I can verify that the markdown links are 
 App Updates: (2 weeks)
 
 	(1 week)
-	_ implement APEX feedback form
-	_ Implement the AAM user interface for managing user permissions
+	X implement APEX feedback form
+	X Implement the AAM user interface for managing user permissions
 	X implement template app updated code
-	_ implement synonyms and automated application deployment
+	X implement synonyms and automated application deployment
 	_ reduce unnecessary logging
 
 	(1 week)
@@ -35,6 +35,14 @@ Test (1.5 weeks)
 	_ APEX app - 3 days
 	
  
+ 
+** _ User Permissions (document this policy in the business rules document)
+	Data Admin can do anything
+	Data Write can add/edit/delete cruises, cruise legs, presets but not reference tables (_document the bus rule)
+ 
+
+
+
  3.5 weeks (could go more quickly -> need to get started and I'll update estimate as I make progress)
  
  

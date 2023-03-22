@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   14:38 Tuesday March 21, 2023
+--   Date and Time:   15:30 Tuesday March 21, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -115,11 +115,11 @@ wwv_flow_imp.create_flow(
 ,p_rejoin_existing_sessions=>'N'
 ,p_csv_encoding=>'Y'
 ,p_auto_time_zone=>'N'
-,p_error_handling_function=>'CEN_CRUISE.CUST_ERR_PKG.APX_ERR_HANDLER_FN'
+,p_error_handling_function=>'CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321143548'
+,p_last_upd_yyyymmddhh24miss=>'20230321150530'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>45
 ,p_print_server_type=>'INSTANCE'
@@ -188,6 +188,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'Cruise List'
 ,p_list_item_link_target=>'f?p=&APP_ID.:210:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-ship'
+,p_security_scheme=>wwv_flow_imp.id(69911938009067378)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'210'
 );
@@ -197,6 +198,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'QC Issues'
 ,p_list_item_link_target=>'f?p=&APP_ID.:250:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-database-check'
+,p_security_scheme=>wwv_flow_imp.id(69911938009067378)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'250'
 );
@@ -205,6 +207,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_display_sequence=>70
 ,p_list_item_link_text=>'Reference Lists'
 ,p_list_item_icon=>'fa-list'
+,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
@@ -347,6 +350,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_display_sequence=>100
 ,p_list_item_link_text=>'Presets'
 ,p_list_item_icon=>'fa-gear'
+,p_security_scheme=>wwv_flow_imp.id(69911938009067378)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
@@ -4676,7 +4680,7 @@ wwv_flow_imp_shared.create_security_scheme(
 ,p_name=>'Data_Admin'
 ,p_scheme_type=>'NATIVE_EXISTS'
 ,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select null from CEN_CRUISE.AUTH_APP_USER_GROUPS_V WHERE UPPER(AUTH_APP_USER_GROUPS_V.APP_USER_NAME) = UPPER(:app_user) AND',
+'select null from AUTH_APP_USER_GROUPS_V WHERE UPPER(AUTH_APP_USER_GROUPS_V.APP_USER_NAME) = UPPER(:app_user) AND',
 'AUTH_APP_USER_GROUPS_V.APP_GROUP_CODE = ''DATA_ADMIN'''))
 ,p_error_message=>'Not authorized to manage data'
 ,p_caching=>'BY_USER_BY_PAGE_VIEW'
@@ -15503,7 +15507,7 @@ wwv_flow_imp_shared.create_authentication(
  p_id=>wwv_flow_imp.id(19788629893695855)
 ,p_name=>'AAM Authentication'
 ,p_scheme_type=>'NATIVE_CUSTOM'
-,p_attribute_03=>'CEN_CRUISE.AUTH_APP_PKG.APX_CUST_AUTH_USER'
+,p_attribute_03=>'AUTH_APP_PKG.APX_CUST_AUTH_USER'
 ,p_attribute_05=>'N'
 ,p_invalid_session_type=>'LOGIN'
 ,p_use_secure_cookie_yn=>'N'
@@ -15541,7 +15545,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select CRUISE_FISC_YEAR, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE CRUISE_FISC_YEAR IS NOT NULL',
 'group by ',
 'CRUISE_FISC_YEAR',
@@ -15563,6 +15567,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
 ,p_zoom_and_scroll=>'off'
@@ -15571,10 +15578,20 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_no_data_found_message=>'No Data'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7419374756645523)
@@ -15587,6 +15604,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 ,p_link_target=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:RP:P10_FISCAL_YEAR:&CRUISE_FISC_YEAR.'
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
@@ -15601,6 +15620,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 ,p_link_target=>'f?p=&APP_ID.:10:&SESSION.::&DEBUG.:RP:P10_FISCAL_YEAR:&CRUISE_FISC_YEAR.'
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
@@ -15617,6 +15638,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_major_tick_rendered=>'on'
 ,p_minor_tick_rendered=>'off'
 ,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7419476203645524)
@@ -15632,6 +15661,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_tick_label_rendered=>'on'
 ,p_tick_label_rotation=>'auto'
 ,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(7420347637645533)
@@ -15645,7 +15682,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'group by ',
 'NVL(STD_SVY_NAME_VAL, ''N/A'')',
 'order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''))'))
@@ -15666,6 +15703,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
 ,p_zoom_and_scroll=>'off'
@@ -15674,10 +15714,20 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_no_data_found_message=>'No Data'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7420544439645535)
@@ -15690,6 +15740,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 ,p_link_target=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.:RP:P20_SURVEY_NAME:&STD_SVY_NAME_VAL.'
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
@@ -15704,6 +15756,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 ,p_link_target=>'f?p=&APP_ID.:20:&SESSION.::&DEBUG.:RP:P20_SURVEY_NAME:&STD_SVY_NAME_VAL.'
 ,p_link_target_type=>'REDIRECT_PAGE'
 );
@@ -15720,6 +15774,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_major_tick_rendered=>'on'
 ,p_minor_tick_rendered=>'off'
 ,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7420891483645538)
@@ -15735,6 +15797,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_tick_label_rendered=>'on'
 ,p_tick_label_rotation=>'auto'
 ,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(19787349092588655)
@@ -15798,7 +15868,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
 '',
 'AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
@@ -15823,6 +15893,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_value_format_scaling=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
@@ -15831,11 +15904,21 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_pie_other_threshold=>0
 ,p_pie_selection_effect=>'highlight'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7421495045645544)
@@ -15846,6 +15929,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_items_value_column_name=>'NUM_CRUISES'
 ,p_items_label_column_name=>'STD_SVY_NAME_VAL'
 ,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(7422086080645550)
@@ -15861,7 +15946,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, SUM(CRUISE_DAS) num_DAS',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE (CRUISE_FISC_YEAR IS NOT NULL) ',
 '',
 'AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
@@ -15886,6 +15971,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_value_format_scaling=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
@@ -15894,11 +15982,21 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_pie_other_threshold=>0
 ,p_pie_selection_effect=>'highlight'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7497487864111902)
@@ -15909,6 +16007,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_items_value_column_name=>'NUM_DAS'
 ,p_items_label_column_name=>'STD_SVY_NAME_VAL'
 ,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(14891651923641330)
@@ -15922,7 +16022,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select CRUISE_FISC_YEAR, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE (CRUISE_FISC_YEAR IS NOT NULL) AND ((:P10_FISCAL_YEAR IS NULL) OR (:P10_FISCAL_YEAR = CRUISE_FISC_YEAR))',
 'group by ',
 'CRUISE_FISC_YEAR',
@@ -15944,6 +16044,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
 ,p_zoom_and_scroll=>'off'
@@ -15952,10 +16055,20 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_no_data_found_message=>'No Data'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7475728092995846)
@@ -15968,6 +16081,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7476982428995847)
@@ -15980,6 +16095,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7475195676995846)
@@ -15994,6 +16111,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_major_tick_rendered=>'on'
 ,p_minor_tick_rendered=>'off'
 ,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7474575090995845)
@@ -16009,6 +16134,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_tick_label_rendered=>'on'
 ,p_tick_label_rotation=>'auto'
 ,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(27259803964584464)
@@ -16029,7 +16162,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_plug_id=>wwv_flow_imp.id(7421111517645541)
 ,p_prompt=>'Fiscal Year'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select distinct CRUISE_FISC_YEAR disp, CRUISE_FISC_YEAR val FROM CEN_CRUISE.CCD_CRUISE_V where cruise_fisc_year IS NOT NULL order by CRUISE_FISC_YEAR DESC;'
+,p_lov=>'select distinct CRUISE_FISC_YEAR disp, CRUISE_FISC_YEAR val FROM CCD_CRUISE_V where cruise_fisc_year IS NOT NULL order by CRUISE_FISC_YEAR DESC;'
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'--All Years--'
 ,p_cHeight=>1
@@ -16092,7 +16225,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select CRUISE_FISC_YEAR, count(*) num_cruises',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE  ',
 '((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 '',
@@ -16116,6 +16249,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_value_format_scaling=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
@@ -16124,11 +16260,21 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_pie_other_threshold=>0
 ,p_pie_selection_effect=>'highlight'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7514558934258074)
@@ -16139,6 +16285,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_items_value_column_name=>'NUM_CRUISES'
 ,p_items_label_column_name=>'CRUISE_FISC_YEAR'
 ,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(14928949811903614)
@@ -16153,7 +16301,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select CRUISE_FISC_YEAR, SUM(CRUISE_DAS) num_das from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 '',
 'group by ',
@@ -16176,6 +16324,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_value_format_scaling=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
@@ -16184,11 +16335,21 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_pie_other_threshold=>0
 ,p_pie_selection_effect=>'highlight'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7515915781258075)
@@ -16199,6 +16360,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_items_value_column_name=>'NUM_DAS'
 ,p_items_label_column_name=>'CRUISE_FISC_YEAR'
 ,p_items_label_rendered=>false
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(22398515654899394)
@@ -16212,7 +16375,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select NVL(STD_SVY_NAME_VAL, ''N/A'') STD_SVY_NAME_VAL, count(*) num_cruises, sum(num_legs) num_legs, sum(CRUISE_DAS) total_das',
 'from',
-'CEN_CRUISE.CCD_CRUISE_V',
+'CCD_CRUISE_V',
 'WHERE ((:P20_SURVEY_NAME IS NULL) OR (:P20_SURVEY_NAME = NVL(STD_SVY_NAME_VAL, ''N/A'')))',
 'group by ',
 'NVL(STD_SVY_NAME_VAL, ''N/A'')',
@@ -16234,6 +16397,9 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_hide_and_show_behavior=>'withRescale'
 ,p_hover_behavior=>'none'
 ,p_stack=>'off'
+,p_stack_label=>'off'
+,p_connect_nulls=>'Y'
+,p_value_position=>'auto'
 ,p_sorting=>'label-asc'
 ,p_fill_multi_series_gaps=>true
 ,p_zoom_and_scroll=>'off'
@@ -16242,10 +16408,20 @@ wwv_flow_imp_page.create_jet_chart(
 ,p_show_group_name=>true
 ,p_show_value=>true
 ,p_show_label=>true
+,p_show_row=>true
+,p_show_start=>true
+,p_show_end=>true
+,p_show_progress=>true
+,p_show_baseline=>true
 ,p_legend_rendered=>'on'
 ,p_legend_position=>'auto'
 ,p_overview_rendered=>'off'
 ,p_no_data_found_message=>'No Data'
+,p_horizontal_grid=>'auto'
+,p_vertical_grid=>'auto'
+,p_gauge_orientation=>'circular'
+,p_gauge_plot_area=>'on'
+,p_show_gauge_value=>true
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7510259967258071)
@@ -16258,6 +16434,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_jet_chart_series(
  p_id=>wwv_flow_imp.id(7511482815258071)
@@ -16270,6 +16448,8 @@ wwv_flow_imp_page.create_jet_chart_series(
 ,p_assigned_to_y2=>'off'
 ,p_items_label_rendered=>true
 ,p_items_label_position=>'auto'
+,p_items_label_display_as=>'PERCENT'
+,p_threshold_display=>'onIndicator'
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7509043428258070)
@@ -16285,6 +16465,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_tick_label_rendered=>'on'
 ,p_tick_label_rotation=>'auto'
 ,p_tick_label_position=>'outside'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_jet_chart_axis(
  p_id=>wwv_flow_imp.id(7509601987258070)
@@ -16299,6 +16487,14 @@ wwv_flow_imp_page.create_jet_chart_axis(
 ,p_major_tick_rendered=>'on'
 ,p_minor_tick_rendered=>'off'
 ,p_tick_label_rendered=>'on'
+,p_zoom_order_seconds=>false
+,p_zoom_order_minutes=>false
+,p_zoom_order_hours=>false
+,p_zoom_order_days=>false
+,p_zoom_order_weeks=>false
+,p_zoom_order_months=>false
+,p_zoom_order_quarters=>false
+,p_zoom_order_years=>false
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(34766667695842528)
@@ -16319,7 +16515,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_item_plug_id=>wwv_flow_imp.id(14927975248903605)
 ,p_prompt=>'Survey Name'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select distinct NVL(STD_SVY_NAME_VAL, ''N/A'') disp, NVL(STD_SVY_NAME_VAL, ''N/A'') val FROM CEN_CRUISE.CCD_CRUISE_V order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));'
+,p_lov=>'select distinct NVL(STD_SVY_NAME_VAL, ''N/A'') disp, NVL(STD_SVY_NAME_VAL, ''N/A'') val FROM CCD_CRUISE_V order by UPPER(NVL(STD_SVY_NAME_VAL, ''N/A''));'
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'--All Surveys--'
 ,p_cHeight=>1
@@ -16482,10 +16678,10 @@ wwv_flow_imp_page.create_page(
 'span.valid_cruise {color: green;}',
 'span.invalid_cruise {color: red;}'))
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(19789246675762711)
+,p_required_role=>wwv_flow_imp.id(69911938009067378)
 ,p_page_component_map=>'18'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20200831092155'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20230321150530'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(6251861064002208)
@@ -16520,7 +16716,7 @@ wwv_flow_imp_page.create_page_plug(
 '    (CASE WHEN CCD_CRUISE_ISS_SUMM_V.NUM_ACTIVE_ERRORS IS NULL OR CCD_CRUISE_ISS_SUMM_V.NUM_ACTIVE_ERRORS = 0 THEN ''valid_cruise'' ELSE ''invalid_cruise'' END) CRUISE_VALID_CLASS',
 '',
 'FROM',
-'    cen_cruise.CCD_CRUISE_ISS_SUMM_V',
+'    CCD_CRUISE_ISS_SUMM_V',
 '    order by CCD_CRUISE_ISS_SUMM_V.cruise_start_date, CCD_CRUISE_ISS_SUMM_V.cruise_name'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -17063,7 +17259,7 @@ wwv_flow_imp_page.create_page_plug(
 'CRUISE_ID,',
 'CRUISE_LEG_ID CRUISE_LEG_ID_COPY',
 'FROM ',
-'CEN_CRUISE.CCD_LEG_DELIM_V',
+'CCD_LEG_DELIM_V',
 'where CRUISE_ID = :P220_CRUISE_ID',
 'order by leg_start_date'))
 ,p_plug_source_type=>'NATIVE_IR'
@@ -17289,35 +17485,35 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '  select ISS_ID,',
 '  ',
-'  (SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
-'  (SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
-'  (SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
-'  (SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
-'  (SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'  (SELECT CRUISE_NAME FROM CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'  (SELECT LEG_NAME_DATES_BR_LIST from CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'  (SELECT CRUISE_FISC_YEAR FROM CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'  (SELECT ISS_SEVERITY_NAME from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'  (SELECT ISS_TYPE_NAME FROM DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
 '  ISS_RES_TYPE_ID,',
 '  CREATE_DATE,',
 '  LAST_MOD_DATE,',
 '  ISS_NOTES,',
 '  ISS_DESC,',
 '  CASE  ',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''WARN'' THEN ''Active Warning''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''WARN'' THEN ''Annotated Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ER'
+||'ROR'' THEN ''Active Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''ERROR'' THEN ''Annotated Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WA'
+||'RN'' THEN ''Active Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''WARN'' THEN ''Annotated Warning''',
 'ELSE NULL END ISSUE_CATEGORY,',
 '  :P220_CRUISE_ID CRUISE_ID,',
 '  (APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL,',
-'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM CEN_CRUISE.DVM_PTA_ISSUES_V where DVM_PTA_ISSU'
-||'ES_V.ISS_ID = DVM_ISSUES.ISS_id) row_class',
+'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM DVM_PTA_ISSUES_V where DVM_PTA_ISSUES_V.ISS_ID'
+||' = DVM_ISSUES.ISS_id) row_class',
 '  ',
 '  ',
 '         ',
-'    from CEN_CRUISE.DVM_ISSUES',
-'    WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P220_CRUISE_ID)'))
+'    from DVM_ISSUES',
+'    WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CCD_CRUISE_V where CRUISE_ID = :P220_CRUISE_ID)'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P220_CRUISE_ID'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -17333,6 +17529,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'LEG_NAME_DATES_BR_LIST'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Legs'
@@ -17435,6 +17632,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISSUE_CATEGORY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Category'
@@ -17454,6 +17652,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7394045171592938)
 ,p_name=>'APEX$ROW_SELECTOR'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_SELECTOR'
 ,p_display_sequence=>10
 ,p_attribute_01=>'Y'
@@ -17465,6 +17664,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7394149067592939)
 ,p_name=>'APEX$ROW_ACTION'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_ACTION'
 ,p_display_sequence=>20
 ,p_use_as_row_header=>false
@@ -17476,6 +17676,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'APP_LINK_URL'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Inspect'
@@ -17497,6 +17698,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ROW_CLASS'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Row class'
@@ -17586,6 +17788,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_SEVERITY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Severity'
@@ -17607,6 +17810,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_TYPE'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Type'
@@ -17631,6 +17835,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_RES_TYPE_ID'
 ,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Resolution'
@@ -17642,7 +17847,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select iss_res_type_name,',
 '       iss_res_type_id',
-'  from cen_cruise.dvm_iss_res_types',
+'  from dvm_iss_res_types',
 ' order by upper(iss_res_type_name)'))
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
@@ -17701,6 +17906,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_DESC'
 ,p_data_type=>'CLOB'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Description'
@@ -17749,6 +17955,7 @@ wwv_flow_imp_page.create_interactive_grid(
 wwv_flow_imp_page.create_ig_report(
  p_id=>wwv_flow_imp.id(7843682287513228)
 ,p_interactive_grid_id=>wwv_flow_imp.id(7392752305592925)
+,p_static_id=>'699225'
 ,p_type=>'PRIMARY'
 ,p_default_view=>'GRID'
 ,p_show_row_number=>false
@@ -17930,7 +18137,7 @@ wwv_flow_imp_page.create_page_plug(
 'TGT_SPP_OTHER_NOTES,',
 'CRUISE_ID',
 ' FROM ',
-'CEN_CRUISE.CCD_TGT_SPP_OTHER where ',
+'CCD_TGT_SPP_OTHER where ',
 'CRUISE_ID = :P220_CRUISE_ID'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P220_CRUISE_ID,P220_CRUISE_ID_COPY'
@@ -17960,6 +18167,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7394330234397344)
 ,p_name=>'APEX$ROW_SELECTOR'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_SELECTOR'
 ,p_display_sequence=>20
 ,p_attribute_01=>'Y'
@@ -17971,6 +18179,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7394496219397345)
 ,p_name=>'APEX$ROW_ACTION'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_ACTION'
 ,p_display_sequence=>30
 ,p_use_as_row_header=>false
@@ -18001,6 +18210,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'TGT_SPP_OTHER_CNAME'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Common Name'
@@ -18030,6 +18240,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'TGT_SPP_OTHER_SNAME'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Scientific Name'
@@ -18121,6 +18332,7 @@ wwv_flow_imp_page.create_interactive_grid(
 wwv_flow_imp_page.create_ig_report(
  p_id=>wwv_flow_imp.id(7423641497655065)
 ,p_interactive_grid_id=>wwv_flow_imp.id(7394112036397342)
+,p_static_id=>'699226'
 ,p_type=>'PRIMARY'
 ,p_default_view=>'GRID'
 ,p_show_row_number=>false
@@ -18224,7 +18436,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select svy_cat_name, svy_cat_desc from cen_cruise.ccd_svy_cat_pre_v ',
+'select svy_cat_name, svy_cat_desc from ccd_svy_cat_pre_v ',
 '',
 'where ',
 'SVY_CAT_PRIMARY_YN = ''Y'' AND',
@@ -18320,7 +18532,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select svy_cat_name, svy_cat_desc from cen_cruise.ccd_svy_cat_pre_v ',
+'select svy_cat_name, svy_cat_desc from ccd_svy_cat_pre_v ',
 '',
 'where ',
 'svy_cat_primary_yn = ''N'' AND ',
@@ -18401,7 +18613,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_ESA_NAME, TGT_SPP_ESA_DESC from cen_cruise.CCD_SPP_ESA_PRE_V ',
+'select TGT_SPP_ESA_NAME, TGT_SPP_ESA_DESC from CCD_SPP_ESA_PRE_V ',
 '',
 'where ',
 'ESA_PRE_ID = :P220_TGT_ESA_SPP_PRESETS',
@@ -18481,7 +18693,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_DESC from cen_cruise.CCD_SPP_MMPA_PRE_V ',
+'select TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_DESC from CCD_SPP_MMPA_PRE_V ',
 '',
 'where ',
 'MMPA_PRE_ID = :P220_TGT_MMPA_SPP_PRESETS',
@@ -18561,7 +18773,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_DESC from cen_cruise.CCD_SPP_FSSI_PRE_V ',
+'select TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_DESC from CCD_SPP_FSSI_PRE_V ',
 '',
 'where ',
 'FSSI_PRE_ID = :P220_TGT_FSSI_SPP_PRESETS',
@@ -18627,6 +18839,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_report_region(
  p_id=>wwv_flow_imp.id(8735542415997319)
 ,p_name=>'Expected Species Categories'
@@ -18641,7 +18856,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select EXP_SPP_CAT_NAME, EXP_SPP_CAT_DESC from cen_cruise.CCD_SPP_CAT_PRE_V ',
+'select EXP_SPP_CAT_NAME, EXP_SPP_CAT_DESC from CCD_SPP_CAT_PRE_V ',
 '',
 'where ',
 'SPP_CAT_PRE_ID = :P220_EXP_SPP_CAT_PRESETS',
@@ -18660,9 +18875,6 @@ wwv_flow_imp_page.create_report_region(
 ,p_sort_null=>'L'
 ,p_plug_query_strip_html=>'N'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(8735811075997322)
 ,p_query_column_id=>1
@@ -19244,7 +19456,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'SELECT SCI_CENTER_DIV_CODE, SCI_CENTER_DIV_ID FROM CEN_CRUISE.CCD_SCI_CENTER_DIVS',
+'SELECT SCI_CENTER_DIV_CODE, SCI_CENTER_DIV_ID FROM CCD_SCI_CENTER_DIVS',
 'ORDER BY UPPER(SCI_CENTER_DIV_CODE)',
 ''))
 ,p_lov_display_null=>'YES'
@@ -19279,22 +19491,22 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME_FILT is: ''||:P220_STD_SVY_NAME_FILT, V_PROC_RETURN_CODE);',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME is: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME_FILT is: ''||:P220_STD_SVY_NAME_FILT, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of P220_STD_SVY_NAME is: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The filter IS NULL value is: ''||CASE WHEN :P220_STD_SVY_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The filter IS NULL value is: ''||CASE WHEN :P220_STD_SVY_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
 '',
 '',
 'V_TEMP_SQL := ''SELECT distinct',
-'    STD_SVY_NAME, STD_SVY_NAME_ID FROM CEN_CRUISE.CCD_STD_SVY_NAMES where (:P220_STD_SVY_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_STD_SVY_NAME_FILT IS NULL) OR (STD_SVY_NAME_ID = :P220_STD_SVY_NAME) OR (STD_SVY_NAME_ID = (SELECT STD_S'
-||'VY_NAME_ID from CEN_CRUISE.CCD_CRUISES WHERE CRUISE_ID IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)))',
+'    STD_SVY_NAME, STD_SVY_NAME_ID FROM CCD_STD_SVY_NAMES where (:P220_STD_SVY_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_STD_SVY_NAME_FILT IS NULL) OR (STD_SVY_NAME_ID = :P220_STD_SVY_NAME) OR (STD_SVY_NAME_ID = (SELECT STD_SVY_NAME_ID '
+||'from CCD_CRUISES WHERE CRUISE_ID IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)))',
 '',
 '    ORDER BY UPPER(STD_SVY_NAME)'';',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Standard Survey Name List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -19328,7 +19540,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT SVY_FREQ_NAME, SVY_FREQ_ID',
-' FROM CEN_CRUISE.CCD_SVY_FREQ',
+' FROM CCD_SVY_FREQ',
 'ORDER BY UPPER(SVY_FREQ_NAME)'))
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'-'
@@ -19416,7 +19628,7 @@ wwv_flow_imp_page.create_page_item(
 'DECLARE ',
 '    default_value number; ',
 'BEGIN ',
-'    SELECT svy_type_id INTO default_value FROM cen_cruise.ccd_svy_types WHERE UPPER(svy_type_name) = UPPER(''NMFS Survey''); ',
+'    SELECT svy_type_id INTO default_value FROM ccd_svy_types WHERE UPPER(svy_type_name) = UPPER(''NMFS Survey''); ',
 '    RETURN default_value; ',
 'END;'))
 ,p_item_default_type=>'FUNCTION_BODY'
@@ -19426,7 +19638,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select svy_type_name, svy_type_id from CEN_CRUISE.CCD_SVY_TYPES',
+'select svy_type_name, svy_type_id from CCD_SVY_TYPES',
 'ORDER BY UPPER(svy_type_name)'))
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'-'
@@ -19450,7 +19662,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'P220_PRIM_SVY_CAT_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT SVY_CAT_NAME, SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CATS ORDER BY UPPER(SVY_CAT_NAME)'
+,p_lov=>'SELECT SVY_CAT_NAME, SVY_CAT_ID FROM CCD_SVY_CATS ORDER BY UPPER(SVY_CAT_NAME)'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -19473,7 +19685,7 @@ wwv_flow_imp_page.create_page_item(
 'SVY_CAT_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SVY_CAT_PRE',
+'CCD_SVY_CAT_PRE',
 'WHERE SVY_CAT_PRIMARY_YN = ''Y''',
 'order by upper(SVY_CAT_PRE_NAME);'))
 ,p_cHeight=>1
@@ -19495,7 +19707,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'P220_SEC_SVY_CAT_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'SELECT SVY_CAT_NAME, SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CATS ORDER BY UPPER(SVY_CAT_NAME)'
+,p_lov=>'SELECT SVY_CAT_NAME, SVY_CAT_ID FROM CCD_SVY_CATS ORDER BY UPPER(SVY_CAT_NAME)'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -19518,7 +19730,7 @@ wwv_flow_imp_page.create_page_item(
 'SVY_CAT_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SVY_CAT_PRE',
+'CCD_SVY_CAT_PRE',
 'WHERE SVY_CAT_PRIMARY_YN = ''N''',
 'order by upper(SVY_CAT_PRE_NAME);'))
 ,p_cHeight=>1
@@ -19552,9 +19764,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_ESA_SHOW_FILT_LIST is: ''||:P220_ESA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_TGT_ESA_SPP_SHUTTLE is: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_ESA_SHOW_FILT_LIST is: ''||:P220_ESA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P220_TGT_ESA_SPP_SHUTTLE is: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the MMPA target species from the shuttle field:',
@@ -19562,7 +19774,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -19574,30 +19786,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
+'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_ESA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where (:P220_ESA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_ESA_SHOW_FILT_LIST IS NULL)',
+'        (SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where (:P220_ESA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_ESA_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_ESA_ID from CEN_CRUISE.CCD_CRUISE_SPP_ESA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
+'        SELECT TGT_SPP_ESA_ID from CCD_CRUISE_SPP_ESA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -19632,7 +19844,7 @@ wwv_flow_imp_page.create_page_item(
 'ESA_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SPP_ESA_PRE',
+'CCD_SPP_ESA_PRE',
 'order by upper(ESA_PRE_NAME);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -19665,9 +19877,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_MMPA_SHOW_FILT_LIST is: ''||:P220_MMPA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_TGT_MMPA_SPP_SHUTTLE is: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_MMPA_SHOW_FILT_LIST is: ''||:P220_MMPA_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_TGT_MMPA_SPP_SHUTTLE is: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the MMPA target species from the shuttle field:',
@@ -19675,7 +19887,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -19687,30 +19899,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
+'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_MMPA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where (:P220_MMPA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_MMPA_SHOW_FILT_LIST IS NULL)',
+'        (SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where (:P220_MMPA_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_MMPA_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_MMPA_ID from CEN_CRUISE.CCD_CRUISE_SPP_MMPA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
+'        SELECT TGT_SPP_MMPA_ID from CCD_CRUISE_SPP_MMPA where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -19742,7 +19954,7 @@ wwv_flow_imp_page.create_page_item(
 'MMPA_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SPP_MMPA_PRE',
+'CCD_SPP_MMPA_PRE',
 'order by upper(MMPA_PRE_NAME);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -19775,9 +19987,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_FSSI_SHOW_FILT_LIST is: ''||:P220_FSSI_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_TGT_FSSI_SPP_SHUTTLE is: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_FSSI_SHOW_FILT_LIST is: ''||:P220_FSSI_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P220_TGT_FSSI_SPP_SHUTTLE is: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the MMPA target species from the shuttle field:',
@@ -19785,7 +19997,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -19797,30 +20009,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
+'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_FSSI_ID',
 '        FROM',
-'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where (:P220_FSSI_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_FSSI_SHOW_FILT_LIST IS NULL)',
+'        (SELECT TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where (:P220_FSSI_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_FSSI_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT TGT_SPP_FSSI_ID from CEN_CRUISE.CCD_CRUISE_SPP_FSSI where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
+'        SELECT TGT_SPP_FSSI_ID from CCD_CRUISE_SPP_FSSI where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -19852,7 +20064,7 @@ wwv_flow_imp_page.create_page_item(
 'FSSI_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SPP_FSSI_PRE',
+'CCD_SPP_FSSI_PRE',
 'order by upper(FSSI_PRE_NAME);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -19885,9 +20097,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_SHOW_FILT_LIST is: ''||:P220_EXP_SPP_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_CAT_SHUTTLE is: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_SHOW_FILT_LIST is: ''||:P220_EXP_SPP_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P220_EXP_SPP_CAT_SHUTTLE is: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the MMPA target species from the shuttle field:',
@@ -19895,7 +20107,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -19907,30 +20119,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
+'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT EXP_SPP_CAT_ID',
 '        FROM',
-'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where (:P220_EXP_SPP_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_EXP_SPP_SHOW_FILT_LIST IS NULL)',
+'        (SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where (:P220_EXP_SPP_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P220_EXP_SPP_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT EXP_SPP_CAT_ID from CEN_CRUISE.CCD_CRUISE_EXP_SPP where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
+'        SELECT EXP_SPP_CAT_ID from CCD_CRUISE_EXP_SPP where cruise_id IN(:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -19962,7 +20174,7 @@ wwv_flow_imp_page.create_page_item(
 'SPP_CAT_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_SPP_CAT_PRE',
+'CCD_SPP_CAT_PRE',
 'order by upper(SPP_CAT_PRE_NAME);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -20405,9 +20617,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(8513980629017540)
 ,p_computation_sequence=>10
@@ -20421,17 +20630,19 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''Y'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select svy_cat_id from CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''Y'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.svy_cat_id;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_PRIM_SVY_CAT_SHUTTLE before header'', ''the initial cruise primary survey categories query returned the survey category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_COD'
-||'E);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_PRIM_SVY_CAT_SHUTTLE before header'', ''the initial cruise primary survey categories query returned the survey category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(8514391514017544)
 ,p_computation_sequence=>10
@@ -20445,13 +20656,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select svy_cat_id from cen_cruise.CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''N'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select svy_cat_id from CCD_CRUISE_SVY_CATS where PRIMARY_YN = ''N'' AND (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.svy_cat_id;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_SEC_SVY_CAT_SHUTTLE before header'', ''the initial cruise secondary survey categories query returned the survey category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CO'
-||'DE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_SEC_SVY_CAT_SHUTTLE before header'', ''the initial cruise secondary survey categories query returned the survey category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -20469,12 +20679,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_ESA_ID from cen_cruise.CCD_CRUISE_SPP_ESA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select TGT_SPP_ESA_ID from CCD_CRUISE_SPP_ESA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_ESA_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_ESA_SPP_SHUTTLE before header'', ''the initial cruise target ESA species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_ESA_SPP_SHUTTLE before header'', ''the initial cruise target ESA species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -20492,12 +20702,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_MMPA_ID from cen_cruise.CCD_CRUISE_SPP_MMPA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select TGT_SPP_MMPA_ID from CCD_CRUISE_SPP_MMPA where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_MMPA_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_MMPA_SPP_SHUTTLE before header'', ''the initial cruise target MMPA species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_MMPA_SPP_SHUTTLE before header'', ''the initial cruise target MMPA species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -20515,12 +20725,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_FSSI_ID from cen_cruise.CCD_CRUISE_SPP_FSSI where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select TGT_SPP_FSSI_ID from CCD_CRUISE_SPP_FSSI where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_FSSI_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_FSSI_SPP_SHUTTLE before header'', ''the initial cruise target FSSI species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_TGT_FSSI_SPP_SHUTTLE before header'', ''the initial cruise target FSSI species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -20538,13 +20748,13 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select EXP_SPP_CAT_ID from cen_cruise.CCD_CRUISE_EXP_SPP where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
+'   for r in (select EXP_SPP_CAT_ID from CCD_CRUISE_EXP_SPP where (cruise_id = :P220_CRUISE_ID OR cruise_id = :P220_CRUISE_ID_COPY)) loop',
 '      SS_CHANGED_LIST(i) := r.EXP_SPP_CAT_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_EXP_SPP_CAT_SHUTTLE before header'', ''the initial cruise expected species categories query returned the expected species category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC'
-||'_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220_EXP_SPP_CAT_SHUTTLE before header'', ''the initial cruise expected species categories query returned the expected species category id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_COD'
+||'E);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -20582,7 +20792,7 @@ wwv_flow_imp_page.create_page_computation(
 '',
 '    CRUISE_VALS',
 'FROM',
-'    cen_cruise.CCD_CRUISE_ISS_SUMM_V where cruise_id = :P220_CRUISE_ID;'))
+'    CCD_CRUISE_ISS_SUMM_V where cruise_id = :P220_CRUISE_ID;'))
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(11201452773391914)
@@ -20606,7 +20816,7 @@ wwv_flow_imp_page.create_page_computation(
 '    ELSE',
 '',
 '        ',
-'        select cruise_id INTO V_CRUISE_ID from cen_cruise.ccd_cruises where ccd_cruises.CRUISE_ID = :P220_CRUISE_ID OR ccd_cruises.CRUISE_ID = :P220_CRUISE_ID_COPY;',
+'        select cruise_id INTO V_CRUISE_ID from ccd_cruises where ccd_cruises.CRUISE_ID = :P220_CRUISE_ID OR ccd_cruises.CRUISE_ID = :P220_CRUISE_ID_COPY;',
 '        ',
 '        --a single cruise was returned for the cruise ID/cruise ID copy, do not show the error region:',
 '        RETURN 1;',
@@ -20795,7 +21005,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_PRIM_SVY_CAT_SHUTTLE) and the values associated with the gear preset (P220_PRIMARY_SVY_CAT_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_PRIM_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''Y'''' AND svy_cat_pre_id = :id'', :P220_PRIMARY_SVY_CAT_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_PRIM_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''Y'''' AND svy_cat_pre_id = :id'', :P220_PRIMARY_SVY_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_PRIM_SVY_CAT_SHUTTLE,P220_PRIMARY_SVY_CAT_PRESETS'
@@ -20848,7 +21058,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_SEC_SVY_CAT_SHUTTLE) and the values associated with the gear preset (P220_SECONDARY_SVY_CAT_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_SEC_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CEN_CRUISE.CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''N'''' AND svy_cat_pre_id = :id'', :P220_SECONDARY_SVY_CAT_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_SEC_SVY_CAT_SHUTTLE, ''SELECT SVY_CAT_ID FROM CCD_SVY_CAT_PRE_V where SVY_CAT_PRIMARY_YN = ''''N'''' AND svy_cat_pre_id = :id'', :P220_SECONDARY_SVY_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_SEC_SVY_CAT_SHUTTLE,P220_SECONDARY_SVY_CAT_PRESETS'
@@ -20904,7 +21114,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_ESA_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_ESA_SPP_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_ESA_SPP_SHUTTLE, ''SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_SPP_ESA_PRE_V where ESA_PRE_ID = :id'', :P220_TGT_ESA_SPP_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_ESA_SPP_SHUTTLE, ''SELECT TGT_SPP_ESA_ID FROM CCD_SPP_ESA_PRE_V where ESA_PRE_ID = :id'', :P220_TGT_ESA_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_ESA_SPP_SHUTTLE,P220_TGT_ESA_SPP_PRESETS'
@@ -20960,7 +21170,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_MMPA_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_MMPA_SPP_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_MMPA_SPP_SHUTTLE, ''SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_SPP_MMPA_PRE_V where MMPA_PRE_ID = :id'', :P220_TGT_MMPA_SPP_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_MMPA_SPP_SHUTTLE, ''SELECT TGT_SPP_MMPA_ID FROM CCD_SPP_MMPA_PRE_V where MMPA_PRE_ID = :id'', :P220_TGT_MMPA_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_MMPA_SPP_SHUTTLE,P220_TGT_MMPA_SPP_PRESETS'
@@ -21016,7 +21226,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_TGT_FSSI_SPP_SHUTTLE) and the values associated with the gear preset (P220_TGT_FSSI_SPP_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_FSSI_SPP_SHUTTLE, ''SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_SPP_FSSI_PRE_V where FSSI_PRE_ID = :id'', :P220_TGT_FSSI_SPP_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_TGT_FSSI_SPP_SHUTTLE, ''SELECT TGT_SPP_FSSI_ID FROM CCD_SPP_FSSI_PRE_V where FSSI_PRE_ID = :id'', :P220_TGT_FSSI_SPP_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_TGT_FSSI_SPP_SHUTTLE,P220_TGT_FSSI_SPP_PRESETS'
@@ -21072,7 +21282,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P220_EXP_SPP_CAT_SHUTTLE) and the values associated with the gear preset (P220_EXP_SPP_CAT_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_EXP_SPP_CAT_SHUTTLE, ''SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_SPP_CAT_PRE_V where SPP_CAT_PRE_ID = :id'', :P220_EXP_SPP_CAT_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P220_EXP_SPP_CAT_SHUTTLE, ''SELECT EXP_SPP_CAT_ID FROM CCD_SPP_CAT_PRE_V where SPP_CAT_PRE_ID = :id'', :P220_EXP_SPP_CAT_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P220_EXP_SPP_CAT_SHUTTLE,P220_EXP_SPP_CAT_PRESETS'
@@ -21107,7 +21317,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:UPDATE_ESA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:UPDATE_ESA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_ESA_FILT_LIST_TMP;',
 '',
@@ -21144,7 +21354,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -21184,7 +21394,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:UPDATE_MMPA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:UPDATE_MMPA_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_MMPA_FILT_LIST_TMP;',
 '',
@@ -21221,7 +21431,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:UPDATE_FSSI_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:UPDATE_FSSI_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_FSSI_FILT_LIST_TMP;',
 '',
@@ -21258,7 +21468,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -21271,9 +21481,6 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_attribute_09=>'N'
 ,p_wait_for_result=>'Y'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(3950815705874105)
 ,p_name=>'FSSI shuttle before refresh'
@@ -21301,7 +21508,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -21314,6 +21521,9 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_attribute_09=>'N'
 ,p_wait_for_result=>'Y'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(3989854703730309)
 ,p_name=>'Expected Species Categories Shuttle After Refresh'
@@ -21341,7 +21551,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:UPDATE_EXP_SPP_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:UPDATE_EXP_SPP_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_EXP_SPP_FILT_LIST_TMP;',
 '',
@@ -21378,7 +21588,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -21418,7 +21628,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name Before Refresh Shuttle Options Event'', ''The Standard Survey Name Filter select field was changed: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name Before Refresh Shuttle Options Event'', ''The Standard Survey Name Filter select field was changed: ''||:P220_STD_SVY_NAME, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -21458,7 +21668,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name After Refresh Event'', ''The Standard Survey Name Filter select field was restored: ''||:P220_STD_SVY_NAME_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Standard Survey Name After Refresh Event'', ''The Standard Survey Name Filter select field was restored: ''||:P220_STD_SVY_NAME_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P220_STD_SVY_NAME_TMP;',
 '',
@@ -21505,25 +21715,25 @@ wwv_flow_imp_page.create_page_da_action(
 '	BEGIN',
 '',
 '        --execute the deep copy procedure:',
-'	    CEN_CRUISE.CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(TO_NUMBER(:P220_CRUISE_ID), V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
+'	    CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(TO_NUMBER(:P220_CRUISE_ID), V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
 '',
 '        --set the return code and message to the corresponding page items:',
 '        :P220_DEEP_COPY_RET_CODE := V_PROC_RETURN_CODE;',
 '        :P220_DEEP_COPY_RET_MSG := V_PROC_RETURN_MSG;',
 '',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
 '        --generate the URL:',
 '        :P220_DEEP_COPY_CRUISE_URL := APEX_UTIL.PREPARE_URL(p_url => ''f?p='' || :APP_ID || '':220:''|| :APP_SESSION||''::NO::P220_CRUISE_ID,P220_CRUISE_ID_COPY:''||V_PROC_RETURN_CRUISE_ID||'','');',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
 '',
 '        ',
 '        EXCEPTION',
 '            WHEN OTHERS THEN',
 '            ',
 '                --log the unsuccessful deep copy procedure:',
-'    	        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 - Deep Copy'', ''The deep copy was NOT successful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'    	        DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 - Deep Copy'', ''The deep copy was NOT successful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '',
 '                --set the error code:',
 '                :P220_DEEP_COPY_RET_CODE := 0;',
@@ -21808,15 +22018,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_PRIM_SVY_CAT_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Primary Survey Categories'', ''The value of P220_PRIM_SVY_CAT_SHUTTLE is: ''||:P220_PRIM_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Primary Survey Categories'', ''The value of P220_PRIM_SVY_CAT_SHUTTLE is: ''||:P220_PRIM_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.ccd_cruise_svy_cats',
+'   delete from ccd_cruise_svy_cats',
 '   where ',
 '   PRIMARY_YN = ''Y'' AND cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.ccd_cruise_svy_cats',
+'      insert into ccd_cruise_svy_cats',
 '         (cruise_id,',
 '         SVY_CAT_ID,',
 '         PRIMARY_YN)',
@@ -21844,16 +22054,16 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_SEC_SVY_CAT_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Secondary Survey Categories'', ''The value of P220_SEC_SVY_CAT_SHUTTLE is: ''||:P220_SEC_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Secondary Survey Categories'', ''The value of P220_SEC_SVY_CAT_SHUTTLE is: ''||:P220_SEC_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.ccd_cruise_svy_cats ',
+'   delete from ccd_cruise_svy_cats ',
 '   where ',
 '   primary_yn = ''N'' AND',
 '   cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.ccd_cruise_svy_cats',
+'      insert into ccd_cruise_svy_cats',
 '         (cruise_id,',
 '         SVY_CAT_ID,',
 '         PRIMARY_YN)',
@@ -21881,15 +22091,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_TGT_ESA_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target ESA Species'', ''The value of P220_TGT_ESA_SPP_SHUTTLE is: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target ESA Species'', ''The value of P220_TGT_ESA_SPP_SHUTTLE is: ''||:P220_TGT_ESA_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_CRUISE_SPP_ESA ',
+'   delete from CCD_CRUISE_SPP_ESA ',
 '   where ',
 '   cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_CRUISE_SPP_ESA',
+'      insert into CCD_CRUISE_SPP_ESA',
 '         (cruise_id,',
 '         TGT_SPP_ESA_ID)',
 '      values',
@@ -21915,15 +22125,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_TGT_MMPA_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target MMPA Species'', ''The value of P220_TGT_MMPA_SPP_SHUTTLE is: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target MMPA Species'', ''The value of P220_TGT_MMPA_SPP_SHUTTLE is: ''||:P220_TGT_MMPA_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_CRUISE_SPP_MMPA ',
+'   delete from CCD_CRUISE_SPP_MMPA ',
 '   where ',
 '   cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_CRUISE_SPP_MMPA',
+'      insert into CCD_CRUISE_SPP_MMPA',
 '         (cruise_id,',
 '         TGT_SPP_MMPA_ID)',
 '      values',
@@ -21949,15 +22159,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_TGT_FSSI_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target FSSI Species'', ''The value of P220_TGT_FSSI_SPP_SHUTTLE is: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target FSSI Species'', ''The value of P220_TGT_FSSI_SPP_SHUTTLE is: ''||:P220_TGT_FSSI_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_CRUISE_SPP_FSSI ',
+'   delete from CCD_CRUISE_SPP_FSSI ',
 '   where ',
 '   cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_CRUISE_SPP_FSSI',
+'      insert into CCD_CRUISE_SPP_FSSI',
 '         (cruise_id,',
 '         TGT_SPP_FSSI_ID)',
 '      values',
@@ -21983,15 +22193,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P220_EXP_SPP_CAT_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Expected Species Categories'', ''The value of P220_EXP_SPP_CAT_SHUTTLE is: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Expected Species Categories'', ''The value of P220_EXP_SPP_CAT_SHUTTLE is: ''||:P220_EXP_SPP_CAT_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_CRUISE_EXP_SPP ',
+'   delete from CCD_CRUISE_EXP_SPP ',
 '   where ',
 '   cruise_id = :P220_CRUISE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_CRUISE_EXP_SPP',
+'      insert into CCD_CRUISE_EXP_SPP',
 '         (cruise_id,',
 '         EXP_SPP_CAT_ID)',
 '      values',
@@ -22018,40 +22228,40 @@ wwv_flow_imp_page.create_page_process(
 '',
 'begin  ',
 '',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
 '',
 '     case :APEX$ROW_STATUS  ',
 '     when ''C'' then -- Note: In EA2 this has been changed from I to C for consistency with Tabular Forms  ',
 '',
 '',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
 '',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''insert into CEN_CRUISE.CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''insert into CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
 '         values ( ''||:TGT_SPP_OTHER_CNAME||'', ''||:TGT_SPP_OTHER_SNAME||'', ''||:TGT_SPP_OTHER_NOTES||'', ''||:P220_CRUISE_ID||'')  ',
 '         returning TGT_SPP_OTHER_ID into :TGT_SPP_OTHER_ID'', V_RETURN_CODE);',
 '',
-'         insert into CEN_CRUISE.CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
+'         insert into CCD_TGT_SPP_OTHER ( TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES, CRUISE_ID )  ',
 '         values ( :TGT_SPP_OTHER_CNAME, :TGT_SPP_OTHER_SNAME, :TGT_SPP_OTHER_NOTES, TO_NUMBER(:P220_CRUISE_ID) )  ',
 '         returning TGT_SPP_OTHER_ID into :TGT_SPP_OTHER_ID;  ',
 '',
 '',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, the insert query has been sent (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a create action, the insert query has been sent (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
 '',
 '    when ''U'' then  ',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is an update action, use an update query'', V_RETURN_CODE);',
-'         update CEN_CRUISE.CCD_TGT_SPP_OTHER  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is an update action, use an update query'', V_RETURN_CODE);',
+'         update CCD_TGT_SPP_OTHER  ',
 '            set TGT_SPP_OTHER_CNAME = :TGT_SPP_OTHER_CNAME, ',
 '            TGT_SPP_OTHER_SNAME = :TGT_SPP_OTHER_SNAME, ',
 '            TGT_SPP_OTHER_NOTES = :TGT_SPP_OTHER_NOTES',
 '          where TGT_SPP_OTHER_ID  = :TGT_SPP_OTHER_ID;  ',
 '     when ''D'' then  ',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
-'         delete CEN_CRUISE.CCD_TGT_SPP_OTHER  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
+'         delete CCD_TGT_SPP_OTHER  ',
 '         where TGT_SPP_OTHER_ID = :TGT_SPP_OTHER_ID;  ',
 '     end case;  ',
 '     ',
 '     ',
-'     CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The current row has been processed, (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
+'     DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Target Species - Other'', ''The current row has been processed, (:TGT_SPP_OTHER_ID) = ''||:TGT_SPP_OTHER_ID, V_RETURN_CODE);',
 '',
 '     ',
 'end;  '))
@@ -22090,15 +22300,15 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Delete Cruise and DVM Records Processing'', ''Delete the Cruise (CRUISE_ID: ''||:P220_CRUISE_ID||'') and associated DVM records'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 Delete Cruise and DVM Records Processing'', ''Delete the Cruise (CRUISE_ID: ''||:P220_CRUISE_ID||'') and associated DVM records'', V_RETURN_CODE);',
 '',
-'    CEN_CRUISE.CCD_DVM_PKG.DELETE_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
+'    CCD_DVM_PKG.DELETE_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
 '    ',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''SUCCESS'', ''P220 Delete Cruise and DVM Records Processing'', ''The Cruise and associated DVM records were deleted successfully'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''SUCCESS'', ''P220 Delete Cruise and DVM Records Processing'', ''The Cruise and associated DVM records were deleted successfully'', V_RETURN_CODE);',
 '    ',
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 Remove DVM Records Processing'', ''The Cruise and associated DVM records were not deleted successfully: ''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''P220 Remove DVM Records Processing'', ''The Cruise and associated DVM records were not deleted successfully: ''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '               ',
 '            --raise the exception',
 '            RAISE;',
@@ -22122,15 +22332,15 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
 '',
 '    EXCEPTION ',
 '        WHEN OTHERS THEN',
 '            ',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -22156,15 +22366,15 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create Another'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create Another'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create Another'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Create Another'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
 '',
 '    EXCEPTION ',
 '        WHEN OTHERS THEN',
 '            ',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create Another'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Create Another'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -22176,9 +22386,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(7395144007592949)
 ,p_process_sequence=>170
@@ -22192,15 +22399,15 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Update'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Update'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Update'', ''Running EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(:P220_CRUISE_ID));',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 automatic DVM execution - Update'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
 '',
 '    EXCEPTION ',
 '        WHEN OTHERS THEN',
 '            ',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Update'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P220 automatic DVM execution - Update'', ''EXEC_DVM_CRUISE_SP(''||:P220_CRUISE_ID||'') was unsuccessful:''||chr(10)||SQLERRM, V_RETURN_CODE);',
 '            ',
 '            --raise the exception:',
 '            RAISE;',
@@ -22212,6 +22419,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(7348346838226808)
 ,p_process_sequence=>180
@@ -22243,16 +22453,16 @@ wwv_flow_imp_page.create_page_process(
 '    ',
 'BEGIN',
 '    ',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_oth_spp_cruise_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_oth_spp_cruise_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
 '',
 '',
-'    v_stmt_str := ''SELECT TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES FROM CEN_CRUISE.CCD_TGT_SPP_OTHER where cruise_id = :cruise_id order by UPPER(TGT_SPP_OTHER_CNAME)'';',
+'    v_stmt_str := ''SELECT TGT_SPP_OTHER_CNAME, TGT_SPP_OTHER_SNAME, TGT_SPP_OTHER_NOTES FROM CCD_TGT_SPP_OTHER where cruise_id = :cruise_id order by UPPER(TGT_SPP_OTHER_CNAME)'';',
 '    ',
 '',
 '',
 '    OPEN v_cursor FOR v_stmt_str USING apex_application.g_x01;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
 '    ',
 '      --use the apex_json object to generate the JSON response:',
 '      apex_json.initialize_clob_output;',
@@ -22266,7 +22476,7 @@ wwv_flow_imp_page.create_page_process(
 '      --export the JSON string to ret_val variable:',
 '      ret_val := apex_json.get_clob_output;',
 ' ',
-'      CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
+'      DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
 '',
 '      htp.prn(ret_val);',
 '',
@@ -22280,7 +22490,7 @@ wwv_flow_imp_page.create_page_process(
 '		  --catch all other errors:',
 '	        ',
 '		  --print out error message:',
-'		  CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
+'		  DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
 'end;'))
 ,p_process_clob_language=>'PLSQL'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -22638,7 +22848,7 @@ wwv_flow_imp_page.create_report_region(
 'CRUISE_LEG_ID CRUISE_LEG_ID_COPY',
 '',
 'FROM ',
-'CEN_CRUISE.CCD_LEG_DELIM_V',
+'CCD_LEG_DELIM_V',
 'where CRUISE_ID = :P230_CRUISE_ID',
 'order by leg_start_date'))
 ,p_display_when_condition=>'P230_VALID_PAGE_ARGS'
@@ -22857,7 +23067,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'SELECT LEG_ALIAS_ID, LEG_ALIAS_NAME, LEG_ALIAS_DESC,',
 'CRUISE_LEG_ID FROM ',
-'CEN_CRUISE.CCD_LEG_ALIASES where ',
+'CCD_LEG_ALIASES where ',
 'CRUISE_LEG_ID = :P230_CRUISE_LEG_ID'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -22865,6 +23075,7 @@ wwv_flow_imp_page.create_page_plug(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7284036893273643)
 ,p_name=>'APEX$ROW_SELECTOR'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_SELECTOR'
 ,p_display_sequence=>30
 ,p_attribute_01=>'Y'
@@ -22876,6 +23087,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7284140585273644)
 ,p_name=>'APEX$ROW_ACTION'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_ACTION'
 ,p_display_sequence=>40
 ,p_use_as_row_header=>false
@@ -22928,6 +23140,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'LEG_ALIAS_NAME'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Alias Name'
@@ -23018,6 +23231,7 @@ wwv_flow_imp_page.create_interactive_grid(
 wwv_flow_imp_page.create_ig_report(
  p_id=>wwv_flow_imp.id(7338860771478701)
 ,p_interactive_grid_id=>wwv_flow_imp.id(7283790121273640)
+,p_static_id=>'699277'
 ,p_type=>'PRIMARY'
 ,p_default_view=>'GRID'
 ,p_show_row_number=>false
@@ -23112,7 +23326,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select gear_name, gear_desc from cen_cruise.ccd_gear_pre_v ',
+'select gear_name, gear_desc from ccd_gear_pre_v ',
 '',
 'where gear_pre_id = :P230_GEAR_PRESETS',
 'order by upper(gear_name)'))
@@ -23190,7 +23404,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_DESC from cen_cruise.ccd_reg_eco_pre_v ',
+'select REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_DESC from ccd_reg_eco_pre_v ',
 '',
 'where reg_eco_pre_id = :P230_REG_ECO_PRESETS',
 'order by upper(REG_ECOSYSTEM_NAME)'))
@@ -23265,7 +23479,7 @@ wwv_flow_imp_page.create_report_region(
 ,p_source_type=>'NATIVE_SQL_REPORT'
 ,p_query_type=>'SQL'
 ,p_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'select region_name, region_desc from cen_cruise.ccd_region_pre_v ',
+'select region_name, region_desc from ccd_region_pre_v ',
 '',
 'where region_pre_id = :P230_REGION_PRESETS',
 'order by upper(region_name)'))
@@ -23315,32 +23529,32 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '  select ISS_ID,',
 '  ',
-'  (SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
-'  (SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
-'  (SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
-'  (SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
-'  (SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'  (SELECT CRUISE_NAME FROM CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'  (SELECT LEG_NAME_DATES_BR_LIST from CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'  (SELECT CRUISE_FISC_YEAR FROM CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'  (SELECT ISS_SEVERITY_NAME from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'  (SELECT ISS_TYPE_NAME FROM DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
 '  ISS_RES_TYPE_ID,',
 '  CREATE_DATE,',
 '  LAST_MOD_DATE,',
 '  ISS_NOTES,',
 '  ISS_DESC,',
 '  CASE  ',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''WARN'' THEN ''Active Warning''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''WARN'' THEN ''Annotated Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ER'
+||'ROR'' THEN ''Active Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''ERROR'' THEN ''Annotated Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WA'
+||'RN'' THEN ''Active Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''WARN'' THEN ''Annotated Warning''',
 'ELSE NULL END ISSUE_CATEGORY,',
 '  :P230_CRUISE_ID CRUISE_ID,',
 '  (APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL,',
-'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM CEN_CRUISE.DVM_PTA_ISSUES_V where DVM_PTA_ISSU'
-||'ES_V.ISS_ID = DVM_ISSUES.ISS_id) row_class',
-'  from CEN_CRUISE.DVM_ISSUES',
-'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where CRUISE_ID = :P230_CRUISE_ID)'))
+'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM DVM_PTA_ISSUES_V where DVM_PTA_ISSUES_V.ISS_ID'
+||' = DVM_ISSUES.ISS_id) row_class',
+'  from DVM_ISSUES',
+'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CCD_CRUISE_V where CRUISE_ID = :P230_CRUISE_ID)'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P230_CRUISE_ID'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -23356,6 +23570,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'LEG_NAME_DATES_BR_LIST'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Legs'
@@ -23458,6 +23673,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISSUE_CATEGORY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Category'
@@ -23480,6 +23696,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'APP_LINK_URL'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Inspect'
@@ -23499,6 +23716,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(9093739110044637)
 ,p_name=>'APEX$ROW_SELECTOR'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_SELECTOR'
 ,p_display_sequence=>10
 ,p_attribute_01=>'Y'
@@ -23510,6 +23728,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(9093870117044638)
 ,p_name=>'APEX$ROW_ACTION'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_ACTION'
 ,p_display_sequence=>20
 ,p_use_as_row_header=>false
@@ -23521,6 +23740,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'CRUISE_NAME'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_LINK'
 ,p_heading=>'Cruise'
@@ -23609,6 +23829,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_SEVERITY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Severity'
@@ -23630,6 +23851,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_TYPE'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Type'
@@ -23651,6 +23873,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_RES_TYPE_ID'
 ,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Resolution'
@@ -23662,7 +23885,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select iss_res_type_name,',
 '       iss_res_type_id',
-'  from cen_cruise.dvm_iss_res_types',
+'  from dvm_iss_res_types',
 ' order by upper(iss_res_type_name)'))
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
@@ -23721,6 +23944,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_DESC'
 ,p_data_type=>'CLOB'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Description'
@@ -23769,6 +23993,7 @@ wwv_flow_imp_page.create_interactive_grid(
 wwv_flow_imp_page.create_ig_report(
  p_id=>wwv_flow_imp.id(9711735560927110)
 ,p_interactive_grid_id=>wwv_flow_imp.id(9092485375044624)
+,p_static_id=>'699278'
 ,p_type=>'PRIMARY'
 ,p_default_view=>'GRID'
 ,p_show_row_number=>false
@@ -24071,6 +24296,9 @@ wwv_flow_imp_page.create_page_branch(
 ,p_branch_when_button_id=>wwv_flow_imp.id(7073523941077795)
 ,p_branch_sequence=>21
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(7349214409226817)
 ,p_branch_name=>'OTHERS - Stay on Page 220'
@@ -24079,9 +24307,6 @@ wwv_flow_imp_page.create_page_branch(
 ,p_branch_type=>'REDIRECT_URL'
 ,p_branch_sequence=>31
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1440369392521845)
 ,p_name=>'P230_LEG_INFO'
@@ -24443,23 +24668,23 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_NAME_FILT is: ''||:P230_VESSEL_NAME_FILT, V_PROC_RETURN_CODE);',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_ID is: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_NAME_FILT is: ''||:P230_VESSEL_NAME_FILT, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of P230_VESSEL_ID is: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The filter IS NULL value is: ''||CASE WHEN :P230_VESSEL_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The filter IS NULL value is: ''||CASE WHEN :P230_VESSEL_NAME_FILT IS NULL THEN ''NULL'' ELSE ''NOT NULL'' END, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
 '',
 '',
 'V_TEMP_SQL := ''SELECT distinct',
-'    VESSEL_NAME, VESSEL_ID FROM CEN_CRUISE.CCD_VESSELS where (:P230_VESSEL_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_VESSEL_NAME_FILT IS NULL) OR (VESSEL_ID = :P230_VESSEL_ID) OR (VESSEL_ID = (SELECT VESSEL_ID from CEN_CRUISE.CCD_CRUIS'
-||'E_LEGS WHERE CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)))',
+'    VESSEL_NAME, VESSEL_ID FROM CCD_VESSELS where (:P230_VESSEL_NAME_FILT = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_VESSEL_NAME_FILT IS NULL) OR (VESSEL_ID = :P230_VESSEL_ID) OR (VESSEL_ID = (SELECT VESSEL_ID from CCD_CRUISE_LEGS WHERE CRUISE_LE'
+||'G_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)))',
 '',
 '    ORDER BY UPPER(VESSEL_NAME)'';',
 '',
-'CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Vessel List'', ''The value of V_TEMP_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -24496,7 +24721,7 @@ wwv_flow_imp_page.create_page_item(
 'select PLAT_TYPE_NAME,',
 'PLAT_TYPE_ID',
 'FROM ',
-'CEN_CRUISE.CCD_PLAT_TYPES ',
+'CCD_PLAT_TYPES ',
 'order by UPPER(PLAT_TYPE_NAME)'))
 ,p_lov_display_null=>'YES'
 ,p_cHeight=>1
@@ -24947,9 +25172,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHOW_FILT_LIST is: ''||:P230_GEAR_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHUTTLE is: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHOW_FILT_LIST is: ''||:P230_GEAR_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHUTTLE is: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the Gear from the shuttle field:',
@@ -24957,7 +25182,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -24969,30 +25194,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CCD_GEAR where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    GEAR_NAME, GEAR_ID FROM CEN_CRUISE.CCD_GEAR where GEAR_ID IN',
+'    GEAR_NAME, GEAR_ID FROM CCD_GEAR where GEAR_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT GEAR_ID',
 '        FROM',
-'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where (:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST IS NULL)',
+'        (SELECT GEAR_ID FROM CCD_GEAR where (:P230_GEAR_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_GEAR_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT GEAR_ID from CEN_CRUISE.CCD_LEG_GEAR where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
+'        SELECT GEAR_ID from CCD_LEG_GEAR where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(GEAR_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -25027,7 +25252,7 @@ wwv_flow_imp_page.create_page_item(
 'gear_pre_id',
 'from ',
 '',
-'CEN_CRUISE.CCD_GEAR_PRE',
+'CCD_GEAR_PRE',
 'order by upper(gear_pre_name);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -25060,9 +25285,9 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||:P230_REG_ECO_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||:P230_REG_ECO_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the Regional Ecosystem from the shuttle field:',
@@ -25070,7 +25295,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The current value of Regional Ecosystem is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The current value of Regional Ecosystem is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -25082,30 +25307,30 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
+'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT REG_ECOSYSTEM_ID',
 '        FROM',
-'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where (:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST IS NULL)',
+'        (SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where (:P230_REG_ECO_SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P230_REG_ECO_SHOW_FILT_LIST IS NULL)',
 '',
 '        UNION',
-'        SELECT REG_ECOSYSTEM_ID from CEN_CRUISE.CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
+'        SELECT REG_ECOSYSTEM_ID from CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -25137,7 +25362,7 @@ wwv_flow_imp_page.create_page_item(
 'reg_eco_pre_id',
 'from ',
 '',
-'CEN_CRUISE.CCD_REG_ECO_PRE',
+'CCD_REG_ECO_PRE',
 'order by upper(reg_eco_pre_name);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -25158,7 +25383,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'P230_REGION_SHUTTLE'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SHUTTLE'
-,p_lov=>'select REGION_NAME, REGION_ID from cen_cruise.ccd_regions order by upper(REGION_NAME)'
+,p_lov=>'select REGION_NAME, REGION_ID from ccd_regions order by upper(REGION_NAME)'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
 ,p_item_template_options=>'#DEFAULT#'
@@ -25181,7 +25406,7 @@ wwv_flow_imp_page.create_page_item(
 'REGION_PRE_ID',
 'from ',
 '',
-'CEN_CRUISE.CCD_REGION_PRE',
+'CCD_REGION_PRE',
 'order by upper(region_pre_name);'))
 ,p_cHeight=>1
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -25411,7 +25636,7 @@ wwv_flow_imp_page.create_page_computation(
 'REGION_NAME_BR_LIST||''\t''||',
 'LEG_ALIAS_BR_LIST LEG_VALS',
 'from ',
-'CEN_CRUISE.CCD_LEG_DELIM_V',
+'CCD_LEG_DELIM_V',
 'where cruise_leg_id = :P230_CRUISE_LEG_ID;'))
 );
 wwv_flow_imp_page.create_page_computation(
@@ -25452,7 +25677,7 @@ wwv_flow_imp_page.create_page_computation(
 '''<span class="''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''valid_cruise'' ELSE ''invalid_cruise'' END)||''">''||(CASE WHEN CRUISE_VALID_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END)||''</span>''||''\t''||',
 'NUM_ANNOT_WARNINGS',
 'VAL',
-'FROM CEN_CRUISE.CCD_CRUISE_ISS_SUMM_V',
+'FROM CCD_CRUISE_ISS_SUMM_V',
 'where CRUISE_ID = :P230_CRUISE_ID'))
 );
 wwv_flow_imp_page.create_page_computation(
@@ -25468,12 +25693,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select gear_id from cen_cruise.ccd_leg_gear where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
+'   for r in (select gear_id from ccd_leg_gear where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.gear_id;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_GEAR_SHUTTLE before header'', ''the initial leg gear query returned the gear id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_GEAR_SHUTTLE before header'', ''the initial leg gear query returned the gear id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -25492,14 +25717,14 @@ wwv_flow_imp_page.create_page_computation(
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REGION_SHUTTLE before header'', ''Query for the leg regions associated with cruise leg id: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REGION_SHUTTLE before header'', ''Query for the leg regions associated with cruise leg id: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
 '',
-'    for r in (select region_id from cen_cruise.ccd_leg_regions where cruise_leg_id = :P230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
+'    for r in (select region_id from ccd_leg_regions where cruise_leg_id = :P230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.region_id;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REGION_SHUTTLE before header'', ''the initial leg region query returned the region_id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REGION_SHUTTLE before header'', ''the initial leg region query returned the region_id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -25517,12 +25742,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select REG_ECOSYSTEM_ID from cen_cruise.ccd_leg_ecosystems where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
+'   for r in (select REG_ECOSYSTEM_ID from ccd_leg_ecosystems where cruise_leg_id = :p230_CRUISE_LEG_ID OR cruise_leg_id = :p230_CRUISE_LEG_ID_COPY) loop',
 '      SS_CHANGED_LIST(i) := r.REG_ECOSYSTEM_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REG_ECO_SHUTTLE before header'', ''the initial leg regional ecosystem query returned the REG_ECOSYSTEM_ID list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_REG_ECO_SHUTTLE before header'', ''the initial leg regional ecosystem query returned the REG_ECOSYSTEM_ID list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -25549,18 +25774,18 @@ wwv_flow_imp_page.create_page_computation(
 '    IF (:P230_CRUISE_ID IS NULL) THEN',
 '        --the CRUISE_ID is required, hide the content:',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is blank'', V_SPT_RET_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is blank'', V_SPT_RET_CODE);',
 '        RETURN 0;',
 '    ',
 '    ELSIF (:P230_CRUISE_LEG_ID_COPY IS NULL AND :P230_CRUISE_LEG_ID_COPY IS NULL) THEN',
 '        --both cruise leg ID arguments are blank but the cruise id is not:',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''both cruise leg ID arguments are blank but the cruise id is not'', V_SPT_RET_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''both cruise leg ID arguments are blank but the cruise id is not'', V_SPT_RET_CODE);',
 '',
 '        --check if the cruise_id is valid:',
-'        select cruise_id INTO V_CRUISE_ID from cen_cruise.ccd_cruises where ccd_cruises.CRUISE_ID = :P230_CRUISE_ID;',
+'        select cruise_id INTO V_CRUISE_ID from ccd_cruises where ccd_cruises.CRUISE_ID = :P230_CRUISE_ID;',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is valid'', V_SPT_RET_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The :P230_CRUISE_ID value is valid'', V_SPT_RET_CODE);',
 '',
 '        --if there is no exception it means the cruise ID record exists:',
 '        RETURN 1;',
@@ -25569,12 +25794,12 @@ wwv_flow_imp_page.create_page_computation(
 '    ELSE',
 '        --one of the cruise leg ID arguments and the cruise_id argument are provided:',
 '        ',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''query to see if the cruise leg exists'', V_SPT_RET_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''query to see if the cruise leg exists'', V_SPT_RET_CODE);',
 '',
 '        --query to see if the cruise leg exists',
-'        select cruise_leg_id INTO V_CRUISE_LEG_ID from cen_cruise.ccd_cruise_legs where ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID OR ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID_COPY;',
+'        select cruise_leg_id INTO V_CRUISE_LEG_ID from ccd_cruise_legs where ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID OR ccd_cruise_legs.CRUISE_LEG_ID = :P230_CRUISE_LEG_ID_COPY;',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is valid'', V_SPT_RET_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is valid'', V_SPT_RET_CODE);',
 '',
 '        --a single cruise leg was returned for the cruise leg ID/cruise leg ID copy, show the content:',
 '        RETURN 1;',
@@ -25586,7 +25811,7 @@ wwv_flow_imp_page.create_page_computation(
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is not valid:''||chr(10)||SQLERRM, V_SPT_RET_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P230_VALID_PAGE_ARGS'', ''The cruise leg or cruise leg copy value is not valid:''||chr(10)||SQLERRM, V_SPT_RET_CODE);',
 '',
 '            --this exception indicates an error with the cruise ID/cruise leg ID/cruise leg ID copy provided',
 '            RETURN 0;',
@@ -25622,13 +25847,13 @@ wwv_flow_imp_page.create_page_validation(
 '',
 '',
 '    if :APEX$ROW_STATUS = ''C'' then',
-'        select count(*) into rec_count from cen_cruise.ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME;',
+'        select count(*) into rec_count from ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME;',
 '    elsif :APEX$ROW_STATUS = ''U'' then ',
-'        select count(*) into rec_count from cen_cruise.ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME and LEG_ALIAS_ID <> :LEG_ALIAS_ID;',
+'        select count(*) into rec_count from ccd_leg_aliases where leg_alias_name = :LEG_ALIAS_NAME and LEG_ALIAS_ID <> :LEG_ALIAS_ID;',
 '    end if;',
 '    ',
 '    ',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Alias Name Validation'', ''The count(*) value is: ''||rec_count, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Alias Name Validation'', ''The count(*) value is: ''||rec_count, V_PROC_RETURN_CODE);',
 '    ',
 '    --check to see if there are any matches in the database:',
 '    IF rec_count > 0 THEN',
@@ -25671,7 +25896,7 @@ wwv_flow_imp_page.create_page_validation(
 '    --check if there are any vessels or cruise legs that have overlapping leg dates:',
 '    V_SQL := ''SELECT CRUISE_NAME, VESSEL_NAME, LEG_NAME, LEG_START_DATE, LEG_END_DATE, CASE WHEN CRUISE_ID = :P230_CRUISE_ID THEN ''''Y'''' ELSE ''''N'''' END CRUISE_OVERLAP_YN, CASE WHEN VESSEL_ID = :P230_VESSEL_ID THEN ''''Y'''' ELSE ''''N'''' END VESSEL_OVERLAP_Y'
 ||'N ',
-'        from cen_cruise.ccd_cruise_legs_v where ',
+'        from ccd_cruise_legs_v where ',
 '        (VESSEL_ID = :P230_VESSEL_ID OR CRUISE_ID = :P230_CRUISE_ID)',
 '        ''||(CASE WHEN :P230_CRUISE_LEG_ID IS NULL THEN '''' ELSE ''AND CRUISE_LEG_ID <> ''||:P230_CRUISE_LEG_ID END)||''',
 '        AND (LEG_START_DATE BETWEEN  :P230_LEG_START_DATE AND :P230_LEG_END_DATE',
@@ -25683,7 +25908,7 @@ wwv_flow_imp_page.create_page_validation(
 '        :P230_LEG_END_DATE BETWEEN LEG_START_DATE AND LEG_END_DATE',
 '        )'';',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The query is: ''||V_SQL, V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The query is: ''||V_SQL, V_RETURN_CODE);',
 '',
 '    EXECUTE IMMEDIATE V_SQL BULK COLLECT INTO V_CRUISE_QC_RECS USING :P230_CRUISE_ID, :P230_VESSEL_ID, :P230_VESSEL_ID, :P230_CRUISE_ID, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_LEG_END_DATE, :P230_LEG_START_DATE, :P230_L'
 ||'EG_END_DATE;',
@@ -25691,13 +25916,13 @@ wwv_flow_imp_page.create_page_validation(
 '    FOR i in 1..V_CRUISE_QC_RECS.COUNT loop',
 '',
 '        if (V_CRUISE_QC_RECS(i).CRUISE_OVERLAP_YN = ''Y'') THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a cruise overlap instance'', V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a cruise overlap instance'', V_RETURN_CODE);',
 '            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''Cruise Leg Overlap: The pending Leg Start Date and End Date overlap with another cruise leg with the same Cruise (''||V_CRUISE_QC_RECS(i).CRUISE_N'
 ||'AME||''), Leg Information: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
 '        END IF;',
 '',
 '        IF (V_CRUISE_QC_RECS(i).VESSEL_OVERLAP_YN = ''Y'') THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a vessel overlap instance'', V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''This is a vessel overlap instance'', V_RETURN_CODE);',
 '            V_RETURN_MSG := V_RETURN_MSG||(CASE WHEN V_RETURN_MSG IS NOT NULL THEN ''<BR>'' ELSE '''' END)||''Vessel Leg Overlap: The pending Leg Start Date and End Date overlap with another cruise leg for the same Vessel (''||V_CRUISE_QC_RECS(i).VESSEL_NA'
 ||'ME||''), Leg Information: Leg Name: ''||V_CRUISE_QC_RECS(i).LEG_NAME||'', Start Date: ''||V_CRUISE_QC_RECS(i).LEG_START_DATE||'', End Date: ''||V_CRUISE_QC_RECS(i).LEG_END_DATE;',
 '        END IF;',
@@ -25711,12 +25936,12 @@ wwv_flow_imp_page.create_page_validation(
 '        WHEN NO_DATA_FOUND THEN',
 '            --there were no records returne by the query, there is no overlap with the current cruise leg that is attempting to be saved:',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''There were no records returned by the query, the error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''APEX Validation (P230) Overlapping Leg Dates'', ''There were no records returned by the query, the error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
 '            RETURN NULL;',
 '        ',
 '        WHEN OTHERS THEN',
 '',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''APEX Validation (P230) Overlapping Leg Dates'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, V_RETURN_CODE);',
 '            RETURN ''There was an error validating the current cruise leg'';',
 '        ',
 'END;'))
@@ -25748,23 +25973,23 @@ wwv_flow_imp_page.create_page_validation(
 '',
 'BEGIN',
 '',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value of P230_LEG_START_DATE is: ''||:P230_LEG_START_DATE||'', P230_LEG_END_DATE is: ''||:P230_LEG_END_DATE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value of P230_LEG_START_DATE is: ''||:P230_LEG_START_DATE||'', P230_LEG_END_DATE is: ''||:P230_LEG_END_DATE, V_RETURN_CODE);',
 '',
 '    --calculate the number of days between the start and end date',
 '    V_NUM_DAYS := TO_DATE(:P230_LEG_END_DATE) - TO_DATE(:P230_LEG_START_DATE) + 1;',
 '',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value V_NUM_DAYS is: ''||V_NUM_DAYS, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The value V_NUM_DAYS is: ''||V_NUM_DAYS, V_RETURN_CODE);',
 '',
 '    --check to see if the number of days is less than or equal to 90 days',
 '    IF (V_NUM_DAYS <= 90) THEN',
 '',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''the number of days between the start and end date is less than or equal to 90 days: ''||V_NUM_DAYS , V_RETURN_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''the number of days between the start and end date is less than or equal to 90 days: ''||V_NUM_DAYS , V_RETURN_CODE);',
 '        RETURN NULL;',
 '',
 '    ELSE',
 '',
 '        --the leg length is too long, number of days between the start and end date is more than 90 days:',
-'        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The Leg is too long (> 90 days), based on start and end dates: ''||V_NUM_DAYS||'' days'' , V_RETURN_CODE);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Invalid Leg Days at Sea'', ''The Leg is too long (> 90 days), based on start and end dates: ''||V_NUM_DAYS||'' days'' , V_RETURN_CODE);',
 '          ',
 '        ',
 '        RETURN ''Invalid Leg Days at Sea: The Leg is too long (> 90 days), based on start and end dates: ''||V_NUM_DAYS||'' days'';',
@@ -25776,9 +26001,6 @@ wwv_flow_imp_page.create_page_validation(
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_validation(
  p_id=>wwv_flow_imp.id(6222803948378649)
 ,p_tabular_form_region_id=>wwv_flow_imp.id(7283631583273639)
@@ -25809,6 +26031,9 @@ wwv_flow_imp_page.create_page_validation(
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(8267908509098219)
 ,p_name=>'GEAR_PRESET_DA'
@@ -25833,7 +26058,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_GEAR_SHUTTLE) and the values associated with the gear preset (P230_GEAR_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_GEAR_SHUTTLE, ''SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR_PRE_OPTS where gear_pre_id = :id'', :P230_GEAR_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_GEAR_SHUTTLE, ''SELECT GEAR_ID FROM CCD_GEAR_PRE_OPTS where gear_pre_id = :id'', :P230_GEAR_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_GEAR_SHUTTLE,P230_GEAR_PRESETS'
@@ -25865,7 +26090,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_REGION_SHUTTLE) and the values associated with the gear preset (P230_REGION_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REGION_SHUTTLE, ''SELECT REGION_ID FROM CEN_CRUISE.CCD_REGION_PRE_OPTS where region_pre_id = :id'', :P230_REGION_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REGION_SHUTTLE, ''SELECT REGION_ID FROM CCD_REGION_PRE_OPTS where region_pre_id = :id'', :P230_REGION_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_REGION_SHUTTLE,P230_REGION_PRESETS'
@@ -25897,7 +26122,7 @@ wwv_flow_imp_page.create_page_da_action(
 'BEGIN',
 '',
 '    --query for the colon-delimited list of values based on the selected values (P230_REG_ECO_SHUTTLE) and the values associated with the preset (P230_REG_ECO_PRESETS)',
-'    return CEN_CRUISE.CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REG_ECO_SHUTTLE, ''SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :id'', :P230_REG_ECO_PRESETS);',
+'    return CCD_CRUISE_PKG.APPEND_REF_PRE_OPTS_FN(:P230_REG_ECO_SHUTTLE, ''SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :id'', :P230_REG_ECO_PRESETS);',
 '',
 'END;'))
 ,p_attribute_07=>'P230_REG_ECO_SHUTTLE,P230_REG_ECO_PRESETS'
@@ -26036,7 +26261,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:UPDATE_GEAR_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:UPDATE_GEAR_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_GEAR_FILT_LIST_TMP;',
 '',
@@ -26073,7 +26298,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -26113,7 +26338,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:UPDATE_REG_ECO_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:UPDATE_REG_ECO_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :UPDATE_REG_ECO_FILT_LIST_TMP;',
 '',
@@ -26150,7 +26375,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -26190,7 +26415,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel Before Refresh Select Options Event'', ''The Vessel Filter select field was changed: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel Before Refresh Select Options Event'', ''The Vessel Filter select field was changed: ''||:P230_VESSEL_ID, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -26230,7 +26455,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel After Refresh Event'', ''The Vessel Filter select field was restored: ''||:P230_VESSEL_ID_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Vessel After Refresh Event'', ''The Vessel Filter select field was restored: ''||:P230_VESSEL_ID_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P230_VESSEL_ID_TMP;',
 '',
@@ -26465,16 +26690,16 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Save the overlapping cruise IDs'', V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Save the overlapping cruise IDs'', V_PROC_RETURN_CODE);',
 '',
 '    --identify all overlapping cruises for the current cruise leg''s cruise:',
-'    CEN_CRUISE.CCD_DVM_PKG.PRE_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
+'    CCD_DVM_PKG.PRE_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
 '',
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Pre Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.PRE_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -26535,11 +26760,11 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P230_REG_ECO_SHUTTLE);',
 '  ',
-'   delete from cen_cruise.ccd_leg_ecosystems',
+'   delete from ccd_leg_ecosystems',
 '   where cruise_leg_id = :P230_CRUISE_LEG_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.ccd_leg_ecosystems',
+'      insert into ccd_leg_ecosystems',
 '         (cruise_leg_id,',
 '         reg_ecosystem_id)',
 '      values',
@@ -26564,11 +26789,11 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P230_GEAR_SHUTTLE);',
 '  ',
-'   delete from cen_cruise.ccd_leg_gear',
+'   delete from ccd_leg_gear',
 '   where cruise_leg_id = :P230_CRUISE_LEG_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.ccd_leg_gear',
+'      insert into ccd_leg_gear',
 '         (cruise_leg_id,',
 '         gear_id)',
 '      values',
@@ -26593,11 +26818,11 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P230_REGION_SHUTTLE);',
 '  ',
-'   delete from cen_cruise.ccd_leg_regions',
+'   delete from ccd_leg_regions',
 '   where cruise_leg_id = :P230_CRUISE_LEG_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.ccd_leg_regions',
+'      insert into ccd_leg_regions',
 '         (cruise_leg_id,',
 '         region_id)',
 '      values',
@@ -26624,36 +26849,36 @@ wwv_flow_imp_page.create_page_process(
 '',
 'begin  ',
 '',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
 '',
 '     case :APEX$ROW_STATUS  ',
 '     when ''C'' then -- Note: In EA2 this has been changed from I to C for consistency with Tabular Forms  ',
 '',
 '',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
 '',
-'         insert into CEN_CRUISE.CCD_LEG_ALIASES ( LEG_ALIAS_NAME, LEG_ALIAS_DESC, CRUISE_LEG_ID )  ',
+'         insert into CCD_LEG_ALIASES ( LEG_ALIAS_NAME, LEG_ALIAS_DESC, CRUISE_LEG_ID )  ',
 '         values ( :LEG_ALIAS_NAME, :LEG_ALIAS_DESC, TO_NUMBER(:P230_CRUISE_LEG_ID) )  ',
 '         returning LEG_ALIAS_ID into :LEG_ALIAS_ID;  ',
 '',
 '',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, the insert query has been sent (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a create action, the insert query has been sent (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
 '',
 '    when ''U'' then  ',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is an update action, use an update query'', V_RETURN_CODE);',
-'         update CEN_CRUISE.CCD_LEG_ALIASES  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is an update action, use an update query'', V_RETURN_CODE);',
+'         update CCD_LEG_ALIASES  ',
 '            set LEG_ALIAS_NAME = :LEG_ALIAS_NAME, ',
 '            LEG_ALIAS_DESC = :LEG_ALIAS_DESC, ',
 '            CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
 '          where LEG_ALIAS_ID  = :LEG_ALIAS_ID;  ',
 '     when ''D'' then  ',
-'         CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
-'         delete CEN_CRUISE.CCD_LEG_ALIASES  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
+'         delete CCD_LEG_ALIASES  ',
 '         where LEG_ALIAS_ID = :LEG_ALIAS_ID;  ',
 '     end case;  ',
 '     ',
 '     ',
-'     CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The current row has been processed, (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
+'     DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Leg Aliases'', ''The current row has been processed, (:LEG_ALIAS_ID) = ''||:LEG_ALIAS_ID, V_RETURN_CODE);',
 '',
 '     ',
 'end;  '))
@@ -26676,15 +26901,15 @@ wwv_flow_imp_page.create_page_process(
 'BEGIN',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
 '    ',
 '',
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -26710,15 +26935,15 @@ wwv_flow_imp_page.create_page_process(
 'BEGIN',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
-'    CEN_CRUISE.CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''Running EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'')'', V_RETURN_CODE);',
+'    CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was successful'', V_RETURN_CODE);',
 '    ',
 '',
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 automatic DVM execution - Create Another Button'', ''EXEC_DVM_CRUISE_OVERLAP_SP(''||:P230_CRUISE_ID||'') was unsuccessful'', V_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -26730,9 +26955,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(11200991950391909)
 ,p_process_sequence=>140
@@ -26746,16 +26968,16 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Retrieve the overlapping cruise IDs and execute the DVM on the overlapping and current cruises'', V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''Retrieve the overlapping cruise IDs and execute the DVM on the overlapping and current cruises'', V_PROC_RETURN_CODE);',
 '',
 '    --identify all overlapping cruises for the current cruise leg''s cruise:',
-'    CEN_CRUISE.CCD_DVM_PKG.POST_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
+'    CCD_DVM_PKG.POST_UPDATE_LEG_SP (TO_NUMBER(:P230_CRUISE_ID));',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''SUCCESS'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure was successful'', V_PROC_RETURN_CODE);',
 '',
 '    EXCEPTION',
 '        WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Post Update Cruise Leg Record (:P230_CRUISE_ID = ''||:P230_CRUISE_ID||'')'', ''The CCD_DVM_PKG.POST_UPDATE_LEG_SP procedure failed'', V_PROC_RETURN_CODE);',
 '',
 '            --raise the exception:',
 '            RAISE;',
@@ -26771,6 +26993,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was processed on the updated Cruise Leg along with any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(19789246675762711)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(11200581955391905)
 ,p_process_sequence=>150
@@ -26784,15 +27009,15 @@ wwv_flow_imp_page.create_page_process(
 '',
 'BEGIN',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''Running DELETE_LEG_OVERLAP_SP (''||:P230_CRUISE_LEG_ID||'')'', V_SP_RET_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''Running DELETE_LEG_OVERLAP_SP (''||:P230_CRUISE_LEG_ID||'')'', V_SP_RET_CODE);',
 '    ',
-'    CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_LEG_ID));',
+'    CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (TO_NUMBER(:P230_CRUISE_LEG_ID));',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was deleted successfully'', V_SP_RET_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was deleted successfully'', V_SP_RET_CODE);',
 '    ',
 '	EXCEPTION',
 '		WHEN OTHERS THEN',
-'            CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was not deleted successfully'', V_SP_RET_CODE);',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''ERROR'', ''P230 Delete Cruise Leg PL/SQL Block'', ''The Cruise Leg was not deleted successfully'', V_SP_RET_CODE);',
 '    ',
 '			DBMS_output.put_line(SQLERRM);',
 '            ',
@@ -26839,16 +27064,16 @@ wwv_flow_imp_page.create_page_process(
 '    ',
 'BEGIN',
 '    ',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_leg_alias_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''Running get_leg_alias_copy (''|| apex_application.g_x01||'')'', p_proc_return_code);',
 '',
 '',
-'    v_stmt_str := ''SELECT LEG_ALIAS_NAME, LEG_ALIAS_DESC FROM CEN_CRUISE.CCD_LEG_ALIASES where cruise_leg_id = :cruise_leg_id order by UPPER(LEG_ALIAS_NAME)'';',
+'    v_stmt_str := ''SELECT LEG_ALIAS_NAME, LEG_ALIAS_DESC FROM CCD_LEG_ALIASES where cruise_leg_id = :cruise_leg_id order by UPPER(LEG_ALIAS_NAME)'';',
 '   ',
 '',
 '',
 '    OPEN v_cursor FOR v_stmt_str USING apex_application.g_x01;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The query was executed: ''||v_stmt_str, p_proc_return_code);',
 '    ',
 '      --use the apex_json object to generate the JSON response:',
 '      apex_json.initialize_clob_output;',
@@ -26862,7 +27087,7 @@ wwv_flow_imp_page.create_page_process(
 '      --export the JSON string to ret_val variable:',
 '      ret_val := apex_json.get_clob_output;',
 ' ',
-'      CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
+'      DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The JSON data was written: ''||ret_val, p_proc_return_code);',
 '',
 '      htp.prn(ret_val);',
 '',
@@ -26876,7 +27101,7 @@ wwv_flow_imp_page.create_page_process(
 '		  --catch all other errors:',
 '	        ',
 '		  --print out error message:',
-'		  CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
+'		  DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
 'end;'))
 ,p_process_clob_language=>'PLSQL'
 ,p_error_display_location=>'INLINE_IN_NOTIFICATION'
@@ -26948,45 +27173,45 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select ISS_ID,',
 '',
-'(SELECT CRUISE_NAME FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
-'(SELECT LEG_NAME_DATES_BR_LIST from CEN_CRUISE.CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
-'(SELECT CRUISE_FISC_YEAR FROM CEN_CRUISE.CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
-'(SELECT ISS_SEVERITY_NAME from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
-'(SELECT ISS_TYPE_NAME FROM CEN_CRUISE.DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
+'(SELECT CRUISE_NAME FROM CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_NAME,',
+'(SELECT LEG_NAME_DATES_BR_LIST from CCD_CRUISE_DELIM_V WHERE CCD_CRUISE_DELIM_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) LEG_NAME_DATES_BR_LIST,',
+'(SELECT CRUISE_FISC_YEAR FROM CCD_CRUISE_V WHERE CCD_CRUISE_V.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_FISC_YEAR,',
+'(SELECT ISS_SEVERITY_NAME from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ISS_SEVERITY,       ',
+'(SELECT ISS_TYPE_NAME FROM DVM_ISS_TYPES WHERE DVM_ISS_TYPES.ISS_TYPE_ID = DVM_ISSUES.ISS_TYPE_ID) ISS_TYPE,       ',
 'ISS_RES_TYPE_ID,',
 'CREATE_DATE,',
 'LAST_MOD_DATE,',
 'ISS_NOTES,',
 'ISS_DESC,',
 '  CASE  ',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''ERROR'' THEN ''Active Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''ERROR'' THEN ''Annotated Error''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISS'
-||'UES.ISS_type_id) = ''WARN'' THEN ''Active Warning''',
-'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM'
-||'_ISSUES.ISS_type_id) = ''WARN'' THEN ''Annotated Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ER'
+||'ROR'' THEN ''Active Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''ERROR'' THEN ''Annotated Error''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WA'
+||'RN'' THEN ''Active Warning''',
+'  WHEN DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) ='
+||' ''WARN'' THEN ''Annotated Warning''',
 'ELSE NULL END ISSUE_CATEGORY,',
-'(SELECT CRUISE_ID FROM CEN_CRUISE.CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_ID,',
+'(SELECT CRUISE_ID FROM CCD_CRUISES WHERE CCD_CRUISES.PTA_ISS_ID = DVM_ISSUES.PTA_ISS_ID) CRUISE_ID,',
 '(APEX_UTIL.PREPARE_URL(p_url => REPLACE(REPLACE(APP_LINK_URL, ''[APP_ID]'', v(''APP_ID'')), ''[APP_SESSION]'', v(''APP_SESSION'')))) APP_LINK_URL,',
-'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM CEN_CRUISE.DVM_PTA_ISSUES_V where DVM_PTA_ISSU'
-||'ES_V.ISS_ID = DVM_ISSUES.ISS_id) row_class',
+'(SELECT CASE WHEN ISS_RES_TYPE_CODE IS NOT NULL THEN ''resolved-issue'' WHEN ISS_SEVERITY_CODE = ''ERROR'' THEN ''unresolved-error'' WHEN ISS_SEVERITY_CODE = ''WARN'' THEN ''unresolved-warning'' else NULL end FROM DVM_PTA_ISSUES_V where DVM_PTA_ISSUES_V.ISS_ID'
+||' = DVM_ISSUES.ISS_id) row_class',
 '',
 '',
 '',
 '       ',
-'  from CEN_CRUISE.DVM_ISSUES',
-'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CEN_CRUISE.CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
+'  from DVM_ISSUES',
+'  WHERE DVM_ISSUES.PTA_ISS_ID IN (SELECT DISTINCT PTA_ISS_ID FROM CCD_CRUISE_V where :P250_FISCAL_YEAR IS NULL OR CCD_CRUISE_V.CRUISE_FISC_YEAR = :P250_FISCAL_YEAR)',
 '    AND (:P250_ISSUE_CATEGORIES IS NULL ',
-'         OR (:P250_ISSUE_CATEGORIES = ''annotated_warning'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_type'
-||'s.ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'')',
-'         OR (:P250_ISSUE_CATEGORIES = ''active_warning'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_s'
-||'everity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'')',
-'         OR (:P250_ISSUE_CATEGORIES = ''active_error'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_sev'
-||'erity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR'') ',
-'         OR (:P250_ISSUE_CATEGORIES = ''annotated_error'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from CEN_CRUISE.dvm_ISS_severity inner join CEN_CRUISE.dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.'
-||'ISS_severity_id where dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR''))'))
+'         OR (:P250_ISSUE_CATEGORIES = ''annotated_warning'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id wher'
+||'e dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'')',
+'         OR (:P250_ISSUE_CATEGORIES = ''active_warning'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_I'
+||'SS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''WARN'')',
+'         OR (:P250_ISSUE_CATEGORIES = ''active_error'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where dvm_ISS'
+||'_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR'') ',
+'         OR (:P250_ISSUE_CATEGORIES = ''annotated_error'' AND DVM_ISSUES.ISS_RES_TYPE_ID IS NOT NULL AND (SELECT ISS_SEVERITY_CODE from dvm_ISS_severity inner join dvm_ISS_types on dvm_ISS_severity.ISS_severity_id = dvm_ISS_types.ISS_severity_id where '
+||'dvm_ISS_types.ISS_type_id = DVM_ISSUES.ISS_type_id) = ''ERROR''))'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P250_FISCAL_YEAR,P250_ISSUE_CATEGORIES'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -27000,6 +27225,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'CRUISE_NAME'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_LINK'
 ,p_heading=>'Cruise'
@@ -27028,6 +27254,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'LEG_NAME_DATES_BR_LIST'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Legs'
@@ -27076,6 +27303,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISSUE_CATEGORY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Category'
@@ -27095,6 +27323,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7562737602972440)
 ,p_name=>'APEX$ROW_SELECTOR'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_SELECTOR'
 ,p_display_sequence=>10
 ,p_attribute_01=>'Y'
@@ -27107,6 +27336,7 @@ wwv_flow_imp_page.create_region_column(
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(7563282916972441)
 ,p_name=>'APEX$ROW_ACTION'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_item_type=>'NATIVE_ROW_ACTION'
 ,p_label=>'Actions'
 ,p_heading_alignment=>'CENTER'
@@ -27196,6 +27426,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'APP_LINK_URL'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Inspect'
@@ -27260,6 +27491,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_SEVERITY'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Severity'
@@ -27281,6 +27513,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_TYPE'
 ,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Type'
@@ -27302,6 +27535,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_RES_TYPE_ID'
 ,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_SELECT_LIST'
 ,p_heading=>'Resolution'
@@ -27313,7 +27547,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'select iss_res_type_name,',
 '       iss_res_type_id',
-'  from cen_cruise.dvm_iss_res_types',
+'  from dvm_iss_res_types',
 ' order by upper(iss_res_type_name)'))
 ,p_lov_display_extra=>false
 ,p_lov_display_null=>true
@@ -27371,6 +27605,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'ISS_DESC'
 ,p_data_type=>'CLOB'
+,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>true
 ,p_item_type=>'NATIVE_HTML_EXPRESSION'
 ,p_heading=>'Description'
@@ -27418,6 +27653,7 @@ wwv_flow_imp_page.create_interactive_grid(
 wwv_flow_imp_page.create_ig_report(
  p_id=>wwv_flow_imp.id(7562446077972437)
 ,p_interactive_grid_id=>wwv_flow_imp.id(7562082865972434)
+,p_static_id=>'699330'
 ,p_type=>'PRIMARY'
 ,p_default_view=>'GRID'
 ,p_show_row_number=>false
@@ -27592,7 +27828,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'P250_FISCAL_YEAR'
 ,p_source_type=>'ITEM'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select distinct CRUISE_FISC_YEAR, CRUISE_FISC_YEAR id FROM CEN_CRUISE.CCD_CRUISE_V WHERE CRUISE_FISC_YEAR IS NOT NULL ORDER BY CRUISE_FISC_YEAR;'
+,p_lov=>'select distinct CRUISE_FISC_YEAR, CRUISE_FISC_YEAR id FROM CCD_CRUISE_V WHERE CRUISE_FISC_YEAR IS NOT NULL ORDER BY CRUISE_FISC_YEAR;'
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'-'
 ,p_cHeight=>1
@@ -32125,7 +32361,7 @@ wwv_flow_imp_page.create_page_plug(
 'SCI_CENTER_NAME,',
 'SCI_CENTER_DESC,',
 'DIV_NAME_BR_LIST',
-'from CEN_CRUISE.CCD_SCI_CENTER_DELIM_V ',
+'from CCD_SCI_CENTER_DELIM_V ',
 'ORDER BY UPPER(SCI_CENTER_NAME)',
 '  ',
 ''))
@@ -32307,7 +32543,7 @@ wwv_flow_imp_page.create_report_region(
 'select SCI_CENTER_DIV_CODE,',
 'SCI_CENTER_DIV_NAME,',
 'SCI_CENTER_DIV_DESC',
-'FROM CEN_CRUISE.CCD_SCI_CENTER_DIVS where sci_center_id = :P362_SCI_CENTER_ID',
+'FROM CCD_SCI_CENTER_DIVS where sci_center_id = :P362_SCI_CENTER_ID',
 'order by UPPER(SCI_CENTER_DIV_NAME);'))
 ,p_display_when_condition=>'P362_SCI_CENTER_ID'
 ,p_display_condition_type=>'ITEM_IS_NOT_NULL'
@@ -32629,7 +32865,7 @@ wwv_flow_imp_page.create_page_plug(
 'REGION_CODE,',
 'REGION_NAME,',
 'REGION_DESC',
-'from CEN_CRUISE.CCD_REGIONS ',
+'from CCD_REGIONS ',
 'ORDER BY UPPER(REGION_NAME)',
 '  ',
 ''))
@@ -33060,7 +33296,7 @@ wwv_flow_imp_page.create_page_plug(
 'GEAR_DESC,',
 'FINSS_ID,',
 '(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
-'from CEN_CRUISE.CCD_GEAR ',
+'from CCD_GEAR ',
 'ORDER BY UPPER(GEAR_NAME)',
 '  ',
 ''))
@@ -33521,7 +33757,7 @@ wwv_flow_imp_page.create_page_plug(
 'EXP_SPP_CAT_DESC,',
 'FINSS_ID,',
 '(CASE WHEN APP_SHOW_OPT_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END) "APP_SHOW_OPT_YN"',
-'from CEN_CRUISE.CCD_EXP_SPP_CATS ',
+'from CCD_EXP_SPP_CATS ',
 'ORDER BY UPPER(EXP_SPP_CAT_NAME)',
 '  ',
 ''))
@@ -33985,7 +34221,7 @@ wwv_flow_imp_page.create_page_plug(
 'SCI_CENTER_DIV_NAME,',
 'SCI_CENTER_DIV_DESC,',
 'SCI_CENTER_ID',
-'from CEN_CRUISE.CCD_SCI_CENTER_DIV_V where SCI_CENTER_DIV_ID IS NOT NULL',
+'from CCD_SCI_CENTER_DIV_V where SCI_CENTER_DIV_ID IS NOT NULL',
 'ORDER BY UPPER(SCI_CENTER_NAME), UPPER(SCI_CENTER_DIV_NAME)',
 '  ',
 ''))
@@ -34277,18 +34513,18 @@ wwv_flow_imp_page.create_page_item(
 'begin',
 '',
 '',
-'--CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is: ''||:P382_SCI_CENTER_DIV_ID, v_proc_return_code);',
+'--DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is: ''||:P382_SCI_CENTER_DIV_ID, v_proc_return_code);',
 '    --check to see if the P382_SCI_CENTER_DIV_ID value was specified',
 '    IF :P382_SCI_CENTER_DIV_ID IS NULL THEN    --the P382_SCI_CENTER_DIV_ID value was not specified, use the default value of "PIFSC"',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NULL'', v_proc_return_code);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NULL'', v_proc_return_code);',
 '        ',
-'        SELECT SCI_CENTER_ID INTO v_return_val FROM CEN_CRUISE.CCD_SCI_CENTERS where sci_center_name = ''PIFSC'';',
+'        SELECT SCI_CENTER_ID INTO v_return_val FROM CCD_SCI_CENTERS where sci_center_name = ''PIFSC'';',
 '    ',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of v_return_val is: ''||v_return_val, v_proc_return_code);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of v_return_val is: ''||v_return_val, v_proc_return_code);',
 '',
 '        RETURN v_return_val;    ',
 '    ELSE    --the P382_SCI_CENTER_DIV_ID was specified, use the value stored in the database',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NOT NULL'', v_proc_return_code);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Default Value for Division''''s Science Center'', ''The value of :P382_SCI_CENTER_DIV_ID is NOT NULL'', v_proc_return_code);',
 '',
 '        RETURN NULL;',
 '    END IF;',
@@ -34299,7 +34535,7 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'SCI_CENTER_ID'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'SELECT SCI_CENTER_NAME, SCI_CENTER_ID FROM CEN_CRUISE.CCD_SCI_CENTERS ORDER BY UPPER(SCI_CENTER_NAME);'
+,p_lov=>'SELECT SCI_CENTER_NAME, SCI_CENTER_ID FROM CCD_SCI_CENTERS ORDER BY UPPER(SCI_CENTER_NAME);'
 ,p_lov_display_null=>'YES'
 ,p_lov_null_text=>'-'
 ,p_cHeight=>1
@@ -34494,7 +34730,7 @@ wwv_flow_imp_page.create_page_plug(
 '       REG_ECO_PRE_NAME,',
 '       REG_ECO_PRE_DESC,',
 '       REG_ECOSYSTEM_BR_LIST',
-'  from CEN_CRUISE.CCD_REG_ECO_PRE_DELIM_V',
+'  from CCD_REG_ECO_PRE_DELIM_V',
 '  order by upper(REG_ECO_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
@@ -34717,8 +34953,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_FILT is: ''||:P405_REG_ECO_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_SHUTTLE is: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_FILT is: ''||:P405_REG_ECO_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P405_REG_ECO_SHUTTLE is: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the Regional Ecosystems from the shuttle field:',
@@ -34726,7 +34962,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The current value of Regional Ecosystems is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The current value of Regional Ecosystems is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -34738,29 +34974,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
+'    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT REG_ECOSYSTEM_ID',
 '        FROM',
-'        (SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECOSYSTEMS where ((:P405_REG_ECO_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P405_REG_ECO_FILT IS NULL)',
+'        (SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where ((:P405_REG_ECO_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P405_REG_ECO_FILT IS NULL)',
 '        UNION ',
-'        SELECT REG_ECOSYSTEM_ID FROM CEN_CRUISE.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :P405_REG_ECO_PRE_ID',
+'        SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :P405_REG_ECO_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -34882,12 +35118,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select REG_ECOSYSTEM_ID from cen_cruise.CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :P405_REG_ECO_PRE_ID) loop',
+'   for r in (select REG_ECOSYSTEM_ID from CCD_REG_ECO_PRE_OPTS where REG_ECO_PRE_ID = :P405_REG_ECO_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.REG_ECOSYSTEM_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P405_REG_ECO_PRE_ID before header'', ''the initial regional ecosystem returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P405_REG_ECO_PRE_ID before header'', ''the initial regional ecosystem returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -34919,7 +35155,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -34959,7 +35195,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P405_REG_ECO_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P405_REG_ECO_TMP;',
 '',
@@ -35029,15 +35265,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P405_REG_ECO_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Regional Ecosystem Preset Options'', ''The value of P405_REG_ECO_SHUTTLE is: ''||:P405_REG_ECO_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Regional Ecosystem Preset Options'', ''The value of P405_REG_ECO_SHUTTLE is: ''||:P405_REG_ECO_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_REG_ECO_PRE_OPTS ',
+'   delete from CCD_REG_ECO_PRE_OPTS ',
 '   where ',
 '   reg_eco_pre_id = :P405_REG_ECO_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_REG_ECO_PRE_OPTS',
+'      insert into CCD_REG_ECO_PRE_OPTS',
 '         (reg_eco_pre_id,',
 '         reg_ecosystem_id)',
 '      values',
@@ -35117,7 +35353,7 @@ wwv_flow_imp_page.create_page_plug(
 '       REGION_PRE_NAME,',
 '       REGION_PRE_DESC,',
 '       REGION_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_REGION_PRE_DELIM_V order by UPPER(REGION_PRE_NAME)'))
+'  from CCD_REGION_PRE_DELIM_V order by UPPER(REGION_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -35386,7 +35622,7 @@ wwv_flow_imp_page.create_page_item(
 'select REGION_NAME,',
 'REGION_ID',
 '',
-'FROM CEN_CRUISE.CCD_REGIONS',
+'FROM CCD_REGIONS',
 'order by upper(REGION_NAME)'))
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -35409,12 +35645,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select REGION_ID from cen_cruise.CCD_REGION_PRE_OPTS where REGION_PRE_ID = :P415_REGION_PRE_ID) loop',
+'   for r in (select REGION_ID from CCD_REGION_PRE_OPTS where REGION_PRE_ID = :P415_REGION_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.REGION_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P415_REGION_PRE_ID before header'', ''the initial region query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P415_REGION_PRE_ID before header'', ''the initial region query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -35479,15 +35715,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P415_REGION_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Region Preset Options'', ''The value of P415_REGION_SHUTTLE is: ''||:P415_REGION_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Region Preset Options'', ''The value of P415_REGION_SHUTTLE is: ''||:P415_REGION_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_REGION_PRE_OPTS ',
+'   delete from CCD_REGION_PRE_OPTS ',
 '   where ',
 '   REGION_PRE_ID = :P415_REGION_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_REGION_PRE_OPTS',
+'      insert into CCD_REGION_PRE_OPTS',
 '         (REGION_PRE_ID,',
 '         REGION_ID)',
 '      values',
@@ -35567,7 +35803,7 @@ wwv_flow_imp_page.create_page_plug(
 '       SPP_CAT_PRE_NAME,',
 '       SPP_CAT_PRE_DESC,',
 '       SPP_CAT_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_SPP_CAT_PRE_DELIM_V order by upper(SPP_CAT_PRE_NAME)'))
+'  from CCD_SPP_CAT_PRE_DELIM_V order by upper(SPP_CAT_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -35844,8 +36080,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_SPP_CAT_FILT is: ''||:P425_SPP_CAT_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_EXP_SPP_CAT_SHUTTLE is: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_SPP_CAT_FILT is: ''||:P425_SPP_CAT_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of P425_EXP_SPP_CAT_SHUTTLE is: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the Expected Species Categories from the shuttle field:',
@@ -35853,7 +36089,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The current value of Expected Species Categories is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -35865,29 +36101,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
+'    EXP_SPP_CAT_NAME, EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where EXP_SPP_CAT_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT EXP_SPP_CAT_ID',
 '        FROM',
-'        (SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_EXP_SPP_CATS where ((:P425_SPP_CAT_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P425_SPP_CAT_FILT IS NULL)',
+'        (SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS where ((:P425_SPP_CAT_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P425_SPP_CAT_FILT IS NULL)',
 '        UNION ',
-'        SELECT EXP_SPP_CAT_ID FROM CEN_CRUISE.CCD_SPP_CAT_PRE_OPTS where SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID',
+'        SELECT EXP_SPP_CAT_ID FROM CCD_SPP_CAT_PRE_OPTS where SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Expected Species Categories Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -35948,12 +36184,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select EXP_SPP_CAT_ID from cen_cruise.CCD_SPP_CAT_PRE_OPTS where SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID) loop',
+'   for r in (select EXP_SPP_CAT_ID from CCD_SPP_CAT_PRE_OPTS where SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.EXP_SPP_CAT_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P425_SPP_CAT_PRE_ID before header'', ''the initial expected species category query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P425_SPP_CAT_PRE_ID before header'', ''the initial expected species category query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -35985,7 +36221,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Before Refresh Shuttle Options Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -36025,7 +36261,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_SPP_CAT_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Expected Species Categories Shuttle After Refresh Event'', ''The Expected Species Categories Filter select field was changed: ''||:P425_SPP_CAT_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P425_SPP_CAT_TMP;',
 '',
@@ -36095,15 +36331,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P425_EXP_SPP_CAT_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Expected Species Category Preset Options'', ''The value of P425_EXP_SPP_CAT_SHUTTLE is: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Expected Species Category Preset Options'', ''The value of P425_EXP_SPP_CAT_SHUTTLE is: ''||:P425_EXP_SPP_CAT_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_SPP_CAT_PRE_OPTS ',
+'   delete from CCD_SPP_CAT_PRE_OPTS ',
 '   where ',
 '   SPP_CAT_PRE_ID = :P425_SPP_CAT_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_SPP_CAT_PRE_OPTS',
+'      insert into CCD_SPP_CAT_PRE_OPTS',
 '         (SPP_CAT_PRE_ID,',
 '         EXP_SPP_CAT_ID)',
 '      values',
@@ -36183,7 +36419,7 @@ wwv_flow_imp_page.create_page_plug(
 '       ESA_PRE_NAME,',
 '       ESA_PRE_DESC,',
 '       SPP_ESA_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_SPP_ESA_PRE_DELIM_V order by upper(ESA_PRE_NAME)'))
+'  from CCD_SPP_ESA_PRE_DELIM_V order by upper(ESA_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -36460,8 +36696,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_ESA_SPP_FILT is: ''||:P435_ESA_SPP_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_TGT_ESA_SPP_SHUTTLE is: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_ESA_SPP_FILT is: ''||:P435_ESA_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of P435_TGT_ESA_SPP_SHUTTLE is: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the ESA target species from the shuttle field:',
@@ -36469,7 +36705,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The current value of ESA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -36481,29 +36717,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
+'    TGT_SPP_ESA_NAME, TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_ESA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_TGT_SPP_ESA where ((:P435_ESA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P435_ESA_SPP_FILT IS NULL)',
+'        (SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where ((:P435_ESA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P435_ESA_SPP_FILT IS NULL)',
 '        UNION ',
-'        SELECT TGT_SPP_ESA_ID FROM CEN_CRUISE.CCD_SPP_ESA_PRE_OPTS where ESA_PRE_ID = :P435_ESA_PRE_ID',
+'        SELECT TGT_SPP_ESA_ID FROM CCD_SPP_ESA_PRE_OPTS where ESA_PRE_ID = :P435_ESA_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for ESA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -36564,12 +36800,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_ESA_ID from cen_cruise.CCD_SPP_ESA_PRE_OPTS where ESA_PRE_ID = :P435_ESA_PRE_ID) loop',
+'   for r in (select TGT_SPP_ESA_ID from CCD_SPP_ESA_PRE_OPTS where ESA_PRE_ID = :P435_ESA_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_ESA_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P435_ESA_PRE_ID before header'', ''the initial ESA target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P435_ESA_PRE_ID before header'', ''the initial ESA target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -36601,7 +36837,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Before Refresh Shuttle Options Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -36641,7 +36877,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_ESA_SPP_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''ESA Target Species Shuttle After Refresh Event'', ''The ESA Target Species Filter select field was changed: ''||:P435_ESA_SPP_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P435_ESA_SPP_TMP;',
 '',
@@ -36711,15 +36947,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P435_TGT_ESA_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save ESA Target Species Preset Options'', ''The value of P435_TGT_ESA_SPP_SHUTTLE is: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save ESA Target Species Preset Options'', ''The value of P435_TGT_ESA_SPP_SHUTTLE is: ''||:P435_TGT_ESA_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_SPP_ESA_PRE_OPTS ',
+'   delete from CCD_SPP_ESA_PRE_OPTS ',
 '   where ',
 '   ESA_PRE_ID = :P435_ESA_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_SPP_ESA_PRE_OPTS',
+'      insert into CCD_SPP_ESA_PRE_OPTS',
 '         (ESA_PRE_ID,',
 '         TGT_SPP_ESA_ID)',
 '      values',
@@ -36799,7 +37035,7 @@ wwv_flow_imp_page.create_page_plug(
 '       MMPA_PRE_NAME,',
 '       MMPA_PRE_DESC,',
 '       SPP_MMPA_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_SPP_MMPA_PRE_DELIM_V order by upper(MMPA_PRE_NAME)'))
+'  from CCD_SPP_MMPA_PRE_DELIM_V order by upper(MMPA_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -37076,8 +37312,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_MMPA_SPP_FILT is: ''||:P445_MMPA_SPP_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_TGT_MMPA_SPP_SHUTTLE is: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_MMPA_SPP_FILT is: ''||:P445_MMPA_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P445_TGT_MMPA_SPP_SHUTTLE is: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the MMPA target species from the shuttle field:',
@@ -37085,7 +37321,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The current value of MMPA Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -37097,29 +37333,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
+'    TGT_SPP_MMPA_NAME, TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_MMPA_ID',
 '        FROM',
-'        (SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_TGT_SPP_MMPA where ((:P445_MMPA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P445_MMPA_SPP_FILT IS NULL)',
+'        (SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where ((:P445_MMPA_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P445_MMPA_SPP_FILT IS NULL)',
 '        UNION ',
-'        SELECT TGT_SPP_MMPA_ID FROM CEN_CRUISE.CCD_SPP_MMPA_PRE_OPTS where MMPA_PRE_ID = :P445_MMPA_PRE_ID',
+'        SELECT TGT_SPP_MMPA_ID FROM CCD_SPP_MMPA_PRE_OPTS where MMPA_PRE_ID = :P445_MMPA_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -37180,12 +37416,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_MMPA_ID from cen_cruise.CCD_SPP_MMPA_PRE_OPTS where MMPA_PRE_ID = :P445_MMPA_PRE_ID) loop',
+'   for r in (select TGT_SPP_MMPA_ID from CCD_SPP_MMPA_PRE_OPTS where MMPA_PRE_ID = :P445_MMPA_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_MMPA_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P445_MMPA_PRE_ID before header'', ''the initial MMPA target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P445_MMPA_PRE_ID before header'', ''the initial MMPA target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -37217,7 +37453,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Before Refresh Shuttle Options Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -37257,7 +37493,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_MMPA_SPP_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''MMPA Target Species Shuttle After Refresh Event'', ''The MMPA Target Species Filter select field was changed: ''||:P445_MMPA_SPP_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P445_MMPA_SPP_TMP;',
 '',
@@ -37327,15 +37563,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P445_TGT_MMPA_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save MMPA Target Species Preset Options'', ''The value of P445_TGT_MMPA_SPP_SHUTTLE is: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save MMPA Target Species Preset Options'', ''The value of P445_TGT_MMPA_SPP_SHUTTLE is: ''||:P445_TGT_MMPA_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_SPP_MMPA_PRE_OPTS ',
+'   delete from CCD_SPP_MMPA_PRE_OPTS ',
 '   where ',
 '   MMPA_PRE_ID = :P445_MMPA_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_SPP_MMPA_PRE_OPTS',
+'      insert into CCD_SPP_MMPA_PRE_OPTS',
 '         (MMPA_PRE_ID,',
 '         TGT_SPP_MMPA_ID)',
 '      values',
@@ -37415,7 +37651,7 @@ wwv_flow_imp_page.create_page_plug(
 '       FSSI_PRE_NAME,',
 '       FSSI_PRE_DESC,',
 '       SPP_FSSI_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_SPP_FSSI_PRE_DELIM_V order by upper(FSSI_PRE_NAME)'))
+'  from CCD_SPP_FSSI_PRE_DELIM_V order by upper(FSSI_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -37692,8 +37928,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_FSSI_SPP_FILT is: ''||:P455_FSSI_SPP_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_TGT_FSSI_SPP_SHUTTLE is: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_FSSI_SPP_FILT is: ''||:P455_FSSI_SPP_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of P455_TGT_FSSI_SPP_SHUTTLE is: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the FSSI target species from the shuttle field:',
@@ -37701,7 +37937,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The current value of FSSI Target Species is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -37713,29 +37949,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
+'    TGT_SPP_FSSI_NAME, TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT TGT_SPP_FSSI_ID',
 '        FROM',
-'        (SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_TGT_SPP_FSSI where ((:P455_FSSI_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P455_FSSI_SPP_FILT IS NULL)',
+'        (SELECT TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where ((:P455_FSSI_SPP_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P455_FSSI_SPP_FILT IS NULL)',
 '        UNION ',
-'        SELECT TGT_SPP_FSSI_ID FROM CEN_CRUISE.CCD_SPP_FSSI_PRE_OPTS where FSSI_PRE_ID = :P455_FSSI_PRE_ID',
+'        SELECT TGT_SPP_FSSI_ID FROM CCD_SPP_FSSI_PRE_OPTS where FSSI_PRE_ID = :P455_FSSI_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for FSSI Target Species Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -37796,12 +38032,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select TGT_SPP_FSSI_ID from cen_cruise.CCD_SPP_FSSI_PRE_OPTS where FSSI_PRE_ID = :P455_FSSI_PRE_ID) loop',
+'   for r in (select TGT_SPP_FSSI_ID from CCD_SPP_FSSI_PRE_OPTS where FSSI_PRE_ID = :P455_FSSI_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.TGT_SPP_FSSI_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P455_FSSI_PRE_ID before header'', ''the initial FSSI target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P455_FSSI_PRE_ID before header'', ''the initial FSSI target species query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -37833,7 +38069,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Before Refresh Shuttle Options Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -37873,7 +38109,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_FSSI_SPP_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''FSSI Target Species Shuttle After Refresh Event'', ''The FSSI Target Species Filter select field was changed: ''||:P455_FSSI_SPP_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P455_FSSI_SPP_TMP;',
 '',
@@ -37943,15 +38179,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P455_TGT_FSSI_SPP_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save FSSI Target Species Preset Options'', ''The value of P455_TGT_FSSI_SPP_SHUTTLE is: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save FSSI Target Species Preset Options'', ''The value of P455_TGT_FSSI_SPP_SHUTTLE is: ''||:P455_TGT_FSSI_SPP_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_SPP_FSSI_PRE_OPTS ',
+'   delete from CCD_SPP_FSSI_PRE_OPTS ',
 '   where ',
 '   FSSI_PRE_ID = :P455_FSSI_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_SPP_FSSI_PRE_OPTS',
+'      insert into CCD_SPP_FSSI_PRE_OPTS',
 '         (FSSI_PRE_ID,',
 '         TGT_SPP_FSSI_ID)',
 '      values',
@@ -38032,7 +38268,7 @@ wwv_flow_imp_page.create_page_plug(
 '       SVY_CAT_PRE_DESC,',
 '       CASE WHEN SVY_CAT_PRIMARY_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END SVY_CAT_PRIMARY_YN,',
 '       SVY_CAT_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_SVY_CAT_PRE_DELIM_V order by upper(SVY_CAT_PRE_NAME)'))
+'  from CCD_SVY_CAT_PRE_DELIM_V order by upper(SVY_CAT_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -38333,7 +38569,7 @@ wwv_flow_imp_page.create_page_item(
 'select SVY_CAT_NAME,',
 'SVY_CAT_ID',
 '',
-'FROM CEN_CRUISE.CCD_SVY_CATS',
+'FROM CCD_SVY_CATS',
 'order by upper(SVY_CAT_NAME)'))
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(19774241368588604)
@@ -38356,12 +38592,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select SVY_CAT_ID from cen_cruise.CCD_SVY_CAT_PRE_OPTS where SVY_CAT_PRE_ID = :P465_SVY_CAT_PRE_ID) loop',
+'   for r in (select SVY_CAT_ID from CCD_SVY_CAT_PRE_OPTS where SVY_CAT_PRE_ID = :P465_SVY_CAT_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.SVY_CAT_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P465_SVY_CAT_PRE_ID before header'', ''the initial survey category query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P465_SVY_CAT_PRE_ID before header'', ''the initial survey category query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -38426,15 +38662,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P465_SVY_CAT_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Survey Category Preset Options'', ''The value of P465_SVY_CAT_SHUTTLE is: ''||:P465_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Survey Category Preset Options'', ''The value of P465_SVY_CAT_SHUTTLE is: ''||:P465_SVY_CAT_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_SVY_CAT_PRE_OPTS ',
+'   delete from CCD_SVY_CAT_PRE_OPTS ',
 '   where ',
 '   SVY_CAT_PRE_ID = :P465_SVY_CAT_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_SVY_CAT_PRE_OPTS',
+'      insert into CCD_SVY_CAT_PRE_OPTS',
 '         (SVY_CAT_PRE_ID,',
 '         SVY_CAT_ID)',
 '      values',
@@ -38514,7 +38750,7 @@ wwv_flow_imp_page.create_page_plug(
 '       GEAR_PRE_NAME,',
 '       GEAR_PRE_DESC,',
 '       GEAR_NAME_BR_LIST',
-'  from CEN_CRUISE.CCD_GEAR_PRE_DELIM_V order by upper(GEAR_PRE_NAME)'))
+'  from CCD_GEAR_PRE_DELIM_V order by upper(GEAR_PRE_NAME)'))
 ,p_plug_source_type=>'NATIVE_IR'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_content_disposition=>'ATTACHMENT'
@@ -38810,8 +39046,8 @@ wwv_flow_imp_page.create_page_item(
 'BEGIN',
 '',
 '',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_FILT is: ''||:P475_GEAR_FILT, V_PROC_RETURN_CODE);',
-'--    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_FILT is: ''||:P475_GEAR_FILT, V_PROC_RETURN_CODE);',
+'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '    --retrieve all of the Gear from the shuttle field:',
@@ -38819,7 +39055,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '   for i in 1..l_selected.count loop',
 '',
-'--        CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
+'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
 '',
 '        --check if this is the first loop (do not need to append the "OR" operator)',
 '        IF (i = 1) THEN',
@@ -38831,29 +39067,29 @@ wwv_flow_imp_page.create_page_item(
 '',
 '    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
 '    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ''||V_QUERY_FRAG;',
+'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CCD_GEAR where ''||V_QUERY_FRAG;',
 '    END IF;',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
 '    V_TEMP_SQL := ''SELECT',
-'    GEAR_NAME, GEAR_ID FROM CEN_CRUISE.CCD_GEAR where GEAR_ID IN',
+'    GEAR_NAME, GEAR_ID FROM CCD_GEAR where GEAR_ID IN',
 '    (',
 '',
 '        SELECT DISTINCT GEAR_ID',
 '        FROM',
-'        (SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR where ((:P475_GEAR_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P475_GEAR_FILT IS NULL)',
+'        (SELECT GEAR_ID FROM CCD_GEAR where ((:P475_GEAR_FILT = ''''Y'''') AND APP_SHOW_OPT_YN = ''''Y'''') OR (:P475_GEAR_FILT IS NULL)',
 '        UNION ',
-'        SELECT GEAR_ID FROM CEN_CRUISE.CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID',
+'        SELECT GEAR_ID FROM CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID',
 '        ''||V_QUERY_FRAG||'')',
 '    )',
 '',
 '    ORDER BY UPPER(GEAR_NAME)'';',
 '',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
 '',
 '',
 '    RETURN V_TEMP_SQL;',
@@ -38895,12 +39131,12 @@ wwv_flow_imp_page.create_page_computation(
 '   i    number := 1;',
 '   V_PROC_RETURN_CODE PLS_INTEGER;',
 'begin',
-'   for r in (select GEAR_ID from cen_cruise.CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID) loop',
+'   for r in (select GEAR_ID from CCD_GEAR_PRE_OPTS where GEAR_PRE_ID = :P475_GEAR_PRE_ID) loop',
 '      SS_CHANGED_LIST(i) := r.GEAR_ID;',
 '      i := i + 1;',
 '   end loop;',
 '',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P475_GEAR_PRE_ID before header'', ''the initial Gear query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P475_GEAR_PRE_ID before header'', ''the initial Gear query returned the id list: ''||apex_util.table_to_string(SS_CHANGED_LIST,'':''), V_PROC_RETURN_CODE);',
 '   return apex_util.table_to_string(SS_CHANGED_LIST,'':'');',
 '',
 'end;'))
@@ -38932,7 +39168,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
 '',
 '',
 '',
@@ -38972,7 +39208,7 @@ wwv_flow_imp_page.create_page_da_action(
 '    ',
 '',
 'BEGIN',
-'    CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_TMP, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:P475_GEAR_TMP, V_PROC_RETURN_CODE);',
 '',
 'RETURN :P475_GEAR_TMP;',
 '',
@@ -39042,15 +39278,15 @@ wwv_flow_imp_page.create_page_process(
 'begin',
 '   l_selected := apex_util.string_to_table(:P475_GEAR_SHUTTLE);',
 '  ',
-'   CEN_CRUISE.DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Gear Preset Options'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_RETURN_CODE);',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Gear Preset Options'', ''The value of P475_GEAR_SHUTTLE is: ''||:P475_GEAR_SHUTTLE, V_RETURN_CODE);',
 '  ',
 '  ',
-'   delete from cen_cruise.CCD_GEAR_PRE_OPTS ',
+'   delete from CCD_GEAR_PRE_OPTS ',
 '   where ',
 '   GEAR_PRE_ID = :P475_GEAR_PRE_ID;',
 '  ',
 '   for i in 1..l_selected.count loop',
-'      insert into cen_cruise.CCD_GEAR_PRE_OPTS',
+'      insert into CCD_GEAR_PRE_OPTS',
 '         (GEAR_PRE_ID,',
 '         GEAR_ID)',
 '      values',
@@ -39848,6 +40084,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_attribute_01=>'Y'
 ,p_attribute_02=>'Y'
 ,p_attribute_03=>'N'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
@@ -39860,6 +40097,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_heading_alignment=>'CENTER'
 ,p_display_sequence=>20
 ,p_value_alignment=>'CENTER'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
@@ -39875,6 +40113,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_display_sequence=>30
 ,p_attribute_01=>'Y'
 ,p_enable_filter=>false
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>true
 ,p_duplicate_value=>true
@@ -40347,6 +40586,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_attribute_01=>'Y'
 ,p_attribute_02=>'Y'
 ,p_attribute_03=>'N'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
@@ -40359,6 +40599,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_heading_alignment=>'CENTER'
 ,p_display_sequence=>20
 ,p_value_alignment=>'CENTER'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
@@ -40374,6 +40615,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_display_sequence=>30
 ,p_attribute_01=>'Y'
 ,p_enable_filter=>false
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>true
 ,p_duplicate_value=>true
@@ -40701,6 +40943,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_attribute_01=>'Y'
 ,p_attribute_02=>'Y'
 ,p_attribute_03=>'N'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
@@ -40713,6 +40956,7 @@ wwv_flow_imp_page.create_region_column(
 ,p_heading_alignment=>'CENTER'
 ,p_display_sequence=>20
 ,p_value_alignment=>'CENTER'
+,p_use_as_row_header=>false
 ,p_enable_hide=>true
 ,p_is_primary_key=>false
 );
