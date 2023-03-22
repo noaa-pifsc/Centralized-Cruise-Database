@@ -21,3 +21,4 @@ EXCEPTION
 		dbms_output.put_line('The DVM batch execution was NOT successful: '|| SQLCODE || '- ' || SQLERRM);
 
 END;
+/
