@@ -152,3 +152,13 @@ grant insert, delete, update, select on  to CEN_CRUISE_APP;
 grant select on AFF_RESP_TYPES to CEN_CRUISE_APP;
 grant select, insert on AFF_RESPONSES to CEN_CRUISE_APP;
 grant select on AFF_RESPONSES_V to CEN_CRUISE_APP;
+
+
+--authorization application module pages:
+grant select on AUTH_APP_USERS_V to CEN_CRUISE_APP;
+grant select on AUTH_APP_USER_GROUPS_V to CEN_CRUISE_APP;
+
+
+grant select, insert, update, delete on AUTH_APP_USERS TO CEN_CRUISE_APP;
+grant select, insert, update, delete on AUTH_APP_USER_GROUPS TO CEN_CRUISE_APP;
+grant select, insert, update, delete on AUTH_APP_GROUPS TO CEN_CRUISE_APP;
