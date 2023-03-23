@@ -197,7 +197,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   Verification Files:
                 -   Template: [category_7_DVM_config_error_verification_2.xlsx](./verification_templates/category_7_DVM_config_error_verification_2.xlsx)
                 -   Export: [category_7_DVM_config_error_verification_2.csv](./verification_templates/automated/category_7_DVM_config_error_verification_2.csv)
-        -   <mark>(**implement as a new SQLPLUS output file) Verify the view does not exist exception
+        -   DVM test script: [category_7_verify_view_error.sql](./SQL/category_7_verify_view_error.sql)
             -   Execute the [DVM Configuration QC Verification Query](#DVM_Configuration_QC_Verification)
             -   Verify the ORA-20220 error is reported and indicates that CCD_QC_CRUISE_TEMP_V does not exist
             -   Validation Issues:

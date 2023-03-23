@@ -587,9 +587,6 @@ select ERR_SOURCE, ERR_MSG from DVM_STD_QC_VIEW_V ORDER BY ERR_SOURCE, ERR_MSG;
 
 spool off;
 
-WHENEVER SQLERROR CONTNUE 1;
-
-
 set markup csv off;
 SET TERMOUT OFF;
 --SET NEWPAGE 0;
@@ -604,12 +601,11 @@ SET LINESIZE 2000;
 
 spool ../verification_templates/automated/category_7_script_output_verification-2.txt
 
-Select ERR_SOURCE, ERR_MSG FROM DVM_STD_QC_ALL_RPT_V ORDER BY ERR_SOURCE, ERR_MSG;
+--execute the verify view :
+@@category_7_verify_view_error.sql
 
 spool off;
 
-
-WHENEVER SQLERROR EXIT 1;
 
 
 --execute the third DVM script for category 7:
