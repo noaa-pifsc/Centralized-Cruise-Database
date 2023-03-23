@@ -8,7 +8,7 @@ set serveroutput on;
 --execute for invalid data stream (ORA-20220)
 DECLARE
 	
-	V_ERR_SOURCE VARCHAR2;
+	V_ERR_SOURCE VARCHAR2 (2000);
 	V_ERR_MSG CLOB;
 	
 BEGIN
