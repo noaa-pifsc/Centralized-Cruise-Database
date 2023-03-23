@@ -22,7 +22,8 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
 -   (SQL verification only) Verification Templates: These excel files ([verification_templates](./verification_templates)) are used to list the individual test cases in a given category that are defined in the Test Case Definitions. The templates use excel formulas to verify that the results of a given script execution match the verified results.
 -   Verification Exports: These files ([verification_templates\automated](./verification_templates/automated)) are used to verify the results of a given test script match the verified results using a file comparison tool to streamline the process.
 
-## Test Case Verification SOP:
+## Semi-Automated Test Case Verification SOP
+-   \*Note: a fully automated test case verification method can be found [below](#automated-test-case-verification-sop)
 -   Setup Test Cases:
     -   Purge CCD and DVM records from the database
         -   Execute [delete_all_DVM_recs.sql](../../../../SQL/queries/delete_all_DVM_recs.sql)
@@ -44,6 +45,32 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   Copy the content in "script output" and save as a temporary text file (e.g. category_4_script_output_20200716.txt)
             -   Open a diff tool (e.g. WinMerge) and compare the saved script output with the corresponding Verification Export (e.g. [category_4_script_output_verification.txt](./verification_templates/automated/category_4_script_output_verification.txt)) in the [verification_templates\automated](./verification_templates/automated) folder
                 -   If the two files' content matches exactly then the test cases have been verified successfully
+
+## Fully Automated Test Case Verification SOP
+-   All tests cases defined in [Test Case Types](#test-case-types) have been completely automated using [Oracle SQL*Plus](https://docs.oracle.com/en/database/oracle/oracle-database/21/sqpug/index.html) and the verification of the results of the automated test cases has been automated using [fc](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fc) on Windows using the following procedure:
+    -   Open a command line window
+    -   cd into the [docs\packages\CDVM\test cases\SQL](./SQL) directory
+    -   Start SQL*Plus with the "nolog" option:
+```
+sqlplus /nolog
+```
+    -   Execute the [verification_data_export.sql](./SQL/verification_data_export.sql) with the following command:
+```
+@verification_data_export.sql
+```
+    -   Specify the credentials for the database instance and schema in the following format:
+```
+USER/PASSWORD@HOSTNAME/SID
+```
+    -   When the scripts have finished executing the .csv and .txt test case output files are located in [verification_templates/automated](./verification_templates/automated) with a "-2" suffix before the file extension (e.g. category_1_DVM_issue_verification-2.csv)
+    -   Execute the [verification_script.bat](./verification_templates/automated/verification_script.bat)
+        -   This script uses fc to confirm the expected results of each test case category (e.g. category_3_DVM_issue_verification.csv) matches the actual results of the corresponding test case category (e.g. category_3_DVM_issue_verification-2.csv) and saves the results in file_compare_script_output_verification-2.txt
+        -   The script will then compare the expected output for all test case categories [file_compare_script_output_verification.txt](./verification_templates/automated/file_compare_script_output_verification.txt) with the actual results of all test case categories (file_compare_script_output_verification-2.txt)
+    -   Verify that the output of the script indicates that file_compare_script_output_verification.txt and file_compare_script_output_verification-2.txt are identical:
+```
+Comparing files file_compare_script_output_verification.txt and FILE_COMPARE_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+```
 
 ## Test Case Definition SOP:
 -   Update the Test Case Definitions in the [CCD DVM Test Cases](./CDVM%20Test%20Cases.xlsx) workbook to add the expected results for the new test cases in the corresponding section based on the type of test case
@@ -72,6 +99,10 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   Copy the "script output" produced by the DVM test script and save it as a text file with the specified naming convention for the Verification Export
                 -   Use a diff tool to verify that the script output matches the expected results defined in the corresponding script [verification export](./verification_templates/automated) file
     -   Include the new/modified Verification Export file in the version control commit to replace the previous version (if any).
+-   When adding new test case categories:
+    -   Update [verification_data_export.sql](./SQL/verification_data_export.sql) to add the commands necessary to execute the test case using the corresponding scripts and output the corresponding verification file(s) in the [verification_templates/automated](./verification_templates/automated) folder
+    -   Update [verification_script.bat](./verification_templates/automated/verification_script.bat) to add fc commands for each new verification file to confirm the expected and actual results match
+    -   Update the expected file verification output file ([file_compare_script_output_verification.txt](./verification_templates/automated/file_compare_script_output_verification.txt)) to include the successful comparison results for the new verification file(s)
 -   Update documentation (if necessary) and commit changes to the version control system.
 
 ## Test Case Types:

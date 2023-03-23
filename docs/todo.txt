@@ -22,6 +22,14 @@ App Updates: (2 weeks)
 	_ implement database upgrade and rollback SOP (1 week)
 
 
+
+X update the DVM testing documentation for the automated method
+	X Go to SQL directory and run sqlplus /nolog and then provide the hostname/user/pass and 
+	X check the automated directory using winmerge or diff program (using fc as a native Windows command line program)
+	Maybe change the "-2" file name suffix to "-compare"
+	
+	X script winmerge or other diff tool to compare the files and output to a single file, which can then be diff'd with a saved file to confirm everything works properly 
+
 X DB Updates (1 day):
 	X DVM
 	X DLM
