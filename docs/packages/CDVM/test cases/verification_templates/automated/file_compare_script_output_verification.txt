@@ -1,0 +1,39 @@
+Comparing files category_1_DVM_issue_verification.csv and CATEGORY_1_DVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_2_DVM_issue_verification.csv and CATEGORY_2_DVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_3_DVM_issue_verification.csv and CATEGORY_3_DVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_4_script_output_verification.txt and CATEGORY_4_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+
+Comparing files category_5_DVM_issue_verification.csv and CATEGORY_5_DVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_6_DVM_issue_verification.csv and CATEGORY_6_DVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_6_DVM_PTA_rule_verification.csv and CATEGORY_6_DVM_PTA_RULE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_6_DVM_rule_verification.csv and CATEGORY_6_DVM_RULE_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_7_DVM_config_error_verification_1.csv and CATEGORY_7_DVM_CONFIG_ERROR_VERIFICATION_1-2.CSV
+FC: no differences encountered
+
+Comparing files category_7_DVM_config_error_verification_2.csv and CATEGORY_7_DVM_CONFIG_ERROR_VERIFICATION_2-2.CSV
+FC: no differences encountered
+
+Comparing files category_7_DVM_config_error_verification_3.csv and CATEGORY_7_DVM_CONFIG_ERROR_VERIFICATION_3-2.CSV
+FC: no differences encountered
+
+Comparing files category_7_script_output_verification.txt and CATEGORY_7_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+
+Comparing files category_8_script_output_verification.txt and CATEGORY_8_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+
