@@ -1,0 +1,7 @@
+executing test case for ORA-20201
+ORA-20220: The data QC view (CCD_QC_CRUISE_TEMP_V) does not exist:
+ORA-06512: at "CEN_CRUISE.DVM_PKG", line 1880
+test case for ORA-20220 was successful
+
+PL/SQL procedure successfully completed.
+
