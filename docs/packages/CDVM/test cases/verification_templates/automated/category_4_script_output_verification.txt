@@ -4,7 +4,6 @@ ORA-20201: The specified data stream code (TEST) was not found in the database: 
 The parent record was NOT evaluated successfully
 completed test case for ORA-20201
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20202
@@ -12,7 +11,6 @@ ORA-20237: The parent record could not be validated successfully:
 ORA-20202: The current data stream has a parent table (CCD_CRUISES_TEMP) that does not exist, this must be resolved before the DVM can execute successfully
 The parent record was NOT evaluated successfully
 completed test case for ORA-20202
-
 
 PL/SQL procedure successfully completed.
 
@@ -22,7 +20,6 @@ ORA-20203: The current data stream has a parent table (CCD_CRUISE_LEGS) that has
 The parent record was NOT evaluated successfully
 completed test case for ORA-20203
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20204
@@ -30,7 +27,6 @@ ORA-20237: The parent record could not be validated successfully:
 ORA-20204: The associated parent table (CCD_CRUISES AND CCD_CRUISE_LEGS) and parent table's primary key field (CRUISE_ID AND CRUISE_LEG_ID) for the current and previous data stream codes (CCD_TEST AND CCD) are not the same, this indicates that the data stream codes are for different parent tables so this procedure call is invalid
 The parent record was NOT evaluated successfully
 completed test case for ORA-20204
-
 
 PL/SQL procedure successfully completed.
 
@@ -40,7 +36,6 @@ ORA-20206: The parent record (CCD_CRUISES) for the data stream code(s) (CCD) and
 The parent record was NOT evaluated successfully
 completed test case for ORA-20206
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20210
@@ -49,7 +44,6 @@ ORA-20210: The data stream code (CCD) has more than one active validation rule s
 The parent record was NOT evaluated successfully
 completed test case for ORA-20210
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20211
@@ -58,7 +52,6 @@ ORA-20211: The data stream code (CCD) has no associated active validation rules
 The parent record was NOT evaluated successfully
 completed test case for ORA-20211
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20211
@@ -66,7 +59,6 @@ ORA-20237: The parent record could not be validated successfully:
 ORA-20211: The data stream code (CCD) has no associated active validation rules
 The parent record was NOT evaluated successfully
 completed test case for ORA-20211
-
 
 PL/SQL procedure successfully completed.
 
@@ -77,7 +69,6 @@ ORA-20220: The data QC view (CCD_QC_CRUISE_TEMP_V) does not exist: ORA-00942: ta
 The parent record was NOT evaluated successfully
 completed test case for ORA-20220
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20221
@@ -86,7 +77,6 @@ ORA-20219: The data QC validation rules could not be processed for the specified
 ORA-20221: The data QC view (CCD_QC_CRUISE_V) is invalid: ORA-04063: view "CEN_CRUISE.CCD_QC_CRUISE_V" has errors
 The parent record was NOT evaluated successfully
 completed test case for ORA-20221
-
 
 PL/SQL procedure successfully completed.
 
@@ -99,7 +89,6 @@ ORA-20224: The current Validation Rule's application link template contains one 
 The parent record was NOT evaluated successfully
 completed test case for ORA-20224
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20224
@@ -110,7 +99,6 @@ ORA-20223: The data QC validation issue record could not be successfully populat
 ORA-20224: The current Validation Rule's application link template contains one or more placeholders (GHI, JKL) that were not found in the data QC view (CCD_QC_LEG_OVERLAP_V)
 The parent record was NOT evaluated successfully
 completed test case for ORA-20224
-
 
 PL/SQL procedure successfully completed.
 
@@ -123,7 +111,6 @@ ORA-20225: The current Validation Rule's issue description template contains one
 The parent record was NOT evaluated successfully
 completed test case for ORA-20225
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20225
@@ -135,7 +122,6 @@ ORA-20225: The current Validation Rule's issue description template contains one
 The parent record was NOT evaluated successfully
 completed test case for ORA-20225
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20232
@@ -144,77 +130,76 @@ ORA-20232: The current data stream has a parent table (DVM_ISSUES_HIST) that doe
 The parent record was NOT evaluated successfully
 completed test case for ORA-20232
 
-
 PL/SQL procedure successfully completed.
 
 
-Table DVM_ISSUES_HIST altered.
+Table altered.
 
 
-Table DVM_ISSUES_HIST altered.
+Table altered.
 
 
-Table DVM_ISSUES_HIST altered.
+Table altered.
 
 
-Table DVM_ISSUES_HIST altered.
+Table altered.
 
 
-View CCD_CRUISE_V altered.
+View altered.
 
 
-View CCD_QC_CRUISE_V altered.
+View altered.
 
 
-View CCD_QC_LEG_ALIAS_V altered.
+View altered.
 
 
-View CCD_QC_LEG_OVERLAP_V altered.
+View altered.
 
 
-View CCD_QC_LEG_V altered.
+View altered.
 
 
-View CCD_CRUISE_DELIM_V altered.
+View altered.
 
 
-View CCD_CRUISE_ISS_SUMM_V altered.
+View altered.
 
 
-View CCD_CRUISE_LEG_DELIM_V altered.
+View altered.
 
 
-View CCD_CRUISE_LEGS_V altered.
+View altered.
 
 
-View CCD_CRUISE_SUMM_ISS_V altered.
+View altered.
 
 
-View CCD_CRUISE_SUMM_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_EVAL_RPT_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULE_EVAL_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULE_EVAL_RPT_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULES_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULES_RPT_V altered.
+View altered.
 
 
-Package CCD_CRUISE_PKG altered.
+Package altered.
 
 
-Package DVM_PKG altered.
+Package altered.
 
 
-Package CCD_DVM_PKG altered.
+Package altered.
 
 executing test case for ORA-20232
 ORA-20237: The parent record could not be validated successfully:
@@ -222,77 +207,76 @@ ORA-20232: The current data stream has a parent table (DVM_ISS_SEVERITY_HIST) th
 The parent record was NOT evaluated successfully
 completed test case for ORA-20232
 
-
 PL/SQL procedure successfully completed.
 
 
-Table DVM_ISS_SEVERITY_HIST altered.
+Table altered.
 
 
-Table DVM_ISS_SEVERITY_HIST altered.
+Table altered.
 
 
-Table DVM_ISS_SEVERITY_HIST altered.
+Table altered.
 
 
-Table DVM_ISS_SEVERITY_HIST altered.
+Table altered.
 
 
-View CCD_CRUISE_V altered.
+View altered.
 
 
-View CCD_QC_CRUISE_V altered.
+View altered.
 
 
-View CCD_QC_LEG_ALIAS_V altered.
+View altered.
 
 
-View CCD_QC_LEG_OVERLAP_V altered.
+View altered.
 
 
-View CCD_QC_LEG_V altered.
+View altered.
 
 
-View CCD_CRUISE_DELIM_V altered.
+View altered.
 
 
-View CCD_CRUISE_ISS_SUMM_V altered.
+View altered.
 
 
-View CCD_CRUISE_LEG_DELIM_V altered.
+View altered.
 
 
-View CCD_CRUISE_LEGS_V altered.
+View altered.
 
 
-View CCD_CRUISE_SUMM_ISS_V altered.
+View altered.
 
 
-View CCD_CRUISE_SUMM_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_EVAL_RPT_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULE_EVAL_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULE_EVAL_RPT_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULES_V altered.
+View altered.
 
 
-View CCD_CRUISE_DVM_RULES_RPT_V altered.
+View altered.
 
 
-Package CCD_CRUISE_PKG altered.
+Package altered.
 
 
-Package DVM_PKG altered.
+Package altered.
 
 
-Package CCD_DVM_PKG altered.
+Package altered.
 
 executing test case for ORA-20234
 ORA-20237: The parent record could not be validated successfully:
@@ -301,7 +285,6 @@ ORA-20234: The validation rule (Cruise Leg Overlap) indicator field (MISSING_IND
 ORA-01403: no data found
 The parent record was NOT evaluated successfully
 completed test case for ORA-20234
-
 
 PL/SQL procedure successfully completed.
 
@@ -313,7 +296,6 @@ ORA-01403: no data found
 The parent record was NOT evaluated successfully
 completed test case for ORA-20234
 
-
 PL/SQL procedure successfully completed.
 
 executing test case for ORA-20235
@@ -323,7 +305,6 @@ ORA-20235: The validation rule (Mismatched Cruise Name and Fiscal Year) indicato
 ORA-06562: type of out argument must match type of column or bind variable
 The parent record was NOT evaluated successfully
 completed test case for ORA-20235
-
 
 PL/SQL procedure successfully completed.
 
@@ -335,11 +316,10 @@ ORA-06562: type of out argument must match type of column or bind variable
 The parent record was NOT evaluated successfully
 completed test case for ORA-20235
 
-
 PL/SQL procedure successfully completed.
 
 
-View CCD_QC_LEG_ALIAS_V created.
+View created.
 
 executing test case for ORA-20236
 ORA-20237: The parent record could not be validated successfully:
@@ -349,11 +329,10 @@ ORA-00904: "CRUISE_ID": invalid identifier
 The parent record was NOT evaluated successfully
 completed test case for ORA-20236
 
-
 PL/SQL procedure successfully completed.
 
 
-View CCD_QC_LEG_ALIAS_V created.
+View created.
 
 
 Comment created.
@@ -389,4 +368,5 @@ Comment created.
 Comment created.
 
 
-View CCD_CCDP_DEEP_COPY_CMP_V altered.
+View altered.
+
