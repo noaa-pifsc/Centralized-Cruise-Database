@@ -1,3 +1,4 @@
+
 "ERR_SOURCE","ERR_MSG"
 "Active Validation Rule Set (DVM_RULE_SETS)","Data Stream Validation Rule Set Error (multiple active rule sets) - The Data Stream (CCD_TEST) has more than one (2) active validation rule set associated with it, only one rule set for each data stream should be active at any given time.  Please contact the software developer for troubleshooting support"
 "Data QC View (DVM_QC_OBJECTS)","The Data QC View (CCD_QC_CRUISE_V) does not contain the associated parent table's (CCD_CRUISE_LEGS) primary key field (CRUISE_LEG_ID), update the Data QC View to add the parent table's primary key field"

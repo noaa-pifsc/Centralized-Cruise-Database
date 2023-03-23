@@ -1,3 +1,4 @@
+
 "CRUISE_NAME","LEG_NAME_CD_LIST","RULE_DATA_STREAM_CODE","ISS_TYPE_NAME","IND_FIELD_NAME","ISS_SEVERITY_CODE","ISS_TYPE_DESC"
 "HA1007 (copy)","HA1007 (copy)","CCD_TEST","Cruise Leg Overlap","CRUISE_OVERLAP_YN","ERROR","Two cruise legs that are associated with the same cruise have overlapping start/end dates, two legs for the same cruise cannot occur concurrently"
 "HA1007 (copy)","HA1007 (copy)","CCD_TEST","Invalid Cruise Days at Sea","ERR_CRUISE_DAS_YN","ERROR","Cruise is too long (DAS based on start and end dates) > 240 days"

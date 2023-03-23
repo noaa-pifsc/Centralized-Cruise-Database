@@ -1,3 +1,4 @@
+
 "CRUISE_NAME","LEG_NAME_CD_LIST","ISS_SEVERITY_CODE","ISS_TYPE_NAME","ISS_TYPE_DESC","ISS_DESC","IND_FIELD_NAME"
 "HA1007 (copy)","HA1007 (copy)","ERROR","Invalid Copied Cruise Name","The Cruise Name contains ""(copy)"" which indicates it was created using the ""Deep Copy"" feature and should be renamed","The Cruise (HA1007 (copy)) with Start Date (09/04/2010) and End Date (09/29/2010) has ""(copy)"" in the Cruise Name, this should be renamed","INV_CRUISE_NAME_COPY_YN"
 "HA1007 (copy)","HA1007 (copy)","ERROR","Invalid Copied Leg Name","The Leg Name contains ""(copy)"" which indicates it was created using the ""Deep Copy"" feature and should be renamed","The Cruise (HA1007 (copy)) has a Cruise Leg (HA1007 (copy)) on the Vessel (Hi'ialakai) with Start Date (09/04/2010) and End Date (09/29/2010) that has ""(copy)"" in the Leg Name, this should be renamed","INV_LEG_NAME_COPY_YN"
