@@ -20,16 +20,19 @@ BEGIN
 	
 
 	EXCEPTION
-		WHEN SQLCODE = -20201 THEN
-		
-			DBMS_output.put_line(SQLERRM);
-		
-			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20220');
-		
 		WHEN OTHERS THEN
 			DBMS_output.put_line(SQLERRM);
 
-			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20220');
+			IF (SQLCODE = -20220) THEN
+		
+				DBMS_OUTPUT.PUT_LINE ('test case for ORA-20220 was successful');
+			
+			ELSE
+				DBMS_OUTPUT.PUT_LINE ('test case for ORA-20220 was NOT successful');
+			
+			END IF;
+			
+
 
 END;
 /
