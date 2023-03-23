@@ -1,3 +1,4 @@
+
 "ERR_SOURCE","ERR_MSG"
 "Data Stream (DVM_DATA_STREAMS)","There are no Data Streams defined in the DVM, at least one Data Stream must be defined to execute the DVM"
 "Data Validation Rules (DVM_ISS_TYPES)","There are no Validation Rules defined in the DVM, at least one Validation Rule must be defined to execute the DVM"
