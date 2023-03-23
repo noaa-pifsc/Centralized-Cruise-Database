@@ -7,7 +7,10 @@ set serveroutput on;
 
 --execute for invalid data stream (ORA-20220)
 DECLARE
-	P_DATA_STREAM_CODE DVM_PKG.VARCHAR_ARRAY_NUM;
+	
+	V_ERR_SOURCE VARCHAR2;
+	V_ERR_MSG CLOB;
+	
 BEGIN
 	-- Modify the code to initialize the variable
 
@@ -16,7 +19,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for ORA-20201');
 
 
-	Select ERR_SOURCE, ERR_MSG FROM DVM_STD_QC_ALL_RPT_V ORDER BY ERR_SOURCE, ERR_MSG;
+	Select ERR_SOURCE, ERR_MSG INTO V_ERR_SOURCE, V_ERR_MSG FROM DVM_STD_QC_ALL_RPT_V ORDER BY ERR_SOURCE, ERR_MSG;
 	
 
 	EXCEPTION
