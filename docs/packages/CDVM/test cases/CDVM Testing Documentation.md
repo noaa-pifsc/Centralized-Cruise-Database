@@ -51,18 +51,26 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
     -   Open a command line window
     -   cd into the [docs\packages\CDVM\test cases\SQL](./SQL) directory
     -   Start SQL*Plus with the "nolog" option:
-        sqlplus /nolog
+~~~
+sqlplus /nolog
+~~~
     -   Execute the [verification_data_export.sql](./SQL/verification_data_export.sql) with the following command:
-        @verification_data_export.sql
+~~~
+@verification_data_export.sql
+~~~
     -   Specify the credentials for the database instance and schema in the following format:
-        USER/PASSWORD@HOSTNAME/SID
+~~~
+USER/PASSWORD@HOSTNAME/SID
+~~~
     -   When the scripts have finished executing the .csv and .txt test case output files are located in [verification_templates/automated](./verification_templates/automated) with a "-2" suffix before the file extension (e.g. category_1_DVM_issue_verification-2.csv)
     -   Execute the [verification_script.bat](./verification_templates/automated/verification_script.bat)
         -   This script uses fc to confirm the expected results of each test case category (e.g. category_3_DVM_issue_verification.csv) matches the actual results of the corresponding test case category (e.g. category_3_DVM_issue_verification-2.csv) and saves the results in file_compare_script_output_verification-2.txt
         -   The script will then compare the expected output for all test case categories [file_compare_script_output_verification.txt](./verification_templates/automated/file_compare_script_output_verification.txt) with the actual results of all test case categories (file_compare_script_output_verification-2.txt)
     -   Verify that the output of the script indicates that file_compare_script_output_verification.txt and file_compare_script_output_verification-2.txt are identical:
-        Comparing files file_compare_script_output_verification.txt and FILE_COMPARE_SCRIPT_OUTPUT_VERIFICATION-2.TXT
-        FC: no differences encountered
+~~~
+Comparing files file_compare_script_output_verification.txt and FILE_COMPARE_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+~~~
 
 ## Test Case Definition SOP:
 -   Update the Test Case Definitions in the [CCD DVM Test Cases](./CDVM%20Test%20Cases.xlsx) workbook to add the expected results for the new test cases in the corresponding section based on the type of test case
