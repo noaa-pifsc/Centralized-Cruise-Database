@@ -162,3 +162,8 @@ grant select on AUTH_APP_USER_GROUPS_V to CEN_CRUISE_APP;
 grant select, insert, update, delete on AUTH_APP_USERS TO CEN_CRUISE_APP;
 grant select, insert, update, delete on AUTH_APP_USER_GROUPS TO CEN_CRUISE_APP;
 grant select, insert, update, delete on AUTH_APP_GROUPS TO CEN_CRUISE_APP;
+
+
+
+	grant execute on CCD_AUTH_APP_PKG to CEN_CRUISE_APP;
+grant select on CC_CONFIG_OPTIONS TO CEN_CRUISE_APP;

@@ -7,6 +7,44 @@ X document update and commit code and documentation
 X ** do a pull request for this one so I can verify that the markdown links are working correctly (ended up forking the repository and using the GitLab interface to verify the links were valid)
 
 
+
+
+DECLARE
+
+	V_APP_CODE VARCHAR2(50);
+	V_WRITE_ROLE_CODE VARCHAR2(50);
+	V_ADMIN_ROLE_CODE VARCHAR2(50);
+	V_CAS_ROLE_CODE_LIST VARCHAR2(2000);
+	V_APP_WRITE_ROLE_BOOL BOOLEAN := FALSE;
+--	V_READ_ROLE_CODE VARCHAR2(50);
+
+	v_arr apex_application_global.vc_arr2;
+
+
+
+BEGIN
+
+	SELECT (SELECT OPTION_VALUE FROM CC_CONFIG_OPTIONS WHERE OPTION_NAME = 'CAS_APP_CODE'), (SELECT OPTION_VALUE  FROM CC_CONFIG_OPTIONS WHERE OPTION_NAME = 'CAS_ADMIN_ROLE'), (SELECT OPTION_VALUE FROM CC_CONFIG_OPTIONS WHERE OPTION_NAME = 'CAS_WRITE_ROLE'), CAS_AUTH_APP_PKG.CAS_ROLE_CODE_LIST_FN (:app_user) INTO V_APP_CODE, V_ADMIN_ROLE_CODE, V_WRITE_ROLE_CODE, V_CAS_ROLE_CODE_LIST FROM DUAL;
+
+	v_arr := apex_util.string_to_table(V_CAS_ROLE_CODE_LIST);
+	for i in 1..v_arr.count
+	loop
+		IF ((v_arr(i) = V_WRITE_ROLE_CODE) OR (v_arr(i) = V_ADMIN_ROLE_CODE)) THEN
+			V_APP_WRITE_ROLE_BOOL := TRUE;
+		END IF;
+	end loop;
+
+	RETURN V_APP_WRITE_ROLE_BOOL;
+END;
+
+
+
+
+
+
+
+
+
 App Updates: (2 weeks)
 
 	(1 week)
@@ -22,13 +60,15 @@ App Updates: (2 weeks)
 	_ implement database upgrade and rollback SOP (1 week)
 
 
+_ remove auth user or change to readonly?
+
 
 X update the DVM testing documentation for the automated method
-	X Go to SQL directory and run sqlplus /nolog and then provide the hostname/user/pass and 
+	X Go to SQL directory and run sqlplus /nolog and then provide the hostname/user/pass and
 	X check the automated directory using winmerge or diff program (using fc as a native Windows command line program)
 	Maybe change the "-2" file name suffix to "-compare"
-	
-	X script winmerge or other diff tool to compare the files and output to a single file, which can then be diff'd with a saved file to confirm everything works properly 
+
+	X script winmerge or other diff tool to compare the files and output to a single file, which can then be diff'd with a saved file to confirm everything works properly
 
 X DB Updates (1 day):
 	X DVM
@@ -42,23 +82,23 @@ Documentation:
 Test (1.5 weeks)
 	_ DVM (automated test cases) - 3 days -> update the automated verification method to spool the output to a given directory (SQLPlus script to produce the same output
 	Maybe even script the diff comparisons and check the output
-	
-	
+
+
 	_ APEX app - 3 days
-	
- 
- 
+
+
+
 ** X User Permissions (document this policy in the business rules document)
 	X Data Admin can do anything
 	X Data Write can add/edit/delete cruises, cruise legs, presets but not reference tables (X document the bus rule)
- 
+
 
 
 
  3.5 weeks (could go more quickly -> need to get started and I'll update estimate as I make progress)
- 
- 
- 
+
+
+
 
 _ Data Integration SOP:
 	Include scripts/functions for integrating directly with cruise data in addition to the existing cruise legs

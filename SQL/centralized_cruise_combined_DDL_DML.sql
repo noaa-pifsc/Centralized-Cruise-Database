@@ -39,3 +39,4 @@
 @@"./upgrades/centralized_cruise_DDL_DML_upgrade_v0.26.sql"
 @@"./upgrades/centralized_cruise_DDL_DML_upgrade_v0.27.sql"
 @@"./upgrades/centralized_cruise_DDL_DML_upgrade_v0.28.sql"
+@@"./upgrades/centralized_cruise_DDL_DML_upgrade_v1.0.sql"
