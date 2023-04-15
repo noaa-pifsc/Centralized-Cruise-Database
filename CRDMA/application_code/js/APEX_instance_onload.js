@@ -13,7 +13,7 @@ $( document ).ready(function()
 	$("div.t-Body-content-bg-image").css("background-image", 'url("'+app_bg_image+'")');
 
 	//check to see which APEX server instance this code is running on (based on hostname):
-	if (window.location.hostname == 'picmidd.nmfs.local')	//this is the development server instance
+	if (window.location.hostname == dev_app_hostname)	//this is the development server instance
 	{
 		//this is the development server, use the development background image and append a string to the header logo to indicate it is the development server
 
@@ -24,7 +24,7 @@ $( document ).ready(function()
 		$("div.t-Header-logo a.t-Header-logo-link span").append(" (DEVELOPMENT VERSION)");
 
 	}
-	else if (window.location.hostname == 'picmidt.nmfs.local')	//this is the test server instance
+	else if (window.location.hostname == test_app_hostname)	//this is the test server instance
 	{
 		//this is the test server, use the test background image and append a string to the header logo to indicate it is the test server
 

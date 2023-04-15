@@ -7,5 +7,10 @@ grant execute on DSC.DSC_UTILITIES_PKG to CEN_CRUISE;
 grant execute on CEN_UTILS.CEN_UTIL_PKG to CEN_CRUISE with grant option;
 grant execute on CEN_UTILS.CEN_UTIL_ARRAY_PKG to CEN_CRUISE with grant option;
 
+--centralized authorization system package:
+grant execute on CAS.CAS_EXT_AUTH_PKG to CEN_CRUISE_APP;
+
+
 grant execute on CEN_UTILS.CEN_UTIL_PKG to CEN_CRUISE_APP;
+
 
