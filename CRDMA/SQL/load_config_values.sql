@@ -5,3 +5,8 @@ INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('
 INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('CAS_WRITE_ROLE', 'CCD WRITE', 'The data write role code defined within the Centralized Authorization System for the Centralized Cruise Database application');
 INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('CAS_ADMIN_ROLE', 'CCD ADMIN', 'The data administrator role code defined within the Centralized Authorization System for the Centralized Cruise Database application');
 INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('CAS_READ_ROLE', 'CCD READ', 'The data read role code defined within the Centralized Authorization System for the Centralized Cruise Database application');
+
+--insert the dev/test server configuration information
+INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('DEV_HOSTNAME', 'picmidd.nmfs.local', 'The development APEX server hostname');
+INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('TEST_HOSTNAME', 'picmidt.nmfs.local', 'The test APEX server hostname');
+

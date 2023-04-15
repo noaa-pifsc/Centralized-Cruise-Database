@@ -2,9 +2,6 @@
 grant execute on CCD_CRUISE_PKG to CEN_CRUISE_APP;
 grant execute on DB_LOG_PKG to CEN_CRUISE_APP;
 grant execute on CUST_ERR_PKG to CEN_CRUISE_APP;
-grant execute on AUTH_APP_PKG to CEN_CRUISE_APP;
-grant select on AUTH_APP_USERS_V to CEN_CRUISE_APP;
-grant select on AUTH_APP_USER_GROUPS_V to CEN_CRUISE_APP;
 
 
 grant select on CCD_CRUISE_SUMM_V to CEN_CRUISE_APP;
@@ -154,13 +151,5 @@ grant select, insert on AFF_RESPONSES to CEN_CRUISE_APP;
 grant select on AFF_RESPONSES_V to CEN_CRUISE_APP;
 
 
---authorization application module pages:
-grant select on AUTH_APP_USERS_V to CEN_CRUISE_APP;
-grant select on AUTH_APP_USER_GROUPS_V to CEN_CRUISE_APP;
-
-
-grant select, insert, update, delete on AUTH_APP_USERS TO CEN_CRUISE_APP;
-grant select, insert, update, delete on AUTH_APP_USER_GROUPS TO CEN_CRUISE_APP;
-grant select, insert, update, delete on AUTH_APP_GROUPS TO CEN_CRUISE_APP;
 
 grant select on CC_CONFIG_OPTIONS TO CEN_CRUISE_APP;
