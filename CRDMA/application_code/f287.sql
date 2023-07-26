@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   16:40 Friday April 14, 2023
+--   Date and Time:   13:30 Thursday June 22, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -85,13 +85,13 @@ wwv_flow_imp.create_flow(
  p_id=>wwv_flow.g_flow_id
 ,p_owner=>nvl(wwv_flow_application_install.get_schema,'CEN_CRUISE_APP')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'PIFSC Cruise Data Management Application')
-,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'F_278')
+,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'CCD')
 ,p_page_view_logging=>'YES'
 ,p_page_protection_enabled_y_n=>'Y'
 ,p_checksum_salt=>'B4F9F2E0F0A7A01D6A6109DAB6BF71358E48A4F9D536F4C5CA15A2D30F01232F'
 ,p_bookmark_checksum_function=>'SH1'
 ,p_accept_old_checksums=>false
-,p_compatibility_mode=>'5.1'
+,p_compatibility_mode=>'21.2'
 ,p_flow_language=>'en'
 ,p_flow_language_derived_from=>'FLOW_PRIMARY_LANGUAGE'
 ,p_date_format=>'MM/DD/YYYY'
@@ -105,7 +105,7 @@ wwv_flow_imp.create_flow(
 ,p_logo_text=>'PIFSC Cruise App'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
-,p_flow_version=>'release 0.17'
+,p_flow_version=>'release 1.0'
 ,p_flow_status=>'AVAILABLE_W_EDIT_LINK'
 ,p_flow_unavailable_text=>'This application is currently unavailable at this time.'
 ,p_exact_substitutions_only=>'Y'
@@ -119,7 +119,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230414164015'
+,p_last_upd_yyyymmddhh24miss=>'20230615173743'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>46
 ,p_print_server_type=>'INSTANCE'
@@ -27190,7 +27190,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(377468744546880386)
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321153332'
+,p_last_upd_yyyymmddhh24miss=>'20230615173743'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(315117887850785438)
@@ -27674,7 +27674,6 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
 ,p_requires_filter=>false
-,p_max_row_count=>100000
 ,p_show_nulls_as=>'-'
 ,p_select_first_row=>true
 ,p_fixed_row_height=>true
@@ -27688,7 +27687,7 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_define_chart_view=>true
 ,p_enable_download=>true
 ,p_download_formats=>'CSV:HTML'
-,p_enable_mail_download=>true
+,p_enable_mail_download=>false
 ,p_fixed_header=>'PAGE'
 ,p_show_icon_view=>false
 ,p_show_detail_view=>false

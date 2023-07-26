@@ -1,6 +1,6 @@
 /************************************************************************************
- Filename   : ODS_dev_query_export.sql
- Purpose    : Automated script for generating an ODS data set export for the development database instance
+ Filename   : verification_data_export.sql
+ Purpose    : Automated script for executing test cases for the Centralized Cruise DB
 ************************************************************************************/
 SET FEEDBACK OFF
 SET TRIMSPOOL ON

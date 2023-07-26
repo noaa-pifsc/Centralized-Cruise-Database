@@ -36,6 +36,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
+    -   For detailed information on integrating the CCD into a new/existing data system refer to the [CCD Data Integration SOP](./Centralized%20Cruise%20Database%20-%20Data%20Integration%20SOP.md)
 -   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
     -   **\*\*Note**: The automated test cases require this script to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
 
