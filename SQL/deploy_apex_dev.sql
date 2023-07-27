@@ -29,7 +29,7 @@ PROMPT load synonyms for the application
 @@../CRDMA/SQL/create_CRDMA_synonyms.sql
 
 PROMPT load the application code
-@@../CRDMA/application_code/f287.sql
+--@@../CRDMA/application_code/f287.sql
 
 Disconnect;
 

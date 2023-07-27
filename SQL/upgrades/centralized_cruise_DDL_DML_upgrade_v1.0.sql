@@ -35,9 +35,9 @@ DELETE FROM DB_UPGRADE_LOGS WHERE UPGRADE_APP_NAME = 'Authorization Application 
 
 
 ALTER TABLE CCD_CRUISE_LEGS 
-ADD (UTC_TZ_OFFSET VARCHAR2(40) NOT NULL);
+ADD (TZ_NAME VARCHAR2(40) NOT NULL);
 
-COMMENT ON COLUMN CCD_CRUISE_LEGS.UTC_TZ_OFFSET IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
+COMMENT ON COLUMN CCD_CRUISE_LEGS.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
 
 
 COMMENT ON COLUMN CCD_CRUISE_LEGS.LEG_START_DATE IS 'The start date in the corresponding time zone for the given research cruise leg';
@@ -59,7 +59,7 @@ TO_CHAR(CCD_CRUISE_LEGS.LEG_END_DATE, 'MM/DD/YYYY') FORMAT_LEG_END_DATE,
 
 TO_CHAR(CCD_CRUISE_LEGS.LEG_START_DATE, 'YYYY') LEG_YEAR,
 
-CCD_CRUISE_LEGS.UTC_TZ_OFFSET,
+CCD_CRUISE_LEGS.TZ_NAME,
 CEN_UTILS.CEN_UTIL_PKG.CALC_FISCAL_YEAR_FN(CCD_CRUISE_LEGS.LEG_START_DATE) LEG_FISC_YEAR,
 CCD_CRUISE_LEGS.LEG_DESC,
 CCD_CRUISE_LEGS.CRUISE_ID,
@@ -101,7 +101,7 @@ COMMENT ON COLUMN CCD_LEG_V.LEG_DAS IS 'The number of days at sea for the given 
 COMMENT ON COLUMN CCD_LEG_V.LEG_YEAR IS 'The calendar year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_LEG_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_LEG_V.LEG_DESC IS 'The description for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_V.UTC_TZ_OFFSET IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
+COMMENT ON COLUMN CCD_LEG_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
 
 COMMENT ON COLUMN CCD_LEG_V.CRUISE_ID IS 'The cruise for the given research cruise leg';
 
@@ -260,7 +260,7 @@ CCD_LEG_V.LEG_YEAR,
 CCD_LEG_V.LEG_DAS,
 CCD_LEG_V.LEG_FISC_YEAR,
 CCD_LEG_V.LEG_DESC,
-CCD_LEG_V.UTC_TZ_OFFSET,
+CCD_LEG_V.TZ_NAME,
 CCD_LEG_V.VESSEL_ID,
 CCD_LEG_V.VESSEL_NAME,
 CCD_LEG_V.VESSEL_DESC,
@@ -318,7 +318,7 @@ COMMENT ON COLUMN CCD_CRUISE_LEGS_V.LEG_DAS IS 'The number of days at sea for th
 COMMENT ON COLUMN CCD_CRUISE_LEGS_V.LEG_YEAR IS 'The calendar year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_CRUISE_LEGS_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_CRUISE_LEGS_V.LEG_DESC IS 'The description for the given research cruise leg';
-COMMENT ON COLUMN CCD_CRUISE_LEGS_V.UTC_TZ_OFFSET IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
+COMMENT ON COLUMN CCD_CRUISE_LEGS_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
 
 COMMENT ON COLUMN CCD_CRUISE_LEGS_V.VESSEL_ID IS 'Foreign key reference to the CCD_VESSELS table for the cruise leg''s vessel';
 COMMENT ON COLUMN CCD_CRUISE_LEGS_V.VESSEL_NAME IS 'Name of the given research vessel';
@@ -372,7 +372,7 @@ CCD_LEG_V.LEG_DAS,
 CCD_LEG_V.LEG_YEAR,
 CCD_LEG_V.LEG_FISC_YEAR,
 CCD_LEG_V.LEG_DESC,
-CCD_LEG_V.UTC_TZ_OFFSET,
+CCD_LEG_V.TZ_NAME,
 CCD_LEG_V.CRUISE_ID,
 CCD_LEG_V.VESSEL_ID,
 CCD_LEG_V.VESSEL_NAME,
@@ -516,7 +516,7 @@ COMMENT ON COLUMN CCD_LEG_DELIM_V.LEG_YEAR IS 'The calendar year for the start d
 COMMENT ON COLUMN CCD_LEG_DELIM_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_LEG_DELIM_V.LEG_DESC IS 'The description for the given research cruise leg';
 
-COMMENT ON COLUMN CCD_LEG_DELIM_V.UTC_TZ_OFFSET IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
+COMMENT ON COLUMN CCD_LEG_DELIM_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
 
 COMMENT ON COLUMN CCD_LEG_DELIM_V.CRUISE_ID IS 'The cruise for the given research cruise leg';
 
