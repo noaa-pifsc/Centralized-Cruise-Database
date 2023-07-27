@@ -146,7 +146,6 @@ COMMENT ON COLUMN CCD_CRUISE_SUMM_ISS_V.CRUISE_END_DATE IS 'The end date in the 
 COMMENT ON COLUMN CCD_CRUISE_SUMM_ISS_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
 
 
-ALTER VIEW CCD_CCDP_DEEP_COPY_CMP_V COMPILE;
 
 ALTER VIEW CCD_CRUISE_DVM_EVAL_RPT_V COMPILE;
 
@@ -590,6 +589,9 @@ COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_END_DATE IS 'The end date in the
 
 ALTER PACKAGE CCD_CRUISE_PKG COMPILE;
 ALTER PACKAGE CCD_DVM_PKG COMPILE;
+
+ALTER VIEW CCD_CCDP_DEEP_COPY_CMP_V COMPILE;
+
 
 --define the upgrade version in the database upgrade log table:
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '1.0', TO_DATE('01-MAY-23', 'DD-MON-YY'), 'Upgraded from Version 0.4 (Git tag: APX_Cust_Err_Handler_db_v0.4) to  Version 1.0 (Git tag: APX_Cust_Err_Handler_db_v1.0) of the APEX custom error handler module database (Git URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder).  Dropped the standalone AAM.  Adding TZ offset to cruise legs table');
