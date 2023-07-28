@@ -1607,6 +1607,7 @@ insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select crui
 
 
 
+
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-17-07'), '');
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-18-06'), '');
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-17-02'), '');
