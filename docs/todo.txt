@@ -12,7 +12,9 @@ X update the cruise leg start/end date field comments to say in local timezone (
 	_ update the application to expose the timezone field (drop down with distinct TZNAME values)
 		allow offsets too? -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
 		_ QC for invalid timezone value
-		
+
+Add in accession numbers (ACCESSION_ID, INPORT_ID)?
+
 
 
 bugs:
