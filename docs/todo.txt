@@ -13,6 +13,9 @@ X update the cruise leg start/end date field comments to say in local timezone (
 		allow offsets too? -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
 		_ QC for invalid timezone value
 
+
+
+
 Add in accession numbers (ACCESSION_ID, INPORT_ID)?
 
 
@@ -24,6 +27,11 @@ bugs:
 to do (DB version 1.0):
 	X update the views to include the TZ offset in the cruise legs table and implement the logic to convert UTC to local time
 		X_ also local time to UTC based on the TZ offset (this should defined in the centralized utilities schema to make it available to all data projects)
+		
+	update APEX app to implement cruise leg/data set relationship
+	
+		
+		
 		
 	_ update the APEX interface to include the TZ offset 
 	_ add QC view for the offset to ensure it's in the correct format (+/- ##:##)

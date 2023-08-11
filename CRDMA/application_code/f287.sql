@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   12:36 Thursday July 27, 2023
+--   Date and Time:   14:47 Thursday August 10, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -119,7 +119,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230726084113'
+,p_last_upd_yyyymmddhh24miss=>'20230810144522'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>46
 ,p_print_server_type=>'INSTANCE'
@@ -22805,7 +22805,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230726084113'
+,p_last_upd_yyyymmddhh24miss=>'20230810144521'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(450354332739614984)
@@ -24361,12 +24361,13 @@ wwv_flow_imp_page.create_page_item(
 ,p_source=>'TZ_NAME'
 ,p_source_type=>'DB_COLUMN'
 ,p_display_as=>'NATIVE_SELECT_LIST'
-,p_lov=>'select distinct TZNAME from V$TIMEZONE_NAMES order by (CASE WHEN TZNAME LIKE ''US/%'' THEN 0 WHEN TZNAME LIKE ''Etc/%'' THEN 1 ELSE 2 END), TZNAME;'
+,p_lov=>'select distinct TZNAME return_val, TZNAME display_val from V$TIMEZONE_NAMES order by (CASE WHEN TZNAME LIKE ''US/%'' THEN 0 WHEN TZNAME LIKE ''Etc/%'' THEN 1 ELSE 2 END), TZNAME;'
 ,p_lov_display_null=>'YES'
+,p_lov_null_text=>'-------------'
 ,p_cHeight=>1
-,p_field_template=>wwv_flow_imp.id(463055444759125793)
+,p_field_template=>wwv_flow_imp.id(463055651465125793)
 ,p_item_template_options=>'#DEFAULT#'
-,p_lov_display_extra=>'YES'
+,p_lov_display_extra=>'NO'
 ,p_help_text=>'The numeric offset for UTC or Time Zone Name for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'NONE'
