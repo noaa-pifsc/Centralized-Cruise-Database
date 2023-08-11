@@ -136,6 +136,12 @@ grant select on CCD_CRUISE_SUMM_ISS_V to CEN_CRUISE_APP;
 grant select on CCD_CRUISE_ISS_SUMM_V to CEN_CRUISE_APP;
 grant select on CCD_QC_LEG_OVERLAP_V to CEN_CRUISE_APP;
 
+
+grant select, insert, update, delete on CCD_LEG_DATA_SETS to CEN_CRUISE_APP;
+grant select, insert, update, delete on CCD_DATA_SETS to CEN_CRUISE_APP;
+grant select, insert, update, delete on CCD_DATA_SET_STATUS to CEN_CRUISE_APP;
+grant select, insert, update, delete on CCD_DATA_SET_TYPES to CEN_CRUISE_APP;
+
 /*
 grant insert, delete, update, select on  to CEN_CRUISE_APP;
 

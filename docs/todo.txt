@@ -9,14 +9,14 @@ X ** do a pull request for this one so I can verify that the markdown links are 
 
 X update the cruise leg start/end date field comments to say in local timezone (don't want to use UTC for this)
 	X work on updating the CCD to implement the timezone field in the views	
-	_ update the application to expose the timezone field (drop down with distinct TZNAME values)
-		allow offsets too? -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
+	X update the application to expose the timezone field (drop down with distinct TZNAME values)
+		X allow offsets too? NO -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
 		_ QC for invalid timezone value
 
 
 
 
-Add in accession numbers (ACCESSION_ID, INPORT_ID)?
+Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM schema
 
 
 
@@ -28,15 +28,56 @@ to do (DB version 1.0):
 	X update the views to include the TZ offset in the cruise legs table and implement the logic to convert UTC to local time
 		X_ also local time to UTC based on the TZ offset (this should defined in the centralized utilities schema to make it available to all data projects)
 		
-	update APEX app to implement cruise leg/data set relationship
-	
-		
-		
-		
-	_ update the APEX interface to include the TZ offset 
-	_ add QC view for the offset to ensure it's in the correct format (+/- ##:##)
+	APEX 
+		X update the APEX interface to include the TZ offset 
+		update APEX app to implement cruise leg/data set relationship
 
-	X update views that depend on CCD_CRUISE_LEGS
+		Document additional test cases and verify them
+
+	Data model
+		X update views that depend on CCD_CRUISE_LEGS
+		update data set - cruise leg relationship to be many to many
+		_ QC queries for TZ_NAME (must be in the list of values V$TIMEZONE_NAMES.TZNAME values)
+		X update CCD_DATA_SETS to replace DATA_SET_INPORT_URL to DATA_SET_INPORT_CAT_ID
+			X Update CCD_DATA_SETS_V to generate the DATA_SET_INPORT_URL based on CAT_ID value (also allows the cruise-level data sets to be related to PICDM/ODS/InPort)
+
+		Create a delimited view for leg data sets?
+			Both ways? (comma-delimited list of leg ID/names for a given data set and a comma-delimited list of data set IDs/names for a given leg) YES
+		Update data loading DML template and SQL scripts to populate the renamed numeric fields successfully
+		
+		_ Add CRUD permissions to application schema on the CCD_LEG_DATA_SETS
+		_ Add synonyms to application schema
+
+
+
+
+
+		DVM
+			Add in QC criteria for the rest of the fields that were added/deleted
+			
+
+		Pull data set information from PARR database (data set name based on CAT_ID)
+
+
+
+To Do (Version 1.x)
+	DB:
+		Integrate the PICDM data set information into the centralized cruise DB (CAT_ID foreign key)
+			? (Think about this)Update CCD_DATA_SETS.DATA_SET_ACCESS_URL to DATA_SET_ACCESS_INFO to provide instructions on how to access the data set internally (e.g. PIC.MOUSS schema, contact X for access)
+			Pull the DOI, Archival URL from PICDM (ODS) into the CCD_DATA_SETS_V view
+			Pull the publicly accessible and archived status from the PICDM schema (PARR Tools URL Verification Module results)
+		Update CCD_DATA_SET_TYPES to rename DATA_SET_TYPE_DOC_URL to DATA_SET_TYPE_CAT_ID 
+			Description: InPort Catalog ID for the data type, this should be the parent Project record of the individual data sets
+			Update CCD_DATA_SETS_V to generate the DATA_SET_TYPE_INPORT_URL based on CAT_ID value (also allows the cruise-level data set types to be related to PICDM/ODS/InPort)
+
+	APEX (Build out the data set interface):
+		Update interface to implement the data set information
+		Update interface to display the datasets for each cruise leg/cruise with status displays (could put in a list)
+			Add this to reports and form
+		View Cruise -> Cruise Leg -> data sets report
+		
+
+
 	_ use the CEN_UTIL_PKG 
 
 _ comment out package debugging comments
