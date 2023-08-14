@@ -16,6 +16,8 @@ X update the cruise leg start/end date field comments to say in local timezone (
 
 
 
+
+
 Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM schema
 
 
@@ -26,13 +28,15 @@ bugs:
 
 to do (DB version 1.0):
 	X update the views to include the TZ offset in the cruise legs table and implement the logic to convert UTC to local time
-		X_ also local time to UTC based on the TZ offset (this should defined in the centralized utilities schema to make it available to all data projects)
+		X also local time to UTC based on the TZ offset (this should defined in the centralized utilities schema to make it available to all data projects)
 		
 	APEX 
 		X update the APEX interface to include the TZ offset 
 		update APEX app to implement cruise leg/data set relationship
 
 		Document additional test cases and verify them
+
+		Implement all reference table management pages as interactive grids (8/11/23: still need to do Divisions)
 
 	Data model
 		X update views that depend on CCD_CRUISE_LEGS
@@ -47,6 +51,10 @@ to do (DB version 1.0):
 		
 		_ Add CRUD permissions to application schema on the CCD_LEG_DATA_SETS
 		_ Add synonyms to application schema
+
+	business rules:
+		view/update data sets can be performed by DATA WRITE users
+		
 
 
 
