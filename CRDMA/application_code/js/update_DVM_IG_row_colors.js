@@ -15,48 +15,56 @@ function update_DVM_IG_row_colors ()
     i = 0;
     model.forEach(function(r, index, id)
     {
-/*        console.log('the current value of r is: ');
-        console.log(r);
+//        console.log('the current value of r is: ');
+//        console.log(r);
 
-        console.log('the value of data ID is: '+r[0]);
-//        console.log('the value of row ID is: '+r[1]);
+				//retrieve the ROW_CLASS based on the issue category
+				var row_class_val = model.getValue( r, "ROW_CLASS");
+//        console.log('the value of row_class_val is: '+row_class_val);
 
-        console.log('the selector value is: '+'*[data-id="'+r[8]+'"]');
-*/
-        var tr_elem = $('*[data-id="'+r[8]+'"]');
+				//retrieve the ISS_ID primary key value
+				var data_id = model.getValue( r, "ISS_ID");
 
-/*        console.log('the value of tr_elem is: ');
+//        console.log('the value of data ID is: '+data_id);
+
+//        console.log('the selector value is: '+'*[data-id="'+data_id+'"]');
+
+//        console.log('the value of data ID is: '+r[0]);
+
+				//retrieve the table row element based on the data_id value
+        var tr_elem = $('*[data-id="'+data_id+'"]');
+
+//        console.log('the value of tr_elem is: ');
         console.log(tr_elem);
 
-        console.log('Add the class to the row element: '+r[14]);
-
-        console.log('after the class was added the value of tr_elem is: ');
-        console.log(tr_elem);
-*/
+//        console.log('Add the class to the row element: '+row_class_val);
 
 
 
-				//add the css row class to the current row (based on ROW_CLASS value - currently in element [14] in the result set):
-        tr_elem.addClass(r[14]);
+
+
+				//add the css row class to the current row (based on ROW_CLASS column value):
+        tr_elem.addClass(row_class_val);
+
 
 				//add the alternative text/title attributes for the given data issue
-				if (r[14] == 'resolved-issue')
+				if (row_class_val == 'resolved-issue')
 				{
-					var temp_msg = "This cruise issue has been resolved (Issue Resolution was defined)";
+					var temp_msg = "This data package issue has been resolved (Issue Resolution was defined)";
 					tr_elem.attr("title", temp_msg);
 //					tr_elem.title = temp_msg;
 					tr_elem.attr("alt", temp_msg);
 				}
-				else if (r[14] == 'unresolved-error')
+				else if (row_class_val == 'unresolved-error')
 				{
-					var temp_msg = "This cruise error has not been resolved (Issue Resolution was not defined)";
+					var temp_msg = "This data package error has not been resolved (Issue Resolution was not defined)";
 					tr_elem.attr("alt", temp_msg);
 					tr_elem.attr("title", temp_msg);
 
 				}
-				else if (r[14] == 'unresolved-warning')
+				else if (row_class_val == 'unresolved-warning')
 				{
-					var temp_msg = "This cruise warning has not been resolved (Issue Resolution was not defined)";
+					var temp_msg = "This data package warning has not been resolved (Issue Resolution was not defined)";
 					tr_elem.attr("title", temp_msg);
 					tr_elem.attr("alt", temp_msg);
 				}
