@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   13:54 Monday August 14, 2023
+--   Date and Time:   14:10 Monday August 14, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -119,8 +119,8 @@ wwv_flow_imp.create_flow(
 ,p_error_handling_function=>'CUST_ERR_PKG.APX_ERR_HANDLER_FN'
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20230814135355'
+,p_last_updated_by=>'CRUISE_DEV_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20230814140927'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>46
 ,p_print_server_type=>'INSTANCE'
@@ -323,7 +323,7 @@ wwv_flow_imp_shared.create_list_item(
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(165471073039765493)
-,p_list_item_display_sequence=>260
+,p_list_item_display_sequence=>10
 ,p_list_item_link_text=>'Data Set Status'
 ,p_list_item_link_target=>'f?p=&APP_ID.:385:&SESSION.::&DEBUG.::::'
 ,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
@@ -332,7 +332,7 @@ wwv_flow_imp_shared.create_list_item(
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(165490622627987033)
-,p_list_item_display_sequence=>270
+,p_list_item_display_sequence=>20
 ,p_list_item_link_text=>'Data Set Types'
 ,p_list_item_link_target=>'f?p=&APP_ID.:387:&SESSION.::&DEBUG.::::'
 ,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
@@ -340,139 +340,139 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_for_pages=>'387'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165560375106260564)
-,p_list_item_display_sequence=>280
-,p_list_item_link_text=>'Vessels'
-,p_list_item_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::::'
+ p_id=>wwv_flow_imp.id(167471080293799513)
+,p_list_item_display_sequence=>25
+,p_list_item_link_text=>'Divisions'
+,p_list_item_link_target=>'f?p=&APP_ID.:370:&SESSION.::&DEBUG.::::'
 ,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'300'
+,p_list_item_current_for_pages=>'370'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165580387785307819)
-,p_list_item_display_sequence=>290
-,p_list_item_link_text=>'View/Update Regional Ecosystems'
-,p_list_item_link_target=>'f?p=&APP_ID.:305:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+ p_id=>wwv_flow_imp.id(165698774663544131)
+,p_list_item_display_sequence=>40
+,p_list_item_link_text=>'ESA Target Species'
+,p_list_item_link_target=>'f?p=&APP_ID.:330:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'305'
+,p_list_item_current_for_pages=>'330'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165820176917360884)
+,p_list_item_display_sequence=>45
+,p_list_item_link_text=>'Expected Species Categories'
+,p_list_item_link_target=>'f?p=&APP_ID.:365:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'365'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165734170489133912)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'FSSI Target Species'
+,p_list_item_link_target=>'f?p=&APP_ID.:340:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'340'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165802037734334264)
+,p_list_item_display_sequence=>50
+,p_list_item_link_text=>'Gear'
+,p_list_item_link_target=>'f?p=&APP_ID.:360:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'360'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165717588552102416)
+,p_list_item_display_sequence=>60
+,p_list_item_link_text=>'MMPA Target Species'
+,p_list_item_link_target=>'f?p=&APP_ID.:335:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'335'
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(165600248735353813)
-,p_list_item_display_sequence=>300
-,p_list_item_link_text=>'View/Update Platform Types'
-,p_list_item_link_target=>'f?p=&APP_ID.:310:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+,p_list_item_display_sequence=>70
+,p_list_item_link_text=>'Platform Types'
+,p_list_item_link_target=>'f?p=&APP_ID.:310:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'310'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165617066978385164)
-,p_list_item_display_sequence=>310
-,p_list_item_link_text=>'View/Update Survey Types'
-,p_list_item_link_target=>'f?p=&APP_ID.:315:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+ p_id=>wwv_flow_imp.id(165580387785307819)
+,p_list_item_display_sequence=>80
+,p_list_item_link_text=>'Regional Ecosystems'
+,p_list_item_link_target=>'f?p=&APP_ID.:305:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'315'
+,p_list_item_current_for_pages=>'305'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165785326873302483)
+,p_list_item_display_sequence=>90
+,p_list_item_link_text=>'Regions'
+,p_list_item_link_target=>'f?p=&APP_ID.:355:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'355'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165768516015255311)
+,p_list_item_display_sequence=>100
+,p_list_item_link_text=>'Science Centers'
+,p_list_item_link_target=>'f?p=&APP_ID.:350:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'350'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(165750607112177240)
+,p_list_item_display_sequence=>110
+,p_list_item_link_text=>'Standard Survey Names'
+,p_list_item_link_target=>'f?p=&APP_ID.:345:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
+,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
+,p_list_item_current_for_pages=>'345'
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(165666461239468039)
-,p_list_item_display_sequence=>320
-,p_list_item_link_text=>'View/Update Survey Categories'
-,p_list_item_link_target=>'f?p=&APP_ID.:320:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+,p_list_item_display_sequence=>120
+,p_list_item_link_text=>'Survey Categories'
+,p_list_item_link_target=>'f?p=&APP_ID.:320:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'320'
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(165683331188500750)
-,p_list_item_display_sequence=>330
-,p_list_item_link_text=>'View/Update Survey Frequencies'
-,p_list_item_link_target=>'f?p=&APP_ID.:325:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+,p_list_item_display_sequence=>130
+,p_list_item_link_text=>'Survey Frequencies'
+,p_list_item_link_target=>'f?p=&APP_ID.:325:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'325'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165698774663544131)
-,p_list_item_display_sequence=>340
-,p_list_item_link_text=>'View/Update ESA Target Species'
-,p_list_item_link_target=>'f?p=&APP_ID.:330:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+ p_id=>wwv_flow_imp.id(165617066978385164)
+,p_list_item_display_sequence=>140
+,p_list_item_link_text=>'Survey Types'
+,p_list_item_link_target=>'f?p=&APP_ID.:315:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'330'
+,p_list_item_current_for_pages=>'315'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165717588552102416)
-,p_list_item_display_sequence=>350
-,p_list_item_link_text=>'View/Update MMPA Target Species'
-,p_list_item_link_target=>'f?p=&APP_ID.:335:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
+ p_id=>wwv_flow_imp.id(165560375106260564)
+,p_list_item_display_sequence=>150
+,p_list_item_link_text=>'Vessels'
+,p_list_item_link_target=>'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::::'
+,p_parent_list_item_id=>wwv_flow_imp.id(450913558603796899)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'335'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165734170489133912)
-,p_list_item_display_sequence=>360
-,p_list_item_link_text=>'View/Update FSSI Target Species'
-,p_list_item_link_target=>'f?p=&APP_ID.:340:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'340'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165750607112177240)
-,p_list_item_display_sequence=>370
-,p_list_item_link_text=>'View/Update Standard Survey Name'
-,p_list_item_link_target=>'f?p=&APP_ID.:345:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'345'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165768516015255311)
-,p_list_item_display_sequence=>380
-,p_list_item_link_text=>'View/Update Science Centers'
-,p_list_item_link_target=>'f?p=&APP_ID.:350:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'350'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165785326873302483)
-,p_list_item_display_sequence=>390
-,p_list_item_link_text=>'View/Update Regions'
-,p_list_item_link_target=>'f?p=&APP_ID.:355:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'355'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165802037734334264)
-,p_list_item_display_sequence=>400
-,p_list_item_link_text=>'View/Update Gear'
-,p_list_item_link_target=>'f?p=&APP_ID.:360:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'360'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(165820176917360884)
-,p_list_item_display_sequence=>410
-,p_list_item_link_text=>'View/Update Expected Species Categories'
-,p_list_item_link_target=>'f?p=&APP_ID.:365:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'365'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(167471080293799513)
-,p_list_item_display_sequence=>420
-,p_list_item_link_text=>'View/Update Divisions'
-,p_list_item_link_target=>'f?p=&APP_ID.:370:&APP_SESSION.::&DEBUG.:::'
-,p_list_item_icon=>'fa-table-pointer'
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'370'
+,p_list_item_current_for_pages=>'300'
 );
 end;
 /
