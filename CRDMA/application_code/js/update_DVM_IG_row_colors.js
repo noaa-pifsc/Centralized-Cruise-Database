@@ -1,7 +1,7 @@
 function update_DVM_IG_row_colors ()
 {
 
-    console.log('running update_IG_row_colors()');
+//    console.log('running update_IG_row_colors()');
 
     var ig$ = apex.region("data_validation_issues").widget();
 //    console.log('ig is: ');
