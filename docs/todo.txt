@@ -44,6 +44,7 @@ to do (DB version 1.0):
 		_ QC queries for TZ_NAME (must be in the list of values V$TIMEZONE_NAMES.TZNAME values)
 		X update CCD_DATA_SETS to replace DATA_SET_INPORT_URL to DATA_SET_INPORT_CAT_ID
 			X Update CCD_DATA_SETS_V to generate the DATA_SET_INPORT_URL based on CAT_ID value (also allows the cruise-level data sets to be related to PICDM/ODS/InPort)
+		Add in any additional appropriate data elements from MOUSS DB
 
 		Create a delimited view for leg data sets?
 			Both ways? (comma-delimited list of leg ID/names for a given data set and a comma-delimited list of data set IDs/names for a given leg) YES
@@ -51,6 +52,50 @@ to do (DB version 1.0):
 		
 		_ Add CRUD permissions to application schema on the CCD_LEG_DATA_SETS
 		_ Add synonyms to application schema
+
+		_ add/update history tracking package for appropriate CCD tables
+
+
+		_ add leg data sets to DDL/DML generator document
+			_ export updated values to data set loading script
+		
+
+		Documentation Updates:
+			Naming conventions
+			data model diagram
+			Application documentation (page inventory)
+				view/update data sets page
+				interactive grid implementation for all reference table management pages
+			business rules
+			Testing documentation
+			
+
+	View/Update Pages:
+		Vessels
+		Regional Ecosystems
+		Platform Types
+		Survey Types
+		Survey Categories
+		Survey Frequencies
+		ESA Target Species
+		MMPA Target Species
+		FSSI Target Species
+		Standard Survey Names
+		Science Centers
+		Regions
+		Gear
+		Expected Species Categories
+		Divisions
+
+
+
+
+
+
+
+
+
+
 
 	business rules:
 		view/update data sets can be performed by DATA WRITE users

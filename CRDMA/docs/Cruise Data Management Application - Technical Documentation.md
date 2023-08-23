@@ -20,8 +20,8 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
     -   [CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Application URLs:
--   Development Application: http://picmidd.nmfs.local/picd/f?p=287
--   Test Application: http://picmidt.nmfs.local/pict/f?p=287
+-   Development Application: http://picmidd.nmfs.local/picd/f?p=CCD
+-   Test Application: http://picmidt.nmfs.local/pict/f?p=CCD
 -   Production Application: TBD
 
 ## Requirements:
