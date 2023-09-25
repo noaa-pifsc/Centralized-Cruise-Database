@@ -15,6 +15,7 @@ delete FROM CCD_CRUISE_SPP_ESA;
 delete FROM CCD_CRUISE_SVY_CATS;
 delete FROM ccd_leg_regions;
 delete FROM ccd_leg_aliases;
+delete FROM ccd_leg_data_sets;
 
 
 delete from ccd_data_sets;

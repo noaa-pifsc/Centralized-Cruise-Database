@@ -1749,3 +1749,102 @@ INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID 
 INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'OES0509'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'Hydroacoustics'));
 INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'OES0607'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'IBS COD Trawl'));
 INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'TC-03-07'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'International Young Gadoid Pelagic Trawl'));
+
+
+
+/*
+ delete from ccd_data_sets;
+ delete from ccd_data_set_types;
+ delete from ccd_data_set_status;
+
+
+
+
+ **/
+
+
+
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('MOUSS Video', 'Modular Optical Underwater Survey System', 'https://inport.nmfs.noaa.gov/inport/item/51818');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('CTD', 'Conductivity, Temperature, and Depth', 'https://inport.nmfs.noaa.gov/inport/item/7602');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Water Samples', 'Discrete Water Samples', '');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Coral Belt', 'Belt Transect Survey', '');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Fish REA', 'Fish Rapid Ecological Assessment Survey', 'https://inport.nmfs.noaa.gov/inport/item/5565');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('ARMS', 'Autonomous Reef Monitoring System', 'https://inport.nmfs.noaa.gov/inport/item/36038');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Fish Towed Diver', 'Fish Towed Diver Survey', 'https://inport.nmfs.noaa.gov/inport/item/34521');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Benthic Towed Diver', 'Benthic Towed Diver Survey', 'https://inport.nmfs.noaa.gov/inport/item/35618');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('CAU', 'Calcification Accretion Units', 'https://inport.nmfs.noaa.gov/inport/item/26945');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Midwater Trawling', 'Midwater Trawling Survey', '');
+INSERT INTO CCD_data_set_types (data_set_type_name, data_set_type_desc, data_set_type_doc_url) values ('Active Acoustics', 'Active Acoustics Survey', '');
+
+
+
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('COL', 'Data Collection', 'Data is being collected', '#e76e3c');
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('PR', 'Data Processing', 'Data has been collected and the data is currently being processed', '#4b6a88');
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('QC', 'Quality Control', 'Data has been processed and data quality control is currently being evaluated and issues are being resolved and/or annotated', '#0000e0');
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('IA', 'Internally Accessible', 'Data has been quality controlled and it is currently internally accessible', '#1e90ff');
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('PA', 'Publicly Accessible', 'Data has been quality controlled and it is currently publicly accessible', '#005555');
+insert into ccd_data_set_status (STATUS_CODE, STATUS_NAME, STATUS_DESC, STATUS_COLOR) values ('ARCH', 'Archived', 'Data has been quality controlled and it is currently archived', '#00aa00');
+
+
+
+--data sets
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2002 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2003 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2004 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'PA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2005 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'IA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2006 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2007 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2010 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'PA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2011 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'IA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2015 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2017 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2021 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'PA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2015 Midwater Trawling Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Midwater Trawling'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2015 Water Samples Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Water Samples'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2011 Fish REA Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Fish REA'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2011 Coral Belt Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Coral Belt'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'PA'));
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2011 Water Samples Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Water Samples'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
+
+
+
+
+--leg data sets
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1007'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1007 (copy)'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1101_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1101_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Fish REA Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1101_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Coral Belt Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1101_LEG_II'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 CTD Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Fish REA Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_I'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Coral Belt Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_II'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_II'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Fish REA Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1102_LEG_II'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2011 Water Samples Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HI0401'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2004 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HI0610 (copy)'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2006 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HI1001_LEGI'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HI1001_LEGII'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HI1001_LEGIII'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0411_LEGI'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2004 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0411_LEGII'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2004 CTD Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0607'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2006 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0706'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2007 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 1'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2021 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 2'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2021 CTD Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 4'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2021 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 5'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2021 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 6'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2021 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 1'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 1'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 Midwater Trawling Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 1'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 Water Samples Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 2'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 2'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 Midwater Trawling Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-15-01 Leg 2'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2015 Water Samples Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'TC0201_LEGII'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2002 CTD Data'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'TC-03-07'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2003 CTD Data'));
+
