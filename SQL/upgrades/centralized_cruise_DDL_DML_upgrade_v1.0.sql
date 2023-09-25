@@ -334,20 +334,8 @@ COMMENT ON COLUMN CCD_LEG_V.PLAT_TYPE_DESC IS 'Description for the given Platfor
 
 
 
-ALTER VIEW CCD_CRUISE_V COMPILE;
-
-COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
-COMMENT ON COLUMN CCD_CRUISE_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
-COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
-COMMENT ON COLUMN CCD_CRUISE_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
 
 
-ALTER VIEW CCD_CRUISE_DELIM_V COMPILE;
-
-COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
-COMMENT ON COLUMN CCD_CRUISE_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
-COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
-COMMENT ON COLUMN CCD_CRUISE_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
 
 ALTER VIEW CCD_CRUISE_SUMM_V COMPILE;
 
@@ -413,6 +401,607 @@ COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_START_DATE IS 'The start date in
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--redefine all views that return information about cruises:
+CREATE OR REPLACE VIEW CCD_CRUISE_V
+AS SELECT CCD_CRUISES.CRUISE_ID,
+  CCD_CRUISES.CRUISE_NAME,
+  CCD_CRUISES.CRUISE_NOTES,
+  CCD_CRUISES.CRUISE_DESC,
+  CCD_CRUISES.OBJ_BASED_METRICS,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_DIV_ID,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_DIV_CODE,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_DIV_NAME,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_DIV_DESC,
+
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_ID,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_NAME,
+  CCD_SCI_CENTER_DIV_V.SCI_CENTER_DESC,
+  CCD_STD_SVY_NAMES.STD_SVY_NAME_ID,
+  CCD_STD_SVY_NAMES.STD_SVY_NAME,
+  CCD_STD_SVY_NAMES.STD_SVY_DESC,
+  CCD_SVY_FREQ.SVY_FREQ_ID,
+  CCD_SVY_FREQ.SVY_FREQ_NAME,
+  CCD_SVY_FREQ.SVY_FREQ_DESC,
+  CCD_CRUISES.STD_SVY_NAME_OTH,
+  (CASE WHEN CCD_STD_SVY_NAMES.STD_SVY_NAME IS NOT NULL THEN CCD_STD_SVY_NAMES.STD_SVY_NAME ELSE STD_SVY_NAME_OTH END) STD_SVY_NAME_VAL,
+
+
+  CCD_SVY_TYPES.SVY_TYPE_ID,
+  CCD_SVY_TYPES.SVY_TYPE_NAME,
+  CCD_SVY_TYPES.SVY_TYPE_DESC,
+
+  CRUISE_URL,
+  CRUISE_CONT_EMAIL,
+	PTA_ISS_ID,
+
+  NVL (CRUISE_LEG_AGG.NUM_LEGS, 0) NUM_LEGS,
+  CRUISE_START_DATE,
+  FORMAT_CRUISE_START_DATE,
+  CRUISE_END_DATE,
+  FORMAT_CRUISE_END_DATE,
+  CRUISE_DAS,
+	CRUISE_LEN_DAYS,
+  CRUISE_YEAR,
+  CRUISE_FISC_YEAR,
+  LEG_NAME_CD_LIST,
+  LEG_NAME_SCD_LIST,
+  LEG_NAME_RC_LIST,
+  LEG_NAME_BR_LIST,
+  LEG_NAME_DATES_CD_LIST,
+  LEG_NAME_DATES_SCD_LIST,
+  LEG_NAME_DATES_RC_LIST,
+  LEG_NAME_DATES_BR_LIST
+
+
+
+FROM CCD_CRUISES
+LEFT JOIN CCD_SCI_CENTER_DIV_V
+ON CCD_CRUISES.SCI_CENTER_DIV_ID = CCD_SCI_CENTER_DIV_V.SCI_CENTER_DIV_ID
+
+LEFT JOIN CCD_STD_SVY_NAMES
+ON CCD_STD_SVY_NAMES.STD_SVY_NAME_ID = CCD_CRUISES.STD_SVY_NAME_ID
+
+LEFT JOIN CCD_SVY_FREQ
+ON CCD_SVY_FREQ.SVY_FREQ_ID = CCD_CRUISES.SVY_FREQ_ID
+
+LEFT JOIN CCD_SVY_TYPES
+ON CCD_SVY_TYPES.SVY_TYPE_ID = CCD_CRUISES.SVY_TYPE_ID
+
+LEFT JOIN
+(
+    SELECT
+    CCD_LEG_V.cruise_id,
+    count(*) NUM_LEGS,
+    MIN (CCD_LEG_V.LEG_START_DATE) CRUISE_START_DATE,
+    TO_CHAR(MIN (CCD_LEG_V.LEG_START_DATE), 'MM/DD/YYYY') FORMAT_CRUISE_START_DATE,
+    MAX (CCD_LEG_V.LEG_END_DATE) CRUISE_END_DATE,
+    TO_CHAR(MAX (CCD_LEG_V.LEG_END_DATE), 'MM/DD/YYYY') FORMAT_CRUISE_END_DATE,
+    SUM(CCD_LEG_V.LEG_DAS) CRUISE_DAS,
+		(MAX (CCD_LEG_V.LEG_END_DATE) - MIN (CCD_LEG_V.LEG_START_DATE) + 1) CRUISE_LEN_DAYS,
+    TO_CHAR(MIN (CCD_LEG_V.LEG_START_DATE), 'YYYY') CRUISE_YEAR,
+    CEN_UTILS.CEN_UTIL_PKG.CALC_FISCAL_YEAR_FN(MIN (CCD_LEG_V.LEG_START_DATE)) CRUISE_FISC_YEAR,
+    LISTAGG(CCD_LEG_V.LEG_NAME, ', ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_CD_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME, '; ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_SCD_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME, chr(10)) WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_RC_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME, '<BR>') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_BR_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME || ' ('||TO_CHAR(CCD_LEG_V.LEG_START_DATE, 'MM/DD/YYYY')||' - '||TO_CHAR(CCD_LEG_V.LEG_END_DATE, 'MM/DD/YYYY')||' on '||CCD_LEG_V.VESSEL_NAME||')', ', ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_DATES_CD_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME || ' ('||TO_CHAR(CCD_LEG_V.LEG_START_DATE, 'MM/DD/YYYY')||' - '||TO_CHAR(CCD_LEG_V.LEG_END_DATE, 'MM/DD/YYYY')||' on '||CCD_LEG_V.VESSEL_NAME||')', ', ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_DATES_SCD_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME || ' ('||TO_CHAR(CCD_LEG_V.LEG_START_DATE, 'MM/DD/YYYY')||' - '||TO_CHAR(CCD_LEG_V.LEG_END_DATE, 'MM/DD/YYYY')||' on '||CCD_LEG_V.VESSEL_NAME||')', chr(10)) WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_DATES_RC_LIST,
+    LISTAGG(CCD_LEG_V.LEG_NAME || ' ('||TO_CHAR(CCD_LEG_V.LEG_START_DATE, 'MM/DD/YYYY')||' - '||TO_CHAR(CCD_LEG_V.LEG_END_DATE, 'MM/DD/YYYY')||' on '||CCD_LEG_V.VESSEL_NAME||')', '<BR>') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_DATES_BR_LIST
+
+    FROM
+    CCD_LEG_V
+    group by
+    CCD_LEG_V.cruise_id
+)
+CRUISE_LEG_AGG
+ON CRUISE_LEG_AGG.CRUISE_ID = CCD_CRUISES.CRUISE_ID
+
+ORDER BY CCD_SCI_CENTER_DIV_V.SCI_CENTER_NAME,
+CCD_STD_SVY_NAMES.STD_SVY_NAME,
+CCD_CRUISES.CRUISE_NAME
+;
+
+
+COMMENT ON TABLE CCD_CRUISE_V IS 'Research Cruises (View)
+
+This query returns all of the research cruises and their associated reference tables (e.g. Science Center, standard survey name, survey frequency, etc.) as well as aggregate information from the associated cruise legs';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_NOTES IS 'Any notes for the given research cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_DESC IS 'Description for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.OBJ_BASED_METRICS IS 'Objective Based Metrics for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_DIV_ID IS 'Primary key for the Science Center Division table';
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_DIV_CODE IS 'Abbreviated code for the given Science Center Division';
+
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
+
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_DIV_DESC IS 'Description for the given Science Center Division';
+
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_ID IS 'Primary key for the Science Center table';
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_NAME IS 'Name of the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_V.SCI_CENTER_DESC IS 'Description for the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_V.STD_SVY_NAME_ID IS 'Primary key for the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_V.STD_SVY_NAME IS 'Name of the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_V.STD_SVY_DESC IS 'Description for the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_FREQ_ID IS 'Primary key for the Survey Frequency table';
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_FREQ_NAME IS 'Name of the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_FREQ_DESC IS 'Description for the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_V.STD_SVY_NAME_OTH IS 'Field defines a Standard Survey Name that is not included in the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_V.STD_SVY_NAME_VAL IS 'This field contains the Standard Survey Name defined for the given cruise.  If the STD_SVY_NAME_ID field is defined then the associated CCD_STD_SVY_NAMES.STD_SVY_NAME is used because the foreign key is given precedence, otherwise the STD_SVY_NAME_OTH field value is used';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_TYPE_ID IS 'Primary key for the Survey Type table';
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_TYPE_NAME IS 'Name of the given Survey Type';
+COMMENT ON COLUMN CCD_CRUISE_V.SVY_TYPE_DESC IS 'Description for the given Survey Type';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_URL IS 'The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_CONT_EMAIL IS 'The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_DAS IS 'The total number of days at sea for each of the legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_LEN_DAYS IS 'The total number of days between the Cruise Start and End Dates for the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_FISC_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_V.NUM_LEGS IS 'The number of cruise legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_CD_LIST IS 'Comma-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_SCD_LIST IS 'Semicolon-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_RC_LIST IS 'Return carriage/new line delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names associated with the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_DATES_CD_LIST IS 'Comma-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_DATES_SCD_LIST IS 'Semicolon-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_DATES_RC_LIST IS 'Return carriage/new line delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.LEG_NAME_DATES_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_V.PTA_ISS_ID IS 'Foreign key reference to the Issues (PTA) intersection table';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
+COMMENT ON COLUMN CCD_CRUISE_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
+COMMENT ON COLUMN CCD_CRUISE_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+
+
+
+
+
+
+--cruises and associated comma/semicolon delimited list of values
+CREATE OR REPLACE VIEW
+
+CCD_CRUISE_DELIM_V
+AS
+
+SELECT
+
+CCD_CRUISE_V.CRUISE_ID,
+CCD_CRUISE_V.CRUISE_NAME,
+CCD_CRUISE_V.CRUISE_NOTES,
+CCD_CRUISE_V.CRUISE_DESC,
+CCD_CRUISE_V.OBJ_BASED_METRICS,
+CCD_CRUISE_V.SCI_CENTER_DIV_ID,
+CCD_CRUISE_V.SCI_CENTER_DIV_CODE,
+CCD_CRUISE_V.SCI_CENTER_DIV_NAME,
+CCD_CRUISE_V.SCI_CENTER_DIV_DESC,
+
+
+CCD_CRUISE_V.SCI_CENTER_ID,
+CCD_CRUISE_V.SCI_CENTER_NAME,
+CCD_CRUISE_V.SCI_CENTER_DESC,
+CCD_CRUISE_V.STD_SVY_NAME_ID,
+CCD_CRUISE_V.STD_SVY_NAME,
+CCD_CRUISE_V.STD_SVY_DESC,
+CCD_CRUISE_V.SVY_FREQ_ID,
+CCD_CRUISE_V.SVY_FREQ_NAME,
+CCD_CRUISE_V.SVY_FREQ_DESC,
+CCD_CRUISE_V.STD_SVY_NAME_OTH,
+CCD_CRUISE_V.STD_SVY_NAME_VAL,
+
+
+CCD_CRUISE_V.SVY_TYPE_ID,
+CCD_CRUISE_V.SVY_TYPE_NAME,
+CCD_CRUISE_V.SVY_TYPE_DESC,
+
+
+CCD_CRUISE_V.CRUISE_URL,
+CCD_CRUISE_V.CRUISE_CONT_EMAIL,
+CCD_CRUISE_V.PTA_ISS_ID,
+
+CCD_CRUISE_V.NUM_LEGS,
+CCD_CRUISE_V.CRUISE_START_DATE,
+CCD_CRUISE_V.FORMAT_CRUISE_START_DATE,
+CCD_CRUISE_V.CRUISE_END_DATE,
+CCD_CRUISE_V.FORMAT_CRUISE_END_DATE,
+CCD_CRUISE_V.CRUISE_DAS,
+CCD_CRUISE_V.CRUISE_LEN_DAYS,
+
+CCD_CRUISE_V.CRUISE_YEAR,
+CCD_CRUISE_V.CRUISE_FISC_YEAR,
+CCD_CRUISE_V.LEG_NAME_CD_LIST,
+CCD_CRUISE_V.LEG_NAME_SCD_LIST,
+CCD_CRUISE_V.LEG_NAME_RC_LIST,
+CCD_CRUISE_V.LEG_NAME_BR_LIST,
+CCD_CRUISE_V.LEG_NAME_DATES_CD_LIST,
+CCD_CRUISE_V.LEG_NAME_DATES_SCD_LIST,
+CCD_CRUISE_V.LEG_NAME_DATES_RC_LIST,
+CCD_CRUISE_V.LEG_NAME_DATES_BR_LIST,
+
+
+
+NVL(ESA_SPECIES_DELIM.NUM_SPP_ESA, 0) NUM_SPP_ESA,
+ESA_SPECIES_DELIM.SPP_ESA_NAME_CD_LIST,
+ESA_SPECIES_DELIM.SPP_ESA_NAME_SCD_LIST,
+ESA_SPECIES_DELIM.SPP_ESA_NAME_RC_LIST,
+ESA_SPECIES_DELIM.SPP_ESA_NAME_BR_LIST,
+
+
+NVL(FSSI_SPECIES_DELIM.NUM_SPP_FSSI, 0) NUM_SPP_FSSI,
+FSSI_SPECIES_DELIM.SPP_FSSI_NAME_CD_LIST,
+FSSI_SPECIES_DELIM.SPP_FSSI_NAME_SCD_LIST,
+FSSI_SPECIES_DELIM.SPP_FSSI_NAME_RC_LIST,
+FSSI_SPECIES_DELIM.SPP_FSSI_NAME_BR_LIST,
+
+NVL(MMPA_SPECIES_DELIM.NUM_SPP_MMPA, 0) NUM_SPP_MMPA,
+MMPA_SPECIES_DELIM.SPP_MMPA_NAME_CD_LIST,
+MMPA_SPECIES_DELIM.SPP_MMPA_NAME_SCD_LIST,
+MMPA_SPECIES_DELIM.SPP_MMPA_NAME_RC_LIST,
+MMPA_SPECIES_DELIM.SPP_MMPA_NAME_BR_LIST,
+
+NVL(SVY_PRIM_CATS_DELIM.NUM_PRIM_SVY_CATS, 0) NUM_PRIM_SVY_CATS,
+SVY_PRIM_CATS_DELIM.SVY_CAT_NAME_CD_LIST PRIM_SVY_CAT_NAME_CD_LIST,
+SVY_PRIM_CATS_DELIM.SVY_CAT_NAME_SCD_LIST PRIM_SVY_CAT_NAME_SCD_LIST,
+SVY_PRIM_CATS_DELIM.SVY_CAT_NAME_RC_LIST PRIM_SVY_CAT_NAME_RC_LIST,
+SVY_PRIM_CATS_DELIM.SVY_CAT_NAME_BR_LIST PRIM_SVY_CAT_NAME_BR_LIST,
+
+NVL(SVY_SEC_CATS_DELIM.NUM_SEC_SVY_CATS, 0) NUM_SEC_SVY_CATS,
+SVY_SEC_CATS_DELIM.SVY_CAT_NAME_CD_LIST SEC_SVY_CAT_NAME_CD_LIST,
+SVY_SEC_CATS_DELIM.SVY_CAT_NAME_SCD_LIST SEC_SVY_CAT_NAME_SCD_LIST,
+SVY_SEC_CATS_DELIM.SVY_CAT_NAME_RC_LIST SEC_SVY_CAT_NAME_RC_LIST,
+SVY_SEC_CATS_DELIM.SVY_CAT_NAME_BR_LIST SEC_SVY_CAT_NAME_BR_LIST,
+
+NVL(EXP_SPECIES_DELIM.NUM_EXP_SPP, 0) NUM_EXP_SPP,
+EXP_SPECIES_DELIM.EXP_SPP_NAME_CD_LIST,
+EXP_SPECIES_DELIM.EXP_SPP_NAME_SCD_LIST,
+EXP_SPECIES_DELIM.EXP_SPP_NAME_RC_LIST,
+EXP_SPECIES_DELIM.EXP_SPP_NAME_BR_LIST,
+
+NVL(OTH_SPECIES_DELIM.NUM_SPP_OTH, 0) NUM_SPP_OTH,
+OTH_SPECIES_DELIM.OTH_SPP_CNAME_CD_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_CNAME_SCD_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_CNAME_RC_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_CNAME_BR_LIST,
+
+OTH_SPECIES_DELIM.OTH_SPP_SNAME_CD_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_SNAME_SCD_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_SNAME_RC_LIST,
+OTH_SPECIES_DELIM.OTH_SPP_SNAME_BR_LIST
+
+FROM
+CCD_CRUISE_V
+LEFT JOIN
+(SELECT CRUISE_ID,
+count(*) NUM_SPP_ESA,
+LISTAGG(TGT_SPP_ESA_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_ESA_NAME)) as SPP_ESA_NAME_CD_LIST,
+LISTAGG(TGT_SPP_ESA_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_ESA_NAME)) as SPP_ESA_NAME_SCD_LIST,
+LISTAGG(TGT_SPP_ESA_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(TGT_SPP_ESA_NAME)) as SPP_ESA_NAME_RC_LIST,
+LISTAGG(TGT_SPP_ESA_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_ESA_NAME)) as SPP_ESA_NAME_BR_LIST
+
+ FROM
+ CCD_CRUISE_SPP_ESA
+ INNER JOIN
+ CCD_TGT_SPP_ESA
+ ON CCD_CRUISE_SPP_ESA.TGT_SPP_ESA_ID = CCD_TGT_SPP_ESA.TGT_SPP_ESA_ID
+ group by CCD_CRUISE_SPP_ESA.CRUISE_ID
+) ESA_SPECIES_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = ESA_SPECIES_DELIM.CRUISE_ID
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+count(*) NUM_SPP_FSSI,
+LISTAGG(TGT_SPP_FSSI_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_FSSI_NAME)) as SPP_FSSI_NAME_CD_LIST,
+LISTAGG(TGT_SPP_FSSI_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_FSSI_NAME)) as SPP_FSSI_NAME_SCD_LIST,
+LISTAGG(TGT_SPP_FSSI_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(TGT_SPP_FSSI_NAME)) as SPP_FSSI_NAME_RC_LIST,
+LISTAGG(TGT_SPP_FSSI_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_FSSI_NAME)) as SPP_FSSI_NAME_BR_LIST
+
+
+ FROM
+ CCD_CRUISE_SPP_FSSI
+ INNER JOIN
+ CCD_TGT_SPP_FSSI
+ ON CCD_CRUISE_SPP_FSSI.TGT_SPP_FSSI_ID = CCD_TGT_SPP_FSSI.TGT_SPP_FSSI_ID
+ group by CCD_CRUISE_SPP_FSSI.CRUISE_ID
+) FSSI_SPECIES_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = FSSI_SPECIES_DELIM.CRUISE_ID
+
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+count(*) NUM_SPP_MMPA,
+LISTAGG(TGT_SPP_MMPA_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_MMPA_NAME)) as SPP_MMPA_NAME_CD_LIST,
+LISTAGG(TGT_SPP_MMPA_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_MMPA_NAME)) as SPP_MMPA_NAME_SCD_LIST,
+LISTAGG(TGT_SPP_MMPA_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(TGT_SPP_MMPA_NAME)) as SPP_MMPA_NAME_RC_LIST,
+LISTAGG(TGT_SPP_MMPA_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_MMPA_NAME)) as SPP_MMPA_NAME_BR_LIST
+
+ FROM
+ CCD_CRUISE_SPP_MMPA
+ INNER JOIN
+ CCD_TGT_SPP_MMPA
+ ON CCD_CRUISE_SPP_MMPA.TGT_SPP_MMPA_ID = CCD_TGT_SPP_MMPA.TGT_SPP_MMPA_ID
+ group by CCD_CRUISE_SPP_MMPA.CRUISE_ID
+) MMPA_SPECIES_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = MMPA_SPECIES_DELIM.CRUISE_ID
+
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+ count(*) NUM_PRIM_SVY_CATS,
+ LISTAGG(SVY_CAT_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_CD_LIST,
+ LISTAGG(SVY_CAT_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_SCD_LIST,
+ LISTAGG(SVY_CAT_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_RC_LIST,
+ LISTAGG(SVY_CAT_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_BR_LIST
+
+ FROM
+ CCD_CRUISE_SVY_CATS
+ INNER JOIN
+ CCD_SVY_CATS
+ ON CCD_CRUISE_SVY_CATS.SVY_CAT_ID = CCD_SVY_CATS.SVY_CAT_ID
+ WHERE CCD_CRUISE_SVY_CATS.PRIMARY_YN = 'Y'
+
+ group by CCD_CRUISE_SVY_CATS.CRUISE_ID
+) SVY_PRIM_CATS_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = SVY_PRIM_CATS_DELIM.CRUISE_ID
+
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+ count(*) NUM_SEC_SVY_CATS,
+ LISTAGG(SVY_CAT_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_CD_LIST,
+ LISTAGG(SVY_CAT_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_SCD_LIST,
+ LISTAGG(SVY_CAT_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_RC_LIST,
+ LISTAGG(SVY_CAT_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(SVY_CAT_NAME)) as SVY_CAT_NAME_BR_LIST
+
+ FROM
+ CCD_CRUISE_SVY_CATS
+ INNER JOIN
+ CCD_SVY_CATS
+ ON CCD_CRUISE_SVY_CATS.SVY_CAT_ID = CCD_SVY_CATS.SVY_CAT_ID
+ WHERE CCD_CRUISE_SVY_CATS.PRIMARY_YN = 'N'
+
+ group by CCD_CRUISE_SVY_CATS.CRUISE_ID
+) SVY_SEC_CATS_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = SVY_SEC_CATS_DELIM.CRUISE_ID
+
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+count(*) NUM_EXP_SPP,
+LISTAGG(EXP_SPP_CAT_NAME, ', ') WITHIN GROUP (ORDER BY UPPER(EXP_SPP_CAT_NAME)) as EXP_SPP_NAME_CD_LIST,
+LISTAGG(EXP_SPP_CAT_NAME, '; ') WITHIN GROUP (ORDER BY UPPER(EXP_SPP_CAT_NAME)) as EXP_SPP_NAME_SCD_LIST,
+LISTAGG(EXP_SPP_CAT_NAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(EXP_SPP_CAT_NAME)) as EXP_SPP_NAME_RC_LIST,
+LISTAGG(EXP_SPP_CAT_NAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(EXP_SPP_CAT_NAME)) as EXP_SPP_NAME_BR_LIST
+
+ FROM
+ CCD_CRUISE_EXP_SPP
+ INNER JOIN
+ CCD_EXP_SPP_CATS
+ ON CCD_CRUISE_EXP_SPP.EXP_SPP_CAT_ID = CCD_EXP_SPP_CATS.EXP_SPP_CAT_ID
+ group by CCD_CRUISE_EXP_SPP.CRUISE_ID
+) EXP_SPECIES_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = EXP_SPECIES_DELIM.CRUISE_ID
+
+
+
+LEFT JOIN
+(SELECT CRUISE_ID,
+count(*) NUM_SPP_OTH,
+LISTAGG(TGT_SPP_OTHER_CNAME, ', ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_CNAME)) as OTH_SPP_CNAME_CD_LIST,
+LISTAGG(TGT_SPP_OTHER_CNAME, '; ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_CNAME)) as OTH_SPP_CNAME_SCD_LIST,
+LISTAGG(TGT_SPP_OTHER_CNAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_CNAME)) as OTH_SPP_CNAME_RC_LIST,
+LISTAGG(TGT_SPP_OTHER_CNAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_CNAME)) as OTH_SPP_CNAME_BR_LIST,
+LISTAGG(TGT_SPP_OTHER_SNAME, ', ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_SNAME)) as OTH_SPP_SNAME_CD_LIST,
+LISTAGG(TGT_SPP_OTHER_SNAME, '; ') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_SNAME)) as OTH_SPP_SNAME_SCD_LIST,
+LISTAGG(TGT_SPP_OTHER_SNAME, chr(10)) WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_SNAME)) as OTH_SPP_SNAME_RC_LIST,
+LISTAGG(TGT_SPP_OTHER_SNAME, '<BR>') WITHIN GROUP (ORDER BY UPPER(TGT_SPP_OTHER_SNAME)) as OTH_SPP_SNAME_BR_LIST
+
+
+ FROM
+ CCD_TGT_SPP_OTHER
+ group by CCD_TGT_SPP_OTHER.CRUISE_ID
+) OTH_SPECIES_DELIM
+ON CCD_CRUISE_V.CRUISE_ID = OTH_SPECIES_DELIM.CRUISE_ID
+
+
+
+ORDER BY
+SCI_CENTER_NAME,
+STD_SVY_NAME,
+CRUISE_NAME
+;
+
+COMMENT ON TABLE CCD_CRUISE_DELIM_V IS 'Research Cruises Delimited Reference Values (View)
+
+This query returns all of the research cruises and their associated reference tables (e.g. Science Center, standard survey name, survey frequency, etc.) as well as the comma-/semicolon-delimited list of associated reference values (e.g. ESA species, primary survey categories, etc.)';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_NOTES IS 'Any notes for the given research cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_DESC IS 'Description for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OBJ_BASED_METRICS IS 'Objective Based Metrics for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_DIV_ID IS 'Primary key for the Science Center Division table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_DIV_CODE IS 'Abbreviated code for the given Science Center Division';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_DIV_DESC IS 'Description for the given Science Center Division';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_ID IS 'Primary key for the Science Center table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_NAME IS 'Name of the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SCI_CENTER_DESC IS 'Description for the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.STD_SVY_NAME_ID IS 'Primary key for the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.STD_SVY_NAME IS 'Name of the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.STD_SVY_DESC IS 'Description for the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_FREQ_ID IS 'Primary key for the Survey Frequency table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_FREQ_NAME IS 'Name of the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_FREQ_DESC IS 'Description for the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.STD_SVY_NAME_OTH IS 'Field defines a Standard Survey Name that is not included in the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.STD_SVY_NAME_VAL IS 'This field contains the Standard Survey Name defined for the given cruise.  If the STD_SVY_NAME_ID field is defined then the associated CCD_STD_SVY_NAMES.STD_SVY_NAME is used because the foreign key is given precedence, otherwise the STD_SVY_NAME_OTH field value is used';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_TYPE_ID IS 'Primary key for the Survey Type table';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_TYPE_NAME IS 'Name of the given Survey Type';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SVY_TYPE_DESC IS 'Description for the given Survey Type';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_URL IS 'The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_CONT_EMAIL IS 'The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.PTA_ISS_ID IS 'Foreign key reference to the Validation Issues (PTA) intersection table';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_SPP_ESA IS 'The number of associated ESA Species';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_ESA_NAME_CD_LIST IS 'Comma-delimited list of ESA Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_ESA_NAME_SCD_LIST IS 'Semicolon-delimited list of ESA Species associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_ESA_NAME_RC_LIST IS 'Return carriage/new line delimited list of ESA Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_ESA_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of ESA Species associated with the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_SPP_FSSI IS 'The number of associated FSSI Species';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_FSSI_NAME_CD_LIST IS 'Comma-delimited list of FSSI Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_FSSI_NAME_SCD_LIST IS 'Semicolon-delimited list of FSSI Species associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_FSSI_NAME_RC_LIST IS 'Return carriage/new line delimited list of FSSI Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_FSSI_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of FSSI Species associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_SPP_MMPA IS 'The number of associated MMPA Species';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_MMPA_NAME_CD_LIST IS 'Comma-delimited list of MMPA Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_MMPA_NAME_SCD_LIST IS 'Semicolon-delimited list of MMPA Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_MMPA_NAME_RC_LIST IS 'Return carriage/new line delimited list of MMPA Species associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SPP_MMPA_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of MMPA Species associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_PRIM_SVY_CATS IS 'The number of associated primary survey categories';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.PRIM_SVY_CAT_NAME_CD_LIST IS 'Comma-delimited list of primary survey categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.PRIM_SVY_CAT_NAME_SCD_LIST IS 'Semicolon-delimited list of primary survey categories associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.PRIM_SVY_CAT_NAME_RC_LIST IS 'Return carriage/new line delimited list of primary survey categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.PRIM_SVY_CAT_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of primary survey categories associated with the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_SEC_SVY_CATS IS 'The number of associated secondary survey categories';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SEC_SVY_CAT_NAME_CD_LIST IS 'Comma-delimited list of secondary survey categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SEC_SVY_CAT_NAME_SCD_LIST IS 'Semicolon-delimited list of secondary survey categories associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SEC_SVY_CAT_NAME_RC_LIST IS 'Return carriage/new line delimited list of secondary survey categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.SEC_SVY_CAT_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of secondary survey categories associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_EXP_SPP IS 'The number of associated expected species categories';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.EXP_SPP_NAME_CD_LIST IS 'Comma-delimited list of expected species categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.EXP_SPP_NAME_SCD_LIST IS 'Semicolon-delimited list of expected species categories associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.EXP_SPP_NAME_RC_LIST IS 'Return carriage/new line delimited list of expected species categories associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.EXP_SPP_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of expected species categories associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_SPP_OTH IS 'The number of associated target species - other';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_CNAME_CD_LIST IS 'Comma-delimited list of common names for target species - other associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_CNAME_SCD_LIST IS 'Semicolon-delimited list of common names for target species - other associated with the given cruise';
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_CNAME_RC_LIST IS 'Return carriage/new line delimited list of common names for target species - other associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_CNAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of common names for target species - other associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_SNAME_CD_LIST IS 'Comma-delimited list of scientific names for target species - other associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_SNAME_SCD_LIST IS 'Semicolon-delimited list of scientific names for target species - other associated with the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_SNAME_RC_LIST IS 'Return carriage/new line delimited list of scientific names for target species - other associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.OTH_SPP_SNAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of scientific names for target species - other associated with the given cruise';
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_DAS IS 'The total number of days at sea for each of the legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_LEN_DAYS IS 'The total number of days between the Cruise Start and End Dates for the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_FISC_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.NUM_LEGS IS 'The number of cruise legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_CD_LIST IS 'Comma-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_SCD_LIST IS 'Semicolon-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_RC_LIST IS 'Return carriage/new line delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names associated with the given cruise';
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_DATES_CD_LIST IS 'Comma-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_DATES_SCD_LIST IS 'Semicolon-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_DATES_RC_LIST IS 'Return carriage/new line delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.LEG_NAME_DATES_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
+COMMENT ON COLUMN CCD_CRUISE_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+
+
+
+
+
+
+
+
+
+
+
 
 
 CREATE OR REPLACE VIEW
@@ -1281,7 +1870,7 @@ COMMENT ON COLUMN CCD_QC_LEG_ALIAS_V.FORMAT_LEG_END_DATE IS 'The end date in the
 
 
 
-ALTER PACKAGE COMPILE CCD_DVM_PKG;
+ALTER PACKAGE CCD_DVM_PKG COMPILE;
 
 
 

@@ -57,9 +57,9 @@ to do (DB version 1.0):
 		_ update CCD_CCDP_DEEP_COPY_CMP_V view to include leg data set information
 		_ deep copy procedure needs to be updated to copy the leg data sets too
 		_ change all aggregate queries to NVL the num_X to 0 when null and update the code that checks for nulls to change it to zeroes
-			CCD_CRUISE_V
+			X CCD_CRUISE_V
 			CCD_CRUISE_ISS_SUMM_V
-			CCD_CRUISE_DELIM_V
+			X CCD_CRUISE_DELIM_V
 			CCD_CRUISE_SUMM_V
 
 		_ update views to add leg data sets:
