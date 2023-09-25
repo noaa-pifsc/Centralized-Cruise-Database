@@ -39,7 +39,6 @@ PROMPT granting privileges to CRDMA parsing schema
 
 PROMPT loading data
 @@queries/load_ref_data.sql
-@@queries/load_data_set_info.sql
 @@queries/load_DVM_rules.sql
 @@../CRDMA/SQL/load_config_values.sql
 
