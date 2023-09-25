@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   14:50 Monday August 14, 2023
+--   Date and Time:   12:19 Monday September 25, 2023
 --   Exported By:     CRUISE_DEV_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,8 +36,8 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --       Items:                  180
 --       Computations:            22
 --       Validations:             10
---       Processes:              109
---       Regions:                138
+--       Processes:              110
+--       Regions:                139
 --       Buttons:                 65
 --       Dynamic Actions:         57
 --     Shared Components:
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230814145015'
+,p_last_upd_yyyymmddhh24miss=>'20230814170137'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>51
 ,p_print_server_type=>'INSTANCE'
@@ -23063,7 +23063,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230810144521'
+,p_last_upd_yyyymmddhh24miss=>'20230814170137'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(450354332739614984)
@@ -23339,6 +23339,238 @@ wwv_flow_imp_page.create_page_plug(
 ,p_attribute_02=>'HTML'
 );
 wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(138170103869156305)
+,p_plug_name=>'Data Sets'
+,p_parent_plug_id=>wwv_flow_imp.id(451550683733635423)
+,p_region_css_classes=>'active-form-class'
+,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
+,p_component_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(463033148974125771)
+,p_plug_display_sequence=>80
+,p_plug_display_point=>'SUB_REGIONS'
+,p_query_type=>'SQL'
+,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'SELECT ',
+'LEG_DATA_SET_ID,',
+'CRUISE_LEG_ID,',
+'DATA_SET_ID,',
+'LEG_DATA_SET_NOTES',
+'FROM CCD_LEG_DATA_SETS',
+'where ',
+'CRUISE_LEG_ID = :P230_CRUISE_LEG_ID'))
+,p_plug_source_type=>'NATIVE_IG'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138170310077156307)
+,p_name=>'APEX$ROW_SELECTOR'
+,p_item_type=>'NATIVE_ROW_SELECTOR'
+,p_display_sequence=>10
+,p_attribute_01=>'Y'
+,p_attribute_02=>'Y'
+,p_attribute_03=>'N'
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138170499316156308)
+,p_name=>'APEX$ROW_ACTION'
+,p_item_type=>'NATIVE_ROW_ACTION'
+,p_display_sequence=>20
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138170520586156309)
+,p_name=>'CRUISE_LEG_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'CRUISE_LEG_ID'
+,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>30
+,p_attribute_01=>'Y'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_is_primary_key=>false
+,p_default_type=>'ITEM'
+,p_default_expression=>'P230_CRUISE_LEG_ID'
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138170906591156313)
+,p_name=>'LEG_DATA_SET_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LEG_DATA_SET_ID'
+,p_data_type=>'NUMBER'
+,p_session_state_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_HIDDEN'
+,p_display_sequence=>40
+,p_attribute_01=>'Y'
+,p_filter_is_required=>false
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_is_primary_key=>true
+,p_duplicate_value=>true
+,p_include_in_export=>false
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138171034553156314)
+,p_name=>'DATA_SET_ID'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'DATA_SET_ID'
+,p_data_type=>'NUMBER'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_SELECT_LIST'
+,p_heading=>'Data Set'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>50
+,p_value_alignment=>'LEFT'
+,p_is_required=>true
+,p_lov_type=>'SQL_QUERY'
+,p_lov_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'select DATA_SET_NAME || '' (''||data_set_type_name||'')'' return_val,',
+'data_set_id',
+'from ccd_data_sets_v',
+'order by data_set_type_name, DATA_SET_DESC'))
+,p_lov_display_extra=>false
+,p_lov_display_null=>true
+,p_lov_null_text=>'------------'
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_exact_match=>true
+,p_filter_lov_type=>'LOV'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
+,p_enable_hide=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+);
+wwv_flow_imp_page.create_region_column(
+ p_id=>wwv_flow_imp.id(138171114481156315)
+,p_name=>'LEG_DATA_SET_NOTES'
+,p_source_type=>'DB_COLUMN'
+,p_source_expression=>'LEG_DATA_SET_NOTES'
+,p_data_type=>'VARCHAR2'
+,p_session_state_data_type=>'VARCHAR2'
+,p_is_query_only=>false
+,p_item_type=>'NATIVE_TEXTAREA'
+,p_heading=>'Notes'
+,p_heading_alignment=>'LEFT'
+,p_display_sequence=>60
+,p_value_alignment=>'LEFT'
+,p_attribute_01=>'Y'
+,p_attribute_02=>'N'
+,p_attribute_03=>'N'
+,p_attribute_04=>'BOTH'
+,p_is_required=>false
+,p_max_length=>500
+,p_enable_filter=>true
+,p_filter_operators=>'C:S:CASE_INSENSITIVE:REGEXP'
+,p_filter_is_required=>false
+,p_filter_text_case=>'MIXED'
+,p_filter_lov_type=>'NONE'
+,p_use_as_row_header=>false
+,p_enable_sort_group=>false
+,p_enable_hide=>true
+,p_is_primary_key=>false
+,p_duplicate_value=>true
+,p_include_in_export=>true
+,p_help_text=>'Notes associated with the given Cruise Leg''s Data Set'
+);
+wwv_flow_imp_page.create_interactive_grid(
+ p_id=>wwv_flow_imp.id(138170296206156306)
+,p_internal_uid=>138170296206156306
+,p_is_editable=>true
+,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(463070450066299900)
+,p_update_authorization_scheme=>wwv_flow_imp.id(463070450066299900)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(463070450066299900)
+,p_lost_update_check_type=>'VALUES'
+,p_add_row_if_empty=>false
+,p_submit_checked_rows=>false
+,p_lazy_loading=>false
+,p_requires_filter=>false
+,p_show_nulls_as=>'-'
+,p_select_first_row=>true
+,p_fixed_row_height=>true
+,p_pagination_type=>'SCROLL'
+,p_show_total_row_count=>true
+,p_show_toolbar=>true
+,p_toolbar_buttons=>'SEARCH_COLUMN:SEARCH_FIELD:ACTIONS_MENU'
+,p_enable_save_public_report=>false
+,p_enable_subscriptions=>true
+,p_enable_flashback=>true
+,p_define_chart_view=>true
+,p_enable_download=>true
+,p_download_formats=>'CSV:HTML'
+,p_enable_mail_download=>true
+,p_fixed_header=>'PAGE'
+,p_show_icon_view=>false
+,p_show_detail_view=>false
+);
+wwv_flow_imp_page.create_ig_report(
+ p_id=>wwv_flow_imp.id(167505959380498419)
+,p_interactive_grid_id=>wwv_flow_imp.id(138170296206156306)
+,p_static_id=>'1675060'
+,p_type=>'PRIMARY'
+,p_default_view=>'GRID'
+,p_show_row_number=>false
+,p_settings_area_expanded=>true
+);
+wwv_flow_imp_page.create_ig_report_view(
+ p_id=>wwv_flow_imp.id(167506136521498419)
+,p_report_id=>wwv_flow_imp.id(167505959380498419)
+,p_view_type=>'GRID'
+,p_srv_exclude_null_values=>false
+,p_srv_only_display_columns=>true
+,p_edit_mode=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(167507019023498427)
+,p_view_id=>wwv_flow_imp.id(167506136521498419)
+,p_display_seq=>0
+,p_column_id=>wwv_flow_imp.id(138170499316156308)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(167507938707498430)
+,p_view_id=>wwv_flow_imp.id(167506136521498419)
+,p_display_seq=>1
+,p_column_id=>wwv_flow_imp.id(138170520586156309)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(167508804264498433)
+,p_view_id=>wwv_flow_imp.id(167506136521498419)
+,p_display_seq=>2
+,p_column_id=>wwv_flow_imp.id(138170906591156313)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(167509733087498436)
+,p_view_id=>wwv_flow_imp.id(167506136521498419)
+,p_display_seq=>3
+,p_column_id=>wwv_flow_imp.id(138171034553156314)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_ig_report_column(
+ p_id=>wwv_flow_imp.id(167510687676498441)
+,p_view_id=>wwv_flow_imp.id(167506136521498419)
+,p_display_seq=>4
+,p_column_id=>wwv_flow_imp.id(138171114481156315)
+,p_is_visible=>true
+,p_is_frozen=>false
+);
+wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(444721493436059033)
 ,p_plug_name=>'Leg Summary'
 ,p_region_name=>'leg_summary'
@@ -23362,7 +23594,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_region_template_options=>'#DEFAULT#:t-Region--scrollBody'
 ,p_component_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(463033148974125771)
-,p_plug_display_sequence=>60
+,p_plug_display_sequence=>70
 ,p_plug_display_point=>'SUB_REGIONS'
 ,p_query_type=>'SQL'
 ,p_plug_source=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -23465,6 +23697,9 @@ wwv_flow_imp_page.create_region_column(
 ,p_include_in_export=>true
 ,p_help_text=>'The alias name for the given cruise leg'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(450565893709810838)
 ,p_name=>'LEG_ALIAS_DESC'
@@ -23677,9 +23912,6 @@ wwv_flow_imp_page.create_page_plug(
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(451551146046635428)
 ,p_plug_name=>'Presets'
@@ -24403,6 +24635,9 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_sort_direction=>'ASC'
 ,p_sort_nulls=>'LAST'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(453513238650538205)
 ,p_view_id=>wwv_flow_imp.id(452993084920464301)
@@ -24597,9 +24832,6 @@ wwv_flow_imp_page.create_page_branch(
 ,p_branch_when_button_id=>wwv_flow_imp.id(450354727331614984)
 ,p_branch_sequence=>21
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_branch(
  p_id=>wwv_flow_imp.id(450630417799764006)
 ,p_branch_name=>'OTHERS - Stay on Page 220'
@@ -25313,6 +25545,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_04=>'Y'
 ,p_attribute_05=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(450562981311810809)
 ,p_name=>'P230_OTH_SPP_CNAME_CD_LIST'
@@ -25559,9 +25794,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(451549640524635413)
 ,p_name=>'P230_GEAR_PRESETS'
@@ -26144,6 +26376,9 @@ wwv_flow_imp_page.create_page_computation(
 '',
 'END;'))
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_validation(
  p_id=>wwv_flow_imp.id(450782613788649131)
 ,p_validation_name=>'Invalid Leg Dates'
@@ -26355,9 +26590,6 @@ wwv_flow_imp_page.create_page_validation(
 ,p_error_display_location=>'INLINE_WITH_FIELD_AND_NOTIFICATION'
 ,p_security_scheme=>wwv_flow_imp.id(463070450066299900)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(451549111899635408)
 ,p_name=>'GEAR_PRESET_DA'
@@ -27038,6 +27270,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_when_button_id=>wwv_flow_imp.id(450354840778614984)
 ,p_security_scheme=>wwv_flow_imp.id(463070450066299900)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(452375188464581828)
 ,p_process_sequence=>60
@@ -27161,7 +27396,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(450565993500810839)
-,p_process_sequence=>110
+,p_process_sequence=>120
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(450564834973810828)
 ,p_process_type=>'NATIVE_PLSQL'
@@ -27212,8 +27447,60 @@ wwv_flow_imp_page.create_page_process(
 ,p_security_scheme=>wwv_flow_imp.id(463070450066299900)
 );
 wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(138171350733156317)
+,p_process_sequence=>130
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(138170103869156305)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Data Sets - Save Interactive Grid Data_1'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare ',
+'',
+'    V_RETURN_CODE PLS_INTEGER;',
+'',
+'begin  ',
+'',
+'   DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''The value of :APEX$ROW_STATUS is: ''||:APEX$ROW_STATUS, V_RETURN_CODE);',
+'',
+'     case :APEX$ROW_STATUS  ',
+'     when ''C'' then -- Note: In EA2 this has been changed from I to C for consistency with Tabular Forms  ',
+'',
+'',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''This is a create action, use an insert query'', V_RETURN_CODE);',
+'',
+'         insert into CCD_LEG_DATA_SETS ( DATA_SET_ID, LEG_DATA_SET_NOTES, CRUISE_LEG_ID )  ',
+'         values ( :DATA_SET_ID, :LEG_DATA_SET_NOTES, TO_NUMBER(:P230_CRUISE_LEG_ID) )  ',
+'         returning LEG_DATA_SET_ID into :LEG_DATA_SET_ID;  ',
+'',
+'',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''This is a create action, the insert query has been sent (:LEG_DATA_SET_ID) = ''||:LEG_DATA_SET_ID, V_RETURN_CODE);',
+'',
+'    when ''U'' then  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''This is an update action, use an update query'', V_RETURN_CODE);',
+'         update CCD_LEG_DATA_SETS  ',
+'            set DATA_SET_ID = :DATA_SET_ID, ',
+'            LEG_DATA_SET_NOTES = :LEG_DATA_SET_NOTES, ',
+'            CRUISE_LEG_ID = :P230_CRUISE_LEG_ID',
+'          where LEG_DATA_SET_ID  = :LEG_DATA_SET_ID;  ',
+'     when ''D'' then  ',
+'         DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''This is a delete action, use a delete query'', V_RETURN_CODE);',
+'         delete CCD_LEG_DATA_SETS  ',
+'         where LEG_DATA_SET_ID = :LEG_DATA_SET_ID;  ',
+'     end case;  ',
+'     ',
+'     ',
+'     DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Save Data Sets'', ''The current row has been processed, (:LEG_DATA_SET_ID) = ''||:LEG_DATA_SET_ID, V_RETURN_CODE);',
+'',
+'     ',
+'end;  '))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_success_message=>'Data Sets Saved<BR>'
+,p_security_scheme=>wwv_flow_imp.id(463070450066299900)
+);
+wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(450673767169130112)
-,p_process_sequence=>120
+,p_process_sequence=>140
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Create - Validate Parent Cruise Record'
@@ -27247,7 +27534,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(454482277387929099)
-,p_process_sequence=>130
+,p_process_sequence=>150
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Create Another - Validate Parent Cruise Record'
@@ -27281,7 +27568,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(454482195340929098)
-,p_process_sequence=>140
+,p_process_sequence=>160
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Post Update Cruise Leg'
@@ -27317,12 +27604,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was processed on the updated Cruise Leg along with any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(463070450066299900)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(454481785345929094)
-,p_process_sequence=>150
+,p_process_sequence=>170
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Delete Cruise Leg'
@@ -27358,7 +27642,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(450363361763615016)
-,p_process_sequence=>160
+,p_process_sequence=>180
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
