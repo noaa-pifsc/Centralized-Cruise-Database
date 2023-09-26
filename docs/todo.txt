@@ -41,12 +41,12 @@ to do (DB version 1.0):
 	Data model
 		X update views that depend on CCD_CRUISE_LEGS
 		update data set - cruise leg relationship to be many to many
-		_ QC queries for TZ_NAME (must be in the list of values V$TIMEZONE_NAMES.TZNAME values)
+		X QC queries for TZ_NAME (must be in the list of values V$TIMEZONE_NAMES.TZNAME values)
 			X update QC view
 			X add to DVM
 			X define test cases
-			_ document test cases (DVM Test Cases.xlsx)
-			_ verify test cases (automated verification)
+			X document test cases (DVM Test Cases.xlsx)
+			X verify test cases (automated verification)
 			
 		
 		X update CCD_DATA_SETS to replace DATA_SET_INPORT_URL to DATA_SET_INPORT_CAT_ID
