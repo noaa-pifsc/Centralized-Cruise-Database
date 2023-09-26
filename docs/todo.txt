@@ -42,6 +42,13 @@ to do (DB version 1.0):
 		X update views that depend on CCD_CRUISE_LEGS
 		update data set - cruise leg relationship to be many to many
 		_ QC queries for TZ_NAME (must be in the list of values V$TIMEZONE_NAMES.TZNAME values)
+			X update QC view
+			X add to DVM
+			X define test cases
+			_ document test cases (DVM Test Cases.xlsx)
+			_ verify test cases (automated verification)
+			
+		
 		X update CCD_DATA_SETS to replace DATA_SET_INPORT_URL to DATA_SET_INPORT_CAT_ID
 			X Update CCD_DATA_SETS_V to generate the DATA_SET_INPORT_URL based on CAT_ID value (also allows the cruise-level data sets to be related to PICDM/ODS/InPort)
 		Add in any additional appropriate data elements from MOUSS DB
@@ -84,8 +91,13 @@ to do (DB version 1.0):
 			X Update DVM test data (category 1 and 5) to set the new missing leg data sets errors
 		
 			
+			
+			
+			
 		_ confirm MOUSS DB has all the information it needs in CEN_CRUISE to move forward before performing developer testing on CEN_CRUISE
-		
+			Look into:	
+				MOUSS_ARCH_INFO
+				
 		
 
 		Documentation Updates:
