@@ -54,8 +54,8 @@ to do (DB version 1.0):
 		X Add synonyms to application schema
 
 		_ add/update history tracking package for appropriate CCD tables
-		_ update CCD_CCDP_DEEP_COPY_CMP_V view to include leg data set information
-		_ deep copy procedure needs to be updated to copy the leg data sets too
+		X update CCD_CCDP_DEEP_COPY_CMP_V view to include leg data set information
+		X deep copy procedure needs to be updated to copy the leg data sets too
 		X change all aggregate queries to NVL the num_X to 0 when null and update the code that checks for nulls to change it to zeroes (X also to add in new leg data set fields)
 			X CCD_CRUISE_V
 			X CCD_CRUISE_ISS_SUMM_V
@@ -84,7 +84,7 @@ to do (DB version 1.0):
 			X Update DVM test data (category 1 and 5) to set the new missing leg data sets errors
 		
 			
-			
+		_ confirm MOUSS DB has all the information it needs in CEN_CRUISE to move forward before performing developer testing on CEN_CRUISE
 		
 		
 

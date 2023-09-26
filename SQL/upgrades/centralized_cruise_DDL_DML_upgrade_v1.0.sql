@@ -1637,12 +1637,6 @@ COMMENT ON COLUMN CCD_QC_CRUISE_V.FORMAT_CRUISE_END_DATE IS 'The formatted end d
 
 
 
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
-
-
 
 
 
@@ -2779,6 +2773,8 @@ CCD_LEG_DELIM_V.LEG_DAS,
 CCD_LEG_DELIM_V.LEG_YEAR,
 CCD_LEG_DELIM_V.LEG_FISC_YEAR,
 CCD_LEG_DELIM_V.LEG_DESC,
+CCD_LEG_DELIM_V.TZ_NAME,
+
 CCD_LEG_DELIM_V.VESSEL_ID,
 CCD_LEG_DELIM_V.VESSEL_NAME,
 CCD_LEG_DELIM_V.VESSEL_DESC,
@@ -2926,10 +2922,12 @@ COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.OTH_SPP_SNAME_BR_LIST IS '<BR> tag (int
 
 
 
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_START_DATE IS 'The start date for the given cruise (based on the earliest associated cruise leg''s start date)';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_END_DATE IS 'The end date for the given cruise (based on the latest associated cruise leg''s end date)';
-COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+
+COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
+COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
+COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+
 
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_DAS IS 'The total number of days at sea for each of the legs associated with the given cruise';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.CRUISE_LEN_DAYS IS 'The total number of days between the Cruise Start and End Dates for the given cruise';
@@ -2963,6 +2961,9 @@ COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.LEG_DAS IS 'The number of days at sea f
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.LEG_YEAR IS 'The calendar year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.LEG_DESC IS 'The description for the given research cruise leg';
+COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, -09:00)';
+
+
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.VESSEL_ID IS 'Foreign key reference to the CCD_VESSELS table for the cruise leg''s vessel';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.VESSEL_NAME IS 'Name of the given research vessel';
 COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.VESSEL_DESC IS 'Description for the given research vessel';
@@ -3507,8 +3508,8 @@ ALTER PACKAGE CCD_DVM_PKG COMPILE;
 					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'INSERT the new cruise leg copy - the value of v_leg_tab.CRUISE_LEG_ID is: '||v_leg_tab(i).CRUISE_LEG_ID, V_SP_RET_CODE);
 
 					--insert the new cruise leg with the values in the source cruise leg and " (copy)" appended to the leg name and associate it with the new cruise record that was just inserted (identified by V_NEW_CRUISE_ID).  Return the CCD_CRUISE_LEGS.CRUISE_LEG_ID primary key into V_NEW_CRUISE_LEG_ID so it can be used to associate the cruise leg attributes
-					INSERT INTO CCD_CRUISE_LEGS (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID)
-					VALUES (v_leg_tab(i).LEG_NAME||' (copy)', v_leg_tab(i).LEG_START_DATE, v_leg_tab(i).LEG_END_DATE, v_leg_tab(i).LEG_DESC, V_NEW_CRUISE_ID, v_leg_tab(i).VESSEL_ID, v_leg_tab(i).PLAT_TYPE_ID)
+					INSERT INTO CCD_CRUISE_LEGS (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME)
+					VALUES (v_leg_tab(i).LEG_NAME||' (copy)', v_leg_tab(i).LEG_START_DATE, v_leg_tab(i).LEG_END_DATE, v_leg_tab(i).LEG_DESC, V_NEW_CRUISE_ID, v_leg_tab(i).VESSEL_ID, v_leg_tab(i).PLAT_TYPE_ID, v_leg_tab(i).TZ_NAME)
 					RETURNING CRUISE_LEG_ID INTO V_NEW_CRUISE_LEG_ID;
 
 					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise leg copy was successfully inserted - the value of V_NEW_CRUISE_LEG_ID is: '||V_NEW_CRUISE_LEG_ID, V_SP_RET_CODE);
@@ -4071,7 +4072,116 @@ ALTER PACKAGE CCD_DVM_PKG COMPILE;
 
 /
 
-ALTER VIEW CCD_CCDP_DEEP_COPY_CMP_V COMPILE;
+
+--verification query to compare the cruise, cruise legs, and associated attributes to determine if a CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP procedure call was successful
+CREATE OR REPLACE VIEW CCD_CCDP_DEEP_COPY_CMP_V AS
+select v_orig.cruise_name orig_cruise_name, v_copy.cruise_name copy_cruise_name, v_orig.leg_name orig_leg_name, v_copy.leg_name copy_leg_name,
+(CASE WHEN
+
+
+ (v_orig.CRUISE_NOTES =  v_copy.CRUISE_NOTES OR (v_orig.CRUISE_NOTES IS NULL AND v_copy.CRUISE_NOTES IS NULL))
+ AND (dbms_lob.substr( v_orig.CRUISE_DESC, 4000, 1 ) =  dbms_lob.substr( v_copy.CRUISE_DESC, 4000, 1 ) OR (v_orig.CRUISE_DESC IS NULL AND v_copy.CRUISE_DESC IS NULL))
+ AND (v_orig.OBJ_BASED_METRICS =  v_copy.OBJ_BASED_METRICS OR (v_orig.OBJ_BASED_METRICS IS NULL AND v_copy.OBJ_BASED_METRICS IS NULL))
+ AND (v_orig.SCI_CENTER_DIV_ID =  v_copy.SCI_CENTER_DIV_ID OR (v_orig.SCI_CENTER_DIV_ID IS NULL AND v_copy.SCI_CENTER_DIV_ID IS NULL))
+ AND (v_orig.SCI_CENTER_DIV_CODE =  v_copy.SCI_CENTER_DIV_CODE OR (v_orig.SCI_CENTER_DIV_CODE IS NULL AND v_copy.SCI_CENTER_DIV_CODE IS NULL))
+ AND (v_orig.SCI_CENTER_DIV_NAME =  v_copy.SCI_CENTER_DIV_NAME OR (v_orig.SCI_CENTER_DIV_NAME IS NULL AND v_copy.SCI_CENTER_DIV_NAME IS NULL))
+ AND (v_orig.SCI_CENTER_DIV_DESC =  v_copy.SCI_CENTER_DIV_DESC OR (v_orig.SCI_CENTER_DIV_DESC IS NULL AND v_copy.SCI_CENTER_DIV_DESC IS NULL))
+ AND (v_orig.SCI_CENTER_ID =  v_copy.SCI_CENTER_ID OR (v_orig.SCI_CENTER_ID IS NULL AND v_copy.SCI_CENTER_ID IS NULL))
+ AND (v_orig.SCI_CENTER_NAME =  v_copy.SCI_CENTER_NAME OR (v_orig.SCI_CENTER_NAME IS NULL AND v_copy.SCI_CENTER_NAME IS NULL))
+ AND (v_orig.SCI_CENTER_DESC =  v_copy.SCI_CENTER_DESC OR (v_orig.SCI_CENTER_DESC IS NULL AND v_copy.SCI_CENTER_DESC IS NULL))
+ AND (v_orig.STD_SVY_NAME_ID =  v_copy.STD_SVY_NAME_ID OR (v_orig.STD_SVY_NAME_ID IS NULL AND v_copy.STD_SVY_NAME_ID IS NULL))
+ AND (v_orig.STD_SVY_NAME =  v_copy.STD_SVY_NAME OR (v_orig.STD_SVY_NAME IS NULL AND v_copy.STD_SVY_NAME IS NULL))
+ AND (v_orig.STD_SVY_DESC =  v_copy.STD_SVY_DESC OR (v_orig.STD_SVY_DESC IS NULL AND v_copy.STD_SVY_DESC IS NULL))
+ AND (v_orig.SVY_FREQ_ID =  v_copy.SVY_FREQ_ID OR (v_orig.SVY_FREQ_ID IS NULL AND v_copy.SVY_FREQ_ID IS NULL))
+ AND (v_orig.SVY_FREQ_NAME =  v_copy.SVY_FREQ_NAME OR (v_orig.SVY_FREQ_NAME IS NULL AND v_copy.SVY_FREQ_NAME IS NULL))
+ AND (v_orig.SVY_FREQ_DESC =  v_copy.SVY_FREQ_DESC OR (v_orig.SVY_FREQ_DESC IS NULL AND v_copy.SVY_FREQ_DESC IS NULL))
+ AND (v_orig.STD_SVY_NAME_OTH =  v_copy.STD_SVY_NAME_OTH OR (v_orig.STD_SVY_NAME_OTH IS NULL AND v_copy.STD_SVY_NAME_OTH IS NULL))
+ AND (v_orig.STD_SVY_NAME_VAL =  v_copy.STD_SVY_NAME_VAL OR (v_orig.STD_SVY_NAME_VAL IS NULL AND v_copy.STD_SVY_NAME_VAL IS NULL))
+ AND (v_orig.SVY_TYPE_ID =  v_copy.SVY_TYPE_ID OR (v_orig.SVY_TYPE_ID IS NULL AND v_copy.SVY_TYPE_ID IS NULL))
+ AND (v_orig.SVY_TYPE_NAME =  v_copy.SVY_TYPE_NAME OR (v_orig.SVY_TYPE_NAME IS NULL AND v_copy.SVY_TYPE_NAME IS NULL))
+ AND (v_orig.SVY_TYPE_DESC =  v_copy.SVY_TYPE_DESC OR (v_orig.SVY_TYPE_DESC IS NULL AND v_copy.SVY_TYPE_DESC IS NULL))
+ AND (v_orig.CRUISE_URL =  v_copy.CRUISE_URL OR (v_orig.CRUISE_URL IS NULL AND v_copy.CRUISE_URL IS NULL))
+ AND (v_orig.CRUISE_CONT_EMAIL =  v_copy.CRUISE_CONT_EMAIL OR (v_orig.CRUISE_CONT_EMAIL IS NULL AND v_copy.CRUISE_CONT_EMAIL IS NULL))
+ AND (v_orig.NUM_LEGS =  v_copy.NUM_LEGS OR (v_orig.NUM_LEGS IS NULL AND v_copy.NUM_LEGS IS NULL))
+ AND (v_orig.CRUISE_START_DATE =  v_copy.CRUISE_START_DATE OR (v_orig.CRUISE_START_DATE IS NULL AND v_copy.CRUISE_START_DATE IS NULL))
+ AND (v_orig.FORMAT_CRUISE_START_DATE =  v_copy.FORMAT_CRUISE_START_DATE OR (v_orig.FORMAT_CRUISE_START_DATE IS NULL AND v_copy.FORMAT_CRUISE_START_DATE IS NULL))
+ AND (v_orig.CRUISE_END_DATE =  v_copy.CRUISE_END_DATE OR (v_orig.CRUISE_END_DATE IS NULL AND v_copy.CRUISE_END_DATE IS NULL))
+ AND (v_orig.FORMAT_CRUISE_END_DATE =  v_copy.FORMAT_CRUISE_END_DATE OR (v_orig.FORMAT_CRUISE_END_DATE IS NULL AND v_copy.FORMAT_CRUISE_END_DATE IS NULL))
+ AND (v_orig.CRUISE_DAS =  v_copy.CRUISE_DAS OR (v_orig.CRUISE_DAS IS NULL AND v_copy.CRUISE_DAS IS NULL))
+ AND (v_orig.CRUISE_LEN_DAYS =  v_copy.CRUISE_LEN_DAYS OR (v_orig.CRUISE_LEN_DAYS IS NULL AND v_copy.CRUISE_LEN_DAYS IS NULL))
+ AND (v_orig.CRUISE_YEAR =  v_copy.CRUISE_YEAR OR (v_orig.CRUISE_YEAR IS NULL AND v_copy.CRUISE_YEAR IS NULL))
+ AND (v_orig.CRUISE_FISC_YEAR =  v_copy.CRUISE_FISC_YEAR OR (v_orig.CRUISE_FISC_YEAR IS NULL AND v_copy.CRUISE_FISC_YEAR IS NULL))
+-- AND (v_orig.LEG_NAME_RC_LIST =  v_copy.LEG_NAME_RC_LIST OR (v_orig.LEG_NAME_RC_LIST IS NULL AND v_copy.LEG_NAME_RC_LIST IS NULL))
+-- AND (v_orig.LEG_NAME_DATES_RC_LIST =  v_copy.LEG_NAME_DATES_RC_LIST OR (v_orig.LEG_NAME_DATES_RC_LIST IS NULL AND v_copy.LEG_NAME_DATES_RC_LIST IS NULL))
+ AND (v_orig.NUM_SPP_ESA =  v_copy.NUM_SPP_ESA OR (v_orig.NUM_SPP_ESA IS NULL AND v_copy.NUM_SPP_ESA IS NULL))
+ AND (v_orig.SPP_ESA_NAME_RC_LIST =  v_copy.SPP_ESA_NAME_RC_LIST OR (v_orig.SPP_ESA_NAME_RC_LIST IS NULL AND v_copy.SPP_ESA_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_SPP_FSSI =  v_copy.NUM_SPP_FSSI OR (v_orig.NUM_SPP_FSSI IS NULL AND v_copy.NUM_SPP_FSSI IS NULL))
+ AND (v_orig.SPP_FSSI_NAME_RC_LIST =  v_copy.SPP_FSSI_NAME_RC_LIST OR (v_orig.SPP_FSSI_NAME_RC_LIST IS NULL AND v_copy.SPP_FSSI_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_SPP_MMPA =  v_copy.NUM_SPP_MMPA OR (v_orig.NUM_SPP_MMPA IS NULL AND v_copy.NUM_SPP_MMPA IS NULL))
+ AND (v_orig.SPP_MMPA_NAME_RC_LIST =  v_copy.SPP_MMPA_NAME_RC_LIST OR (v_orig.SPP_MMPA_NAME_RC_LIST IS NULL AND v_copy.SPP_MMPA_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_PRIM_SVY_CATS =  v_copy.NUM_PRIM_SVY_CATS OR (v_orig.NUM_PRIM_SVY_CATS IS NULL AND v_copy.NUM_PRIM_SVY_CATS IS NULL))
+ AND (v_orig.PRIM_SVY_CAT_NAME_RC_LIST =  v_copy.PRIM_SVY_CAT_NAME_RC_LIST OR (v_orig.PRIM_SVY_CAT_NAME_RC_LIST IS NULL AND v_copy.PRIM_SVY_CAT_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_SEC_SVY_CATS =  v_copy.NUM_SEC_SVY_CATS OR (v_orig.NUM_SEC_SVY_CATS IS NULL AND v_copy.NUM_SEC_SVY_CATS IS NULL))
+ AND (v_orig.SEC_SVY_CAT_NAME_RC_LIST =  v_copy.SEC_SVY_CAT_NAME_RC_LIST OR (v_orig.SEC_SVY_CAT_NAME_RC_LIST IS NULL AND v_copy.SEC_SVY_CAT_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_EXP_SPP =  v_copy.NUM_EXP_SPP OR (v_orig.NUM_EXP_SPP IS NULL AND v_copy.NUM_EXP_SPP IS NULL))
+ AND (v_orig.EXP_SPP_NAME_RC_LIST =  v_copy.EXP_SPP_NAME_RC_LIST OR (v_orig.EXP_SPP_NAME_RC_LIST IS NULL AND v_copy.EXP_SPP_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_SPP_OTH =  v_copy.NUM_SPP_OTH OR (v_orig.NUM_SPP_OTH IS NULL AND v_copy.NUM_SPP_OTH IS NULL))
+ AND (v_orig.OTH_SPP_CNAME_RC_LIST =  v_copy.OTH_SPP_CNAME_RC_LIST OR (v_orig.OTH_SPP_CNAME_RC_LIST IS NULL AND v_copy.OTH_SPP_CNAME_RC_LIST IS NULL))
+ AND (v_orig.OTH_SPP_SNAME_RC_LIST =  v_copy.OTH_SPP_SNAME_RC_LIST OR (v_orig.OTH_SPP_SNAME_RC_LIST IS NULL AND v_copy.OTH_SPP_SNAME_RC_LIST IS NULL))
+ --AND (v_orig.CRUISE_LEG_ID =  v_copy.CRUISE_LEG_ID OR (v_orig.CRUISE_LEG_ID IS NULL AND v_copy.CRUISE_LEG_ID IS NULL))
+ AND (v_orig.LEG_NAME || ' (copy)' =  v_copy.LEG_NAME OR (v_orig.LEG_NAME IS NULL AND v_copy.LEG_NAME IS NULL))
+ AND (v_orig.LEG_START_DATE =  v_copy.LEG_START_DATE OR (v_orig.LEG_START_DATE IS NULL AND v_copy.LEG_START_DATE IS NULL))
+ AND (v_orig.FORMAT_LEG_START_DATE =  v_copy.FORMAT_LEG_START_DATE OR (v_orig.FORMAT_LEG_START_DATE IS NULL AND v_copy.FORMAT_LEG_START_DATE IS NULL))
+ AND (v_orig.LEG_END_DATE =  v_copy.LEG_END_DATE OR (v_orig.LEG_END_DATE IS NULL AND v_copy.LEG_END_DATE IS NULL))
+ AND (v_orig.FORMAT_LEG_END_DATE =  v_copy.FORMAT_LEG_END_DATE OR (v_orig.FORMAT_LEG_END_DATE IS NULL AND v_copy.FORMAT_LEG_END_DATE IS NULL))
+ AND (v_orig.LEG_DAS =  v_copy.LEG_DAS OR (v_orig.LEG_DAS IS NULL AND v_copy.LEG_DAS IS NULL))
+ AND (v_orig.LEG_YEAR =  v_copy.LEG_YEAR OR (v_orig.LEG_YEAR IS NULL AND v_copy.LEG_YEAR IS NULL))
+ AND (v_orig.LEG_FISC_YEAR =  v_copy.LEG_FISC_YEAR OR (v_orig.LEG_FISC_YEAR IS NULL AND v_copy.LEG_FISC_YEAR IS NULL))
+ AND (v_orig.LEG_DESC =  v_copy.LEG_DESC OR (v_orig.LEG_DESC IS NULL AND v_copy.LEG_DESC IS NULL))
+ AND (v_orig.VESSEL_ID =  v_copy.VESSEL_ID OR (v_orig.VESSEL_ID IS NULL AND v_copy.VESSEL_ID IS NULL))
+ AND (v_orig.VESSEL_NAME =  v_copy.VESSEL_NAME OR (v_orig.VESSEL_NAME IS NULL AND v_copy.VESSEL_NAME IS NULL))
+ AND (v_orig.VESSEL_DESC =  v_copy.VESSEL_DESC OR (v_orig.VESSEL_DESC IS NULL AND v_copy.VESSEL_DESC IS NULL))
+ AND (v_orig.PLAT_TYPE_ID =  v_copy.PLAT_TYPE_ID OR (v_orig.PLAT_TYPE_ID IS NULL AND v_copy.PLAT_TYPE_ID IS NULL))
+ AND (v_orig.PLAT_TYPE_NAME =  v_copy.PLAT_TYPE_NAME OR (v_orig.PLAT_TYPE_NAME IS NULL AND v_copy.PLAT_TYPE_NAME IS NULL))
+ AND (v_orig.PLAT_TYPE_DESC =  v_copy.PLAT_TYPE_DESC OR (v_orig.PLAT_TYPE_DESC IS NULL AND v_copy.PLAT_TYPE_DESC IS NULL))
+ AND (v_orig.NUM_REG_ECOSYSTEMS =  v_copy.NUM_REG_ECOSYSTEMS OR (v_orig.NUM_REG_ECOSYSTEMS IS NULL AND v_copy.NUM_REG_ECOSYSTEMS IS NULL))
+ AND (v_orig.REG_ECOSYSTEM_RC_LIST =  v_copy.REG_ECOSYSTEM_RC_LIST OR (v_orig.REG_ECOSYSTEM_RC_LIST IS NULL AND v_copy.REG_ECOSYSTEM_RC_LIST IS NULL))
+ AND (v_orig.NUM_GEAR =  v_copy.NUM_GEAR OR (v_orig.NUM_GEAR IS NULL AND v_copy.NUM_GEAR IS NULL))
+ AND (v_orig.GEAR_NAME_RC_LIST =  v_copy.GEAR_NAME_RC_LIST OR (v_orig.GEAR_NAME_RC_LIST IS NULL AND v_copy.GEAR_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_DATA_SETS =  v_copy.NUM_DATA_SETS OR (v_orig.NUM_DATA_SETS IS NULL AND v_copy.NUM_DATA_SETS IS NULL))
+ AND (v_orig.DATA_SET_NAME_RC_LIST =  v_copy.DATA_SET_NAME_RC_LIST OR (v_orig.DATA_SET_NAME_RC_LIST IS NULL AND v_copy.DATA_SET_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_REGIONS =  v_copy.NUM_REGIONS OR (v_orig.NUM_REGIONS IS NULL AND v_copy.NUM_REGIONS IS NULL))
+ AND (v_orig.REGION_CODE_RC_LIST =  v_copy.REGION_CODE_RC_LIST OR (v_orig.REGION_CODE_RC_LIST IS NULL AND v_copy.REGION_CODE_RC_LIST IS NULL))
+ AND (v_orig.REGION_NAME_RC_LIST =  v_copy.REGION_NAME_RC_LIST OR (v_orig.REGION_NAME_RC_LIST IS NULL AND v_copy.REGION_NAME_RC_LIST IS NULL))
+ AND (v_orig.NUM_LEG_ALIASES =  v_copy.NUM_LEG_ALIASES OR (v_orig.NUM_LEG_ALIASES IS NULL AND v_copy.NUM_LEG_ALIASES IS NULL))
+ AND (REPLACE(v_orig.LEG_ALIAS_RC_LIST, chr(10), ' (copy)'||chr(10))||' (copy)' =  v_copy.LEG_ALIAS_RC_LIST OR (v_orig.LEG_ALIAS_RC_LIST IS NULL AND v_copy.LEG_ALIAS_RC_LIST IS NULL))
+ AND (v_orig.TZ_NAME = v_copy.TZ_NAME)
+THEN 'Y' ELSE 'N' END) values_equal_yn
+
+from CCD_CRUISE_LEG_DELIM_V v_orig
+inner join CCD_CRUISE_LEG_DELIM_V v_copy
+ON
+v_orig.cruise_name||' (copy)' = v_copy.cruise_name
+AND
+(v_orig.leg_name||' (copy)' = v_copy.leg_name OR (v_orig.leg_name IS NULL AND v_copy.leg_name IS NULL))
+
+order by v_orig.cruise_name,
+v_orig.leg_name;
+
+
+COMMENT ON TABLE CCD_CCDP_DEEP_COPY_CMP_V IS 'Cruise Oracle Package Deep Copy Procedure Verification Query (View)
+
+This verification query retrieves all cruise information and associated attributes and associated cruise legs and associated attributes for all deep copies of cruises based on the "(copy)" naming convention for cruise names, leg names, and leg alias names.  This view is utilized to determine if a given CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP procedure call was successful';
+
+COMMENT ON COLUMN CCD_CCDP_DEEP_COPY_CMP_V.VALUES_EQUAL_YN IS 'Flag to indicate if the cruise attributes, cruise legs, and cruise leg attributes for each cruise that was copied using the Deep Copy functionality all match (Y) or if they do not match (N)';
+
+
+COMMENT ON COLUMN CCD_CCDP_DEEP_COPY_CMP_V.ORIG_CRUISE_NAME IS 'The Name of the Cruise that was copied by the Deep Copy procedure';
+COMMENT ON COLUMN CCD_CCDP_DEEP_COPY_CMP_V.COPY_CRUISE_NAME IS 'The Name of the Cruise that was created by the Deep Copy procedure';
+COMMENT ON COLUMN CCD_CCDP_DEEP_COPY_CMP_V.ORIG_LEG_NAME IS 'The Name of the Cruise Leg that was copied by the Deep Copy procedure';
+COMMENT ON COLUMN CCD_CCDP_DEEP_COPY_CMP_V.COPY_LEG_NAME IS 'The Name of the Cruise Leg that was created by the Deep Copy procedure';
+
+
 
 
 
