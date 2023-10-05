@@ -20,6 +20,64 @@ _ update the views to have a ccd_cruise_legs_v variation or just modify to add t
 
 
 
+
+_ organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)
+All delimited queries can be defined - do not duplicate tables either since it will increase the cost of the queries
+	XX CCD_CRUISE_V - basic cruise with reference tables  (low cost)
+	
+	
+	
+	_ do we need a basic cruise view with just the leg aggregate values? NO, just include the vessel information too, it doesn't cost much
+	XX CCD_CRUISE_AGG_V -> includes leg aggregate information (DAS, etc.)
+	
+	XX CCD_CRUISE_LEG_AGG_V -> includes leg aggregate information (not delimited leg values except for leg names, DAS, Cruise Start Date, etc.)
+	
+	
+	XX CCD_LEG_V - basic leg with reference tables (low cost)
+
+	XX CCD_CRUISE_LEG_V - basic cruise and leg with reference tables only  (low cost)
+
+
+	
+	XX CCD_CRUISE_DELIM_V - cruise-level only with all delimited/aggregated values
+	XX CCD_LEG_DELIM_V - leg with all delimited/aggregated values
+	
+	XX CCD_CRUISE_LEG_DELIM_V - cruise and legs with all delimited/aggregate values for legs and cruises (separate rows for each leg)
+
+	XX CCD_CRUISE_SUMM_V - cruise with delimited values and aggregated leg values - cruise-level only including aggregated leg values
+	
+	
+	XX CCD_LEG_AGG_V - cruise leg aggregated information (CRUISE_DAS, NUM_LEGS, CRUISE_START_DATE, etc.)
+	
+	-- custom queries meant for external uses:
+	cruise leg data sets 
+		CCD_CRUISE_LEG_DATA_SETS_V
+		CCD_CRUISE_LEG_DATA_SETS_MIN_V -> only CCD_CRUISE_AGG information and 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+_ define roles for CCD
+	_ document roles for CCD
+	CCD_EDIT - CCD read/write on all tables
+	CCD_READ - CCD readonly on all tables/views
+	CCD_INTEG - CCD integration - allows referencing of cruise tables and data integration (existing queries used on MOUSS DB and CTD DB)
+	CCD_ADMIN - CCD read/write all tables and define/execute packages?
+
 Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM schema
 
 

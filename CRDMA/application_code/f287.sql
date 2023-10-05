@@ -26460,7 +26460,7 @@ wwv_flow_imp_page.create_page_validation(
 '    --check if there are any vessels or cruise legs that have overlapping leg dates:',
 '    V_SQL := ''SELECT CRUISE_NAME, VESSEL_NAME, LEG_NAME, LEG_START_DATE, LEG_END_DATE, CASE WHEN CRUISE_ID = :P230_CRUISE_ID THEN ''''Y'''' ELSE ''''N'''' END CRUISE_OVERLAP_YN, CASE WHEN VESSEL_ID = :P230_VESSEL_ID THEN ''''Y'''' ELSE ''''N'''' END VESSEL_OVERLAP_Y'
 ||'N ',
-'        from ccd_cruise_legs_v where ',
+'        from ccd_cruise_leg_v where ',
 '        (VESSEL_ID = :P230_VESSEL_ID OR CRUISE_ID = :P230_CRUISE_ID)',
 '        ''||(CASE WHEN :P230_CRUISE_LEG_ID IS NULL THEN '''' ELSE ''AND CRUISE_LEG_ID <> ''||:P230_CRUISE_LEG_ID END)||''',
 '        AND (LEG_START_DATE BETWEEN  :P230_LEG_START_DATE AND :P230_LEG_END_DATE',
