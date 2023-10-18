@@ -20,7 +20,7 @@ _ update the views to have a ccd_cruise_legs_v variation or just modify to add t
 
 
 
-
+Best Practice:
 _ organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)
 All delimited queries can be defined - do not duplicate tables either since it will increase the cost of the queries
 	XX CCD_CRUISE_V - basic cruise with reference tables  (low cost)
@@ -57,7 +57,7 @@ All delimited queries can be defined - do not duplicate tables either since it w
 
 
 
-
+	X upgrade DVM to 1.5 and then update the cruise issue views to use the standard DVM view (DVM_
 
 
 
