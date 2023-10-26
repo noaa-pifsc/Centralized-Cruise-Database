@@ -3044,72 +3044,6 @@ COMMENT ON COLUMN CCD_CRUISE_SUMM_ISS_V.LEG_VESS_NAME_DATES_BR_LIST IS '<BR> tag
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 create or replace view
 CCD_CRUISE_ISS_SUMM_V
 
@@ -3384,31 +3318,69 @@ COMMENT ON COLUMN CCD_CRUISE_ISS_SUMM_V.LEG_VESS_NAME_DATES_BR_LIST IS '<BR> tag
 
 
 
+--define the report for data stream DVM executions (use DVM_DS_PTA_RULE_SETS_HIST_V and CCD_CRUISE_AGG_V)
 
-
-
-
---define the report for data stream DVM executions (use DVM_DS_PTA_RULE_SETS_HIST_V and CCD_CRUISE_V)
-
-CREATE OR REPLACE VIEW CCD_CRUISE_DVM_EVAL_RPT_V
+CREATE OR REPLACE VIEW CCD_CRUISE_DVM_EVAL_V
 
 
 AS
 
 SELECT
-CCD_CRUISE_AGG_V.SCI_CENTER_DIV_NAME,
-CCD_CRUISE_AGG_V.CRUISE_ID,
-CCD_CRUISE_AGG_V.CRUISE_NAME,
-CCD_CRUISE_AGG_V.STD_SVY_NAME_VAL,
-CCD_CRUISE_AGG_V.NUM_LEGS,
-CCD_CRUISE_AGG_V.FORMAT_CRUISE_START_DATE,
-CCD_CRUISE_AGG_V.FORMAT_CRUISE_END_DATE,
-CCD_CRUISE_AGG_V.LEG_NAME_CD_LIST,
+CCD_CRUISE_AGG_V.CRUISE_ID, 
+CCD_CRUISE_AGG_V.CRUISE_NAME, 
+CCD_CRUISE_AGG_V.CRUISE_NOTES, 
+CCD_CRUISE_AGG_V.CRUISE_DESC, 
+CCD_CRUISE_AGG_V.OBJ_BASED_METRICS, 
+CCD_CRUISE_AGG_V.SCI_CENTER_DIV_ID, 
+CCD_CRUISE_AGG_V.SCI_CENTER_DIV_CODE, 
+CCD_CRUISE_AGG_V.SCI_CENTER_DIV_NAME, 
+CCD_CRUISE_AGG_V.SCI_CENTER_DIV_DESC, 
+CCD_CRUISE_AGG_V.SCI_CENTER_ID, 
+CCD_CRUISE_AGG_V.SCI_CENTER_NAME, 
+CCD_CRUISE_AGG_V.SCI_CENTER_DESC, 
+CCD_CRUISE_AGG_V.STD_SVY_NAME_ID, 
+CCD_CRUISE_AGG_V.STD_SVY_NAME, 
+CCD_CRUISE_AGG_V.STD_SVY_DESC, 
+CCD_CRUISE_AGG_V.SVY_FREQ_ID, 
+CCD_CRUISE_AGG_V.SVY_FREQ_NAME, 
+CCD_CRUISE_AGG_V.SVY_FREQ_DESC, 
+CCD_CRUISE_AGG_V.STD_SVY_NAME_OTH, 
+CCD_CRUISE_AGG_V.STD_SVY_NAME_VAL, 
+CCD_CRUISE_AGG_V.SVY_TYPE_ID, 
+CCD_CRUISE_AGG_V.SVY_TYPE_NAME, 
+CCD_CRUISE_AGG_V.SVY_TYPE_DESC, 
+CCD_CRUISE_AGG_V.CRUISE_URL, 
+CCD_CRUISE_AGG_V.CRUISE_CONT_EMAIL, 
+CCD_CRUISE_AGG_V.NUM_LEGS, 
+CCD_CRUISE_AGG_V.CRUISE_START_DATE, 
+CCD_CRUISE_AGG_V.FORMAT_CRUISE_START_DATE, 
+CCD_CRUISE_AGG_V.CRUISE_END_DATE, 
+CCD_CRUISE_AGG_V.FORMAT_CRUISE_END_DATE, 
+CCD_CRUISE_AGG_V.CRUISE_DAS, 
+CCD_CRUISE_AGG_V.CRUISE_LEN_DAYS, 
+CCD_CRUISE_AGG_V.CRUISE_YEAR, 
+CCD_CRUISE_AGG_V.CRUISE_FISC_YEAR, 
+CCD_CRUISE_AGG_V.LEG_NAME_CD_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_SCD_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_RC_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_BR_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_DATES_CD_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_DATES_SCD_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_DATES_RC_LIST, 
+CCD_CRUISE_AGG_V.LEG_NAME_DATES_BR_LIST, 
+CCD_CRUISE_AGG_V.LEG_VESS_NAME_DATES_CD_LIST, 
+CCD_CRUISE_AGG_V.LEG_VESS_NAME_DATES_SCD_LIST, 
+CCD_CRUISE_AGG_V.LEG_VESS_NAME_DATES_RC_LIST, 
+CCD_CRUISE_AGG_V.LEG_VESS_NAME_DATES_BR_LIST, 
 DVM_DS_PTA_RULE_SETS_HIST_V.PTA_RULE_SET_ID,
 DVM_DS_PTA_RULE_SETS_HIST_V.RULE_SET_ID,
 DVM_DS_PTA_RULE_SETS_HIST_V.PTA_ISS_ID,
+DVM_DS_PTA_RULE_SETS_HIST_V.DATA_STREAM_ID,
+
 DVM_DS_PTA_RULE_SETS_HIST_V.DATA_STREAM_CODE,
 DVM_DS_PTA_RULE_SETS_HIST_V.DATA_STREAM_NAME,
+DVM_DS_PTA_RULE_SETS_HIST_V.DATA_STREAM_DESC,
+DVM_DS_PTA_RULE_SETS_HIST_V.EVAL_DATE,
 DVM_DS_PTA_RULE_SETS_HIST_V.FORMAT_EVAL_DATE
 
 FROM
@@ -3421,6 +3393,118 @@ CCD_CRUISE_AGG_V.CRUISE_NAME,
 CCD_CRUISE_AGG_V.CRUISE_START_DATE,
 DVM_DS_PTA_RULE_SETS_HIST_V.DATA_STREAM_NAME,
 DVM_DS_PTA_RULE_SETS_HIST_V.EVAL_DATE;
+
+
+
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_NOTES IS 'Any notes for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_DESC IS 'Description for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.OBJ_BASED_METRICS IS 'Objective Based Metrics for the given research cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_ID IS 'Primary key for the Science Center Division table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_CODE IS 'Abbreviated code for the given Science Center Division';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_DESC IS 'Description for the given Science Center Division';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_ID IS 'Primary key for the Science Center table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_NAME IS 'Name of the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DESC IS 'Description for the given Science Center';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.STD_SVY_NAME_ID IS 'Primary key for the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.STD_SVY_NAME IS 'Name of the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.STD_SVY_DESC IS 'Description for the given Standard Survey Name';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_FREQ_ID IS 'Primary key for the Survey Frequency table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_FREQ_NAME IS 'Name of the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_FREQ_DESC IS 'Description for the given Survey Frequency';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.STD_SVY_NAME_OTH IS 'Field defines a Standard Survey Name that is not included in the Standard Survey Name table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.STD_SVY_NAME_VAL IS 'This field contains the Standard Survey Name defined for the given cruise.	If the STD_SVY_NAME_ID field is defined then the associated CCD_STD_SVY_NAMES.STD_SVY_NAME is used because the foreign key is given precedence, otherwise the STD_SVY_NAME_OTH field value is used';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_TYPE_ID IS 'Primary key for the Survey Type table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_TYPE_NAME IS 'Name of the given Survey Type';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.SVY_TYPE_DESC IS 'Description for the given Survey Type';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_URL IS 'The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_CONT_EMAIL IS 'The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.NUM_LEGS IS 'The number of cruise legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_START_DATE IS 'The start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.FORMAT_CRUISE_START_DATE IS 'The formatted start date in the corresponding time zone for the given cruise (based on the earliest associated cruise leg''s start date) in MM/DD/YYYY HH24:MI:SS format';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_END_DATE IS 'The end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.FORMAT_CRUISE_END_DATE IS 'The formatted end date in the corresponding time zone for the given cruise (based on the latest associated cruise leg''s end date) in MM/DD/YYYY HH24:MI:SS format';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_DAS IS 'The total number of days at sea for each of the legs associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_LEN_DAYS IS 'The total number of days between the Cruise Start and End Dates for the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.CRUISE_FISC_YEAR IS 'The calendar year for the given cruise (based on the earliest associated cruise leg''s start date)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_CD_LIST IS 'Comma-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_SCD_LIST IS 'Semicolon-delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_RC_LIST IS 'Return carriage/new line delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_DATES_CD_LIST IS 'Comma-delimited list of leg names, the associated leg dates for the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_DATES_SCD_LIST IS 'Semicolon-delimited list of leg names, the associated leg dates for the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_DATES_RC_LIST IS 'Return carriage/new line delimited list of leg names, the associated leg dates for the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_NAME_DATES_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names, the associated leg dates for the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_VESS_NAME_DATES_CD_LIST IS 'Comma-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_VESS_NAME_DATES_SCD_LIST IS 'Semicolon-delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_VESS_NAME_DATES_RC_LIST IS 'Return carriage/new line delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.LEG_VESS_NAME_DATES_BR_LIST IS '<BR> tag (intended for web pages) delimited list of leg names, the associated leg dates and vessel name associated with the given cruise';
+
+
+
+
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.PTA_RULE_SET_ID IS 'The primary key field for the DVM_PTA_RULE_SETS table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.RULE_SET_ID IS 'Primary key for the DVM_RULE_SETS table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.PTA_ISS_ID IS 'Foreign key reference to the PTA Issue record associated validation rule set (DVM_PTA_ISSUES)';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_CODE IS 'The code for the given data stream';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_NAME IS 'The name for the given data stream';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.FORMAT_EVAL_DATE IS 'The formatted date/time the given parent record was evaluated using the DVM for the associated data stream (in SYYYY-MM-DD HH24:MI:SS format)';
+
+
+
+COMMENT ON TABLE CCD_CRUISE_DVM_EVAL_V IS 'Cruise DVM Validation Rule Set Evaluation History (View)
+
+This view returns the date/time for each time the DVM was processed (FORMAT_EVAL_DATE) on a given cruise record and associated data stream.';
+
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_DESC IS 'The description for the given data stream';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_ID IS 'Primary Key for the SPT_DATA_STREAMS table';
+COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_V.EVAL_DATE IS 'The date/time the given parent record was evaluated using the DVM for the associated data stream';
+
+
+
+
+
+
+
+
+
+--define the report for data stream DVM executions (use DVM_DS_PTA_RULE_SETS_HIST_V and CCD_CRUISE_V)
+
+CREATE OR REPLACE VIEW CCD_CRUISE_DVM_EVAL_RPT_V
+
+
+AS
+
+SELECT
+CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_NAME,
+CCD_CRUISE_DVM_EVAL_V.CRUISE_ID,
+CCD_CRUISE_DVM_EVAL_V.CRUISE_NAME,
+CCD_CRUISE_DVM_EVAL_V.STD_SVY_NAME_VAL,
+CCD_CRUISE_DVM_EVAL_V.NUM_LEGS,
+CCD_CRUISE_DVM_EVAL_V.FORMAT_CRUISE_START_DATE,
+CCD_CRUISE_DVM_EVAL_V.FORMAT_CRUISE_END_DATE,
+CCD_CRUISE_DVM_EVAL_V.LEG_NAME_CD_LIST,
+CCD_CRUISE_DVM_EVAL_V.PTA_RULE_SET_ID,
+CCD_CRUISE_DVM_EVAL_V.RULE_SET_ID,
+CCD_CRUISE_DVM_EVAL_V.PTA_ISS_ID,
+CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_CODE,
+CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_NAME,
+CCD_CRUISE_DVM_EVAL_V.FORMAT_EVAL_DATE
+
+FROM
+CCD_CRUISE_DVM_EVAL_V
+order by
+CCD_CRUISE_DVM_EVAL_V.SCI_CENTER_DIV_NAME,
+CCD_CRUISE_DVM_EVAL_V.CRUISE_NAME,
+CCD_CRUISE_DVM_EVAL_V.CRUISE_START_DATE,
+CCD_CRUISE_DVM_EVAL_V.DATA_STREAM_NAME,
+CCD_CRUISE_DVM_EVAL_V.EVAL_DATE;
 
 
 COMMENT ON COLUMN CCD_CRUISE_DVM_EVAL_RPT_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
