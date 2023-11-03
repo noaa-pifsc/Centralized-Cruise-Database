@@ -1,16 +1,18 @@
 --run this from the DSC schema:
-
 grant execute on DSC.DSC_CRE_HIST_OBJS_PKG to CEN_CRUISE;
 grant execute on DSC.DSC_UTILITIES_PKG to CEN_CRUISE;
 
---run this from the CEN_UTILS schema:
+
+--run this for the CEN_UTILS schema:
+grant CEN_UTILS_ROLE TO CEN_CRUISE;
+grant CEN_UTILS_ROLE TO CEN_CRUISE_APP;
 grant execute on CEN_UTILS.CEN_UTIL_PKG to CEN_CRUISE with grant option;
 grant execute on CEN_UTILS.CEN_UTIL_ARRAY_PKG to CEN_CRUISE with grant option;
 
+
 --centralized authorization system package:
-grant execute on CAS.CAS_EXT_AUTH_PKG to CEN_CRUISE_APP;
+GRANT CAS_APP_ROLE TO CEN_CRUISE_APP;
 
 
-grant execute on CEN_UTILS.CEN_UTIL_PKG to CEN_CRUISE_APP;
 
 

@@ -1619,6 +1619,8 @@ insert into ccd_cruises (cruise_name, cruise_notes, sci_center_div_id, std_svy_n
 
 insert into ccd_cruises (cruise_name, cruise_notes, sci_center_div_id, std_svy_name_id, svy_freq_id, std_svy_name_oth, CRUISE_URL, CRUISE_CONT_EMAIL, svy_type_id, CRUISE_DESC, OBJ_BASED_METRICS) values ('TC-03-07', 'Could not retrieve this information from FINSS since data is only available for 2014 and later, these values were made up for testing purposes', (select sci_center_div_id from ccd_sci_center_divs where sci_center_div_code = 'ESD'), (select STD_SVY_NAME_ID from ccd_std_svy_names where std_svy_name = 'Pacific Reef Assessment and Monitoring Program (Pacific RAMP) - National Coral Reef Monitoring Program (NCRMP)'), (select SVY_FREQ_ID from ccd_svy_freq where SVY_FREQ_name = ''), (CASE WHEN (select STD_SVY_NAME_ID from ccd_std_svy_names where std_svy_name = 'Pacific Reef Assessment and Monitoring Program (Pacific RAMP) - National Coral Reef Monitoring Program (NCRMP)') IS NULL THEN 'Pacific Reef Assessment and Monitoring Program (Pacific RAMP) - National Coral Reef Monitoring Program (NCRMP)' ELSE NULL END), 'http://www.noaa.gov/testURL', 'test@test.com', (SELECT svy_type_id from ccd_svy_types where svy_type_name = 'NMFS Survey'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'test content');
 
+insert into ccd_cruises (cruise_name, cruise_notes, sci_center_div_id, std_svy_name_id, svy_freq_id, std_svy_name_oth, CRUISE_URL, CRUISE_CONT_EMAIL, svy_type_id, CRUISE_DESC, OBJ_BASED_METRICS) values ('SE-19-06', 'Created MOUSS cruise so it can be referenced by the MOUSS database', (select sci_center_div_id from ccd_sci_center_divs where sci_center_div_code = 'FRMD'), (select STD_SVY_NAME_ID from ccd_std_svy_names where std_svy_name = 'Hawaiian Archipelago Insular Bottomfish Survey'), (select SVY_FREQ_ID from ccd_svy_freq where SVY_FREQ_name = 'ANNUAL'), (CASE WHEN (select STD_SVY_NAME_ID from ccd_std_svy_names where std_svy_name = 'Hawaiian Archipelago Insular Bottomfish Survey') IS NULL THEN 'Hawaiian Archipelago Insular Bottomfish Survey' ELSE NULL END), 'http://www.noaa.gov/testURL', 'test@test.com', (SELECT svy_type_id from ccd_svy_types where svy_type_name = 'NMFS Survey'), 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'test content');
+
 
 --cruise legs
 insert into ccd_cruise_legs (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME) values ('TC0201_LEGI', TO_DATE('01/21/2002', 'MM/DD/YYYY'), TO_DATE('02/14/2002', 'MM/DD/YYYY'), 'Legs were fabricated for testing purposes', (SELECT CCD_CRUISES.CRUISE_ID FROM CCD_CRUISES where cruise_name = 'TC0201'), (select vessel_id from ccd_vessels where vessel_name = 'Townsend Cromwell'), (select PLAT_TYPE_ID from CCD_PLAT_TYPES where PLAT_TYPE_NAME = 'Fishery Survey Vessel (FSV)'), 'US/Hawaii');
@@ -1651,6 +1653,9 @@ insert into ccd_cruise_legs (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, C
 insert into ccd_cruise_legs (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME) values ('RL-17-05 Leg 6', TO_DATE('12/20/2017', 'MM/DD/YYYY'), TO_DATE('01/10/2018', 'MM/DD/YYYY'), 'Legs were fabricated for testing purposes', (SELECT CCD_CRUISES.CRUISE_ID FROM CCD_CRUISES where cruise_name = 'RL-17-05'), (select vessel_id from ccd_vessels where vessel_name = 'Reuben Lasker'), (select PLAT_TYPE_ID from CCD_PLAT_TYPES where PLAT_TYPE_NAME = 'Fishery Survey Vessel (FSV)'), 'US/Hawaii');
 
 
+insert into ccd_cruise_legs (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME) values ('SE-19-06', TO_DATE('9/11/2019', 'MM/DD/YYYY'), TO_DATE('9/29/2019', 'MM/DD/YYYY'), 'Leg dates retrieved from project report', (SELECT CCD_CRUISES.CRUISE_ID FROM CCD_CRUISES where cruise_name = 'SE-19-06'), (select vessel_id from ccd_vessels where vessel_name = 'Oscar Elton Sette'), (select PLAT_TYPE_ID from CCD_PLAT_TYPES where PLAT_TYPE_NAME = 'Fishery Survey Vessel (FSV)'), 'US/Hawaii');
+insert into ccd_cruise_legs (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME) values ('PIFG-19-01', TO_DATE('11/21/2019', 'MM/DD/YYYY'), TO_DATE('11/26/2019', 'MM/DD/YYYY'), 'Ao Shibi IV', (SELECT CCD_CRUISES.CRUISE_ID FROM CCD_CRUISES where cruise_name = 'SE-19-06'), (select vessel_id from ccd_vessels where vessel_name = 'Oscar Elton Sette'), (select PLAT_TYPE_ID from CCD_PLAT_TYPES where PLAT_TYPE_NAME = 'Fishery Survey Vessel (FSV)'), 'US/Hawaii');
+
 
 --leg aliases:
 insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1007'), 'HA1007');
@@ -1660,6 +1665,13 @@ insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select crui
 insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0509'), 'OS-05-09 (copy)');
 insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'OES0509'), 'OS0509');
 
+insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-19-06'), 'SE1906');
+insert into ccd_leg_aliases (cruise_leg_id, LEG_ALIAS_NAME) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-19-06'), 'SE-19-06');
+
+
+--cruise leg regions
+insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-19-06'), '');
+insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'PIFG-19-01'), '');
 
 --cruise survey categories:
 INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'TC-03-07'), (SELECT SVY_CAT_ID FROM CCD_SVY_CATS WHERE SVY_CAT_NAME = 'Science, Services and Stewardship'), 'Y');
@@ -1677,6 +1689,7 @@ INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SEL
 INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'HI0401'), (SELECT SVY_CAT_ID FROM CCD_SVY_CATS WHERE SVY_CAT_NAME = 'Fisheries Monitoring and Assessment'), 'Y');
 INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'OES0607'), (SELECT SVY_CAT_ID FROM CCD_SVY_CATS WHERE SVY_CAT_NAME = 'Ecosystem Monitoring and Assessment'), 'Y');
 INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'TC-03-07'), (SELECT SVY_CAT_ID FROM CCD_SVY_CATS WHERE SVY_CAT_NAME = 'Protected Species Monitoring and Assessment'), 'N');
+INSERT INTO CCD_CRUISE_SVY_CATS (CRUISE_ID, SVY_CAT_ID, PRIMARY_YN) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'SE-19-06'), (SELECT SVY_CAT_ID FROM CCD_SVY_CATS WHERE SVY_CAT_NAME = 'Habitat Monitoring and Assessment'), 'Y');
 
 
 --leg gear:
@@ -1705,6 +1718,9 @@ INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID 
 INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'OES0607'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'IBS COD Trawl'));
 INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'TC-03-07'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'International Young Gadoid Pelagic Trawl'));
 
+INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'SE-19-06'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'MOUSS'));
+INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'SE-19-06'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'CTD'));
+INSERT INTO CCD_LEG_GEAR (CRUISE_LEG_ID, GEAR_ID) VALUES ((SELECT CRUISE_LEG_ID FROM CCD_CRUISE_LEGS WHERE LEG_NAME = 'PIFG-19-01'), (SELECT GEAR_ID FROM CCD_GEAR WHERE GEAR_NAME = 'MOUSS'));
 
 
 /*
@@ -1761,7 +1777,9 @@ insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_
 insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2011 Water Samples Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'Water Samples'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'ARCH'));
 
 
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2019 MOUSS Data Set', '2019 MOUSS Data Set, using the parent project folder CAT_ID temporarily until the InPort metadata record is created', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'MOUSS Video'), '99999', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'QC'));
 
+insert into ccd_data_sets (DATA_SET_NAME, DATA_SET_DESC, DATA_SET_TYPE_ID, DATA_SET_INPORT_CAT_ID, DATA_SET_STATUS_ID) values ('2019 CTD Data', '', (SELECT DATA_SET_TYPE_ID FROM CCD_DATA_SET_TYPES WHERE DATA_SET_TYPE_NAME = 'CTD'), '', (SELECT DATA_SET_STATUS_ID FROM CCD_DATA_SET_STATUS where status_code = 'IA'));
 
 --leg data sets
 insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'HA1007'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2010 CTD Data'));
@@ -1802,4 +1820,9 @@ insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruis
 
 insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'TC0201_LEGII'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2002 CTD Data'));
 insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'TC-03-07'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2003 CTD Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-19-06'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2019 MOUSS Data Set'));
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'SE-19-06'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2019 CTD Data'));
+
+insert into ccd_leg_data_sets (cruise_leg_id, DATA_SET_ID) values ((select cruise_leg_id from ccd_cruise_legs where leg_name = 'PIFG-19-01'), (SELECT DATA_SET_ID FROM CCD_DATA_SETS WHERE DATA_SET_NAME = '2019 MOUSS Data Set'));
 

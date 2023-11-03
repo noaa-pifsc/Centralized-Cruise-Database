@@ -320,143 +320,6 @@ COMMENT ON COLUMN CCD_LEG_DATA_SETS_MIN_V.STATUS_COLOR IS 'The hex value for the
 
 
 
-CREATE OR REPLACE VIEW
-CCD_LEG_DATA_SETS_V
-as
-SELECT
-CCD_LEG_DATA_SETS_MIN_V.LEG_DATA_SET_ID,
-CCD_LEG_DATA_SETS_MIN_V.CRUISE_LEG_ID,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_ID,
-CCD_LEG_DATA_SETS_MIN_V.LEG_DATA_SET_NOTES,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_NAME,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_DESC,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_INPORT_CAT_ID,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_INPORT_URL,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_ID,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_NAME,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_DESC,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_DOC_URL,
-CCD_LEG_DATA_SETS_MIN_V.DATA_SET_STATUS_ID,
-CCD_LEG_DATA_SETS_MIN_V.STATUS_CODE,
-CCD_LEG_DATA_SETS_MIN_V.STATUS_NAME,
-CCD_LEG_DATA_SETS_MIN_V.STATUS_DESC,
-CCD_LEG_DATA_SETS_MIN_V.STATUS_COLOR,
-ccd_cruise_leg_v.CRUISE_ID, 
-ccd_cruise_leg_v.CRUISE_NAME, 
-ccd_cruise_leg_v.CRUISE_NOTES, 
-ccd_cruise_leg_v.CRUISE_DESC, 
-ccd_cruise_leg_v.OBJ_BASED_METRICS, 
-ccd_cruise_leg_v.SCI_CENTER_DIV_ID, 
-ccd_cruise_leg_v.SCI_CENTER_DIV_CODE, 
-ccd_cruise_leg_v.SCI_CENTER_DIV_NAME, 
-ccd_cruise_leg_v.SCI_CENTER_DIV_DESC, 
-ccd_cruise_leg_v.SCI_CENTER_ID, 
-ccd_cruise_leg_v.SCI_CENTER_NAME, 
-ccd_cruise_leg_v.SCI_CENTER_DESC, 
-ccd_cruise_leg_v.STD_SVY_NAME_ID, 
-ccd_cruise_leg_v.STD_SVY_NAME, 
-ccd_cruise_leg_v.STD_SVY_DESC, 
-ccd_cruise_leg_v.SVY_FREQ_ID, 
-ccd_cruise_leg_v.SVY_FREQ_NAME, 
-ccd_cruise_leg_v.SVY_FREQ_DESC, 
-ccd_cruise_leg_v.STD_SVY_NAME_OTH, 
-ccd_cruise_leg_v.STD_SVY_NAME_VAL, 
-ccd_cruise_leg_v.SVY_TYPE_ID, 
-ccd_cruise_leg_v.SVY_TYPE_NAME, 
-ccd_cruise_leg_v.SVY_TYPE_DESC, 
-ccd_cruise_leg_v.CRUISE_URL, 
-ccd_cruise_leg_v.CRUISE_CONT_EMAIL, 
-ccd_cruise_leg_v.PTA_ISS_ID, 
-ccd_cruise_leg_v.LEG_NAME, 
-ccd_cruise_leg_v.LEG_START_DATE, 
-ccd_cruise_leg_v.FORMAT_LEG_START_DATE, 
-ccd_cruise_leg_v.LEG_END_DATE, 
-ccd_cruise_leg_v.FORMAT_LEG_END_DATE, 
-ccd_cruise_leg_v.LEG_DAS, 
-ccd_cruise_leg_v.LEG_YEAR, 
-ccd_cruise_leg_v.TZ_NAME, 
-ccd_cruise_leg_v.LEG_FISC_YEAR, 
-ccd_cruise_leg_v.LEG_DESC, 
-ccd_cruise_leg_v.VESSEL_ID, 
-ccd_cruise_leg_v.VESSEL_NAME, 
-ccd_cruise_leg_v.VESSEL_DESC, 
-ccd_cruise_leg_v.PLAT_TYPE_ID, 
-ccd_cruise_leg_v.PLAT_TYPE_NAME, 
-ccd_cruise_leg_v.PLAT_TYPE_DESC
-
-FROM
-CCD_LEG_DATA_SETS_MIN_V
-INNER JOIN ccd_cruise_leg_v
-ON ccd_cruise_leg_v.CRUISE_LEG_ID = CCD_LEG_DATA_SETS_MIN_V.CRUISE_LEG_ID
-order by CCD_LEG_DATA_SETS_MIN_V.DATA_SET_NAME, ccd_cruise_leg_v.cruise_name, ccd_cruise_leg_v.leg_name;
-
-COMMENT ON TABLE CCD_LEG_DATA_SETS_V IS 'Research Cruise Leg Data Sets (View)
-
-This query returns all research cruise legs and their associated data sets and cruise/leg information';
-
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DATA_SET_ID IS 'Primary key for the CCD_LEG_DATA_SETS table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_LEG_ID IS 'The cruise leg the Data Set is associated with';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_ID IS 'Primary key for the CCD_DATA_SETS table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DATA_SET_NOTES IS 'Notes associated with the given Cruise Leg''s Data Set';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_NAME IS 'The Name of the data set';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_DESC IS 'Description for the data set';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_INPORT_CAT_ID IS 'InPort Catalog ID for the data set';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_INPORT_URL IS 'InPort metadata URL for the data set';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_ID IS 'Primary key for the CCD_DATA_SET_TYPES table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_NAME IS 'Name for the data set type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_DESC IS 'Description for the data set type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_DOC_URL IS 'Documentation URL for the data type, this can be an InPort URL for the parent Project record of the individual data sets or a documentation package that provides information about this data set type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_STATUS_ID IS 'Primary key for the CCD_DATA_SET_STATUS table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_CODE IS 'The alpha-numeric code for the data status';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_NAME IS 'The name of the data status';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_DESC IS 'The description for the data status';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_COLOR IS 'The hex value for the color that the data set status has in the application interface';
-
-
-
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_NOTES IS 'Any notes for the given research cruise';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_DESC IS 'Description for the given research cruise';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.OBJ_BASED_METRICS IS 'Objective Based Metrics for the given research cruise';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_ID IS 'Primary key for the Science Center Division table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_CODE IS 'Abbreviated code for the given Science Center Division';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_DESC IS 'Description for the given Science Center Division';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_ID IS 'Primary key for the Science Center table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_NAME IS 'Name of the given Science Center';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DESC IS 'Description for the given Science Center';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_ID IS 'Primary key for the Standard Survey Name table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME IS 'Name of the given Standard Survey Name';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_DESC IS 'Description for the given Standard Survey Name';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_ID IS 'Primary key for the Survey Frequency table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_NAME IS 'Name of the given Survey Frequency';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_DESC IS 'Description for the given Survey Frequency';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_OTH IS 'Field defines a Standard Survey Name that is not included in the Standard Survey Name table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_VAL IS 'This field contains the Standard Survey Name defined for the given cruise.	If the STD_SVY_NAME_ID field is defined then the associated CCD_STD_SVY_NAMES.STD_SVY_NAME is used because the foreign key is given precedence, otherwise the STD_SVY_NAME_OTH field value is used';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_ID IS 'Primary key for the Survey Type table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_NAME IS 'Name of the given Survey Type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_DESC IS 'Description for the given Survey Type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_URL IS 'The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_CONT_EMAIL IS 'The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PTA_ISS_ID IS 'Foreign key reference to the Issues (PTA) intersection table';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_NAME IS 'The name of the given cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_START_DATE IS 'The start date in the corresponding time zone for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.FORMAT_LEG_START_DATE IS 'The start date in the corresponding time zone for the given research cruise leg in MM/DD/YYYY format';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_END_DATE IS 'The end date in the corresponding time zone for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.FORMAT_LEG_END_DATE IS 'The end date in the corresponding time zone for the given research cruise leg in MM/DD/YYYY format';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DAS IS 'The number of days at sea for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_YEAR IS 'The calendar year for the start date of the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, Etc/GMT+9)';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DESC IS 'The description for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_ID IS 'Foreign key reference to the CCD_VESSELS table for the cruise leg''s vessel';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_NAME IS 'Name of the given research vessel';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_DESC IS 'Description for the given research vessel';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_ID IS 'Platform Type for the given research cruise leg';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_NAME IS 'Name of the given Platform Type';
-COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_DESC IS 'Description for the given Platform Type';
-
 
 CREATE OR REPLACE VIEW
 CCD_LEG_ECOSYSTEMS_V
@@ -1539,6 +1402,9 @@ COMMENT ON COLUMN CCD_CRUISE_LEG_V.PTA_ISS_ID IS 'Foreign key reference to the I
 
 
 
+
+
+
 --this view includes the aggregated leg information at the cruise level
 CREATE OR REPLACE VIEW
 CCD_CRUISE_LEG_AGG_V
@@ -2399,6 +2265,143 @@ COMMENT ON COLUMN CCD_CRUISE_LEG_DELIM_V.DATA_SET_NAME_BR_LIST IS '<BR> tag (int
 
 
 
+
+CREATE OR REPLACE VIEW
+CCD_LEG_DATA_SETS_V
+as
+SELECT
+CCD_LEG_DATA_SETS_MIN_V.LEG_DATA_SET_ID,
+CCD_LEG_DATA_SETS_MIN_V.CRUISE_LEG_ID,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_ID,
+CCD_LEG_DATA_SETS_MIN_V.LEG_DATA_SET_NOTES,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_NAME,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_DESC,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_INPORT_CAT_ID,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_INPORT_URL,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_ID,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_NAME,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_DESC,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_TYPE_DOC_URL,
+CCD_LEG_DATA_SETS_MIN_V.DATA_SET_STATUS_ID,
+CCD_LEG_DATA_SETS_MIN_V.STATUS_CODE,
+CCD_LEG_DATA_SETS_MIN_V.STATUS_NAME,
+CCD_LEG_DATA_SETS_MIN_V.STATUS_DESC,
+CCD_LEG_DATA_SETS_MIN_V.STATUS_COLOR,
+ccd_cruise_leg_v.CRUISE_ID, 
+ccd_cruise_leg_v.CRUISE_NAME, 
+ccd_cruise_leg_v.CRUISE_NOTES, 
+ccd_cruise_leg_v.CRUISE_DESC, 
+ccd_cruise_leg_v.OBJ_BASED_METRICS, 
+ccd_cruise_leg_v.SCI_CENTER_DIV_ID, 
+ccd_cruise_leg_v.SCI_CENTER_DIV_CODE, 
+ccd_cruise_leg_v.SCI_CENTER_DIV_NAME, 
+ccd_cruise_leg_v.SCI_CENTER_DIV_DESC, 
+ccd_cruise_leg_v.SCI_CENTER_ID, 
+ccd_cruise_leg_v.SCI_CENTER_NAME, 
+ccd_cruise_leg_v.SCI_CENTER_DESC, 
+ccd_cruise_leg_v.STD_SVY_NAME_ID, 
+ccd_cruise_leg_v.STD_SVY_NAME, 
+ccd_cruise_leg_v.STD_SVY_DESC, 
+ccd_cruise_leg_v.SVY_FREQ_ID, 
+ccd_cruise_leg_v.SVY_FREQ_NAME, 
+ccd_cruise_leg_v.SVY_FREQ_DESC, 
+ccd_cruise_leg_v.STD_SVY_NAME_OTH, 
+ccd_cruise_leg_v.STD_SVY_NAME_VAL, 
+ccd_cruise_leg_v.SVY_TYPE_ID, 
+ccd_cruise_leg_v.SVY_TYPE_NAME, 
+ccd_cruise_leg_v.SVY_TYPE_DESC, 
+ccd_cruise_leg_v.CRUISE_URL, 
+ccd_cruise_leg_v.CRUISE_CONT_EMAIL, 
+ccd_cruise_leg_v.PTA_ISS_ID, 
+ccd_cruise_leg_v.LEG_NAME, 
+ccd_cruise_leg_v.LEG_START_DATE, 
+ccd_cruise_leg_v.FORMAT_LEG_START_DATE, 
+ccd_cruise_leg_v.LEG_END_DATE, 
+ccd_cruise_leg_v.FORMAT_LEG_END_DATE, 
+ccd_cruise_leg_v.LEG_DAS, 
+ccd_cruise_leg_v.LEG_YEAR, 
+ccd_cruise_leg_v.TZ_NAME, 
+ccd_cruise_leg_v.LEG_FISC_YEAR, 
+ccd_cruise_leg_v.LEG_DESC, 
+ccd_cruise_leg_v.VESSEL_ID, 
+ccd_cruise_leg_v.VESSEL_NAME, 
+ccd_cruise_leg_v.VESSEL_DESC, 
+ccd_cruise_leg_v.PLAT_TYPE_ID, 
+ccd_cruise_leg_v.PLAT_TYPE_NAME, 
+ccd_cruise_leg_v.PLAT_TYPE_DESC
+
+FROM
+CCD_LEG_DATA_SETS_MIN_V
+INNER JOIN ccd_cruise_leg_v
+ON ccd_cruise_leg_v.CRUISE_LEG_ID = CCD_LEG_DATA_SETS_MIN_V.CRUISE_LEG_ID
+order by CCD_LEG_DATA_SETS_MIN_V.DATA_SET_NAME, ccd_cruise_leg_v.cruise_name, ccd_cruise_leg_v.leg_name;
+
+COMMENT ON TABLE CCD_LEG_DATA_SETS_V IS 'Research Cruise Leg Data Sets (View)
+
+This query returns all research cruise legs and their associated data sets and cruise/leg information';
+
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DATA_SET_ID IS 'Primary key for the CCD_LEG_DATA_SETS table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_LEG_ID IS 'The cruise leg the Data Set is associated with';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_ID IS 'Primary key for the CCD_DATA_SETS table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DATA_SET_NOTES IS 'Notes associated with the given Cruise Leg''s Data Set';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_NAME IS 'The Name of the data set';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_DESC IS 'Description for the data set';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_INPORT_CAT_ID IS 'InPort Catalog ID for the data set';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_INPORT_URL IS 'InPort metadata URL for the data set';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_ID IS 'Primary key for the CCD_DATA_SET_TYPES table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_NAME IS 'Name for the data set type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_DESC IS 'Description for the data set type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_TYPE_DOC_URL IS 'Documentation URL for the data type, this can be an InPort URL for the parent Project record of the individual data sets or a documentation package that provides information about this data set type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.DATA_SET_STATUS_ID IS 'Primary key for the CCD_DATA_SET_STATUS table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_CODE IS 'The alpha-numeric code for the data status';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_NAME IS 'The name of the data status';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_DESC IS 'The description for the data status';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STATUS_COLOR IS 'The hex value for the color that the data set status has in the application interface';
+
+
+
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_ID IS 'Primary key for the CCD_CRUISES table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_NAME IS 'The name of the given cruise designated by NOAA (e.g. SE-15-01)';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_NOTES IS 'Any notes for the given research cruise';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_DESC IS 'Description for the given research cruise';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.OBJ_BASED_METRICS IS 'Objective Based Metrics for the given research cruise';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_ID IS 'Primary key for the Science Center Division table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_CODE IS 'Abbreviated code for the given Science Center Division';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_NAME IS 'Name of the given Science Center Division';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DIV_DESC IS 'Description for the given Science Center Division';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_ID IS 'Primary key for the Science Center table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_NAME IS 'Name of the given Science Center';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SCI_CENTER_DESC IS 'Description for the given Science Center';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_ID IS 'Primary key for the Standard Survey Name table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME IS 'Name of the given Standard Survey Name';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_DESC IS 'Description for the given Standard Survey Name';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_ID IS 'Primary key for the Survey Frequency table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_NAME IS 'Name of the given Survey Frequency';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_FREQ_DESC IS 'Description for the given Survey Frequency';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_OTH IS 'Field defines a Standard Survey Name that is not included in the Standard Survey Name table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.STD_SVY_NAME_VAL IS 'This field contains the Standard Survey Name defined for the given cruise.	If the STD_SVY_NAME_ID field is defined then the associated CCD_STD_SVY_NAMES.STD_SVY_NAME is used because the foreign key is given precedence, otherwise the STD_SVY_NAME_OTH field value is used';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_ID IS 'Primary key for the Survey Type table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_NAME IS 'Name of the given Survey Type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.SVY_TYPE_DESC IS 'Description for the given Survey Type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_URL IS 'The Cruise URL (Referred to as "Survey URL" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.CRUISE_CONT_EMAIL IS 'The Cruise Contact Email (Referred to as "Survey Contact Email" in FINSS System) for the given Cruise';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PTA_ISS_ID IS 'Foreign key reference to the Issues (PTA) intersection table';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_NAME IS 'The name of the given cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_START_DATE IS 'The start date in the corresponding time zone for the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.FORMAT_LEG_START_DATE IS 'The start date in the corresponding time zone for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_END_DATE IS 'The end date in the corresponding time zone for the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.FORMAT_LEG_END_DATE IS 'The end date in the corresponding time zone for the given research cruise leg in MM/DD/YYYY format';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DAS IS 'The number of days at sea for the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_YEAR IS 'The calendar year for the start date of the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.TZ_NAME IS 'The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, Etc/GMT+9)';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_FISC_YEAR IS 'The NOAA fiscal year for the start date of the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.LEG_DESC IS 'The description for the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_ID IS 'Foreign key reference to the CCD_VESSELS table for the cruise leg''s vessel';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_NAME IS 'Name of the given research vessel';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.VESSEL_DESC IS 'Description for the given research vessel';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_ID IS 'Platform Type for the given research cruise leg';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_NAME IS 'Name of the given Platform Type';
+COMMENT ON COLUMN CCD_LEG_DATA_SETS_V.PLAT_TYPE_DESC IS 'Description for the given Platform Type';
 
 
 

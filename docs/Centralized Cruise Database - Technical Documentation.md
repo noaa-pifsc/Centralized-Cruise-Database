@@ -6,7 +6,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 ## Resources:
 -   CCD Version Control Information:
     -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git
-    -   Database: 0.28 (Git tag: cen_cruise_db_v0.28)
+    -   Database: 1.0 (Git tag: cen_cruise_db_v1.0)
 -   [CCD View Comments](./centralized_cruise_DB_view_comments.xlsx)
 -   [Cruise Data Management Application (CRDMA)](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md)
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)
