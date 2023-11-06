@@ -287,16 +287,16 @@ SET TERMOUT ON;
 PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 4 test case scripts
 
 
-SET TERMOUT OFF;
-SET FEEDBACK OFF;
-SET ECHO OFF;
+SET TERMOUT ON;
+SET FEEDBACK ON;
+SET ECHO ON;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
 @@category_4_exec_all_scripts.sql
 
 
 
-SET ECHO OFF;
+--SET ECHO OFF;
 
 
 
@@ -318,11 +318,11 @@ PROMPT &V_CURR_DATE_TIME_VALUE. - Export the verification data to a .txt file
 
 
 
-set markup csv off;
-SET TERMOUT OFF;
+--set markup csv off;
+--SET TERMOUT OFF;
 --SET NEWPAGE 0;
 --SET PAGESIZE 0;
-SET ECHO OFF;
+--SET ECHO OFF;
 --SET longchunksize 2000;
 --SET LONG 2000;
 SET FEEDBACK ON;

@@ -19,6 +19,7 @@ _ update the views to have a ccd_cruise_legs_v variation or just modify to add t
 
 
 
+_ document role definitions
 
 Best Practice:
 _ organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)

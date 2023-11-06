@@ -34,8 +34,12 @@ SHOW USER;
 PROMPT running DDL scripts
 @@centralized_cruise_combined_DDL_DML.sql
 
+PROMPT granting privileges to CCD roles:
+@@queries/grant_CCD_role_permissions.sql
+
 PROMPT granting privileges to CRDMA parsing schema
 @@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
+
 
 PROMPT loading data
 @@queries/load_dev_test_ref_data.sql

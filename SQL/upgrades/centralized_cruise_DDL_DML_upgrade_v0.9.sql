@@ -1896,6 +1896,9 @@ COMMENT ON COLUMN CCD_GEAR_PRE_DELIM_V.GEAR_NAME_RC_LIST IS 'Return carriage/new
 COMMENT ON COLUMN CCD_GEAR_PRE_DELIM_V.GEAR_NAME_BR_LIST IS '<BR> tag (intended for web pages) delimited list of Gear associated with the given preset';
 
 
+ALTER PACKAGE CRUISE_PKG COMPILE;
+ALTER TRIGGER CCD_CRUISES_AUTO_BRI COMPILE;
+
 
 --define the upgrade version in the database upgrade log table:
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.9', TO_DATE('16-APR-20', 'DD-MON-YY'), 'Added two new fields, CRUISE_DESC and OBJ_BASED_METRICS, to CCD_CRUISES table.  Created a new CCD_SCI_CENTER_DIVS table to define science center divisions that references the CCD_SCI_CENTERS table, updated the CCD_CRUISES table''s SCI_CENTER_ID foreign key to SCI_CENTER_DIV_ID to associated cruises with a given division.  Defined two new views CCD_SCI_CENTER_DIV_V and CCD_SCI_CENTER_DELIM_V to return the science centers/associated divisions and science centers/delimited list of divisions respectively.  Updated the following views to add the new CCD_CRUISES fields as well as the associated division/science center: CCD_CRUISE_V, CCD_CRUISE_DELIM_V, CCD_CRUISE_SUMM_V, CCD_CRUISE_LEGS_V, CCD_CRUISE_LEG_DELIM_V.  Defined a new view CCD_GEAR_PRE_DELIM_V to implement the Gear preset management page');

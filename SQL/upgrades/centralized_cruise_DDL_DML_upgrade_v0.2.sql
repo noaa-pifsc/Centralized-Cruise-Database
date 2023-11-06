@@ -996,6 +996,8 @@ CREATE INDEX CCD_DATA_SETS_I4 ON CCD_DATA_SETS (DIVISION_ID);
 COMMENT ON COLUMN CCD_DATA_SETS.DIVISION_ID IS 'Division that collected the data set';
 */
 
+ALTER TRIGGER CCD_CRUISES_AUTO_BRI COMPILE;
+
 
 --define the upgrade version in the database upgrade log table:
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.2', TO_DATE('27-SEP-18', 'DD-MON-YY'), 'Created tables to define data set types, data sets, data set status, cruise legs, regions, cruise leg regions.  Modified CCD_CRUISES table to drop the cruise dates and updated existing dependent views accordingly.  Created CCD_CRUISE_LEGS_V, CCD_CRUISES_SUMM_V, CCD_DATA_SETS_V, CCD_CRUISE_LEG_ALIASES_V.  Modified the CCD_CRUISE_ALIASES table to CCD_CRUISE_LEG_ALIASES to allow cruise legs to have aliases defined for them.  Dropped the CCD_CRUISE_ALIASES_V view');

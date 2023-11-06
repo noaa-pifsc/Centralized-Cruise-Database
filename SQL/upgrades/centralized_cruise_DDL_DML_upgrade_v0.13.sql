@@ -268,6 +268,7 @@ COMMENT ON COLUMN CCD_CRUISE_DELIM_V.CRUISE_FISC_YEAR IS 'The NOAA fiscal year f
 
 
 
+ALTER PACKAGE CCD_CRUISE_PKG COMPILE;
 
 --define the upgrade version in the database upgrade log table:
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '0.13', TO_DATE('01-MAY-20', 'DD-MON-YY'), 'CCD_DVM_PKG package was created to define an accessor procedure (EXEC_DVM_CRUISE_SP) for the DVM_PKG.VALIDATE_PARENT_RECORD to make it easier to call the procedure for a given Cruise.  Implemented a BATCH_EXEC_DVM_CRUISE_SP procedure to execute the EXEC_DVM_CRUISE_SP for all Cruise records for cases like just before reporting/analyzing the data.  Added the EXEC_DVM_CRUISE_OVERLAP_SP procedure to execute the DVM for all records that have an overlapping cruise/vessel leg error so that the errors are available and associated with those cruise records after an insert/update action to ensure the validation issues are up to date and it can be implemented in a given application to automatically validate a given cruise after any changes are made.  Redefined some inaccurate column comments on the CRUISE_FISC_YEAR column references.');
