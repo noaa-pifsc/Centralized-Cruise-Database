@@ -615,7 +615,7 @@ BEGIN
     dbms_output.put_line ('Update the Cruise Leg ('||V_LEG_NAME||') from one set of overlaps to another one');
 
 		--query for the cruise and cruise leg information based on V_LEG_NAME value:
-		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEGS_V WHERE LEG_NAME = V_LEG_NAME;
+		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEG_V WHERE LEG_NAME = V_LEG_NAME;
 
 
 		--run the pre leg update procedure to identify any existing overlapping cruises:
@@ -719,7 +719,7 @@ BEGIN
     dbms_output.put_line ('Update the Cruise Leg ('||V_LEG_NAME||') non vessel overlap to a vessel overlap with two cruise legs');
 
 		--query for the cruise and cruise leg information based on V_LEG_NAME value:
-		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEGS_V WHERE LEG_NAME = V_LEG_NAME;
+		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEG_V WHERE LEG_NAME = V_LEG_NAME;
 
 
 
@@ -827,7 +827,7 @@ BEGIN
     dbms_output.put_line ('Update the Cruise Leg ('||V_LEG_NAME||') existing vessel overlaps to a state where overlap has been removed');
 
 		--query for the cruise and cruise leg information based on V_LEG_NAME value:
-		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEGS_V WHERE LEG_NAME = V_LEG_NAME;
+		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEG_V WHERE LEG_NAME = V_LEG_NAME;
 
 
 
@@ -936,7 +936,7 @@ BEGIN
     dbms_output.put_line ('Update the Cruise Leg ('||V_LEG_NAME||') existing vessel overlaps to a state where overlap has been removed');
 
 		--query for the cruise and cruise leg information based on V_LEG_NAME value:
-		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEGS_V WHERE LEG_NAME = V_LEG_NAME;
+		SELECT CRUISE_LEG_ID, CRUISE_NAME INTO V_CRUISE_LEG_ID, V_CRUISE_NAME  FROM CCD_CRUISE_LEG_V WHERE LEG_NAME = V_LEG_NAME;
 
 
 

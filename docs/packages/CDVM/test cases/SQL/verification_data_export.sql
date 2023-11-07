@@ -287,16 +287,16 @@ SET TERMOUT ON;
 PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 4 test case scripts
 
 
-SET TERMOUT ON;
-SET FEEDBACK ON;
-SET ECHO ON;
+SET TERMOUT OFF;
+SET FEEDBACK OFF;
+SET ECHO OFF;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
 @@category_4_exec_all_scripts.sql
 
 
 
---SET ECHO OFF;
+SET ECHO OFF;
 
 
 
@@ -520,9 +520,9 @@ SET TERMOUT ON;
 PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 7 test case scripts
 
 
-SET TERMOUT OFF;
-SET FEEDBACK OFF;
-SET ECHO OFF;
+SET TERMOUT ON;
+SET FEEDBACK ON;
+SET ECHO ON;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
 @@category_7_exec_all_scripts.sql
@@ -568,6 +568,11 @@ Select ERR_SOURCE, ERR_MSG FROM DVM_STD_QC_ALL_RPT_V ORDER BY ERR_SOURCE, ERR_MS
 spool off;
 
 
+SET TERMOUT ON;
+SET FEEDBACK ON;
+SET ECHO ON;
+
+
 --execute the second DVM script for category 7:
 @@category_7_exec_DVM_2.sql
 
@@ -607,6 +612,9 @@ spool ../verification_templates/automated/category_7_script_output_verification-
 spool off;
 
 
+SET TERMOUT ON;
+SET FEEDBACK ON;
+SET ECHO ON;
 
 --execute the third DVM script for category 7:
 @@category_7_exec_DVM_3.sql
@@ -715,7 +723,6 @@ PROMPT &V_CURR_DATE_TIME_VALUE. - The Category 8 tests have completed
 
 
 SET TERMOUT OFF;
-
 
 
 

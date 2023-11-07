@@ -193,6 +193,18 @@ View altered.
 View altered.
 
 
+View altered.
+
+
+View altered.
+
+
+View altered.
+
+
+View altered.
+
+
 Package altered.
 
 
@@ -220,6 +232,18 @@ Table altered.
 
 
 Table altered.
+
+
+View altered.
+
+
+View altered.
+
+
+View altered.
+
+
+View altered.
 
 
 View altered.
@@ -302,7 +326,7 @@ executing test case for ORA-20235
 ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20235: The validation rule (Mismatched Cruise Name and Fiscal Year) indicator field (CRUISE_ID) has an invalid data type in the data QC view (CCD_QC_CRUISE_V), the DVM requires a character data type for indicator fields:
-ORA-06562: type of out argument must match type of column or bind variable
+ORA-06562: type of OUT argument must match the column type or bind variable
 The parent record was NOT evaluated successfully
 completed test case for ORA-20235
 
@@ -312,7 +336,7 @@ executing test case for ORA-20235
 ORA-20237: The parent record could not be validated successfully:
 ORA-20219: The data QC validation rules could not be processed for the specified parent record:
 ORA-20235: The validation rule (Invalid Leg Dates) indicator field (CRUISE_LEG_ID) has an invalid data type in the data QC view (CCD_QC_LEG_V), the DVM requires a character data type for indicator fields:
-ORA-06562: type of out argument must match type of column or bind variable
+ORA-06562: type of OUT argument must match the column type or bind variable
 The parent record was NOT evaluated successfully
 completed test case for ORA-20235
 
