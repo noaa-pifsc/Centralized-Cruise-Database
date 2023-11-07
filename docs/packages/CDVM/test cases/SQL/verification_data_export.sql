@@ -318,11 +318,11 @@ PROMPT &V_CURR_DATE_TIME_VALUE. - Export the verification data to a .txt file
 
 
 
---set markup csv off;
---SET TERMOUT OFF;
+set markup csv off;
+SET TERMOUT OFF;
 --SET NEWPAGE 0;
 --SET PAGESIZE 0;
---SET ECHO OFF;
+SET ECHO OFF;
 --SET longchunksize 2000;
 --SET LONG 2000;
 SET FEEDBACK ON;
@@ -519,10 +519,7 @@ SET TERMOUT ON;
 --category 7 scripts:
 PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 7 test case scripts
 
-
-SET TERMOUT ON;
-SET FEEDBACK ON;
-SET ECHO ON;
+SET TERMOUT OFF;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
 @@category_7_exec_all_scripts.sql
@@ -568,10 +565,6 @@ Select ERR_SOURCE, ERR_MSG FROM DVM_STD_QC_ALL_RPT_V ORDER BY ERR_SOURCE, ERR_MS
 spool off;
 
 
-SET TERMOUT ON;
-SET FEEDBACK ON;
-SET ECHO ON;
-
 
 --execute the second DVM script for category 7:
 @@category_7_exec_DVM_2.sql
@@ -612,9 +605,6 @@ spool ../verification_templates/automated/category_7_script_output_verification-
 spool off;
 
 
-SET TERMOUT ON;
-SET FEEDBACK ON;
-SET ECHO ON;
 
 --execute the third DVM script for category 7:
 @@category_7_exec_DVM_3.sql
