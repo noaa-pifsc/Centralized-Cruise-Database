@@ -52,9 +52,6 @@ PROMPT running DDL scripts
 PROMPT granting privileges to CCD roles:
 @@queries/grant_CCD_role_permissions.sql
 
-PROMPT granting privileges to CRDMA parsing schema
-@@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
-
 PROMPT granting privileges to CTD data schema
 grant select on CEN_CRUISE.CCD_CRUISE_DELIM_V to CEN_CTD with grant option;
 grant select on CEN_CRUISE.CCD_CRUISE_LEG_DELIM_V to CEN_CTD with grant option;

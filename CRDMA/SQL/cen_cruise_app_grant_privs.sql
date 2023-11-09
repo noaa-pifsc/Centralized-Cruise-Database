@@ -1,2 +1,4 @@
---run this from the CEN_CRUISE data schema
+--grant roles to CEN_CRUISE_APP schema
 GRANT CCD_APP_ROLE TO CEN_CRUISE_APP;
+
+GRANT CAS_APP_ROLE TO CEN_CRUISE_APP;
