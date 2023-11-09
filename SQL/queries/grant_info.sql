@@ -17,4 +17,4 @@ grant execute on CEN_UTILS.CEN_UTIL_ARRAY_PKG to CEN_CRUISE with grant option;
 @@create_CRUISE_roles.sql
 
 --grant cruise roles to app
-@@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
+@@../../CRDMA/SQL/cen_cruise_app_grant_privs.sql
