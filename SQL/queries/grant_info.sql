@@ -13,6 +13,6 @@ grant execute on CEN_UTILS.CEN_UTIL_ARRAY_PKG to CEN_CRUISE with grant option;
 --centralized authorization system package:
 GRANT CAS_APP_ROLE TO CEN_CRUISE_APP;
 
-
+@@create_CRUISE_roles.sql
 
 
