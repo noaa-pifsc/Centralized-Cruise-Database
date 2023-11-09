@@ -49,6 +49,8 @@ PROMPT running DDL scripts
 @@upgrades/centralized_cruise_DDL_DML_upgrade_v0.28.sql
 @@upgrades/centralized_cruise_DDL_DML_upgrade_v1.0.sql
 
+PROMPT granting privileges to CCD roles:
+@@queries/grant_CCD_role_permissions.sql
 
 PROMPT granting privileges to CRDMA parsing schema
 @@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
@@ -63,17 +65,6 @@ grant select on CEN_CRUISE.CCD_LEG_DELIM_V to CEN_CTD with grant option;
 grant select on CEN_CRUISE.CCD_LEG_V to CEN_CTD with grant option;
 grant references on CEN_CRUISE.CCD_CRUISES to CEN_CTD;
 grant references on CEN_CRUISE.CCD_CRUISE_LEGS to CEN_CTD;
-
-
-grant select on CEN_CRUISE.CCD_CRUISES to CCD_INTEG_ROLE;
-grant select on CEN_CRUISE.CCD_CRUISE_LEGS to CCD_INTEG_ROLE;
-grant select on CEN_CRUISE.CCD_LEG_ALIASES to CCD_INTEG_ROLE;
-GRANT EXECUTE ON CEN_CRUISE.CCD_CRUISE_PKG TO CCD_INTEG_ROLE;
-
-
---run this from the CEN_CRUISE schema:
-grant select on CCD_CRUISE_V to CEN_CTD_APP;
-
 
 PROMPT loading data
 @@queries/load_dev_test_ref_data.sql
