@@ -1,0 +1,15 @@
+grant select on CCD_CRUISE_DELIM_V to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_LEG_DELIM_V to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_LEG_V to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_SUMM_V to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_V to CCD_INTEG_ROLE;
+grant select on CCD_LEG_DELIM_V to CCD_INTEG_ROLE;
+grant select on CCD_LEG_V to CCD_INTEG_ROLE;
+grant select on CCD_DATA_SETS_V to CCD_INTEG_ROLE;
+grant select on CCD_LEG_DATA_SETS_V to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_LEGS to CCD_INTEG_ROLE;
+grant select on CCD_CRUISES to CCD_INTEG_ROLE;
+grant select on CCD_LEG_ALIASES to CCD_INTEG_ROLE;
+grant execute on CCD_CRUISE_PKG to CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_LEG_DATA_SETS_V TO CCD_INTEG_ROLE;
+grant select on CCD_CRUISE_LEG_DATA_SETS_MIN_V TO CCD_INTEG_ROLE;
