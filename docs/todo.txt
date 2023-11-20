@@ -13,6 +13,13 @@ X update the cruise leg start/end date field comments to say in local timezone (
 		X allow offsets too? NO -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
 		_ QC for invalid timezone value
 
+Business rules:
+	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
+
+
+_ (CCD) document approach reasoning for the wrapper table (use a table that already exists instead of creating something new) -> cite MOUSS as an example
+
+
 
 _ update the views to have a ccd_cruise_legs_v variation or just modify to add the delimited values for each leg
 	_ devise a good strategy for defining lean queries for performance but also having full queries for all reference tables and delimited lists, etc.
