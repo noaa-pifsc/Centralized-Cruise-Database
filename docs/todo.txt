@@ -19,7 +19,7 @@ Business rules:
 
 _ (CCD) document approach reasoning for the wrapper table (use a table that already exists instead of creating something new) -> cite MOUSS as an example
 
-
+_ develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
 
 _ update the views to have a ccd_cruise_legs_v variation or just modify to add the delimited values for each leg
 	_ devise a good strategy for defining lean queries for performance but also having full queries for all reference tables and delimited lists, etc.

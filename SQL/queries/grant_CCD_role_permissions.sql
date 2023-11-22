@@ -27,6 +27,7 @@ grant select on CCD_CRUISE_DELIM_V to CCD_APP_ROLE;
 grant select on CCD_CRUISE_LEG_DELIM_V to CCD_APP_ROLE;
 grant select on CCD_CRUISE_LEG_V to CCD_APP_ROLE;
 grant select on CCD_CRUISE_V to CCD_APP_ROLE;
+grant select on CCD_CRUISE_AGG_V to CCD_APP_ROLE;
 grant select on CCD_DATA_SETS_V to CCD_APP_ROLE;
 grant select on CCD_LEG_DELIM_V to CCD_APP_ROLE;
 grant select on CCD_LEG_V to CCD_APP_ROLE;
