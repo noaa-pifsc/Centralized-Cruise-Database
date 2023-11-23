@@ -103,11 +103,16 @@ All delimited queries can be defined - do not duplicate tables either since it w
 
 
 _ define roles for CCD
-	_ document roles for CCD
-	CCD_EDIT - CCD read/write on all tables
-	CCD_READ - CCD readonly on all tables/views
-	CCD_INTEG - CCD integration - allows referencing of cruise tables and data integration (existing queries used on MOUSS DB and CTD DB)
-	CCD_ADMIN - CCD read/write all tables and define/execute packages?
+	_ document roles for CCD 
+		_ business rules
+		_ reference business rules in CCD DB documentation
+
+
+	CCD_WRITE_ROLE - CCD read/write on all tables
+	CCD_READ_ROLE - CCD readonly on all tables/views
+	CCD_INTEG_ROLE - CCD integration - allows referencing of cruise tables and data integration (existing queries used on MOUSS DB and CTD DB)
+	CCD_ADMIN_ROLE - CCD read/write all tables and define/execute packages?
+	CCD_APP_ROLE - CCD APEX app privileges
 
 Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM schema
 
