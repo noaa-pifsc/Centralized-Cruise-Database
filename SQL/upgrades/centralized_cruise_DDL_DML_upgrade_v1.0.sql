@@ -38,6 +38,29 @@ DROP VIEW AUTH_APP_USER_GROUPS_V;
 DELETE FROM DB_UPGRADE_LOGS WHERE UPGRADE_APP_NAME = 'Authorization Application Database';
 
 
+
+
+ALTER TABLE CCD_CRUISES 
+DROP CONSTRAINT CCD_CRUISES_U1;
+
+CREATE UNIQUE INDEX CCD_CRUISES_U1 ON CCD_CRUISES (UPPER(CRUISE_NAME) ASC);
+
+
+ALTER TABLE CCD_CRUISE_LEGS
+DROP CONSTRAINT CCD_CRUISE_LEGS_U1;
+
+
+CREATE UNIQUE INDEX CCD_CRUISE_LEGS_U1 ON CCD_CRUISE_LEGS (UPPER(LEG_NAME) ASC) ;
+
+
+ALTER TABLE CCD_LEG_ALIASES
+DROP CONSTRAINT CCD_LEG_ALIASES_U1;
+
+CREATE UNIQUE INDEX CCD_LEG_ALIASES_U1 ON CCD_LEG_ALIASES (UPPER(LEG_ALIAS_NAME) ASC) ;
+
+
+
+
 ALTER TABLE CCD_CRUISE_LEGS
 ADD (TZ_NAME VARCHAR2(40) NOT NULL);
 
@@ -7185,6 +7208,10 @@ COMMENT ON COLUMN ccd_cruise_leg_data_sets_min_v.LEG_VESS_NAME_DATES_BR_LIST IS 
 		--function that accepts a P_LEG_ALIAS value and returns the CRUISE_LEG_ID value for the CCD_CRUISE_LEGS record that has a corresponding CCD_LEG_ALIASES record with a LEG_ALIAS_NAME ar CCD_CRUISE_LEGS.LEG_NAME value that matches the P_LEG_ALIAS value.	It returns NULL if no match is found
 		FUNCTION LEG_ALIAS_TO_CRUISE_LEG_ID_FN (P_LEG_ALIAS VARCHAR2) RETURN NUMBER;
 
+
+		--function that accepts a P_CRUISE_NAME value and returns the CRUISE_ID value for the CCD_CRUISES record that has a CRUISE_NAME value that matches the P_CRUISE_NAME value.	It returns NULL if no match is found
+		FUNCTION CRUISE_NAME_TO_CRUISE_ID_FN (P_CRUISE_NAME VARCHAR2) RETURN NUMBER;
+
 		--Append Reference Preset Options function
 		--function that accepts a list of colon-delimited integers (P_DELIM_VALUES) representing the primary key values of the given reference table preset options.	The P_OPTS_QUERY is the query for the primary key values for the given options query with a primary key parameter that will be used with the defined primary key value (P_PK_VAL) when executing the query to return the associated primary key values.	The return value will be the colon-delimited string that contains any additional primary key values that were returned by the P_OPTS_QUERY
 		FUNCTION APPEND_REF_PRE_OPTS_FN (P_DELIM_VALUES IN VARCHAR2, P_OPTS_QUERY IN VARCHAR2, P_PK_VAL IN NUMBER) RETURN VARCHAR2;
@@ -7351,6 +7378,45 @@ COMMENT ON COLUMN ccd_cruise_leg_data_sets_min_v.LEG_VESS_NAME_DATES_BR_LIST IS 
 
 		END LEG_ALIAS_TO_CRUISE_LEG_ID_FN;
 
+		--function that accepts a P_CRUISE_NAME value and returns the CRUISE_ID value for the CCD_CRUISES record that has a CRUISE_NAME value that matches the P_CRUISE_NAME value.	It returns NULL if no match is found
+		FUNCTION CRUISE_NAME_TO_CRUISE_ID_FN (P_CRUISE_NAME VARCHAR2) RETURN NUMBER
+		IS
+
+			--variable to store the cruise_id associated with the CCD_CRUISE record with CRUISE_NAME = P_CRUISE_NAME
+			v_cruise_id NUMBER;
+
+			--return code from procedure calls
+			V_SP_RET_CODE PLS_INTEGER;
+
+		BEGIN
+
+				--query for the cruise_leg_id primary key value from the cruise leg that matches any associated leg aliases
+
+				--select cruise_ID values
+				select CRUISE_ID INTO v_cruise_id FROM
+				CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(P_CRUISE_NAME);
+
+				--return the value of CRUISE_ID from the query
+				RETURN v_cruise_id;
+
+				--exception handling:
+				EXCEPTION
+
+					WHEN NO_DATA_FOUND THEN
+
+					--no results returned by the query, return NULL
+
+					RETURN NULL;
+
+					--catch all PL/SQL database exceptions:
+					WHEN OTHERS THEN
+
+					--catch all other errors:
+
+					--return NULL to indicate the error:
+					RETURN NULL;
+
+		END CRUISE_NAME_TO_CRUISE_ID_FN;
 
 
 

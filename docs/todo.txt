@@ -19,12 +19,35 @@ Business rules:
 
 _ (CCD) document approach reasoning for the wrapper table (use a table that already exists instead of creating something new) -> cite MOUSS as an example
 
-_ develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
+X develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
 
 _ update the views to have a ccd_cruise_legs_v variation or just modify to add the delimited values for each leg
 	_ devise a good strategy for defining lean queries for performance but also having full queries for all reference tables and delimited lists, etc.
 
-_ make all unique character keys unique using the UPPER function? YES
+X make all unique character keys unique using the UPPER function? YES
+	X ccd_leg_aliases
+	X ccd_cruise_legs
+	X ccd_cruises
+	
+	CODE AND NAME:
+		CCD_REGIONS
+		CCD_DATA_SET_STATUS
+		CCD_DATA_SET_TYPES
+		CCD_GEAR
+		CCD_PLAT_TYPES
+		CCD_REG_ECOSYSTEMS
+		CCD_REGIONS
+		CCD_SCI_CENTERS
+		CCD_STD_SVY_NAMES
+		CCD_SVY_CATS
+		CCD_SVY_FREQ
+		CCD_SVY_TYPES
+		CCD_TGT_SPP_ESA
+		CCD_TGT_SPP_FSSI
+		CCD_TGT_SPP_MMPA
+		CCD_TGT_SPP_OTHER
+		CCD_VESSELS
+		
 
 _ document role definitions
 
@@ -91,7 +114,7 @@ Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM sch
 
 
 bugs:
-	_ login logo is not showing up
+	X login logo is not showing up
 
 
 to do (DB version 1.0):
