@@ -17,6 +17,17 @@ Business rules:
 	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
 
 
+
+
+APEX
+	Implement read role (view readonly for all non-admin pages)
+	Implement write role (read/write all non-admin pages)
+	
+	
+	Update navigation menu to allow read roles to access pages that have readonly access
+
+
+
 _ (CCD) document approach reasoning for the wrapper table (use a table that already exists instead of creating something new) -> cite MOUSS as an example
 
 X develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
@@ -108,13 +119,14 @@ _ define roles for CCD
 		_ reference business rules in CCD DB documentation
 
 
-	CCD_WRITE_ROLE - CCD read/write on all tables
-	CCD_READ_ROLE - CCD readonly on all tables/views
-	CCD_INTEG_ROLE - CCD integration - allows referencing of cruise tables and data integration (existing queries used on MOUSS DB and CTD DB)
-	CCD_ADMIN_ROLE - CCD read/write all tables and define/execute packages?
-	CCD_APP_ROLE - CCD APEX app privileges
+	X Define and populate roles:
+		X CCD_WRITE_ROLE - CCD read/write on all tables
+		X CCD_READ_ROLE - CCD readonly on all tables/views
+		X CCD_INTEG_ROLE - CCD integration - allows referencing of cruise tables and data integration (existing queries used on MOUSS DB and CTD DB)
+		X CCD_ADMIN_ROLE - CCD read/write all tables and define/execute packages?
+		X CCD_APP_ROLE - CCD APEX app privileges
 
-Add in accession numbers (ACCESSION_ID, INPORT_ID)? -> no, derive from PICDM schema
+X Add in accession numbers (ACCESSION_ID)? -> no, derive from PICDM schema
 
 
 
