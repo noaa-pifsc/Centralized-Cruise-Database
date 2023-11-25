@@ -18,7 +18,7 @@ CREATE UNIQUE INDEX CC_CONFIG_OPTIONS_U1 ON CC_CONFIG_OPTIONS (UPPER(OPTION_NAME
 
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Configuration', '1.0', TO_DATE('24-NOV-23', 'DD-MON-YY'), 'Changed the unique OPTION_NAME index to be case-insensitive (UPPER)');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Configuration', '1.1', TO_DATE('24-NOV-23', 'DD-MON-YY'), 'Changed the unique OPTION_NAME index to be case-insensitive (UPPER)');
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;
