@@ -41,10 +41,7 @@ X make all unique character keys unique using the UPPER function? YES
 	X ccd_cruises
 	
 	
-	_ document that other schemas should use UPPER() whenever translating them into the corresponding numeric keys
-	
-	CODE AND NAME:
-	
+	X CODE AND NAME:
 		X CCD_DATA_SET_STATUS
 		X CCD_DATA_SET_TYPES
 		X CCD_DATA_SETS
@@ -63,11 +60,14 @@ X make all unique character keys unique using the UPPER function? YES
 		X CCD_TGT_SPP_FSSI
 		X CCD_TGT_SPP_MMPA
 		X CCD_TGT_SPP_OTHER
-		CCD_VESSELS
+		X CCD_VESSELS
 		
 
-_ document role definitions
 
+_ document that other schemas should use UPPER() whenever translating them into the corresponding numeric keys
+
+_ document role definitions in business rules
+	_ Export the list of permissions associated with each role as a standard document?
 
 _ update documentation to align with MOUSS documentation:
 	db
