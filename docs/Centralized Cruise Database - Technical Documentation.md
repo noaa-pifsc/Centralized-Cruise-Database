@@ -21,34 +21,74 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   [CRDMA CDVM Testing Documentation](../CRDMA/docs/test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Database Setup:
--   Grant the Cruise database schema permissions
-    -   Execute the sections of the [grant_info.sql](../SQL/queries/grant_info.sql) file using the schemas based on the comments to grant the CEN_CRUISE schema the necessary permissions
-    -   *Note: the permissions granted to the CEN_CRUISE schema are listed in [CEN_CRUISE_permissions](./CEN_CRUISE_permissions.xlsx)
--   ### Installation Options
-    -   #### Automated Installation
-        -   The automated database deployments utilize the [Database Version Control Module SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule/blob/master/docs/DB%20Version%20Control%20Module%20SOP.MD)
-        -   open a command line window and switch the directory to the [SQL folder](../SQL/) of your working copy of this repository
-        -   Execute the corresponding deployment script for the given database instance using the "@" syntax (e.g. [deploy_dev.sql](../SQL/deploy_dev.sql) for the development database instance) and enter the data schema credentials to deploy the database
-    -   #### Manual Installation
-        -   \*\*Note: the scripts to create/upgrade the database objects are executed on the data schema (e.g. CEN_CRUISE)
-        -   [Installing or Upgrading the Database](./Installing%20or%20Upgrading%20the%20Database.md)
-        -   Execute [cen_cruise_app_grant_privs.sql](../CRDMA/SQL/cen_cruise_app_grant_privs.sql)
+-   Create separate database schemas for the database (data schema) and each application (application schemas):
+    -   Database Schemas:
+        -   Data Schema: CEN_CRUISE
+        -   APEX Application: CEN_CRUISE_APP
+    -   Procedure: [Oracle Resource Request SOP](https://docs.google.com/document/d/1cSru4Cy7Ccl3sd-3UrOFb5cqmOPtzjd0khG1lX0VSE0/edit#bookmark=kix.87qwoqx35jfc)
+-   Execute the role/permissions queries below using a DBA account:
+    -   Grant the necessary permissions to the data schema by executing the [grant_data_schema_privs.sql](../SQL/queries/grant_data_schema_privs.sql) script.
+    -   Grant the necessary permissions to the APEX application schema by executing the [cen_cruise_app_grant_privs.sql](../CRDMA/SQL/cen_cruise_app_grant_privs.sql) script
+    -   Create the CCD roles by executing the [create_CRUISE_roles.sql](../SQL/queries/create_CRUISE_roles.sql) script.
+-   ### Automated Installation
+    -   The automated database deployments utilize the [Database Version Control Module SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule/blob/master/docs/DB%20Version%20Control%20Module%20SOP.MD)
+    -   open a command line window and switch the directory to the [SQL folder](../SQL/) of your working copy of this repository
+    -   Execute the corresponding deployment script for the given database instance using the "@" syntax (e.g. [deploy_dev.sql](../SQL/deploy_dev.sql) for the development database instance) and enter the data schema credentials to deploy the database
+-   ### Manual Installation
+    -   \*\*Note: all of the following scripts are executed on the data schema (CEN_CRUISE)
+    -   Define the data schema synonyms by executing the [define_data_schema_synonyms.sql](../SQL/queries/define_data_schema_synonyms.sql)
+    -   [Installing or Upgrading the Database](./Installing%20or%20Upgrading%20the%20Database.md)
+    -   Grant the permissions on the objects in the MOUSS schema to the defined MOUSS roles by executing the [grant_CCD_role_permissions.sql](../SQL/queries/grant_CCD_role_permissions.sql) script
+    -   (Development and Test only) Load the MOUSS test data by executing the test data script [load_dev_test_ref_data.sql](../SQL/queries/load_dev_test_ref_data.sql)
+    -   (Production only) Load the MOUSS data by executing the test data script [load_ref_data.sql](../SQL/queries/load_ref_data.sql)
+    -   Load the DVM rules by executing the [load_DVM_rules.sql](../SQL/queries/load_DVM_rules.sql) script
+    -   Load the configuration values by executing the [load_config_values.sql](../SQL/queries/load_config_values.sql) script
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
     -   For detailed information on integrating the CCD into a new/existing data system refer to the [CCD Data Integration SOP](./Centralized%20Cruise%20Database%20-%20Data%20Integration%20SOP.md)
 -   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
-    -   **\*\*Note**: The automated test cases require this script to be executed on a development/test instance. DVM rules and data will be purged from the database, to avoid data loss do not execute this on a production database.
+    -   **\*\*Note**: Do not execute this script on a production database.  DVM rules and data will be purged from the database.  The automated CTD database test cases require this script to be executed on a development/test instance.
 
 ## Features:
--   The DB Module Packager (DMP) project was utilized to streamline the installation of the custom database modules listed below:
-    -   The DMP APEX Application use case was implemented on the template project
-        -   Repository URL: <git@picgitlab.nmfs.local:centralized-data-tools/db-module-packager.git> in the use_cases\\APEX folder
-        -   Database: 1.2 (Git tag: DMP_APX_v1.2)
 -   The database requires the Centralized Utilities to be deployed on the CEN_UTILS schema in order for the database views to work properly when querying the cruise and cruise leg information
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/centralized-utilities.git
-        -   Database: 0.9 (Git tag: cen_utils_db_v0.9)
+        -   Database: 1.0 (Git tag: cen_utils_db_v1.0)
+-   DB Version Control Module (VCM)
+    -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBVersionControlModule.git
+    -   Version: 0.2 (git tag: db_vers_ctrl_db_v0.2)
+-   DB Logging Module (DLM)
+    -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBLoggingModule.git
+    -   Version: 0.3 (git tag: db_log_db_v0.3)
+-   Centralized Authorization System (CAS)
+    -   The CAS is used to perform authentication and authorization for the MOUSS data management application
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
+    -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
+-   Error Handler Module
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
+    -   Version: 1.0 (git tag: APX_Cust_Err_Handler_db_v1.0)
+-   Data Validation Module (DVM)
+    -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DataValidationModule.git
+    -   Version: 1.5 (git tag: DVM_db_v1.5)
+-   APEX Feedback Form (AFF)
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex-feedback-form.git
+    -   Version: 0.1 (git tag: apex_feedback_form_db_v0.1)
+-   Centralized Configuration (CC) project
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
+    -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
+-   Centralized Cruise Database (CCD)
+    -   This MOUSS database references the CCD and the defined MOUSS cruise information
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git   
+    -   Version 1.0 (git tag: cen_cruise_db_v1.0)
+
+
+
+
+
+
+
+
 -   The Data Validation Module (DVM) is used to perform QC validation on the Centralized Cruise Database data managed in this database. Custom data validation criteria were developed for this operational data set.
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/data-validation-module.git
@@ -62,10 +102,24 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Version Control Information:
         -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-logging-module.git
         -   Database: 0.3 (Git tag: db_log_db_v0.3)
--   The Authorization Application Module was originally designed to manage application access and permissions within the application. This is a flexible method that allows users and permission groups to be defined that will determine if a user has enabled access to the application and what permission(s) they have in the application.
-    -   Version Control Information:
-        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git
-        -   Database: 1.2 (Git tag: auth_app_db_v1.2)
+-   Centralized Authorization System (CAS)
+    -   The CAS is used to perform authentication and authorization for the MOUSS data management application
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
+    -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
+-   Error Handler Module
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
+    -   Version: 1.0 (git tag: APX_Cust_Err_Handler_db_v1.0)
+
+
+
+
+
+
+
+
+
+
+
 -   The PIFSC APEX custom error handling function has been implemented on the application to suppress sensitive error information within the database application to satisfy Security Control: SI-11.
     -   Version Control Information:
         -   URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder

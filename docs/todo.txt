@@ -40,27 +40,47 @@ X make all unique character keys unique using the UPPER function? YES
 	X ccd_cruise_legs
 	X ccd_cruises
 	
+	
+	_ document that other schemas should use UPPER() whenever translating them into the corresponding numeric keys
+	
 	CODE AND NAME:
-		CCD_REGIONS
-		CCD_DATA_SET_STATUS
-		CCD_DATA_SET_TYPES
-		CCD_GEAR
-		CCD_PLAT_TYPES
-		CCD_REG_ECOSYSTEMS
-		CCD_REGIONS
-		CCD_SCI_CENTERS
-		CCD_STD_SVY_NAMES
-		CCD_SVY_CATS
-		CCD_SVY_FREQ
-		CCD_SVY_TYPES
-		CCD_TGT_SPP_ESA
-		CCD_TGT_SPP_FSSI
-		CCD_TGT_SPP_MMPA
-		CCD_TGT_SPP_OTHER
+	
+		X CCD_DATA_SET_STATUS
+		X CCD_DATA_SET_TYPES
+		X CCD_DATA_SETS
+		X CCD_EXP_SPP_CATS
+		X CCD_GEAR
+		X CCD_PLAT_TYPES
+		X CCD_REG_ECOSYSTEMS
+		X CCD_REGIONS
+		X CCD_SCI_CENTER_DIVS
+		X CCD_SCI_CENTERS
+		X CCD_STD_SVY_NAMES
+		X CCD_SVY_CATS
+		X CCD_SVY_FREQ
+		X CCD_SVY_TYPES
+		X CCD_TGT_SPP_ESA
+		X CCD_TGT_SPP_FSSI
+		X CCD_TGT_SPP_MMPA
+		X CCD_TGT_SPP_OTHER
 		CCD_VESSELS
 		
 
 _ document role definitions
+
+
+_ update documentation to align with MOUSS documentation:
+	db
+	tech apex documentation 
+	user apex documentation
+	business rules
+
+
+_ update grant_external_schema_privs.sql to use the roles/privs granted to the MOUSS DB/app:
+	_ define synonyms for a typical integration data schema (e.g. MOUSS)
+	_ update the cruise data integration SOP
+	_ update the general integration SOP to implement roles and synonyms as well and to cite the updated MOUSS DB and Cruise DB as example implementations
+
 
 Best Practice:
 _ organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)
