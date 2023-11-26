@@ -28,22 +28,22 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   03:03 Saturday November 25, 2023
+--   Date and Time:   02:26 Sunday November 26, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                     44
---       Items:                  181
---       Computations:            23
+--       Items:                  180
+--       Computations:            22
 --       Validations:             10
 --       Processes:              110
---       Regions:                139
+--       Regions:                140
 --       Buttons:                 65
 --       Dynamic Actions:         57
 --     Shared Components:
 --       Logic:
---         Items:                  3
---         Processes:              2
+--         Items:                  4
+--         Processes:              3
 --       Navigation:
 --         Lists:                  2
 --         Breadcrumbs:            1
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231125030249'
+,p_last_upd_yyyymmddhh24miss=>'20231126022150'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>51
 ,p_print_server_type=>'INSTANCE'
@@ -189,7 +189,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'Cruise List'
 ,p_list_item_link_target=>'f?p=&APP_ID.:210:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-ship'
-,p_security_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'210'
 );
@@ -199,7 +199,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'Data Sets'
 ,p_list_item_link_target=>'f?p=&APP_ID.:390:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-database'
-,p_security_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'390'
 );
@@ -209,7 +209,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'QC Issues'
 ,p_list_item_link_target=>'f?p=&APP_ID.:250:&SESSION.::&DEBUG.::::'
 ,p_list_item_icon=>'fa-database-check'
-,p_security_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'250'
 );
@@ -218,7 +218,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_display_sequence=>100
 ,p_list_item_link_text=>'Presets'
 ,p_list_item_icon=>'fa-gear'
-,p_security_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
@@ -298,7 +298,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_display_sequence=>250
 ,p_list_item_link_text=>'Admin'
 ,p_list_item_icon=>'fa-lock'
-,p_security_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
@@ -318,7 +318,7 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_link_text=>'Reference Lists'
 ,p_list_item_icon=>'fa-list'
 ,p_parent_list_item_id=>wwv_flow_imp.id(1168153172378097144)
-,p_security_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
 wwv_flow_imp_shared.create_list_item(
@@ -4971,6 +4971,27 @@ begin
 null;
 end;
 /
+prompt --application/shared_components/logic/application_processes/ai_user_auth_role_proc
+begin
+wwv_flow_imp_shared.create_flow_process(
+ p_id=>wwv_flow_imp.id(20808694406721219)
+,p_process_sequence=>1
+,p_process_point=>'BEFORE_HEADER'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'AI_USER_AUTH_ROLE_PROC'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'  ',
+'',
+'    :AI_USER_AUTH_ROLE := CASE WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) THEN ''CCD ADMIN'' WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user) THEN ''CCD WRITE'' WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_READ_FN(:app_user) THEN ''CCD READ'' ELSE NULL E'
+||'ND;',
+'',
+'end;'))
+,p_process_clob_language=>'PLSQL'
+,p_process_when_type=>'USER_IS_NOT_PUBLIC_USER'
+);
+end;
+/
 prompt --application/shared_components/logic/application_processes/ai_app_user_groups
 begin
 wwv_flow_imp_shared.create_flow_process(
@@ -5041,6 +5062,16 @@ wwv_flow_imp_shared.create_flow_item(
 ,p_name=>'AI_TEST_HOSTNAME'
 ,p_protection_level=>'I'
 ,p_item_comment=>'Test APEX server hostname'
+);
+end;
+/
+prompt --application/shared_components/logic/application_items/ai_user_auth_role
+begin
+wwv_flow_imp_shared.create_flow_item(
+ p_id=>wwv_flow_imp.id(20808194574713450)
+,p_name=>'AI_USER_AUTH_ROLE'
+,p_protection_level=>'I'
+,p_item_comment=>'variable to store the highest level of access the logged in user has on the application'
 );
 end;
 /
@@ -17500,7 +17531,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231125030249'
+,p_last_upd_yyyymmddhh24miss=>'20231126020316'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1104527645087200399)
@@ -17529,9 +17560,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'1'
-,p_plug_read_only_when_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
-,p_plug_read_only_when=>'P220_USER_AUTH_ROLE'
-,p_plug_read_only_when2=>'CCD READ'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -17762,9 +17793,9 @@ wwv_flow_imp_page.create_worksheet_column(
 ,p_column_linktext=>'<span class="fa fa-copy" aria-hidden="true"></span>'
 ,p_column_type=>'NUMBER'
 ,p_column_alignment=>'RIGHT'
-,p_display_condition_type=>'VAL_OF_ITEM_IN_COND_NOT_EQ_COND2'
-,p_display_condition=>'P220_USER_AUTH_ROLE'
-,p_display_condition2=>'CCD READ'
+,p_display_condition_type=>'EXPRESSION'
+,p_display_condition=>':AI_USER_AUTH_ROLE <> ''CCD READ'''
+,p_display_condition2=>'PLSQL'
 ,p_use_as_row_header=>'N'
 ,p_help_text=>'Click to copy the cruise leg and associated records so they can be modified and saved to streamline data entry.  The copied cruise leg is not saved until you click the "Create" or "Create Another" button on the View/Edit Cruise Leg page and the actio'
 ||'n is successfully processed '
@@ -19228,9 +19259,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P220_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'1'
-,p_plug_read_only_when_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
-,p_plug_read_only_when=>'P220_USER_AUTH_ROLE'
-,p_plug_read_only_when2=>'CCD READ'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -19471,13 +19502,6 @@ wwv_flow_imp_page.create_page_branch(
 ,p_branch_point=>'AFTER_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
 ,p_branch_sequence=>40
-);
-wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(17656604424743414)
-,p_name=>'P220_USER_AUTH_ROLE'
-,p_item_sequence=>10
-,p_display_as=>'NATIVE_HIDDEN'
-,p_attribute_01=>'Y'
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1101396718083587989)
@@ -20026,9 +20050,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1106785975880215693)
 ,p_name=>'P220_SEC_SVY_CAT_SHUTTLE'
@@ -20048,6 +20069,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1106786292744215696)
 ,p_name=>'P220_SECONDARY_SVY_CAT_PRESETS'
@@ -20798,9 +20822,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_04=>'Y'
 ,p_attribute_05=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1107009590889195492)
 ,p_name=>'P220_LEG_ECOSYSTEMS_DISP'
@@ -20821,6 +20842,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_04=>'Y'
 ,p_attribute_05=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1107009717185195493)
 ,p_name=>'P220_LEG_GEAR_DISP'
@@ -20948,15 +20972,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_display_as=>'NATIVE_HIDDEN'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'Y'
-);
-wwv_flow_imp_page.create_page_computation(
- p_id=>wwv_flow_imp.id(17656522668743413)
-,p_computation_sequence=>10
-,p_computation_item=>'P220_USER_AUTH_ROLE'
-,p_computation_point=>'BEFORE_HEADER'
-,p_computation_type=>'EXPRESSION'
-,p_computation_language=>'PLSQL'
-,p_computation=>'CASE WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) THEN ''CCD ADMIN'' WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user) THEN ''CCD WRITE'' WHEN CAS_EXT_AUTH_PKG.CAS_IS_APP_READ_FN(:app_user) THEN ''CCD READ'' ELSE NULL END'
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1106785707848215690)
@@ -21148,9 +21163,9 @@ wwv_flow_imp_page.create_page_computation(
 '    ',
 '    --check if the two cruise_id page arguments are blank:',
 '    IF (:P220_CRUISE_ID IS NULL AND :P220_CRUISE_ID_COPY IS NULL) THEN',
-'        --both arguments are blank, do not show the error region:',
+'        --both arguments are blank, show the error region:',
 '',
-'        RETURN 1;',
+'        RETURN 0;',
 '    ELSE',
 '',
 '        ',
@@ -21610,9 +21625,6 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'click'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1107007179631195468)
 ,p_event_id=>wwv_flow_imp.id(1107007117316195467)
@@ -21645,6 +21657,9 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'apexafterrefresh'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1101397629025587999)
 ,p_event_id=>wwv_flow_imp.id(1101397543611587998)
@@ -23105,8 +23120,8 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1168183665228265528)
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231122135428'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126020715'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1105344856568275945)
@@ -23119,6 +23134,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'1'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -23147,6 +23165,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'1'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -23155,13 +23176,16 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_name=>'Missing Cruise or Cruise Leg'
 ,p_region_template_options=>'#DEFAULT#:t-Region--removeHeader:t-Region--scrollBody'
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
-,p_plug_display_sequence=>100
+,p_plug_display_sequence=>60
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_source=>'<p style="font-weight: bold;">You have reached this page incorrectly, please use the navigation menu on the left side of the screen.</p>'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'0'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -23198,6 +23222,9 @@ wwv_flow_imp_page.create_report_region(
 ,p_display_when_condition=>'P230_VALID_PAGE_ARGS'
 ,p_display_when_cond2=>'1'
 ,p_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_read_only_when2=>'PLSQL'
 ,p_ajax_enabled=>'Y'
 ,p_lazy_loading=>false
 ,p_query_row_template=>wwv_flow_imp.id(1118033656262786742)
@@ -23378,6 +23405,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_condition_type=>'VAL_OF_ITEM_IN_COND_EQ_COND2'
 ,p_plug_display_when_condition=>'P230_VALID_PAGE_ARGS'
 ,p_plug_display_when_cond2=>'1'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -23695,6 +23725,9 @@ wwv_flow_imp_page.create_region_column(
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(1105556227210471797)
 ,p_name=>'LEG_ALIAS_ID'
@@ -23715,9 +23748,6 @@ wwv_flow_imp_page.create_region_column(
 ,p_duplicate_value=>true
 ,p_include_in_export=>false
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(1105556286422471798)
 ,p_name=>'LEG_ALIAS_NAME'
@@ -24625,6 +24655,9 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_visible=>true
 ,p_is_frozen=>false
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(1107988943940125396)
 ,p_view_id=>wwv_flow_imp.id(1107983608749125262)
@@ -24643,9 +24676,6 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 ,p_width=>74
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_ig_report_column(
  p_id=>wwv_flow_imp.id(1108002521900145459)
 ,p_view_id=>wwv_flow_imp.id(1107983608749125262)
@@ -25551,6 +25581,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_04=>'Y'
 ,p_attribute_05=>'HTML'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1105553281269471768)
 ,p_name=>'P230_SPP_MMPA_NAME_CD_LIST'
@@ -25572,9 +25605,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_04=>'Y'
 ,p_attribute_05=>'HTML'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1105553357577471769)
 ,p_name=>'P230_SPP_FSSI_NAME_CD_LIST'
@@ -26225,7 +26255,7 @@ wwv_flow_imp_page.create_page_item(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1099712139540719996)
-,p_computation_sequence=>10
+,p_computation_sequence=>20
 ,p_computation_item=>'P230_LEG_INFO'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'QUERY'
@@ -26244,7 +26274,7 @@ wwv_flow_imp_page.create_page_computation(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1105551998918471755)
-,p_computation_sequence=>10
+,p_computation_sequence=>30
 ,p_computation_item=>'P230_CRUISE_INFO'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'QUERY'
@@ -26285,7 +26315,7 @@ wwv_flow_imp_page.create_page_computation(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1106539458085296367)
-,p_computation_sequence=>10
+,p_computation_sequence=>40
 ,p_computation_item=>'P230_GEAR_SHUTTLE'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
@@ -26308,7 +26338,7 @@ wwv_flow_imp_page.create_page_computation(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1106783845899215672)
-,p_computation_sequence=>20
+,p_computation_sequence=>50
 ,p_computation_item=>'P230_REGION_SHUTTLE'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
@@ -26334,7 +26364,7 @@ wwv_flow_imp_page.create_page_computation(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1106784013233215673)
-,p_computation_sequence=>30
+,p_computation_sequence=>60
 ,p_computation_item=>'P230_REG_ECO_SHUTTLE'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
@@ -26357,7 +26387,7 @@ wwv_flow_imp_page.create_page_computation(
 );
 wwv_flow_imp_page.create_page_computation(
  p_id=>wwv_flow_imp.id(1109472929294590062)
-,p_computation_sequence=>40
+,p_computation_sequence=>70
 ,p_computation_item=>'P230_VALID_PAGE_ARGS'
 ,p_computation_point=>'BEFORE_HEADER'
 ,p_computation_type=>'FUNCTION_BODY'
@@ -27799,10 +27829,24 @@ wwv_flow_imp_page.create_page(
 '}',
 ''))
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1168183665228265528)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231122135035'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126021251'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(17656977681743417)
+,p_plug_name=>'Report Info Region'
+,p_region_template_options=>'#DEFAULT#:t-Region--removeHeader:t-Region--scrollBody'
+,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
+,p_plug_display_sequence=>10
+,p_include_in_reg_disp_sel_yn=>'Y'
+,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_header=>'<B>**Note:</B> Resolved validation errors and warnings (Issue Resolution was defined) are shown in light green and have an alternate text of "This cruise issue has been resolved (Issue Resolution was defined)" and unresolved validation errors (Issue '
+||'Severity is Error and Issue Resolution was not defined) are shown in light red and have an alternate text of "This cruise error has not been resolved (Issue Resolution was not defined)" and unresolved warning validation issues (Issue Severity is Warn'
+||'ing and Issue Resolution was not defined) are shown in light orange and have an alternate text of "This cruise warning has not been resolved (Issue Resolution was not defined)"'
+,p_attribute_01=>'N'
+,p_attribute_02=>'HTML'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1105832808532170580)
@@ -27870,9 +27914,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_ajax_items_to_submit=>'P250_FISCAL_YEAR,P250_ISSUE_CATEGORIES'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<B>**Note:</B> Resolved validation errors and warnings (Issue Resolution was defined) are shown in light green and have an alternate text of "This cruise issue has been resolved (Issue Resolution was defined)" and unresolved validation errors (Issue '
-||'Severity is Error and Issue Resolution was not defined) are shown in light red and have an alternate text of "This cruise error has not been resolved (Issue Resolution was not defined)" and unresolved warning validation issues (Issue Severity is Warn'
-||'ing and Issue Resolution was not defined) are shown in light orange and have an alternate text of "This cruise warning has not been resolved (Issue Resolution was not defined)"'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(1105662860159791059)
@@ -28274,7 +28318,7 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>7562082865972434
 ,p_is_editable=>true
 ,p_edit_operations=>'u'
-,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
 ,p_lost_update_check_type=>'VALUES'
 ,p_submit_checked_rows=>false
 ,p_lazy_loading=>false
@@ -28470,7 +28514,7 @@ wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1105663355610791064)
 ,p_name=>'P250_FISCAL_YEAR'
 ,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_imp.id(1105833273314170582)
+,p_item_plug_id=>wwv_flow_imp.id(17656977681743417)
 ,p_prompt=>'Fiscal Year'
 ,p_source=>'P250_FISCAL_YEAR'
 ,p_source_type=>'ITEM'
@@ -28491,7 +28535,7 @@ wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1105663456680791065)
 ,p_name=>'P250_ISSUE_CATEGORIES'
 ,p_item_sequence=>20
-,p_item_plug_id=>wwv_flow_imp.id(1105833273314170582)
+,p_item_plug_id=>wwv_flow_imp.id(17656977681743417)
 ,p_prompt=>'Issue Category'
 ,p_source=>'P250_ISSUE_CATEGORIES'
 ,p_source_type=>'ITEM'
@@ -28558,11 +28602,11 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Vessels'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811121844'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126022012'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820551404015921526)
@@ -28597,6 +28641,9 @@ wwv_flow_imp_page.create_page_plug(
 'FROM CCD_VESSELS'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_content_disposition=>'ATTACHMENT'
 ,p_prn_units=>'INCHES'
 ,p_prn_paper_size=>'LETTER'
@@ -28918,6 +28965,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165561943454260571
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -29061,11 +29111,11 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Regional Ecosystems'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811121731'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126022150'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820571363253968781)
@@ -29100,6 +29150,9 @@ wwv_flow_imp_page.create_page_plug(
 'FROM CCD_REG_ECOSYSTEMS;'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_page_header=>'View/Update Regional Ecosystems'
 );
 wwv_flow_imp_page.create_region_column(
@@ -29393,6 +29446,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165581944377307823
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -36318,11 +36374,11 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Data Sets'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20231122130835'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126021709'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820499322796709340)
@@ -36358,6 +36414,9 @@ wwv_flow_imp_page.create_page_plug(
 'FROM CCD_DATA_SETS'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_plug_read_only_when_type=>'EXPRESSION'
+,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_page_header=>'View/Edit Data Sets'
 );
 wwv_flow_imp_page.create_region_column(

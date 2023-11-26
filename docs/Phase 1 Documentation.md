@@ -11,7 +11,7 @@ This document defines the work items required to finish development and deployme
         -   X implement template app updated code
         -   X implement synonyms and automated application deployment
     -   X (1 day) implement data write and data admin roles
-    -   _ (1-2 days) Implement centralized CAM Auth App Module
+    -   X (1-2 days) Implement centralized CAM Auth App Module
         -   X also drop all the auth_app objects and auth app APEX pages
         -   _ document how the CC_CONFIG_OPTIONS values need to be defined
     -   _ (0.5 days) reduce unnecessary logging

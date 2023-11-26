@@ -28,6 +28,9 @@ APEX
 
 
 
+
+
+
 _ (CCD) document approach reasoning for the wrapper table (use a table that already exists instead of creating something new) -> cite MOUSS as an example
 
 X develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
@@ -860,6 +863,14 @@ X bug fix: when the onload warning fires it removes any success message so it is
 
 _ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
+
+
+business rules:
+	CRDMA:
+		Only admins can update reference lists
+		Read and Write can view reference lists
+		
+		
 
 _ reports by division
 _ reports by vessel
