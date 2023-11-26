@@ -865,10 +865,19 @@ _ update technical documentation to reference specific business rules defined in
 
 
 
-business rules:
+_ document business rules:
 	CRDMA:
 		Only admins can update reference lists
 		Read and Write can view reference lists
+		
+		write/admin can update insert/update/data sets
+		
+		write/admin can update preset records
+		
+		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
+		
+		
+		
 		
 		
 

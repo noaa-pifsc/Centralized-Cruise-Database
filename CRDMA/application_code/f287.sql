@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   02:26 Sunday November 26, 2023
+--   Date and Time:   03:12 Sunday November 26, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126022150'
+,p_last_upd_yyyymmddhh24miss=>'20231126031104'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>51
 ,p_print_server_type=>'INSTANCE'
@@ -215,7 +215,7 @@ wwv_flow_imp_shared.create_list_item(
 );
 wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(1100506470236891957)
-,p_list_item_display_sequence=>100
+,p_list_item_display_sequence=>65
 ,p_list_item_link_text=>'Presets'
 ,p_list_item_icon=>'fa-gear'
 ,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
@@ -294,30 +294,10 @@ wwv_flow_imp_shared.create_list_item(
 ,p_list_item_current_for_pages=>'460'
 );
 wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(1168153172378097144)
-,p_list_item_display_sequence=>250
-,p_list_item_link_text=>'Admin'
-,p_list_item_icon=>'fa-lock'
-,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
-,p_list_item_current_type=>'TARGET_PAGE'
-);
-wwv_flow_imp_shared.create_list_item(
- p_id=>wwv_flow_imp.id(1168146294294020340)
-,p_list_item_display_sequence=>10
-,p_list_item_link_text=>'Feedback'
-,p_list_item_link_target=>'f?p=&APP_ID.:505:&SESSION.::&DEBUG.::::'
-,p_list_item_icon=>'fa-comment'
-,p_parent_list_item_id=>wwv_flow_imp.id(1168153172378097144)
-,p_security_scheme=>wwv_flow_imp.id(1118060973894960861)
-,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
-,p_list_item_current_for_pages=>'505'
-);
-wwv_flow_imp_shared.create_list_item(
  p_id=>wwv_flow_imp.id(1105904082432457860)
 ,p_list_item_display_sequence=>70
 ,p_list_item_link_text=>'Reference Lists'
 ,p_list_item_icon=>'fa-list'
-,p_parent_list_item_id=>wwv_flow_imp.id(1168153172378097144)
 ,p_security_scheme=>wwv_flow_imp.id(1168183524249262062)
 ,p_list_item_current_type=>'TARGET_PAGE'
 );
@@ -473,6 +453,15 @@ wwv_flow_imp_shared.create_list_item(
 ,p_parent_list_item_id=>wwv_flow_imp.id(1105904082432457860)
 ,p_list_item_current_type=>'COLON_DELIMITED_PAGE_LIST'
 ,p_list_item_current_for_pages=>'300'
+);
+wwv_flow_imp_shared.create_list_item(
+ p_id=>wwv_flow_imp.id(20818551628035078)
+,p_list_item_display_sequence=>190
+,p_list_item_link_text=>'Feedback'
+,p_list_item_link_target=>'f?p=&APP_ID.:505:&SESSION.::&DEBUG.::::'
+,p_list_item_icon=>'fa-comment'
+,p_security_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_list_item_current_type=>'TARGET_PAGE'
 );
 end;
 /
@@ -28604,9 +28593,12 @@ wwv_flow_imp_page.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126022012'
+,p_last_upd_yyyymmddhh24miss=>'20231126025747'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820551404015921526)
@@ -28641,9 +28633,6 @@ wwv_flow_imp_page.create_page_plug(
 'FROM CCD_VESSELS'))
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_read_only_when_type=>'EXPRESSION'
-,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
-,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_content_disposition=>'ATTACHMENT'
 ,p_prn_units=>'INCHES'
 ,p_prn_paper_size=>'LETTER'
@@ -28724,7 +28713,6 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'VESSEL_NAME'
 ,p_data_type=>'VARCHAR2'
-,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Name'
@@ -28740,7 +28728,8 @@ wwv_flow_imp_page.create_region_column(
 ,p_filter_text_case=>'MIXED'
 ,p_filter_lov_type=>'NONE'
 ,p_use_as_row_header=>false
-,p_enable_sort_group=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
 ,p_enable_hide=>true
 ,p_enable_pivot=>false
 ,p_is_primary_key=>false
@@ -28773,7 +28762,8 @@ wwv_flow_imp_page.create_region_column(
 ,p_filter_text_case=>'MIXED'
 ,p_filter_lov_type=>'NONE'
 ,p_use_as_row_header=>false
-,p_enable_sort_group=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
 ,p_enable_hide=>true
 ,p_enable_pivot=>false
 ,p_is_primary_key=>false
@@ -28965,9 +28955,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165561943454260571
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
-,p_add_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
-,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
-,p_delete_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -29113,9 +29103,12 @@ wwv_flow_imp_page.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126022150'
+,p_last_upd_yyyymmddhh24miss=>'20231126025738'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820571363253968781)
@@ -29446,9 +29439,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165581944377307823
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
-,p_add_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
-,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
-,p_delete_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -29590,11 +29583,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Platform Types'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811122414'
+,p_last_updated_by=>'JESSE.ABDUL'
+,p_last_upd_yyyymmddhh24miss=>'20231126025208'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820591289597014775)
@@ -29680,7 +29676,6 @@ wwv_flow_imp_page.create_region_column(
 ,p_source_type=>'DB_COLUMN'
 ,p_source_expression=>'PLAT_TYPE_NAME'
 ,p_data_type=>'VARCHAR2'
-,p_session_state_data_type=>'VARCHAR2'
 ,p_is_query_only=>false
 ,p_item_type=>'NATIVE_TEXT_FIELD'
 ,p_heading=>'Name'
@@ -29696,7 +29691,8 @@ wwv_flow_imp_page.create_region_column(
 ,p_filter_text_case=>'MIXED'
 ,p_filter_lov_type=>'NONE'
 ,p_use_as_row_header=>false
-,p_enable_sort_group=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
 ,p_enable_hide=>true
 ,p_enable_pivot=>false
 ,p_is_primary_key=>false
@@ -29729,7 +29725,8 @@ wwv_flow_imp_page.create_region_column(
 ,p_filter_text_case=>'MIXED'
 ,p_filter_lov_type=>'NONE'
 ,p_use_as_row_header=>false
-,p_enable_sort_group=>false
+,p_enable_sort_group=>true
+,p_enable_control_break=>true
 ,p_enable_hide=>true
 ,p_enable_pivot=>false
 ,p_is_primary_key=>false
@@ -29887,6 +29884,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165601893306353817
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -30020,11 +30020,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Survey Types'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811122855'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126025923'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820608070003046126)
@@ -30287,6 +30290,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165618632051385167
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -30412,11 +30418,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Survey Categories'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20230811124346'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030012'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820657435506129001)
@@ -30709,6 +30718,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165668000620468043
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -30849,11 +30861,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Survey Frequencies'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811124943'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030046'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820674416198161712)
@@ -31116,6 +31131,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165684905980500754
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -31241,11 +31259,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update ESA Target Species'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811125604'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030117'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820689749306205093)
@@ -31573,6 +31594,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165700321233544134
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -31714,11 +31738,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update MMPA Target Species'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811171547'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030236'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820708619788763378)
@@ -32046,6 +32073,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165719109241102420
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -32187,11 +32217,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update FSSI Target Species'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811172142'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030300'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820725187155794874)
@@ -32519,6 +32552,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165735790806133916
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -32660,11 +32696,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Standard Survey Name'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811172835'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030330'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820741674599838202)
@@ -32992,6 +33031,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165752201160177243
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -33133,11 +33175,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Science Centers'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811174234'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030410'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820759571022916273)
@@ -33401,6 +33446,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165770124255255315
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -33526,11 +33574,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Regions'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811174842'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030439'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820776327472963445)
@@ -33826,6 +33877,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165786916758302486
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -33959,11 +34013,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Gear'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811175331'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030508'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820793097006995226)
@@ -34291,6 +34348,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165803644718334266
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -34432,11 +34492,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Expected Species Categories'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811180025'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030539'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820811212986021845)
@@ -34764,6 +34827,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165821794857360886
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -34905,11 +34971,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Divisions'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'JESSE.ABDUL'
-,p_last_upd_yyyymmddhh24miss=>'20230814135355'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030605'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(822462037008460493)
@@ -35266,6 +35335,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>167472654970799540
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -35409,11 +35481,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Data Set Status'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811114550'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030638'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820462047339426477)
@@ -35771,6 +35846,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165472671898765529
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -35912,11 +35990,14 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View/Update Data Set Types'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1118060973894960861)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE <> ''CCD ADMIN'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230811114620'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126030700'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820481640421647996)
@@ -36241,6 +36322,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165492131824987037
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1118060973894960861)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -36376,9 +36460,12 @@ wwv_flow_imp_page.create_page(
 ,p_page_template_options=>'#DEFAULT#'
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_protection_level=>'C'
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126021709'
+,p_last_upd_yyyymmddhh24miss=>'20231126030743'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820499322796709340)
@@ -36753,6 +36840,9 @@ wwv_flow_imp_page.create_interactive_grid(
 ,p_internal_uid=>165509882571048383
 ,p_is_editable=>true
 ,p_edit_operations=>'i:u:d'
+,p_add_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_update_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
+,p_delete_authorization_scheme=>wwv_flow_imp.id(1168183665228265528)
 ,p_lost_update_check_type=>'VALUES'
 ,p_add_row_if_empty=>true
 ,p_submit_checked_rows=>false
@@ -36904,10 +36994,13 @@ wwv_flow_imp_page.create_page(
 ,p_step_title=>'View Regional Ecosystem Presets'
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
-,p_required_role=>wwv_flow_imp.id(1168183665228265528)
+,p_required_role=>wwv_flow_imp.id(1168183524249262062)
+,p_read_only_when_type=>'EXPRESSION'
+,p_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
+,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'18'
-,p_last_updated_by=>'CRUISE_DEV_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20230321153452'
+,p_last_updated_by=>'CRUISE_JESSE'
+,p_last_upd_yyyymmddhh24miss=>'20231126031104'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1100502789392886179)
