@@ -1,3 +1,8 @@
+Current progress:
+	Updated all pages up until preset pages to implement the readonly authorization, report sorting, data write auth for write actions
+
+
+
 9/18/20:
 X Updated the CRDMA CCDP testing documentation to reuse the data from CCDP test data scripts to simplify things
 	X test that the CRDMA test cases still work with the CCDP automated test case data
@@ -875,6 +880,7 @@ _ document business rules:
 		write/admin can update preset records
 		
 		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
+		
 		
 		
 		
