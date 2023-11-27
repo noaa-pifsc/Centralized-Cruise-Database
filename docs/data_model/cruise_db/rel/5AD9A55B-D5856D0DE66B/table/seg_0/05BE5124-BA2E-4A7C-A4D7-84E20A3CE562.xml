@@ -228,12 +228,9 @@
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>SCI_CENTER_ID, UPPER(&quot;SCI_CENTER_DIV_CODE&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="A876C89F-AF41-F7D6-8AA0-B3AA8EAB10AC"/>
-<colUsage columnID="438A9B63-61BF-C852-5E6B-CB6AA66411E1"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="5AD7C231-CCC5-A56E-11BB-A275AAB807BD" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_SCI_CENTER_DIVS_U2">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
@@ -242,12 +239,9 @@
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>SCI_CENTER_ID, UPPER(&quot;SCI_CENTER_DIV_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="1E04B989-177A-F1A1-A347-BE7CFBFCCECF"/>
-<colUsage columnID="438A9B63-61BF-C852-5E6B-CB6AA66411E1"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="166F3DBA-1311-8092-F132-D2BD73D30E9A" name="CCD_SCI_CENTER_DIVS_FK1">
 <createdBy>jesse</createdBy>

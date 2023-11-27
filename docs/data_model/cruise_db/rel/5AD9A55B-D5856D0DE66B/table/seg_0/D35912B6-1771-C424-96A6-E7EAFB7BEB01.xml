@@ -1,0 +1,236 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D35912B6-1771-C424-96A6-E7EAFB7BEB01" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESP_TYPES">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Reference Table for storing APEX Feedback Form Response Types information]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>91809B35-9085-515F-AAC5-B5A75C728924</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RESP_TYPE_ID" id="494C538F-9559-4BBD-50CC-8970BAA7D2B6">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>RESP_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the APEX Feedback Form Response Types table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>77DD3DA1-9279-6B30-9B10-DAF838246947</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESP_TYPE_CODE" id="A4E101AB-37DC-3881-F4CC-46FC8013F86A">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>RESP_TYPE_CODE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Code for the given APEX Feedback Form Response Types]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>06282D42-2759-410E-21B0-2519E5C1DBC2</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50 BYTE</dataTypeSize>
+<ownDataTypeParameters>50 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESP_TYPE_NAME" id="E796F3BF-C91C-C4ED-1767-D41E7AD6C426">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>RESP_TYPE_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Name of the given APEX Feedback Form Response Types]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7FF4501E-DD2D-0715-F265-FA52F0BD7BB0</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>200 BYTE</dataTypeSize>
+<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESP_TYPE_DESC" id="76C2C82C-4609-B622-3F6C-D57C3A695D95">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>RESP_TYPE_DESC</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description for the given APEX Feedback Form Response Types]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>857CF14D-1123-DFB2-6D45-47DB3E1CF77F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="12CED6F5-AD4C-99C4-09DF-F8DA426AE288">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>41718694-DA59-9190-B08F-5040FA0CAAB3</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="35193D54-3737-94DF-8188-6D41549A1A80">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>4EBBEBBC-D0EC-3722-A2F3-5BFC15125C9E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="4F81F09F-340F-A45C-345E-B7CF3CAEB2C4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>F0BBB593-49E3-4F02-0A09-BF9F16AF6E75</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="C9FBEEFF-3C90-5C50-2BAB-DB297D95177A">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESP_TYPES</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>3732E1A4-A1C1-3341-BF04-C0D1D8C8C56F</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="195AB4F6-582C-9A0D-73D3-53DD8D847AFD" name="AFF_RESP_TYPES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7D679FA7-0E9B-361D-B44B-4792D8A3BB7F</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="494C538F-9559-4BBD-50CC-8970BAA7D2B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="62304FEC-ACF3-5A93-448D-331DC7B45DE7" name="AFF_RESP_TYPES_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0C545047-68B2-7BD3-3CB6-FA2A7A2EBC35</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4E101AB-37DC-3881-F4CC-46FC8013F86A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E03306AE-2454-52FC-5939-6BFB5C88BD57" name="AFF_RESP_TYPES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7BD3F905-69B7-42A8-D46F-0EB47BFBC864</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E796F3BF-C91C-C4ED-1767-D41E7AD6C426"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F7B1CFA5-7273-A781-206B-5EE5CDE521AB" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESP_TYPES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>FDABD56E-898F-9CB8-1A43-693CDCFB19AD</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="494C538F-9559-4BBD-50CC-8970BAA7D2B6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="14DC3E3C-2B5B-C89C-DC51-3BBDE66DF861" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESP_TYPES_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>37447820-0737-798F-1CEB-D8884C1657B9</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A4E101AB-37DC-3881-F4CC-46FC8013F86A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="0EEF5EAE-9DC4-4BFB-B199-8A46D8076630" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESP_TYPES_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESP_TYPES_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>E7E8750F-A6A4-8E65-0865-ED8FF8DD6532</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="E796F3BF-C91C-C4ED-1767-D41E7AD6C426"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -199,11 +199,9 @@ This table defines the different geographical regions where PIFSC conducts cruis
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;REGION_CODE&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="9EE82604-D0BB-D6ED-EBCD-49D23EB5FD3F"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="A4BF68D0-CF87-10B7-D3D8-8014ADC6ACF0" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_REGIONS_U2">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
@@ -212,11 +210,9 @@ This table defines the different geographical regions where PIFSC conducts cruis
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;REGION_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="7FFB5386-1AB6-DB05-CC4D-4F080F5C80B0"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

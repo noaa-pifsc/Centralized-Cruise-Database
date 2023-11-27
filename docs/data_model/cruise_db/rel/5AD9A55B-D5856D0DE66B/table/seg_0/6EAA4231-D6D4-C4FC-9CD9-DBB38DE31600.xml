@@ -171,11 +171,9 @@ This table stores the different survey types for a given cruise  (referred to as
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;SVY_TYPE_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="F7C3B641-52B3-0377-587E-1ABC0E723217"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

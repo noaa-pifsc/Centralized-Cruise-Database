@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="DVM_PTA_RULE_SETS_AUTO_BRI" directorySegmentName="seg_1" id="35F7E964-D1BD-6185-9B6D-67FA764B05C2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_PTA_RULE_SETS_AUTO_BRI</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:06 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT</actions>
+<body><![CDATA[begin
+  select DVM_PTA_RULE_SETS_SEQ.nextval into :new.PTA_RULE_SET_ID from dual;
+end;]]></body>
+<triggerTime>BEFORE</triggerTime>
+<owner>4697792D-D466-ABBD-A0CF-502953E40499</owner>
+<table>CC655601-A67B-A844-41D2-1B15B3075889</table>
+</TriggerOraclev10g>

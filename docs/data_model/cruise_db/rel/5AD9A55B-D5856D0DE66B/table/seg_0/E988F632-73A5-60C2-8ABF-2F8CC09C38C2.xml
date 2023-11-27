@@ -202,11 +202,9 @@ This table stores the Target Species - MMPA for a given cruise  (referred to as 
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;TGT_SPP_MMPA_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="0EA75DD8-BD54-BFAC-E616-69D3660BFE38"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

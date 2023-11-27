@@ -202,11 +202,9 @@ This table stores the different statuses for data sets that are collected during
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;STATUS_CODE&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="54324795-9EB8-D7F9-D433-F1D5DD007AD5"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="563EABAD-E3CF-9F7F-2CBF-9CE746C90F86" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SET_STATUS_U2">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
@@ -215,11 +213,9 @@ This table stores the different statuses for data sets that are collected during
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;STATUS_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="BAE399AB-455B-9159-8545-D2009C2EFDDD"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E3198809-4CAE-EEFC-F17E-9E806E6867A3" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_STATUS_PK">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>

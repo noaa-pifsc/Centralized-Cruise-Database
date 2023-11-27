@@ -167,5 +167,17 @@ This table defines the different data set types that are collected by PIFSC]]></
 <colUsage columnID="42EF7A35-4415-856D-7EE8-2B2CD10AF1E7"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="098C99B0-832F-400E-0456-8C149A05737B" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SET_TYPES_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_DATA_SET_TYPES_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>EC791775-B8CE-91F7-12FB-D8662203F9A4</importedID>
+<indexExpression>UPPER(&quot;DATA_SET_TYPE_NAME&quot;)</indexExpression>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+</ind_PK_UK>
 </indexes>
 </Table>

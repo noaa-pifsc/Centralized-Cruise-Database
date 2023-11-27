@@ -1,0 +1,172 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="FFA3B622-1AFC-28B2-49FC-79D5C9D4C3B6" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESPONSES">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESPONSES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[APEX Feedback Form Responses
+
+This table contains the different APEX feedback form responses]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>A5097551-EB7C-24CF-70BA-6843EC828AA0</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="RESP_ID" id="01279E13-1777-6180-C660-4380A48274AE">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>RESP_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the APEX Feedback Form Responses table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>09D65D8B-2B7C-3168-D0A6-02CCBAE03052</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="APP_ID" id="C8DA790F-8C5E-58B5-38F3-0E920BBF25F1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>APP_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The application ID for the APEX Feedback Form Response]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>D1D42676-902F-EEA2-1D02-6E9FA970B210</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PAGE_ID" id="1EC16195-BD87-00BC-E659-B5819F517BE1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>PAGE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The page ID the user was visiting when they submitted their APEX Feedback Form Response]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>C4C0F161-BA5D-D3A6-D938-A5490756448F</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESP_CONTENT" id="762B2EEB-0D43-47DB-4E0B-042CA4F351B4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>RESP_CONTENT</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Response content provided by the user]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>1C734563-3DFC-7782-3C84-D9ABD7B8A9D8</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="RESP_TYPE_ID" id="9A45CB60-61EE-CE26-C2FC-646084623A99">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>RESP_TYPE_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Foreign key constraint that references the APEX Feedback Form Response Type]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>04BCFA0B-9AD1-87DB-3BC5-1670A8EEC260</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F8B5ADE8-6205-05F3-9889-54C3E9EFF7DE" referredColumn="494C538F-9559-4BBD-50CC-8970BAA7D2B6"/>
+</associations>
+</Column>
+<Column name="CREATE_DATE" id="B8AD00C8-BF71-8360-97F6-A3A1622698F7">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date/time the feedback was received]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>41E3F290-0D75-49A6-A655-ED3591F5AEF4</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="E32A3CC2-F8A0-52B3-0D16-A243CEA16E82">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>AFF_RESPONSES</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The application username used to submit the feedback]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>526AADD5-343E-E5E8-7869-864FBA32116E</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>255 BYTE</dataTypeSize>
+<ownDataTypeParameters>255 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="6A96F5DA-BF1F-3271-E0F2-40F2C7B65998" name="AFF_RESPONSES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESPONSES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7C09C982-8071-D868-A78C-834F93C80A30</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01279E13-1777-6180-C660-4380A48274AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="10CA377A-2583-3F1E-5755-8C96658B67C0" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="AFF_RESPONSES_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESPONSES_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>D81C3F6A-2039-658A-92D0-6E48A7A5C3EE</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="01279E13-1777-6180-C660-4380A48274AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8EF64845-6F0B-81B3-80E7-3CBE0C2B6C1F" name="AFF_RESPONSES_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="9A45CB60-61EE-CE26-C2FC-646084623A99"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

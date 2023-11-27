@@ -55,8 +55,8 @@ This table stores log entries for a given module to enable debugging, logging er
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
 <logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>200 BYTE</dataTypeSize>
-<ownDataTypeParameters>200 BYTE,,</ownDataTypeParameters>
+<dataTypeSize>2000 BYTE</dataTypeSize>
+<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 <Column name="ENTRY_CONTENT" id="B9FF7E17-E0C9-37EF-2CA9-0191B1E607AC">

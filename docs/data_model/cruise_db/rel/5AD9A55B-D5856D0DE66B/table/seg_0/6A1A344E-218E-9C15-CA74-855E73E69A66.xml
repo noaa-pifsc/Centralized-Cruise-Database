@@ -153,6 +153,20 @@ This is a reference table that defines all of the QC validation views that are e
 <colUsage columnID="F0EB9491-4156-6EF0-F149-84FB190845B3"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="A9C00BE9-F557-C555-8220-C699875C5795" name="DVM_QC_OBJECTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>FED20C76-2E9C-D20C-7A18-DC29D2974DB7</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7E24C5B-02AA-6226-586E-C927E5DCB8E8"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="4402581E-9D12-CE30-50BB-CA48DA8C5269" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="DVM_QC_OBJECTS_PK">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
 <sourceObjSchema>CEN_CRUISE</sourceObjSchema>
@@ -164,6 +178,20 @@ This is a reference table that defines all of the QC validation views that are e
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
 <colUsage columnID="F0EB9491-4156-6EF0-F149-84FB190845B3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C613963D-5D55-D6E3-AE17-3935B89B0FF8" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="DVM_QC_OBJECTS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>DVM_QC_OBJECTS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>20B31C9E-2187-6431-11DA-DEAB68B3F303</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D7E24C5B-02AA-6226-586E-C927E5DCB8E8"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

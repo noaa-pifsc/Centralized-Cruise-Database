@@ -1,0 +1,183 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev12c class="oracle.dbtools.crest.model.design.storage.oracle.v12c.TableProxyOraclev12c" name="CCD_DATA_SETS" directorySegmentName="seg_0" id="9405793D-3232-AD85-A742-40646EB1BDD6">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>1D4298E7-BDF6-456C-05D6-0594386F4791</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<inMemory>NO</inMemory>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="LAST_MOD_BY" id="01E722EC-5A0F-59C1-8FFB-EBA834D0F3B4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_ID" id="08C5BAEC-BEC5-5AF4-2FBD-7FFDCFA5C656">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_TYPE_ID" id="0B89D04A-12FD-D5B0-FA16-6FD22E660BB8">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_DESC" id="12FD5E87-5BCA-A273-55B3-06A6E8E6D34E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="LAST_MOD_DATE" id="65AF74A6-D226-337F-FBED-2AFFC2E855A0">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_ACCESS_URL" id="70F6DBBF-6813-8D3F-F65A-69383842733C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_DOI" id="87EBDAEF-DF05-5042-3069-529B9FF322E6">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_NAME" id="A5F5878F-B19F-3609-FF4B-E85C14496859">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CRUISE_LEG_ID" id="B18F884D-45E5-DD59-1CEE-33F934668D2F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_INPORT_CAT_ID" id="D65F926C-B99D-3C70-58D3-F98867D7AE30">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATED_BY" id="DDFE80DC-2944-3576-B45B-4DF154351720">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_INPORT_URL" id="F6ED1C4B-36EA-23CD-9208-A758CF0B2705">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_ARCHIVE_URL" id="F6FAD675-2BCD-6C57-AAFE-B25633C947CC">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CREATE_DATE" id="FC7A43CC-F39F-1A58-BE86-BF3FE9771719">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="DATA_SET_STATUS_ID" id="FFFC2F17-0042-2181-CA95-95F47F47813E">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<indexProxies>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I3" id="06521571-DD53-21FA-83B2-4FE01EB6B8DF">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_U1" id="3FB481B9-D461-E3E8-9569-3DB390033372">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I1" id="B210AC89-D368-5BB7-A408-3C8032B4625D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I2" id="DA381E41-2B51-B927-6BB6-0A9EA206D361">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_PK" id="E3C5CEA8-829E-3729-BAF4-CCBB319D6CEB">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+</indexProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CCD_DATA_SETS_FK1" id="45E978B7-D238-F60B-1417-E8128B1E7D0F">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CCD_DATA_SETS_FK2" id="5541BBB6-5AC5-1437-7508-563E4FA7834D">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="CCD_DATA_SETS_FK3" id="645623CA-E4B3-F61F-4487-5E8F41F160B4">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CCD_DATA_SETS_PK" id="6FF80E6E-2CA2-0742-498E-FC700DBBE5EE">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<existingIndex>E3C5CEA8-829E-3729-BAF4-CCBB319D6CEB</existingIndex>
+<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</PrimaryKey>
+</primaryKeys>
+<uniqueKeys>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CCD_DATA_SETS_U1" id="141B984D-4CE6-09AC-6C9E-89A493F56D37">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</UniqueKey>
+<UniqueKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.UniqueOraclev10g" name="CCD_DATA_SETS_U2" id="61147E77-8E4E-1126-A3C7-31B73BD1B06C">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<existingIndex>06521571-DD53-21FA-83B2-4FE01EB6B8DF</existingIndex>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
+<indexSort>SORTED</indexSort>
+<usingIndex>BY INDEX NAME</usingIndex>
+</UniqueKey>
+</uniqueKeys>
+</TableProxyOraclev12c>

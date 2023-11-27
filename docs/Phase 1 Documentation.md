@@ -24,6 +24,7 @@ This document defines the work items required to finish development and deployme
     -   X (0.5 days) Remove Auth App Module
     -   _ (1 day) Develop Database Upgrade and Rollback SOP for phase 1
     -   X (3 days) Update DVM automated test cases: update the automated verification method to spool the output to a given directory (SQLPlus script to produce the same output and Winmerge or other diff program to confirm the outputs are equivalent)
+    -   _ implement history tracking package on appropriate tables
 -   ### Documentation Updates
     -   Database (2 days)
         -   _ Technical Documentation

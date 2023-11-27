@@ -202,11 +202,9 @@ This table stores the Expected Species Categories for a given cruise  (referred 
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;EXP_SPP_CAT_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="72299D5E-95E5-F937-90C5-4A0144A512DB"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

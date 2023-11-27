@@ -171,11 +171,9 @@ This table stores the different Fisheries Science Centers for a given cruise  (r
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>SCI_CENTER_ID, UPPER(&quot;SCI_CENTER_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="4A566208-1F68-1494-8136-B2D5758A9A0A"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

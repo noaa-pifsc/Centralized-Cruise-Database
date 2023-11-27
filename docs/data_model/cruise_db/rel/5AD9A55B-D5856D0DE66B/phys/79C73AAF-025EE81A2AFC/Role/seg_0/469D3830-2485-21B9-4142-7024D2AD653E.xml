@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<RoleOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.RoleOraclev10g" name="CCD_INTEG_ROLE" directorySegmentName="seg_0" id="469D3830-2485-21B9-4142-7024D2AD653E">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjName>CCD_INTEG_ROLE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:08 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<permissions>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions244" id="18C72149-A6A1-DF3C-4560-B31DD853B89B">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<privileges>SELECT</privileges>
+<table>CDA64095-068A-A46F-825A-E0FF391C3DDE</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions245" id="F0EB2186-D6FF-ACD6-7930-A5AD67CD1C00">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<privileges>SELECT</privileges>
+<table>9A5346F0-A97E-58E3-CEFD-384AC0F5FDF6</table>
+</Permission>
+<Permission class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PermissionsOraclev10g" name="Permissions246" id="1BBE8B91-B18C-17CF-5424-B082C61B5083">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<privileges>SELECT</privileges>
+<table>DDBA3D2F-7A35-F556-2D10-68D0EE4CF575</table>
+</Permission>
+</permissions>
+</RoleOraclev10g>

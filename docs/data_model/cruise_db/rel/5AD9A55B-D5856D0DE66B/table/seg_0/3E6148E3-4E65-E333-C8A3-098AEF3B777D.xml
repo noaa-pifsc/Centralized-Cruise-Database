@@ -202,11 +202,9 @@ This table defines the information associated with a given research vessel that 
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;VESSEL_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="0E8A4CED-97FD-80A9-E630-58DDF838A0AB"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

@@ -60,6 +60,120 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <colAssociation fkAssociation="D02D2365-E3B6-4962-28D2-21D477F03204" referredColumn="42EF7A35-4415-856D-7EE8-2B2CD10AF1E7"/>
 </associations>
 </Column>
+<Column name="DATA_SET_INPORT_CAT_ID" id="D65F926C-B99D-3C70-58D3-F98867D7AE30">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>DATA_SET_INPORT_CAT_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[InPort Catalog ID for the data set]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>44334592-B5DB-5698-C56C-0BF8D3AEFAE6</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="FC7A43CC-F39F-1A58-BE86-BF3FE9771719">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="DDFE80DC-2944-3576-B45B-4DF154351720">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_DATE" id="65AF74A6-D226-337F-FBED-2AFFC2E855A0">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>LAST_MOD_DATE</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="LAST_MOD_BY" id="01E722EC-5A0F-59C1-8FFB-EBA834D0F3B4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>LAST_MOD_BY</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="DATA_SET_STATUS_ID" id="FFFC2F17-0042-2181-CA95-95F47F47813E">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>DATA_SET_STATUS_ID</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[The status for the data set]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A6C98BA2-D295-A13E-1B3F-199F931C4EEE" referredColumn="3BDDF488-1552-5E0C-72C6-1164F73CBE92"/>
+<colAssociation fkAssociation="441C205D-E577-5245-31B7-BB5DC876F141" referredColumn="3BDDF488-1552-5E0C-72C6-1164F73CBE92"/>
+</associations>
+</Column>
+<Column name="DATA_SET_NAME" id="A5F5878F-B19F-3609-FF4B-E85C14496859">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
+<sourceObjName>DATA_SET_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Name of the data set]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>D146FAE5-230B-48D7-4EC6-FFC228940DFA</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 <Column name="DATA_SET_DOI" id="87EBDAEF-DF05-5042-3069-529B9FF322E6">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
 <sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
@@ -141,87 +255,6 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <colAssociation fkAssociation="441C205D-E577-5245-31B7-BB5DC876F141" referredColumn="DF172437-2527-5B1D-B775-EDA1F661B551"/>
 </associations>
 </Column>
-<Column name="CREATE_DATE" id="FC7A43CC-F39F-1A58-BE86-BF3FE9771719">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
-<sourceObjName>CREATE_DATE</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<dataTypeSize>7</dataTypeSize>
-<ownDataTypeParameters>7,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="CREATED_BY" id="DDFE80DC-2944-3576-B45B-4DF154351720">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
-<sourceObjName>CREATED_BY</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="LAST_MOD_DATE" id="65AF74A6-D226-337F-FBED-2AFFC2E855A0">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
-<sourceObjName>LAST_MOD_DATE</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The last date on which any of the data in this record was changed]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT007</logicalDatatype>
-<dataTypeSize>7</dataTypeSize>
-<ownDataTypeParameters>7,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="LAST_MOD_BY" id="01E722EC-5A0F-59C1-8FFB-EBA834D0F3B4">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
-<sourceObjName>LAST_MOD_BY</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The Oracle username of the person making the most recent change to this record]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>30 BYTE</dataTypeSize>
-<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
-<Column name="DATA_SET_STATUS_ID" id="FFFC2F17-0042-2181-CA95-95F47F47813E">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>CCD_DATA_SETS</sourceObjSchema>
-<sourceObjName>DATA_SET_STATUS_ID</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The status for the data set]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT019</logicalDatatype>
-<ownDataTypeParameters>,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-<associations>
-<colAssociation fkAssociation="A6C98BA2-D295-A13E-1B3F-199F931C4EEE" referredColumn="3BDDF488-1552-5E0C-72C6-1164F73CBE92"/>
-</associations>
-</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="6FF80E6E-2CA2-0742-498E-FC700DBBE5EE" name="CCD_DATA_SETS_PK">
@@ -252,6 +285,20 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <colUsage columnID="B18F884D-45E5-DD59-1CEE-33F934668D2F"/>
 </indexColumnUsage>
 </ind_PK_UK>
+<ind_PK_UK id="61147E77-8E4E-1126-A3C7-31B73BD1B06C" name="CCD_DATA_SETS_U2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_DATA_SETS_U2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>4FB3E37E-A3DF-5938-1730-5A60725B4BEF</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5F5878F-B19F-3609-FF4B-E85C14496859"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="B210AC89-D368-5BB7-A408-3C8032B4625D" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SETS_I1">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
 <sourceObjSchema>CEN_CRUISE</sourceObjSchema>
@@ -273,7 +320,7 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <ownerDesignName>cruise_db</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="B18F884D-45E5-DD59-1CEE-33F934668D2F"/>
+<colUsage columnID="FFFC2F17-0042-2181-CA95-95F47F47813E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="06521571-DD53-21FA-83B2-4FE01EB6B8DF" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SETS_I3">
@@ -285,7 +332,7 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <ownerDesignName>cruise_db</ownerDesignName>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="FFFC2F17-0042-2181-CA95-95F47F47813E"/>
+<colUsage columnID="A5F5878F-B19F-3609-FF4B-E85C14496859"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="E3C5CEA8-829E-3729-BAF4-CCBB319D6CEB" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SETS_PK">
@@ -308,12 +355,9 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;DATA_SET_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="0B89D04A-12FD-D5B0-FA16-6FD22E660BB8"/>
-<colUsage columnID="B18F884D-45E5-DD59-1CEE-33F934668D2F"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="45E978B7-D238-F60B-1417-E8128B1E7D0F" name="CCD_DATA_SETS_FK1">
 <createdBy>jesse</createdBy>
@@ -332,7 +376,7 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="B18F884D-45E5-DD59-1CEE-33F934668D2F"/>
+<colUsage columnID="FFFC2F17-0042-2181-CA95-95F47F47813E"/>
 </indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="645623CA-E4B3-F61F-4487-5E8F41F160B4" name="CCD_DATA_SETS_FK3">

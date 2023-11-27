@@ -171,11 +171,9 @@ This table stores the different options for survey frequency for a given cruise 
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;SVY_FREQ_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="E7BEECC8-4D7C-32AF-4024-A7AD5CC975CE"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

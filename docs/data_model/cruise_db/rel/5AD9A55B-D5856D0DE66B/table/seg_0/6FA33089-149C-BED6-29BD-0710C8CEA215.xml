@@ -218,12 +218,9 @@ This table stores the Target Species - Other Species for a given cruise  (referr
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>CRUISE_ID, UPPER(&quot;TGT_SPP_OTHER_CNAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="27C8A4A6-24D4-BE40-D814-A0E0EFAC11D8"/>
-<colUsage columnID="FCE7FD5B-2ABD-C4E2-0500-264173EFBB26"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="7F17B388-323B-6B12-F2A0-516243E00BCC" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_TGT_SPP_OTHER_U2">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
@@ -232,12 +229,9 @@ This table stores the Target Species - Other Species for a given cruise  (referr
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>CRUISE_ID, UPPER(&quot;TGT_SPP_OTHER_SNAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="BB212603-F4F7-6A61-8B5F-2677D7CE4316"/>
-<colUsage columnID="FCE7FD5B-2ABD-C4E2-0500-264173EFBB26"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="A4DF362B-7483-727F-7DBD-0300BCE74CEF" name="CCD_TGT_SPP_OTHER_FK1">
 <createdBy>jesse</createdBy>

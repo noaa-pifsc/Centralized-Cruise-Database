@@ -1,0 +1,20 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="F8B5ADE8-6205-05F3-9889-54C3E9EFF7DE" containerWithKeyObject="FFA3B622-1AFC-28B2-49FC-79D5C9D4C3B6" localFKIndex="8EF64845-6F0B-81B3-80E7-3CBE0C2B6C1F" name="AFF_RESPONSES_FK1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>AFF_RESPONSES_FK1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>22DBF679-6CC6-F7FC-95CC-94A4BE2BA8AD</importedID>
+<referredTableLongName>CEN_CRUISE.AFF_RESP_TYPES</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>D35912B6-1771-C424-96A6-E7EAFB7BEB01</referredTableID>
+<keyObject>195AB4F6-582C-9A0D-73D3-53DD8D847AFD</keyObject>
+<referredKeyID>195AB4F6-582C-9A0D-73D3-53DD8D847AFD</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>RESP_TYPE_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

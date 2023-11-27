@@ -50,6 +50,17 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script on the CEN_CRUISE schema
     -   **\*\*Note**: Do not execute this script on a production database.  DVM rules and data will be purged from the database.  The automated CTD database test cases require this script to be executed on a development/test instance.
 
+## External Dependencies
+-   The Centralized Utilities Database is utilized in multiple CCD objects to perform calculations
+    -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/centralized-utilities.git
+    -   Database: 1.0 (Git tag: cen_utils_db_v1.0)
+-   The PARR Tools Database is integrated into the CCD to provide information about the Cruise Leg data sets and data set packages  
+    -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/parr-tools.git
+    -   Database: 1.3 (Git tag: PIFSC_Data_Set_db_v1.3)
+-   The Centralized Authorization System (CAS) is used to perform authentication and authorization for the MOUSS data management application
+    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
+    -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
+
 ## Features:
 -   The database requires the Centralized Utilities to be deployed on the CEN_UTILS schema in order for the database views to work properly when querying the cruise and cruise leg information
     -   Version Control Information:
@@ -61,10 +72,6 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   DB Logging Module (DLM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBLoggingModule.git
     -   Version: 0.3 (git tag: db_log_db_v0.3)
--   Centralized Authorization System (CAS)
-    -   The CAS is used to perform authentication and authorization for the MOUSS data management application
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
-    -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
 -   Error Handler Module
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
     -   Version: 1.0 (git tag: APX_Cust_Err_Handler_db_v1.0)
@@ -77,59 +84,9 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Centralized Configuration (CC) project
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
     -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
--   Centralized Cruise Database (CCD)
-    -   This MOUSS database references the CCD and the defined MOUSS cruise information
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git   
-    -   Version 1.0 (git tag: cen_cruise_db_v1.0)
-
-
-
-
-
-
-
-
--   The Data Validation Module (DVM) is used to perform QC validation on the Centralized Cruise Database data managed in this database. Custom data validation criteria were developed for this operational data set.
-    -   Version Control Information:
-        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/data-validation-module.git
-        -   Database: 1.4 (Git tag: DVM_db_v1.4)
--   The Database Version Control Module is used to track the database version installed on a given database schema.
-    -   Version Control Information:
-        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-version-control-module.git
-        -   SOP: 1.0 (Git tag: db_vers_ctrl_v1.0)
-        -   Database: 0.2 (Git tag: db_vers_ctrl_db_v0.2)
--   The Database Logging Module is used to log CDIM execution information in the database.
-    -   Version Control Information:
-        -   URL (Git): git@picgitlab.nmfs.local:centralized-data-tools/database-logging-module.git
-        -   Database: 0.3 (Git tag: db_log_db_v0.3)
--   Centralized Authorization System (CAS)
-    -   The CAS is used to perform authentication and authorization for the MOUSS data management application
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
-    -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
--   Error Handler Module
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
-    -   Version: 1.0 (git tag: APX_Cust_Err_Handler_db_v1.0)
-
-
-
-
-
-
-
-
-
-
-
--   The PIFSC APEX custom error handling function has been implemented on the application to suppress sensitive error information within the database application to satisfy Security Control: SI-11.
-    -   Version Control Information:
-        -   URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
-        -   Database: 0.4 (Git tag: APX_Cust_Err_Handler_db_v0.4)
--   The APEX Feedback Form (AFF) provides a database for logging user feedback within a given APEX application
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex-feedback-form.git
-    -   Version: 0.1 (git tag: apex_feedback_form_db_v0.1)
--   The Centralized Configuration (CC) project provides a database module to define configuration options that can be used by any Oracle database modules
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
-    -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
+-   CCD Oracle Packages
+		-   [MOUSS Utilities Package (MUP) Documentation](./packages/MOUSS_UTIL_PKG/MUP%20Documentation.md)
+		-   [MOUSS Data Validation Module (DVM) Documentation](./packages/MDVM/MDVM%20Documentation.md)
 
 ## Database Diagram:
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)

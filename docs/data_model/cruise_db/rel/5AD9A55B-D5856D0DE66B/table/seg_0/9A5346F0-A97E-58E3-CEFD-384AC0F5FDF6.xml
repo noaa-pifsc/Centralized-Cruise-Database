@@ -48,7 +48,7 @@ This table defines the different legs for a given research cruise, there can be 
 <sourceObjName>LEG_START_DATE</sourceObjName>
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The start date for the given research cruise leg]]></commentInRDBMS>
+<commentInRDBMS><![CDATA[The start date in the corresponding time zone for the given research cruise leg]]></commentInRDBMS>
 <ownerDesignName>cruise_db</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -63,7 +63,7 @@ This table defines the different legs for a given research cruise, there can be 
 <sourceObjName>LEG_END_DATE</sourceObjName>
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[The end date for the given research cruise leg]]></commentInRDBMS>
+<commentInRDBMS><![CDATA[The end date in the corresponding time zone for the given research cruise leg]]></commentInRDBMS>
 <ownerDesignName>cruise_db</ownerDesignName>
 <useDomainConstraints>false</useDomainConstraints>
 <use>1</use>
@@ -203,6 +203,22 @@ This table defines the different legs for a given research cruise, there can be 
 <colAssociation fkAssociation="14A45428-0F6D-F171-6F5D-36F1B6D665C7" referredColumn="FC783D25-5DEA-E552-E5EC-817E8D1D139E"/>
 </associations>
 </Column>
+<Column name="TZ_NAME" id="513A559B-C921-C7BF-319E-BE1598D4D6EF">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_CRUISE_LEGS</sourceObjSchema>
+<sourceObjName>TZ_NAME</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The numeric offset for UTC or Time Zone Name (V$TIMEZONE_NAMES.TZNAME) for the local timezone where the cruise leg occurred (e.g. US/Hawaii, US/Samoa, Etc/GMT+9)]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0CA651F6-D4E3-F782-CF3E-7D9467AEB2A5</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>40 BYTE</dataTypeSize>
+<ownDataTypeParameters>40 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
 </columns>
 <indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
 <ind_PK_UK id="95E4E86D-C918-7BB6-CEC1-35E7CE2E8A16" name="CCD_CRUISE_LEGS_PK">
@@ -288,11 +304,9 @@ This table defines the different legs for a given research cruise, there can be 
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;LEG_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="68D78624-842E-F659-7479-5BD33EB1E185"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="A72C5901-2243-4A0B-5B79-B0B931699ECA" name="CCD_CRUISE_LEGS_FK1">
 <createdBy>jesse</createdBy>

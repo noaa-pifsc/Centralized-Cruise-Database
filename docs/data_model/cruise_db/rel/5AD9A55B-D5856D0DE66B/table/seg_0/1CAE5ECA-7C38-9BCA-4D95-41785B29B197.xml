@@ -1,0 +1,227 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="1CAE5ECA-7C38-9BCA-4D95-41785B29B197" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_DATA_SETS">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SETS</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Cruise Leg Data Sets
+
+This intersection table defines the many-to-many relationship between a given cruise leg and the associated Data Sets used during the cruise leg.]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>9662D13F-01B7-E56C-1159-D72AD3985A35</importedID>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="LEG_DATA_SET_ID" id="52F74DCF-4470-CA67-5F77-E1218A8443FE">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>LEG_DATA_SET_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Primary key for the CCD_LEG_DATA_SETS table]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>65533E33-C43B-2CF0-D373-23893F4F6B42</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CRUISE_LEG_ID" id="3889C8C5-3F14-E0CE-DEB9-FFC22A13624E">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>CRUISE_LEG_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The cruise leg the Data Set is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0AE343E3-5CD3-F359-9880-065C787CFB92</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="EB08B2A4-2179-5A04-AE14-3E4FEE851013" referredColumn="DF172437-2527-5B1D-B775-EDA1F661B551"/>
+</associations>
+</Column>
+<Column name="DATA_SET_ID" id="5D971A7A-D3A7-8FE1-84B6-8D6F5127DCBD">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>DATA_SET_ID</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Data Set the given cruise leg is associated with]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>7B2B99CB-4577-43DC-FF79-3AEFFA041AEE</importedID>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="B7DBAA70-0BD7-1431-E1B1-75D2D1A67E07" referredColumn="08C5BAEC-BEC5-5AF4-2FBD-7FFDCFA5C656"/>
+</associations>
+</Column>
+<Column name="LEG_DATA_SET_NOTES" id="965E74EE-634B-5CAC-3F85-8DD45085ACF5">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>LEG_DATA_SET_NOTES</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[Notes associated with the given Cruise Leg's Data Set]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>B567655C-EFE0-AD20-33AD-829681D1F389</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>500 BYTE</dataTypeSize>
+<ownDataTypeParameters>500 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATE_DATE" id="814F4465-4A0D-F8CC-58B2-0034DD74361B">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>CREATE_DATE</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The date on which this record was created in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>DBFA215F-E532-8068-789E-75BF02E2EB84</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<dataTypeSize>7</dataTypeSize>
+<ownDataTypeParameters>7,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CREATED_BY" id="5CA25E87-1460-005A-1A8C-269732CBF94C">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CCD_LEG_DATA_SETS</sourceObjSchema>
+<sourceObjName>CREATED_BY</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<commentInRDBMS><![CDATA[The Oracle username of the person creating this record in the database]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>B3CE214D-879E-F400-2825-4332C862B275</importedID>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="980534FF-F070-928C-F8EA-CCF477629476" name="CCD_LEG_DATA_SET_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SET_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0B5C246C-C732-D97E-7E91-E328BAC60C54</importedID>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52F74DCF-4470-CA67-5F77-E1218A8443FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="07FC1A65-7548-1660-AD61-CECB91100E1F" name="CCD_LEG_DATA_SETS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SETS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>FCDC90A2-7291-1A31-D675-30EFAB6A9776</importedID>
+<indexState>Unique Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3889C8C5-3F14-E0CE-DEB9-FFC22A13624E"/>
+<colUsage columnID="5D971A7A-D3A7-8FE1-84B6-8D6F5127DCBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="88814088-BD42-D6B1-41B3-0E26BC4509B4" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_DATA_SETS_I1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SETS_I1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>C3F3ADBA-FDE0-8BE3-093F-4D52BDF913C2</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3889C8C5-3F14-E0CE-DEB9-FFC22A13624E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="837F1725-193E-F33D-2145-4CFFC229090A" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_DATA_SETS_I2">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SETS_I2</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>F2F8C7EE-1906-1329-45F4-10D61AF8EDAE</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D971A7A-D3A7-8FE1-84B6-8D6F5127DCBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="CCDF3ADD-1572-E520-4F68-D25743535DA3" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_DATA_SETS_U1">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SETS_U1</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>0A80A6EB-557C-7E99-EDF5-AA259524B440</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3889C8C5-3F14-E0CE-DEB9-FFC22A13624E"/>
+<colUsage columnID="5D971A7A-D3A7-8FE1-84B6-8D6F5127DCBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="594B41A4-19F3-D115-7B60-9F668B0FD77E" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_LEG_DATA_SET_PK">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_LEG_DATA_SET_PK</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>AB899756-7904-381F-8C65-9A538871C5A3</importedID>
+<indexState>Unique Plain Index</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="52F74DCF-4470-CA67-5F77-E1218A8443FE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="6F512683-CB0B-CA9B-CC43-9DB96CA01F1B" name="CCD_LEG_DATA_SETS_FK1">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3889C8C5-3F14-E0CE-DEB9-FFC22A13624E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="F02380FF-072C-BA4B-4B17-C3D0AB373519" name="CCD_LEG_DATA_SETS_FK2">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:10 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5D971A7A-D3A7-8FE1-84B6-8D6F5127DCBD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

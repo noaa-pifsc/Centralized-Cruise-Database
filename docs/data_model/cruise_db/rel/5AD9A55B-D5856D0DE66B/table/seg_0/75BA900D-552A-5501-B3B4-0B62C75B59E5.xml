@@ -202,11 +202,9 @@ This table stores the Target Species - ESA for a given cruise  (referred to as S
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;TGT_SPP_ESA_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="49871DF2-A940-BD87-8CF6-C5DE833FA78E"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

@@ -40,9 +40,8 @@ _ update CRDMA testing documentation to reflect the new CRDMA authorization poli
 APEX
 	(_ document in business rules, APEX tech/user, and APEX testing documents)
 	X Implement read role (view readonly for all non-admin pages)
-		X Working on implementing in page 220
 	X Implement write role (read/write all non-admin pages)
-	_ Update navigation menu to allow read roles to access pages that have readonly access
+	X Update navigation menu to allow read roles to access pages that have readonly access
 
 
 

@@ -202,11 +202,9 @@ This table stores the different standard survey names defined based on the FINSS
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:18 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;STD_SVY_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="2F32D539-7410-3188-8B3E-47D2054898F8"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>

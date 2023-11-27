@@ -200,11 +200,9 @@ This table defines one or more cruise leg alias names for a given research cruis
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;LEG_ALIAS_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="47882749-C84D-4B6A-5D20-DC78FF1A1C32"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="42D123E5-BA37-6654-53D9-53241EC1E6B2" name="CCD_LEG_ALIASES_FK1">
 <createdBy>jesse</createdBy>

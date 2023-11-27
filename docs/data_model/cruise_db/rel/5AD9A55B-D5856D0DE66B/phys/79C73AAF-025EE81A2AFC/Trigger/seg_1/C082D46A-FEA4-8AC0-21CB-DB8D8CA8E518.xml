@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_CC_CONFIG_OPTIONS_HIST" directorySegmentName="seg_1" id="C082D46A-FEA4-8AC0-21CB-DB8D8CA8E518">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>TRG_CC_CONFIG_OPTIONS_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-11-27 18:25:06 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO CC_CONFIG_OPTIONS_hist (
+      h_seqnum, OPTION_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      CC_CONFIG_OPTIONS_hist_seq.NEXTVAL, :old.OPTION_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO CC_CONFIG_OPTIONS_hist (
+      h_seqnum, OPTION_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      CC_CONFIG_OPTIONS_hist_seq.NEXTVAL, :new.OPTION_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'option_name', :old.option_name);
+    insert_data('DELETE', 'option_value', :old.option_value);
+    insert_data('DELETE', 'option_desc', :old.option_desc);
+  ELSE
+    NULL;
+    check_update('OPTION_NAME', :old.option_name, :new.option_name);
+    check_update('OPTION_VALUE', :old.option_value, :new.option_value);
+    check_update('OPTION_DESC', :old.option_desc, :new.option_desc);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>4697792D-D466-ABBD-A0CF-502953E40499</owner>
+<table>587E828F-B96D-760B-1EC6-BAF2C4447605</table>
+</TriggerOraclev10g>

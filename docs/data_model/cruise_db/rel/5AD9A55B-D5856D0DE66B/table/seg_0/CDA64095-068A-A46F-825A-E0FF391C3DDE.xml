@@ -396,11 +396,9 @@ This table defines the different PIFSC research cruises where data was collected
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;CRUISE_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="ACC79B49-B099-AC13-FF2B-01272D7EDA40"/>
-</indexColumnUsage>
 </ind_PK_UK>
 <ind_PK_UK id="87C0C940-DE39-4693-E9F2-E9D727DE4C03" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_CRUISES_U2">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>

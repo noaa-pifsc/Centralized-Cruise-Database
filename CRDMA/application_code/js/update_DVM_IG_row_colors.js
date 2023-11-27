@@ -50,21 +50,21 @@ function update_DVM_IG_row_colors ()
 				//add the alternative text/title attributes for the given data issue
 				if (row_class_val == 'resolved-issue')
 				{
-					var temp_msg = "This data package issue has been resolved (Issue Resolution was defined)";
+					var temp_msg = "This validation issue has been resolved (Issue Resolution was defined)";
 					tr_elem.attr("title", temp_msg);
 //					tr_elem.title = temp_msg;
 					tr_elem.attr("alt", temp_msg);
 				}
 				else if (row_class_val == 'unresolved-error')
 				{
-					var temp_msg = "This data package error has not been resolved (Issue Resolution was not defined)";
+					var temp_msg = "This validation error has not been resolved (Issue Resolution was not defined)";
 					tr_elem.attr("alt", temp_msg);
 					tr_elem.attr("title", temp_msg);
 
 				}
 				else if (row_class_val == 'unresolved-warning')
 				{
-					var temp_msg = "This data package warning has not been resolved (Issue Resolution was not defined)";
+					var temp_msg = "This validation warning has not been resolved (Issue Resolution was not defined)";
 					tr_elem.attr("title", temp_msg);
 					tr_elem.attr("alt", temp_msg);
 				}

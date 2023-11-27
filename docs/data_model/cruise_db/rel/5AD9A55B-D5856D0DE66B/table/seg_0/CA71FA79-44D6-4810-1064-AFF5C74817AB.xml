@@ -186,11 +186,9 @@ This table stores the different types of platforms defined based on the FINSS sy
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:17 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
+<indexExpression>UPPER(&quot;PLAT_TYPE_NAME&quot;)</indexExpression>
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
-<indexColumnUsage>
-<colUsage columnID="7AC723E0-02AD-AF42-62DE-62A8A87247F6"/>
-</indexColumnUsage>
 </ind_PK_UK>
 </indexes>
 </Table>
