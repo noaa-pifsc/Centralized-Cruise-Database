@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   04:39 Sunday November 26, 2023
+--   Date and Time:   17:39 Monday November 27, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043946'
+,p_last_upd_yyyymmddhh24miss=>'20231127173924'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>51
 ,p_print_server_type=>'INSTANCE'
@@ -17520,7 +17520,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126035743'
+,p_last_upd_yyyymmddhh24miss=>'20231127173309'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17657030289743418)
@@ -17531,7 +17531,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_required_role=>wwv_flow_imp.id(1168183524249262062)
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data sets</p>'
+,p_plug_header=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage Cruises</p>',
+''))
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -23123,7 +23125,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126035854'
+,p_last_upd_yyyymmddhh24miss=>'20231127173250'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17657119895743419)
@@ -23134,7 +23136,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_plug_required_role=>wwv_flow_imp.id(1168183524249262062)
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data sets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage Cruise Legs</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -27858,7 +27860,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1168183524249262062)
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126021251'
+,p_last_upd_yyyymmddhh24miss=>'20231127173218'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(17656977681743417)
@@ -27868,9 +27870,11 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_display_sequence=>10
 ,p_include_in_reg_disp_sel_yn=>'Y'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<B>**Note:</B> Resolved validation errors and warnings (Issue Resolution was defined) are shown in light green and have an alternate text of "This cruise issue has been resolved (Issue Resolution was defined)" and unresolved validation errors (Issue '
-||'Severity is Error and Issue Resolution was not defined) are shown in light red and have an alternate text of "This cruise error has not been resolved (Issue Resolution was not defined)" and unresolved warning validation issues (Issue Severity is Warn'
-||'ing and Issue Resolution was not defined) are shown in light orange and have an alternate text of "This cruise warning has not been resolved (Issue Resolution was not defined)"'
+,p_plug_header=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can annotate validation issues</p>',
+'<p><strong>**Note:</strong> Resolved validation errors and warnings (Issue Resolution was defined) are shown in light green and have an alternate text of "This validation issue has been resolved (Issue Resolution was defined)" and unresolved validati'
+||'on errors (Issue Severity is Error and Issue Resolution was not defined) are shown in light red and have an alternate text of "This validation error has not been resolved (Issue Resolution was not defined)" and unresolved warning validation issues (I'
+||'ssue Severity is Warning and Issue Resolution was not defined) are shown in light orange and have an alternate text of "This validation warning has not been resolved (Issue Resolution was not defined)"</p>'))
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'HTML'
 );
@@ -28635,7 +28639,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032041'
+,p_last_upd_yyyymmddhh24miss=>'20231127173346'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820551404015921526)
@@ -28699,7 +28703,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_prn_page_header_alignment=>'CENTER'
 ,p_prn_page_footer_alignment=>'CENTER'
 ,p_prn_border_color=>'#666666'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820553240557921533)
@@ -29146,7 +29150,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126031955'
+,p_last_upd_yyyymmddhh24miss=>'20231127173357'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820571363253968781)
@@ -29185,7 +29189,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
 ,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_page_header=>'View/Update Regional Ecosystems'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820573246145968785)
@@ -29629,7 +29633,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032435'
+,p_last_upd_yyyymmddhh24miss=>'20231127173407'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820591289597014775)
@@ -29664,7 +29668,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Platform Types'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820593210656014779)
@@ -30067,7 +30071,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032529'
+,p_last_upd_yyyymmddhh24miss=>'20231127173418'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820608070003046126)
@@ -30101,7 +30105,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Survey Types'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820610021782046130)
@@ -30467,7 +30471,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032608'
+,p_last_upd_yyyymmddhh24miss=>'20231127173428'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820657435506129001)
@@ -30502,7 +30506,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Survey Categories'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820659340272129006)
@@ -30912,7 +30916,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032652'
+,p_last_upd_yyyymmddhh24miss=>'20231127173438'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820674416198161712)
@@ -30946,7 +30950,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Survey Frequencies'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820676228119161716)
@@ -31312,7 +31316,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126032735'
+,p_last_upd_yyyymmddhh24miss=>'20231127173448'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820689749306205093)
@@ -31348,7 +31352,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update ESA Target Species'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820691677933205097)
@@ -31793,7 +31797,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126033739'
+,p_last_upd_yyyymmddhh24miss=>'20231127173456'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820708619788763378)
@@ -31829,7 +31833,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update MMPA Target Species'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820710464594763383)
@@ -32274,7 +32278,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126033813'
+,p_last_upd_yyyymmddhh24miss=>'20231127173505'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820725187155794874)
@@ -32310,7 +32314,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update FSSI Target Species'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820727099551794878)
@@ -32755,7 +32759,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126033913'
+,p_last_upd_yyyymmddhh24miss=>'20231127173517'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820741674599838202)
@@ -32791,7 +32795,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Standard Survey Name'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820743543201838206)
@@ -33236,7 +33240,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126033942'
+,p_last_upd_yyyymmddhh24miss=>'20231127173527'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820759571022916273)
@@ -33271,7 +33275,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Science Centers'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820761455490916277)
@@ -33637,7 +33641,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034008'
+,p_last_upd_yyyymmddhh24miss=>'20231127173537'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820776327472963445)
@@ -33672,7 +33676,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Regions'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820778294879963449)
@@ -34078,7 +34082,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034036'
+,p_last_upd_yyyymmddhh24miss=>'20231127173546'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820793097006995226)
@@ -34114,7 +34118,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Gear'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820794981614995227)
@@ -34559,7 +34563,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034112'
+,p_last_upd_yyyymmddhh24miss=>'20231127173555'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820811212986021845)
@@ -34595,7 +34599,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Expected Species Categories'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820813108902021848)
@@ -35040,7 +35044,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034154'
+,p_last_upd_yyyymmddhh24miss=>'20231127173604'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(822462037008460493)
@@ -35076,7 +35080,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_source_type=>'NATIVE_IG'
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
 ,p_prn_page_header=>'View/Update Divisions'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(822463924911460513)
@@ -35552,7 +35556,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034230'
+,p_last_upd_yyyymmddhh24miss=>'20231127173614'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820462047339426477)
@@ -35617,7 +35621,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_prn_page_header_alignment=>'CENTER'
 ,p_prn_page_footer_alignment=>'CENTER'
 ,p_prn_border_color=>'#666666'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820463941294426505)
@@ -36063,7 +36067,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034315'
+,p_last_upd_yyyymmddhh24miss=>'20231127173624'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820481640421647996)
@@ -36126,7 +36130,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_prn_page_header_alignment=>'CENTER'
 ,p_prn_page_footer_alignment=>'CENTER'
 ,p_prn_border_color=>'#666666'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Administrators can manage reference table values</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD ADMIN Users can manage reference table values</p>'
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(820483521098648000)
@@ -36534,7 +36538,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126034424'
+,p_last_upd_yyyymmddhh24miss=>'20231127173651'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(820499322796709340)
@@ -36574,7 +36578,9 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_read_only_when=>':AI_USER_AUTH_ROLE = ''CCD READ'''
 ,p_plug_read_only_when2=>'PLSQL'
 ,p_prn_page_header=>'View/Edit Data Sets'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data sets</p>'
+,p_plug_header=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage Data Sets</p>',
+''))
 );
 wwv_flow_imp_page.create_region_column(
  p_id=>wwv_flow_imp.id(179011494064836535)
@@ -37212,7 +37218,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126041807'
+,p_last_upd_yyyymmddhh24miss=>'20231127173801'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1100513986195932169)
@@ -37221,7 +37227,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -37835,7 +37841,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126042531'
+,p_last_upd_yyyymmddhh24miss=>'20231127173813'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1102844547215381754)
@@ -37844,7 +37850,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -38289,7 +38295,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043821'
+,p_last_upd_yyyymmddhh24miss=>'20231127173823'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1105256745280209626)
@@ -38298,7 +38304,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -38915,7 +38921,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043755'
+,p_last_upd_yyyymmddhh24miss=>'20231127173835'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1107837305493697170)
@@ -38924,7 +38930,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -39541,7 +39547,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126042919'
+,p_last_upd_yyyymmddhh24miss=>'20231127173845'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1110464354371341763)
@@ -39550,7 +39556,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -40166,7 +40172,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043845'
+,p_last_upd_yyyymmddhh24miss=>'20231127173901'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1113137100827341982)
@@ -40175,7 +40181,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -40806,7 +40812,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043946'
+,p_last_upd_yyyymmddhh24miss=>'20231127173912'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1118588606377611266)
@@ -40815,7 +40821,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'
@@ -41288,7 +41294,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231126043518'
+,p_last_upd_yyyymmddhh24miss=>'20231127173924'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1113958398744636789)
@@ -41297,7 +41303,7 @@ wwv_flow_imp_page.create_page_plug(
 ,p_plug_template=>wwv_flow_imp.id(1118023672802786732)
 ,p_plug_display_sequence=>10
 ,p_plug_query_options=>'DERIVED_REPORT_COLUMNS'
-,p_plug_header=>'<p><strong>**Note:</strong> Only Application Read/Write Users can manage data presets</p>'
+,p_plug_header=>'<p><strong>**Note:</strong> Only CCD WRITE and CCD ADMIN Users can manage data presets</p>'
 ,p_attribute_01=>'N'
 ,p_attribute_02=>'TEXT'
 ,p_attribute_03=>'Y'

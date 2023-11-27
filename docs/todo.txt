@@ -1,8 +1,3 @@
-Current progress:
-	Updated all pages up until preset pages to implement the readonly authorization, report sorting, data write auth for write actions
-
-
-
 9/18/20:
 X Updated the CRDMA CCDP testing documentation to reuse the data from CCDP test data scripts to simplify things
 	X test that the CRDMA test cases still work with the CCDP automated test case data
@@ -18,17 +13,35 @@ X update the cruise leg start/end date field comments to say in local timezone (
 		X allow offsets too? NO -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
 		_ QC for invalid timezone value
 
-Business rules:
-	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
 
+
+
+_ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
+
+_ document business rules:
+	CRDMA:
+		Only admins can update reference lists
+		Read and Write can view reference lists
+		
+		write/admin can update insert/update/data sets
+		
+		write/admin can update preset records
+		
+		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
+
+	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
+		
+
+
+_ update CRDMA testing documentation to reflect the new CRDMA authorization policies
 
 
 
 APEX
 	(_ document in business rules, APEX tech/user, and APEX testing documents)
-	_ Implement read role (view readonly for all non-admin pages)
-		Working on implementing in page 220
-	_ Implement write role (read/write all non-admin pages)
+	X Implement read role (view readonly for all non-admin pages)
+		X Working on implementing in page 220
+	X Implement write role (read/write all non-admin pages)
 	_ Update navigation menu to allow read roles to access pages that have readonly access
 
 
@@ -866,21 +879,6 @@ X testing documentation for the CRDMA
 
 X bug fix: when the onload warning fires it removes any success message so it is not visible at all
 
-_ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
-
-
-
-_ document business rules:
-	CRDMA:
-		Only admins can update reference lists
-		Read and Write can view reference lists
-		
-		write/admin can update insert/update/data sets
-		
-		write/admin can update preset records
-		
-		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
-		
 		
 		
 		
