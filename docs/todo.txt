@@ -16,6 +16,7 @@ X update the cruise leg start/end date field comments to say in local timezone (
 
 
 
+
 _ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
 _ document business rules:
@@ -30,6 +31,10 @@ _ document business rules:
 		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
 
 	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
+		
+
+	_ data integration (PICDM.CAT_ID)
+		_ create views to pull PICDM objects:
 		
 
 
