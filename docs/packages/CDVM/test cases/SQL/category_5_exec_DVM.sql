@@ -86,7 +86,7 @@ END;
 
 --delete cruise leg test cases:
 
---Delete Cruise Leg Case 1 (Overlap to no overlap) Vessel Leg Overlaps DVM records removed after using CCD_CRUISE_PKG.DELETE_LEG_OVERLAP_SP procedure is executed on SE-20-05 Leg 1 to remove the overlap errors on SE-20-04:
+--Delete Cruise Leg Case 1 (Overlap to no overlap) Vessel Leg Overlaps DVM records removed after using CCD_CRUISE_PKG.DEL_LEG_OVERLAP_SP procedure is executed on SE-20-05 Leg 1 to remove the overlap errors on SE-20-04:
 
 
 --execute for test data stream (SE-20-04):
@@ -148,7 +148,7 @@ DECLARE
 	V_LEG_NAME VARCHAR2(2000) := 'SE-20-05 Leg 1';
 BEGIN
 
-  CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+  CEN_CRUISE.CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 
  	DBMS_output.put_line('The Cruise Leg was deleted successfully');
 
@@ -169,7 +169,7 @@ END;
 
 
 
---Delete Cruise Leg Case 2 (Overlap with two cruises to no overlap) Vessel Leg Overlaps DVM records removed after using CCD_CRUISE_PKG.DELETE_LEG_OVERLAP_SP procedure is executed on SE-21-03 to remove the overlap errors on SE-21-01 and SE-21-04:
+--Delete Cruise Leg Case 2 (Overlap with two cruises to no overlap) Vessel Leg Overlaps DVM records removed after using CCD_CRUISE_PKG.DEL_LEG_OVERLAP_SP procedure is executed on SE-21-03 to remove the overlap errors on SE-21-01 and SE-21-04:
 
 --execute for test data stream (SE-21-01):
 DECLARE
@@ -248,7 +248,7 @@ DECLARE
 BEGIN
 
 
-  CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+  CEN_CRUISE.CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 
   DBMS_output.put_line('The Cruise Leg was deleted successfully');
 
@@ -268,7 +268,7 @@ END;
 
 
 
---Delete Cruise Leg Case 3 (One cruise overlaps with two cruises, one overlap is resolved when removing an overlapping cruise leg) Run the CCD_CRUISE_PKG.DELETE_LEG_OVERLAP_SP procedure.  Delete HI-21-08 Leg 1 removing the HI-21-08 Leg 1 overlap errors from HI-21-07 Leg 2:
+--Delete Cruise Leg Case 3 (One cruise overlaps with two cruises, one overlap is resolved when removing an overlapping cruise leg) Run the CCD_CRUISE_PKG.DEL_LEG_OVERLAP_SP procedure.  Delete HI-21-08 Leg 1 removing the HI-21-08 Leg 1 overlap errors from HI-21-07 Leg 2:
 
 
 
@@ -356,7 +356,7 @@ DECLARE
 BEGIN
 
 
-  CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+  CEN_CRUISE.CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 
 	DBMS_output.put_line('The Cruise Leg was deleted successfully');
 
@@ -377,7 +377,7 @@ END;
 
 
 
---Delete Cruise Leg Case 4 (Three cruises overlap, remove one overlapping cruise leg) Run the CCD_CRUISE_PKG.DELETE_LEG_OVERLAP_SP.  Delete HI-20-10 Leg 1 resolves overlapping errors with HI-20-10 Leg 1 for HI-20-08 Leg 1, HI-20-08 Leg 2, HI-20-09 Leg 1:
+--Delete Cruise Leg Case 4 (Three cruises overlap, remove one overlapping cruise leg) Run the CCD_CRUISE_PKG.DEL_LEG_OVERLAP_SP.  Delete HI-20-10 Leg 1 resolves overlapping errors with HI-20-10 Leg 1 for HI-20-08 Leg 1, HI-20-08 Leg 2, HI-20-09 Leg 1:
 
 
 
@@ -468,7 +468,7 @@ BEGIN
 
 
 
-  CEN_CRUISE.CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+  CEN_CRUISE.CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 
 	DBMS_output.put_line('The Cruise Leg was deleted successfully');
 
@@ -1001,7 +1001,7 @@ BEGIN
 
 
 		--run the pre leg update procedure to identify any existing overlapping cruises:
-		CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_NAME);
+		CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_NAME);
 
 
  		dbms_output.put_line ('The Delete Cruise procedure was successful');
@@ -1030,7 +1030,7 @@ BEGIN
 
 
 		--run the pre leg update procedure to identify any existing overlapping cruises:
-		CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_NAME);
+		CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_NAME);
 
 
  		dbms_output.put_line ('The Delete Cruise procedure was successful');

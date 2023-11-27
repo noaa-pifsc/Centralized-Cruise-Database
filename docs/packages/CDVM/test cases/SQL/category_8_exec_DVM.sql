@@ -20,7 +20,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_ID);
+	CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_ID);
 	DBMS_output.put_line('The cruise leg was deleted and the associated cruise (and any previously overlapping cruises) was evaluated using the DVM successfully');
 
 	EXCEPTION
@@ -47,7 +47,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_ID);
+	CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_ID);
 	DBMS_output.put_line('The cruise leg was deleted and the associated cruise (and any previously overlapping cruises) was evaluated using the DVM successfully');
 
 	EXCEPTION
@@ -74,7 +74,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+	CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 	DBMS_output.put_line('The cruise leg was deleted and the associated cruise (and any previously overlapping cruises) was evaluated using the DVM successfully');
 
 	EXCEPTION
@@ -99,7 +99,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+	CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 	DBMS_output.put_line('The cruise leg was deleted and the associated cruise (and any previously overlapping cruises) was evaluated using the DVM successfully');
 
 	EXCEPTION
@@ -127,7 +127,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_LEG_OVERLAP_SP (V_LEG_NAME);
+	CCD_DVM_PKG.DEL_LEG_OVERLAP_SP (V_LEG_NAME);
 	DBMS_output.put_line('The cruise leg was deleted and the associated cruise (and any previously overlapping cruises) was evaluated using the DVM successfully');
 
 	EXCEPTION
@@ -377,7 +377,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case (P_CRUISE_ID) for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_ID);
+	CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_ID);
 	DBMS_output.put_line('The cruise and any associated DVM data were deleted successfully');
 
 	EXCEPTION
@@ -402,7 +402,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case (P_CRUISE_NAME) for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_NAME);
+	CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_NAME);
 	DBMS_output.put_line('The cruise and any associated DVM data were deleted successfully');
 
 	EXCEPTION
@@ -430,7 +430,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case (P_CRUISE_ID) for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_ID);
+	CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_ID);
 	DBMS_output.put_line('The cruise and any associated DVM data were deleted successfully');
 
 	EXCEPTION
@@ -455,7 +455,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case (P_CRUISE_NAME) for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_NAME);
+	CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_NAME);
 	DBMS_output.put_line('The cruise and any associated DVM data were deleted successfully');
 
 	EXCEPTION
@@ -481,7 +481,7 @@ BEGIN
 	DBMS_OUTPUT.PUT_LINE ('executing test case (P_CRUISE_NAME) for '||V_EXC_CODE);
 
 
-	CCD_DVM_PKG.DELETE_CRUISE_SP (V_CRUISE_NAME);
+	CCD_DVM_PKG.DEL_CRUISE_SP (V_CRUISE_NAME);
 	DBMS_output.put_line('The cruise and any associated DVM data were deleted successfully');
 
 	EXCEPTION

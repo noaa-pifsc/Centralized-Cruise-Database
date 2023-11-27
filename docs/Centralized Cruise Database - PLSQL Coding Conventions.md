@@ -16,17 +16,20 @@ When developing PL/SQL code it is important to use consistent coding conventions
 -   ### Variable Prefixes:
     -   P: function/procedure parameter
     -   V : function/procedure variable
+    -   PV: Package Variable
 -   ### Abbreviations:
     -   ASSOC: Associated
     -   CATS: Categories
     -   CONT: Contact
     -   CURR: Current
+    -   DEL: Delete
     -   DELIM: Delimited
     -   DESC: Description
     -   DIV: Division
     -   DVM: Data Validation Module
     -   ERR: Error
     -   ESA: Endangered Species Act
+    -   EXC: Exception
     -   EXEC: Execute
     -   EXP: Expected
     -   FREQ: Frequency
@@ -38,12 +41,15 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   OBJ: Objective
     -   OPTS: Options
     -   OTH: Other
+    -   PARAMS: Parameters
     -   PLAT: Platform
     -   PK: Primary Key
     -   RC: Return Code
     -   QC: Quality Control
-    -   PRE: Preset
+    -   PRE: Preset/Before
+    -   PROC: Procedure
     -   REF: Reference
+    -   REQ: Required
     -   RET: Return
     -   SP: Stored Procedure
     -   SUCC: Success

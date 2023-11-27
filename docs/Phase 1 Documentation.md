@@ -28,9 +28,10 @@ This document defines the work items required to finish development and deployme
 -   ### Documentation Updates
     -   Database (2 days)
         -   _ Technical Documentation
-        -   _ DB Diagram
-        -   _ PL/SQL Coding Conventions
-        -   _ DB naming conventions
+        -   X DB Diagram
+        -   X PL/SQL Coding Conventions
+        -   X DB naming conventions
+        -   _ business rules
     -   Application (1 day)
         -   _ Technical Documentation
         -   _ User Documentation

@@ -22,43 +22,55 @@ When developing a database it is important to use consistent naming conventions 
     -   ID: Primary/foreign keys (e.g. LOC_ID, SPECIES_ID)
     -   YN: Yes/No field (Boolean)
 -   ### Abbreviations:
+    -   AGG: Aggregate
     -   ANNOT: Annotated
     -   APP: Application
     -   BR: &lt;BR&gt; web tag
-    -   CAT: Category
+    -   CAT: Category/Catalog
     -   CD: Comma-delimited
     -   CMP: Compare
     -   CNAME: Common Name
     -   CONT: Contact
     -   DAS: Days at Sea
     -   DB: Database
+    -   DELIM: Delimited
     -   DESC: Description
     -   DIV: Division
     -   DOC: Documentation
     -   DOI: Digital Object Identifier
+    -   DTM: Date/Time
     -   DVM: Data Validation Module
     -   ECO: Ecosystem
     -   ESA: Endangered Species Act
+    -   EVAL: Evaluation
     -   EXP: Expected
     -   FINSS: Fisheries Independent Surveys System
     -   FISC: Fiscal
     -   FREQ: Frequency
     -   FSSI: Fish Stock Sustainability Index
     -   FY: Fiscal Year
+    -   GEO: Geographic
+    -   INP: InPort
+    -   INV: Invalid
     -   ISS: Issue
     -   LEN: Length
+    -   MIN: Minimal
     -   MISS: Missing
     -   MMPA: Marine Mammal Protection Act
     -   MOD: Modified
     -   NUM: Number
     -   OBJ: Objective
     -   OPTS: Options
+    -   ORG: Organization
     -   ORIG: Original
     -   OTH: Other
+    -   PCT: Percentage
     -   PLAT: Platform
     -   PRE: Preset
+    -   PRES: Presentation
     -   PRIM: Primary
     -   PTA: Point in Time Architecture
+    -   QC: Quality Control
     -   RC: Return Carriage
     -   REG: Regional
     -   RNG: Range
@@ -68,7 +80,10 @@ When developing a database it is important to use consistent naming conventions 
     -   SNAME: Scientific Name
     -   SPP: Species
     -   STD: Standard
+    -   SUMM: Summary
     -   SVY: Survey
     -   TGT: Target
     -   TRUNC: Truncated
+    -   TZ : Time Zone
     -   URL: Uniform Resource Locator
+    -   VAL: Value

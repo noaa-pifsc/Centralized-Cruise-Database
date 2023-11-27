@@ -32,11 +32,10 @@ _ document business rules:
 
 	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
 		
-
-	_ data integration (PICDM.CAT_ID)
-		_ create views to pull PICDM objects:
-			X CCD_LEG_DATA_SETS_V
-			X CCD_DATA_SETS_INP_V
+		X data integration (PICDM.CAT_ID)
+			X create views to pull PICDM objects:
+				X CCD_LEG_DATA_SETS_V
+				X CCD_DATA_SETS_INP_V
 		
 
 
