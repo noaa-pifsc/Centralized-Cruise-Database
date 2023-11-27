@@ -84,9 +84,6 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Centralized Configuration (CC) project
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
     -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
--   CCD Oracle Packages
-		-   [MOUSS Utilities Package (MUP) Documentation](./packages/MOUSS_UTIL_PKG/MUP%20Documentation.md)
-		-   [MOUSS Data Validation Module (DVM) Documentation](./packages/MDVM/MDVM%20Documentation.md)
 
 ## Database Diagram:
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)
