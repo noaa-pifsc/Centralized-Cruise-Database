@@ -35,6 +35,8 @@ _ document business rules:
 
 	_ data integration (PICDM.CAT_ID)
 		_ create views to pull PICDM objects:
+			X CCD_LEG_DATA_SETS_V
+			X CCD_DATA_SETS_INP_V
 		
 
 
