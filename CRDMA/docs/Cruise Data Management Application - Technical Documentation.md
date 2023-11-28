@@ -6,7 +6,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 ## Resources:
 -   Version Control Information:
     -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git in the [CRDMA](../) folder
-    -   Application: 0.17 (Git tag: cen_cruise_web_app_v0.17)
+    -   Application: 1.0 (Git tag: cen_cruise_web_app_v1.0)
 -   [End User Documentation](./Cruise%20Data%20Management%20Application%20-%20End%20User%20Documentation.md)
 -   [Testing Documentation](./Cruise%20Data%20Management%20Application%20-%20Testing%20Documentation.md)
     -   [Quality Assurance (QA) Testing Documentation](./test_cases/CRDMA%20QA%20Testing%20Documentation.md)

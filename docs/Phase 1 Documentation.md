@@ -13,7 +13,7 @@ This document defines the work items required to finish development and deployme
     -   X (1 day) implement data write and data admin roles
     -   X (1-2 days) Implement centralized CAM Auth App Module
         -   X also drop all the auth_app objects and auth app APEX pages
-        -   _ document how the CC_CONFIG_OPTIONS values need to be defined
+        -   X document how the CC_CONFIG_OPTIONS values need to be defined
     -   X (0.5 days) reduce unnecessary logging
     -   _ (0.5 days) Develop production version of the APEX deployment scripts
 -   ### Database Updates
@@ -24,10 +24,10 @@ This document defines the work items required to finish development and deployme
     -   X (0.5 days) Remove Auth App Module
     -   _ (1 day) Develop Database Upgrade and Rollback SOP for phase 1
     -   X (3 days) Update DVM automated test cases: update the automated verification method to spool the output to a given directory (SQLPlus script to produce the same output and Winmerge or other diff program to confirm the outputs are equivalent)
-    -   _ implement history tracking package on appropriate tables
+    -   X implement history tracking package on appropriate tables
 -   ### Documentation Updates
     -   Database (2 days)
-        -   _ Technical Documentation
+        -   X Technical Documentation
         -   X DB Diagram
         -   X PL/SQL Coding Conventions
         -   X DB naming conventions

@@ -3,17 +3,28 @@
 ## Overview:
 In order for the Cruise Data Management Application (CRDMA) to work properly the APEX parsing schema must be granted certain permissions and data must be loaded into various database tables.
 
+## Resources:
+-   [Cruise Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md)
+    -   [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx)
+
 ## Requirements:
-This application requires version 0.6 of the Cruise Database to be installed (Git tag: cen_cruise_db_v0.6)
+This application requires version 1.0 of the Cruise Database to be installed (Git tag: cen_cruise_db_v1.0)
 
 ## SOP:
 -   Grant the necessary permissions to the APEX application parsing schema (CEN_CRUISE_APP)
-    -   Execute the statements in the [cen_cruise_app_grant_privs.sql](../SQL/cen_cruise_app_grant_privs.sql) file using the corresponding schemas indicated in the comments.
-    -   Execute the statements in the [grant_info.sql](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/blob/master/SQL/queries/grant_info.sql) file in the Centralized Utilities project using the CEN_UTILS schema
--   Load the Authorization Application Module groups/users
-    -   Execute the [load_users_groups.sql](../SQL/load_user_groups.sql) script in the Cruise Database schema (CEN_CRUISE) to define the groups, users, and corresponding associations
-    -   *Note: More information can be found the Authorization Application Module documentation in the Git repository (URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git)
--   Load the APEX Custom Error Handler module records
-    -   Execute the [Generate Error Message DML.sql](../SQL/Generate%20Error%20Message%20DML.sql) script in the APEX Custom Error Handler Git repository (URL: <git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git> in the "Error Handling" folder) using the Cruise Database schema (CEN_CRUISE) to load the custom error information for the application to comply with the SI-11 security requirement.
-    -   *Note: More information can be found in the APEX Custom Error Handler module documentation in the Git repository
--   **Note: you can optionally execute the [grant_reload_CRDMA_data.sql](../SQL/grant_reload_CRDMA_data.sql) script to grant the necessary privileges and then purge and reload the application data from the scripts referenced above.
+    -   Execute the statements in the [cen_cruise_app_grant_privs.sql](../SQL/cen_cruise_app_grant_privs.sql) file using an account with DBA privileges to grant the required roles/object privileges from the external database schemas
+-   Load the Centralized Authorization System (CAS) CCD groups/users
+		-   Request that someone is designated a CCD administrator that can login to the corresponding CAS application to grant/revoke CRDMA permissions (e.g. [PICD CAS](https://picmidd.nmfs.local/picd/f?p=CAS) for the PIFSC development database)
+-   Load the runtime configuration options
+    -   Execute the [load_config_values.sql](../../SQL/queries/load_config_values.sql) script in the CRDMA database schema (CEN_CRUISE_APP) to define the runtime configuration settings for the application
+    -   \*Note: For the application to run properly two separate CC_CONFIG_OPTIONS records must be defined for the development and test APEX server hostnames:
+        -    Development Server Configuration (business rule: CR-DMA-022)
+        -    Test Server Configuration (business rule: CR-DMA-023)
+    -   \*Note: For the CAS to properly authorize standard user roles the following configuration options must be defined:
+        -   CRDMA App Code (business rule: CR-DMA-021)
+        -   Data Administrator Authorization (business rule: CR-DMA-004)
+        -   Data Write Authorization (business rule: CR-DMA-019)
+        -   Data Readonly Authorization (business rule: CR-DMA-020)
+    -   \*Note: the [cc_data_generator.xlsx](https://picgitlab.nmfs.local/centralized-data-tools/centralized-configuration/-/blob/master/docs/cc_data_generator.xlsx) in the Centralized Configuration project can be used to generate DML INSERT statements to load data into the CC_CONFIG_OPTIONS table
+-   Define Parsing Schema Synonyms
+    -   Execute the [synonym definition script](../SQL/create_CRDMA_synonyms.sql) using the CRDMA schema (CEN_CRUISE_APP) to create the synonyms for objects on external schemas that are used in the CRDMA.

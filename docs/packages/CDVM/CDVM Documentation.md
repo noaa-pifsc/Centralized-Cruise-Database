@@ -16,14 +16,14 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The CDVM Oracle package is CCD_DVM_PKG
 
 ## Business Rules:
--   The [DVM](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) implements its own [business rules](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/DVM%20-%20Business%20Rule%20Documentation.MD)
+-   The [DVM](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) implements its own [business rules](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/DVM%20-%20Business%20Rule%20Documentation.md)
     -   The [DVM processing errors](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) have a "Scope" value of "DVM Processing Errors"
 -   The CDVM implements additional [business rules](../../Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) that have a "Scope" value of "CCD Custom DVM"
     -   The CDVM processing errors [business rules](../../Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) have a "Scope" value of "CCD Custom DVM Errors"
     -   When the CDVM is used to validate a Cruise it will automatically evaluate all of the QC errors listed in the [Business Rule List](../../Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" value of "Data QC"
 
 ## DVM QC Validation Criteria:
--   Technical documentation for the DVM can be found in the [DVM repository](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) in the [DVM Documentation](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/Data%20Validation%20Module%20Documentation.MD) and instructions for how to define the QC criteria can be found in the [DVM SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/How%20to%20Define%20Criteria%20in%20Data%20Validation%20Module.MD).
+-   Technical documentation for the DVM can be found in the [DVM repository](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) in the [DVM Documentation](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/Data%20Validation%20Module%20Documentation.md) and instructions for how to define the QC criteria can be found in the [DVM SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/How%20to%20Define%20Criteria%20in%20Data%20Validation%20Module.md).
     -   This project defines [automated DVM test cases](./test%20cases/CDVM%20Testing%20Documentation.md) to ensure that the DVM and CDVM produce the desired outcome based on the defined test cases.
 -   The specific QC criteria developed for the CCD database can be found in the CCD repository in the [QC Validation Criteria](../../QC%20Validation%20Criteria.xlsx) spreadsheet which was exported into [load_DVM_rules.sql](../../../SQL/queries/load_DVM_rules.sql)
 -   Before executing the DVM query the [DVM Configuration QC views](#DVM_QC_config_queries) to ensure that the module configuration is valid.

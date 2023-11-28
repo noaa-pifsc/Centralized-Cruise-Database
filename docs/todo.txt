@@ -20,26 +20,26 @@ X update the cruise leg start/end date field comments to say in local timezone (
 _ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
 _ document business rules:
-	CRDMA:
-		Only admins can update reference lists
-		Read and Write can view reference lists
-		
-		write/admin can update insert/update/data sets
-		
-		write/admin can update preset records
-		
-		Write and admin can insert/update/delete cruises, cruise legs and annotate validation issues
+	X CRDMA:
+		X Only admins can update reference lists
+		X Read and Write can view reference lists
+		X write/admin can update insert/update/data sets
+		X write/admin can update preset records
+		X Write and admin can insert/update/delete cruises, cruise legs, data sets, and annotate validation issues
 
-	_ document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
-		
+	X document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
 		X data integration (PICDM.CAT_ID)
-			X create views to pull PICDM objects:
+			X create views to pull 
+PICDM objects:
 				X CCD_LEG_DATA_SETS_V
 				X CCD_DATA_SETS_INP_V
 		
 
 
 _ update CRDMA testing documentation to reflect the new CRDMA authorization policies
+
+
+_ document business rule for data set status display (css class for each STATUS_CODE value)
 
 
 
@@ -58,7 +58,11 @@ _ (CCD) document approach reasoning for the wrapper table (use a table that alre
 
 X develop new function in CCD_CRUISE_PKG for translating cruise name to cruise_id (similar to cruise leg ID function)
 
-_ update the views to have a ccd_cruise_legs_v variation or just modify to add the delimited values for each leg
+X update the views to have a ccd_cruise_legs_v variation or just modify to add the delimited values for each leg
+	X CCD_CRUISE_LEG_V (minimal)
+	X CCD_CRUISE_LEG_AGG_V aggregates the cruise leg data to the cruise level to calculate things like DAS, start/end date, etc.
+	X CCD_CRUISE_LEG_DELIM_V joins the delimited cruise and delimited cruise leg information 
+	
 	_ devise a good strategy for defining lean queries for performance but also having full queries for all reference tables and delimited lists, etc.
 
 X make all unique character keys unique using the UPPER function? YES
@@ -94,18 +98,53 @@ _ document that other schemas should use UPPER() whenever translating them into 
 
 _ document role definitions in business rules
 	_ Export the list of permissions associated with each role as a standard document?
+		query: select * from role_tab_privs where OWNER = 'CEN_CRUISE' order by ROLE, TABLE_NAME, PRIVILEGE;
 
 _ update documentation to align with MOUSS documentation:
-	db
+	X db
 	tech apex documentation 
 	user apex documentation
 	business rules
+		X document CCD_CRUISE_PKG
+		X document CCD_DVM_PKG
+	X How To Configure Application.md
+	
 
 
-_ update grant_external_schema_privs.sql to use the roles/privs granted to the MOUSS DB/app:
+X update grant_external_schema_privs.sql to use the roles/privs granted to the MOUSS DB/app:
 	_ define synonyms for a typical integration data schema (e.g. MOUSS)
 	_ update the cruise data integration SOP
 	_ update the general integration SOP to implement roles and synonyms as well and to cite the updated MOUSS DB and Cruise DB as example implementations
+
+
+
+
+
+
+Version 1.1:
+
+
+	DB:
+		X Integrate the PICDM data set information into the centralized cruise DB (CAT_ID foreign key)
+			? (Think about this)Update CCD_DATA_SETS.DATA_SET_ACCESS_URL to DATA_SET_ACCESS_INFO to provide instructions on how to access the data set internally (e.g. PIC.MOUSS schema, contact X for access)
+			Pull the DOI, Archival URL from PICDM (ODS) into the CCD_DATA_SETS_V view
+			Pull the publicly accessible and archived status from the PICDM schema (PARR Tools URL Verification Module results)
+		Update CCD_DATA_SET_TYPES to rename DATA_SET_TYPE_DOC_URL to DATA_SET_TYPE_CAT_ID 
+			Description: InPort Catalog ID for the data type, this should be the parent Project record of the individual data sets
+			Update CCD_DATA_SETS_V to generate the DATA_SET_TYPE_INPORT_URL based on CAT_ID value (also allows the cruise-level data set types to be related to PICDM/ODS/InPort)
+		_ do we want to have the cruise view have the cruise name aliases too?
+			SE-19-06, SE1906, SE19-06, etc.? automatically generate this based on the vessel, fiscal year, and cruise number? (for historical purposes it has been called different things at different times
+			Also, HA-12-01, HI-12-01
+
+	APEX (Build out the data set interface):
+		X Update interface to implement the data set information
+		Update interface to display the datasets for each cruise leg/cruise with status displays (could put in a list)
+			Add this to reports and form
+		View Cruise -> Cruise Leg -> data sets report
+	
+
+
+
 
 
 Best Practice:
@@ -186,11 +225,11 @@ to do (DB version 1.0):
 		
 	APEX 
 		X update the APEX interface to include the TZ offset 
-		update APEX app to implement cruise leg/data set relationship
+		X update APEX app to implement cruise leg/data set relationship
 
-		Document additional test cases and verify them
+		_ Document additional test cases and verify them
 
-		Implement all reference table management pages as interactive grids (8/11/23: still need to do Divisions)
+		X Implement all reference table management pages as interactive grids (8/11/23: still need to do Divisions)
 
 	Data model
 		X update views that depend on CCD_CRUISE_LEGS
@@ -214,7 +253,10 @@ to do (DB version 1.0):
 		X Add CRUD permissions to application schema on the CCD_LEG_DATA_SETS
 		X Add synonyms to application schema
 
-		_ add/update history tracking package for appropriate CCD tables
+		X add/update history tracking package for appropriate CCD tables
+			_ document in DB documentation
+
+
 		X update CCD_CCDP_DEEP_COPY_CMP_V view to include leg data set information
 		X deep copy procedure needs to be updated to copy the leg data sets too
 		X change all aggregate queries to NVL the num_X to 0 when null and update the code that checks for nulls to change it to zeroes (X also to add in new leg data set fields)
@@ -248,15 +290,16 @@ to do (DB version 1.0):
 			
 			
 			
-		_ confirm MOUSS DB has all the information it needs in CEN_CRUISE to move forward before performing developer testing on CEN_CRUISE
+		X confirm MOUSS DB has all the information it needs in CEN_CRUISE to move forward before performing developer testing on CEN_CRUISE
 			Look into:	
-				MOUSS_ARCH_INFO
+				X MOUSS_ARCH_INFO
 				
 		
 
 		Documentation Updates:
-			Naming conventions
-			data model diagram
+			X DB Naming conventions
+			X PL/SQL coding conventions
+			X data model diagram
 			Application documentation (page inventory)
 				view/update data sets page
 				interactive grid implementation for all reference table management pages
@@ -264,7 +307,7 @@ to do (DB version 1.0):
 			Testing documentation
 			
 
-	View/Update Pages:
+	X View/Update reference table Pages:
 		Vessels
 		Regional Ecosystems
 		Platform Types
@@ -282,17 +325,8 @@ to do (DB version 1.0):
 		Divisions
 
 
-
-
-
-
-
-
-
-
-
 	business rules:
-		view/update data sets can be performed by DATA WRITE users
+		X view/update data sets can be performed by DATA WRITE users
 		
 
 
@@ -303,37 +337,22 @@ to do (DB version 1.0):
 			Add in QC criteria for the rest of the fields that were added/deleted
 			
 
-		Pull data set information from PARR database (data set name based on CAT_ID)
+		X Pull data set information from PARR database (data set name based on CAT_ID)
+			X developed views for this
 
 
-
-To Do (Version 1.x)
-	DB:
-		Integrate the PICDM data set information into the centralized cruise DB (CAT_ID foreign key)
-			? (Think about this)Update CCD_DATA_SETS.DATA_SET_ACCESS_URL to DATA_SET_ACCESS_INFO to provide instructions on how to access the data set internally (e.g. PIC.MOUSS schema, contact X for access)
-			Pull the DOI, Archival URL from PICDM (ODS) into the CCD_DATA_SETS_V view
-			Pull the publicly accessible and archived status from the PICDM schema (PARR Tools URL Verification Module results)
-		Update CCD_DATA_SET_TYPES to rename DATA_SET_TYPE_DOC_URL to DATA_SET_TYPE_CAT_ID 
-			Description: InPort Catalog ID for the data type, this should be the parent Project record of the individual data sets
-			Update CCD_DATA_SETS_V to generate the DATA_SET_TYPE_INPORT_URL based on CAT_ID value (also allows the cruise-level data set types to be related to PICDM/ODS/InPort)
-
-	APEX (Build out the data set interface):
-		Update interface to implement the data set information
-		Update interface to display the datasets for each cruise leg/cruise with status displays (could put in a list)
-			Add this to reports and form
-		View Cruise -> Cruise Leg -> data sets report
 		
 
 
-	_ use the CEN_UTIL_PKG 
+	X use the CEN_UTIL_PKG 
 
-_ comment out package debugging comments
+X comment out package debugging comments
 
 
-_ check how the leg dates are being validated, does it actually work for date date types or just as a string comparison? (use explicit to_date conversion before comparison - look at SAM/CAS for how the validation is defined)
+X check how the leg dates are being validated, does it actually work for date date types or just as a string comparison? (use explicit to_date conversion before comparison - look at SAM/CAS for how the validation is defined)
 	ex: 06/20/2022 - 02/16/2023 
 
-_ update the update_DVM_IG_row_colors.js to use the PARR tools version (doesn't rely on result set field order)
+X update the update_DVM_IG_row_colors.js to use the PARR tools version (doesn't rely on result set field order)
 
 DECLARE
 
@@ -366,17 +385,7 @@ END;
 
 
 
-
-_ do we want to have the cruise view have the cruise name aliases too?
-	SE-19-06, SE1906, SE19-06, etc.? automatically generate this based on the vessel, fiscal year, and cruise number? (for historical purposes it has been called different things at different times
-	Also, HA-12-01, HI-12-01
-	
-
-
-
-
-
-App Updates: (2 weeks)
+Version 1.0 App Updates: (2 weeks)
 
 	(1 week)
 	X implement APEX feedback form
@@ -384,10 +393,10 @@ App Updates: (2 weeks)
 	X implement template app updated code
 	X implement synonyms and automated application deployment
 	X implement data write and data admin roles
-	_ reduce unnecessary logging
+	X reduce unnecessary logging
 
 	(1 week)
-	_ upgrade app to use interactive grids instead of interactive reports, etc.
+	X upgrade app to use interactive grids instead of interactive reports, etc.
 	_ implement database upgrade and rollback SOP (1 week)
 
 
