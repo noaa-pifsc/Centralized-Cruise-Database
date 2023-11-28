@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   22:42 Tuesday November 28, 2023
+--   Date and Time:   22:47 Tuesday November 28, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231128224147'
+,p_last_upd_yyyymmddhh24miss=>'20231128224605'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>60
 ,p_print_server_type=>'INSTANCE'
@@ -22976,7 +22976,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231128224126'
+,p_last_upd_yyyymmddhh24miss=>'20231128224605'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(60668870896570436)
@@ -23079,6 +23079,7 @@ wwv_flow_imp_page.create_report_region(
 'GEAR_NAME_BR_LIST,',
 'REGION_NAME_BR_LIST,',
 'LEG_ALIAS_BR_LIST,',
+'DATA_SET_NAME_STATUS_BR_LIST,',
 'CRUISE_ID,',
 'LEG_FISC_YEAR,',
 'CRUISE_LEG_ID CRUISE_LEG_ID_COPY',
@@ -23111,7 +23112,7 @@ wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1148782314839137083)
 ,p_query_column_id=>1
 ,p_column_alias=>'CRUISE_LEG_ID_VAL'
-,p_column_display_sequence=>13
+,p_column_display_sequence=>77
 ,p_column_heading=>'View/Edit'
 ,p_use_as_row_header=>'N'
 ,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP,230:P230_CRUISE_ID,P230_CRUISE_LEG_ID,P230_CRUISE_LEG_ID_COPY:#CRUISE_ID#,#CRUISE_LEG_ID_VAL#,'
@@ -23185,7 +23186,7 @@ wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1143404851341805471)
 ,p_query_column_id=>8
 ,p_column_alias=>'REG_ECOSYSTEM_BR_LIST'
-,p_column_display_sequence=>8
+,p_column_display_sequence=>27
 ,p_column_heading=>'Regional Ecosystems'
 ,p_use_as_row_header=>'N'
 ,p_display_as=>'WITHOUT_MODIFICATION'
@@ -23197,7 +23198,7 @@ wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1143404880702805472)
 ,p_query_column_id=>9
 ,p_column_alias=>'GEAR_NAME_BR_LIST'
-,p_column_display_sequence=>9
+,p_column_display_sequence=>37
 ,p_column_heading=>'Gear'
 ,p_use_as_row_header=>'N'
 ,p_display_as=>'WITHOUT_MODIFICATION'
@@ -23209,7 +23210,7 @@ wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1143405005195805473)
 ,p_query_column_id=>10
 ,p_column_alias=>'REGION_NAME_BR_LIST'
-,p_column_display_sequence=>10
+,p_column_display_sequence=>47
 ,p_column_heading=>'Regions'
 ,p_use_as_row_header=>'N'
 ,p_display_as=>'WITHOUT_MODIFICATION'
@@ -23221,7 +23222,7 @@ wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1143405097027805474)
 ,p_query_column_id=>11
 ,p_column_alias=>'LEG_ALIAS_BR_LIST'
-,p_column_display_sequence=>11
+,p_column_display_sequence=>57
 ,p_column_heading=>'Leg Aliases'
 ,p_use_as_row_header=>'N'
 ,p_display_as=>'WITHOUT_MODIFICATION'
@@ -23230,17 +23231,27 @@ wwv_flow_imp_page.create_report_columns(
 ,p_column_comment=>'List of aliases for the given cruise leg'
 );
 wwv_flow_imp_page.create_report_columns(
- p_id=>wwv_flow_imp.id(1148782268802137082)
+ p_id=>wwv_flow_imp.id(17657486972743422)
 ,p_query_column_id=>12
-,p_column_alias=>'CRUISE_ID'
-,p_column_display_sequence=>12
+,p_column_alias=>'DATA_SET_NAME_STATUS_BR_LIST'
+,p_column_display_sequence=>17
+,p_column_heading=>'Data Sets'
 ,p_use_as_row_header=>'N'
+,p_display_as=>'WITHOUT_MODIFICATION'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(1148782268802137082)
+,p_query_column_id=>13
+,p_column_alias=>'CRUISE_ID'
+,p_column_display_sequence=>67
 ,p_hidden_column=>'Y'
 ,p_derived_column=>'N'
 );
 wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1143404700952805470)
-,p_query_column_id=>13
+,p_query_column_id=>14
 ,p_column_alias=>'LEG_FISC_YEAR'
 ,p_column_display_sequence=>7
 ,p_column_heading=>'FY'
@@ -23251,9 +23262,9 @@ wwv_flow_imp_page.create_report_columns(
 );
 wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1145418469367588216)
-,p_query_column_id=>14
+,p_query_column_id=>15
 ,p_column_alias=>'CRUISE_LEG_ID_COPY'
-,p_column_display_sequence=>14
+,p_column_display_sequence=>87
 ,p_column_heading=>'Copy'
 ,p_use_as_row_header=>'N'
 ,p_column_link=>'f?p=&APP_ID.:230:&SESSION.::&DEBUG.:RP:P230_CRUISE_LEG_ID_COPY,P230_CRUISE_LEG_ID,P230_CRUISE_ID:#CRUISE_LEG_ID_VAL#,,#CRUISE_ID#'
@@ -23909,6 +23920,9 @@ wwv_flow_imp_page.create_report_columns(
 ,p_derived_column=>'N'
 ,p_include_in_export=>'Y'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_report_columns(
  p_id=>wwv_flow_imp.id(1149554407450123416)
 ,p_query_column_id=>2
@@ -23919,9 +23933,6 @@ wwv_flow_imp_page.create_report_columns(
 ,p_derived_column=>'N'
 ,p_include_in_export=>'Y'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1149793655946042669)
 ,p_plug_name=>'Regions'
