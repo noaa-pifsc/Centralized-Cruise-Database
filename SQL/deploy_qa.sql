@@ -31,19 +31,20 @@ SPOOL logs/&spoolname APPEND
 SET DEFINE OFF
 SHOW USER;
 
+
+PROMPT define data schema synonyms
+@@queries/define_data_schema_synonyms.sql
+
 PROMPT running DDL scripts
 @@centralized_cruise_combined_DDL_DML.sql
 
 PROMPT granting privileges to CCD roles:
 @@queries/grant_CCD_role_permissions.sql
 
-PROMPT granting privileges to CRDMA parsing schema
-@@../CRDMA/SQL/cen_cruise_app_grant_privs.sql
-
 PROMPT loading data
 @@queries/load_dev_test_ref_data.sql
 @@queries/load_DVM_rules.sql
-@@../CRDMA/SQL/load_config_values.sql
+@@queries/load_config_values.sql
 
 
 

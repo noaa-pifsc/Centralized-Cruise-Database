@@ -57,6 +57,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   The Centralized Authorization System (CAS) is used to perform authentication and authorization for the MOUSS data management application
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/authorization-application-module.git in the "CAS" folder
     -   Version: 1.2 (git tag: central_auth_app_db_v1.2)
+-   The CCD data schema permissions are listed in [CEN_CRUISE_permissions.xlsx](./CEN_CRUISE_permissions.xlsx)
 
 ## Features:
 -   DB Version Control Module (VCM)
@@ -102,6 +103,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
         -   Database Readonly Role (CR-DB-020)
         -   Database CRDMA Role (CR-DB-021)
         -   Database Integration Role (CR-DB-022)
+    -   The database role permissions are listed in [CCD_Role_Permissions.xlsx](./CCD_Role_Permissions.xlsx)
 
 ## Custom CCD Oracle Packages:
 -   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules
