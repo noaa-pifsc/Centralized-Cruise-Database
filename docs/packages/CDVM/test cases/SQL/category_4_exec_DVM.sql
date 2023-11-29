@@ -417,6 +417,7 @@ BEGIN
 	--invalidate dependent views:
 	execute immediate 'ALTER TABLE CCD_CRUISES RENAME COLUMN CRUISE_URL TO CRUISE_URL2';
 
+	execute immediate 'alter trigger TRG_CCD_CRUISES_HIST disable';
 
 	--retrieve the PK ID of the specified cruise:
 	SELECT CRUISE_ID INTO P_PK_ID FROM CCD_CRUISES WHERE UPPER(CRUISE_NAME) = UPPER(V_CRUISE_NAME);
@@ -468,6 +469,10 @@ BEGIN
 
 			execute immediate 'ALTER PACKAGE CCD_CRUISE_PKG COMPILE';
 			execute immediate 'ALTER PACKAGE CCD_DVM_PKG COMPILE';
+
+			execute immediate 'alter trigger TRG_CCD_CRUISES_HIST compile';
+			execute immediate 'alter trigger TRG_CCD_CRUISES_HIST enable';
+
 
 			DBMS_OUTPUT.PUT_LINE ('completed test case for ORA-20221');
 
