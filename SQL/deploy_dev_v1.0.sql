@@ -66,7 +66,7 @@ grant references on CEN_CRUISE.CCD_CRUISE_LEGS to CEN_CTD;
 PROMPT loading data
 @@queries/load_dev_test_ref_data.sql
 @@queries/load_DVM_rules.sql
-@@../CRDMA/SQL/load_config_values.sql
+@@queries/load_config_values.sql
 
 
 
