@@ -15,7 +15,7 @@ This document defines the work items required to finish development and deployme
         -   X also drop all the auth_app objects and auth app APEX pages
         -   X document how the CC_CONFIG_OPTIONS values need to be defined
     -   X (0.5 days) reduce unnecessary logging
-    -   _ (0.5 days) Develop production version of the APEX deployment scripts
+    -   X (0.5 days) Develop production version of the APEX deployment scripts
 -   ### Database Updates
     -   DB Module Upgrades (1 day)
         -   X DVM
@@ -31,10 +31,10 @@ This document defines the work items required to finish development and deployme
         -   X DB Diagram
         -   X PL/SQL Coding Conventions
         -   X DB naming conventions
-        -   _ business rules
+        -   X business rules
     -   Application (1 day)
-        -   _ Technical Documentation
-        -   _ User Documentation
+        -   X Technical Documentation
+        -   X User Documentation
         -   _ Testing Documentation
 -   ### Developer Testing (1 week)
     -   _ APEX Application
