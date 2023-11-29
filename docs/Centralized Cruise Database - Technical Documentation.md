@@ -77,6 +77,11 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   Centralized Configuration (CC) project
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
     -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
+-   Data history tracking package
+    -   Version Control Information:
+        -   URL: svn://badfish.pifsc.gov/Oracle/DSC/trunk/apps/db/dsc/dsc_pkgs
+        -   Files: dsc_cre_hist_objs_pkg.pks (package specs) and dsc_cre_hist_objs_pkg.pkb (package body)
+    -   Description: This was developed by the PIFSC Systems Design Team (SDT) to track data changes to a given table over time to facilitate accountability, troubleshooting, etc.
 
 ## Database Diagram:
 -   [CCD Diagram Documentation](./Centralized%20Cruise%20Database%20Diagram%20Documentation.md)
@@ -88,6 +93,15 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## Business Rules:
 -   The business rules for the CCD are defined in the [Business Rule Documentation](./Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](./Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a Scope of "Cruise DB" apply to the underlying database and rules with a Scope of "Data QC" apply to the QC criteria used to evaluate Cruise data in the underlying database.
+
+## Database Roles:
+-   There are multiple database roles defined by the CCD to make permissions management easier
+    -   Business Rules:
+        -   Database Administrator Role (CR-DB-018)
+        -   Database Read/Write Role (CR-DB-019)
+        -   Database Readonly Role (CR-DB-020)
+        -   Database CRDMA Role (CR-DB-021)
+        -   Database Integration Role (CR-DB-022)
 
 ## Custom CCD Oracle Packages:
 -   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules

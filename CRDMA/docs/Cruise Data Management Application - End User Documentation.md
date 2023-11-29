@@ -1,67 +1,65 @@
 # Cruise Data Management Application End User Documentation
 
 ## Overview:
-The Cruise Data Management Application (CRDMA) was developed to allow PIFSC users to view summary reports and authorized users to manage cruise information.
+The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC users to view and download summary and detailed reports for PIFSC cruise operations. The CRDMA allows authorized users to manage data stored in the Centralized Cruise Database (CCD).
 
 ## Application URLs:
 -   Test Application: http://picmidt.nmfs.local/pict/f?p=287
--   Production Application: TBD
+-   Production Application: https://picmid1.nmfs.local/pic/f?p=CCD
 
 ## Requirements:
 -   A connection to the PIFSC network is required to access the application
--   Google Chrome or Firefox must be used to access the application in order to avoid PIFSC SSL certificate issues
+
+## Business Rules:
+-   The business rules for the CRDMA are defined in the [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a Scope of "CRDMA" apply to this module and each rule with a Scope of "Cruise DB" apply to the underlying database
+-   The Data QA validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QA"
 
 ## DVM Issue Policies:
 -   The DVM QC validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QC"
--   The relevant DVM business rules (see "Rule ID" column) for the CRDMA are defined in the specific [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) listed below:
-    -   <span id="DVM_issue_categories" class="anchor"></span>Validation Issue Categories (CR-DB-003)
-    -   DVM Execution (CR-DB-005)
-    -   Validation Errors (CR-DB-009)
-    -   Validation Warnings (CR-DB-010)
-    -   DVM Reports (CR-DB-011)
-    -   QC Validation Issue Authentication (CR-DMA-001)
-    -   Validation Issue Annotation Policy (CR-DMA-002)
-    -   Automated Cruise Data Validation Policy (CR-DMA-007)
-    -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
-    -   Validation Issue Display Policy (CR-DMA-009)
-    -   Validation Issue Record Policy (CR-DMA-010)
-    -   Validation Issue Application Link Policy (CR-DMA-012)
-    -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
-    -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)
-    -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
+
+## Application Page Numbering Policy:
+-   Public Pages: 0 - 199, 500
+-   Data Read/Write Pages: 200 - 499
+-   Data Administrator Pages: 505
 
 ## Application Pages:
--   Public Pages (requires no login):
-    -   Cruise Summary Full Summary
-        -   This summary reporting page contains two chart reports displaying the days at sea and number of cruises grouped by fiscal year and survey name respectively.
-        -   Clicking on a given bar on the fiscal year chart will forward the user to the Fiscal Year Summary Page with the given fiscal year selected.
-        -   Clicking on a given bar on the survey name chart will forward the user to the Survey Name Summary Page with the given survey name selected.
-    -   Fiscal Year Summary
-        -   This summary reporting page contains a select field to choose a given fiscal year based on the data in the database, updating the select field will reload the chart reports based on the selected fiscal year.
-        -   The bar chart report shows the number of cruises and days at sea for the selected fiscal year.
-        -   The two pie chart reports shows the number of cruises and days at sea respectively grouped by survey name for the selected fiscal year
-    -   Survey Name Summary
-        -   This summary reporting page contains a select field to choose a given Survey Name based on the data in the database, updating the select field will reload the chart reports based on the selected Survey Name.
-        -   The bar chart report shows the number of cruises and days at sea for the selected Survey Name.
-        -   The two pie chart reports shows the number of cruises and days at sea respectively grouped by fiscal year for the selected Survey Name
--   Data Administrator Pages (Data management pages)
-    -   These pages require authorization, when prompted authorized users may login using their email credentials (username without the "@noaa.gov")
-    -   All forms that have a light yellow background can be used to add/edit a given record, all other forms are read-only
-    -   Cruise List
-        -   This page contains a report showing all research cruises and associated aggregate information that allows users to filter, sort, and download cruise information.
-        -   Clicking the "Create" button will forward the user to the View/Edit Cruise page so they can create a new cruise
-        -   Clicking the Edit icon for a given cruise will forward the user to the View/Edit Cruise page so they can update or delete the selected cruise
-        -   Clicking the Copy icon for a given cruise will forward the user to the View/Edit Cruise page with the corresponding cruise's values in the form so they can be modified appropriately and saved.
+-   Authorization Policy Business Rules:
+    -   Data Administrator Authorization (CR-DMA-004)
+    -   Data Write Authorization (CR-DMA-019)
+    -   Data Readonly Authorization (CR-DMA-020)
+-   Public Pages (reporting pages - able to navigate to different cruises and view/download information):
+    -   (Page ID: 1) Cruise Summary Full Summary
+        -   Chart report of the number of cruises and days at sea for all fiscal years (clickable, forwards to Fiscal Year Summary page)
+        -   Chart report of the number of cruises and days at sea for all survey names (clickable, forwards to Survey Name Summary page)
+    -   (Page ID: 10) Fiscal Year Summary
+        -   Select field to choose a given fiscal year based on the data in the database
+        -   Chart report of the number of cruises and days at sea for the selected fiscal year
+        -   2 Chart reports for the selected fiscal year display the number of cruises and days at sea respectively grouped by Survey Name
+    -   (Page ID: 20) Survey Name Summary
+        -   Select field to choose a given Survey Name based on the data in the database
+        -   Chart report of the number of cruises and days at sea for the selected Survey Name
+        -   2 Chart reports for the selected Survey Name display the number of cruises and days at sea respectively grouped by fiscal year
+    -   (Page ID: 101) Login Page
+        -   Description: this is the default login page that APEX generates when a new application is created that requires authentication. No custom coding/customization has been applied to this page.
+-   Data Management Pages
+    -   (Page ID: 210) Cruise List
+        -   Interactive report that shows all research cruises with some aggregate information like start/end dates, days at sea, and associated cruise legs
+        -   Authorized users can create a new cruise by clicking the Create button which will forward them to the View/Edit Cruise page with no cruise selected.
+        -   Authorized users can view or edit a given cruise by clicking the Edit icon on a given cruise's table row which will forward them to the View/Edit Cruise page with the corresponding cruise selected.
+        -   Authorized users can copy the values from an existing cruise by clicking the Copy icon on a given cruise's table row will forward them to the View/Edit Cruise page with the corresponding cruise's values in the form so they can be modified appropriately and saved. This functionality was intended to streamline data entry by allowing a similar existing cruise's values to be copied and modified instead of defining each value manually.
             -   **Note: the new cruise record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
-    -   View/Edit Cruise
+        -   Standard interactive report tooltips are available for all columns included in the report
+    -   (Page ID: 220) View/Edit Cruise
         -   Certain drop down fields (e.g. Standard Survey Name) have a corresponding "Filter List" checkbox to filter the values available; checking the box will update the select field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
-        -   This page contains a data form for the cruise table, if the user clicked the "Create" button to reach this page a new cruise record can be created.
+        -   The page accepts one parameter, a Cruise ID. If no Cruise ID is specified (click the Create button on Cruise List page) an authorized user is allowed to create a new cruise record. The data form will allow the new cruise information to be specified
             -   If the "Copy" icon was clicked on the Cruise List page the values from the corresponding Cruise will be used to populate the data form as well as the attribute forms so they can be modified by the user and saved.
+                -   *Note: the Target Species - Other Species tab is populated with the other species associated with the copied Cruise. APEX does not expose unselected tab contents on the page load event so JavaScript was developed to select the other species tab and then make an Ajax request for the other species associated with the copied Cruise and uses the JavaScript API to add the rows and specify their values. The original tab is then selected again to restore the original functionality
             -   Clicking on the "Create" button will save the record and reload the page with the new cruise selected allowing the user to create records (e.g. cruise legs, target species, etc.) associated with the new cruise
             -   Clicking on the "Create Another" button will save the record and reload the page with no cruise selected to allow the user to create another cruise record.
-        -   If the user clicked the edit icon to reach this page the cruise record can be updated/deleted.
+        -   If a Cruise ID is specified (click the Edit icon on Cruise List page) an authorized user can edit the selected cruise record and all associated records.
             -   Clicking on the "Delete" button will prompt the user to confirm if they want to delete the selected cruise record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified Cruise record, if it is successful the user is forwarded to the Cruise List page. Clicking the "Cancel" button will cancel the delete action.
             -   Clicking on the "Apply Changes" button will attempt to save the record and reload the page.
+            -   Clicking on the "Deep Copy" button will attempt to copy the selected Cruise and all of the associated Legs as well, unsaved changes made on the Cruise data form will not be included in the copied Cruise. Following successful processing the user will be redirected to the View/Edit Cruise page for the copied Cruise so it can be modified accordingly
         -   Cruise Attributes Region Tabs:
             -   When the mouse pointer hovers over any of the Region Tabs the associated tooltip will be displayed
             -   Cruise Summary:
@@ -70,8 +68,8 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
             -   Cruise Legs:
                 -   **Note: this region is only visible if the Edit icon was clicked on the Cruise List page or if the record was just created using the "Create" button
                 -   The user can create a new cruise leg associated with the selected Cruise record by clicking the "Create" button on the Cruise Legs section
-                -   The user can view or edit a given cruise leg by clicking the Edit icon for a given cruise leg which will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg selected
-                -   Authorized users can copy the values from an existing cruise leg by clicking the Copy icon for the given leg which will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg's values in the form so they can be modified appropriately and saved.
+                -   The user can view or edit a given cruise leg by clicking the Edit icon on a given cruise leg's table row which will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg selected
+                -   Authorized users can copy the values from an existing cruise leg by clicking the Copy icon on a given leg's table row will forward them to the View/Edit Cruise Leg page with the corresponding cruise leg's values in the form so they can be modified appropriately and saved. This functionality was intended to streamline data entry by allowing a similar existing cruise leg's values to be copied and modified instead of defining each value manually.
                     -   **Note: the new cruise leg record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
             -   QC Validation Issues:
                 -   **Note: this region is only visible if the Edit icon was clicked on the Cruise List page or if the record was just created using the "Create" button
@@ -101,23 +99,25 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
             -   Delete:
                 -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise functionality:
                     -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
-    -   View/Edit Cruise Leg
+    -   (Page ID: 230) View/Edit Cruise Leg
         -   Certain drop down fields (e.g. Vessel) have a corresponding "Filter List" checkbox to filter the values available; checking the box will update the select field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
-        -   This page displays all Cruise information and specific associated record values (e.g. cruise start/end dates, number of associated legs, fiscal year, URL, etc.) for the specified Cruise.
+        -   This page accepts two parameters; a Cruise ID and a Cruise Leg ID. If both parameters are blank the page displays an error message.
+        -   When a Cruise ID is specified the page will display all Cruise information and specific associated record values (e.g. cruise start/end dates, number of associated legs, fiscal year, URL, etc.) for the specified Cruise.
             -   The Cruise Legs section of the page will display all associated Cruise Legs for the specified Cruise.
             -   Clicking the Edit icon next to a given Cruise Leg will reload the page with the given Cruise Leg specified.
-            -   Clicking the Copy icon next to a given Cruise Leg will reload the page with the corresponding Cruise Leg's values in the form so they can be modified appropriately and saved.
+                -   Clicking the Copy icon next to a given Cruise Leg will reload the page with the corresponding cruise leg's values in the form so they can be modified appropriately and saved. This functionality was intended to streamline data entry by allowing a similar existing cruise leg's values to be copied and modified instead of defining each value manually.
                 -   **Note: the new cruise leg record is not saved until the "Create" or "Create Another" button is clicked and successfully processed.
             -   When the mouse pointer hovers over any column heading the associated tooltip will be displayed.
-        -   If the "Create" button was clicked to reach this page the Leg Info form can be used to create a new cruise leg
+        -   If only a Cruise ID is specified (click the Create button on Cruise Legs section of the View/Edit Cruise page) an authorized user is allowed to create a new cruise leg record associated with the specified cruise. The data form will allow the new cruise leg information to be specified
             -   If the "Copy" icon was clicked on the View/Edit Cruise or View/Edit Cruise Leg page the values from the corresponding Cruise Leg will be used to populate the data form as well as the attribute forms so they can be modified by the user and saved.
+                -   *Note: the Leg Aliases tab is populated with the leg aliases associated with the copied Cruise Leg. APEX does not expose unselected tab contents on the page load event so JavaScript was developed to select the leg aliases tab and then make an Ajax request for the leg aliases associated with the copied Cruise Leg and uses the JavaScript API to add the rows and specify their values. The original tab is then selected again to restore the original functionality
             -   Clicking on the "Create" button will save the record and reload the page with the new cruise leg selected allowing the user to create records (e.g. regions, gear, regional ecosystems, etc.) associated with the new cruise leg
             -   Clicking on the "Create Another" button will save the record and reload the page with no cruise leg selected to allow the user to create another cruise leg record for the specified cruise.
-        -   If a Cruise Leg was specified this form can be used to edit the selected cruise leg record and all associated records.
+        -   If a Cruise Leg ID is specified (click the Edit icon on Cruise Legs section of the View/Edit Cruise or View/Edit Cruise Leg pages) an authorized user can edit the selected cruise leg record and all associated records.
             -   Clicking on the "Delete" button will prompt the user to confirm if they want to delete the selected cruise leg record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference with the specified Cruise Leg record, if it is successful the user is forwarded to the Cruise List page. Clicking the "Cancel" button will cancel the delete action.
             -   Clicking on the "Apply Changes" button will attempt to save the record and reload the page
         -   Leg Attributes Region Tabs:
-            -   When the mouse pointer hovers over any of the Region Tabs the associated tooltip will be displayed
+            -   When the mouse pointer hovers over any of the Region Tabs the associated tooltip will be displayed.
             -   Leg Summary:
                 -   **Note: this region is only visible if the Edit icon was clicked on the Cruise Legs report or if the record was just created using the "Create" button
                 -   This read-only region shows aggregate information for the given cruise leg
@@ -152,13 +152,15 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
             -   Delete:
                 -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise Leg functionality:
                     -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
-    -   Data QC Validation Issues
-        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#DVM_issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
+    -   (Page ID: 250) Data QC Validation Issues
+        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
             -   [DVM Issue Policies](#dvm-issue-policies)
         -   Clicking on the "Save" button will attempt to save the modified records.
-    -   Reference List Management Pages
-        -   The "View" pages (e.g. View Vessels) are listed under the "Reference Lists" navigation menu item in alphabetical order
+    -   Reference List Management Pages (Requires Data Admin Role: CR-DMA-004)
+        -   The "View" pages (e.g. View Vessels) are listed under the "Reference Lists" navigation menu item
         -   All Reference List Management pages have the same functionality for the given type of reference list:
+            -   View Reference Record Page List:
+                -   Page ID: 300 - 387 (e.g. Page ID: 320 - View Platform Types)
             -   View Reference Record Page:
                 -   This page lists all of the records in the database for the reference record type using an interactive report with an edit icon next to each row. Clicking on the edit icon will open a modular window containing the View/Edit form with the corresponding record's information.
                     -   Clicking the "Cancel" button will close the modular window
@@ -168,9 +170,13 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
                     -   Clicking the "Cancel" button will close the modular window
                     -   Clicking the "Apply Changes" button will attempt to save the new record values. If the values are valid the modular window will be closed.
                 -   For the Divisions page clicking a Science Center name will open the View/Edit Science Center form as a modular window
+    -   (Page ID: 390) View/Edit Data Sets
+        -   This interactive grid page allows authorized users to manage data set records.  
     -   Reference List Preset Management Pages
-        -   The "View" pages (e.g. View Regional Ecosystems) are listed under the "Presets" navigation menu item in alphabetical order
+        -   The "View" pages (e.g. View Regional Ecosystems) are listed under the "Presets" navigation menu item
         -   All Preset Management pages have the same functionality for the given type of reference list:
+            -   View Reference Preset Record Page List:
+                -   Page ID: 400 - 499 (e.g. Page ID: 400 - View Regional Ecosystem Presets)
             -   View Reference Preset Record Page:
                 -   This page lists all of the preset records in the database for the reference record type using an interactive report with an edit icon next to each row. Clicking on the edit icon will redirect the user to a View/Edit Preset Page with a form displaying the corresponding record's information.
                 -   Clicking the "Create" button at the top of the report will redirect the user to a View/Edit Preset page with a blank form to create the new reference record.
@@ -178,6 +184,12 @@ The Cruise Data Management Application (CRDMA) was developed to allow PIFSC user
                 -   This page contains a form to define the given reference preset record's information (e.g. name, description). The form also contains a shuttle field that allows the user to define the corresponding reference records for the given preset record.
                     -   Certain reference tables have a "Filter List" checkbox that allows the user to toggle the filtered/full list of options in the shuttle field (e.g. ESA Target Species)
                 -   Clicking the "Cancel" button will redirect the user back to the corresponding View Reference Preset Record page
-                -   If the "Edit" icon on the View Reference Preset Record page was clicked the user will see a "Delete" button. Clicking the "Delete" button will prompt the user to confirm if they want to delete the selected record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified record, if it is successful the user is redirected to the View Reference Preset Record Page.
+                -   If the "Edit" button on the View Reference Preset Record page was clicked the user will see a "Delete" button. Clicking the "Delete" button will prompt the user to confirm if they want to delete the selected record. Clicking the "OK" button will attempt to delete the record but it will fail unless there are no records that reference the specified record, if it is successful the user is redirected to the View Reference Preset Record Page.
                     -   The "Delete" button has a tooltip to warn the user that any associated preset options will cause the given preset record deletion to fail
                 -   Clicking the "Apply Changes" button will attempt to save the updated record values if the record already exists and it will attempt to save the new record values if the record does not already exist. If the values are valid the user is redirected to the View Reference Preset Record Page.
+-   Feedback Form (Page ID: 500)
+    -   Authentication/Authorization: public page - no authentication/authorization required
+    -   Description: Simple feedback form that will create a record with the user's feedback that is stored in a database table along with information about the application and page the user submitted feedback for.
+-   Feedback Report (Page ID: 505)
+    -   Authentication/Authorization: Requires Data Admin Role (CR-DMA-004)
+    -   Description: Simple read-only interactive grid report that displays all Feedback Form submissions.

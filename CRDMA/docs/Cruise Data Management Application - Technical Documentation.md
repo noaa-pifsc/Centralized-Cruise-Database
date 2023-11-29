@@ -20,60 +20,70 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
     -   [CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Application URLs:
--   Development Application: http://picmidd.nmfs.local/picd/f?p=CCD
--   Test Application: http://picmidt.nmfs.local/pict/f?p=CCD
--   Production Application: TBD
+-   Development Application: https://picmidd.nmfs.local/picd/f?p=CCD
+-   Test Application: https://picmidt.nmfs.local/pict/f?p=CCD
+-   Production Application: https://picmid1.nmfs.local/pic/f?p=CCD
 
 ## Requirements:
 -   A connection to the PIFSC network is required to access the application
--   Google Chrome or Firefox must be used to access the application in order to avoid PIFSC SSL certificate issues
--   APEX 5.1 must be installed on the given APEX instance
 
 ## Features:
 -   Installed Modules (see [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md) for more information)
+    -   The [Centralized Authorization System (CAS) Template Project (CTP) Data Management Application (CTPA)](https://picgitlab.nmfs.local/centralized-data-tools/template-project/-/blob/master/CTP/docs/CAS%20Template%20Project%20Application%20-%20Technical%20Documentation.md?ref_type=heads) was utilized to streamline the APEX development process and installation of the custom application modules listed below:
+        -   Repository URL: https://picgitlab.nmfs.local/centralized-data-tools/template-project in the "CTP" folder
+        -   Application: 1.1 (Git tag: cas_templ_proj_dm_app_v1.1)
+    -   The CAS is implemented in the login page to perform both authentication and authorization
+        -   The Navigation Bar displays logged in user information and a logout button
+        -   The homepage (Page ID: 1) is implemented as a public page and the protected page (Page ID: 200) requires an authenticated user have the "CCD ADMIN", "CCD WRITE", or "CCD READ" role
+            -   This functionality provides developers an example of how to implement pages requiring specific authorization
+    -   Feedback Form and Report (Page ID: 500, 505)
+        -   The AFF project is implemented on the template application to collect user feedback.
+        -   AFF Version Control Information:
+            -   URL: git\@picgitlab.nmfs.local:centralized-data-tools/apex-feedback-form.git
+            -   App: 0.2 (Git tag: apex_feedback_form_app_v0.2)
+-   Standard Development/Test Indicators:
+    -   Custom JavaScript code checks the APEX server host name and will detect if this is the development server (picmidd.nmfs.local) or test server (picmidt.nmfs.local) and will clearly indicate that these are not production systems.
+        -   The standard development or test backgrounds are tiled on each page
+        -   The Navigation Bar title has either " (DEVELOPMENT VERSION)" or " (TEST VERSION)" appended
+-   Database features are listed in the [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 
 ## Data Flow:
 -   [Data Flow Diagram (DFD)](../../docs/DFD/Centralized%20Cruise%20DFD.pdf)
 -   [DFD Documentation](../../docs/DFD/Centralized%20Cruise%20Data%20Flow%20Diagram%20Documentation.md)
 
 ## Business Rules:
--   The business rules for the CRDMA are defined in the [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a Scope of "CRDMA" apply to this module and each rule with a Scope of "CCD " apply to the underlying database
+-   The business rules for the CRDMA are defined in the [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md) and each specific business rule listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a Scope of "CRDMA" apply to this module and each rule with a Scope of "Cruise DB" apply to the underlying database
+-   The Data QA validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QA"
 
 ## Configuring/Installing the CRDMA Application:
 -   [How to Configure the Application](./Cruise%20Data%20Management%20Application%20-%20How%20To%20Configure%20Application.md)
 -   How to Install the Application:
-    -   Login to the APEX application builder and click the **Import** link.
-    -   Click the **Choose File** button and then navigate to the [f287.sql](../application_code/f287.sql) file and click **Open**.
-    -   Click **Next**
-    -   Click **Next**
-    -   Choose **Change Application ID** and specify the application ID for the application
-    -   Click the **Install Application** button
+    -   Manual Deployments:
+        -   Login to the APEX application builder and click the **Import** link.
+        -   Click the **Choose File** button and then navigate to the [f285.sql](../application_code/f287.sql) file and click **Open**.
+        -   Click **Next**
+        -   Click **Next**
+        -   Choose **Change Application ID** and specify the application ID for the application
+        -   Click the **Install Application** button
+    -   Automated Deployments:
+        -   The [Automated APEX Deployment SOP](https://picgitlab.nmfs.local/centralized-data-tools/automated-app-deployments/-/blob/master/apex/automated_APEX_deployment_SOP.md) is utilized to automate the deployment of the current version of the application to a given database instance.
+        -   Use SQL*Plus to execute the appropriate deployment script for the corresponding database instance (e.g.  [deploy_apex_dev.sql](../../SQL/deploy_apex_dev.sql) for the development server)
+-   Load the CAS configuration data
+    -   The [load_config_values.sql](../../SQL/queries/load_config_values.sql) defines the CAS configuration for the CRDMA
 
 ## DVM Issue Policies:
 -   The DVM QC validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QC"
--   The relevant DVM business rules (see "Rule ID" column) for the CRDMA are defined in the specific [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) listed below:
-    -   <span id="DVM_issue_categories" class="anchor"></span>Validation Issue Categories (CR-DB-003)
-    -   DVM Execution (CR-DB-005)
-    -   Validation Errors (CR-DB-009)
-    -   Validation Warnings (CR-DB-010)
-    -   DVM Reports (CR-DB-011)
-    -   QC Validation Issue Authentication (CR-DMA-001)
-    -   Validation Issue Annotation Policy (CR-DMA-002)
-    -   Automated Cruise Data Validation Policy (CR-DMA-007)
-    -   Automated Cruise Deletion Data Validation Policy (CR-DMA-008)
-    -   Validation Issue Display Policy (CR-DMA-009)
-    -   Validation Issue Record Policy (CR-DMA-010)
-    -   Validation Issue Application Link Policy (CR-DMA-012)
-    -   Automated Cruise Leg Insertion Data Validation Policy (CR-DMA-013)
-    -   Automated Cruise Leg Update Data Validation Policy (CR-DMA-014)
-    -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
 
 ## Application Page Numbering Policy:
--   Public Pages: 0 - 199
--   Data Write Pages: 200 - 299, 400 - 499
--   Data Administrator Pages: 300 - 399, 500 - 699
+-   Public Pages: 0 - 199, 500
+-   Data Read/Write Pages: 200 - 499
+-   Data Administrator Pages: 505
 
 ## Application Pages:
+-   Authorization Policy Business Rules:
+    -   Data Administrator Authorization (CR-DMA-004)
+    -   Data Write Authorization (CR-DMA-019)
+    -   Data Readonly Authorization (CR-DMA-020)
 -   Public Pages (reporting pages - able to navigate to different cruises and view/download information):
     -   (Page ID: 1) Cruise Summary Full Summary
         -   Chart report of the number of cruises and days at sea for all fiscal years (clickable, forwards to Fiscal Year Summary page)
@@ -88,7 +98,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
         -   2 Chart reports for the selected Survey Name display the number of cruises and days at sea respectively grouped by fiscal year
     -   (Page ID: 101) Login Page
         -   Description: this is the default login page that APEX generates when a new application is created that requires authentication. No custom coding/customization has been applied to this page.
--   Data Management Pages (Requires Data Write Role)
+-   Data Management Pages
     -   (Page ID: 210) Cruise List
         -   Interactive report that shows all research cruises with some aggregate information like start/end dates, days at sea, and associated cruise legs
         -   Authorized users can create a new cruise by clicking the Create button which will forward them to the View/Edit Cruise page with no cruise selected.
@@ -207,7 +217,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
         -   The "View" pages (e.g. View Vessels) are listed under the "Reference Lists" navigation menu item
         -   All Reference List Management pages have the same functionality for the given type of reference list:
             -   View Reference Record Page List:
-                -   Page ID: 300 - 399 (e.g. Page ID: 320 - View Platform Types)
+                -   Page ID: 300 - 387 (e.g. Page ID: 320 - View Platform Types)
             -   View Reference Record Page:
                 -   This page lists all of the records in the database for the reference record type using an interactive report with an edit icon next to each row. Clicking on the edit icon will open a modular window containing the View/Edit form with the corresponding record's information.
                     -   Clicking the "Cancel" button will close the modular window
@@ -217,7 +227,9 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                     -   Clicking the "Cancel" button will close the modular window
                     -   Clicking the "Apply Changes" button will attempt to save the new record values. If the values are valid the modular window will be closed.
                 -   For the Divisions page clicking a Science Center name will open the View/Edit Science Center form as a modular window
-    -   Reference List Preset Management Pages (Requires Data Write Role: CR-DMA-019)
+    -   (Page ID: 390) View/Edit Data Sets
+        -   This interactive grid page allows authorized users to manage data set records.  
+    -   Reference List Preset Management Pages
         -   The "View" pages (e.g. View Regional Ecosystems) are listed under the "Presets" navigation menu item
         -   All Preset Management pages have the same functionality for the given type of reference list:
             -   View Reference Preset Record Page List:
@@ -238,17 +250,10 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 -   Feedback Report (Page ID: 505)
     -   Authentication/Authorization: Requires Data Admin Role (CR-DMA-004)
     -   Description: Simple read-only interactive grid report that displays all Feedback Form submissions.
--   Users/Permissions Master-Detail Forms (Page ID: 600)
-    -   Authentication/Authorization: protected page - Requires Data Admin Role (CR-DMA-004)
-    -   Description: Two interactive grids in master-detail configuration for the authorized users and user groups respectively.  Administrators can add/update/delete users and assign/revoke group permissions from users.  
--   Authorization Groups (Page ID: 605)
-    -   Authentication/Authorization: protected page - Requires Data Admin Role (CR-DMA-004)
-    -   Description: An interactive grid allows administrators to add/update/delete authorization groups that can be assigned to user accounts in Page ID 600.
 
-## Security:
--   Application Security:
-    -   [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
-        -   This project utilizes the security documentation from version 0.5 (Git tag: APX_sec_v0.5) of the [APEX security project](https://picgitlab.nmfs.local/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
-        -   \*\*Note: The [Application Pages](#application-pages) section outlines any exceptions to the security controls defined in the [Standard APEX Security Documentation](./security/APEX%20Security%20Documentation.md)
-    -   Authentication and Authorization Policy is implemented using the Authorization Application Module and is referenced in the [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
-    -   [Principle of least privilege](https://docs.google.com/document/d/15qW2pDHM8bebmNJ76AfC-SgICKQPGmKSiUkXbrZ7OVQ/edit?usp=sharing): All of the data tables and support objects are defined in the CEN_CRUISE data schema, the APEX application's parsing schema (shadow schema) which is used to actually interact with the underlying database is CEN_CRUISE_APP. CEN_CRUISE_APP has very limited permissions on the CEN_CRUISE schema based on the required functionality of the application (see [CEN_CRUISE_APP_permissions](./CEN_CRUISE_APP_permissions.xlsx)) to implement the principle of least privilege. Both schemas have not been granted any roles in the database instance.
+## Application Security:
+-   [Standard APEX Security Documentation](security/APEX%20Security%20Documentation.md)
+    -   This project utilizes the security documentation from version 0.5 (Git tag: APX_sec_v0.5) of the [APEX security project](https://picgitlab.nmfs.local/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
+    -   \*\*Note: The [Application Pages](#application-pages) section outlines any exceptions to the standard APEX Application Security Controls
+-   Authentication and Authorization Policy is implemented using the Authorization Application Module and is referenced in the [Cruise Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
+-   [Principle of least privilege](https://docs.google.com/document/d/15qW2pDHM8bebmNJ76AfC-SgICKQPGmKSiUkXbrZ7OVQ/edit?usp=sharing): All of the data tables and support objects are defined in the CCD data schema (CEN_CRUISE), the APEX application's parsing schema (shadow schema) which is used to actually interact with the underlying database is CEN_CRUISE_APP. CEN_CRUISE_APP has very limited permissions on the CEN_CRUISE schema based on the required functionality of the application (see [CEN_CRUISE_APP_permissions.xlsx](CEN_CRUISE_APP_permissions.xlsx)) to implement the principle of least privilege.

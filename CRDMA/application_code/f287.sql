@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   22:47 Tuesday November 28, 2023
+--   Date and Time:   03:27 Wednesday November 29, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
