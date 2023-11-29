@@ -50,7 +50,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Update the corresponding [verification_templates](./verification_templates) file(s) to add the expected result for the new test cases
         -   Description: These Verification Templates translate the individual test cases in a given category defined in the [Test Case Definitions](./CCDP%20Test%20Cases.xlsx) into their corresponding query results so they can be compared with the query results from subsequent script executions. These template files contain excel formulas to compare the expected verified results with the actual results of a given script execution.
         -   SOP:
-            -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
+            -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
                 -   [Cruise_Leg_DDL_DML_generator](../../../Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the DVM test data records in to the corresponding data loading script
                 -   **Note: do not include any database fields in the verification queries that have a random element like primary key values or date/time values that depend on when the script was executed otherwise the automated test case verification approach will not work properly.
             -   Update the corresponding CCDP test script(s) (e.g. [category_2_exec_test_cases.sql](./SQL/category_2_exec_test_cases.sql)) to execute the new test cases and update the database accordingly.
@@ -63,7 +63,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Update the corresponding script [Verification Export](./verification_templates/automated) file to add the expected result for the new test cases
         -   Description: These Verification Export files contain the script output for the PL/SQL verification test cases.
         -   SOP:
-            -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
+            -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
                 -   [Cruise_Leg_DDL_DML_generator](../../../Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the test data records in to the corresponding data loading script
                 -   **Note: do not include any database fields in the verification queries that has a random element like primary key values or date/time values that depend on when the script was executed otherwise the automated test case verification approach will not work properly.
             -   Update the corresponding DVM test script(s) (e.g. [category_1_exec_test_cases.sql](./SQL/category_1_exec_test_cases.sql)) to include the PL/SQL code to execute the new test cases and produce the desired script output
@@ -84,7 +84,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
             -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute all individual scripts listed below to setup the test cases for this test case category: [category_1_exec_all_scripts.sql](./SQL/category_1_exec_all_scripts.sql)
                 -   Load test data:
                     -   Test data: [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)
-                    -   DVM rules: [category_1_load_DVM_rules.sql](../../CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)
+                    -   DVM rules: [category_1_load_DVM_rules.sql](../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
         -   Test case script: [category_1_exec_test_cases.sql](./SQL/category_1_exec_test_cases.sql)
         -   Validation Issues:
             -   Worksheet name: "Category 1 Test Cases" of the [test cases workbook](./CCDP%20Test%20Cases.xlsx)
@@ -94,7 +94,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
         -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute the individual scripts listed below for this test case category: [category_2_exec_all_scripts.sql](./SQL/category_2_exec_all_scripts.sql)
             -   Load test data:
                 -   Test data: [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)
-                -   DVM rules: [category_1_load_DVM_rules.sql](../../CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)
+                -   DVM rules: [category_1_load_DVM_rules.sql](../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
             -   Test case script: [category_2_exec_test_cases.sql](./SQL/category_2_exec_test_cases.sql)
         -   Cruise and Associated Data:
             -   Worksheet name: "Category 2 Cruise Tests" of the [test cases workbook](./CCDP%20Test%20Cases.xlsx)

@@ -43,7 +43,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   Update the corresponding [verification_templates](./verification_templates) file(s) to add the expected result for the new test cases
         -   Description: These Verification Templates translate the individual test cases in a given category defined in the Test Case Definitions into their corresponding query results so they can be compared with the query results from subsequent script executions. These template files contain excel formulas to compare the expected verified results with the actual results of a given script execution.
         -   SOP:
-            -   Update the corresponding test data loading script (e.g. [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_5_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
+            -   Update the corresponding test data loading script (e.g. [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_5_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
                 -   [Cruise_Leg_DDL_DML_generator](../../../../../docs/Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the DVM test data records in to the corresponding data loading script
                 -   **Note: do not include any database fields in the verification queries that have a random element like primary key values or date/time values that depend on when the script was executed otherwise the automated test case verification approach will not work properly.
             -   Update the corresponding DVM test script(s) (e.g. [category_1_exec_DVM.sql](./SQL/category_1_exec_DVM.sql)) to execute the new test cases and update the database accordingly.
@@ -55,7 +55,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
 -   Manual Verification:
     -   Description: The entries in the [CRDMA CDVM Test Cases](./CRDMA%20CDVM%20Test%20Cases.xlsx) workbook define the expected results of a given test case defined in the corresponding worksheet based on the type of test case
     -   SOP:
-        -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
+        -   Update the corresponding test data loading script (e.g. [category_1_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_test_data.sql)) and DVM rule script (e.g. [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)) to load database records necessary to setup the test case conditions that can be used to verify that the expected outcome was produced.
             -   [Cruise_Leg_DDL_DML_generator](../../../../../docs/Cruise_Leg_DDL_DML_generator.xlsx) can be used to generate the DML to load the DVM test data records in to the corresponding data loading script
         -   Execute the actions in the CRDMA that are defined in the corresponding test case category listed in the [Test Case Types](#test-case-types)
         -   Manually verify that the results in the CRDMA match the "Expected Result" column value for each test case
@@ -87,8 +87,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
     -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute the individual scripts listed below for this test case category: [category_1_exec_all_scripts.sql](./SQL/category_1_exec_all_scripts.sql)
         -   Load test data:
-            -   Test data: [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_5_load_test_data.sql)
-            -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)
+            -   Test data: [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_5_load_test_data.sql)
+            -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
             -   Execute the DVM script: [category_1_exec_DVM.sql](./SQL/category_1_exec_DVM.sql)
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CDVM%20Test%20Cases.xlsx):
         -   Open the "Category 1 DVM Tests" worksheet and execute the indicated process for each of the cruises or cruise legs listed on the spreadsheet:
@@ -113,8 +113,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   Description: These test cases verify that the CCD_DVM_PKG package procedures' error handling test cases that are feasible to test in the CRDMA based on the [CDVM Business Rules](../../../../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) where the "Scope" column values are "CCD Custom DVM Errors" and "Test Case Exists?" column values are "yes"
     -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute the individual scripts listed below for this test case category: [category_2_exec_all_scripts.sql](./SQL/category_2_exec_all_scripts.sql)
         -   Load test data:
-            -   Test data: [category_1_load_test_data.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_test_data.sql)
-            -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test%20cases/SQL/category_1_load_DVM_rules.sql)
+            -   Test data: [category_1_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_test_data.sql)
+            -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CDVM%20Test%20Cases.xlsx):
         -   Open the "Category 2 DVM Tests" worksheet and execute the following process for each of the cruises listed on the spreadsheet:
             -   For "Delete Leg Overlap" test cases open the View/Edit Cruise Leg page for the specified Leg Name and click the "Delete" button and click the "OK" button to confirm

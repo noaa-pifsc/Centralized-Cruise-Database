@@ -3,5 +3,7 @@
 
 
 @@"./category_1_load_test_data.sql";
-@@"../../../CDVM/test cases/SQL/category_1_load_DVM_rules.sql";
+@@"../../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql";
 COMMIT;
+
+@@"./category_2_exec_test_cases.sql";

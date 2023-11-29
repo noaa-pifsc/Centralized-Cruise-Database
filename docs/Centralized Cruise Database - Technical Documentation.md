@@ -14,10 +14,10 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 -   [PL/SQL Coding Conventions](./Centralized%20Cruise%20Database%20-%20PLSQL%20Coding%20Conventions.md)
 -   [CCD Data Integration SOP](./Centralized%20Cruise%20Database%20-%20Data%20Integration%20SOP.md)
 -   [CCD Oracle Package (CCDP)](./packages/CCDP/CCDP%20Documentation.md)
-    -   [Automated Testing Documentation](./packages/CCDP/test%20cases/CCDP%20Testing%20Documentation.md)
+    -   [Automated Testing Documentation](./packages/CCDP/test_cases/CCDP%20Testing%20Documentation.md)
     -   [CRDMA CCDP Testing Documentation](../CRDMA/docs/test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
 -   [CCD Data Validation Module (CDVM)](./packages/CDVM/CDVM%20Documentation.md)
-    -   [Automated Testing Documentation](./packages/CDVM/test%20cases/CDVM%20Testing%20Documentation.md)
+    -   [Automated Testing Documentation](./packages/CDVM/test_cases/CDVM%20Testing%20Documentation.md)
     -   [CRDMA CDVM Testing Documentation](../CRDMA/docs/test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 
 ## Database Setup:

@@ -5,7 +5,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## Resources:
 -   [DVM](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule)
--   [CDVM Testing](./test%20cases/CDVM%20Testing%20Documentation.md)
+-   [CDVM Testing](./test_cases/CDVM%20Testing%20Documentation.md)
 -   [Cruise Data Management Application (CRDMA) CDVM Testing](../../../CRDMA/docs/test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 -   [CCD Documentation](../../Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 -   [CCD Business Rules](../../Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md)
@@ -24,14 +24,14 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## DVM QC Validation Criteria:
 -   Technical documentation for the DVM can be found in the [DVM repository](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) in the [DVM Documentation](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/Data%20Validation%20Module%20Documentation.md) and instructions for how to define the QC criteria can be found in the [DVM SOP](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/blob/master/docs/How%20to%20Define%20Criteria%20in%20Data%20Validation%20Module.md).
-    -   This project defines [automated DVM test cases](./test%20cases/CDVM%20Testing%20Documentation.md) to ensure that the DVM and CDVM produce the desired outcome based on the defined test cases.
+    -   This project defines [automated DVM test cases](./test_cases/CDVM%20Testing%20Documentation.md) to ensure that the DVM and CDVM produce the desired outcome based on the defined test cases.
 -   The specific QC criteria developed for the CCD database can be found in the CCD repository in the [QC Validation Criteria](../../QC%20Validation%20Criteria.xlsx) spreadsheet which was exported into [load_DVM_rules.sql](../../../SQL/queries/load_DVM_rules.sql)
 -   Before executing the DVM query the [DVM Configuration QC views](#DVM_QC_config_queries) to ensure that the module configuration is valid.
 -   Annotating QC Validation Issues:
     -   The [Cruise Data Management Application](../../../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md) provides an interface for authorized users to review and annotate QC validation issues identified by the DVM
 
 ## DVM and CDVM Features:
--   The CDVM automated test cases are defined in the [CDVM Testing documentation](./test%20cases/CDVM%20Testing%20Documentation.md)
+-   The CDVM automated test cases are defined in the [CDVM Testing documentation](./test_cases/CDVM%20Testing%20Documentation.md)
 -   The CRDMA CDVM test cases are defined in the [CRDMA CDVM Testing documentation](../../../CRDMA/docs/test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 -   Standard Reports:
     -   DVM Validation Rule Sets:

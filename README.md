@@ -11,8 +11,8 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 - Installation instructions can be found in the [CCD Documentation](./docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md#database-setup)
 
 ## Running the tests
-- [Data Validation Module (DVM) Tests](./docs/packages/CDVM/test%20cases/CDVM%20Testing%20Documentation.md)
-- [CCD Oracle Package (CCDP) Tests](./docs/packages/CCDP/test%20cases/CCDP%20Testing%20Documentation.md)
+- [Data Validation Module (DVM) Tests](./docs/packages/CDVM/test_cases/CDVM%20Testing%20Documentation.md)
+- [CCD Oracle Package (CCDP) Tests](./docs/packages/CCDP/test_cases/CCDP%20Testing%20Documentation.md)
 - [Cruise Data Management Application (CRDMA) Tests](./CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Testing%20Documentation.md)
 
 ## Resources
