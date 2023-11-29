@@ -31,6 +31,9 @@ SPOOL logs/&spoolname APPEND
 SET DEFINE OFF
 SHOW USER;
 
+PROMPT define data schema synonyms
+@@queries/define_data_schema_synonyms.sql
+
 PROMPT running DDL scripts
 @@upgrades/centralized_cruise_DDL_DML_upgrade_v0.1.sql
 --@@upgrades/centralized_cruise_DDL_DML_upgrade_v0.2.sql
