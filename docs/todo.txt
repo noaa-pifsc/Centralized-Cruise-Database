@@ -17,9 +17,9 @@ X update the cruise leg start/end date field comments to say in local timezone (
 
 
 
-_ update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
+X update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
-_ document business rules:
+X document business rules:
 	X CRDMA:
 		X Only admins can update reference lists
 		X Read and Write can view reference lists
@@ -30,16 +30,16 @@ _ document business rules:
 	X document in CCD (data_set_CAT_ID references the PARR Tools data set metadata record - CAT_ID)
 		X data integration (PICDM.CAT_ID)
 			X create views to pull 
-PICDM objects:
-				X CCD_LEG_DATA_SETS_V
-				X CCD_DATA_SETS_INP_V
-		
 
+X integration of PICDM objects:
+	X CCD_LEG_DATA_SETS_V
+	X CCD_DATA_SETS_INP_V
+		
 
 _ update CRDMA testing documentation to reflect the new CRDMA authorization policies
 
 
-_ document business rule for data set status display (css class for each STATUS_CODE value)
+X document business rule for data set status display
 
 
 
@@ -96,15 +96,15 @@ X make all unique character keys unique using the UPPER function? YES
 
 _ document that other schemas should use UPPER() whenever translating them into the corresponding numeric keys
 
-_ document role definitions in business rules
-	_ Export the list of permissions associated with each role as a standard document?
+X document role definitions in business rules
+	X Export the list of permissions associated with each role as a standard document?
 		query: select * from role_tab_privs where OWNER = 'CEN_CRUISE' order by ROLE, TABLE_NAME, PRIVILEGE;
 
 _ update documentation to align with MOUSS documentation:
 	X db
-	tech apex documentation 
-	user apex documentation
-	business rules
+	X tech apex documentation 
+	X user apex documentation
+	_ business rules
 		X document CCD_CRUISE_PKG
 		X document CCD_DVM_PKG
 	X How To Configure Application.md
@@ -112,11 +112,9 @@ _ update documentation to align with MOUSS documentation:
 
 
 X update grant_external_schema_privs.sql to use the roles/privs granted to the MOUSS DB/app:
-	_ define synonyms for a typical integration data schema (e.g. MOUSS)
-	_ update the cruise data integration SOP
+	X define synonyms for a typical integration data schema (e.g. MOUSS)
+	_ update the cruise data integration SOP to reference the scripts
 	_ update the general integration SOP to implement roles and synonyms as well and to cite the updated MOUSS DB and Cruise DB as example implementations
-
-
 
 
 
@@ -198,10 +196,10 @@ All delimited queries can be defined - do not duplicate tables either since it w
 
 
 
-_ define roles for CCD
-	_ document roles for CCD 
-		_ business rules
-		_ reference business rules in CCD DB documentation
+X define DB roles for CCD
+	X document roles for CCD 
+		X business rules
+		X reference business rules in CCD DB documentation
 
 
 	X Define and populate roles:
@@ -254,7 +252,7 @@ to do (DB version 1.0):
 		X Add synonyms to application schema
 
 		X add/update history tracking package for appropriate CCD tables
-			_ document in DB documentation
+			X document in DB documentation
 
 
 		X update CCD_CCDP_DEEP_COPY_CMP_V view to include leg data set information
@@ -273,7 +271,7 @@ to do (DB version 1.0):
 			X CCD_QC_CRUISE_V
 			
 			
-		_ identify APEX pages that need to have the leg data set aggregate info included
+		X identify APEX pages that need to have the leg data set aggregate info included
 
 		X add leg data sets to DDL/DML generator document
 			X export updated values to data set loading script
