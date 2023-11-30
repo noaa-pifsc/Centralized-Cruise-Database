@@ -12424,7 +12424,7 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
---			V_TEMP_LOG_SOURCE := 'DEEP_COPY_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := 'DEEP_COPY_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
 			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEEP_COPY_CRUISE_SP ()', V_SP_RET_CODE);
 
@@ -12642,12 +12642,12 @@ END;
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
 			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||' - COPY_ASSOC_VALS_SP (P_TABLE_LIST: ('||APEX_UTIL.table_to_string(P_TABLE_LIST, ', ')||'), P_PK_FIELD_NAME: '||P_PK_FIELD_NAME||', P_SOURCE_ID: '||P_SOURCE_ID||', P_NEW_ID: '||P_NEW_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_VALS_SP ()', V_SP_RET_CODE);
+			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_VALS_SP ()', V_SP_RET_CODE);
 
 			--loop through each table, query for the fields that should be set from the source record and then construct the INSERT-SELECT queries for each of the cruise/cruise leg attributes:
 			for i in 1..P_TABLE_LIST.count LOOP
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Process the current table: '||P_TABLE_LIST(i), V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Process the current table: '||P_TABLE_LIST(i), V_SP_RET_CODE);
 
 				--store the current table name:
 				V_CURR_TABLE_NAME := P_TABLE_LIST(i);
@@ -12658,32 +12658,33 @@ END;
 				--execute the query and store the record count as V_NUM_ATTRIBUTES
 				EXECUTE IMMEDIATE V_QUERY_STRING INTO V_NUM_ATTRIBUTES USING P_SOURCE_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The number of records for the current attribute table is: '||V_NUM_ATTRIBUTES, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The number of records for the current attribute table is: '||V_NUM_ATTRIBUTES, V_SP_RET_CODE);
 
 				--check to see if there are any associated records for the current attribute table:
 				IF (V_NUM_ATTRIBUTES > 0) THEN
 					--there are one or more records associated with the current cruise/cruise leg attribute table
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There was at least one associated record for the current attribute table, generate the INSERT..SELECT query', V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There was at least one associated record for the current attribute table, generate the INSERT..SELECT query', V_SP_RET_CODE);
 
 
 					--query for all of the field names that are not auditing fields or the PK field (P_PK_FIELD_NAME) so the values can be used to generate a SQL insert statement to insert the attribute table records associated with the source record (P_SOURCE_ID for either CCD_CRUISES or CCD_CRUISE_LEGS based on P_PK_FIELD_NAME) for the destination record (P_NEW_ID):
 					select distinct user_tab_cols.column_name bulk collect into V_FIELD_LIST
 					from user_tab_cols
-					where user_tab_cols.table_name = P_TABLE_LIST(i) AND user_tab_cols.column_name not in ('CREATE_DATE', 'CREATED_BY', P_PK_FIELD_NAME)
+					where user_tab_cols.HIDDEN_COLUMN = 'NO' AND user_tab_cols.VIRTUAL_COLUMN = 'NO'
+					AND user_tab_cols.table_name = P_TABLE_LIST(i) AND user_tab_cols.column_name not in ('CREATE_DATE', 'CREATED_BY', 'LAST_MOD_DATE', 'LAST_MOD_BY', P_PK_FIELD_NAME)
 					AND user_tab_cols.column_name not in (select user_cons_columns.column_name from user_cons_columns inner join user_constraints on user_constraints.constraint_name = user_cons_columns.constraint_name and user_constraints.owner = user_cons_columns.owner WHERE user_constraints.constraint_type = 'P' AND user_cons_columns.table_name = user_tab_cols.table_name AND user_cons_columns.owner = sys_context( 'userenv', 'current_schema' ));
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The attribute table query was successful, generate the INSERT..SELECT query', V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The attribute table query was successful, generate the INSERT..SELECT query', V_SP_RET_CODE);
 
 					--construct the SQL INSERT statement to insert the current attribute record for the new cruise/cruise leg record (based on P_PK_FIELD_NAME) based on the source record (P_SOURCE_ID) for the new record (P_NEW_ID)
 					V_QUERY_STRING := 'INSERT INTO '||P_TABLE_LIST(i)||' ('||apex_util.table_to_string(V_FIELD_LIST, ',')||', '||P_PK_FIELD_NAME||') SELECT '||apex_util.table_to_string(V_FIELD_LIST, ',')||', :NEW_ID FROM '||P_TABLE_LIST(i)||' WHERE '||P_PK_FIELD_NAME||' = :SOURCE_ID';
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of the generated string is: '||V_QUERY_STRING, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of the generated string is: '||V_QUERY_STRING, V_SP_RET_CODE);
 
 					--execute the SQL INSERT query:
 					EXECUTE IMMEDIATE V_QUERY_STRING USING P_NEW_ID, P_SOURCE_ID;
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The insert-select query was successful', V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The insert-select query was successful', V_SP_RET_CODE);
 
 
 				END IF;
@@ -12814,8 +12815,7 @@ END;
 INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Centralized Cruise Database', '1.0', TO_DATE('04-OCT-23', 'DD-MON-YY'), 'Upgraded from Version 0.4 (Git tag: APX_Cust_Err_Handler_db_v0.4) to	Version 1.0 (Git tag: APX_Cust_Err_Handler_db_v1.0) of the APEX custom error handler module database (Git URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder). Upgraded from Version 1.0 (Git tag: centralized_configuration_db_v1.0) to Version 1.1 (Git tag: centralized_configuration_db_v1.1) of the Centralized Configuration database (Git URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git). Dropped the standalone AAM. Added TZ offset to cruise legs table. Changed all unique character string keys to create a unique index using the UPPER() value to make the unique values case-insensitive.	Updated the CCD_DATA_SETS table to drop unnecessary fields and reference the PICDM.ODS_INP_DATASET_SCORING table directly.	Created leg data sets table to associate cruise legs and data set records. Created a new CCD_DATA_SETS_V view to relate the data set and associated reference tables. CCD_LEG_DATA_SETS_MIN_V was created to include the minimum useful leg data set information for performance purposes. Created leg intersection table views to relate the leg regional ecosystems, leg gear, and leg regions.	Created a minimal view (CCD_LEG_V) for leg information, CCD_LEG_AGG_V for all leg aggregate information for a given cruise.	CCD_CRUISE_V was modified to be a minimal cruise information view. CCD_CRUISE_AGG_V was created to provide the aggregate cruise leg information for each cruise.	CCD_CRUISE_DELIM_V uses all the aggregated cruise information and also provides delimited values for each of the cruise-level many-to-many relationships.	Renamed CCD_CRUISE_LEGS_V to CCD_CRUISE_LEG_V and used the new minimal cruise and leg views. Created aggregate view CCD_CRUISE_LEG_AGG_V to provide all cruise and leg information including the aggregate leg information. Developed CCD_LEG_DELIM_V to include all aggregate leg information and delimited information for all leg reference table information (e.g. leg data sets). Defined CCD_CRUISE_LEG_DELIM_V to include the delimited cruise and associated delimited leg information. CCD_LEG_DATA_SETS_V was created to relate the leg data sets and associated InPort data set information. CCD_CRUISE_SUMM_V was created to join the delimited cruise information with the unique delimited associated leg information.');
 
 --append more text onto the existing upgrade description
-UPDATE DB_UPGRADE_LOGS SET UPGRADE_DESC = UPGRADE_DESC||' CCD_CRUISE_SUMM_ISS_V was updated to join CCD_CRUISE_SUMM_V fields with DVM issues.	CCD_CRUISE_ISS_SUMM_V was created to associate the CCD_CRUISE_SUMM_V information with the aggregate information validation information. The Data Validation Module standard views CCD_CRUISE_DVM_EVAL_V, CCD_CRUISE_DVM_EVAL_RPT_V, CCD_CRUISE_DVM_RULE_EVAL_V, CCD_CRUISE_DVM_RULE_EVAL_RPT_V, CCD_CRUISE_DVM_RULES_V, CCD_CRUISE_DVM_RULES_RPT_V were updated with the updated cruise views.	CCD_QC_CRUISE_V was updated to use the updated CCD_CRUISE_DELIM_V view.	CCD_QC_LEG_V was updated to use the new CCD_LEG_DELIM_V view.	CCD_QC_LEG_OVERLAP_V and CCD_QC_LEG_ALIAS_V were updated to use the new CCD_CRUISE_LEG_V view. CCD_CCDP_DEEP_COPY_CMP_V was updated to compare leg data set information.	CCD_CRUISE_LEG_DATA_SETS_V was updated to include the InPort data set information.	CCD_CRUISE_LEG_DATA_SETS_MIN_V was created as a minimal view for cruise leg aggregate information leg data set information.	CCD_DATA_SETS_INP_V was created to relate the data set information with the InPort data set information.	Implemented the data history tracking package on all core CCD tables.  The CCD_DVM_PKG package was updated to remove unnecessary DB logging debugging entries and to use the CEN_UTILS object synonyms.	The CCD_CRUISE_PKG package was updated to change the LEG_ALIAS_TO_CRUISE_LEG_ID_FN function to include LEG_NAME and the leg aliases when attempting to resolve the leg name parameter to CRUISE_LEG_ID values, added CRUISE_NAME_TO_CRUISE_ID_FN function to resolve a cruise name to a CRUISE_ID value, and removed unnecessary database debugging logging statements.' WHERE UPGRADE_APP_NAME = 'Centralized Cruise Database' AND UPGRADE_VERSION = '1.0';
-
+UPDATE DB_UPGRADE_LOGS SET UPGRADE_DESC = UPGRADE_DESC||' CCD_CRUISE_SUMM_ISS_V was updated to join CCD_CRUISE_SUMM_V fields with DVM issues.	CCD_CRUISE_ISS_SUMM_V was created to associate the CCD_CRUISE_SUMM_V information with the aggregate information validation information. The Data Validation Module standard views CCD_CRUISE_DVM_EVAL_V, CCD_CRUISE_DVM_EVAL_RPT_V, CCD_CRUISE_DVM_RULE_EVAL_V, CCD_CRUISE_DVM_RULE_EVAL_RPT_V, CCD_CRUISE_DVM_RULES_V, CCD_CRUISE_DVM_RULES_RPT_V were updated with the updated cruise views.	CCD_QC_CRUISE_V was updated to use the updated CCD_CRUISE_DELIM_V view.	CCD_QC_LEG_V was updated to use the new CCD_LEG_DELIM_V view.	CCD_QC_LEG_OVERLAP_V and CCD_QC_LEG_ALIAS_V were updated to use the new CCD_CRUISE_LEG_V view. CCD_CCDP_DEEP_COPY_CMP_V was updated to compare leg data set information.	CCD_CRUISE_LEG_DATA_SETS_V was updated to include the InPort data set information.	CCD_CRUISE_LEG_DATA_SETS_MIN_V was created as a minimal view for cruise leg aggregate information leg data set information.	CCD_DATA_SETS_INP_V was created to relate the data set information with the InPort data set information.	Implemented the data history tracking package on all core CCD tables.  The CCD_DVM_PKG package was updated to remove unnecessary DB logging debugging entries and to use the CEN_UTILS object synonyms.	The CCD_CRUISE_PKG package was updated to change the LEG_ALIAS_TO_CRUISE_LEG_ID_FN function to include LEG_NAME and the leg aliases when attempting to resolve the leg name parameter to CRUISE_LEG_ID values, added CRUISE_NAME_TO_CRUISE_ID_FN function to resolve a cruise name to a CRUISE_ID value, and removed unnecessary database debugging logging statements.  Also applied bug fix to CCD_CRUISE_PKG for virtual columns that were added to the data model due to the unique indexes that specify UPPER() column values' WHERE UPGRADE_APP_NAME = 'Centralized Cruise Database' AND UPGRADE_VERSION = '1.0';
 
 --commit the DB_UPGRADE_LOGS record insertion
 COMMIT;

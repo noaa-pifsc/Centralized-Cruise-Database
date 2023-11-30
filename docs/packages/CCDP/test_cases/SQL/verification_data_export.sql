@@ -75,9 +75,9 @@ PROMPT &V_CURR_DATE_TIME_VALUE. - Connected as &_USER
 --category 1 scripts:
 PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 1 test case scripts
 
-SET TERMOUT ON;
-SET FEEDBACK ON;
-SET ECHO ON;
+SET TERMOUT OFF;
+SET FEEDBACK OFF;
+SET ECHO OFF;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
 @@category_1_exec_all_scripts.sql

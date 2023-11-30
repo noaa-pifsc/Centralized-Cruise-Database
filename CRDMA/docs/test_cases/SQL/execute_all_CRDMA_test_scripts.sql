@@ -3,7 +3,7 @@
 @@"../../../../SQL/queries/delete_ref_data.sql";
 
 --load the category 1 DVM rules
-@@"../../../../docs/packages/CDVM/test cases/SQL/category_1_load_DVM_rules.sql";
+@@"../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql";
 
 --load the reference data:
 @@"./load_CRDMA_test_data.sql";
