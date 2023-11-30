@@ -4926,7 +4926,7 @@ select v_orig.cruise_name orig_cruise_name, v_copy.cruise_name copy_cruise_name,
  AND (v_orig.REGION_NAME_RC_LIST =	v_copy.REGION_NAME_RC_LIST OR (v_orig.REGION_NAME_RC_LIST IS NULL AND v_copy.REGION_NAME_RC_LIST IS NULL))
  AND (v_orig.NUM_LEG_ALIASES =	v_copy.NUM_LEG_ALIASES OR (v_orig.NUM_LEG_ALIASES IS NULL AND v_copy.NUM_LEG_ALIASES IS NULL))
  AND (REPLACE(v_orig.LEG_ALIAS_RC_LIST, chr(10), ' (copy)'||chr(10))||' (copy)' =	v_copy.LEG_ALIAS_RC_LIST OR (v_orig.LEG_ALIAS_RC_LIST IS NULL AND v_copy.LEG_ALIAS_RC_LIST IS NULL))
- AND (v_orig.TZ_NAME = v_copy.TZ_NAME)
+ AND (v_orig.TZ_NAME = v_copy.TZ_NAME OR (v_orig.TZ_NAME IS NULL AND v_copy.TZ_NAME IS NULL))
 THEN 'Y' ELSE 'N' END) values_equal_yn
 
 from CCD_CRUISE_LEG_DELIM_V v_orig
