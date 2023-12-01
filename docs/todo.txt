@@ -44,7 +44,7 @@ X document business rule for data set status display
 
 
 APEX
-	(_ document in business rules, APEX tech/user, and APEX testing documents)
+	(document in X business rules, X APEX tech/user, and _ ** APEX testing documents)
 	X Implement read role (view readonly for all non-admin pages)
 	X Implement write role (read/write all non-admin pages)
 	X Update navigation menu to allow read roles to access pages that have readonly access

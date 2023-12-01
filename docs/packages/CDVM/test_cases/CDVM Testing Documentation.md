@@ -1,11 +1,11 @@
 # Centralized Cruise Database DVM Testing Documentation
 
 ## Overview:
-The Centralized Cruise Database (CCD) was developed to manage cruise information for PIFSC. The CCD Data Validation Module (CDVM) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules.  The CDVM is utilized to perform automated data Quality Control (QC) on the CCD to help ensure the quality of the data. There are two different methods for test case verification: SQL and PL/SQL. The standard method for defining formal, repeatable test cases and verifying them for both the DVM and CDVM are defined in this document.
+The Centralized Cruise Database (CCD) was developed to manage cruise information for PIFSC. The CCD Data Validation Module (CDVM) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) to implement specific business rules defined for the CCD and associated modules.  The CDVM is utilized to perform automated data Quality Control (QC) on the CCD to help ensure the quality of the data. There are two different methods for test case verification: SQL and PL/SQL. The standard method for defining formal, repeatable test cases and verifying them for both the DVM and CDVM are defined in this document.
 
 ## Resources:
 -   [CDVM Documentation](../CDVM%20Documentation.md)
-    -   [DVM](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module)
+    -   [DVM](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule)
 -   [CCD Documentation](../../../Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 -   [PL/SQL Coding Conventions](../../../Centralized%20Cruise%20Database%20-%20PLSQL%20Coding%20Conventions.md)
 -   [CDVM Automated Test Cases](./CDVM%20Test%20Cases.xlsx)
@@ -125,6 +125,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   DVM test script: [batch_DVM_script.sql](../../../../SQL/queries/batch_DVM_script.sql)
         -   Validation Issues:
             -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+            -   Test Case Worksheet Name: "Category 1 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_1_DVM_issue_verification.xlsx](./verification_templates/category_1_DVM_issue_verification.xlsx)
                 -   Export: [category_1_DVM_issue_verification.csv](./verification_templates/automated/category_1_DVM_issue_verification.csv)
@@ -140,6 +141,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
                 -   Re-execute the DVM: [batch_DVM_script.sql](../../../../SQL/queries/batch_DVM_script.sql)
         -   Validation Issues:
             -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+            -   Test Case Worksheet Name: "Category 2 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
                 -   Template: [category_2_DVM_issue_verification.xlsx](./verification_templates/category_2_DVM_issue_verification.xlsx)
                 -   Export: [category_2_DVM_issue_verification.csv](./verification_templates/automated/category_2_DVM_issue_verification.csv)
     -   Category 3 Cases (SQL verification):
@@ -151,12 +153,13 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   DVM test script: [category_3_exec_DVM.sql](./SQL/category_3_exec_DVM.sql)
         -   Validation Issues:
             -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+            -   Test Case Worksheet Name: "Category 3 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_3_DVM_issue_verification.xlsx](./verification_templates/category_3_DVM_issue_verification.xlsx)
                 -   Export: [category_3_DVM_issue_verification.csv](./verification_templates/automated/category_3_DVM_issue_verification.csv)
     -   Category 4 Cases (PL/SQL verification)
         -   These test cases verify the different error conditions that can be feasibly tested are handled correctly
-            -   A list of DVM error codes that are tested in this category for the DVM_PKG package can be found in the [DVM](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) in the [Business Rules List](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Processing Errors" and "Test Case Exists?" column values are "yes"
+            -   A list of DVM error codes that are tested in this category for the DVM_PKG package can be found in the [DVM](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule) in the [Business Rules List](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Processing Errors" and "Test Case Exists?" column values are "yes"
         -   Test cases setup
             -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute all individual scripts listed below to setup the test cases for this test case category: [category_4_exec_all_scripts.sql](./SQL/category_4_exec_all_scripts.sql)
                 -   Load test data:
@@ -165,6 +168,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
                 -   Execute the DVM: [batch_DVM_script.sql](../../../../SQL/queries/batch_DVM_script.sql)
         -   DVM test script: [category_4_exec_DVM.sql](./SQL/category_4_exec_DVM.sql)
         -   Validation Issues:
+            -   Test Case Worksheet Name: "Category 4 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Export: [category_4_script_output_verification.txt](./verification_templates/automated/category_4_script_output_verification.txt)
     -   Category 5 Cases (SQL verification)
         -   Description: These test cases verify the CCD [business rules](../../../Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) that address the different overlapping Cruise Leg use cases to ensure the DVM data is kept up-to-date have been implemented successfully in the CDVM.   
@@ -188,6 +192,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   DVM test script: [category_5_exec_DVM.sql](./SQL/category_5_exec_DVM.sql)
         -   Validation Issues:
             -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+            -   Test Case Worksheet Name: "Category 5 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_5_DVM_issue_verification.xlsx](./verification_templates/category_5_DVM_issue_verification.xlsx)
                 -   Export: [category_5_DVM_issue_verification.csv](./verification_templates/automated/category_5_DVM_issue_verification.csv)
@@ -200,22 +205,25 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
             -   DVM test script: [category_6_exec_DVM.sql](./SQL/category_6_exec_DVM.sql)
         -   Validation Issues:
             -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+            -   Test Case Worksheet Name: "Category 6 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_6_DVM_issue_verification.xlsx](./verification_templates/category_6_DVM_issue_verification.xlsx)
                 -   Export: [category_6_DVM_issue_verification.csv](./verification_templates/automated/category_6_DVM_issue_verification.csv)
         -   Validation Rules:
             -   Execute the [Validation Rule Verification Query](#validation_rule_verification_query)
+            -   Test Case Worksheet Name: "Category 6 DVM Rules" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_6_DVM_rule_verification.xlsx](./verification_templates/category_6_DVM_rule_verification.xlsx)
                 -   Export: [category_6_DVM_rule_verification.csv](./verification_templates/automated/category_6_DVM_rule_verification.csv)
         -   PTA Validation Rules:
             -   Execute the [PTA Validation Rule Verification Query](#PTA_validation_rule_verification_query)
+            -   Test Case Worksheet Name: "Category 6 DVM PTA Rules" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_6_DVM_PTA_rule_verification.xlsx](./verification_templates/category_6_DVM_PTA_rule_verification.xlsx)
                 -   Export: [category_6_DVM_PTA_rule_verification.csv](./verification_templates/automated/category_6_DVM_PTA_rule_verification.csv)
     -   Category 7 Cases (SQL verification)
         -   These test cases verify the invalid DVM configuration QC checks that can be feasibly tested are identified correctly
-            -   A list of DVM configuration criteria that are tested in this test case category for the DVM_PKG package can be found in the https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module in the [Business Rules List](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Configuration QC"
+            -   A list of DVM configuration criteria that are tested in this test case category for the DVM_PKG package can be found in the https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule in the [Business Rules List](https://github.com/PIFSC-NMFS-NOAA/PIFSC-DataValidationModule/-/blob/master/docs/DVM%20-%20Business%20Rules.xlsx) where the "Scope" column values are "DVM Configuration QC"
             -   **Note: after processing this test case category all DVM rules and DVM data will be purged
             -   **Note: All DVM test scripts for this test case category must be executed or the data model will have been changed by the first DVM test script
         -   Test cases setup
@@ -226,12 +234,14 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
         -   DVM test script: [category_7_exec_DVM_1.sql](./SQL/category_7_exec_DVM_1.sql)
         -   Validation Issues:
             -   Execute the [DVM Configuration QC Verification Query](#DVM_Configuration_QC_Verification)
+            -   Test Case Worksheet Name: "Category 7 Config Errors - 1" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_7_DVM_config_error_verification_1.xlsx](./verification_templates/category_7_DVM_config_error_verification_1.xlsx)
                 -   Export: [category_7_DVM_config_error_verification_1.csv](./verification_templates/automated/category_7_DVM_config_error_verification_1.csv)
         -   DVM test script: [category_7_exec_DVM_2.sql](./SQL/category_7_exec_DVM_2.sql)
         -   Validation Issues:
             -   Execute the [DVM View Configuration QC Verification Query](#DVM_View_Configuration_QC)
+            -   Test Case Worksheet Name: "Category 7 Config Errors - 2" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_7_DVM_config_error_verification_2.xlsx](./verification_templates/category_7_DVM_config_error_verification_2.xlsx)
                 -   Export: [category_7_DVM_config_error_verification_2.csv](./verification_templates/automated/category_7_DVM_config_error_verification_2.csv)
@@ -243,6 +253,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
         -   Revert DVM/CCD data model changes and delete all DVM rules and data: [category_7_exec_DVM_3.sql](SQL/category_7_exec_DVM_3.sql)
         -   Validation Issues:
             -   Execute the [DVM Configuration QC Verification Query](#DVM_Configuration_QC_Verification)
+            -   Test Case Worksheet Name: "Category 7 Config Errors - 3" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Files:
                 -   Template: [category_7_DVM_config_error_verification_3.xlsx](./verification_templates/category_7_DVM_config_error_verification_3.xlsx)
                 -   Export: [category_7_DVM_config_error_verification_3.csv](./verification_templates/automated/category_7_DVM_config_error_verification_3.csv)
@@ -256,6 +267,7 @@ The Centralized Cruise Database (CCD) was developed to manage cruise information
                     -   DVM rules: [category_1_load_DVM_rules.sql](./SQL/category_1_load_DVM_rules.sql)
         -   DVM test script: [category_8_exec_DVM.sql](./SQL/category_8_exec_DVM.sql)
         -   Validation Issues:
+            -   Test Case Worksheet Name: "Category 8 DVM Tests" of the [test cases workbook](./CDVM%20Test%20Cases.xlsx)
             -   Verification Export: [category_8_script_output_verification.txt](./verification_templates/automated/category_8_script_output_verification.txt)
 
 ## Appendix:
