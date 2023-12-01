@@ -103,7 +103,7 @@ wwv_flow_imp.create_flow(
 ,p_populate_roles=>'A'
 ,p_application_tab_set=>0
 ,p_logo_type=>'T'
-,p_logo_text=>'PIFSC Cruise App'
+,p_logo_text=>'PIFSC Cruise Data Management Application'
 ,p_proxy_server=>nvl(wwv_flow_application_install.get_proxy,'')
 ,p_no_proxy_domains=>nvl(wwv_flow_application_install.get_no_proxy_domains,'')
 ,p_flow_version=>'release 1.0'
@@ -17091,7 +17091,7 @@ wwv_flow_imp_page.create_page(
  p_id=>101
 ,p_name=>'Login Page'
 ,p_alias=>'LOGIN_DESKTOP'
-,p_step_title=>'PIFSC Cruise App - Login'
+,p_step_title=>'PIFSC Cruise Data Management Application - Login'
 ,p_warn_on_unsaved_changes=>'N'
 ,p_first_item=>'AUTO_FIRST_ITEM'
 ,p_autocomplete_on_off=>'OFF'
@@ -17120,7 +17120,7 @@ wwv_flow_imp_page.create_page_plug(
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1183291853314801552)
-,p_plug_name=>'PIFSC Cruise App'
+,p_plug_name=>'PIFSC Cruise Data Management Application'
 ,p_region_template_options=>'#DEFAULT#'
 ,p_plug_template=>wwv_flow_imp.id(1183257576112801490)
 ,p_plug_display_sequence=>20
