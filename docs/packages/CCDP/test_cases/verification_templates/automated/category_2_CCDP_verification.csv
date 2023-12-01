@@ -1,9 +1,10 @@
+
 "ORIG_CRUISE_NAME","COPY_CRUISE_NAME","ORIG_LEG_NAME","COPY_LEG_NAME","VALUES_EQUAL_YN"
 "OES0908","OES0908 (copy)","OES0908_LEGI","OES0908_LEGI (copy)","Y"
 "OES0908","OES0908 (copy)","OES0908_LEGII","OES0908_LEGII (copy)","Y"
 "RL-17-05","RL-17-05 (copy)","RL-17-05 Leg 1","RL-17-05 Leg 1 (copy)","Y"
 "RL-17-05","RL-17-05 (copy)","RL-17-05 Leg 2","RL-17-05 Leg 2 (copy)","Y"
-"SE-17-07","SE-17-07 (copy)","","","Y"
-"TC0109","TC0109 (copy)","","","Y"
+"SE-17-07","SE-17-07 (copy)",,,"Y"
+"TC0109","TC0109 (copy)",,,"Y"
 "TC9909","TC9909 (copy)","TC9909_LEGI","TC9909_LEGI (copy)","Y"
 "TC9909","TC9909 (copy)","TC9909_LEGII","TC9909_LEGII (copy)","Y"
