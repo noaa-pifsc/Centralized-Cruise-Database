@@ -17,6 +17,17 @@ X update the cruise leg start/end date field comments to say in local timezone (
 
 
 
+Version 1.0
+	Tags: 
+		CCD_data_integration_SOP_v1.2
+		DB
+		APEX app
+		DVM
+		VCM
+		SQL Scripts (for role/permissions reports)
+		
+
+
 X update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
 X document business rules:
@@ -40,6 +51,15 @@ _ update CRDMA testing documentation to reflect the new CRDMA authorization poli
 
 
 X document business rule for data set status display
+
+
+	_ upgrade and rollback plan
+		X dev
+			X diff (using _TMP schema)
+		test
+			diff
+		prod
+			diff
 
 
 

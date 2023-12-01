@@ -1,5 +1,5 @@
 /************************************************************************************
- Filename   : deploy_dev_v1.0.sql
+ Filename   : deploy_qa_v1.0.sql
  Author     : Jesse Abdul
  Purpose    : PIFSC Personnel Tracking System db changes for version 1.0
 
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'CCD_DB_deploy_dev_v1.0_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'CCD_DB_deploy_qa_v1.0_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 
