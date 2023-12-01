@@ -1,5 +1,5 @@
 /************************************************************************************
- Filename   : deploy_dev_v1.0.sql
+ Filename   : deploy_prod_v1.0.sql
  Author     : Jesse Abdul
  Purpose    : Centralized Cruise db changes for version 1.0
 
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'CCD_DB_deploy_dev_v1.0_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'CCD_DB_deploy_prod_v1.0_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 
@@ -69,7 +69,7 @@ PROMPT granting privileges to CCD roles:
 @@"../docs/releases/1.0/Deployment_Scripts/db/grant_CCD_role_permissions.sql"
 
 PROMPT loading data
-@@"../docs/releases/1.0/Deployment_Scripts/db/load_dev_test_ref_data.sql"
+@@"../docs/releases/1.0/Deployment_Scripts/db/load_prod_ref_data.sql"
 @@"../docs/releases/1.0/Deployment_Scripts/db/load_config_values.sql"
 
 PROMPT load DVM rules

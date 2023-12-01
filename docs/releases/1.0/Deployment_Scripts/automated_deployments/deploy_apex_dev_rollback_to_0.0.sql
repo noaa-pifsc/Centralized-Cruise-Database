@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'CCD_DB_deploy_rollback_v1.2_to_v0.0_dev_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'CCD_DB_deploy_rollback_v1.0_to_v0.0_dev_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 

@@ -1,5 +1,5 @@
 /************************************************************************************
- Filename   : deploy_dev_rollback_to_0.0.sql
+ Filename   : deploy_prod_rollback_to_0.0.sql
  Author     : Jesse Abdul
  Purpose    : Centralized Authorization System db changes to rollback version 1.0 to 0.0
 
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'CCD_DB_deploy_rollback_v1.0_to_v0.0_dev_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'CCD_DB_deploy_rollback_v1.0_to_v0.0_prod_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 

@@ -1,9 +1,9 @@
 /************************************************************************************
  Filename   : deploy_qa_rollback_to_0.0.sql
  Author     : Jesse Abdul
- Purpose    : Centralized Authorization System db changes to rollback version 1.2 to 0.0
+ Purpose    : Centralized Authorization System db changes to rollback version 1.0 to 0.0
 
- Description: The release included reverting changes from the version 0.0 to 1.2 upgrade process
+ Description: The release included reverting changes from the version 0.0 to 1.0 upgrade process
 
 ************************************************************************************/
 SET FEEDBACK ON

@@ -52,7 +52,25 @@ _ update CRDMA testing documentation to reflect the new CRDMA authorization poli
 
 X document business rule for data set status display
 
-
+_ what data should be included in the initial production database deployment?
+	** _ Can we get an export from FINSS of VPASS?
+		Data Needed:
+			CCD_CRUISES
+			CCD_CRUISE_LEGS
+			CCD_LEG_ALIASES (optional or can be defined in interface)
+			CCD_LEG_REGIONS
+			CCD_CRUISE_SVY_CATS
+			CCD_CRUISE_SPP_ESA
+			CCD_CRUISE_SPP_FSSI
+			CCD_CRUISE_SPP_MMPA
+			CCD_CRUISE_EXP_SPP
+			CCD_LEG_ECOSYSTEMS
+			CCD_LEG_GEAR
+			CCD_TGT_SPP_OTHER
+			CCD_DATA_SET_TYPES
+			CCD_DATA_SETS
+			CCD_LEG_DATA_SETS
+			
 	_ upgrade and rollback plan
 		X dev
 			X diff (using _TMP schema)

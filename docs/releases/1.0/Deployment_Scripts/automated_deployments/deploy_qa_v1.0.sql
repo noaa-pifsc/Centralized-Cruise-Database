@@ -1,7 +1,7 @@
 /************************************************************************************
  Filename   : deploy_qa_v1.0.sql
  Author     : Jesse Abdul
- Purpose    : PIFSC Personnel Tracking System db changes for version 1.0
+ Purpose    : Centralized Cruise db changes for version 1.0
 
  Description: The release included: initial data model deployment for version 1.0 of the DB
 
