@@ -32,7 +32,7 @@ SET DEFINE OFF
 SHOW USER;
 
 PROMPT rollback the database changes
-@@"../docs/releases/1.1/Deployment_Scripts/rollback/db_downgrade_1.0_to_0.0.sql"
+@@"../docs/releases/1.0/Deployment_Scripts/rollback/db_downgrade_1.0_to_0.0.sql"
 
 DISCONNECT;
 
