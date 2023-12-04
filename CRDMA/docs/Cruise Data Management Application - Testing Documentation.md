@@ -24,9 +24,12 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   Confirmed that the select field filtering is working properly
         -   Confirmed that select field help text is working properly
 -   Page 210
-    -   Confirmed that only authorized users can access this page
-        -   Logout in new browser tab and reload page
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
+    -   Page Loading
+        -   Logout in new browser tab and load the page (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
     -   Confirmed that the report functionality is working properly
         -   Confirm that the report table contents are rendered correctly
         -   Confirm help text on report table column headings work properly
@@ -34,12 +37,18 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Confirm that the Edit link opens the View/Edit Cruise Form with the selected Cruise
         -   Confirm that the Copy link opens the View/Edit Cruise Form with the copied cruise information and cruise attributes pre-populated with the copied Cruise's information
 -   Page 220
-    -   Confirmed that only authorized users can access this page
-        -   Logout in new browser tab and reload page
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
-    -   Confirmed that unauthorized users cannot save changes to the database
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Create Another/Apply Changes buttons
-        -   Logout in new browser tab and click the Create/Create Another/Apply Changes buttons (session has expired error)
+    -   Page Loading
+        -   Logout in new browser tab and load the page (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
+    -   Confirmed authorized users can insert/update/delete records
+        -   Logout in new browser tab and click Save button (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
     -   Invalid Page Arguments:
         -   Confirm the page displays a "You have reached this page incorrectly" when the P220_CRUISE_ID, or P220_CRUISE_ID_COPY parameters are invalid (not a cruise_ID for an existing cruise record)
     -   View/Edit Cruise Form
@@ -94,20 +103,35 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                     -   Confirm the deletion works properly if there are attributes associated with the cruise leg and the field options are de-selected and the delete button is clicked
                 -   Confirm the deletion fails if there are related records (leg or cruise attributes)
                 -   Confirmed that unauthorized users cannot commit changes to the database
-                    -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
-                    -   Logout in new browser tab and click Delete button (session has expired error)
+                    -   Logout in new browser tab and click Save button (session has expired error)
+                    -   Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
+                    -   Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
+                    -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
+                    -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
                 -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Delete Cruise" functionality
             -   Deep Copy
                 -   Confirm the tooltip is working properly
                 -   Consult [CCD Oracle Package (CCDP) Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md) for a testing SOP for the "Deep Copy" functionality
+                -   Confirmed that unauthorized users cannot perform "deep copy" in the app
+                    -   Logout in new browser tab and click Save button (session has expired error)
+                    -   Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
+                    -   Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
+                    -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
+                    -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
 -   Page 230
     -   Confirmed that if there is no CRUISE_ID argument then the page shows a warning
-    -   Confirmed that only authorized users can access this page
-        -   Logout in new browser tab and reload page
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
-    -   Confirmed that unauthorized users cannot save changes to the database
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Create Another/Apply Changes buttons
-        -   Logout in new browser tab and click the Create/Create Another/Apply Changes buttons (session has expired error)
+    -   Page Loading
+        -   Logout in new browser tab and load the page (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
+    -   Confirmed authorized users can insert/update/delete records
+        -   Logout in new browser tab and click Save button (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
     -   Invalid Page Arguments:
         -   Confirm the page displays a "You have reached this page incorrectly" when the P230_CRUISE_LEG_ID, or P230_CRUISE_LEG_ID_COPY parameters are invalid (not a cruise_leg_ID for an existing cruise leg record)
             -   This can be accomplished by opening the View/Edit Cruise Leg page with the Create Leg, Update Cruise Leg, and Copy Cruise Leg buttons and then deleting/reloading cruise/cruise leg data (e.g. execute [execute_all_CRDMA_test_scripts.sql](./test_cases/SQL/execute_all_CRDMA_test_scripts.sql))
@@ -128,6 +152,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Confirm the different attribute presets (e.g. Gear) work properly
             -   Confirm the attribute filtering checkboxes work properly
         -   Confirm the Leg Alias interactive grid works properly
+            -   Confirm the tooltips are working properly
+				-   Confirm the Data Sets interactive grid works properly
             -   Confirm the tooltips are working properly
         -   New Cruise Leg
             -   Copy Cruise Leg Functionality:
@@ -161,17 +187,25 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                     -   Confirm that the related warnings/errors are removed from cruise after deletion (if any)
                 -   Confirm the deletion fails if there are related records (leg attributes)
                 -   Confirmed that unauthorized users cannot commit changes to the database
-                    -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
-                    -   Logout in new browser tab and click Delete button (session has expired error)
+                    -   Logout in new browser tab and click Save button (session has expired error)
+                    -   Update user group to [remove all permissions](#appendix) and click the Delete button (error - not authorized)
+                    -   Update user group to [assign the CCD READ role](#ccd-read) and then click the Delete button (error - not authorized)
+                    -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Delete button (ok)
+                    -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Delete button (ok)
                 -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Delete Cruise Leg" functionality
-
 -   Page 250
-    -   Confirmed that only authorized users can access this page
-        -   Logout in new browser tab and reload page
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
-    -   Confirmed that unauthorized users cannot commit changes to the database
-        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Save button
+    -   Page Loading
+        -   Logout in new browser tab and load the page (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
+    -   Confirmed authorized users can insert/update/delete records
         -   Logout in new browser tab and click Save button (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and click the save button (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button (ok)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
     -   Confirmed that the report table contents are rendered correctly
         -   Confirmed column heading help text is working properly
         -   Confirmed that the Cruise column links redirect the user to the View/Edit Cruise page for the selected Cruise
@@ -180,90 +214,127 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Confirmed that select field help text is working properly
     -   Apply changes for authorized user
         -   Confirmed that the record(s) are updated successfully
+-   (Page ID: 390) View/Edit Data Sets
+    -   This interactive grid page allows authorized users to manage data set records.  
+    -   Page Loading
+        -   Logout in new browser tab and load the page (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
+    -   Confirmed authorized users can insert/update/delete records
+        -   Logout in new browser tab and click Save button (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and click the save button (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button
 -   Pages 300 - 399 (Reference List Management Pages)
     -   An [inventory](./Cruise%20Data%20Management%20Application%20-%20Reference%20Preset%20Page%20Inventory.xlsx) of each page can be found on the "Reference Lists" worksheet and can be used to ensure that the test cases are confirmed on each of the CRDMA Reference List page
-    -   View Reference Records Report
+    -   Reference Records Interactive Grid
         -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and reload page
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
-        -   Confirmed that the report table contents are rendered correctly
+            -   Logout in new browser tab and load the page (session has expired error)
+            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
         -   Confirmed column heading help text is working properly
-        -   Confirm Create button opens View/Edit Reference Record Form with no values except for default values (e.g. Divisions defaults Science Center to PIFSC)
-        -   Update icon opens View/Edit Reference Record Form with the values loaded
-        -   (When applicable) Confirm other links work properly (e.g. View Divisions page allows Science Center records to be edited by clicking on the Science Center link)
-    -   View/Edit Reference Record Page
-        -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and reload page
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
-        -   Confirmed that unauthorized users cannot save changes to the database
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Apply Changes button
-            -   Logout in new browser tab and click Create/Apply Changes button (session has expired error)
-        -   Data Form
-            -   Confirm tooltips are working properly
-            -   Data Model QA:
-                -   Confirm required fields are enforced
-                -   Confirm unique name/code value constraints are enforced
-            -   New Reference Record
-                -   Form is loaded with no values
-                -   Create Button
-                    -   Confirm the record is saved successfully
-            -   Edit Reference Record
-                -   Form is loaded with selected record's values
-                -   Apply Changes Button
-                    -   Confirm the record is updated successfully
-                -   Delete Button
-                    -   Confirm the deletion works properly if there are no related records (reference record only)
-                    -   Confirm the deletion fails if there are related records (one or more related cruise/leg records)
-                    -   Confirmed that unauthorized users cannot delete records from the database
-                        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
-                        -   Logout in new browser tab and click Delete button (session has expired error)
+        -   Confirm Add Row shows a new record with no values except for default values (e.g. Divisions defaults Science Center to PIFSC)
+        -   Confirmed authorized users can insert/update records
+            -   Logout in new browser tab and click save button (session has expired error)
+            -   Update user group to [remove all permissions](#appendix) and click the save button (error - not authorized)
+            -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button
+        -   Data Model QA:
+            -   Confirm required fields are enforced
+            -   Confirm unique name/code value constraints are enforced
 -   Pages 300 - 399 (Reference List Preset Management Pages)
     -   An [inventory](./Cruise%20Data%20Management%20Application%20-%20Reference%20Preset%20Page%20Inventory.xlsx) of each page can be found on the "Presets" worksheet and can be used to ensure that the test cases are confirmed on each of the CRDMA Reference List Preset page
     -   View Reference Preset Records Report
         -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and reload page
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
+            -   Logout in new browser tab and click save button (session has expired error)
+            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active report/buttons)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active report/buttons)
         -   Confirmed that the report table contents are rendered correctly
         -   Confirmed column heading help text is working properly
         -   Confirm Create button opens View/Edit Reference Preset Record Form with no values
         -   Update icon opens View/Edit Reference Preset Record Form with the values loaded
     -   View/Edit Reference Preset Record Page
+        -   Confirm field tooltips are working
+        -   (When applicable) Confirm the Filter List functionality is working
+        -   Data Model QA:
+            -   Confirm required fields are enforced
+            -   Confirm unique name value constraints are enforced
         -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and reload page
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and reload page
+            -   Logout in new browser tab and load the page (session has expired error)
+            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
         -   Confirmed that unauthorized users cannot save changes to the database
-            -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Create/Apply Changes button
-            -   Logout in new browser tab and click Create/Apply Changes button (session has expired error)
-        -   Data Form
-            -   Confirm field tooltips are working
-            -   (When applicable) Confirm the Filter List functionality is working
-            -   Data Model QA:
-                -   Confirm required fields are enforced
-                -   Confirm unique name value constraints are enforced
-            -   New Preset Record
-                -   Form is loaded with no values
-                -   Create Button
-                    -   Confirm the preset record and associated options are saved successfully
-            -   Edit Preset Record
-                -   Confirm delete button tooltip is working
-                -   Form is loaded with selected record's values
-                -   Apply Changes Button
-                    -   Confirm the preset record and associated options were updated successfully
-                -   Delete Button
-                    -   Confirm the deletion works properly if there are no related records (preset record only)
-                        -   Confirm the deletion works properly if there are options associated with the preset and the field options are de-selected and the delete button is clicked
-                    -   Confirm the deletion fails if there are related records (one or more related preset options)
-                    -   Confirmed that unauthorized users cannot delete records from the database
-                        -   Update user group to [remove the DATA_ADMIN role](#data_admin) and then click the Delete button
-                        -   Logout in new browser tab and click Delete button (session has expired error)
+            -   Logout in new browser tab and click Create/Apply Changes buttons (session has expired error)
+            -   Update user group to [remove the CCD READ role](#ccd-read) and then click the Create/Apply Changes button (error)
+            -   Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Create/Apply Changes button (ok)
+            -   Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Create/Apply Changes button (ok)
+        -   Confirmed that unauthorized users cannot delete records from the database
+            -   Logout in new browser tab and click Delete button (session has expired error)
+            -   Update user group to [remove the CCD READ role](#ccd-read) and then click the Delete button (error)
+            -   Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Delete button (ok)
+            -   Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Delete button (ok)
+            -   Confirm the deletion works properly if there are no related records (preset record only)
+                -   Confirm the deletion works properly if there are options associated with the preset and the field options are de-selected and the delete button is clicked
+            -   Confirm the deletion fails if there are related records (one or more related preset options)
+-   Page 500 (Feedback Form)
+    -   Page Loading
+        -   Logout in new browser tab and click save button (ok)
+        -   Update user group to [remove all permissions](#appendix) and load the page (ok)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok)
+    -   Record operations
+        -   Logout in new browser tab and click submit button (ok)
+        -   Update user group to [remove all permissions](#appendix) and click the submit button (ok)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and click the submit button (ok)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and click the submit button (ok)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and click the submit button (ok)
+-   Page 505 (Feedback Report)
+    -   Page Loading
+        -   Logout in new browser tab and click save button (session has expired error)
+        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (error - not authorized)
+        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (error - not authorized)
+        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok)
 
 ## Appendix:
--   <span id="data_admin" class="anchor"></span>Remove/Restore DATA_ADMIN role:
+-   \*Note: The queries must be run from the Centralized Authorization System database schema (CAS)
+-   <span id="ccd-admin" class="anchor"></span>Remove/Restore CCD ADMIN role:
 
 ```
 --to setup test
-DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'DATA_ADMIN');
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN');
 
 --to restore after test
-INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'DATA_ADMIN'));
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN'));
+```
+
+-   <span id="ccd-write" class="anchor"></span>Remove/Restore CCD WRITE role:
+
+```
+--to setup test
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE');
+
+--to restore after test
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE'));
+```
+
+-   <span id="ccd-read" class="anchor"></span>Remove/Restore CCD READ role:
+
+```
+--to setup test
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ');
+
+--to restore after test
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ'));
 ```
