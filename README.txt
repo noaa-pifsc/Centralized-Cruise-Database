@@ -1,1 +1,0 @@
-This project was created to provide a Centralized Cruise Database to track information about each PIFSC research cruise including activities, chief scientists, regions, etc. to remove the need for each division/program to manage this information

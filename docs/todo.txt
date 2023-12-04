@@ -71,13 +71,41 @@ _ what data should be included in the initial production database deployment?
 			CCD_DATA_SETS
 			CCD_LEG_DATA_SETS
 			
-	_ upgrade and rollback plan
-		X dev
-			X diff (using _TMP schema)
-		test
-			diff
-		prod
-			diff
+	X upgrade and rollback plan
+		X VM:
+			X dev
+				X upgrade
+				X diff (using _TMP schema)
+				X verify app
+				X rollback
+			X test
+				X upgrade
+				X diff (using _TMP schema)
+				X verify app
+				X rollback
+			X prod
+				X upgrade
+				X diff (using _TMP schema)
+				X verify app
+				X rollback
+		PICT:
+			_ deploy CEN_CRUISE_TMP to PICD for comparison purposes
+			_ dev
+				_ upgrade
+				_ diff (using _TMP schema)
+				_ verify app
+				_ rollback
+			_ test
+				_ upgrade
+				_ diff (using _TMP schema)
+				_ verify app
+				_ rollback
+			_ prod
+				_ upgrade
+				_ diff (using _TMP schema)
+				_ verify app
+				_ rollback
+		
 
 
 

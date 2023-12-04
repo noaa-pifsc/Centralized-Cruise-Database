@@ -17,15 +17,15 @@ This document defines the work items required to finish development and deployme
     -   X (0.5 days) reduce unnecessary logging
     -   X (0.5 days) Develop production version of the APEX deployment scripts
 -   ### Database Updates
-    -   DB Module Upgrades (1 day)
+    -   X DB Module Upgrades (1 day)
         -   X DVM
         -   X DLM
         -   X DPM (APEX use case)
     -   X (0.5 days) Remove Auth App Module
-    -   _ (1 day) Develop Database Upgrade and Rollback SOP for phase 1
+    -   X (1 day) Develop Database Upgrade and Rollback SOP for phase 1
     -   X (3 days) Update DVM automated test cases: update the automated verification method to spool the output to a given directory (SQLPlus script to produce the same output and Winmerge or other diff program to confirm the outputs are equivalent)
     -   X (2 days) implement CCD_PKG automated tests
-        -   X update documentation 
+        -   X update documentation
     -   X implement history tracking package on appropriate tables
 -   ### Documentation Updates
     -   Database (2 days)
@@ -40,7 +40,7 @@ This document defines the work items required to finish development and deployme
         -   _ Testing Documentation
 -   ### Developer Testing (1 week)
     -   _ APEX Application
-    -   _ DVM automated test cases
+    -   _ CDVM/CCDP automated test cases
     -   _ Database Deployment
     -   _ Database Upgrade and Rollback SOP
 -   ### Review/Approval

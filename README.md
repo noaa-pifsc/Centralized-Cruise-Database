@@ -4,8 +4,8 @@
 The Centralized Cruise Database (CCD) is used to track information about each PIFSC research cruise including activities, regions, etc. to remove the need for each division/program to manage this information. This centralized database is available for all PIFSC database users to reference with their various division data sets.
 
 ## Prerequisites:
-- Oracle 11g or higher
-- APEX 5.1 or higher
+- Oracle 12c or higher
+- APEX 22.x or higher
 
 ## Installing
 - Installation instructions can be found in the [CCD Documentation](./docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md#database-setup)
@@ -20,9 +20,6 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## Version Control Platform
 - Git
-
-## Authors
-- Jesse Abdul - Initial work
 
 ## License
 This project is licensed under the Apache-2.0 - see the [LICENSE.MD](./LICENSE.MD) for details
