@@ -241,7 +241,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Confirm Add Row shows a new record with no values except for default values (e.g. Divisions defaults Science Center to PIFSC)
         -   Confirmed authorized users can insert/update records
             -   Logout in new browser tab and click save button (error)
-            -   Update user group to [remove all permissions](#appendix) and click the save button (error - not authorized)
+            -   Update user group to [remove all permissions](#appendix) and click the save button (no update)
             -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button (no update)
             -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (no update)
             -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
