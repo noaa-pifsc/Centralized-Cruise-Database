@@ -179,8 +179,8 @@ _ update documentation to align with MOUSS documentation:
 
 X update grant_external_schema_privs.sql to use the roles/privs granted to the MOUSS DB/app:
 	X define synonyms for a typical integration data schema (e.g. MOUSS)
-	_ update the cruise data integration SOP to reference the scripts
-	_ update the general integration SOP to implement roles and synonyms as well and to cite the updated MOUSS DB and Cruise DB as example implementations
+	X update the cruise data integration SOP to reference the scripts
+
 
 
 
