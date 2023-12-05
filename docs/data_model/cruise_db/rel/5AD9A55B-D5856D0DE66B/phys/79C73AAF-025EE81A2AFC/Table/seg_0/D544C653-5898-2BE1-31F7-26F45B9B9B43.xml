@@ -6,7 +6,7 @@
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>1D4298E7-BDF6-456C-05D6-0594386F4791</segment>
+<segment>8801DE60-430A-1EE7-F835-869EDC5894B4</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -66,7 +66,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_GEAR_PK" id="EAE5DA31-BA0B-2FA1-603F-3A3CFDDC52D9">
@@ -74,7 +74,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -83,10 +83,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>EAE5DA31-BA0B-2FA1-603F-3A3CFDDC52D9</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>

@@ -359,6 +359,19 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <indexState>Unique Plain Index</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 </ind_PK_UK>
+<ind_PK_UK id="508EA3F0-6A36-6321-8576-A2D7B39030E9" schemaObject="CF918539-B5BC-5724-6F9A-4C5AA0CA3E02" name="CCD_DATA_SETS_I4">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>CCD_DATA_SETS_I4</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:16 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<importedID>E83AAD3D-DF6B-A048-CBD4-BF2974348B42</importedID>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D65F926C-B99D-3C70-58D3-F98867D7AE30"/>
+</indexColumnUsage>
+</ind_PK_UK>
 <ind_PK_UK id="45E978B7-D238-F60B-1417-E8128B1E7D0F" name="CCD_DATA_SETS_FK1">
 <createdBy>jesse</createdBy>
 <createdTime>2020-06-10 23:31:21 UTC</createdTime>
@@ -386,7 +399,7 @@ This table defines the specifics data sets that were collected during PIFSC rese
 <indexState>Foreign Key</indexState>
 <isSurrogateKey>false</isSurrogateKey>
 <indexColumnUsage>
-<colUsage columnID="FFFC2F17-0042-2181-CA95-95F47F47813E"/>
+<colUsage columnID="D65F926C-B99D-3C70-58D3-F98867D7AE30"/>
 </indexColumnUsage>
 </ind_PK_UK>
 </indexes>

@@ -6,7 +6,7 @@
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>1D4298E7-BDF6-456C-05D6-0594386F4791</segment>
+<segment>8801DE60-430A-1EE7-F835-869EDC5894B4</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -105,7 +105,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_I3" id="5812BAFE-E872-F65A-BFB2-FA27FA866AB1">
@@ -113,7 +113,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_PK" id="7A9665C4-F13D-09FA-D176-9AE1ACDAC392">
@@ -121,7 +121,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_U2" id="87C0C940-DE39-4693-E9F2-E9D727DE4C03">
@@ -129,7 +129,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_I4" id="988B5974-01B5-E91C-8225-087E32C16970">
@@ -137,7 +137,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_I1" id="9EA062BC-A784-F4CE-497A-1599C5F838FD">
@@ -145,7 +145,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_CRUISES_I2" id="A63B1263-79C9-6A04-953D-CEE67AA48F79">
@@ -153,7 +153,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -198,16 +198,29 @@
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000305949C00015$$" id="8A27FEC5-C54F-05C4-C5EA-F238EBF00802">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>CRUISE_DESC</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="CCD_CRUISES_PK" id="C0DA31B1-A58C-3FC0-6BC3-AC5DD11280B0">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>7A9665C4-F13D-09FA-D176-9AE1ACDAC392</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
@@ -223,10 +236,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>87C0C940-DE39-4693-E9F2-E9D727DE4C03</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </UniqueKey>

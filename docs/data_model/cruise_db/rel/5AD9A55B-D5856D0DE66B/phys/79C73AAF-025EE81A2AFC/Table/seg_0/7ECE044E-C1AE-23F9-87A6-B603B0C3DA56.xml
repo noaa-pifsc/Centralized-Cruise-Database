@@ -6,7 +6,7 @@
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>1D4298E7-BDF6-456C-05D6-0594386F4791</segment>
+<segment>8801DE60-430A-1EE7-F835-869EDC5894B4</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -55,7 +55,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DB_UPGRADE_LOGS_U1" id="D9D23CAA-0E23-2E5F-5550-A15D2A3A48FA">
@@ -63,19 +63,34 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 </indexProxies>
+<lobStorages>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000305825C00007$$" id="E7294349-FC42-DB54-88F0-B74BD3CFD421">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>UPGRADE_DESC</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
+</lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DB_UPGRADE_LOGS_PK" id="4F54C542-DA4C-78D1-A771-FEF56993A3B3">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>993DD25B-550D-9F64-7C38-372F0DE4C5BE</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>
@@ -85,10 +100,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>D9D23CAA-0E23-2E5F-5550-A15D2A3A48FA</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </UniqueKey>

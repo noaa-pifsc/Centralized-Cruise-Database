@@ -6,7 +6,7 @@
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>1D4298E7-BDF6-456C-05D6-0594386F4791</segment>
+<segment>8801DE60-430A-1EE7-F835-869EDC5894B4</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -95,7 +95,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_U1" id="3FB481B9-D461-E3E8-9569-3DB390033372">
@@ -103,7 +103,15 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+</IndexProxy>
+<IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I4" id="508EA3F0-6A36-6321-8576-A2D7B39030E9">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:16 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I1" id="B210AC89-D368-5BB7-A408-3C8032B4625D">
@@ -111,7 +119,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_I2" id="DA381E41-2B51-B927-6BB6-0A9EA206D361">
@@ -119,7 +127,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="CCD_DATA_SETS_PK" id="E3C5CEA8-829E-3729-BAF4-CCBB319D6CEB">
@@ -127,7 +135,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -153,10 +161,10 @@
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</segment>
+<segment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>E3C5CEA8-829E-3729-BAF4-CCBB319D6CEB</existingIndex>
-<indexSegment>1F5366FA-C655-204C-CC3E-D0C78A8C3361</indexSegment>
+<indexSegment>C62A6E86-1B2A-0DA7-07D6-3933F26BD29D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>

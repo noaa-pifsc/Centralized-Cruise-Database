@@ -87,22 +87,6 @@ This database table stores the upgrade history for a given database instance so 
 <ownDataTypeParameters>7,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
-<Column name="UPGRADE_DESC" id="D6CF830E-B597-E855-40BF-FAC280B7E791">
-<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
-<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
-<sourceObjName>UPGRADE_DESC</sourceObjName>
-<createdBy>jesse</createdBy>
-<createdTime>2020-06-10 23:31:14 UTC</createdTime>
-<commentInRDBMS><![CDATA[Description of the given database upgrade]]></commentInRDBMS>
-<ownerDesignName>cruise_db</ownerDesignName>
-<nullsAllowed>true</nullsAllowed>
-<useDomainConstraints>false</useDomainConstraints>
-<use>1</use>
-<logicalDatatype>LOGDT024</logicalDatatype>
-<dataTypeSize>2000 BYTE</dataTypeSize>
-<ownDataTypeParameters>2000 BYTE,,</ownDataTypeParameters>
-<autoIncrementCycle>false</autoIncrementCycle>
-</Column>
 <Column name="UPGRADE_BY" id="24A4541B-B32E-5B83-4586-54FC3EA85208">
 <sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
 <sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
@@ -117,6 +101,22 @@ This database table stores the upgrade history for a given database instance so 
 <logicalDatatype>LOGDT024</logicalDatatype>
 <dataTypeSize>30 BYTE</dataTypeSize>
 <ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="UPGRADE_DESC" id="D6CF830E-B597-E855-40BF-FAC280B7E791">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>DB_UPGRADE_LOGS</sourceObjSchema>
+<sourceObjName>UPGRADE_DESC</sourceObjName>
+<createdBy>jesse</createdBy>
+<createdTime>2020-06-10 23:31:14 UTC</createdTime>
+<commentInRDBMS><![CDATA[Description of the given database upgrade]]></commentInRDBMS>
+<ownerDesignName>cruise_db</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT028</logicalDatatype>
+<dataTypeSize>4000</dataTypeSize>
+<ownDataTypeParameters>4000,,</ownDataTypeParameters>
 <autoIncrementCycle>false</autoIncrementCycle>
 </Column>
 </columns>

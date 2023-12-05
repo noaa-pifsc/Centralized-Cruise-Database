@@ -6,7 +6,7 @@
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
 <logging>YES</logging>
 <partitionedRowMovement>DISABLE</partitionedRowMovement>
-<segment>8E3660C2-CE00-5377-1726-F988941EAA62</segment>
+<segment>96E5DB39-1F42-5678-A30F-345BF28B93AE</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <temporaryChanged>false</temporaryChanged>
 <accessDriverType>oracle_loader</accessDriverType>
@@ -75,7 +75,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>4121AD3D-8322-5683-6873-59A1A4817F79</segment>
+<segment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISSUES_I2" id="B3123EB2-A3A8-90DB-125C-344AA3E73546">
@@ -83,7 +83,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>4121AD3D-8322-5683-6873-59A1A4817F79</segment>
+<segment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISSUES_PK" id="D25004A9-B639-91EC-B55B-6B86C7DE0EC5">
@@ -91,7 +91,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>4121AD3D-8322-5683-6873-59A1A4817F79</segment>
+<segment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 <IndexProxy class="oracle.dbtools.crest.model.design.storage.oracle.v10g.IndexProxyOraclev10g" name="DVM_ISSUES_I1" id="F002FD1F-FE36-DD74-5D46-AA1DA15526B0">
@@ -99,7 +99,7 @@
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
 <schemaObject>CF918539-B5BC-5724-6F9A-4C5AA0CA3E02</schemaObject>
-<segment>4121AD3D-8322-5683-6873-59A1A4817F79</segment>
+<segment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 </IndexProxy>
 </indexProxies>
@@ -134,16 +134,29 @@
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000305865C00010$$" id="AB83F75E-1379-7D9A-5FEC-1DC803A13006">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>ISS_DESC</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="DVM_ISSUES_PK" id="F92FB4BB-5B0D-B3F4-3CBA-4C89E569FE51">
 <createdBy>Jesse.Abdul</createdBy>
 <createdTime>2023-11-27 18:25:08 UTC</createdTime>
 <ownerDesignName>cruise_db</ownerDesignName>
-<segment>4121AD3D-8322-5683-6873-59A1A4817F79</segment>
+<segment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</segment>
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <existingIndex>D25004A9-B639-91EC-B55B-6B86C7DE0EC5</existingIndex>
-<indexSegment>4121AD3D-8322-5683-6873-59A1A4817F79</indexSegment>
+<indexSegment>BB0B59F7-0B87-3F6E-8655-DC001BACCF0D</indexSegment>
 <indexSort>SORTED</indexSort>
 <usingIndex>BY INDEX NAME</usingIndex>
 </PrimaryKey>

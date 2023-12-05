@@ -1,0 +1,61 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TriggerOraclev10g class="oracle.dbtools.crest.model.design.storage.oracle.v10g.TriggerOraclev10g" name="TRG_CCD_SCI_CENTER_DIVS_HIST" directorySegmentName="seg_1" id="21757615-3E37-D65B-FE6C-047B1C7E0ABA">
+<sourceConnName>DevVM_PDB_CEN_CRUISE</sourceConnName>
+<sourceObjSchema>CEN_CRUISE</sourceObjSchema>
+<sourceObjName>TRG_CCD_SCI_CENTER_DIVS_HIST</sourceObjName>
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:04:52 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<actions>INSERT, UPDATE, DELETE</actions>
+<body><![CDATA[DECLARE
+  os_user VARCHAR2(30) := dsc.dsc_utilities_pkg.os_user;
+
+  PROCEDURE insert_data(
+    p_type_of_change IN VARCHAR2,
+    p_changed_column IN VARCHAR2 DEFAULT NULL,
+    p_old_data       IN VARCHAR2 DEFAULT NULL,
+    p_new_data       IN VARCHAR2 DEFAULT NULL ) IS
+  BEGIN
+    INSERT INTO CCD_SCI_CENTER_DIVS_hist (
+      h_seqnum, SCI_CENTER_DIV_ID, h_type_of_change, h_user_making_change, h_os_user,
+      h_date_of_change, h_changed_column, h_old_data, h_new_data)
+    VALUES(
+      CCD_SCI_CENTER_DIVS_hist_seq.NEXTVAL, :old.SCI_CENTER_DIV_ID, p_type_of_change, user, os_user,      SYSDATE, p_changed_column, p_old_data, p_new_data);
+  END;
+
+  PROCEDURE check_update(
+    p_changed_column IN VARCHAR2,
+    p_old_data       IN VARCHAR2,
+    p_new_data       IN VARCHAR2 ) IS
+  BEGIN
+    IF p_old_data <> p_new_data
+    OR (p_old_data IS NULL AND p_new_data IS NOT NULL)
+    OR (p_new_data IS NULL AND p_old_data IS NOT NULL) THEN
+      insert_data('UPDATE', p_changed_column, p_old_data, p_new_data);
+    END IF;
+  END;
+BEGIN
+  IF INSERTING THEN
+    INSERT INTO CCD_SCI_CENTER_DIVS_hist (
+      h_seqnum, SCI_CENTER_DIV_ID, h_type_of_change, h_user_making_change, h_os_user, h_date_of_change)
+    VALUES (
+      CCD_SCI_CENTER_DIVS_hist_seq.NEXTVAL, :new.SCI_CENTER_DIV_ID,
+      'INSERT', user, os_user, SYSDATE);
+  ELSIF DELETING THEN
+    insert_data('DELETE');
+    insert_data('DELETE', 'sci_center_div_code', :old.sci_center_div_code);
+    insert_data('DELETE', 'sci_center_div_name', :old.sci_center_div_name);
+    insert_data('DELETE', 'sci_center_div_desc', :old.sci_center_div_desc);
+    insert_data('DELETE', 'sci_center_id', :old.sci_center_id);
+  ELSE
+    NULL;
+    check_update('SCI_CENTER_DIV_CODE', :old.sci_center_div_code, :new.sci_center_div_code);
+    check_update('SCI_CENTER_DIV_NAME', :old.sci_center_div_name, :new.sci_center_div_name);
+    check_update('SCI_CENTER_DIV_DESC', :old.sci_center_div_desc, :new.sci_center_div_desc);
+    check_update('SCI_CENTER_ID', :old.sci_center_id, :new.sci_center_id);
+  END IF;
+END;]]></body>
+<triggerTime>AFTER</triggerTime>
+<owner>4697792D-D466-ABBD-A0CF-502953E40499</owner>
+<table>05BE5124-BA2E-4A7C-A4D7-84E20A3CE562</table>
+</TriggerOraclev10g>

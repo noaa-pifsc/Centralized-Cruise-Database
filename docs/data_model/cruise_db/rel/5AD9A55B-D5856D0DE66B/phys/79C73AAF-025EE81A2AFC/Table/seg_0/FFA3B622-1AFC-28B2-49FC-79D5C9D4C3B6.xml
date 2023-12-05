@@ -80,6 +80,19 @@
 <tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
 <lobStorageType>SECUREFILE</lobStorageType>
 </LobStorage>
+<LobStorage class="oracle.dbtools.crest.model.design.storage.oracle.v11g.LobStorageOraclev11g" name="SYS_LOB0000306697C00004$$" id="1433C29B-C1DD-890A-2D70-1C5D3CAB20C5">
+<createdBy>Jesse.Abdul</createdBy>
+<createdTime>2023-12-05 21:05:19 UTC</createdTime>
+<ownerDesignName>cruise_db</ownerDesignName>
+<cache>NOCACHE</cache>
+<chunk>8192</chunk>
+<column>RESP_CONTENT</column>
+<compression>NO</compression>
+<duplication>KEEP_DUPLICATES</duplication>
+<logging>YES</logging>
+<tableSpace>8D748C26-DC23-08E6-DF6B-4EE61DB9117D</tableSpace>
+<lobStorageType>SECUREFILE</lobStorageType>
+</LobStorage>
 </lobStorages>
 <primaryKeys>
 <PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="AFF_RESPONSES_PK" id="6A96F5DA-BF1F-3271-E0F2-40F2C7B65998">
