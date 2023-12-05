@@ -232,19 +232,19 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   An [inventory](./Cruise%20Data%20Management%20Application%20-%20Reference%20Preset%20Page%20Inventory.xlsx) of each page can be found on the "Reference Lists" worksheet and can be used to ensure that the test cases are confirmed on each of the CRDMA Reference List page
     -   Reference Records Interactive Grid
         -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and load the page (session has expired error)
-            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   Logout in new browser tab and load the page (redirect to login page)
+            -   Update user group to [remove all permissions](#appendix) and load the page (error)
             -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
-            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - readonly)
             -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
         -   Confirmed column heading help text is working properly
         -   Confirm Add Row shows a new record with no values except for default values (e.g. Divisions defaults Science Center to PIFSC)
         -   Confirmed authorized users can insert/update records
-            -   Logout in new browser tab and click save button (session has expired error)
+            -   Logout in new browser tab and click save button (error)
             -   Update user group to [remove all permissions](#appendix) and click the save button (error - not authorized)
-            -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button
-            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button
-            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button
+            -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button (no update)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (no update)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
         -   Data Model QA:
             -   Confirm required fields are enforced
             -   Confirm unique name/code value constraints are enforced
