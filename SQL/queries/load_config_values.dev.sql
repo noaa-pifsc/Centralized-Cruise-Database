@@ -10,3 +10,7 @@ INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('
 INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('DEV_HOSTNAME', 'picmidd.nmfs.local', 'The development APEX server hostname');
 INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('TEST_HOSTNAME', 'picmidt.nmfs.local', 'The test APEX server hostname');
 
+--set the Database Logging Module data set status configuration
+INSERT INTO CC_CONFIG_OPTIONS (OPTION_NAME, OPTION_VALUE, OPTION_DESC) VALUES ('DLM_SYSTEM_STATUS', 'DEBUG', 'Database Logging Module data system status - this configuration option determines which messages are logged in the database');
+
+

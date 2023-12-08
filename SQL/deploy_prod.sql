@@ -1,7 +1,7 @@
 /************************************************************************************
- Filename   : deploy_qa.sql
+ Filename   : deploy_prod.sql
  Author     :
- Purpose    : Automated deployment script for the Centralized Cruise database, this is intended for use on the testing environment
+ Purpose    : Automated deployment script for the Centralized Cruise database, this is intended for use on the production environment
  Description: The release included: data model deployment on a blank schema
  Usage: Using Windows X open a command line window and change the directory to the SQL directory in the working copy of the repository and execute the script using the "@" syntax.  When prompted enter the server credentials in the format defined in the corresponding code comments
 ************************************************************************************/
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'centralized_cruise_deploy_qa_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'centralized_cruise_deploy_prod_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 
@@ -42,10 +42,8 @@ PROMPT granting privileges to CCD roles:
 @@queries/grant_CCD_role_permissions.sql
 
 PROMPT loading data
-@@queries/load_dev_test_ref_data.sql
 @@queries/load_DVM_rules.sql
-@@queries/load_config_values.test.sql
-
+@@queries/load_config_values.prod.sql
 
 
 DISCONNECT;

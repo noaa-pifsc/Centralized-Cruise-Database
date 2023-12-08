@@ -16,7 +16,7 @@ This application requires version 1.0 of the Cruise Database to be installed (Gi
 -   Load the Centralized Authorization System (CAS) CCD groups/users
 		-   Request that someone is designated a CCD administrator that can login to the corresponding CAS application to grant/revoke CRDMA permissions (e.g. [PICD CAS](https://picmidd.nmfs.local/picd/f?p=CAS) for the PIFSC development database)
 -   Load the runtime configuration options
-    -   Execute the [load_config_values.sql](../../SQL/queries/load_config_values.sql) script in the CRDMA database schema (CEN_CRUISE_APP) to define the runtime configuration settings for the application
+    -   Execute the [load_config_values.sql](../../SQL/queries/load_config_values.sql) script in the CCD data schema (CEN_CRUISE) to define the runtime configuration settings for the application
     -   \*Note: For the application to run properly two separate CC_CONFIG_OPTIONS records must be defined for the development and test APEX server hostnames:
         -    Development Server Configuration (business rule: CR-DMA-022)
         -    Test Server Configuration (business rule: CR-DMA-023)

@@ -40,7 +40,9 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Grant the permissions on the objects in the MOUSS schema to the defined MOUSS roles by executing the [grant_CCD_role_permissions.sql](../SQL/queries/grant_CCD_role_permissions.sql) script
     -   (Development and Test only) Load the MOUSS test data by executing the test data script [load_dev_test_ref_data.sql](../SQL/queries/load_dev_test_ref_data.sql)
     -   (Production only) Load the MOUSS data by executing the test data script [load_ref_data.sql](../SQL/queries/load_ref_data.sql)
-    -   Load the DVM rules by executing the [load_DVM_rules.sql](../SQL/queries/load_DVM_rules.sql) script
+		-   Load the configuration values by executing the appropriate configuration script (e.g. [load_config_values.prod.sql](../shared_SQL/scripts/load_config_values.prod.sql) for the production server)
+        -   Configuration values description:
+            -   Database Logging Module Configuration (business rule: CR-DB-023)
     -   Load the configuration values by executing the [load_config_values.sql](../SQL/queries/load_config_values.sql) script
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database

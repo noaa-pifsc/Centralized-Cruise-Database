@@ -153,7 +153,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm the attribute filtering checkboxes work properly
         -   Confirm the Leg Alias interactive grid works properly
             -   Confirm the tooltips are working properly
-				-   Confirm the Data Sets interactive grid works properly
+        -   Confirm the Data Sets interactive grid works properly
             -   Confirm the tooltips are working properly
         -   New Cruise Leg
             -   Copy Cruise Leg Functionality:
@@ -228,7 +228,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Update user group to [assign the CCD READ role](#ccd-read) and then click the save button
         -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button
         -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button
--   Pages 300 - 399 (Reference List Management Pages)
+-   X Pages 300 - 399 (Reference List Management Pages)
     -   An [inventory](./Cruise%20Data%20Management%20Application%20-%20Reference%20Preset%20Page%20Inventory.xlsx) of each page can be found on the "Reference Lists" worksheet and can be used to ensure that the test cases are confirmed on each of the CRDMA Reference List page
     -   Reference Records Interactive Grid
         -   Confirmed that only authorized users can access this page
@@ -250,42 +250,44 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm unique name/code value constraints are enforced
 -   Pages 300 - 399 (Reference List Preset Management Pages)
     -   An [inventory](./Cruise%20Data%20Management%20Application%20-%20Reference%20Preset%20Page%20Inventory.xlsx) of each page can be found on the "Presets" worksheet and can be used to ensure that the test cases are confirmed on each of the CRDMA Reference List Preset page
-    -   View Reference Preset Records Report
-        -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and click save button (session has expired error)
-            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
-            -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
-            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active report/buttons)
-            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active report/buttons)
-        -   Confirmed that the report table contents are rendered correctly
-        -   Confirmed column heading help text is working properly
-        -   Confirm Create button opens View/Edit Reference Preset Record Form with no values
-        -   Update icon opens View/Edit Reference Preset Record Form with the values loaded
+    -   X View Reference Preset Records Report
+        -   X Confirmed that only authorized users can access this page
+            -   X Logout in new browser tab and reload page (redirect to login page)
+            -   X Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   X Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+            -   X Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active report/buttons)
+            -   X Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active report/buttons)
+        -   X Confirmed that the report table contents are rendered correctly
+        -   X Confirmed column heading help text is working properly
+        -   X Confirm Create button opens View/Edit Reference Preset Record Form with no values
+        -   X Update icon opens View/Edit Reference Preset Record Form with the values loaded
     -   View/Edit Reference Preset Record Page
-        -   Confirm field tooltips are working
-        -   (When applicable) Confirm the Filter List functionality is working
-        -   Data Model QA:
-            -   Confirm required fields are enforced
-            -   Confirm unique name value constraints are enforced
-        -   Confirmed that only authorized users can access this page
-            -   Logout in new browser tab and load the page (session has expired error)
-            -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
-            -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
-            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
-            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
-        -   Confirmed that unauthorized users cannot save changes to the database
-            -   Logout in new browser tab and click Create/Apply Changes buttons (session has expired error)
-            -   Update user group to [remove the CCD READ role](#ccd-read) and then click the Create/Apply Changes button (error)
-            -   Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Create/Apply Changes button (ok)
-            -   Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Create/Apply Changes button (ok)
-        -   Confirmed that unauthorized users cannot delete records from the database
-            -   Logout in new browser tab and click Delete button (session has expired error)
-            -   Update user group to [remove the CCD READ role](#ccd-read) and then click the Delete button (error)
-            -   Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Delete button (ok)
-            -   Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Delete button (ok)
-            -   Confirm the deletion works properly if there are no related records (preset record only)
-                -   Confirm the deletion works properly if there are options associated with the preset and the field options are de-selected and the delete button is clicked
-            -   Confirm the deletion fails if there are related records (one or more related preset options)
+        -   X Confirm field tooltips are working
+        -   X (When applicable) Confirm the Filter List functionality is working
+        -   X Data Model QA:
+            -   X Confirm required fields are enforced
+            -   X Confirm unique name value constraints are enforced
+        -   X Confirmed that only authorized users can access this page
+            -   X Logout in new browser tab and load the page (redirect to login page)
+            -   X Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+            -   X Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+            -   X Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+            -   X Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
+        -   X Confirmed that unauthorized users cannot save changes to the database
+            -   X Logout in new browser tab and click Create/Apply Changes buttons (session has expired error)
+            -   X Update user group to [remove all permissions](#appendix) and then click the Create/Apply Changes button (error)
+            -   X Update user group to [remove the CCD READ role](#ccd-read) and then click the Create/Apply Changes button (redirect to view presets page without committing transaction)
+            -   X Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Create/Apply Changes button (ok)
+            -   X Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Create/Apply Changes button (ok)
+        -   X Confirmed that unauthorized users cannot delete records from the database
+            -   X Logout in new browser tab and click Delete button (session has expired error)
+            -   X Update user group to [remove all permissions](#appendix) and then click the Delete button (error)
+            -   X Update user group to [remove the CCD READ role](#ccd-read) and then click the Delete button (error)
+            -   X Update user group to [remove the CCD WRITE role](#ccd-write) and then click the Delete button (ok)
+            -   X Update user group to [remove the CCD ADMIN role](#ccd-admin) and then click the Delete button (ok)
+            -   X Confirm the deletion works properly if there are no related records (preset record only)
+                -   X Confirm the deletion works properly if there are options associated with the preset and the field options are de-selected and the delete button is clicked
+            -   X Confirm the deletion fails if there are related records (one or more related preset options)
 -   Page 500 (Feedback Form)
     -   Page Loading
         -   Logout in new browser tab and click save button (ok)
