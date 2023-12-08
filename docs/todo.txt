@@ -182,7 +182,7 @@ X update grant_external_schema_privs.sql to use the roles/privs granted to the M
 	X update the cruise data integration SOP to reference the scripts
 
 
-
+_ refresh the versions of the APEX app, data loading scripts, etc. in the db/upgrade rollback scripts for version 1.0
 
 
 Version 1.1:

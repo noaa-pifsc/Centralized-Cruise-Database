@@ -67,7 +67,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Version: 1.0 (git tag: db_vers_ctrl_db_v1.0)
 -   DB Logging Module (DLM)
     -   Repository URL: git@github.com:PIFSC-NMFS-NOAA/PIFSC-DBLoggingModule.git
-    -   Version: 0.3 (git tag: db_log_db_v0.3)
+    -   Version: 1.0 (git tag: db_log_db_v1.0)
 -   Error Handler Module
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex_tools.git in the "Error Handling" folder
     -   Version: 1.0 (git tag: APX_Cust_Err_Handler_db_v1.0)

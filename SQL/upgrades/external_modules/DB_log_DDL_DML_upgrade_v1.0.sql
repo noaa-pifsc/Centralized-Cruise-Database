@@ -11,6 +11,20 @@
 --------------------------------------------------------
 
 
+ALTER TABLE DB_LOG_ENTRY_TYPES
+DROP CONSTRAINT DB_LOG_ENTRY_TYPES_U1;
+
+CREATE UNIQUE INDEX DB_LOG_ENTRY_TYPES_U1 ON DB_LOG_ENTRY_TYPES (UPPER(ENTRY_TYPE_CODE) ASC);
+
+
+ALTER TABLE DB_LOG_ENTRY_TYPES
+DROP CONSTRAINT DB_LOG_ENTRY_TYPES_U2;
+
+CREATE UNIQUE INDEX DB_LOG_ENTRY_TYPES_U2 ON DB_LOG_ENTRY_TYPES (UPPER(ENTRY_TYPE_NAME) ASC);
+
+
+
+
 --Database Log Package Specification:
 CREATE OR REPLACE PACKAGE DB_LOG_PKG
 --this package provides functions and procedures to interact with the database log package module
@@ -84,6 +98,9 @@ AS
 
 		--package string variable to store the production status of the logging module, this determines if debug messages will be logged (FALSE) or not (TRUE)
 		PV_PROD_STATUS BOOLEAN;
+        
+        --package variable to store the DLM configuration for the system status
+        PV_DLM_SYSTEM_STATUS VARCHAR2(500);
 
 
 		--procedure to add a database log entry into the database with the specific parameters in an autonomous transaction:
@@ -160,24 +177,27 @@ AS
     END ADD_LOG_ENTRY;
 	
 	--package initialization
-	DECLARE
-
-		--temporary variable to store the production status from the configuration module
-		V_TEMP_OPTION_VALUE VARCHAR2(500);
-	
 	BEGIN
+	
+--		INSERT INTO DB_LOG_ENTRIES (ENTRY_TYPE_ID, LOG_SOURCE, ENTRY_CONTENT, ENTRY_DTM) VALUES ((select entry_type_id from db_log_entry_types where upper(entry_type_code) = upper('DEBUG')), 'DB_LOG_PKG initialization', 'running the DB_LOG_PKG initialization code', SYSDATE);
+
+
 		--check if the CC_CONFIG_OPTIONS table exists, if so attempt to retrieve the configuration variable from the DB:
-		SELECT OPTION_VALUE INTO V_TEMP_OPTION_VALUE FROM CC_CONFIG_OPTIONS WHERE UPPER(OPTION_NAME) = UPPER('DLM_SYSTEM_STATUS');
+		SELECT OPTION_VALUE INTO PV_DLM_SYSTEM_STATUS FROM CC_CONFIG_OPTIONS WHERE UPPER(OPTION_NAME) = UPPER('DLM_SYSTEM_STATUS');
 		
 		--check the value of the production status configuration option value
-		IF (UPPER(V_TEMP_OPTION_VALUE) = 'PROD') THEN 
+		IF (UPPER(PV_DLM_SYSTEM_STATUS) = 'PROD') THEN 
 			--the production configuration is enabled
 			PV_PROD_STATUS := TRUE;
+			
+--			INSERT INTO DB_LOG_ENTRIES (ENTRY_TYPE_ID, LOG_SOURCE, ENTRY_CONTENT, ENTRY_DTM) VALUES ((select entry_type_id from db_log_entry_types where upper(entry_type_code) = upper('DEBUG')), 'DB_LOG_PKG initialization', 'This is a production configuration', SYSDATE);
+
 			
 		ELSE
 			--the production configuration is NOT enabled
 			PV_PROD_STATUS := FALSE;
-		
+
+--			INSERT INTO DB_LOG_ENTRIES (ENTRY_TYPE_ID, LOG_SOURCE, ENTRY_CONTENT, ENTRY_DTM) VALUES ((select entry_type_id from db_log_entry_types where upper(entry_type_code) = upper('DEBUG')), 'DB_LOG_PKG initialization', 'This is NOT a production configuration', SYSDATE);		
 		END IF;
 			
 		
@@ -185,13 +205,10 @@ AS
 			WHEN OTHERS THEN
 				--the configuration table doesn't exist or the PROD_STATUS configuration value is not defined.  Default to non-production status
 				PV_PROD_STATUS := TRUE;
-	END;
-	
-
 end DB_LOG_PKG;
 /
 
 
 
 --define the upgrade version in the database upgrade log table:
-INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Database Log', '1.0', TO_DATE('08-DEC-23', 'DD-MON-YY'), 'Updated DB_LOG_PKG package to check a Centralized Configuration Module (CCM) option (OPTION_NAME: DLM_SYSTEM_STATUS) to see if the current application is in production status, if so then do not log debugging messages in the database, by default if the configuration option is not defined the package will operate in production mode to prevent any sensitive information about the PL/SQL packages or app modules from being stored in the DB.');
+INSERT INTO DB_UPGRADE_LOGS (UPGRADE_APP_NAME, UPGRADE_VERSION, UPGRADE_DATE, UPGRADE_DESC) VALUES ('Database Log', '1.0', TO_DATE('08-DEC-23', 'DD-MON-YY'), 'Updated the DB_LOG_ENTRY_TYPES table to implement case-insensitive unique indexes for the ENTRY_TYPE_CODE and ENTRY_TYPE_NAME fields.  Updated DB_LOG_PKG package to check a Centralized Configuration Module (CCM) option (OPTION_NAME: DLM_SYSTEM_STATUS) to see if the current application is in production status, if so then do not log debugging messages in the database, by default if the configuration option is not defined the package will operate in production mode to prevent any sensitive information about the PL/SQL packages or app modules from being stored in the DB.');
