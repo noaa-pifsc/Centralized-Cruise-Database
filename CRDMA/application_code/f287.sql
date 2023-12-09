@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   04:20 Saturday December 9, 2023
+--   Date and Time:   04:27 Saturday December 9, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209041853'
+,p_last_upd_yyyymmddhh24miss=>'20231209042714'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>60
 ,p_print_server_type=>'INSTANCE'
@@ -17598,7 +17598,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1340900158125856465)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209041853'
+,p_last_upd_yyyymmddhh24miss=>'20231209042705'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(190373664166337821)
@@ -22404,13 +22404,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -22992,7 +22992,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209032635'
+,p_last_upd_yyyymmddhh24miss=>'20231209042714'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(190373753772337822)
@@ -27165,13 +27165,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -27738,7 +27738,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1340900158125856465)
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000946'
+,p_last_upd_yyyymmddhh24miss=>'20231209042649'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(190373611558337820)
@@ -28488,6 +28488,7 @@ wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(55319469017993336)
 ,p_process_sequence=>10
 ,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(1278549907190764985)
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Unauthorized Submission'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -28496,13 +28497,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -37002,7 +37003,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000429'
+,p_last_upd_yyyymmddhh24miss=>'20231209042628'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(993215956673303743)
@@ -37526,13 +37527,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -37713,7 +37714,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209033411'
+,p_last_upd_yyyymmddhh24miss=>'20231209042337'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1273230620072526572)
@@ -38204,13 +38205,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -38370,7 +38371,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000647'
+,p_last_upd_yyyymmddhh24miss=>'20231209042356'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1275561181091976157)
@@ -38692,13 +38693,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -38858,7 +38859,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000700'
+,p_last_upd_yyyymmddhh24miss=>'20231209042409'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1277973379156804029)
@@ -39346,13 +39347,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -39512,7 +39513,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000713'
+,p_last_upd_yyyymmddhh24miss=>'20231209042419'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1280553939370291573)
@@ -40000,13 +40001,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -40166,7 +40167,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000724'
+,p_last_upd_yyyymmddhh24miss=>'20231209042430'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1283180988247936166)
@@ -40654,13 +40655,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -40820,7 +40821,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000731'
+,p_last_upd_yyyymmddhh24miss=>'20231209042439'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1285853734703936385)
@@ -41308,13 +41309,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -41488,7 +41489,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000745'
+,p_last_upd_yyyymmddhh24miss=>'20231209042447'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1291305240254205669)
@@ -41832,13 +41833,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -41998,7 +41999,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000754'
+,p_last_upd_yyyymmddhh24miss=>'20231209042456'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1286675032621231192)
@@ -42486,13 +42487,13 @@ wwv_flow_imp_page.create_page_process(
 '    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
 '    ELSE',
-'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '    END IF;',
 '',
