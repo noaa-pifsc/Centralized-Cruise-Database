@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   03:27 Saturday December 9, 2023
+--   Date and Time:   03:45 Saturday December 9, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209032635'
+,p_last_upd_yyyymmddhh24miss=>'20231209034446'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>60
 ,p_print_server_type=>'INSTANCE'
@@ -29582,7 +29582,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208235655'
+,p_last_upd_yyyymmddhh24miss=>'20231209034446'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(993307923473609178)
@@ -29994,6 +29994,7 @@ wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(45340657124282068)
 ,p_process_sequence=>10
 ,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(993308530768609180)
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Unauthorized Submission'
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -37690,7 +37691,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208235538'
+,p_last_upd_yyyymmddhh24miss=>'20231209033411'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1273230620072526572)
@@ -37727,6 +37728,8 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Apply Changes'
 ,p_button_position=>'CHANGE'
+,p_button_condition=>'P405_REG_ECO_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
 ,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 ,p_database_action=>'UPDATE'
 );
@@ -37754,6 +37757,8 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_is_hot=>'Y'
 ,p_button_image_alt=>'Create'
 ,p_button_position=>'CREATE'
+,p_button_condition=>'P405_REG_ECO_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NULL'
 ,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 ,p_database_action=>'INSERT'
 );
@@ -37770,6 +37775,8 @@ wwv_flow_imp_page.create_page_button(
 ,p_button_position=>'DELETE'
 ,p_button_redirect_url=>'javascript:apex.confirm(htmldb_delete_message,''DELETE'');'
 ,p_button_execute_validations=>'N'
+,p_button_condition=>'P405_REG_ECO_PRE_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
 ,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 ,p_database_action=>'DELETE'
 );
