@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   22:53 Friday December 8, 2023
+--   Date and Time:   00:10 Saturday December 9, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,7 +36,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --       Items:                  178
 --       Computations:            20
 --       Validations:             10
---       Processes:              120
+--       Processes:              141
 --       Regions:                142
 --       Buttons:                 65
 --       Dynamic Actions:         57
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208225247'
+,p_last_upd_yyyymmddhh24miss=>'20231209000946'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>60
 ,p_print_server_type=>'INSTANCE'
@@ -17598,7 +17598,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1313218892616317838)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208224031'
+,p_last_upd_yyyymmddhh24miss=>'20231209000858'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(162692398656799194)
@@ -22359,8 +22359,36 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_clob_language=>'PLSQL'
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(1249561234370256157)
+ p_id=>wwv_flow_imp.id(27638035683454707)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
+'',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(1249561234370256157)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'CREATE - Insert Row of CCD_CRUISES'
@@ -22378,7 +22406,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250701955538846872)
-,p_process_sequence=>20
+,p_process_sequence=>30
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'CREATE ANOTHER - Insert Row of CCD_CRUISES'
@@ -22396,7 +22424,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250701750944846870)
-,p_process_sequence=>30
+,p_process_sequence=>40
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'Update Row of CCD_CRUISES'
@@ -22414,7 +22442,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1251820980922271465)
-,p_process_sequence=>40
+,p_process_sequence=>50
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Primary Survey Categories'
@@ -22450,7 +22478,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252009984217672633)
-,p_process_sequence=>50
+,p_process_sequence=>60
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Secondary Survey Categories'
@@ -22487,7 +22515,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252013213269672666)
-,p_process_sequence=>60
+,p_process_sequence=>70
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Target ESA Species'
@@ -22521,7 +22549,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252013312842672667)
-,p_process_sequence=>70
+,p_process_sequence=>80
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Target MMPA Species'
@@ -22555,7 +22583,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252041523732251234)
-,p_process_sequence=>80
+,p_process_sequence=>90
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Target FSSI Species'
@@ -22589,7 +22617,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252043203192251251)
-,p_process_sequence=>90
+,p_process_sequence=>100
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Expected Species Categories'
@@ -22623,7 +22651,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250724424769899429)
-,p_process_sequence=>100
+,p_process_sequence=>110
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(1250701109645651267)
 ,p_process_type=>'NATIVE_PLSQL'
@@ -22680,7 +22708,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250701320571846866)
-,p_process_sequence=>110
+,p_process_sequence=>120
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(1250699770516846850)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -22696,7 +22724,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250702303260846876)
-,p_process_sequence=>120
+,p_process_sequence=>130
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Delete Cruise and DVM Recs'
@@ -22729,7 +22757,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250699457739846847)
-,p_process_sequence=>150
+,p_process_sequence=>140
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'CREATE - Validate Cruise Record'
@@ -22763,7 +22791,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250702138210846874)
-,p_process_sequence=>160
+,p_process_sequence=>150
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'CREATE ANOTHER - Validate Cruise Record'
@@ -22796,7 +22824,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250702239593846875)
-,p_process_sequence=>170
+,p_process_sequence=>160
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'APPLY CHANGES - Validate Cruise Record'
@@ -22827,9 +22855,12 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1313219033595321304)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250655442424480734)
-,p_process_sequence=>180
+,p_process_sequence=>170
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
@@ -22838,9 +22869,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_when_button_id=>wwv_flow_imp.id(1250655116637480731)
 ,p_security_scheme=>wwv_flow_imp.id(1313219033595321304)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1248899899467412748)
 ,p_process_sequence=>10
@@ -22904,7 +22932,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_clob_language=>'PLSQL'
 ,p_security_scheme=>wwv_flow_imp.id(1313219033595321304)
 );
-null;
 end;
 /
 prompt --application/pages/page_00230
@@ -22931,7 +22958,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208225247'
+,p_last_upd_yyyymmddhh24miss=>'20231209000924'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(162692488262799195)
@@ -27130,8 +27157,36 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_clob_language=>'PLSQL'
 );
 wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(27638169815454708)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
+'',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250388894919331753)
-,p_process_sequence=>30
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'CREATE Row of CCD_CRUISE_LEGS'
@@ -27149,7 +27204,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252397204478298527)
-,p_process_sequence=>40
+,p_process_sequence=>30
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'CREATE ANOTHER Row of CCD_CRUISE_LEGS'
@@ -27167,7 +27222,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1254507986431645834)
-,p_process_sequence=>50
+,p_process_sequence=>40
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Pre Update Cruise Leg'
@@ -27204,7 +27259,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252401080660298565)
-,p_process_sequence=>60
+,p_process_sequence=>50
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(1252399433761298549)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -27220,7 +27275,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1252397389799298528)
-,p_process_sequence=>70
+,p_process_sequence=>60
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_FORM_PROCESS'
 ,p_process_name=>'UPDATE Row of CCD_CRUISE_LEGS'
@@ -27238,7 +27293,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1251817190181271427)
-,p_process_sequence=>80
+,p_process_sequence=>70
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Regional Ecosystems'
@@ -27267,7 +27322,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1251574599142352141)
-,p_process_sequence=>90
+,p_process_sequence=>80
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Gear'
@@ -27296,7 +27351,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1251818755321271443)
-,p_process_sequence=>100
+,p_process_sequence=>90
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Save Regions'
@@ -27325,7 +27380,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250591885696527576)
-,p_process_sequence=>120
+,p_process_sequence=>100
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(1250590727169527565)
 ,p_process_type=>'NATIVE_PLSQL'
@@ -27377,7 +27432,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(938197242928873054)
-,p_process_sequence=>130
+,p_process_sequence=>110
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(938195996064873042)
 ,p_process_type=>'NATIVE_PLSQL'
@@ -27432,7 +27487,7 @@ end;
 begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250699659364846849)
-,p_process_sequence=>140
+,p_process_sequence=>120
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Create - Validate Parent Cruise Record'
@@ -27466,7 +27521,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1254508169583645836)
-,p_process_sequence=>150
+,p_process_sequence=>130
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Create Another - Validate Parent Cruise Record'
@@ -27500,7 +27555,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1254508087536645835)
-,p_process_sequence=>160
+,p_process_sequence=>140
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Post Update Cruise Leg'
@@ -27538,7 +27593,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1254507677541645831)
-,p_process_sequence=>170
+,p_process_sequence=>150
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_PLSQL'
 ,p_process_name=>'Delete Cruise Leg'
@@ -27574,7 +27629,7 @@ wwv_flow_imp_page.create_page_process(
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1250389253959331753)
-,p_process_sequence=>180
+,p_process_sequence=>160
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_process_type=>'NATIVE_SESSION_STATE'
 ,p_process_name=>'reset page'
@@ -27686,7 +27741,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1313218892616317838)
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231127173218'
+,p_last_upd_yyyymmddhh24miss=>'20231209000946'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(162692346048799193)
@@ -28433,8 +28488,36 @@ wwv_flow_imp_page.create_page_da_action(
 'setTimeout(update_DVM_IG_row_colors, 1000);'))
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(1250876964755226373)
+ p_id=>wwv_flow_imp.id(27638203508454709)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
+'',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(1250876964755226373)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(1250868641681226358)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -28465,7 +28548,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020604'
+,p_last_upd_yyyymmddhh24miss=>'20231208235419'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965586772382977302)
@@ -28947,8 +29030,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965599106420977331)
+ p_id=>wwv_flow_imp.id(17659188369743439)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965587325241977307)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965599106420977331)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965587325241977307)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -28978,7 +29092,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020613'
+,p_last_upd_yyyymmddhh24miss=>'20231208235631'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965606731621024557)
@@ -29431,8 +29545,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965619023717024583)
+ p_id=>wwv_flow_imp.id(17659284273743440)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965607380169024559)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965619023717024583)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965607380169024559)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -29462,7 +29607,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020622'
+,p_last_upd_yyyymmddhh24miss=>'20231208235655'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965626657964070551)
@@ -29871,8 +30016,38 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965637932221070575)
+ p_id=>wwv_flow_imp.id(17659391614743441)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965637932221070575)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965627265259070553)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -29902,7 +30077,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020632'
+,p_last_upd_yyyymmddhh24miss=>'20231208235715'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965643438370101902)
@@ -30273,8 +30448,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965653799249101924)
+ p_id=>wwv_flow_imp.id(17659401340743442)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965644063501101903)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965653799249101924)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965644063501101903)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -30304,7 +30510,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020640'
+,p_last_upd_yyyymmddhh24miss=>'20231208235733'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965692803873184777)
@@ -30720,8 +30926,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_width=>90
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965704208019184801)
+ p_id=>wwv_flow_imp.id(17659546165743443)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965693451765184779)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965704208019184801)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965693451765184779)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -30751,7 +30988,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020648'
+,p_last_upd_yyyymmddhh24miss=>'20231208235752'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965709784565217488)
@@ -31122,8 +31359,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965720127306217511)
+ p_id=>wwv_flow_imp.id(17659646085743444)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965710355849217490)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965720127306217511)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965710355849217490)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -31153,7 +31421,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020656'
+,p_last_upd_yyyymmddhh24miss=>'20231208235818'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965725117673260869)
@@ -31605,8 +31873,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965737505638260893)
+ p_id=>wwv_flow_imp.id(17659753337743445)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965725770905260870)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965737505638260893)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965725770905260870)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -31636,7 +31935,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020704'
+,p_last_upd_yyyymmddhh24miss=>'20231208235836'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965743988155819154)
@@ -32088,8 +32387,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965756340315819181)
+ p_id=>wwv_flow_imp.id(17659883479743446)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965744529941819156)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965756340315819181)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965744529941819156)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -32119,7 +32449,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020712'
+,p_last_upd_yyyymmddhh24miss=>'20231208235853'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965760555522850650)
@@ -32571,8 +32901,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965772970499850675)
+ p_id=>wwv_flow_imp.id(17659989779743447)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965761126585850652)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965772970499850675)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965761126585850652)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -32602,7 +32963,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020719'
+,p_last_upd_yyyymmddhh24miss=>'20231208235912'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965777042966893978)
@@ -33054,8 +33415,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965789487958894004)
+ p_id=>wwv_flow_imp.id(17660011533743448)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965777663776893979)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965789487958894004)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965777663776893979)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -33085,7 +33477,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020726'
+,p_last_upd_yyyymmddhh24miss=>'20231208235932'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965794939389972049)
@@ -33457,8 +33849,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965805369640972070)
+ p_id=>wwv_flow_imp.id(17660179635743449)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965795566705972051)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965805369640972070)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965795566705972051)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -33488,7 +33911,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020735'
+,p_last_upd_yyyymmddhh24miss=>'20231208235951'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965811695840019221)
@@ -33900,8 +34323,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965823153299019244)
+ p_id=>wwv_flow_imp.id(17660298332743450)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965812310425019222)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965823153299019244)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965812310425019222)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -33931,7 +34385,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020742'
+,p_last_upd_yyyymmddhh24miss=>'20231209000011'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965828465374051002)
@@ -34383,8 +34837,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965840879666051015)
+ p_id=>wwv_flow_imp.id(27637439478454701)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965829086116051002)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965840879666051015)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965829086116051002)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -34414,7 +34899,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020750'
+,p_last_upd_yyyymmddhh24miss=>'20231209000029'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965846581353077621)
@@ -34866,8 +35351,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965858932540077645)
+ p_id=>wwv_flow_imp.id(27637541160454702)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965847145607077622)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965858932540077645)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965847145607077622)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -34897,7 +35413,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020758'
+,p_last_upd_yyyymmddhh24miss=>'20231209000045'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(967497405375516269)
@@ -35380,8 +35896,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(967509851673516318)
+ p_id=>wwv_flow_imp.id(27637672663454703)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(967498009290516274)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(967509851673516318)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(967498009290516274)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -35411,7 +35958,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205022447'
+,p_last_upd_yyyymmddhh24miss=>'20231209000154'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965497415706482253)
@@ -35893,8 +36440,37 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965509723785482311)
+ p_id=>wwv_flow_imp.id(27637791138454704)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965498024037482263)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
+'',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965509723785482311)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965498024037482263)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -35924,7 +36500,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205020550'
+,p_last_upd_yyyymmddhh24miss=>'20231209000302'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965517008788703772)
@@ -36366,8 +36942,39 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965528368749703794)
+ p_id=>wwv_flow_imp.id(27637858781454705)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965517508745703773)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin user'');',
+'',
+'    --check if the user is not logged in as an admin user',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user)) THEN ',
+'',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is not an admin user'');',
+'',
+'        --the user is not logged in as an admin user',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin user'');',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965528368749703794)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965517508745703773)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -36397,7 +37004,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'21'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231205014137'
+,p_last_upd_yyyymmddhh24miss=>'20231209000429'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(965534691163765116)
@@ -36909,8 +37516,37 @@ wwv_flow_imp_page.create_ig_report_column(
 ,p_is_frozen=>false
 );
 wwv_flow_imp_page.create_page_process(
- p_id=>wwv_flow_imp.id(965546998496765148)
+ p_id=>wwv_flow_imp.id(27637907017454706)
 ,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_region_id=>wwv_flow_imp.id(965535246098765118)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'Unauthorized Submission'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'BEGIN',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
+'',
+'    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'        apex_error.add_error (',
+'        p_message          => ''The user is not authorized to perform this action'',',
+'        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
+'',
+'    END IF;',
+'',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(965546998496765148)
+,p_process_sequence=>20
 ,p_process_point=>'AFTER_SUBMIT'
 ,p_region_id=>wwv_flow_imp.id(965535246098765118)
 ,p_process_type=>'NATIVE_IG_DML'
@@ -37079,7 +37715,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208180044'
+,p_last_upd_yyyymmddhh24miss=>'20231208235538'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1245549354562987945)
@@ -37561,15 +38197,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -37729,7 +38366,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208181123'
+,p_last_upd_yyyymmddhh24miss=>'20231209000647'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1247879915582437530)
@@ -38048,15 +38685,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -38216,7 +38854,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208181440'
+,p_last_upd_yyyymmddhh24miss=>'20231209000700'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1250292113647265402)
@@ -38701,15 +39339,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -38869,7 +39508,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208175612'
+,p_last_upd_yyyymmddhh24miss=>'20231209000713'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1252872673860752946)
@@ -39354,15 +39993,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -39522,7 +40162,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208181654'
+,p_last_upd_yyyymmddhh24miss=>'20231209000724'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1255499722738397539)
@@ -40007,15 +40647,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -40175,7 +40816,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208181640'
+,p_last_upd_yyyymmddhh24miss=>'20231209000731'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1258172469194397758)
@@ -40660,15 +41301,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -40842,7 +41484,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208182006'
+,p_last_upd_yyyymmddhh24miss=>'20231209000745'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1263623974744667042)
@@ -41183,15 +41825,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
@@ -41351,7 +41994,7 @@ wwv_flow_imp_page.create_page(
 ,p_read_only_when2=>'PLSQL'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231208182121'
+,p_last_upd_yyyymmddhh24miss=>'20231209000754'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(1258993767111692565)
@@ -41836,15 +42479,16 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'BEGIN',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''Running post processing, AI_USER_AUTH_ROLE is: ''||:AI_USER_AUTH_ROLE);',
-'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
 '    IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P287 Unauthorized Submission Processing'', ''The user is not authorized to perform this action'');',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is an admin/write user'');',
 '',
 '        apex_error.add_error (',
 '        p_message          => ''The user is not authorized to perform this action'',',
 '        p_display_location => apex_error.c_inline_in_notification );',
+'    ELSE',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''Unauthorized Submission Check'', ''The user is NOT an admin/write user'');',
 '',
 '    END IF;',
 '',
