@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   03:45 Saturday December 9, 2023
+--   Date and Time:   04:20 Saturday December 9, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209034446'
+,p_last_upd_yyyymmddhh24miss=>'20231209041853'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>60
 ,p_print_server_type=>'INSTANCE'
@@ -17598,7 +17598,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1340900158125856465)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231209000858'
+,p_last_upd_yyyymmddhh24miss=>'20231209041853'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(190373664166337821)
@@ -22061,6 +22061,7 @@ wwv_flow_imp_page.create_page_da_event(
 ,p_bind_type=>'bind'
 ,p_execution_type=>'IMMEDIATE'
 ,p_bind_event_type=>'click'
+,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1277207805039171168)
@@ -22070,6 +22071,7 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'lSpinner$ = apex.util.showSpinner();  '
+,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1277207724255171167)
@@ -22088,21 +22090,39 @@ wwv_flow_imp_page.create_page_da_action(
 '        V_RETURN_CODE PLS_INTEGER;',
 '	BEGIN',
 '',
-'        --execute the deep copy procedure:',
-'	    CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(TO_NUMBER(:P220_CRUISE_ID), V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
+'        DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 - Unauthorized Submission Check'', ''Check if the user is an admin/write user'');',
 '',
-'        --set the return code and message to the corresponding page items:',
-'        :P220_DEEP_COPY_RET_CODE := V_PROC_RETURN_CODE;',
-'        :P220_DEEP_COPY_RET_MSG := V_PROC_RETURN_MSG;',
+'        IF (NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_ADMIN_FN(:app_user) AND NOT CAS_EXT_AUTH_PKG.CAS_IS_APP_WRITE_FN(:app_user)) THEN ',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 - Unauthorized Submission Check'', ''The user is NOT an admin/write user - show the error message and stop execution'');',
+'',
+'/*            apex_error.add_error (',
+'            p_message          => ''The user is not authorized to perform this action'',',
+'            p_display_location => apex_error.c_inline_in_notification );',
+'*/',
+'            --set the return code and message to the corresponding page items:',
+'            :P220_DEEP_COPY_RET_CODE := 0;',
+'            :P220_DEEP_COPY_RET_MSG := ''The user is not authorized to perform this action'';',
+'',
+'        ELSE',
+'',
+'            DB_LOG_PKG.ADD_LOG_ENTRY (''DEBUG'', ''P220 - Unauthorized Submission Check'', ''The user is an admin/write user'');',
+'',
+'            --execute the deep copy procedure:',
+'    	    CCD_CRUISE_PKG.DEEP_COPY_CRUISE_SP(TO_NUMBER(:P220_CRUISE_ID), V_PROC_RETURN_CODE, V_PROC_RETURN_MSG, V_PROC_RETURN_CRUISE_ID);',
+'',
+'            --set the return code and message to the corresponding page items:',
+'            :P220_DEEP_COPY_RET_CODE := V_PROC_RETURN_CODE;',
+'            :P220_DEEP_COPY_RET_MSG := V_PROC_RETURN_MSG;',
 '',
 '',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
-'        --generate the URL:',
-'        :P220_DEEP_COPY_CRUISE_URL := APEX_UTIL.PREPARE_URL(p_url => ''f?p='' || :APP_ID || '':220:''|| :APP_SESSION||''::NO::P220_CRUISE_ID,P220_CRUISE_ID_COPY:''||V_PROC_RETURN_CRUISE_ID||'','');',
+'    --        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''generate the URL based on the CRUISE_ID: ''||V_PROC_RETURN_CRUISE_ID, V_RETURN_CODE);',
+'            --generate the URL:',
+'            :P220_DEEP_COPY_CRUISE_URL := APEX_UTIL.PREPARE_URL(p_url => ''f?p='' || :APP_ID || '':220:''|| :APP_SESSION||''::NO::P220_CRUISE_ID,P220_CRUISE_ID_COPY:''||V_PROC_RETURN_CRUISE_ID||'','');',
 '',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
+'    --        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''P220 - Deep Copy'', ''The value of the URL generated for the copied cruise is: ''||:P220_DEEP_COPY_CRUISE_URL, V_RETURN_CODE);',
+'        END IF;',
 '',
-'        ',
+'',
 '        EXCEPTION',
 '            WHEN OTHERS THEN',
 '            ',
@@ -22133,6 +22153,7 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_attribute_04=>'N'
 ,p_attribute_05=>'PLSQL'
 ,p_wait_for_result=>'Y'
+,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1277207874219171169)
@@ -22187,6 +22208,7 @@ wwv_flow_imp_page.create_page_da_action(
 '}',
 '',
 ''))
+,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1277209688899171187)
@@ -22834,6 +22856,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1278383505103385502)
 ,p_process_sequence=>160
@@ -22867,9 +22892,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1340900299104859931)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1278336707934019361)
 ,p_process_sequence=>170
