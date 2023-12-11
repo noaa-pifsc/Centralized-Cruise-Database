@@ -1,0 +1,7 @@
+/*class for all data set status indicators*/
+.data_status_display {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}

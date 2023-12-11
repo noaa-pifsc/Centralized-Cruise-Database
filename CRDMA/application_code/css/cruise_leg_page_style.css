@@ -1,0 +1,12 @@
+div.active-form-class {background-color: #fffee6;}
+div#cruise_attributes_region, div#leg_attributes_region {background-color: #ffffff; font-size: 1.6rem;
+font-weight: 400;
+line-height: 1.6rem;
+padding: 1.6rem 1.2rem;}
+ul.t-Tabs {margin-top: 10px;}
+
+span.valid_cruise {color: green;}
+span.invalid_cruise {color: red;}
+
+
+
