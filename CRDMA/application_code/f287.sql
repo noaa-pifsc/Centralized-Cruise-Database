@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   05:31 Wednesday December 13, 2023
+--   Date and Time:   19:40 Wednesday December 13, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -36,7 +36,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 --       Items:                  172
 --       Computations:            19
 --       Validations:             10
---       Processes:              146
+--       Processes:              148
 --       Regions:                142
 --       Buttons:                 65
 --       Dynamic Actions:         51
@@ -120,9 +120,9 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231213053130'
+,p_last_upd_yyyymmddhh24miss=>'20231213192658'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
-,p_files_version=>89
+,p_files_version=>90
 ,p_print_server_type=>'INSTANCE'
 ,p_is_pwa=>'N'
 );
@@ -17756,7 +17756,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1368775597492975921)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231213050835'
+,p_last_upd_yyyymmddhh24miss=>'20231213172524'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(218249103533457277)
@@ -20321,9 +20321,6 @@ wwv_flow_imp_page.create_page_item(
 '	--variable to store the main option query',
 '	V_MAIN_QUERY CLOB;',
 '',
-'	--variable to store the option query fragment that includes any selected options',
-'--	V_FRAG_QUERY CLOB;',
-'',
 'BEGIN',
 '',
 '',
@@ -20343,13 +20340,11 @@ wwv_flow_imp_page.create_page_item(
 '        UNION',
 '        SELECT TGT_SPP_ESA_ID from CCD_CRUISE_SPP_ESA where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '		--query fragment goes here when defined:',
-'        [[QUERY_FRAG]])',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
 '	',
-'--	V_FRAG_QUERY := ''UNION SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN ([[OPTION_IDS]])'';',
-'',
 '    --call the filtered option shuttle option procedure to generate the query',
 '	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
 '',
@@ -20403,9 +20398,6 @@ wwv_flow_imp_page.create_page_item(
 '	--variable to store the main option query',
 '	V_MAIN_QUERY CLOB;',
 '',
-'	--variable to store the option query fragment that includes any selected options',
-'	V_FRAG_QUERY CLOB;',
-'',
 'BEGIN',
 '',
 '    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''(Initial Load Event) PL/SQL returning SQL Query for MMPA Target Species Shuttle'', ''The value of P220_CRUISE_ID is: ''||:P220_CRUISE_ID);',
@@ -20424,13 +20416,11 @@ wwv_flow_imp_page.create_page_item(
 '        UNION',
 '        SELECT TGT_SPP_MMPA_ID from CCD_CRUISE_SPP_MMPA where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '		--query fragment goes here when defined:',
-'        [[QUERY_FRAG]])',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
 '	',
-'--	V_FRAG_QUERY := ''UNION SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN ([[OPTION_IDS]])'';',
-'',
 '    --call the filtered option shuttle option procedure to generate the query',
 '	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
 '',
@@ -20489,9 +20479,6 @@ wwv_flow_imp_page.create_page_item(
 '	--variable to store the main option query',
 '	V_MAIN_QUERY CLOB;',
 '',
-'	--variable to store the option query fragment that includes any selected options',
-'--	V_FRAG_QUERY CLOB;',
-'',
 'BEGIN',
 '',
 '',
@@ -20511,13 +20498,11 @@ wwv_flow_imp_page.create_page_item(
 '        UNION',
 '        SELECT TGT_SPP_FSSI_ID from CCD_CRUISE_SPP_FSSI where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '		--query fragment goes here when defined:',
-'        [[QUERY_FRAG]])',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
 '	',
-'--	V_FRAG_QUERY := ''UNION SELECT TGT_SPP_FSSI_ID FROM CCD_TGT_SPP_FSSI where TGT_SPP_FSSI_ID IN ([[OPTION_IDS]])'';',
-'',
 '    --call the filtered option shuttle option procedure to generate the query',
 '	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
 '',
@@ -20572,9 +20557,6 @@ wwv_flow_imp_page.create_page_item(
 '	--variable to store the main option query',
 '	V_MAIN_QUERY CLOB;',
 '',
-'	--variable to store the option query fragment that includes any selected options',
-'--	V_FRAG_QUERY CLOB;',
-'',
 'BEGIN',
 '',
 '',
@@ -20594,7 +20576,7 @@ wwv_flow_imp_page.create_page_item(
 '        UNION',
 '        SELECT EXP_SPP_CAT_ID from CCD_CRUISE_EXP_SPP where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)',
 '		--query fragment goes here when defined:',
-'        [[QUERY_FRAG]])',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
@@ -21322,9 +21304,6 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(1307599342878909328)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1304456787180070832)
 ,p_event_id=>wwv_flow_imp.id(1307377042475929542)
@@ -21337,6 +21316,9 @@ wwv_flow_imp_page.create_page_da_action(
 '            $(document).find(''input[type=text],textarea,select'').filter('':visible:first'').focus();',
 ''))
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1307377258902929544)
 ,p_name=>'Change Primary Survey Category Preset'
@@ -22969,7 +22951,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231213053020'
+,p_last_upd_yyyymmddhh24miss=>'20231213192658'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(218249193139457278)
@@ -25614,45 +25596,20 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov_language=>'PLSQL'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
-'   l_selected apex_application_global.vc_arr2;',
-'   V_TEMP_SQL VARCHAR2(4000);',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'',
-'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'	--variable to store the main option query',
+'	V_MAIN_QUERY CLOB;',
 '',
 'BEGIN',
 '',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHOW_FILT_LIST is: ''||:P230_GEAR_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_GEAR_SHUTTLE is: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
-'',
-'',
-'    --retrieve all of the Gear from the shuttle field:',
-'    l_selected := apex_util.string_to_table(:P230_GEAR_SHUTTLE);',
-'',
-'   for i in 1..l_selected.count loop',
-'',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The current value of Gear is: ''||l_selected(i), V_PROC_RETURN_CODE);',
-'',
-'        --check if this is the first loop (do not need to append the "OR" operator)',
-'        IF (i = 1) THEN',
-'            V_QUERY_FRAG := ''(GEAR_ID  = ''||l_selected(i)||'')'';',
-'        ELSE    --this is not the first value, add the "OR" operator:',
-'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (GEAR_ID  = ''||l_selected(i)||'')'';',
-'        END IF;',
-'    end loop;',
-'',
-'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
-'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT GEAR_ID FROM CCD_GEAR where ''||V_QUERY_FRAG;',
-'    END IF;',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''(Initial Load Event) PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''(Initial Load Event) PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID_COPY is: ''||:P230_CRUISE_LEG_ID_COPY);',
 '',
 '',
 '--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
 '',
 '    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
-'    V_TEMP_SQL := ''SELECT',
+'    V_MAIN_QUERY := ''SELECT',
 '    GEAR_NAME, GEAR_ID FROM CCD_GEAR where GEAR_ID IN',
 '    (',
 '',
@@ -25662,16 +25619,14 @@ wwv_flow_imp_page.create_page_item(
 '',
 '        UNION',
 '        SELECT GEAR_ID from CCD_LEG_GEAR where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
-'        ''||V_QUERY_FRAG||'')',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(GEAR_NAME)'';',
 '',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Gear Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
-'',
-'',
-'    RETURN V_TEMP_SQL;',
+'    --call the filtered option shuttle option procedure to generate the query',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -25721,45 +25676,18 @@ wwv_flow_imp_page.create_page_item(
 ,p_lov_language=>'PLSQL'
 ,p_lov=>wwv_flow_string.join(wwv_flow_t_varchar2(
 'DECLARE',
-'   l_selected apex_application_global.vc_arr2;',
-'   V_TEMP_SQL VARCHAR2(4000);',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'',
-'    V_QUERY_FRAG VARCHAR2(4000) := NULL;',
+'	--variable to store the main option query',
+'	V_MAIN_QUERY CLOB;',
 '',
 'BEGIN',
 '',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID, V_PROC_RETURN_CODE);',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||:P230_REG_ECO_SHOW_FILT_LIST, V_PROC_RETURN_CODE);',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''(Initial Load Event) PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID);',
 '',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''(Initial Load Event) PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||:P230_CRUISE_LEG_ID);',
 '',
-'    --retrieve all of the Regional Ecosystem from the shuttle field:',
-'    l_selected := apex_util.string_to_table(:P230_REG_ECO_SHUTTLE);',
-'',
-'   for i in 1..l_selected.count loop',
-'',
-'--        DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The current value of Regional Ecosystem is: ''||l_selected(i), V_PROC_RETURN_CODE);',
-'',
-'        --check if this is the first loop (do not need to append the "OR" operator)',
-'        IF (i = 1) THEN',
-'            V_QUERY_FRAG := ''(REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
-'        ELSE    --this is not the first value, add the "OR" operator:',
-'            V_QUERY_FRAG := V_QUERY_FRAG||'' OR (REG_ECOSYSTEM_ID  = ''||l_selected(i)||'')'';',
-'        END IF;',
-'    end loop;',
-'',
-'    --if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:',
-'    IF (V_QUERY_FRAG IS NOT NULL) THEN',
-'        V_QUERY_FRAG := ''UNION SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where ''||V_QUERY_FRAG;',
-'    END IF;',
-'',
-'',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of query fragment is: ''||V_QUERY_FRAG, V_PROC_RETURN_CODE);',
-'',
-'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:',
-'    V_TEMP_SQL := ''SELECT',
+'    --generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, and the show filtered values filter:',
+'    V_MAIN_QUERY := ''SELECT',
 '    REG_ECOSYSTEM_NAME, REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
 '    (',
 '',
@@ -25769,16 +25697,14 @@ wwv_flow_imp_page.create_page_item(
 '',
 '        UNION',
 '        SELECT REG_ECOSYSTEM_ID from CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:P230_CRUISE_LEG_ID, :P230_CRUISE_LEG_ID_COPY)',
-'        ''||V_QUERY_FRAG||'')',
+'        )',
 '    )',
 '',
 '    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
 '',
 '',
-'--    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''PL/SQL returning SQL Query for Regional Ecosystem Shuttle'', ''The value of V_SQL is: ''||V_TEMP_SQL, V_PROC_RETURN_CODE);',
-'',
-'',
-'    RETURN V_TEMP_SQL;',
+'    --call the filtered option shuttle option procedure to generate the query',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -25790,9 +25716,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'ALL'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1307133887981010249)
 ,p_name=>'P230_REG_ECO_PRESETS'
@@ -25818,6 +25741,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1307374051928929512)
 ,p_name=>'P230_REGION_SHUTTLE'
@@ -26603,9 +26529,6 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(1307132400317010234)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_action(
  p_id=>wwv_flow_imp.id(1307134896103010259)
 ,p_event_id=>wwv_flow_imp.id(1307133309088010244)
@@ -26626,6 +26549,9 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(1307374448198929516)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1302994170375475012)
 ,p_name=>'Before Refresh Vessel List'
@@ -27475,9 +27401,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'The Cruise Leg was deleted and the Data Validation Module was processed on the associated Cruise as well as any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1368775738471979387)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1305945958835989836)
 ,p_process_sequence=>160
@@ -27489,6 +27412,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_when_button_id=>wwv_flow_imp.id(1305937573597989804)
 ,p_security_scheme=>wwv_flow_imp.id(1368775738471979387)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1304456987280070834)
 ,p_process_sequence=>10
@@ -27549,6 +27475,107 @@ wwv_flow_imp_page.create_page_process(
 '		  --print out error message:',
 '		  DB_LOG_PKG.ADD_LOG_ENTRY(''ERROR'', ''Cruise Web Application'', ''The error code is '' || SQLCODE || ''- '' || SQLERRM, p_proc_return_code);',
 'end;'))
+,p_process_clob_language=>'PLSQL'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(27641320674454740)
+,p_process_sequence=>20
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'get_reg_ecosystem_options'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'',
+'	--variable to store the main option query',
+'	V_MAIN_QUERY CLOB;',
+'',
+'	--variable to store the option query fragment that includes any selected options',
+'	V_FRAG_QUERY CLOB;',
+'	',
+'BEGIN',
+'',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||apex_application.g_x03);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||apex_application.g_x02);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Regional Ecosystems Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||apex_application.g_x01);',
+'',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the existing cruise leg, selected values in the shuttle field, and the show filtered values filter:',
+'    V_MAIN_QUERY := ''SELECT',
+'    REG_ECOSYSTEM_NAME OPTION_VALUE, REG_ECOSYSTEM_ID OPTION_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT REG_ECOSYSTEM_ID',
+'        FROM',
+'        (SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where (:SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:SHOW_FILT_LIST IS NULL)',
+'',
+'        UNION',
+'        SELECT REG_ECOSYSTEM_ID from CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:PK_ID)',
+'        [[QUERY_FRAG]])',
+'    )',
+'',
+'    ORDER BY UPPER(REG_ECOSYSTEM_NAME)'';',
+'',
+'	V_FRAG_QUERY := ''UNION SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN ([[OPTION_IDS]])'';',
+'	',
+'	--call the filtered option shuttle option procedure to generate the query and execute it',
+'	CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP (V_MAIN_QUERY, V_FRAG_QUERY, apex_application.g_x01, apex_application.g_x02, (CASE WHEN apex_application.g_x03 IS NOT NULL THEN apex_application.g_x03 ELSE apex_application.g_x04 END));',
+'',
+'',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(27641412950454741)
+,p_process_sequence=>30
+,p_process_point=>'ON_DEMAND'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'get_gear_options'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'',
+'',
+'DECLARE',
+'',
+'	--variable to store the main option query',
+'	V_MAIN_QUERY CLOB;',
+'',
+'	--variable to store the option query fragment that includes any selected options',
+'	V_FRAG_QUERY CLOB;',
+'	',
+'BEGIN',
+'',
+'',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_CRUISE_LEG_ID is: ''||apex_application.g_x03);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_REG_ECO_SHOW_FILT_LIST is: ''||apex_application.g_x02);',
+'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Ajax Callback - PL/SQL returning SQL Query for Gear Shuttle'', ''The value of P230_REG_ECO_SHUTTLE is: ''||apex_application.g_x01);',
+'',
+'',
+'    --generate the full query to retrieve all of the reference table values based on the existing cruise leg, selected values in the shuttle field, and the show filtered values filter:',
+'    V_MAIN_QUERY := ''SELECT',
+'    GEAR_NAME OPTION_VALUE, GEAR_ID OPTION_ID FROM CCD_GEAR where GEAR_ID IN',
+'    (',
+'',
+'        SELECT DISTINCT GEAR_ID',
+'        FROM',
+'        (SELECT GEAR_ID FROM CCD_GEAR where (:SHOW_FILT_LIST = ''''Y'''' AND APP_SHOW_OPT_YN = ''''Y'''') OR (:SHOW_FILT_LIST IS NULL)',
+'',
+'        UNION',
+'        SELECT GEAR_ID from CCD_LEG_GEAR where CRUISE_LEG_ID IN (:PK_ID)',
+'        [[QUERY_FRAG]])',
+'    )',
+'',
+'    ORDER BY UPPER(GEAR_NAME)'';',
+'',
+'	V_FRAG_QUERY := ''UNION SELECT GEAR_ID FROM CCD_GEAR where GEAR_ID IN ([[OPTION_IDS]])'';',
+'',
+'	--call the filtered option shuttle option procedure to generate the query and execute it',
+'	CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP (V_MAIN_QUERY, V_FRAG_QUERY, apex_application.g_x01, apex_application.g_x02, (CASE WHEN apex_application.g_x03 IS NOT NULL THEN apex_application.g_x03 ELSE apex_application.g_x04 END));',
+'',
+'',
+'END;',
+'',
+'',
+''))
 ,p_process_clob_language=>'PLSQL'
 );
 end;
