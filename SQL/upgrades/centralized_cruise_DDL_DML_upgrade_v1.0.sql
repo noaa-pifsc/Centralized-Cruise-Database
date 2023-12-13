@@ -10268,6 +10268,11 @@ END;
 		--package array variable to store the CRUISE_ID values for a given cruise so they can be evaluated before and after a cruise leg update to ensure the DVM data is up-to-date
 		PV_OVERLAP_CRUISE_IDS apex_application_global.vc_arr2;
 
+
+		--package variable to store the original procedure arguments for a given package execution so it can be added to a standard DB Logging module entry
+		PV_LOG_MSG_HEADER DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+
+
 		--this procedure executes the DVM for all CCD_CRUISES records
 		PROCEDURE BATCH_EXEC_DVM_CRUISE_SP IS
 
@@ -10290,9 +10295,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_SP ()';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'.BATCH_EXEC_DVM_CRUISE_SP ()';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_SP() procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_SP() procedure');
 
 			--query for CRUISE_ID values for all active data files:
 			FOR rec IN (SELECT CRUISE_ID FROM CCD_CRUISES)
@@ -10306,13 +10311,13 @@ END;
 				EXEC_DVM_CRUISE_RC_SP(rec.CRUISE_ID, V_SP_RET_CODE, V_EXC_MSG);
 				IF (V_SP_RET_CODE = 1) THEN
 					--the DVM was executed successfully
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was validated successfully', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was validated successfully');
 
 					--increment the success counter:
 					V_SUCC_COUNTER := V_SUCC_COUNTER + 1;
 				ELSE
 					--the DVM was NOT executed successfully
---					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was not validated successfully:'||chr(10)||V_EXC_MSG, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was not validated successfully:'||chr(10)||V_EXC_MSG);
 
 
 					--increment the error counter:
@@ -10324,7 +10329,7 @@ END;
 
 
 			--provide a summary of how many were successfully evaluated and were not successfully evaluated
-			DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful', V_SP_RET_CODE);
+			DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
 
 			DBMS_output.put_line('Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
 
@@ -10337,7 +10342,7 @@ END;
 					--there are no cruise records retrieved by the
 
 					--provide a summary of how many were successfully evaluated and were not successfully evaluated
-					DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'There were no cruises returned by the batch DVM query, the DVM was not executed', V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'There were no cruises returned by the batch DVM query, the DVM was not executed');
 
 					DBMS_output.put_line('There were no cruises returned by the query, the DVM was not executed');
 
@@ -10348,7 +10353,7 @@ END;
 					V_EXC_MSG := 'The Batch DVM procedure did not complete successfully:'||chr(10)|| SQLERRM;
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20506, V_EXC_MSG);
@@ -10379,7 +10384,7 @@ END;
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
 			V_TEMP_LOG_SOURCE := 'CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure');
 
 			--check if the P_CRUISE_ID parameter is blank
 			IF (P_CRUISE_ID IS NULL) THEN
@@ -10389,7 +10394,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_REQ_PARAMS;
@@ -10405,7 +10410,7 @@ END;
 			DVM_PKG.VALIDATE_PARENT_RECORD_SP(V_DATA_STREAM_CODE, P_CRUISE_ID);
 
 			--The parent record was evaluated successfully
---			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', V_TEMP_LOG_SOURCE, 'The DVM_PKG.VALIDATE_PARENT_RECORD() procedure was executed successfully', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', V_TEMP_LOG_SOURCE, 'The DVM_PKG.VALIDATE_PARENT_RECORD() procedure was executed successfully');
 
 
 
@@ -10427,7 +10432,7 @@ END;
 					V_EXC_MSG := 'The Cruise could not be successfully processed by the DVM: '||chr(10)||SQLERRM;
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20508, V_EXC_MSG);
@@ -10457,9 +10462,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'EXEC_DVM_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure');
 
 			--check if the P_CRUISE_NAME parameter is blank
 			IF (P_CRUISE_NAME IS NULL) THEN
@@ -10469,7 +10474,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_REQ_PARAMS;
@@ -10499,7 +10504,7 @@ END;
 					V_EXC_MSG := 'A cruise record with a cruise name "'||P_CRUISE_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20509, V_EXC_MSG);
@@ -10523,7 +10528,7 @@ END;
 						V_EXC_MSG := 'The DVM_PKG.VALIDATE_PARENT_RECORD() procedure could not be successfully processed: '||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20508, V_EXC_MSG);
@@ -10545,7 +10550,7 @@ END;
 		begin
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'EXEC_DVM_CRUISE_RC_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'EXEC_DVM_CRUISE_RC_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
 			--execute the DVM for the P_CRUISE_ID:
 			EXEC_DVM_CRUISE_SP (P_CRUISE_ID);
@@ -10566,7 +10571,7 @@ END;
 				P_SP_RET_CODE := 0;
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, SQLERRM, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, SQLERRM);
 
 
 		END EXEC_DVM_CRUISE_RC_SP;
@@ -10583,7 +10588,7 @@ END;
 		begin
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'EXEC_DVM_CRUISE_RC_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'EXEC_DVM_CRUISE_RC_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
 			--execute the DVM for the P_CRUISE_NAME:
 			EXEC_DVM_CRUISE_SP (P_CRUISE_NAME);
@@ -10604,7 +10609,7 @@ END;
 				P_SP_RET_CODE := 0;
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, SQLERRM, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, SQLERRM);
 
 
 		END EXEC_DVM_CRUISE_RC_SP;
@@ -10634,9 +10639,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'EXEC_DVM_CRUISE_OVERLAP_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP() procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP() procedure');
 
 
 			--check if the P_CRUISE_ID parameter is blank
@@ -10647,7 +10652,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_REQ_PARAMS;
@@ -10662,14 +10667,14 @@ END;
 			SAVEPOINT DVM_CRUISE_REC;
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||P_CRUISE_ID||') procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||P_CRUISE_ID||') procedure');
 
 			--execute the DVM on the specified cruise record
 			CCD_DVM_PKG.EXEC_DVM_CRUISE_SP(P_CRUISE_ID);
 
 			--the DVM execution was successful:
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||P_CRUISE_ID||') was successful, query for the other data files related by the CCD_QC_DUP_CASTS_V view', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||P_CRUISE_ID||') was successful, query for the other data files related by the CCD_QC_DUP_CASTS_V view');
 
 			--query for any leg/vessel overlap for the specified cruise (do not revalidate the same cruise if there is an overlap with another associated cruise leg since the initial execution will identify those validation issues)
 			FOR rec IN (SELECT CRUISE_ID FROM CCD_QC_LEG_OVERLAP_V WHERE CRUISE_ID2 = P_CRUISE_ID AND CRUISE_ID <> P_CRUISE_ID)
@@ -10677,20 +10682,20 @@ END;
 			LOOP
 
 				--execute the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure on the current rec.CRUISE_ID value:
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'execute the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||rec.CRUISE_ID||') procedure on the overlapping cruise', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'execute the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||rec.CRUISE_ID||') procedure on the overlapping cruise');
 
 				CCD_DVM_PKG.EXEC_DVM_CRUISE_SP(rec.CRUISE_ID);
 
 				--the DVM was successful:
 
 				--log the successful execution:
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||rec.CRUISE_ID||') procedure was successful', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The CCD_DVM_PKG.EXEC_DVM_CRUISE_SP('||rec.CRUISE_ID||') procedure was successful');
 
 			END LOOP;
 
 
 			--if there are no execptions it indicate the procedure was successful:
---			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', V_TEMP_LOG_SOURCE, 'EXEC_DVM_CRUISE_OVERLAP_SP('||P_CRUISE_ID||') was completed successfully', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', V_TEMP_LOG_SOURCE, 'EXEC_DVM_CRUISE_OVERLAP_SP('||P_CRUISE_ID||') was completed successfully');
 
 
 
@@ -10714,7 +10719,7 @@ END;
 					V_EXC_MSG := 'The DVM procedure could not be successfully processed for the cruise(s): '||chr(10)||SQLERRM;
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20511, V_EXC_MSG);
@@ -10745,9 +10750,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'EXEC_DVM_CRUISE_OVERLAP_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP() procedure', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.EXEC_DVM_CRUISE_OVERLAP_SP() procedure');
 
 
 			--check if the P_CRUISE_NAME parameter is blank
@@ -10758,7 +10763,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_REQ_PARAMS;
@@ -10792,7 +10797,7 @@ END;
 					V_EXC_MSG := 'A cruise record with a cruise name "'||P_CRUISE_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20512, V_EXC_MSG);
@@ -10815,7 +10820,7 @@ END;
 						V_EXC_MSG := 'The DVM procedure could not be successfully processed for the cruise(s): '||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20511, V_EXC_MSG);
@@ -10861,9 +10866,9 @@ END;
 			SAVEPOINT DEL_LEG_SAVEPOINT;
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'DEL_LEG_OVERLAP_SP (P_CRUISE_LEG_ID: '||P_CRUISE_LEG_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEL_LEG_OVERLAP_SP (P_CRUISE_LEG_ID: '||P_CRUISE_LEG_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_LEG_OVERLAP_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_LEG_OVERLAP_SP ()');
 
 			IF (P_CRUISE_LEG_ID IS NULL) THEN
 				--the P_CRUISE_LEG_ID parameter is blank, raise an exception:
@@ -10872,7 +10877,7 @@ END;
 				V_EXC_MSG := 'The Cruise Leg ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the blank parameter exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -10889,7 +10894,7 @@ END;
 				SELECT DISTINCT CRUISE_ID FROM CCD_QC_LEG_OVERLAP_V WHERE CRUISE_ID2 = V_CRUISE_ID AND CRUISE_ID <> V_CRUISE_ID
 			);
 
---			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'There are '||V_NUM_OVERLAP||' cruise records that overlap with the specified cruise', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'There are '||V_NUM_OVERLAP||' cruise records that overlap with the specified cruise');
 
 
 			--check if there are one or more overlapping cruises:
@@ -10912,13 +10917,13 @@ END;
 			--loop through the overlapping cruise IDs and re-evaluate them:
 			for i in 1..V_OVERLAP_CRUISE_IDS.count
 			loop
---				DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'Run the DVM on the CRUISE_ID: '||V_OVERLAP_CRUISE_IDS(i), V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'Run the DVM on the CRUISE_ID: '||V_OVERLAP_CRUISE_IDS(i));
 
 				--execute the DVM on the current cruise:
 				CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(V_OVERLAP_CRUISE_IDS(i)));
 
 				--the DVM executed successfully:
---				DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed');
 
 
 			end loop;
@@ -10930,7 +10935,7 @@ END;
 			--the DVM was successfully executed on the deleted cruise leg's associated cruise
 
 			--log the processing error:
---			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'the DVM was successfully executed on the deleted cruise leg''s associated cruise', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'the DVM was successfully executed on the deleted cruise leg''s associated cruise');
 
 
 		EXCEPTION
@@ -10953,7 +10958,7 @@ END;
 				V_EXC_MSG := 'The cruise leg record was not found in the database';
 
 				--log the processing error
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--rollback all of the DML that was executed in the procedure since the procedure failed:
 				ROLLBACK TO SAVEPOINT DEL_LEG_SAVEPOINT;
@@ -10973,7 +10978,7 @@ END;
 					V_EXC_MSG := 'One or more child records exist for the cruise leg record, you must delete them before you can delete the cruise leg';
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--rollback all of the DML that was executed in the procedure since the procedure failed:
 					ROLLBACK TO SAVEPOINT DEL_LEG_SAVEPOINT;
@@ -10988,7 +10993,7 @@ END;
 					V_EXC_MSG := 'The specified Cruise or overlapping Cruise could not be validated using the DVM:'||chr(10)||SQLERRM;
 
 					--there was an error processing the current cruise leg's aliases
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--rollback all of the DML that was executed in the procedure since the procedure failed:
 					ROLLBACK TO SAVEPOINT DEL_LEG_SAVEPOINT;
@@ -11005,7 +11010,7 @@ END;
 					V_EXC_MSG := 'The cruise leg record deletion could not be processed successfully:'||chr(10)|| SQLERRM;
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--rollback all of the DML that was executed in the procedure since the procedure failed:
 					ROLLBACK TO SAVEPOINT DEL_LEG_SAVEPOINT;
@@ -11038,9 +11043,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'DEL_LEG_OVERLAP_SP (P_LEG_NAME: '||P_LEG_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEL_LEG_OVERLAP_SP (P_LEG_NAME: '||P_LEG_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_LEG_OVERLAP_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_LEG_OVERLAP_SP ()');
 
 
 			--check if the P_LEG_NAME parameter is blank
@@ -11051,7 +11056,7 @@ END;
 				V_EXC_MSG := 'The Leg Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_LEG_NAME;
@@ -11086,7 +11091,7 @@ END;
 					V_EXC_MSG := 'A cruise leg record with a name "'||P_LEG_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20502, V_EXC_MSG);
@@ -11108,7 +11113,7 @@ END;
 						V_EXC_MSG := 'The specific Cruise Leg could not be deleted and along with any previously overlapping cruises re-validated successfully: '||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20504, V_EXC_MSG);
@@ -11142,9 +11147,9 @@ END;
 			SAVEPOINT DEL_CRUISE_SAVEPOINT;
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'DEL_CRUISE_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEL_CRUISE_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_CRUISE_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_CRUISE_SP ()');
 
 			--check if the required parameters are blank:
 			IF (P_CRUISE_ID IS NULL) THEN
@@ -11154,7 +11159,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the blank parameter exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11162,12 +11167,12 @@ END;
 			END IF;
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleting DVM records for the Cruise ID: '||P_CRUISE_ID, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleting DVM records for the Cruise ID: '||P_CRUISE_ID);
 
 			--retrieve the PTA_ISS_ID into the V_PTA_ISS_ID variable so it can be used to remove the
 			SELECT PTA_ISS_ID INTO V_PTA_ISS_ID FROM CCD_CRUISES where cruise_id = P_CRUISE_ID;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The PTA_ISS_ID is: '||V_PTA_ISS_ID, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The PTA_ISS_ID is: '||V_PTA_ISS_ID);
 
 			--check to see if there are any DVM records associated with the cruise:
 			IF (V_PTA_ISS_ID IS NOT NULL) THEN
@@ -11176,23 +11181,23 @@ END;
 				--Update the CCD_CRUISES record to clear the PTA_ISS_ID value:
 				UPDATE CCD_CRUISES SET PTA_ISS_ID = NULL WHERE CRUISE_ID = P_CRUISE_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Cleared the PTA_ISS_ID from the CCD_CRUISES record', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Cleared the PTA_ISS_ID from the CCD_CRUISES record');
 
 
 				--delete the DVM issue records:
 				DELETE FROM DVM_ISSUES WHERE PTA_ISS_ID = V_PTA_ISS_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM issue records for the Cruise ID: '||P_CRUISE_ID, V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM issue records for the Cruise ID: '||P_CRUISE_ID);
 
 				--delete the DVM PTA Rule Sets:
 				DELETE FROM DVM_PTA_RULE_SETS WHERE PTA_ISS_ID = V_PTA_ISS_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM PTA Rule Sets for the Cruise ID: '||P_CRUISE_ID, V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM PTA Rule Sets for the Cruise ID: '||P_CRUISE_ID);
 
 				--delete the DVM intersection record
 				DELETE FROM DVM_PTA_ISSUES WHERE PTA_ISS_ID = V_PTA_ISS_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM PTA Issues Record for the Cruise ID: '||P_CRUISE_ID, V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Deleted DVM PTA Issues Record for the Cruise ID: '||P_CRUISE_ID);
 
 			END IF;
 
@@ -11214,7 +11219,7 @@ END;
 					--generate the exception message:
 					V_EXC_MSG := 'The specified Cruise record (CRUISE_ID: '||P_CRUISE_ID||') does not exist';
 
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20515, V_EXC_MSG);
@@ -11230,7 +11235,7 @@ END;
 						V_EXC_MSG := 'One or more child records exist for the cruise record, you must delete them before you can delete the cruise';
 
 						--log the procedure processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--rollback all of the DML that was executed in the procedure since the procedure failed:
 						ROLLBACK TO SAVEPOINT DEL_CRUISE_SAVEPOINT;
@@ -11244,7 +11249,7 @@ END;
 						V_EXC_MSG := 'The Cruise record and associated DVM records could not be successfully deleted from the database: '||chr(10)||SQLERRM;
 
 						--log the processing error
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--rollback all of the DML that was executed in the procedure since the procedure failed:
 						ROLLBACK TO SAVEPOINT DEL_CRUISE_SAVEPOINT;
@@ -11280,9 +11285,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'DEL_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEL_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_CRUISE_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEL_CRUISE_SP ()');
 
 
 			--check if the P_CRUISE_NAME parameter is blank
@@ -11293,7 +11298,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11327,7 +11332,7 @@ END;
 					V_EXC_MSG := 'A Cruise record with a name "'||P_CRUISE_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20515, V_EXC_MSG);
@@ -11349,7 +11354,7 @@ END;
 						V_EXC_MSG := 'The specific Cruise and associated DVM data could not be deleted successfully:'||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20514, V_EXC_MSG);
@@ -11379,9 +11384,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'PRE_UPDATE_LEG_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'PRE_UPDATE_LEG_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running PRE_UPDATE_LEG_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running PRE_UPDATE_LEG_SP ()');
 
 			--initialize the package array variable to store the cruise ID values for overlapping cruises:
 			PV_OVERLAP_CRUISE_IDS.DELETE;
@@ -11394,7 +11399,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11410,7 +11415,7 @@ END;
 			--loop through each CRUISE_ID returned by the SELECT query so these overlapping cruise IDs can be re-evaluated by the DVM after the cruise leg is updated:
 			LOOP
 
---					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The current value of V_OVERLAP_CRUISE_IDS is: '||rec.CRUISE_ID, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The current value of V_OVERLAP_CRUISE_IDS is: '||rec.CRUISE_ID);
 
 					PV_OVERLAP_CRUISE_IDS(PV_OVERLAP_CRUISE_IDS.COUNT + 1) :=	rec.CRUISE_ID;
 
@@ -11435,7 +11440,7 @@ END;
 					V_EXC_MSG := 'A Cruise record (CRUISE_ID: '||P_CRUISE_ID||') could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20519, V_EXC_MSG);
@@ -11447,7 +11452,7 @@ END;
 					V_EXC_MSG := 'The specific Leg''s associated Cruise overlaps could not be retrieved successfully:'||chr(10)||SQLERRM;
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20518, V_EXC_MSG);
@@ -11477,9 +11482,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'PRE_UPDATE_LEG_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'PRE_UPDATE_LEG_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running PRE_UPDATE_LEG_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running PRE_UPDATE_LEG_SP ()');
 
 			--check if the P_CRUISE_NAME parameter is blank
 			IF (P_CRUISE_NAME IS NULL) THEN
@@ -11489,7 +11494,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11521,7 +11526,7 @@ END;
 					V_EXC_MSG := 'A Cruise record (CRUISE_NAME: '||P_CRUISE_NAME||') could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20519, V_EXC_MSG);
@@ -11543,7 +11548,7 @@ END;
 						V_EXC_MSG := 'The specific Leg''s associated Cruise overlaps could not be retrieved successfully:'||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20518, V_EXC_MSG);
@@ -11588,11 +11593,11 @@ END;
 			SAVEPOINT UPDATE_LEG_SP_SAVEPOINT;
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'POST_UPDATE_LEG_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'POST_UPDATE_LEG_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running POST_UPDATE_LEG_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running POST_UPDATE_LEG_SP ()');
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The existing value of PV_OVERLAP_CRUISE_IDS is: '||APEX_UTIL.table_to_string(PV_OVERLAP_CRUISE_IDS, ', '), V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The existing value of PV_OVERLAP_CRUISE_IDS is: '||APEX_UTIL.table_to_string(PV_OVERLAP_CRUISE_IDS, ', '));
 
 			--check if the P_CRUISE_ID parameter is blank
 			IF (P_CRUISE_ID IS NULL) THEN
@@ -11602,7 +11607,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11616,7 +11621,7 @@ END;
 			--execute the DVM on the updated cruise:
 			CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (P_CRUISE_ID);
 
---			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed for the updated cruise', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed for the updated cruise');
 
 
 			--query for any leg/vessel overlap for the specified cruise (do not revalidate the same cruise if there is an overlap with another associated cruise leg since the initial execution will identify those validation issues)
@@ -11625,7 +11630,7 @@ END;
 			--loop through each CRUISE_ID returned by the SELECT query so these overlapping cruise IDs can be re-evaluated by the DVM after the cruise leg is updated:
 			LOOP
 
---					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The current value of overlapping CRUISE_ID is: '||rec.CRUISE_ID, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The current value of overlapping CRUISE_ID is: '||rec.CRUISE_ID);
 
 					--determine if the current cruise ID has already been identified as overlapping before the update, if so then do not add it to the array:
 					V_FOUND_CODE := CEN_UTIL_ARRAY_PKG.ARRAY_VAL_EXISTS_FN (PV_OVERLAP_CRUISE_IDS, TO_CHAR(rec.CRUISE_ID));
@@ -11644,7 +11649,7 @@ END;
 							V_EXC_MSG := 'The array could not be searched successfully for the current cruise ID value';
 
 							--log the processing error:
-							DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+							DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 							--raise the defined exception:
 							RAISE EXC_ARRAY_FIND_ERR;
@@ -11653,7 +11658,7 @@ END;
 
 			END LOOP;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'There were '||PV_OVERLAP_CRUISE_IDS.COUNT||' cruises that will be checked for overlaps', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'There were '||PV_OVERLAP_CRUISE_IDS.COUNT||' cruises that will be checked for overlaps');
 
 			--loop through the overlapping cruise IDs and re-evaluate them:
 			for i in 1..PV_OVERLAP_CRUISE_IDS.count
@@ -11662,12 +11667,12 @@ END;
 					--set the value of the current cruise ID being processed for error reporting purposes
 					V_CURR_CRUISE_ID := PV_OVERLAP_CRUISE_IDS(i);
 
---					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'Run the DVM on the overlapping CRUISE_ID: '||PV_OVERLAP_CRUISE_IDS(i), V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'Run the DVM on the overlapping CRUISE_ID: '||PV_OVERLAP_CRUISE_IDS(i));
 
 					--execute the DVM on the current cruise:
 					CCD_DVM_PKG.EXEC_DVM_CRUISE_SP (TO_NUMBER(PV_OVERLAP_CRUISE_IDS(i)));
 
---					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed on the overlapping cruise', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY ('DEBUG', V_TEMP_LOG_SOURCE, 'The DVM was successfully executed on the overlapping cruise');
 
 			end loop;
 
@@ -11693,7 +11698,7 @@ END;
 					V_EXC_MSG := 'A Cruise record (CRUISE_ID: '||P_CRUISE_ID||') could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20522, V_EXC_MSG);
@@ -11737,7 +11742,7 @@ END;
 						END IF;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (V_EXC_CODE, V_EXC_MSG);
@@ -11749,7 +11754,7 @@ END;
 						V_EXC_MSG := 'The specific Leg''s associated Cruise overlaps could not be retrieved successfully:'||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20521, V_EXC_MSG);
@@ -11779,9 +11784,9 @@ END;
 
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'POST_UPDATE_LEG_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'POST_UPDATE_LEG_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running POST_UPDATE_LEG_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running POST_UPDATE_LEG_SP ()');
 
 			--check if the P_CRUISE_NAME parameter is blank
 			IF (P_CRUISE_NAME IS NULL) THEN
@@ -11791,7 +11796,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_PARAMS;
@@ -11823,7 +11828,7 @@ END;
 					V_EXC_MSG := 'A Cruise record with a name "'||P_CRUISE_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20522, V_EXC_MSG);
@@ -11845,7 +11850,7 @@ END;
 						V_EXC_MSG := 'The specific updated Leg''s Cruise could not be validated as well as all overlapping cruises:'||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20521, V_EXC_MSG);
@@ -11853,6 +11858,13 @@ END;
 
 
 		END POST_UPDATE_LEG_SP;
+
+
+		--package initialization
+		BEGIN
+		
+			--set the package name variable default value
+			PV_LOG_MSG_HEADER := 'CCD_DVM_PKG.';
 
 	end CCD_DVM_PKG;
 	/
@@ -11979,6 +11991,21 @@ END;
 		PROCEDURE COPY_LEG_ALIASES_SP (P_SOURCE_LEG_ID IN PLS_INTEGER, P_NEW_LEG_ID IN PLS_INTEGER, P_PROC_RET_MSG OUT VARCHAR2);
 
 
+		--this procedure queries the database to update filtered or select field options based on the specified parameters.  
+		--P_MAIN_QUERY is the main options query
+		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
+		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
+		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
+		--all error conditions will raise an application exception and will be logged in the database
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_INCL_OPTION_IDS IN VARCHAR2, P_PRIM_KEY_VAL IN PLS_INTEGER);
+
+		--function that generates a parameterized query for shuttle options:
+		--P_MAIN_QUERY is the main options query
+		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
+		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		FUNCTION GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB;
+
 
 	END CCD_CRUISE_PKG;
 	/
@@ -11988,22 +12015,19 @@ END;
 	--this package provides functions and procedures to interact with the CTD package module
 	IS
 
-		--package variable to store the original procedure arguments for a given CCD_DVM_PKG execution so it can be added to a standard DB Logging module entry
+		--package variable to store the original procedure arguments for a given package execution so it can be added to a standard DB Logging module entry
 		PV_LOG_MSG_HEADER DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
-
-
-
 
 
 		--function that accepts a P_LEG_ALIAS value and returns the CRUISE_LEG_ID value for the CCD_CRUISE_LEGS record that has a corresponding CCD_LEG_ALIASES record with a LEG_ALIAS_NAME or CCD_CRUISE_LEGS.LEG_NAME value that matches the P_LEG_ALIAS value.	It returns NULL if no match is found
 		FUNCTION LEG_ALIAS_TO_CRUISE_LEG_ID_FN (P_LEG_ALIAS VARCHAR2)
 			RETURN NUMBER is
 
-						--variable to store the cruise_leg_id associated with the leg alias record with leg_alias_name = P_LEG_ALIAS
-						v_cruise_leg_id NUMBER;
+			--variable to store the cruise_leg_id associated with the leg alias record with leg_alias_name = P_LEG_ALIAS
+			v_cruise_leg_id NUMBER;
 
-						--return code from procedure calls
-						V_SP_RET_CODE PLS_INTEGER;
+			--return code from procedure calls
+			V_SP_RET_CODE PLS_INTEGER;
 
 		BEGIN
 
@@ -12107,10 +12131,17 @@ END;
 
 			--reference cursor variable:
 			c cur_typ;
+			
+			--variable to store the constructed log source string for the current procedure's log messages:
+			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
 
 		BEGIN
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'executing APPEND_REF_PRE_OPTS_FN('||P_DELIM_VALUES||', '||P_OPTS_QUERY||', '||P_PK_VAL||')', V_SP_RET_CODE);
+			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'APPEND_REF_PRE_OPTS_FN (P_DELIM_VALUES: '||P_DELIM_VALUES||', P_OPTS_QUERY: '||P_OPTS_QUERY||', P_PK_VAL: '||P_PK_VAL||')';
+
+
+			--DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'executing APPEND_REF_PRE_OPTS_FN('||P_DELIM_VALUES||', '||P_OPTS_QUERY||', '||P_PK_VAL||')');
 
 			--parse the P_DELIM_VALUES string into an array so they can be processed
 		 l_selected := apex_util.string_to_table(P_DELIM_VALUES);
@@ -12131,7 +12162,7 @@ END;
 					--loop through the l_selected array to check if there is a match for the current result set primary key value
 					for i in 1..l_selected.count loop
 
-	--						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The current shuttle option is: '||l_selected(i), V_SP_RET_CODE);
+	--						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The current shuttle option is: '||l_selected(i));
 
 							--check if the current l_selected array element matches the current result set primary key value
 							IF (l_selected(i) = V_OPT_PK_VAL) THEN
@@ -12144,7 +12175,7 @@ END;
 					IF NOT V_ID_FOUND THEN
 						--a match has not been found, add the result set primary key value to the array:
 
-	--						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'None of the shuttle option values match the current option, add it to the l_selected array', V_SP_RET_CODE);
+	--						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'None of the shuttle option values match the current option, add it to the l_selected array';
 
 							--add the ID to the list of selected values:
 							l_selected(l_selected.count + 1) := V_OPT_PK_VAL;
@@ -12156,7 +12187,7 @@ END;
 
 
 
---			 DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', 'APPEND_REF_PRE_OPTS', 'The return value is: '||apex_util.table_to_string(l_selected, ':'), V_SP_RET_CODE);
+--			 DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The return value is: '||apex_util.table_to_string(l_selected, ':'));
 
 			 --convert the array to a colon-delimited string so it can be used directly in a shuttle field
 			 return apex_util.table_to_string(l_selected, ':');
@@ -12222,10 +12253,11 @@ END;
 			--exception for a blank CRUISE_ID parameter:
 			EXC_BLANK_CRUISE_ID EXCEPTION;
 
+
 		begin
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure and all subsequent calls based on the procedure/function name and parameters:
-			PV_LOG_MSG_HEADER := 'DEEP_COPY_CRUISE_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEEP_COPY_CRUISE_SP (P_CRUISE_ID: '||P_CRUISE_ID||')';
 
 			--check if the P_CRUISE_ID parameter is blank
 			IF (P_CRUISE_ID IS NULL) THEN
@@ -12235,7 +12267,7 @@ END;
 				V_EXC_MSG := 'The Cruise ID parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_CRUISE_ID;
@@ -12247,13 +12279,13 @@ END;
 			--set the rollback save point so that the deep copy can be rolled back if the procedure can't be successfully executed:
 			SAVEPOINT DEEP_COPY_SAVEPOINT;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'Running DEEP_COPY_CRUISE_SP('||P_CRUISE_ID||')', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'Running DEEP_COPY_CRUISE_SP('||P_CRUISE_ID||')');
 
 			--retrieve the current CCD_CRUISES record's information into the cruise_tab variable so it can be used to insert the new CCD_CRUISES record copy into the database
 			SELECT * into cruise_tab from ccd_cruises where cruise_id = P_CRUISE_ID;
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise record was queried successfully: '||cruise_tab.CRUISE_NAME, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise record was queried successfully: '||cruise_tab.CRUISE_NAME);
 
 			--store the cruise name in v_current_cruise_name so it can be used for an error message if there was a unique key constraint violation
 			v_current_cruise_name := cruise_tab.CRUISE_NAME;
@@ -12267,27 +12299,27 @@ END;
 			--set the value of the out parameter so the new cruise ID can be used in the application
 			P_PROC_RET_CRUISE_ID := V_NEW_CRUISE_ID;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise record was copied successfully, new ID: '||V_NEW_CRUISE_ID, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The cruise record was copied successfully, new ID: '||V_NEW_CRUISE_ID);
 
 			--insert the associated cruise attributes:
 			COPY_ASSOC_CRUISE_VALS_SP (P_CRUISE_ID, V_NEW_CRUISE_ID);
 
 			--the cruise attributes were processed successfully
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The associated cruise attributes were successfully copied', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The associated cruise attributes were successfully copied');
 
 
 			--query for the number of cruise legs associated with the specified CCD_CRUISES record and store in the V_NUM_LEGS variable:
 			SELECT count(*) INTO V_NUM_LEGS from ccd_cruise_legs where CRUISE_ID = P_CRUISE_ID;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise legs were queried successfully, NUM_LEGS = '||V_NUM_LEGS, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The cruise legs were queried successfully, NUM_LEGS = '||V_NUM_LEGS);
 
 
 			--check to see if there are any legs associated with the specified cruise:
 			IF (V_NUM_LEGS > 0) then
 				--there were one or more cruise legs associated with the specified cruise record:
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'There are one or more cruise legs, query for them and copy them in the database', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There are one or more cruise legs, query for them and copy them in the database');
 
 				--query for all associated cruise legs and store the results in v_leg_tab for processing
 				select * bulk collect into v_leg_tab from ccd_cruise_legs where cruise_id = P_CRUISE_ID;
@@ -12298,21 +12330,21 @@ END;
 					--set the current leg name so it can be used in the event there is a unique key constraint error:
 					v_current_leg_name := v_leg_tab(i).LEG_NAME;
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'INSERT the new cruise leg copy - the value of v_leg_tab.CRUISE_LEG_ID is: '||v_leg_tab(i).CRUISE_LEG_ID, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'INSERT the new cruise leg copy - the value of v_leg_tab.CRUISE_LEG_ID is: '||v_leg_tab(i).CRUISE_LEG_ID);
 
 					--insert the new cruise leg with the values in the source cruise leg and " (copy)" appended to the leg name and associate it with the new cruise record that was just inserted (identified by V_NEW_CRUISE_ID).	Return the CCD_CRUISE_LEGS.CRUISE_LEG_ID primary key into V_NEW_CRUISE_LEG_ID so it can be used to associate the cruise leg attributes
 					INSERT INTO CCD_CRUISE_LEGS (LEG_NAME, LEG_START_DATE, LEG_END_DATE, LEG_DESC, CRUISE_ID, VESSEL_ID, PLAT_TYPE_ID, TZ_NAME)
 					VALUES (v_leg_tab(i).LEG_NAME||' (copy)', v_leg_tab(i).LEG_START_DATE, v_leg_tab(i).LEG_END_DATE, v_leg_tab(i).LEG_DESC, V_NEW_CRUISE_ID, v_leg_tab(i).VESSEL_ID, v_leg_tab(i).PLAT_TYPE_ID, v_leg_tab(i).TZ_NAME)
 					RETURNING CRUISE_LEG_ID INTO V_NEW_CRUISE_LEG_ID;
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise leg copy was successfully inserted - the value of V_NEW_CRUISE_LEG_ID is: '||V_NEW_CRUISE_LEG_ID, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The cruise leg copy was successfully inserted - the value of V_NEW_CRUISE_LEG_ID is: '||V_NEW_CRUISE_LEG_ID);
 
 					--Copy the source cruise leg attributes to the newly inserted cruise leg record::
 					COPY_ASSOC_LEG_VALS_SP (v_leg_tab(i).CRUISE_LEG_ID, V_NEW_CRUISE_LEG_ID);
 
 					--the associated attributes for the new cruise leg were processed successfully:
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise leg copy was successfully inserted, copy the leg aliases - the value of V_NEW_CRUISE_LEG_ID is: '||V_NEW_CRUISE_LEG_ID, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The cruise leg copy was successfully inserted, copy the leg aliases - the value of V_NEW_CRUISE_LEG_ID is: '||V_NEW_CRUISE_LEG_ID);
 
 
 					--copy the cruise leg aliases:
@@ -12320,11 +12352,11 @@ END;
 
 					--the leg aliases were processed successfully:
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The leg aliases were processed successfully', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The leg aliases were processed successfully');
 
 				end loop;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The cruise legs were successfully processed', V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The cruise legs were successfully processed');
 
 			END IF;
 
@@ -12336,7 +12368,7 @@ END;
 			--generate the success message to indicate the "deep copy" was successful, if the script reaches this point it was successful
 			P_PROC_RET_MSG := 'The Cruise "'||cruise_tab.CRUISE_NAME||'" was successfully copied as "'||cruise_tab.CRUISE_NAME||' (copy)" and '||V_NUM_LEGS||' legs were copied and associated with the new Cruise.	The DVM was used to validate the new Cruise';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', PV_LOG_MSG_HEADER, P_PROC_RET_MSG, V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('SUCCESS', V_TEMP_LOG_SOURCE, P_PROC_RET_MSG);
 
 			--set the success code:
 			P_SP_RET_CODE := 1;
@@ -12362,7 +12394,7 @@ END;
 
 
 						--there was an error processing the current cruise leg's aliases
-						DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--there was a PL/SQL error, rollback the SQL transaction:
 						--rollback all of the Deep Copy DML since the deep copy was unsuccessful:
@@ -12378,7 +12410,7 @@ END;
 					WHEN DUP_VAL_ON_INDEX THEN
 						--there was a unique key index error, check if this was during the insertion of the cruise record or an associated leg record:
 
---						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', PV_LOG_MSG_HEADER, 'The Cruise/Cruise Leg could not be copied successfully, there was a unique key constraint error: ' || SQLCODE || '- ' || SQLERRM, V_SP_RET_CODE);
+--						DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The Cruise/Cruise Leg could not be copied successfully, there was a unique key constraint error: ' || SQLCODE || '- ' || SQLERRM);
 
 						--there was a PL/SQL error, rollback the SQL transaction:
 						--rollback all of the Deep Copy DML since the deep copy was unsuccessful:
@@ -12395,7 +12427,7 @@ END;
 
 
 							--there was an error processing the current cruise leg's aliases
-							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 							--raise a custom application error:
 							RAISE_APPLICATION_ERROR (-20603, V_EXC_MSG);
@@ -12408,7 +12440,7 @@ END;
 							V_EXC_MSG := 'The Cruise leg "'||v_current_leg_name||'" could not be copied successfully, there was already a cruise leg named "'||v_current_leg_name||' (copy)"';
 
 							--there was an error processing the current cruise leg's aliases
-							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 							--raise a custom application error:
 							RAISE_APPLICATION_ERROR (-20605, V_EXC_MSG);
@@ -12432,7 +12464,7 @@ END;
 							V_EXC_MSG := 'The copied Cruise could not be validated using the DVM:'||chr(10)||SQLERRM;
 
 							--there was an error processing the current cruise leg's aliases
-							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 
 							--raise a custom application error:
@@ -12449,7 +12481,7 @@ END;
 							V_EXC_MSG := 'The specified Cruise and associated attributes could not be copied successfully'||chr(10)||SQLERRM;
 
 							--there was an error processing the current cruise leg's aliases
-							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+							DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 							--raise a custom application error:
 							RAISE_APPLICATION_ERROR (-20611, V_EXC_MSG);
@@ -12481,9 +12513,9 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := 'DEEP_COPY_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'DEEP_COPY_CRUISE_SP (P_CRUISE_NAME: '||P_CRUISE_NAME||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEEP_COPY_CRUISE_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running DEEP_COPY_CRUISE_SP ()');
 
 
 			--check if the P_CRUISE_NAME parameter is blank
@@ -12494,7 +12526,7 @@ END;
 				V_EXC_MSG := 'The Cruise Name parameter was not specified';
 
 				--log the processing error:
-				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 				--raise the defined exception:
 				RAISE EXC_BLANK_CRUISE_NAME;
@@ -12527,7 +12559,7 @@ END;
 					V_EXC_MSG := 'A cruise record with a name "'||P_CRUISE_NAME||'" could not be found in the database';
 
 					--log the processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20602, V_EXC_MSG);
@@ -12549,7 +12581,7 @@ END;
 						V_EXC_MSG := 'The Cruise (P_CRUISE_NAME: '||P_CRUISE_NAME||') and associated attributes could not be copied successfully'||chr(10)||SQLERRM;
 
 						--log the processing error:
-						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+						DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 						--raise a custom application error:
 						RAISE_APPLICATION_ERROR (-20611, V_EXC_MSG);
@@ -12583,7 +12615,7 @@ END;
 			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||' - COPY_ASSOC_CRUISE_VALS_SP (P_SOURCE_CRUISE_ID: '||P_SOURCE_CRUISE_ID||', P_NEW_CRUISE_ID: '||P_NEW_CRUISE_ID||')';
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_CRUISE_VALS_SP ('||P_SOURCE_CRUISE_ID||', '||P_NEW_CRUISE_ID||')', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_CRUISE_VALS_SP ('||P_SOURCE_CRUISE_ID||', '||P_NEW_CRUISE_ID||')');
 
 
 			--define the different cruise attribute tables that need to be processed in a new array:
@@ -12606,7 +12638,7 @@ END;
 					V_EXC_MSG := 'The cruise attribute records could not be copied:'||chr(10)|| SQLERRM;
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20604, V_EXC_MSG);
@@ -12639,7 +12671,7 @@ END;
 			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||' - COPY_ASSOC_LEG_VALS_SP (P_SOURCE_CRUISE_LEG_ID: '||P_SOURCE_CRUISE_LEG_ID||', P_NEW_CRUISE_LEG_ID: '||P_NEW_CRUISE_LEG_ID||')';
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_LEG_VALS_SP ('||P_SOURCE_CRUISE_LEG_ID||', '||P_NEW_CRUISE_LEG_ID||')', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_LEG_VALS_SP ('||P_SOURCE_CRUISE_LEG_ID||', '||P_NEW_CRUISE_LEG_ID||')');
 
 
 			--define the different cruise leg attribute tables that need to be processed in a new array:
@@ -12661,7 +12693,7 @@ END;
 					V_EXC_MSG := 'The cruise leg attribute records could not be copied:'||chr(10)|| SQLERRM;
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20606, V_EXC_MSG);
@@ -12697,14 +12729,14 @@ END;
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
-			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||' - COPY_ASSOC_VALS_SP (P_TABLE_LIST: ('||APEX_UTIL.table_to_string(P_TABLE_LIST, ', ')||'), P_PK_FIELD_NAME: '||P_PK_FIELD_NAME||', P_SOURCE_ID: '||P_SOURCE_ID||', P_NEW_ID: '||P_NEW_ID||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'COPY_ASSOC_VALS_SP (P_TABLE_LIST: ('||APEX_UTIL.table_to_string(P_TABLE_LIST, ', ')||'), P_PK_FIELD_NAME: '||P_PK_FIELD_NAME||', P_SOURCE_ID: '||P_SOURCE_ID||', P_NEW_ID: '||P_NEW_ID||')';
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_VALS_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_ASSOC_VALS_SP ()');
 
 			--loop through each table, query for the fields that should be set from the source record and then construct the INSERT-SELECT queries for each of the cruise/cruise leg attributes:
 			for i in 1..P_TABLE_LIST.count LOOP
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Process the current table: '||P_TABLE_LIST(i), V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Process the current table: '||P_TABLE_LIST(i));
 
 				--store the current table name:
 				V_CURR_TABLE_NAME := P_TABLE_LIST(i);
@@ -12715,13 +12747,13 @@ END;
 				--execute the query and store the record count as V_NUM_ATTRIBUTES
 				EXECUTE IMMEDIATE V_QUERY_STRING INTO V_NUM_ATTRIBUTES USING P_SOURCE_ID;
 
---				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The number of records for the current attribute table is: '||V_NUM_ATTRIBUTES, V_SP_RET_CODE);
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The number of records for the current attribute table is: '||V_NUM_ATTRIBUTES);
 
 				--check to see if there are any associated records for the current attribute table:
 				IF (V_NUM_ATTRIBUTES > 0) THEN
 					--there are one or more records associated with the current cruise/cruise leg attribute table
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There was at least one associated record for the current attribute table, generate the INSERT..SELECT query', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There was at least one associated record for the current attribute table, generate the INSERT..SELECT query');
 
 
 					--query for all of the field names that are not auditing fields or the PK field (P_PK_FIELD_NAME) so the values can be used to generate a SQL insert statement to insert the attribute table records associated with the source record (P_SOURCE_ID for either CCD_CRUISES or CCD_CRUISE_LEGS based on P_PK_FIELD_NAME) for the destination record (P_NEW_ID):
@@ -12731,17 +12763,17 @@ END;
 					AND user_tab_cols.table_name = P_TABLE_LIST(i) AND user_tab_cols.column_name not in ('CREATE_DATE', 'CREATED_BY', 'LAST_MOD_DATE', 'LAST_MOD_BY', P_PK_FIELD_NAME)
 					AND user_tab_cols.column_name not in (select user_cons_columns.column_name from user_cons_columns inner join user_constraints on user_constraints.constraint_name = user_cons_columns.constraint_name and user_constraints.owner = user_cons_columns.owner WHERE user_constraints.constraint_type = 'P' AND user_cons_columns.table_name = user_tab_cols.table_name AND user_cons_columns.owner = sys_context( 'userenv', 'current_schema' ));
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The attribute table query was successful, generate the INSERT..SELECT query', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The attribute table query was successful, generate the INSERT..SELECT query');
 
 					--construct the SQL INSERT statement to insert the current attribute record for the new cruise/cruise leg record (based on P_PK_FIELD_NAME) based on the source record (P_SOURCE_ID) for the new record (P_NEW_ID)
 					V_QUERY_STRING := 'INSERT INTO '||P_TABLE_LIST(i)||' ('||apex_util.table_to_string(V_FIELD_LIST, ',')||', '||P_PK_FIELD_NAME||') SELECT '||apex_util.table_to_string(V_FIELD_LIST, ',')||', :NEW_ID FROM '||P_TABLE_LIST(i)||' WHERE '||P_PK_FIELD_NAME||' = :SOURCE_ID';
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of the generated string is: '||V_QUERY_STRING, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of the generated string is: '||V_QUERY_STRING);
 
 					--execute the SQL INSERT query:
 					EXECUTE IMMEDIATE V_QUERY_STRING USING P_NEW_ID, P_SOURCE_ID;
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The insert-select query was successful', V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The insert-select query was successful');
 
 
 				END IF;
@@ -12758,7 +12790,7 @@ END;
 					V_EXC_MSG := 'The cruise/leg attribute records for the '||V_CURR_TABLE_NAME||' table could not be copied due to a NO_DATA_FOUND error:'||chr(10)|| SQLERRM;
 
 					--log the procedure processing error:
-					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20607, V_EXC_MSG);
@@ -12797,12 +12829,12 @@ END;
 			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||' - COPY_LEG_ALIASES_SP (P_SOURCE_LEG_ID: '||P_SOURCE_LEG_ID||', P_NEW_LEG_ID: '||P_NEW_LEG_ID||')';
 
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_LEG_ALIASES_SP ()', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running COPY_LEG_ALIASES_SP ()');
 
 			--query for the number of leg alias records associated with the specified leg
 			SELECT COUNT(*) into v_num_aliases from CCD_LEG_ALIASES where CRUISE_LEG_ID = P_SOURCE_LEG_ID;
 
---			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There are '||v_num_aliases||' leg aliases for the specified cruise leg', V_SP_RET_CODE);
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'There are '||v_num_aliases||' leg aliases for the specified cruise leg');
 
 
 			--check to see if there are any legs aliases associated with the specified cruise leg:
@@ -12815,7 +12847,7 @@ END;
 				--loop through the leg aliases and insert them for the new cruise leg (P_NEW_LEG_ID)
 				for i in v_leg_aliases.first..v_leg_aliases.last loop
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Insert the leg alias: '||v_leg_aliases(i).LEG_ALIAS_NAME, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Insert the leg alias: '||v_leg_aliases(i).LEG_ALIAS_NAME);
 
 					--save the current leg alias name so it can be used to generate an error message in the event of a PL/SQL or DB error:
 					v_curr_leg_alias_name := v_leg_aliases(i).LEG_ALIAS_NAME;
@@ -12823,7 +12855,7 @@ END;
 					--insert the leg alias with the alias name convention " (copy)" appended for the new cruise leg (P_NEW_LEG_ID)
 					INSERT INTO CCD_LEG_ALIASES (LEG_ALIAS_NAME, LEG_ALIAS_DESC, CRUISE_LEG_ID) VALUES (v_leg_aliases(i).LEG_ALIAS_NAME||' (copy)', v_leg_aliases(i).LEG_ALIAS_DESC, P_NEW_LEG_ID);
 
---					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Insert the leg alias: '||v_leg_aliases(i).LEG_ALIAS_NAME, V_SP_RET_CODE);
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Insert the leg alias: '||v_leg_aliases(i).LEG_ALIAS_NAME);
 
 				end loop;
 
@@ -12839,7 +12871,7 @@ END;
 					V_EXC_MSG := 'The Cruise leg alias "'||v_curr_leg_alias_name||'" could not be copied successfully, there was already a cruise leg alias "'||v_curr_leg_alias_name||' (copy)"';
 
 					--there was an error processing the current cruise leg's aliases
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20608, V_EXC_MSG);
@@ -12852,7 +12884,7 @@ END;
 					V_EXC_MSG := 'The Cruise leg alias "'||v_curr_leg_alias_name||'" could not be copied successfully';
 
 					--there was an error processing the current cruise leg's aliases
-					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', PV_LOG_MSG_HEADER, V_EXC_MSG, V_SP_RET_CODE);
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
 					RAISE_APPLICATION_ERROR (-20609, V_EXC_MSG);
@@ -12861,6 +12893,164 @@ END;
 
 
 
+
+		--this procedure queries the database to update filtered or select field options based on the specified parameters.  
+		--P_MAIN_QUERY is the main query
+		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
+		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
+		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
+		--all error conditions will raise an application exception and will be logged in the database
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_INCL_OPTION_IDS IN VARCHAR2, P_PRIM_KEY_VAL IN PLS_INTEGER) IS
+			--variable to store the constructed log source string for the current procedure's log messages:
+			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+
+
+			--variable to store the exception message:
+			V_EXC_MSG VARCHAR2(2000);
+
+			--CLOB variable to store the 
+			V_TEMP_SQL CLOB;
+			
+			--reference cursor data type
+			TYPE CurTyp IS REF CURSOR;
+
+			--reference cursor variable
+			v_cursor CurTyp;
+			
+			--return value CLOB variable to store the JSON data
+			ret_val CLOB;
+
+		BEGIN
+
+			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY: '||P_MAIN_QUERY||', P_FRAG_QUERY: '||P_FRAG_QUERY||', P_FILT_ENABLED_YN: '||P_FILT_ENABLED_YN||', P_INCL_OPTION_IDS: '||P_INCL_OPTION_IDS||', P_PRIM_KEY_VAL: '||P_PRIM_KEY_VAL||')';
+
+
+			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running UPDATE_FIL_SHUTTLE_OPTIONS_SP ()');
+
+			--generate the SQL query to return the options
+			V_TEMP_SQL := GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY, P_FRAG_QUERY, P_INCL_OPTION_IDS);
+
+			--execute the query using the filtered parameter values and the cruise/leg primary key value
+			OPEN v_cursor FOR V_TEMP_SQL USING P_FILT_ENABLED_YN, P_FILT_ENABLED_YN, P_PRIM_KEY_VAL;
+
+		--    DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The query was executed: '||v_stmt_str, p_proc_return_code);
+			
+			  --use the apex_json object to generate the JSON response:
+			  apex_json.initialize_clob_output;
+			  apex_json.open_object;
+			  apex_json.write('options', v_cursor);
+
+		 
+
+			  apex_json.close_object;
+			  
+			  --export the JSON string to ret_val variable:
+			  ret_val := apex_json.get_clob_output;
+		 
+			  DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The JSON data was written: '||ret_val);
+
+			  htp.prn(ret_val);
+
+			  --release the apex_json object from memory:
+			  apex_json.free_output;
+
+
+
+
+			--handle exceptions
+			EXCEPTION
+
+				--catch all PL/SQL database exceptions:
+				WHEN OTHERS THEN
+					--catch all other errors:
+
+					--generate the exception message:
+					V_EXC_MSG := 'The filtered shuttle procedure could not be copied successfully';
+
+					--there was an error processing the current cruise leg's aliases
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20609, V_EXC_MSG);
+
+		END UPDATE_FIL_SHUTTLE_OPTIONS_SP;
+
+
+		--function that generates a parameterized query for shuttle options:
+		--P_MAIN_QUERY is the main options query
+		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
+		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		FUNCTION GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB
+		
+		IS 
+		
+			--array variable to store the parsed values from P_INCL_OPTION_IDS variable
+			l_selected apex_application_global.vc_arr2;
+			
+			--CLOB variable to store the 
+			V_TEMP_SQL CLOB;
+
+			--CLOB variable to store the query fragment
+			V_QUERY_FRAG CLOB := NULL;
+
+			--variable to store the constructed log source string for the current procedure's log messages:
+			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+		
+		BEGIN
+
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY: '||P_MAIN_QUERY||', P_FRAG_QUERY: '||P_FRAG_QUERY||', P_INCL_OPTION_IDS: '||P_INCL_OPTION_IDS||')';
+
+			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running GEN_FIL_OPTION_QUERY_SP()');
+
+			--retrieve all of the selected options from the shuttle field:
+			l_selected := apex_util.string_to_table(P_INCL_OPTION_IDS);
+
+			--loop through the selected elements in the 
+			for i in 1..l_selected.count loop
+
+--				DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The current value of the selected options element is: '||l_selected(i));
+
+				--check if this is the first loop (do not need to append the "OR" operator)
+				IF (i = 1) THEN
+					V_QUERY_FRAG := l_selected(i);
+				ELSE    --this is not the first value, add the "OR" operator:
+					V_QUERY_FRAG := V_QUERY_FRAG||', '||l_selected(i);
+				END IF;
+			end loop;
+
+			--if the query fragment was generated then append the rest of the UNION query to retrieve the target species that were selected at the time this field is refreshed:
+			IF (V_QUERY_FRAG IS NOT NULL) THEN
+
+				--replace the V_QUERY_FRAG variable with the P_FRAG_QUERY query fragment replacing the [[OPTION_IDS]] placeholder with the comma-delimited string of P_INCL_OPTION_IDS values
+				V_QUERY_FRAG := REPLACE(P_FRAG_QUERY, '[[OPTION_IDS]]', V_QUERY_FRAG);
+				
+			END IF;
+
+
+		    DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of query fragment is: '||V_QUERY_FRAG);
+
+			--generate the full query to retrieve all of the reference table values based on the selected values in the shuttle field, the show filtered values filter, and associated reference values:
+
+			--replace the [[QUERY_FRAG]] placeholder with the constructed query fragment with V_QUERY_FRAG
+			V_TEMP_SQL := REPLACE(P_MAIN_QUERY, '[[QUERY_FRAG]]', V_QUERY_FRAG);
+
+			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The value of V_TEMP_SQL is: '||V_TEMP_SQL);
+			
+			
+			RETURN V_TEMP_SQL;
+		
+		
+		END GEN_FIL_OPTION_QUERY_SP;
+
+
+
+		--package initialization
+		BEGIN
+		
+			--set the package name variable default value
+			PV_LOG_MSG_HEADER := 'CCD_CRUISE_PKG.';
 
 	end CCD_CRUISE_PKG;
 

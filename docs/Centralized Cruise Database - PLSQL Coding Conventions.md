@@ -32,9 +32,12 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   EXC: Exception
     -   EXEC: Execute
     -   EXP: Expected
+		-   FIL: Filtered
+		-   FRAG: Fragment
     -   FREQ: Frequency
     -   FSSI: Fish Stock Sustainability Index
     -   ID: Identifier
+		-   INCL: Include
     -   MMPA: Marine Mammal Protection Act
     -   MSG: Message
     -   NUM: Number
@@ -44,6 +47,7 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   PARAMS: Parameters
     -   PLAT: Platform
     -   PK: Primary Key
+		-   PRIM: Primary
     -   RC: Return Code
     -   QC: Quality Control
     -   PRE: Preset/Before

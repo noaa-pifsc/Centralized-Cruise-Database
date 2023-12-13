@@ -187,6 +187,15 @@ X ** troubleshoot deep copy authorization check (it is showing that the deep cop
 X ** update the debugging message for the Unauthorized Submission process -> 
 
 
+_ fix bug in filtered shuttle page items
+	** _ Document ajax request on filter checkbox change event to query for all options and refresh the shuttle page items
+
+_ error tests for the function and business rules
+
+_ create package procedures to allow a specific cruise or specific cruise year to be validated
+
+** _ known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
+
 
 Version 1.1:
 

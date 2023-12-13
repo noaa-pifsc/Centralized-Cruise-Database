@@ -147,3 +147,205 @@ function ajax_request_oth_spp ()
     //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
     get_oth_spp_cruise_copy($v("P220_CRUISE_ID_COPY"));    
 }
+
+
+
+
+
+//function to execute the ajax request
+function ajax_request_mmpa_spp ()
+{
+    console.log('running ajax_request_mmpa_spp('+$v("P220_TGT_MMPA_SPP_SHUTTLE")+', '+$v("P220_MMPA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P220_TGT_MMPA_SPP_SHUTTLE is: '+$v("P220_TGT_MMPA_SPP_SHUTTLE"));
+//	console.log ('P220_MMPA_SHOW_FILT_LIST is: '+$v("P220_MMPA_SHOW_FILT_LIST"));
+//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
+//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
+	
+    get_mmpa_spp_options($v("P220_MMPA_SHOW_FILT_LIST"), $v("P220_TGT_MMPA_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
+{
+    console.log('this is the get_mmpa_spp_options() initialization code');
+
+    
+    apex.server.process(
+    'get_mmpa_spp_options',                             // Process or AJAX Callback name
+    {x01: TGT_MMPA_SPP_SHUTTLE,
+	x02: MMPA_SHOW_FILT_LIST,
+	x03: CRUISE_ID,
+	x04: CRUISE_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P220_TGT_MMPA_SPP_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
+
+
+
+//function to execute the ajax request
+function ajax_request_esa_spp ()
+{
+    console.log('running ajax_request_esa_spp('+$v("P220_TGT_ESA_SPP_SHUTTLE")+', '+$v("P220_ESA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P220_TGT_ESA_SPP_SHUTTLE is: '+$v("P220_TGT_ESA_SPP_SHUTTLE"));
+//	console.log ('P220_ESA_SHOW_FILT_LIST is: '+$v("P220_ESA_SHOW_FILT_LIST"));
+//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
+//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
+	
+    get_esa_spp_options($v("P220_ESA_SHOW_FILT_LIST"), $v("P220_TGT_ESA_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
+{
+    console.log('this is the get_esa_spp_options() initialization code');
+
+    
+    apex.server.process(
+    'get_esa_spp_options',                             // Process or AJAX Callback name
+    {x01: TGT_ESA_SPP_SHUTTLE,
+	x02: ESA_SHOW_FILT_LIST,
+	x03: CRUISE_ID,
+	x04: CRUISE_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P220_TGT_ESA_SPP_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+//function to execute the ajax request
+function ajax_request_fssi_spp ()
+{
+    console.log('running ajax_request_fssi_spp('+$v("P220_TGT_FSSI_SPP_SHUTTLE")+', '+$v("P220_FSSI_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P220_TGT_FSSI_SPP_SHUTTLE is: '+$v("P220_TGT_FSSI_SPP_SHUTTLE"));
+//	console.log ('P220_FSSI_SHOW_FILT_LIST is: '+$v("P220_FSSI_SHOW_FILT_LIST"));
+//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
+//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
+	
+    get_fssi_spp_options($v("P220_FSSI_SHOW_FILT_LIST"), $v("P220_TGT_FSSI_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
+{
+    console.log('this is the get_fssi_spp_options() initialization code');
+
+    
+    apex.server.process(
+    'get_fssi_spp_options',                             // Process or AJAX Callback name
+    {x01: TGT_FSSI_SPP_SHUTTLE,
+	x02: FSSI_SHOW_FILT_LIST,
+	x03: CRUISE_ID,
+	x04: CRUISE_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P220_TGT_FSSI_SPP_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//function to execute the ajax request
+function ajax_request_exp_spp_cat ()
+{
+    console.log('running ajax_request_exp_spp_cat('+$v("P220_EXP_SPP_CAT_SHUTTLE")+', '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P220_EXP_SPP_CAT_SHUTTLE is: '+$v("P220_EXP_SPP_CAT_SHUTTLE"));
+//	console.log ('P220_EXP_SPP_CAT_SHOW_FILT_LIST is: '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"));
+//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
+//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
+	
+    get_exp_spp_cat_options($v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"), $v("P220_EXP_SPP_CAT_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
+{
+    console.log('this is the get_exp_spp_cat_options() initialization code');
+
+    
+    apex.server.process(
+    'get_exp_spp_cat_options',                             // Process or AJAX Callback name
+    {x01: EXP_SPP_CAT_SHUTTLE,
+	x02: EXP_SPP_CAT_SHOW_FILT_LIST,
+	x03: CRUISE_ID,
+	x04: CRUISE_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P220_EXP_SPP_CAT_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
