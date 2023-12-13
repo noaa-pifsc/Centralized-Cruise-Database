@@ -228,3 +228,97 @@ function ajax_request_leg_aliases ()
     get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));    
     
 }
+
+
+
+//function to execute the ajax request
+function ajax_request_reg_ecosystems ()
+{
+    console.log('running ajax_request_reg_ecosystems('+$v("P230_REG_ECO_SHUTTLE")+', '+$v("P230_REG_ECO_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P230_REG_ECO_SHUTTLE is: '+$v("P230_REG_ECO_SHUTTLE"));
+//	console.log ('P230_REG_ECO_SHOW_FILT_LIST is: '+$v("P230_REG_ECO_SHOW_FILT_LIST"));
+//	console.log ('P230_CRUISE_LEG_ID is: '+$v("P230_CRUISE_LEG_ID"));
+//	console.log ('P230_CRUISE_LEG_ID_COPY is: '+$v("P230_CRUISE_LEG_ID_COPY"));
+	
+    get_reg_ecosystem_options($v("P230_REG_ECO_SHUTTLE"), $v("P230_REG_ECO_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
+{
+    console.log('this is the get_reg_ecosystem_options() initialization code');
+
+    
+    apex.server.process(
+    'get_reg_ecosystem_options',                             // Process or AJAX Callback name
+    {x01: REG_ECO_SHUTTLE,
+	x02: REG_ECO_SHOW_FILT_LIST,
+	x03: CRUISE_LEG_ID,
+	x04: CRUISE_LEG_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P230_REG_ECO_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
+
+
+
+//function to execute the ajax request
+function ajax_request_gear ()
+{
+    console.log('running ajax_request_gear('+$v("P230_GEAR_SHUTTLE")+', '+$v("P230_GEAR_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+	
+//	console.log ('P230_GEAR_SHUTTLE is: '+$v("P230_GEAR_SHUTTLE"));
+//	console.log ('P230_GEAR_SHOW_FILT_LIST is: '+$v("P230_GEAR_SHOW_FILT_LIST"));
+//	console.log ('P230_CRUISE_LEG_ID is: '+$v("P230_CRUISE_LEG_ID"));
+//	console.log ('P230_CRUISE_LEG_ID_COPY is: '+$v("P230_CRUISE_LEG_ID_COPY"));
+	
+    get_gear_options($v("P230_GEAR_SHUTTLE"), $v("P230_GEAR_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
+{
+    console.log('this is the get_gear_options() initialization code');
+
+    
+    apex.server.process(
+    'get_gear_options',                             // Process or AJAX Callback name
+    {x01: GEAR_SHUTTLE,
+	x02: GEAR_SHOW_FILT_LIST,
+	x03: CRUISE_LEG_ID,
+	x04: CRUISE_LEG_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the shuttle options
+		update_options(pData, 'P230_GEAR_SHUTTLE');
+
+
+      },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+

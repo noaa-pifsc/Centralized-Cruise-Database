@@ -28,18 +28,18 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   05:11 Wednesday December 13, 2023
+--   Date and Time:   05:31 Wednesday December 13, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                     44
---       Items:                  174
+--       Items:                  172
 --       Computations:            19
 --       Validations:             10
 --       Processes:              146
 --       Regions:                142
 --       Buttons:                 65
---       Dynamic Actions:         53
+--       Dynamic Actions:         51
 --     Shared Components:
 --       Logic:
 --         Items:                  4
@@ -120,9 +120,9 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231213051130'
+,p_last_upd_yyyymmddhh24miss=>'20231213053130'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
-,p_files_version=>88
+,p_files_version=>89
 ,p_print_server_type=>'INSTANCE'
 ,p_is_pwa=>'N'
 );
@@ -865,7 +865,43 @@ wwv_flow_imp.g_varchar2_table(103) := '6573745F6C65675F616C69617365732028290D0A7
 wwv_flow_imp.g_varchar2_table(104) := '6E67206765745F6C65675F616C6961735F636F707928272B24762822503233305F4352554953455F4C45475F49445F434F505922292B272927293B0D0A0D0A2F2F20202020636F6E736F6C652E6C6F6728277468652076616C7565206F6620746869732E';
 wwv_flow_imp.g_varchar2_table(105) := '74616273242E69642069733A20272B746869732E74616273242E6964293B202020200D0A202020200D0A202020202F2F73656E6420616E20616A6178207265717565737420666F7220616C6C206F6620746865206173736F636961746564206F74686572';
 wwv_flow_imp.g_varchar2_table(106) := '2073706563696573207265636F726473206173736F63696174656420776974682074686520636F70696564206372756973652049443A200D0A202020206765745F6C65675F616C6961735F636F70792824762822503233305F4352554953455F4C45475F';
-wwv_flow_imp.g_varchar2_table(107) := '49445F434F50592229293B202020200D0A202020200D0A7D0D0A';
+wwv_flow_imp.g_varchar2_table(107) := '49445F434F50592229293B202020200D0A202020200D0A7D0D0A0D0A0D0A0D0A2F2F66756E6374696F6E20746F20657865637574652074686520616A617820726571756573740D0A66756E6374696F6E20616A61785F726571756573745F7265675F6563';
+wwv_flow_imp.g_varchar2_table(108) := '6F73797374656D732028290D0A7B0D0A20202020636F6E736F6C652E6C6F67282772756E6E696E6720616A61785F726571756573745F7265675F65636F73797374656D7328272B24762822503233305F5245475F45434F5F53485554544C4522292B272C';
+wwv_flow_imp.g_varchar2_table(109) := '20272B24762822503233305F5245475F45434F5F53484F575F46494C545F4C49535422292B272C20272B24762822503233305F4352554953455F4C45475F494422292B272C20272B24762822503233305F4352554953455F4C45475F49445F434F505922';
+wwv_flow_imp.g_varchar2_table(110) := '292B272927293B0D0A0D0A202020202F2F73656E6420616E20616A6178207265717565737420666F7220616C6C206F6620746865206173736F636961746564206F746865722073706563696573207265636F726473206173736F63696174656420776974';
+wwv_flow_imp.g_varchar2_table(111) := '682074686520636F70696564206372756973652049443A200D0A090D0A2F2F09636F6E736F6C652E6C6F67202827503233305F5245475F45434F5F53485554544C452069733A20272B24762822503233305F5245475F45434F5F53485554544C45222929';
+wwv_flow_imp.g_varchar2_table(112) := '3B0D0A2F2F09636F6E736F6C652E6C6F67202827503233305F5245475F45434F5F53484F575F46494C545F4C4953542069733A20272B24762822503233305F5245475F45434F5F53484F575F46494C545F4C4953542229293B0D0A2F2F09636F6E736F6C';
+wwv_flow_imp.g_varchar2_table(113) := '652E6C6F67202827503233305F4352554953455F4C45475F49442069733A20272B24762822503233305F4352554953455F4C45475F49442229293B0D0A2F2F09636F6E736F6C652E6C6F67202827503233305F4352554953455F4C45475F49445F434F50';
+wwv_flow_imp.g_varchar2_table(114) := '592069733A20272B24762822503233305F4352554953455F4C45475F49445F434F50592229293B0D0A090D0A202020206765745F7265675F65636F73797374656D5F6F7074696F6E732824762822503233305F5245475F45434F5F53485554544C452229';
+wwv_flow_imp.g_varchar2_table(115) := '2C2024762822503233305F5245475F45434F5F53484F575F46494C545F4C49535422292C2024762822503233305F4352554953455F4C45475F494422292C2024762822503233305F4352554953455F4C45475F49445F434F50592229293B202020200D0A';
+wwv_flow_imp.g_varchar2_table(116) := '7D0D0A0D0A2F2F66756E6374696F6E206765745F6C65675F616C6961735F636F707920286372756973655F6C65675F69645F636F7079290D0A66756E6374696F6E206765745F7265675F65636F73797374656D5F6F7074696F6E7320285245475F45434F';
+wwv_flow_imp.g_varchar2_table(117) := '5F53485554544C452C205245475F45434F5F53484F575F46494C545F4C4953542C204352554953455F4C45475F49442C204352554953455F4C45475F49445F434F5059290D0A7B0D0A20202020636F6E736F6C652E6C6F67282774686973206973207468';
+wwv_flow_imp.g_varchar2_table(118) := '65206765745F7265675F65636F73797374656D5F6F7074696F6E73282920696E697469616C697A6174696F6E20636F646527293B0D0A0D0A202020200D0A20202020617065782E7365727665722E70726F63657373280D0A20202020276765745F726567';
+wwv_flow_imp.g_varchar2_table(119) := '5F65636F73797374656D5F6F7074696F6E73272C20202020202020202020202020202020202020202020202020202020202F2F2050726F63657373206F7220414A41582043616C6C6261636B206E616D650D0A202020207B7830313A205245475F45434F';
+wwv_flow_imp.g_varchar2_table(120) := '5F53485554544C452C0D0A097830323A205245475F45434F5F53484F575F46494C545F4C4953542C0D0A097830333A204352554953455F4C45475F49442C0D0A097830343A204352554953455F4C45475F49445F434F50597D2C0D0A202020207B0D0A20';
+wwv_flow_imp.g_varchar2_table(121) := '2020202020737563636573733A2066756E6374696F6E2028704461746129200D0A2020202020207B202020202020202020202020200D0A2020202020202020202020202F2F2053756363657373204A6176617363726970740D0A09090D0A09092F2F7570';
+wwv_flow_imp.g_varchar2_table(122) := '64617465207468652073687574746C65206F7074696F6E730D0A09097570646174655F6F7074696F6E732870446174612C2027503233305F5245475F45434F5F53485554544C4527293B0D0A0D0A0D0A2020202020207D2C0D0A20202020202064617461';
+wwv_flow_imp.g_varchar2_table(123) := '547970653A202274657874222020202020202020202020202020202020202020202020202F2F20526573706F6E736520747970652028686572653A20706C61696E2074657874290D0A202020207D0D0A2020293B202020200D0A202020200D0A20202020';
+wwv_flow_imp.g_varchar2_table(124) := '0D0A7D0D0A0D0A0D0A0D0A0D0A2F2F66756E6374696F6E20746F20657865637574652074686520616A617820726571756573740D0A66756E6374696F6E20616A61785F726571756573745F676561722028290D0A7B0D0A20202020636F6E736F6C652E6C';
+wwv_flow_imp.g_varchar2_table(125) := '6F67282772756E6E696E6720616A61785F726571756573745F6765617228272B24762822503233305F474541525F53485554544C4522292B272C20272B24762822503233305F474541525F53484F575F46494C545F4C49535422292B272C20272B247628';
+wwv_flow_imp.g_varchar2_table(126) := '22503233305F4352554953455F4C45475F494422292B272C20272B24762822503233305F4352554953455F4C45475F49445F434F505922292B272927293B0D0A0D0A202020202F2F73656E6420616E20616A6178207265717565737420666F7220616C6C';
+wwv_flow_imp.g_varchar2_table(127) := '206F6620746865206173736F636961746564206F746865722073706563696573207265636F726473206173736F63696174656420776974682074686520636F70696564206372756973652049443A200D0A090D0A2F2F09636F6E736F6C652E6C6F672028';
+wwv_flow_imp.g_varchar2_table(128) := '27503233305F474541525F53485554544C452069733A20272B24762822503233305F474541525F53485554544C452229293B0D0A2F2F09636F6E736F6C652E6C6F67202827503233305F474541525F53484F575F46494C545F4C4953542069733A20272B';
+wwv_flow_imp.g_varchar2_table(129) := '24762822503233305F474541525F53484F575F46494C545F4C4953542229293B0D0A2F2F09636F6E736F6C652E6C6F67202827503233305F4352554953455F4C45475F49442069733A20272B24762822503233305F4352554953455F4C45475F49442229';
+wwv_flow_imp.g_varchar2_table(130) := '293B0D0A2F2F09636F6E736F6C652E6C6F67202827503233305F4352554953455F4C45475F49445F434F50592069733A20272B24762822503233305F4352554953455F4C45475F49445F434F50592229293B0D0A090D0A202020206765745F676561725F';
+wwv_flow_imp.g_varchar2_table(131) := '6F7074696F6E732824762822503233305F474541525F53485554544C4522292C2024762822503233305F474541525F53484F575F46494C545F4C49535422292C2024762822503233305F4352554953455F4C45475F494422292C2024762822503233305F';
+wwv_flow_imp.g_varchar2_table(132) := '4352554953455F4C45475F49445F434F50592229293B202020200D0A7D0D0A0D0A2F2F66756E6374696F6E206765745F6C65675F616C6961735F636F707920286372756973655F6C65675F69645F636F7079290D0A66756E6374696F6E206765745F6765';
+wwv_flow_imp.g_varchar2_table(133) := '61725F6F7074696F6E732028474541525F53485554544C452C20474541525F53484F575F46494C545F4C4953542C204352554953455F4C45475F49442C204352554953455F4C45475F49445F434F5059290D0A7B0D0A20202020636F6E736F6C652E6C6F';
+wwv_flow_imp.g_varchar2_table(134) := '6728277468697320697320746865206765745F676561725F6F7074696F6E73282920696E697469616C697A6174696F6E20636F646527293B0D0A0D0A202020200D0A20202020617065782E7365727665722E70726F63657373280D0A2020202027676574';
+wwv_flow_imp.g_varchar2_table(135) := '5F676561725F6F7074696F6E73272C20202020202020202020202020202020202020202020202020202020202F2F2050726F63657373206F7220414A41582043616C6C6261636B206E616D650D0A202020207B7830313A20474541525F53485554544C45';
+wwv_flow_imp.g_varchar2_table(136) := '2C0D0A097830323A20474541525F53484F575F46494C545F4C4953542C0D0A097830333A204352554953455F4C45475F49442C0D0A097830343A204352554953455F4C45475F49445F434F50597D2C0D0A202020207B0D0A202020202020737563636573';
+wwv_flow_imp.g_varchar2_table(137) := '733A2066756E6374696F6E2028704461746129200D0A2020202020207B202020202020202020202020200D0A2020202020202020202020202F2F2053756363657373204A6176617363726970740D0A09090D0A09092F2F75706461746520746865207368';
+wwv_flow_imp.g_varchar2_table(138) := '7574746C65206F7074696F6E730D0A09097570646174655F6F7074696F6E732870446174612C2027503233305F474541525F53485554544C4527293B0D0A0D0A0D0A2020202020207D2C0D0A20202020202064617461547970653A202274657874222020';
+wwv_flow_imp.g_varchar2_table(139) := '202020202020202020202020202020202020202020202F2F20526573706F6E736520747970652028686572653A20706C61696E2074657874290D0A202020207D0D0A2020293B202020200D0A202020200D0A202020200D0A7D0D0A0D0A';
+null;
+end;
+/
+begin
 wwv_flow_imp_shared.create_app_static_file(
  p_id=>wwv_flow_imp.id(179797173191318295)
 ,p_file_name=>'js/leg_functions.js'
@@ -873,6 +909,7 @@ wwv_flow_imp_shared.create_app_static_file(
 ,p_file_charset=>'utf-8'
 ,p_file_content => wwv_flow_imp.varchar2_to_blob(wwv_flow_imp.g_varchar2_table)
 );
+null;
 end;
 /
 prompt --application/shared_components/files/images_login_logo_png
@@ -22917,7 +22954,8 @@ wwv_flow_imp_page.create_page(
 ,p_javascript_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
 '#APP_IMAGES#js/tooltip.js',
 '#APP_IMAGES#js/update_DVM_IG_row_colors.js',
-'#APP_IMAGES#js/leg_functions.js'))
+'#APP_IMAGES#js/leg_functions.js',
+'#APP_IMAGES#js/filtered_shuttle_updates.js'))
 ,p_javascript_code=>'var htmldb_delete_message=''"DELETE_CONFIRM_MSG"'';'
 ,p_javascript_code_onload=>'update_DVM_IG_row_colors();'
 ,p_css_file_urls=>wwv_flow_string.join(wwv_flow_t_varchar2(
@@ -22931,7 +22969,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231211175737'
+,p_last_upd_yyyymmddhh24miss=>'20231213053020'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(218249193139457278)
@@ -24898,17 +24936,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_05=>'HTML'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1302844317986388810)
-,p_name=>'UPDATE_GEAR_FILT_LIST_TMP'
-,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_imp.id(1307130450188010215)
-,p_source=>'UPDATE_GEAR_FILT_LIST_TMP'
-,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_HIDDEN'
-,p_encrypt_session_state_yn=>'N'
-,p_attribute_01=>'N'
-);
-wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1302844440600388811)
 ,p_name=>'P230_GEAR_SHOW_FILT_LIST'
 ,p_item_sequence=>30
@@ -24926,17 +24953,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_help_text=>'Toggle for filtering the list of Gear.  Checking the box will display the filtered list to streamline data entry and unchecking the box will show all available options'
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'1'
-);
-wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1302852832422642310)
-,p_name=>'UPDATE_REG_ECO_FILT_LIST_TMP'
-,p_item_sequence=>10
-,p_item_plug_id=>wwv_flow_imp.id(1307133516933010246)
-,p_source=>'UPDATE_REG_ECO_FILT_LIST_TMP'
-,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_HIDDEN'
-,p_encrypt_session_state_yn=>'N'
-,p_attribute_01=>'N'
 );
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1302852995457642311)
@@ -25659,9 +25675,6 @@ wwv_flow_imp_page.create_page_item(
 '',
 '',
 'END;'))
-,p_lov_cascade_parent_items=>'P230_GEAR_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P230_GEAR_SHOW_FILT_LIST,P230_CRUISE_LEG_ID,P230_GEAR_SHUTTLE'
-,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(1318638041831500613)
 ,p_item_template_options=>'#DEFAULT#'
@@ -25769,9 +25782,6 @@ wwv_flow_imp_page.create_page_item(
 '',
 '',
 'END;'))
-,p_lov_cascade_parent_items=>'P230_REG_ECO_SHOW_FILT_LIST'
-,p_ajax_items_to_submit=>'P230_REG_ECO_SHOW_FILT_LIST,P220_CRUISE_LEG_ID,P230_REG_ECO_SHUTTLE'
-,p_ajax_optimize_refresh=>'N'
 ,p_cHeight=>5
 ,p_field_template=>wwv_flow_imp.id(1318638041831500613)
 ,p_item_template_options=>'#DEFAULT#'
@@ -26617,160 +26627,6 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_region_id=>wwv_flow_imp.id(1307374448198929516)
 );
 wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1302844583582388812)
-,p_name=>'Gear Shuttle After Refresh'
-,p_event_sequence=>90
-,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P230_GEAR_SHUTTLE'
-,p_bind_type=>'bind'
-,p_execution_type=>'IMMEDIATE'
-,p_bind_event_type=>'apexafterrefresh'
-);
-wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1302844698083388813)
-,p_event_id=>wwv_flow_imp.id(1302844583582388812)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_SET_VALUE'
-,p_affected_elements_type=>'ITEM'
-,p_affected_elements=>'P230_GEAR_SHUTTLE'
-,p_attribute_01=>'FUNCTION_BODY'
-,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'    ',
-'',
-'BEGIN',
-'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Shuttle After Refresh Event'', ''The Gear Filter select field was changed: ''||:UPDATE_GEAR_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
-'',
-'RETURN :UPDATE_GEAR_FILT_LIST_TMP;',
-'',
-'END;'))
-,p_attribute_07=>'UPDATE_GEAR_FILT_LIST_TMP'
-,p_attribute_08=>'Y'
-,p_attribute_09=>'N'
-,p_wait_for_result=>'Y'
-);
-wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1302844781680388814)
-,p_name=>'Gear Shuttle Before Refresh'
-,p_event_sequence=>100
-,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P230_GEAR_SHUTTLE'
-,p_bind_type=>'bind'
-,p_execution_type=>'IMMEDIATE'
-,p_bind_event_type=>'apexbeforerefresh'
-);
-wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1302844803419388815)
-,p_event_id=>wwv_flow_imp.id(1302844781680388814)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_SET_VALUE'
-,p_affected_elements_type=>'ITEM'
-,p_affected_elements=>'UPDATE_GEAR_FILT_LIST_TMP'
-,p_attribute_01=>'FUNCTION_BODY'
-,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'    ',
-'',
-'BEGIN',
-'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Gear Before Refresh Shuttle Options Event'', ''The Gear Filter select field was changed: ''||:P230_GEAR_SHUTTLE, V_PROC_RETURN_CODE);',
-'',
-'',
-'',
-'',
-'        RETURN :P230_GEAR_SHUTTLE;',
-'',
-'END;'))
-,p_attribute_07=>'P230_GEAR_SHUTTLE'
-,p_attribute_08=>'Y'
-,p_attribute_09=>'N'
-,p_wait_for_result=>'Y'
-);
-wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1302853018231642312)
-,p_name=>'Regional Ecosystem Shuttle After Refresh'
-,p_event_sequence=>110
-,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P230_REG_ECO_SHUTTLE'
-,p_bind_type=>'bind'
-,p_execution_type=>'IMMEDIATE'
-,p_bind_event_type=>'apexafterrefresh'
-);
-wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1302853118633642313)
-,p_event_id=>wwv_flow_imp.id(1302853018231642312)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_SET_VALUE'
-,p_affected_elements_type=>'ITEM'
-,p_affected_elements=>'P230_REG_ECO_SHUTTLE'
-,p_attribute_01=>'FUNCTION_BODY'
-,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'    ',
-'',
-'BEGIN',
-'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Shuttle After Refresh Event'', ''The Regional Ecosystem Filter select field was changed: ''||:UPDATE_REG_ECO_FILT_LIST_TMP, V_PROC_RETURN_CODE);',
-'',
-'RETURN :UPDATE_REG_ECO_FILT_LIST_TMP;',
-'',
-'END;'))
-,p_attribute_07=>'UPDATE_REG_ECO_FILT_LIST_TMP'
-,p_attribute_08=>'Y'
-,p_attribute_09=>'N'
-,p_wait_for_result=>'Y'
-);
-wwv_flow_imp_page.create_page_da_event(
- p_id=>wwv_flow_imp.id(1302853242877642314)
-,p_name=>'Regional Ecosystem Shuttle Before Refresh'
-,p_event_sequence=>120
-,p_triggering_element_type=>'ITEM'
-,p_triggering_element=>'P230_REG_ECO_SHUTTLE'
-,p_bind_type=>'bind'
-,p_execution_type=>'IMMEDIATE'
-,p_bind_event_type=>'apexbeforerefresh'
-);
-wwv_flow_imp_page.create_page_da_action(
- p_id=>wwv_flow_imp.id(1302853313806642315)
-,p_event_id=>wwv_flow_imp.id(1302853242877642314)
-,p_event_result=>'TRUE'
-,p_action_sequence=>10
-,p_execute_on_page_init=>'N'
-,p_action=>'NATIVE_SET_VALUE'
-,p_affected_elements_type=>'ITEM'
-,p_affected_elements=>'UPDATE_REG_ECO_FILT_LIST_TMP'
-,p_attribute_01=>'FUNCTION_BODY'
-,p_attribute_06=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE ',
-'',
-'    V_PROC_RETURN_CODE PLS_INTEGER;',
-'    ',
-'',
-'BEGIN',
-'    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Regional Ecosystem Before Refresh Shuttle Options Event'', ''The Regional Ecosystem Filter select field was changed: ''||:P230_REG_ECO_SHUTTLE, V_PROC_RETURN_CODE);',
-'',
-'',
-'',
-'',
-'        RETURN :P230_REG_ECO_SHUTTLE;',
-'',
-'END;'))
-,p_attribute_07=>'P230_REG_ECO_SHUTTLE'
-,p_attribute_08=>'Y'
-,p_attribute_09=>'N'
-,p_wait_for_result=>'Y'
-);
-wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1302994170375475012)
 ,p_name=>'Before Refresh Vessel List'
 ,p_event_sequence=>130
@@ -26996,6 +26852,52 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_execute_on_page_init=>'N'
 ,p_action=>'NATIVE_JAVASCRIPT_CODE'
 ,p_attribute_01=>'check_DAS_warning();'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(27640913753454736)
+,p_name=>'Filter Regional Ecosystems Checkbox Change'
+,p_event_sequence=>210
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_REG_ECO_SHOW_FILT_LIST'
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(27641061427454737)
+,p_event_id=>wwv_flow_imp.id(27640913753454736)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'Regional Ecosystems Shuttle Refresh Ajax Request'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log (''running ajax_request_reg_ecosystems()'');',
+'ajax_request_reg_ecosystems();',
+''))
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(27641165661454738)
+,p_name=>'Filter Gear Checkbox Change'
+,p_event_sequence=>220
+,p_triggering_element_type=>'ITEM'
+,p_triggering_element=>'P230_GEAR_SHOW_FILT_LIST'
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(27641220440454739)
+,p_event_id=>wwv_flow_imp.id(27641165661454738)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'Gear Shittle Refresh Ajax Request'
+,p_action=>'NATIVE_JAVASCRIPT_CODE'
+,p_attribute_01=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'console.log (''running ajax_request_gear()'');',
+'ajax_request_gear();',
+''))
 );
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1305945176389989834)
@@ -27499,9 +27401,6 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'Data Validation Module was executed successfully<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1368775738471979387)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1310064792413303918)
 ,p_process_sequence=>140
@@ -27576,6 +27475,9 @@ wwv_flow_imp_page.create_page_process(
 ,p_process_success_message=>'The Cruise Leg was deleted and the Data Validation Module was processed on the associated Cruise as well as any overlapping Cruises<BR>'
 ,p_security_scheme=>wwv_flow_imp.id(1368775738471979387)
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_process(
  p_id=>wwv_flow_imp.id(1305945958835989836)
 ,p_process_sequence=>160
