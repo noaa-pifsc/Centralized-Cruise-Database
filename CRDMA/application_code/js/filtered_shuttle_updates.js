@@ -30,6 +30,8 @@ function update_options(pData, shuttle_id)
 
 //	console.log ('the value of \$v("'+shuttle_id+'") is: '+$v(shuttle_id));
 
+//	console.log ($("#"+shuttle_id));
+
 	//construct the array of 
 	var selected_option_array = $v(shuttle_id).split(":");
 
@@ -64,12 +66,11 @@ function update_options(pData, shuttle_id)
 	//create a new blank row for each associated other species records:
 	for (var i = 0; i < json_array['options'].length; i++)
 	{
-//                console.log('add the new row ('+i+')');  
 
 		//initialize the boolean to indicate when a matching shuttle element has been found:
 		found = false;
 
-//		console.log(json_array['options'][i]);  
+		console.log(json_array['options'][i]);  
 
 		for (var j = 0; ((j < selected_option_array.length) && (!found)); j ++)
 		{
@@ -87,12 +88,12 @@ function update_options(pData, shuttle_id)
 		//check if the shuttle option is selected, if so add it to the right shuttle if not add it to the left shuttle
 		if (found)
 		{
-//			console.log ('the shuttle option is selected, add it to the right shuttle');
+			console.log ('the shuttle option is selected, add it to the right shuttle');
 			right_shuttle.append(current_option);
 		}
 		else
 		{
-//			console.log ('the shuttle option is NOT selected, add it to the left shuttle');
+			console.log ('the shuttle option is NOT selected, add it to the left shuttle');
 			left_shuttle.append(current_option);
 		}
 		
@@ -104,7 +105,7 @@ function update_options(pData, shuttle_id)
 //	left_shuttle.refresh();
 //	right_shuttle.refresh();
 
-	console.log ('the options have been refreshed');
+//	console.log ('the options have been refreshed');
 	
 	
 	

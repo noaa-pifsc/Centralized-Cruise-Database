@@ -164,7 +164,7 @@ function ajax_request_mmpa_spp ()
 //	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
 //	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
 	
-    get_mmpa_spp_options($v("P220_MMPA_SHOW_FILT_LIST"), $v("P220_TGT_MMPA_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+    get_mmpa_spp_options($v("P220_TGT_MMPA_SPP_SHUTTLE"), $v("P220_MMPA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
@@ -205,13 +205,15 @@ function ajax_request_esa_spp ()
     console.log('running ajax_request_esa_spp('+$v("P220_TGT_ESA_SPP_SHUTTLE")+', '+$v("P220_ESA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
+
+//	console.log ($("#P220_TGT_ESA_SPP_SHUTTLE"));
+
 //	console.log ('P220_TGT_ESA_SPP_SHUTTLE is: '+$v("P220_TGT_ESA_SPP_SHUTTLE"));
 //	console.log ('P220_ESA_SHOW_FILT_LIST is: '+$v("P220_ESA_SHOW_FILT_LIST"));
 //	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
 //	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
 	
-    get_esa_spp_options($v("P220_ESA_SHOW_FILT_LIST"), $v("P220_TGT_ESA_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+    get_esa_spp_options($v("P220_TGT_ESA_SPP_SHUTTLE"), $v("P220_ESA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
@@ -263,7 +265,7 @@ function ajax_request_fssi_spp ()
 //	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
 //	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
 	
-    get_fssi_spp_options($v("P220_FSSI_SHOW_FILT_LIST"), $v("P220_TGT_FSSI_SPP_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+    get_fssi_spp_options($v("P220_TGT_FSSI_SPP_SHUTTLE"), $v("P220_FSSI_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
@@ -318,7 +320,7 @@ function ajax_request_exp_spp_cat ()
 //	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
 //	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
 	
-    get_exp_spp_cat_options($v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"), $v("P220_EXP_SPP_CAT_SHUTTLE"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+    get_exp_spp_cat_options($v("P220_EXP_SPP_CAT_SHUTTLE"), $v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)

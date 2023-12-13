@@ -11992,14 +11992,14 @@ END;
 
 
 		--this procedure queries the database to update filtered or select field options based on the specified parameters.  
-		--P_MAIN_QUERY is the main options query
+		--P_MAIN_QUERY is the main query
 		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
-		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
 		--all error conditions will raise an application exception and will be logged in the database
-		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_INCL_OPTION_IDS IN VARCHAR2, P_PRIM_KEY_VAL IN PLS_INTEGER);
-
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER);
+		
 		--function that generates a parameterized query for shuttle options:
 		--P_MAIN_QUERY is the main options query
 		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
@@ -12897,11 +12897,11 @@ END;
 		--this procedure queries the database to update filtered or select field options based on the specified parameters.  
 		--P_MAIN_QUERY is the main query
 		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
-		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
+		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
 		--all error conditions will raise an application exception and will be logged in the database
-		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_INCL_OPTION_IDS IN VARCHAR2, P_PRIM_KEY_VAL IN PLS_INTEGER) IS
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER) IS
 			--variable to store the constructed log source string for the current procedure's log messages:
 			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
 
