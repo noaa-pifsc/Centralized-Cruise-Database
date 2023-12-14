@@ -32,10 +32,10 @@ function update_DVM_IG_row_colors ()
 //        console.log('the value of data ID is: '+r[0]);
 
 				//retrieve the table row element based on the data_id value
-        var tr_elem = $('*[data-id="'+data_id+'"]');
+        var tr_elem = $('div#data_validation_issues [data-id="'+data_id+'"]');
 
 //        console.log('the value of tr_elem is: ');
-        console.log(tr_elem);
+//        console.log(tr_elem);
 
 //        console.log('Add the class to the row element: '+row_class_val);
 
