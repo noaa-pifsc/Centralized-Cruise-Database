@@ -70,7 +70,7 @@ function update_options(pData, shuttle_id)
 		//initialize the boolean to indicate when a matching shuttle element has been found:
 		found = false;
 
-		console.log(json_array['options'][i]);  
+//		console.log(json_array['options'][i]);  
 
 		for (var j = 0; ((j < selected_option_array.length) && (!found)); j ++)
 		{
@@ -88,12 +88,12 @@ function update_options(pData, shuttle_id)
 		//check if the shuttle option is selected, if so add it to the right shuttle if not add it to the left shuttle
 		if (found)
 		{
-			console.log ('the shuttle option is selected, add it to the right shuttle');
+//			console.log ('the shuttle option is selected, add it to the right shuttle');
 			right_shuttle.append(current_option);
 		}
 		else
 		{
-			console.log ('the shuttle option is NOT selected, add it to the left shuttle');
+//			console.log ('the shuttle option is NOT selected, add it to the left shuttle');
 			left_shuttle.append(current_option);
 		}
 		
@@ -148,7 +148,7 @@ function disable_shuttle_form (item_array, button_array)
 	//disable all items in the item_array variable
 	for (var i = 0; i < item_array.length; i ++)
 	{
-		console.log ("disable the current apex item: "+item_array[i]);
+//		console.log ("disable the current apex item: "+item_array[i]);
 		//disable the current item in the page
 		apex.item (item_array[i]).disable();
 	}

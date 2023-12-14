@@ -202,7 +202,7 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
 		enable_shuttle_form(shuttle_items, shuttle_buttons);
 		
 		//alert the user to the error
-		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
 
 	  },
       dataType: "text"                        // Response type (here: plain text)
@@ -264,7 +264,7 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
 		enable_shuttle_form(shuttle_items, shuttle_buttons);
 		
 		//alert the user to the error
-		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
 
 	  },
       dataType: "text"                        // Response type (here: plain text)
@@ -333,7 +333,7 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
 		enable_shuttle_form(shuttle_items, shuttle_buttons);
 		
 		//alert the user to the error
-		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
 
 	  },
       dataType: "text"                        // Response type (here: plain text)
@@ -359,12 +359,7 @@ function ajax_request_exp_spp_cat ()
 {
     console.log('running ajax_request_exp_spp_cat('+$v("P220_EXP_SPP_CAT_SHUTTLE")+', '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
-//	console.log ('P220_EXP_SPP_CAT_SHUTTLE is: '+$v("P220_EXP_SPP_CAT_SHUTTLE"));
-//	console.log ('P220_EXP_SPP_CAT_SHOW_FILT_LIST is: '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"));
-//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
-//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
+    //send an ajax request for all of the expected species category records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
 	
     get_exp_spp_cat_options($v("P220_EXP_SPP_CAT_SHUTTLE"), $v("P220_EXP_SPP_CAT_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
@@ -372,8 +367,16 @@ function ajax_request_exp_spp_cat ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('this is the get_exp_spp_cat_options() initialization code');
+    console.log('running get_exp_spp_cat_options()');
 
+	//define the list of MMPA apex page items
+	var shuttle_items = ["P220_EXP_SPP_CAT_SHUTTLE", "P220_EXP_SPP_CAT_SHOW_FILT_LIST", "P220_EXP_SPP_CAT_PRESETS"];
+
+	//define the list of MMPA apex buttons
+	var shuttle_buttons = ["exp_spp_cat_preset_button_id"];
+
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
     
     apex.server.process(
     'get_exp_spp_cat_options',                             // Process or AJAX Callback name
@@ -389,8 +392,21 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
 		//update the shuttle options
 		update_options(pData, 'P220_EXP_SPP_CAT_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the expected species category shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    

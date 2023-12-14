@@ -236,13 +236,7 @@ function ajax_request_reg_ecosystems ()
 {
     console.log('running ajax_request_reg_ecosystems('+$v("P230_REG_ECO_SHUTTLE")+', '+$v("P230_REG_ECO_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
-//	console.log ('P230_REG_ECO_SHUTTLE is: '+$v("P230_REG_ECO_SHUTTLE"));
-//	console.log ('P230_REG_ECO_SHOW_FILT_LIST is: '+$v("P230_REG_ECO_SHOW_FILT_LIST"));
-//	console.log ('P230_CRUISE_LEG_ID is: '+$v("P230_CRUISE_LEG_ID"));
-//	console.log ('P230_CRUISE_LEG_ID_COPY is: '+$v("P230_CRUISE_LEG_ID_COPY"));
-	
+    //send an ajax request for all of the regional ecosystems records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_reg_ecosystem_options($v("P230_REG_ECO_SHUTTLE"), $v("P230_REG_ECO_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
 }
 
@@ -251,6 +245,14 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
 {
     console.log('this is the get_reg_ecosystem_options() initialization code');
 
+	//define the list of MMPA apex page items
+	var shuttle_items = ["P230_REG_ECO_SHUTTLE", "P230_REG_ECO_SHOW_FILT_LIST", "P230_REG_ECO_PRESETS"];
+
+	//define the list of MMPA apex buttons
+	var shuttle_buttons = ["reg_eco_preset_button_id"];
+
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
     
     apex.server.process(
     'get_reg_ecosystem_options',                             // Process or AJAX Callback name
@@ -266,8 +268,21 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
 		//update the shuttle options
 		update_options(pData, 'P230_REG_ECO_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the MMPA shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    
@@ -283,22 +298,24 @@ function ajax_request_gear ()
 {
     console.log('running ajax_request_gear('+$v("P230_GEAR_SHUTTLE")+', '+$v("P230_GEAR_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
-//	console.log ('P230_GEAR_SHUTTLE is: '+$v("P230_GEAR_SHUTTLE"));
-//	console.log ('P230_GEAR_SHOW_FILT_LIST is: '+$v("P230_GEAR_SHOW_FILT_LIST"));
-//	console.log ('P230_CRUISE_LEG_ID is: '+$v("P230_CRUISE_LEG_ID"));
-//	console.log ('P230_CRUISE_LEG_ID_COPY is: '+$v("P230_CRUISE_LEG_ID_COPY"));
-	
+    //send an ajax request for all of the gear records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_gear_options($v("P230_GEAR_SHUTTLE"), $v("P230_GEAR_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
 {
-    console.log('this is the get_gear_options() initialization code');
-
+    console.log('running get_gear_options()');
     
+	//define the list of MMPA apex page items
+	var shuttle_items = ["P230_GEAR_SHUTTLE", "P230_GEAR_SHOW_FILT_LIST", "P230_GEAR_PRESETS"];
+
+	//define the list of MMPA apex buttons
+	var shuttle_buttons = ["gear_preset_button_id"];
+
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
+
     apex.server.process(
     'get_gear_options',                             // Process or AJAX Callback name
     {x01: GEAR_SHUTTLE,
@@ -313,8 +330,21 @@ function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRU
 		//update the shuttle options
 		update_options(pData, 'P230_GEAR_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the MMPA shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    
