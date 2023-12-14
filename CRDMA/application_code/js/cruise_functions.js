@@ -157,22 +157,25 @@ function ajax_request_mmpa_spp ()
 {
     console.log('running ajax_request_mmpa_spp('+$v("P220_TGT_MMPA_SPP_SHUTTLE")+', '+$v("P220_MMPA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
-//	console.log ('P220_TGT_MMPA_SPP_SHUTTLE is: '+$v("P220_TGT_MMPA_SPP_SHUTTLE"));
-//	console.log ('P220_MMPA_SHOW_FILT_LIST is: '+$v("P220_MMPA_SHOW_FILT_LIST"));
-//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
-//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
-	
+    //send an ajax request for all of the MMPA species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_mmpa_spp_options($v("P220_TGT_MMPA_SPP_SHUTTLE"), $v("P220_MMPA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('this is the get_mmpa_spp_options() initialization code');
+    console.log('running get_mmpa_spp_options()');
 
-    
+	//define the list of MMPA apex page items
+	var shuttle_items = ["P220_TGT_MMPA_SPP_SHUTTLE", "P220_MMPA_SHOW_FILT_LIST", "P220_TGT_MMPA_SPP_PRESETS"];
+
+	//define the list of MMPA apex buttons
+	var shuttle_buttons = ["mmpa_preset_button_id"];
+
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
+
+	//send the ajax request to the ajax callback
     apex.server.process(
     'get_mmpa_spp_options',                             // Process or AJAX Callback name
     {x01: TGT_MMPA_SPP_SHUTTLE,
@@ -187,8 +190,21 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
 		//update the shuttle options
 		update_options(pData, 'P220_TGT_MMPA_SPP_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the MMPA shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    
@@ -204,24 +220,24 @@ function ajax_request_esa_spp ()
 {
     console.log('running ajax_request_esa_spp('+$v("P220_TGT_ESA_SPP_SHUTTLE")+', '+$v("P220_ESA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-
-//	console.log ($("#P220_TGT_ESA_SPP_SHUTTLE"));
-
-//	console.log ('P220_TGT_ESA_SPP_SHUTTLE is: '+$v("P220_TGT_ESA_SPP_SHUTTLE"));
-//	console.log ('P220_ESA_SHOW_FILT_LIST is: '+$v("P220_ESA_SHOW_FILT_LIST"));
-//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
-//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
-	
+    //send an ajax request for all of the ESA species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_esa_spp_options($v("P220_TGT_ESA_SPP_SHUTTLE"), $v("P220_ESA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('this is the get_esa_spp_options() initialization code');
+    console.log('running get_esa_spp_options()');
 
-    
+	//define the list of ESA apex page items
+	var shuttle_items = ["P220_TGT_ESA_SPP_SHUTTLE", "P220_ESA_SHOW_FILT_LIST", "P220_TGT_ESA_SPP_PRESETS"];
+
+	//define the list of ESA apex buttons
+	var shuttle_buttons = ["esa_preset_button_id"];
+
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
+
     apex.server.process(
     'get_esa_spp_options',                             // Process or AJAX Callback name
     {x01: TGT_ESA_SPP_SHUTTLE,
@@ -236,8 +252,21 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
 		//update the shuttle options
 		update_options(pData, 'P220_TGT_ESA_SPP_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the MMPA shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    
@@ -258,22 +287,26 @@ function ajax_request_fssi_spp ()
 {
     console.log('running ajax_request_fssi_spp('+$v("P220_TGT_FSSI_SPP_SHUTTLE")+', '+$v("P220_FSSI_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-	
-//	console.log ('P220_TGT_FSSI_SPP_SHUTTLE is: '+$v("P220_TGT_FSSI_SPP_SHUTTLE"));
-//	console.log ('P220_FSSI_SHOW_FILT_LIST is: '+$v("P220_FSSI_SHOW_FILT_LIST"));
-//	console.log ('P220_CRUISE_ID is: '+$v("P220_CRUISE_ID"));
-//	console.log ('P220_CRUISE_ID_COPY is: '+$v("P220_CRUISE_ID_COPY"));
-	
+    //send an ajax request for all of the FSSI species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_fssi_spp_options($v("P220_TGT_FSSI_SPP_SHUTTLE"), $v("P220_FSSI_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
 }
 
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('this is the get_fssi_spp_options() initialization code');
+    console.log('running get_fssi_spp_options()');
 
     
+	//define the list of FSSI apex page items
+	var shuttle_items = ["P220_TGT_FSSI_SPP_SHUTTLE", "P220_FSSI_SHOW_FILT_LIST", "P220_TGT_FSSI_SPP_PRESETS"];
+
+	//define the list of FSSI apex buttons
+	var shuttle_buttons = ["fssi_preset_button_id"];
+	
+	//disable the shuttle form
+	disable_shuttle_form(shuttle_items, shuttle_buttons);
+
+	
     apex.server.process(
     'get_fssi_spp_options',                             // Process or AJAX Callback name
     {x01: TGT_FSSI_SPP_SHUTTLE,
@@ -288,8 +321,21 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
 		//update the shuttle options
 		update_options(pData, 'P220_TGT_FSSI_SPP_SHUTTLE');
 
+		//re-enable the shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
 
       },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the FSSI shuttle form
+		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator';
+
+	  },
       dataType: "text"                        // Response type (here: plain text)
     }
   );    

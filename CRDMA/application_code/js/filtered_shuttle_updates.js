@@ -115,3 +115,49 @@ function update_options(pData, shuttle_id)
 	
 }
 
+//function that hides the spinner and re-enables the apex items in the item_array and enables the buttons for the HTML element id properties stored in the button_array
+function enable_shuttle_form (item_array, button_array)
+{
+
+	//re-enable all items in the item_array variable
+	for (var i = 0; i < item_array.length; i ++)
+	{
+		//enable the current item in the page
+		apex.item (item_array[i]).enable();
+	}
+	
+	//re-enable buttons in the button_array variable
+	for (i = 0; i < button_array.length; i ++)
+	{
+		//enable the current button using the button ID
+		$("#"+button_array[i]).attr("disabled", false);
+	}
+	
+	//hide the spinner 
+	lSpinner$.remove();
+}
+
+
+function disable_shuttle_form (item_array, button_array)
+{
+	console.log ('running disable_shuttle_form()');
+   	//show the spinner to indicate a request has been sent to the server
+	lSpinner$ = apex.util.showSpinner(); 
+
+
+	//disable all items in the item_array variable
+	for (var i = 0; i < item_array.length; i ++)
+	{
+		console.log ("disable the current apex item: "+item_array[i]);
+		//disable the current item in the page
+		apex.item (item_array[i]).disable();
+	}
+	
+	//disable all buttons in the button_array variable
+	for (i = 0; i < button_array.length; i ++)
+	{
+		//disable the current button using the button ID
+		$("#"+button_array[i]).attr("disabled", true);
+	}
+	
+}
