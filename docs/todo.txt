@@ -202,9 +202,9 @@ _ create package procedures to allow a specific cruise or specific cruise year t
 
 ** _ (_ document this) known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
 
-_ remove the blank cruise ID and cruise ID copy check on page 220 (create new will have neither defined) 
-
-
+X remove the blank cruise ID and cruise ID copy check on page 220 (create new will have neither defined) 
+	X update the DVM load script to skip the execution if the region ID doesn't exist
+	
 
 
 Version 1.1:
