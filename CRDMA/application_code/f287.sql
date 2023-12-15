@@ -28,7 +28,7 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   20:34 Thursday December 14, 2023
+--   Date and Time:   04:37 Friday December 15, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231214203354'
+,p_last_upd_yyyymmddhh24miss=>'20231215043739'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>128
 ,p_print_server_type=>'INSTANCE'
@@ -17802,7 +17802,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1397375772181979836)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231214181041'
+,p_last_upd_yyyymmddhh24miss=>'20231215043658'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(246849278222461192)
@@ -20396,7 +20396,7 @@ wwv_flow_imp_page.create_page_item(
 '    ORDER BY UPPER(TGT_SPP_ESA_NAME)'';',
 '	',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -20472,7 +20472,7 @@ wwv_flow_imp_page.create_page_item(
 '    ORDER BY UPPER(TGT_SPP_MMPA_NAME)'';',
 '	',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -20554,7 +20554,7 @@ wwv_flow_imp_page.create_page_item(
 '    ORDER BY UPPER(TGT_SPP_FSSI_NAME)'';',
 '	',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -20632,7 +20632,7 @@ wwv_flow_imp_page.create_page_item(
 '    ORDER BY UPPER(EXP_SPP_CAT_NAME)'';',
 '	',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -23001,7 +23001,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231214182521'
+,p_last_upd_yyyymmddhh24miss=>'20231215043739'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(246849367828461193)
@@ -25678,7 +25678,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))
@@ -25756,7 +25756,7 @@ wwv_flow_imp_page.create_page_item(
 '',
 '',
 '    --call the filtered option shuttle option procedure to generate the query',
-'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_SP (V_MAIN_QUERY, NULL, NULL);',
+'	RETURN CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN (V_MAIN_QUERY, NULL, NULL);',
 '',
 '',
 'END;'))

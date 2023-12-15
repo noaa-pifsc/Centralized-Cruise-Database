@@ -263,3 +263,151 @@ BEGIN
 
 END;
 /
+
+
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(1000) :=  'ORA-20612';
+	 V_MAIN_QUERY VARCHAR2 (1000) := NULL;
+	 V_FRAG_QUERY VARCHAR2 (1000) := 'UNION SELECT GEAR_ID FROM CCD_GEAR where GEAR_ID IN ([[OPTION_IDS]])';
+	 
+	 V_INCL_OPTION_IDS VARCHAR2 (100) := '12:15:45:9';
+	 V_FILT_ENABLED_YN CHAR(1) := 'Y';
+	 V_PRIM_KEY_VAL PLS_INTEGER := 100;
+	 
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP(V_MAIN_QUERY, V_FRAG_QUERY, V_INCL_OPTION_IDS, V_FILT_ENABLED_YN, V_PRIM_KEY_VAL);
+
+
+	 DBMS_output.put_line('The update filtered shuttle options procedure was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The update filtered shuttle options procedure was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	 V_EXC_CODE VARCHAR2(1000) :=  'ORA-20612';
+	 V_MAIN_QUERY VARCHAR2 (1000) := 'SELECT
+    GEAR_NAME OPTION_VALUE, GEAR_ID OPTION_ID FROM CCD_GEAR where GEAR_ID IN
+    (
+
+        SELECT DISTINCT GEAR_ID
+        FROM
+        (SELECT GEAR_ID FROM CCD_GEAR where (:SHOW_FILT_LIST = ''Y'' AND APP_SHOW_OPT_YN = ''Y'') OR (:SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT GEAR_ID from CCD_LEG_GEAR where CRUISE_LEG_ID IN (:PK_ID)
+        [[QUERY_FRAG]])
+    )
+
+    ORDER BY UPPER(GEAR_NAME)';
+	 V_FRAG_QUERY VARCHAR2 (1000) := NULL;
+	 
+	 V_INCL_OPTION_IDS VARCHAR2 (100) := '12:15:45:9';
+	 V_FILT_ENABLED_YN CHAR(1) := 'Y';
+	 V_PRIM_KEY_VAL PLS_INTEGER := 100;
+	 
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP(V_MAIN_QUERY, V_FRAG_QUERY, V_INCL_OPTION_IDS, V_FILT_ENABLED_YN, V_PRIM_KEY_VAL);
+
+
+	 DBMS_output.put_line('The update filtered shuttle options procedure was successful');
+
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The update filtered shuttle options procedure was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+
+
+
+DECLARE
+	 V_SP_RET_CODE PLS_INTEGER;
+	 V_PROC_RETURN_MSG VARCHAR2(4000);
+	 V_PROC_RETURN_CRUISE_ID PLS_INTEGER;
+
+	V_CLOB_RET CLOB;
+
+	 V_EXC_CODE VARCHAR2(1000) :=  'ORA-20614';
+	 V_MAIN_QUERY VARCHAR2 (1000) := NULL;
+	 V_FRAG_QUERY VARCHAR2 (1000) := NULL;
+	 
+	 V_INCL_OPTION_IDS VARCHAR2 (100) := '12:15:45:9';
+	 
+
+BEGIN
+
+	 DBMS_OUTPUT.PUT_LINE ('executing test case for '||V_EXC_CODE);
+
+		--execute the deep copy procedure:
+	 V_CLOB_RET := CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN(V_MAIN_QUERY, V_FRAG_QUERY, V_INCL_OPTION_IDS);
+
+
+	 DBMS_output.put_line('The generate filtered option query was successful');
+
+	 DBMS_output.put_line(V_CLOB_RET);
+
+	 EXCEPTION
+
+		 WHEN OTHERS THEN
+
+
+			 DBMS_OUTPUT.PUT_LINE('The generate filtered option query was NOT successful');
+
+			 DBMS_OUTPUT.PUT_LINE(V_PROC_RETURN_MSG);
+
+			 DBMS_OUTPUT.PUT_LINE(SQLERRM);
+
+			 DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+END;
+/
+
+

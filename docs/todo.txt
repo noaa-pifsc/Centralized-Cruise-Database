@@ -11,7 +11,7 @@ X update the cruise leg start/end date field comments to say in local timezone (
 	X work on updating the CCD to implement the timezone field in the views	
 	X update the application to expose the timezone field (drop down with distinct TZNAME values)
 		X allow offsets too? NO -> not sure how to generate those in the drop down field - look into this.  It would be best if we can use a query to validate the values
-		_ QC for invalid timezone value
+		X QC for invalid timezone value
 
 
 
@@ -24,7 +24,7 @@ Version 1.0
 		APEX app
 		DVM
 		VCM
-		SQL Scripts (for role/permissions reports)
+		SQL Scripts v 1.0 (for role/permissions reports)
 		
 
 
@@ -47,7 +47,7 @@ X integration of PICDM objects:
 	X CCD_DATA_SETS_INP_V
 		
 
-_ update CRDMA testing documentation to reflect the new CRDMA authorization policies
+X update CRDMA testing documentation to reflect the new CRDMA authorization policies
 
 
 X document business rule for data set status display
@@ -187,20 +187,22 @@ X ** troubleshoot deep copy authorization check (it is showing that the deep cop
 X ** update the debugging message for the Unauthorized Submission process -> 
 
 
-_ fix bug in filtered shuttle page items
-	** _ Document ajax request on filter checkbox change event to query for all options and refresh the shuttle page items
+X fix bug in filtered shuttle page items
+	** X Document ajax request on filter checkbox change event to query for all options and refresh the shuttle page items (X app technical documentation
 	X P 220
-	_ P 230
+	X P 230
 		X define js functions
-		_ define ajax callbacks
-		_ define shuttle SQL queries
+		X define ajax callbacks
+		X define shuttle SQL queries
 		X add dynamic actions for checkboxes
 
 _ error tests for the function and business rules
 
 _ create package procedures to allow a specific cruise or specific cruise year to be validated
 
-** _ known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
+** _ (_ document this) known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
+
+_ remove the blank cruise ID and cruise ID copy check on page 220 (create new will have neither defined) 
 
 
 

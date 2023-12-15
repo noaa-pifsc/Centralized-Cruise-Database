@@ -144,6 +144,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                     -   Clicking the Select Preset button will update the shuttle field to select the options defined for the chosen preset
                 -   Filtering:
                     -   Certain shuttle fields have a corresponding "Filter List?" checkbox field. Checking the box will update the shuttle field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+                        -   When the "Filter List?" checkbox has its value changed the APEX app sends an Ajax request to the server for the updated list of options for the shuttle field based on the selected Cruise (for editing or copying a cruise), selected shuttle options, and "Filter List?" checkbox values.  The values returned by the server will be used to refresh the shuttle field and the selected options before the Ajax request will be preserved.
                 -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
             -   Target Species - Other Species
                 -   This tabular form can be used to associate new target other species or edit associated target other species for the selected cruise
@@ -194,6 +195,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                     -   Clicking the Select Preset button will update the shuttle field to select the options defined for the chosen preset
                 -   Filtering:
                     -   Certain shuttle fields have a corresponding "Filter List?" checkbox field. Checking the box will update the shuttle field to filter out all reference table options that are not marked as "Visible in App" and unchecking the box will display all options in the database
+												-   When the "Filter List?" checkbox has its value changed the APEX app sends an Ajax request to the server for the updated list of options for the shuttle field based on the selected Cruise Leg (for editing or copying a cruise leg), selected shuttle options, and "Filter List?" checkbox values.  The values returned by the server will be used to refresh the shuttle field and the selected options before the Ajax request will be preserved.
                 -   Clicking on the "Create", "Create Another", or "Apply Changes" button will also attempt to save the associated records.
             -   Leg Aliases
                 -   This tabular form can be used to create new Leg Aliases or edit existing Leg Aliases for the selected cruise leg

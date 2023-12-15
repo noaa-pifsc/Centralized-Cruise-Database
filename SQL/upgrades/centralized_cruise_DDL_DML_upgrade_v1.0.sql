@@ -12004,7 +12004,7 @@ END;
 		--P_MAIN_QUERY is the main options query
 		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
-		FUNCTION GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB;
+		FUNCTION GEN_FIL_OPTION_QUERY_FN (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB;
 
 
 	END CCD_CRUISE_PKG;
@@ -12921,6 +12921,9 @@ END;
 			--return value CLOB variable to store the JSON data
 			ret_val CLOB;
 
+			--exception for blank required parameters:
+			EXC_BLANK_REQ_PARAMS EXCEPTION;
+
 		BEGIN
 
 			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
@@ -12929,8 +12932,26 @@ END;
 
 			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running UPDATE_FIL_SHUTTLE_OPTIONS_SP ()');
 
+			--check if the P_MAIN_QUERY or P_FRAG_QUERY parameters are blank
+			IF (P_MAIN_QUERY IS NULL OR P_FRAG_QUERY IS NULL) THEN
+				--the P_MAIN_QUERY or P_FRAG_QUERY parameter is blank
+
+				--generate the exception message:
+				V_EXC_MSG := 'The P_MAIN_QUERY or P_FRAG_QUERY is blank';
+
+				--log the processing error:
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+				--raise the defined exception:
+				RAISE EXC_BLANK_REQ_PARAMS;
+
+
+			END IF;
+
+
+
 			--generate the SQL query to return the options
-			V_TEMP_SQL := GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY, P_FRAG_QUERY, P_INCL_OPTION_IDS);
+			V_TEMP_SQL := GEN_FIL_OPTION_QUERY_FN (P_MAIN_QUERY, P_FRAG_QUERY, P_INCL_OPTION_IDS);
 
 			--execute the query using the filtered parameter values and the cruise/leg primary key value
 			OPEN v_cursor FOR V_TEMP_SQL USING P_FILT_ENABLED_YN, P_FILT_ENABLED_YN, P_PRIM_KEY_VAL;
@@ -12963,17 +12984,44 @@ END;
 			EXCEPTION
 
 				--catch all PL/SQL database exceptions:
+
+
+				WHEN EXC_BLANK_REQ_PARAMS THEN
+					--One or more required parameters were not defined
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20612, V_EXC_MSG);
+
+				
+				
+				WHEN NO_DATA_FOUND THEN
+					--no rows were returned by the reference table query, return the json object with no data in the "options" object property:
+					
+					apex_json.initialize_clob_output;
+					apex_json.open_object;
+					apex_json.open_array('options');
+					apex_json.close_array();
+					apex_json.close_object;
+			  
+					--export the JSON string to ret_val variable:
+					ret_val := apex_json.get_clob_output;
+		 
+					htp.prn(ret_val);
+
+					--release the apex_json object from memory:
+					apex_json.free_output;
+
 				WHEN OTHERS THEN
 					--catch all other errors:
 
 					--generate the exception message:
-					V_EXC_MSG := 'The filtered shuttle procedure could not be copied successfully';
+					V_EXC_MSG := 'The filtered shuttle procedure could not be processed successfully';
 
-					--there was an error processing the current cruise leg's aliases
+					--there was an error processing the reference table's options
 					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
-					RAISE_APPLICATION_ERROR (-20609, V_EXC_MSG);
+					RAISE_APPLICATION_ERROR (-20613, V_EXC_MSG);
 
 		END UPDATE_FIL_SHUTTLE_OPTIONS_SP;
 
@@ -12982,7 +13030,7 @@ END;
 		--P_MAIN_QUERY is the main options query
 		--P_FRAG_QUERY is the query fragment to include specific options that are included in a colon-delimited list of primary key values (P_INCL_OPTION_IDS)
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
-		FUNCTION GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB
+		FUNCTION GEN_FIL_OPTION_QUERY_FN (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2) RETURN CLOB
 		
 		IS 
 		
@@ -12997,12 +13045,37 @@ END;
 
 			--variable to store the constructed log source string for the current procedure's log messages:
 			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+
+			--variable to store the exception message:
+			V_EXC_MSG VARCHAR2(2000);
+
+			--exception for blank required parameters:
+			EXC_BLANK_REQ_PARAMS EXCEPTION;
 		
 		BEGIN
 
-			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'GEN_FIL_OPTION_QUERY_SP (P_MAIN_QUERY: '||P_MAIN_QUERY||', P_FRAG_QUERY: '||P_FRAG_QUERY||', P_INCL_OPTION_IDS: '||P_INCL_OPTION_IDS||')';
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'GEN_FIL_OPTION_QUERY_FN (P_MAIN_QUERY: '||P_MAIN_QUERY||', P_FRAG_QUERY: '||P_FRAG_QUERY||', P_INCL_OPTION_IDS: '||P_INCL_OPTION_IDS||')';
 
-			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running GEN_FIL_OPTION_QUERY_SP()');
+
+			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'Running GEN_FIL_OPTION_QUERY_FN()');
+
+			--check if the P_MAIN_QUERY parameter is blank
+			IF (P_MAIN_QUERY IS NULL) THEN
+				--the P_MAIN_QUERY parameter is blank
+
+				--generate the exception message:
+				V_EXC_MSG := 'The P_MAIN_QUERY parameter is blank';
+
+				--log the processing error:
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+				--raise the defined exception:
+				RAISE EXC_BLANK_REQ_PARAMS;
+
+
+			END IF;
+
+
 
 			--retrieve all of the selected options from the shuttle field:
 			l_selected := apex_util.string_to_table(P_INCL_OPTION_IDS);
@@ -13040,9 +13113,29 @@ END;
 			
 			
 			RETURN V_TEMP_SQL;
+			
+			EXCEPTION 
+
+
+				WHEN EXC_BLANK_REQ_PARAMS THEN
+					--One or more required parameters were not defined
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20614, V_EXC_MSG);
+
+				WHEN OTHERS THEN
+					--there was an error processing the function, log the error and throw an exception
+
+					V_EXC_MSG := 'There was an error processing the function: '||SQLERRM;
+
+					--log the error in the DB:
+					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+	
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20615, V_EXC_MSG);
+	
 		
-		
-		END GEN_FIL_OPTION_QUERY_SP;
+		END GEN_FIL_OPTION_QUERY_FN;
 
 
 

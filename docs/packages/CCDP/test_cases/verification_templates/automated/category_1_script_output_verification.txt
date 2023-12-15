@@ -48,3 +48,24 @@ completed test case for ORA-20608
 
 PL/SQL procedure successfully completed.
 
+executing test case for ORA-20612
+The update filtered shuttle options procedure was NOT successful
+ORA-20612: The P_MAIN_QUERY or P_FRAG_QUERY is blank
+completed test case for ORA-20612
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20612
+The update filtered shuttle options procedure was NOT successful
+ORA-20612: The P_MAIN_QUERY or P_FRAG_QUERY is blank
+completed test case for ORA-20612
+
+PL/SQL procedure successfully completed.
+
+executing test case for ORA-20614
+The generate filtered option query was NOT successful
+ORA-20614: The P_MAIN_QUERY parameter is blank
+completed test case for ORA-20614
+
+PL/SQL procedure successfully completed.
+
