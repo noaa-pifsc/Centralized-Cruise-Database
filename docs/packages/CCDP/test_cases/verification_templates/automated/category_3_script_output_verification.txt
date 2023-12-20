@@ -1,0 +1,110 @@
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+{
+"options":[
+{
+"OPTION_VALUE":"Eastern Tropical Pacific"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Great Lakes"
+,"OPTION_ID":6
+}
+,{
+"OPTION_VALUE":"Northeast Shelf"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Pacific Islands Ecosystem Complex"
+,"OPTION_ID":10
+}
+,{
+"OPTION_VALUE":"Southeast Shelf"
+,"OPTION_ID":11
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+{
+"options":[
+{
+"OPTION_VALUE":"Eastern Tropical Pacific"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Gulf of California"
+,"OPTION_ID":7
+}
+,{
+"OPTION_VALUE":"Northeast Shelf"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Pacific Islands Ecosystem Complex"
+,"OPTION_ID":10
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+{
+"options":[
+{
+"OPTION_VALUE":"Alaska Ecosystem Complex"
+,"OPTION_ID":1
+}
+,{
+"OPTION_VALUE":"Antarctica"
+,"OPTION_ID":2
+}
+,{
+"OPTION_VALUE":"California Current"
+,"OPTION_ID":3
+}
+,{
+"OPTION_VALUE":"Caribbean Sea"
+,"OPTION_ID":4
+}
+,{
+"OPTION_VALUE":"Eastern Tropical Pacific"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Great Lakes"
+,"OPTION_ID":6
+}
+,{
+"OPTION_VALUE":"Gulf of California"
+,"OPTION_ID":7
+}
+,{
+"OPTION_VALUE":"Gulf of Mexico"
+,"OPTION_ID":8
+}
+,{
+"OPTION_VALUE":"Northeast Shelf"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Pacific Islands Ecosystem Complex"
+,"OPTION_ID":10
+}
+,{
+"OPTION_VALUE":"Southeast Shelf"
+,"OPTION_ID":11
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+

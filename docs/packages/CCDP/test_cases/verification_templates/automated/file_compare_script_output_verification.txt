@@ -7,3 +7,6 @@ FC: no differences encountered
 Comparing files category_2_DVM_verification.csv and CATEGORY_2_DVM_VERIFICATION-2.CSV
 FC: no differences encountered
 
+Comparing files category_3_script_output_verification.txt and CATEGORY_3_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+FC: no differences encountered
+

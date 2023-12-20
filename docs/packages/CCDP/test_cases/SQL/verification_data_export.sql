@@ -219,11 +219,85 @@ SET TERMOUT OFF;
 
 
 --SET DEFINE OFF;
+
+--category 3 scripts:
+PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 3 test case scripts
+
+SET TERMOUT OFF;
+SET FEEDBACK OFF;
+SET ECHO OFF;
+
+--@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
+@@category_3_exec_all_scripts.sql
+
+
+
+SET ECHO OFF;
+
+
+
+
+
+--SET DEFINE ON;
+--add a logging message:
+
+SELECT to_char(SYSDATE, 'YYYYMMDD HH:MI:SS AM') AS DATE_TIME_VALUE from dual;
+
+
+SET DEFINE ON;
+
+SET TERMOUT ON;
+
+
+PROMPT &V_CURR_DATE_TIME_VALUE. - Export the verification data to a .txt file
+--SPOOL OFF;
 --SET ECHO ON;
 
 
 
---SET ECHO OFF;
+
+
+set markup csv off;
+SET TERMOUT OFF;
+--SET NEWPAGE 0;
+--SET PAGESIZE 0;
+SET ECHO OFF;
+--SET longchunksize 2000;
+--SET LONG 2000;
+SET FEEDBACK ON;
+--SET longchunksize 2000;
+--SET LONG 2000;
+SET LINESIZE 2000;
+
+spool ../verification_templates/automated/category_3_script_output_verification-2.txt
+
+@@category_3_exec_test_cases.sql
+
+spool off;
+
+--get the current date/time
+SELECT to_char(SYSDATE, 'YYYYMMDD HH:MI:SS AM') AS END_DATE_TIME_VALUE from dual;
+
+SET TERMOUT ON;
+
+PROMPT &V_CURR_DATE_TIME_VALUE. - The Category 3 tests have completed
+
+
+
+SET TERMOUT OFF;
+
+
+SELECT to_char(SYSDATE, 'YYYYMMDD HH:MI:SS AM') AS DATE_TIME_VALUE from dual;
+
+
+--SET TERMOUT OFF;
+
+--SET DEFINE OFF;
+--SET ECHO ON;
+
+
+
+SET ECHO OFF;
 --SET DEFINE ON;
 --SET TERMOUT ON;
 --SET FEEDBACK ON;
