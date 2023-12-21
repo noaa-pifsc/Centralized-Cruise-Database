@@ -390,9 +390,9 @@ SELECT
     )
 
     ORDER BY UPPER(TGT_SPP_ESA_NAME)
-	
+
 PL/SQL procedure successfully completed.
-	
+
 running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - target MMPA species main query is defined but no query fragment is defined
 SELECT
     TGT_SPP_MMPA_NAME OPTION_VALUE, TGT_SPP_MMPA_ID OPTION_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN
@@ -409,11 +409,11 @@ SELECT
     )
 
     ORDER BY UPPER(TGT_SPP_MMPA_NAME)
-	
+
 PL/SQL procedure successfully completed.
 
 running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - gear main query is defined, query fragment is defined and some option IDs are included
-	SELECT
+SELECT
     GEAR_NAME OPTION_VALUE, GEAR_ID OPTION_ID FROM CCD_GEAR where GEAR_ID IN
     (
 
@@ -445,7 +445,7 @@ SELECT
     )
 
     ORDER BY UPPER(REG_ECOSYSTEM_NAME)
-	
+
 PL/SQL procedure successfully completed.
 
 running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - ESA target species main query is defined, query fragment is defined and some option IDs are included
@@ -464,7 +464,7 @@ SELECT
     )
 
     ORDER BY UPPER(TGT_SPP_ESA_NAME)
-	
+
 PL/SQL procedure successfully completed.
 
 running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - MMPA target species main query is defined, query fragment is defined and no option IDs are included
