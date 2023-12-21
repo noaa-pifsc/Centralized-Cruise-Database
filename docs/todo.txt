@@ -204,7 +204,8 @@ _ create package procedures to allow a specific cruise or specific cruise year t
 
 X remove the blank cruise ID and cruise ID copy check on page 220 (create new will have neither defined) 
 	X update the DVM load script to skip the execution if the region ID doesn't exist
-	
+	_ ** update the CAS and other DVM APEX pages with the updated DVM javascript include file (DSIA, SAM, CAS, IBBS, CTD, MOUSS, etc.)
+		_ should this be defined somewhere (DVM with a simple APEX app for this implementation? YES -> at some point so we have the same code running on each DVM issue annotation page)
 
 
 Version 1.1:

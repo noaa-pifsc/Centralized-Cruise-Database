@@ -11997,8 +11997,9 @@ END;
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
 		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
+		--P_OWA_OUTPUT is a boolean to indicate if the output will be sent using the OWA_UTIL package (true) or to the standard DBMS_OUTPUT (false)
 		--all error conditions will raise an application exception and will be logged in the database
-		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER);
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER, P_OWA_OUTPUT IN BOOLEAN default TRUE);
 		
 		--function that generates a parameterized query for shuttle options:
 		--P_MAIN_QUERY is the main options query
@@ -12900,8 +12901,9 @@ END;
 		--P_INCL_OPTION_IDS is the colon-delimited list of primary key values that are included in the result set
 		--P_FILT_ENABLED_YN is a character value (Y) or null value that indicates if the list of options are filtered (Y) or not (NULL)
 		--P_PRIM_KEY_VAL is the primary key value of the cruise/leg that will have the associated options included in the result set
+		--P_OWA_OUTPUT is a boolean to indicate if the output will be sent using the OWA_UTIL package (true) or to the standard DBMS_OUTPUT (false)
 		--all error conditions will raise an application exception and will be logged in the database
-		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER) IS
+		PROCEDURE UPDATE_FIL_SHUTTLE_OPTIONS_SP (P_MAIN_QUERY IN VARCHAR2, P_FRAG_QUERY IN VARCHAR2, P_INCL_OPTION_IDS IN VARCHAR2, P_FILT_ENABLED_YN IN CHAR, P_PRIM_KEY_VAL IN PLS_INTEGER, P_OWA_OUTPUT IN BOOLEAN default TRUE) IS
 			--variable to store the constructed log source string for the current procedure's log messages:
 			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
 
@@ -12972,7 +12974,16 @@ END;
 		 
 			  DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The JSON data was written: '||ret_val);
 
-			  htp.prn(ret_val);
+			  --check if the OWA_UTIL is used or not
+			  if (P_OWA_OUTPUT) THEN
+				--the OWA_UTIL is used to output the JSON, use the htp.prn procedure
+				htp.prn(ret_val);
+			  else
+				--the OWA_UTIL is NOT used to output the JSON, use the DBMS_OUTPUT.PUT_LINE procedure
+				DBMS_OUTPUT.PUT_LINE(ret_val);
+			  
+			  END IF;
+
 
 			  --release the apex_json object from memory:
 			  apex_json.free_output;
@@ -13015,7 +13026,7 @@ END;
 					--catch all other errors:
 
 					--generate the exception message:
-					V_EXC_MSG := 'The filtered shuttle procedure could not be processed successfully';
+					V_EXC_MSG := 'The filtered shuttle procedure could not be processed successfully: '||SQLERRM;
 
 					--there was an error processing the reference table's options
 					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);

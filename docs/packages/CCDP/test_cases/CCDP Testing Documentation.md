@@ -154,6 +154,18 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
             -   Verification Files:
                 -   Template: [category_2_DVM_verification.xlsx](./verification_templates/category_2_DVM_verification.xlsx)
                 -   Export: [category_2_DVM_verification.csv](./verification_templates/automated/category_2_DVM_verification.csv)
+    -   ### Category 3 Cases (PL/SQL verification)
+        -   These test cases verify the output of the CCD_CRUISE_PKG UPDATE_FIL_SHUTTLE_OPTIONS_SP procedure and GEN_FIL_OPTION_QUERY_FN for the CCDP that can be feasibly tested
+        -   Test cases setup
+            -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute all individual scripts listed below to setup the test cases for this test case category: [category_1_exec_all_scripts.sql](./SQL/category_1_exec_all_scripts.sql)
+                -   Load test data:
+                    -   Reset sequences (to guarantee the primary key values for verification purposes): [reset_sequences.sql](../../../../SQL/queries/reset_sequences.sql)
+                    -   Test data: [category_1_load_test_data.sql](./SQL/category_1_load_test_data.sql)
+                    -   DVM rules: [category_1_load_DVM_rules.sql](../../CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
+        -   Test case script: [category_3_exec_test_cases.sql](./SQL/category_3_exec_test_cases.sql)
+        -   Validation Issues:
+            -   Worksheet name: "Category 3 Test Cases" of the [test cases workbook](./CCDP%20Test%20Cases.xlsx)
+            -   Verification Export: [category_3_script_output_verification.txt](./verification_templates/automated/category_3_script_output_verification.txt)
 
 ## Functions:
 -   Defining Test Cases

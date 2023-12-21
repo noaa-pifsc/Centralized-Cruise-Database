@@ -1,4 +1,4 @@
-running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - filtered leg regional ecosystems with no options associated with the leg and two additional options (Great Lakes, Southeast Shelf) included as specific option IDs
 {
 "options":[
 {
@@ -28,7 +28,7 @@ the procedure was successful
 
 PL/SQL procedure successfully completed.
 
-running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - filtered leg regional ecosystems with one option (Gulf of California) associated with the leg and no additional options included as specific option IDs
 {
 "options":[
 {
@@ -54,7 +54,7 @@ the procedure was successful
 
 PL/SQL procedure successfully completed.
 
-running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - unfiltered leg regional ecosystems
 {
 "options":[
 {
@@ -105,6 +105,384 @@ running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case
 }
 
 the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - filtered cruise expected species with non-filtered options associated with the cruise and included as specific option IDs
+{
+"options":[
+{
+"OPTION_VALUE":"Algae"
+,"OPTION_ID":1
+}
+,{
+"OPTION_VALUE":"Coral-Hermatypic Stony Coral"
+,"OPTION_ID":3
+}
+,{
+"OPTION_VALUE":"Coral-Mesophotic Hermatypic Coral"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Coral-Octocoral"
+,"OPTION_ID":6
+}
+,{
+"OPTION_VALUE":"Coral-Shallow Water Coral"
+,"OPTION_ID":7
+}
+,{
+"OPTION_VALUE":"Crustaceans"
+,"OPTION_ID":8
+}
+,{
+"OPTION_VALUE":"Fish-General"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Fishes-Benthic Fish"
+,"OPTION_ID":10
+}
+,{
+"OPTION_VALUE":"Fishes-Pelagic Fish"
+,"OPTION_ID":12
+}
+,{
+"OPTION_VALUE":"Fishes-Reef Fish"
+,"OPTION_ID":13
+}
+,{
+"OPTION_VALUE":"Fishes-Shark"
+,"OPTION_ID":14
+}
+,{
+"OPTION_VALUE":"Invertebrate-Benthic"
+,"OPTION_ID":16
+}
+,{
+"OPTION_VALUE":"Invertebrate-General"
+,"OPTION_ID":17
+}
+,{
+"OPTION_VALUE":"Microbes"
+,"OPTION_ID":20
+}
+,{
+"OPTION_VALUE":"Sea Grass"
+,"OPTION_ID":23
+}
+,{
+"OPTION_VALUE":"Sea Turtle"
+,"OPTION_ID":24
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - unfiltered expected species
+{
+"options":[
+{
+"OPTION_VALUE":"Algae"
+,"OPTION_ID":1
+}
+,{
+"OPTION_VALUE":"Coral-Deep Water Coral"
+,"OPTION_ID":2
+}
+,{
+"OPTION_VALUE":"Coral-Hermatypic Stony Coral"
+,"OPTION_ID":3
+}
+,{
+"OPTION_VALUE":"Coral-Hydrocoral"
+,"OPTION_ID":4
+}
+,{
+"OPTION_VALUE":"Coral-Mesophotic Hermatypic Coral"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Coral-Octocoral"
+,"OPTION_ID":6
+}
+,{
+"OPTION_VALUE":"Coral-Shallow Water Coral"
+,"OPTION_ID":7
+}
+,{
+"OPTION_VALUE":"Crustaceans"
+,"OPTION_ID":8
+}
+,{
+"OPTION_VALUE":"Fish-General"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Fishes-Benthic Fish"
+,"OPTION_ID":10
+}
+,{
+"OPTION_VALUE":"Fishes-Larval Reef Fish"
+,"OPTION_ID":11
+}
+,{
+"OPTION_VALUE":"Fishes-Pelagic Fish"
+,"OPTION_ID":12
+}
+,{
+"OPTION_VALUE":"Fishes-Reef Fish"
+,"OPTION_ID":13
+}
+,{
+"OPTION_VALUE":"Fishes-Shark"
+,"OPTION_ID":14
+}
+,{
+"OPTION_VALUE":"Ichthyoplankton"
+,"OPTION_ID":15
+}
+,{
+"OPTION_VALUE":"Invertebrate-Benthic"
+,"OPTION_ID":16
+}
+,{
+"OPTION_VALUE":"Invertebrate-General"
+,"OPTION_ID":17
+}
+,{
+"OPTION_VALUE":"Invertebrate-Pelagic"
+,"OPTION_ID":18
+}
+,{
+"OPTION_VALUE":"Marine Mammal"
+,"OPTION_ID":19
+}
+,{
+"OPTION_VALUE":"Microbes"
+,"OPTION_ID":20
+}
+,{
+"OPTION_VALUE":"Phytoplankton"
+,"OPTION_ID":21
+}
+,{
+"OPTION_VALUE":"Sea Bird"
+,"OPTION_ID":22
+}
+,{
+"OPTION_VALUE":"Sea Grass"
+,"OPTION_ID":23
+}
+,{
+"OPTION_VALUE":"Sea Turtle"
+,"OPTION_ID":24
+}
+,{
+"OPTION_VALUE":"Zooplankton"
+,"OPTION_ID":25
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.UPDATE_FIL_SHUTTLE_OPTIONS_SP test case - filtered cruise expected species with non-filtered options associated with the cruise and included as specific option IDs
+{
+"options":[
+{
+"OPTION_VALUE":"Algae"
+,"OPTION_ID":1
+}
+,{
+"OPTION_VALUE":"Coral-Hermatypic Stony Coral"
+,"OPTION_ID":3
+}
+,{
+"OPTION_VALUE":"Coral-Hydrocoral"
+,"OPTION_ID":4
+}
+,{
+"OPTION_VALUE":"Coral-Mesophotic Hermatypic Coral"
+,"OPTION_ID":5
+}
+,{
+"OPTION_VALUE":"Coral-Octocoral"
+,"OPTION_ID":6
+}
+,{
+"OPTION_VALUE":"Coral-Shallow Water Coral"
+,"OPTION_ID":7
+}
+,{
+"OPTION_VALUE":"Crustaceans"
+,"OPTION_ID":8
+}
+,{
+"OPTION_VALUE":"Fish-General"
+,"OPTION_ID":9
+}
+,{
+"OPTION_VALUE":"Fishes-Benthic Fish"
+,"OPTION_ID":10
+}
+,{
+"OPTION_VALUE":"Fishes-Pelagic Fish"
+,"OPTION_ID":12
+}
+,{
+"OPTION_VALUE":"Fishes-Reef Fish"
+,"OPTION_ID":13
+}
+,{
+"OPTION_VALUE":"Fishes-Shark"
+,"OPTION_ID":14
+}
+,{
+"OPTION_VALUE":"Invertebrate-Benthic"
+,"OPTION_ID":16
+}
+,{
+"OPTION_VALUE":"Invertebrate-General"
+,"OPTION_ID":17
+}
+,{
+"OPTION_VALUE":"Marine Mammal"
+,"OPTION_ID":19
+}
+,{
+"OPTION_VALUE":"Microbes"
+,"OPTION_ID":20
+}
+,{
+"OPTION_VALUE":"Sea Grass"
+,"OPTION_ID":23
+}
+,{
+"OPTION_VALUE":"Sea Turtle"
+,"OPTION_ID":24
+}
+]
+}
+
+the procedure was successful
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - target ESA species main query is defined but no query fragment is defined
+SELECT
+    TGT_SPP_ESA_NAME OPTION_VALUE, TGT_SPP_ESA_ID OPTION_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN
+    (
+
+        SELECT DISTINCT TGT_SPP_ESA_ID
+        FROM
+        (SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where (:P220_ESA_SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:P220_ESA_SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT TGT_SPP_ESA_ID from CCD_CRUISE_SPP_ESA where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)
+		--query fragment goes here when defined:
+        )
+    )
+
+    ORDER BY UPPER(TGT_SPP_ESA_NAME)
+	
+PL/SQL procedure successfully completed.
+	
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - target MMPA species main query is defined but no query fragment is defined
+SELECT
+    TGT_SPP_MMPA_NAME OPTION_VALUE, TGT_SPP_MMPA_ID OPTION_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN
+    (
+
+        SELECT DISTINCT TGT_SPP_MMPA_ID
+        FROM
+        (SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where (:P220_MMPA_SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:P220_MMPA_SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT TGT_SPP_MMPA_ID from CCD_CRUISE_SPP_MMPA where cruise_id IN (:P220_CRUISE_ID, :P220_CRUISE_ID_COPY)
+		--query fragment goes here when defined:
+        )
+    )
+
+    ORDER BY UPPER(TGT_SPP_MMPA_NAME)
+	
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - gear main query is defined, query fragment is defined and some option IDs are included
+	SELECT
+    GEAR_NAME OPTION_VALUE, GEAR_ID OPTION_ID FROM CCD_GEAR where GEAR_ID IN
+    (
+
+        SELECT DISTINCT GEAR_ID
+        FROM
+        (SELECT GEAR_ID FROM CCD_GEAR where (:SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT GEAR_ID from CCD_LEG_GEAR where CRUISE_LEG_ID IN (:PK_ID)
+        UNION SELECT GEAR_ID FROM CCD_GEAR where GEAR_ID IN (4, 20))
+    )
+
+    ORDER BY UPPER(GEAR_NAME)
+
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - regional ecosystem main query is defined, query fragment is defined and some option IDs are included
+SELECT
+    REG_ECOSYSTEM_NAME OPTION_VALUE, REG_ECOSYSTEM_ID OPTION_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN
+    (
+
+        SELECT DISTINCT REG_ECOSYSTEM_ID
+        FROM
+        (SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where (:SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT REG_ECOSYSTEM_ID from CCD_LEG_ECOSYSTEMS where CRUISE_LEG_ID IN (:PK_ID)
+        UNION SELECT REG_ECOSYSTEM_ID FROM CCD_REG_ECOSYSTEMS where REG_ECOSYSTEM_ID IN (99, 1, 50))
+    )
+
+    ORDER BY UPPER(REG_ECOSYSTEM_NAME)
+	
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - ESA target species main query is defined, query fragment is defined and some option IDs are included
+SELECT
+    TGT_SPP_ESA_NAME OPTION_VALUE, TGT_SPP_ESA_ID OPTION_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN
+    (
+
+        SELECT DISTINCT TGT_SPP_ESA_ID
+        FROM
+        (SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where (:SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT TGT_SPP_ESA_ID from CCD_CRUISE_SPP_ESA where cruise_id IN(:PK_ID)
+		--query fragment goes here when defined:
+        UNION SELECT TGT_SPP_ESA_ID FROM CCD_TGT_SPP_ESA where TGT_SPP_ESA_ID IN (20, 25, 14, 9))
+    )
+
+    ORDER BY UPPER(TGT_SPP_ESA_NAME)
+	
+PL/SQL procedure successfully completed.
+
+running CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN test case - MMPA target species main query is defined, query fragment is defined and no option IDs are included
+SELECT
+    TGT_SPP_MMPA_NAME OPTION_VALUE, TGT_SPP_MMPA_ID OPTION_ID FROM CCD_TGT_SPP_MMPA where TGT_SPP_MMPA_ID IN
+    (
+
+        SELECT DISTINCT TGT_SPP_MMPA_ID
+        FROM
+        (SELECT TGT_SPP_MMPA_ID FROM CCD_TGT_SPP_MMPA where (:SHOW_FILT_LIST = 'Y' AND APP_SHOW_OPT_YN = 'Y') OR (:SHOW_FILT_LIST IS NULL)
+
+        UNION
+        SELECT TGT_SPP_MMPA_ID from CCD_CRUISE_SPP_MMPA where cruise_id IN(:PK_ID)
+		--query fragment goes here when defined:
+        )
+    )
+
+    ORDER BY UPPER(TGT_SPP_MMPA_NAME)
 
 PL/SQL procedure successfully completed.
 

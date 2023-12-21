@@ -61,6 +61,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                 -   Confirm unique keys
         -   X Confirm the different attribute presets (e.g. ESA Target Species) work properly
             -   Confirm the attribute filtering checkboxes work properly
+                -   Confirm the processing gif is shown and the form fields are disabled until the results are returned
+                -   Confirm that the shuttle fields are updated and the selected options are retained
         -   Confirm the Target Species - Other Species interactive grid works properly
             -   Confirm the tooltips are working properly
         -   New Cruise
@@ -151,6 +153,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                 -   Confirm unique keys
         -   Confirm the different attribute presets (e.g. Gear) work properly
             -   Confirm the attribute filtering checkboxes work properly
+                -   Confirm the processing gif is shown and the form fields are disabled until the results are returned
+                -   Confirm that the shuttle fields are updated and the selected options are retained
         -   Confirm the Leg Alias interactive grid works properly
             -   Confirm the tooltips are working properly
         -   Confirm the Data Sets interactive grid works properly

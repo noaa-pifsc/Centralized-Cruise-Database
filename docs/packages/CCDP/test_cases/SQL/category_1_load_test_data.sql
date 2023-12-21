@@ -1827,3 +1827,8 @@ insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values 
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'MHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 2'), '');
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'NWHI'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 2'), '');
 insert into ccd_leg_regions (REGION_ID, CRUISE_LEG_ID, LEG_REGION_NOTES) values ((SELECT region_id from ccd_regions where region_code = 'PRIA'), (SELECT cruise_leg_id from ccd_cruise_legs where leg_name = 'RL-17-05 Leg 2'), '');
+
+--cruise expected species
+INSERT INTO CCD_CRUISE_EXP_SPP (CRUISE_ID, EXP_SPP_CAT_ID) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'HA1007'), (SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS WHERE EXP_SPP_CAT_NAME = 'Marine Mammal'));
+INSERT INTO CCD_CRUISE_EXP_SPP (CRUISE_ID, EXP_SPP_CAT_ID) VALUES ((SELECT CRUISE_ID FROM CCD_CRUISES WHERE CRUISE_NAME = 'HA1007'), (SELECT EXP_SPP_CAT_ID FROM CCD_EXP_SPP_CATS WHERE EXP_SPP_CAT_NAME = 'Sea Grass'));
+
