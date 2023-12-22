@@ -85,7 +85,6 @@ wwv_flow_imp.create_flow(
  p_id=>wwv_flow.g_flow_id
 ,p_owner=>nvl(wwv_flow_application_install.get_schema,'CEN_CRUISE_APP')
 ,p_name=>nvl(wwv_flow_application_install.get_application_name,'PIFSC Cruise Data Management Application')
-,p_alias=>nvl(wwv_flow_application_install.get_application_alias,'CCD')
 ,p_page_view_logging=>'YES'
 ,p_page_protection_enabled_y_n=>'Y'
 ,p_checksum_salt=>'B4F9F2E0F0A7A01D6A6109DAB6BF71358E48A4F9D536F4C5CA15A2D30F01232F'
