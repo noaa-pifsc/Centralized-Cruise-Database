@@ -10514,7 +10514,7 @@ END;
 					--The P_CRUISE_NAME parameter was not defined
 
 					--raise a custom application error:
-					RAISE_APPLICATION_ERROR (-20527, V_EXC_MSG);
+					RAISE_APPLICATION_ERROR (-20525, V_EXC_MSG);
 
 
 				WHEN NO_DATA_FOUND THEN
@@ -10535,7 +10535,7 @@ END;
 					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
-					RAISE_APPLICATION_ERROR (-20528, V_EXC_MSG);
+					RAISE_APPLICATION_ERROR (-20526, V_EXC_MSG);
 
 		END BATCH_EXEC_DVM_CRUISE_FY_SP;
 
@@ -10628,7 +10628,7 @@ END;
 					--The P_CRUISE_NAME parameter was not defined
 
 					--raise a custom application error:
-					RAISE_APPLICATION_ERROR (-20525, V_EXC_MSG);
+					RAISE_APPLICATION_ERROR (-20527, V_EXC_MSG);
 
 
 				WHEN NO_DATA_FOUND THEN
@@ -10649,7 +10649,7 @@ END;
 					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
 
 					--raise a custom application error:
-					RAISE_APPLICATION_ERROR (-20526, V_EXC_MSG);
+					RAISE_APPLICATION_ERROR (-20528, V_EXC_MSG);
 
 		END BATCH_EXEC_DVM_CRUISE_YR_SP;
 

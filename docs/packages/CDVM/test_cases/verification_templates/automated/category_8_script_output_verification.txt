@@ -185,3 +185,17 @@ completed test case for ORA-20522
 
 PL/SQL procedure successfully completed.
 
+executing test case (V_FISC_YEAR) for ORA-20525
+The cruises for the specified fiscal year were NOT processed successfully
+ORA-20525: The Cruise Fiscal Year parameter was not specified
+completed test case for ORA-20525
+
+PL/SQL procedure successfully completed.
+
+executing test case (V_CAL_YEAR) for ORA-20527
+The cruises for the specified calendar year were NOT processed successfully
+ORA-20527: The Cruise Calendar Year parameter was not specified
+completed test case for ORA-20527
+
+PL/SQL procedure successfully completed.
+

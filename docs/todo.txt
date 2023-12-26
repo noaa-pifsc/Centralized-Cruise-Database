@@ -198,7 +198,7 @@ X fix bug in filtered shuttle page items
 
 X error tests for the function and business rules
 
-_ create package procedures to allow a X specific cruise or _ specific cruise year to be validated
+X create package procedures to allow a X specific cruise or X specific cruise fiscal/calendar year to be validated
 
 ** _ (_ document this) known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
 
@@ -235,9 +235,9 @@ Version 1.1:
 
 
 Best Practice:
-_ organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)
-All delimited queries can be defined - do not duplicate tables either since it will increase the cost of the queries
-	XX CCD_CRUISE_V - basic cruise with reference tables  (low cost)
+	X organize the views so the logic is not duplicated in multiple places (e.g. base views with _MIN prefix)
+	X All delimited queries can be defined - do not duplicate tables either since it will increase the cost of the queries
+		XX CCD_CRUISE_V - basic cruise with reference tables  (low cost)
 	
 	
 	
