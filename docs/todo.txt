@@ -22,7 +22,7 @@ Version 1.0
 		CCD_data_integration_SOP_v1.2
 		DB
 		APEX app
-		DVM
+		DVM 1.5
 		VCM
 		SQL Scripts v 1.0 (for role/permissions reports)
 		
