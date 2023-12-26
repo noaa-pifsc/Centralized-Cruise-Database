@@ -794,7 +794,7 @@ SELECT
 		TO_CHAR(MAX (CCD_LEG_V.LEG_END_DATE), 'MM/DD/YYYY') FORMAT_CRUISE_END_DATE,
 		SUM(CCD_LEG_V.LEG_DAS) CRUISE_DAS,
 	(MAX (CCD_LEG_V.LEG_END_DATE) - MIN (CCD_LEG_V.LEG_START_DATE) + 1) CRUISE_LEN_DAYS,
-		TO_CHAR(MIN (CCD_LEG_V.LEG_START_DATE), 'YYYY') CRUISE_YEAR,
+		TO_NUMBER(TO_CHAR(MIN (CCD_LEG_V.LEG_START_DATE), 'YYYY')) CRUISE_YEAR,
 		CEN_UTIL_PKG.CALC_FISCAL_YEAR_FN(MIN (CCD_LEG_V.LEG_START_DATE)) CRUISE_FISC_YEAR,
 		LISTAGG(CCD_LEG_V.LEG_NAME, ', ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_CD_LIST,
 		LISTAGG(CCD_LEG_V.LEG_NAME, '; ') WITHIN GROUP (ORDER BY CCD_LEG_V.LEG_START_DATE) as LEG_NAME_SCD_LIST,
@@ -9855,6 +9855,69 @@ END;
 */
 		PROCEDURE BATCH_EXEC_DVM_CRUISE_SP;
 
+
+		--this procedure executes the DVM for all CCD_CRUISES records in the specified fiscal year (P_FISC_YEAR)
+		--example usage:
+/*
+		--set the DBMS_OUTPUT buffer limit:
+		SET SERVEROUTPUT ON size 1000000;
+
+		exec DBMS_OUTPUT.ENABLE(NULL);
+
+
+		--this code snippet will run the data validation module to validate all cruises returned by the SELECT query.	This can be used to batch process cruises
+
+		DECLARE
+
+			V_SP_RET_CODE PLS_INTEGER;
+			V_FISC_YEAR PLS_INTEGER;
+
+		BEGIN
+
+			--execute the DVM for each cruise in the database
+			CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_FY_SP (V_FISC_YEAR);
+
+		EXCEPTION
+			when others THEN
+
+				dbms_output.put_line('The DVM batch execution was NOT successful: '|| SQLCODE || '- ' || SQLERRM);
+
+		END;
+*/
+		PROCEDURE BATCH_EXEC_DVM_CRUISE_FY_SP (P_FISC_YEAR IN PLS_INTEGER);
+
+
+
+		--this procedure executes the DVM for all CCD_CRUISES records in the specified calendar year (P_CAL_YEAR)
+		--example usage:
+/*
+		--set the DBMS_OUTPUT buffer limit:
+		SET SERVEROUTPUT ON size 1000000;
+
+		exec DBMS_OUTPUT.ENABLE(NULL);
+
+
+		--this code snippet will run the data validation module to validate all cruises returned by the SELECT query.	This can be used to batch process cruises
+
+		DECLARE
+
+			V_SP_RET_CODE PLS_INTEGER;
+			V_CAL_YEAR PLS_INTEGER;
+
+		BEGIN
+
+			--execute the DVM for each cruise in the database
+			CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_YR_SP (V_CAL_YEAR);
+
+		EXCEPTION
+			when others THEN
+
+				dbms_output.put_line('The DVM batch execution was NOT successful: '|| SQLCODE || '- ' || SQLERRM);
+
+		END;
+*/
+		PROCEDURE BATCH_EXEC_DVM_CRUISE_YR_SP (P_CAL_YEAR IN PLS_INTEGER);
+
 		--procedure that executes the DVM for a given CCD_CRUISES record (based on P_CRUISE_ID)
 		--all error conditions will raise an application exception and will be logged in the database
 /*
@@ -10359,6 +10422,236 @@ END;
 					RAISE_APPLICATION_ERROR (-20506, V_EXC_MSG);
 
 		END BATCH_EXEC_DVM_CRUISE_SP;
+
+
+
+		--this procedure executes the DVM for all CCD_CRUISES records
+		PROCEDURE BATCH_EXEC_DVM_CRUISE_FY_SP (P_FISC_YEAR IN PLS_INTEGER) IS
+
+			--variable to hold the return code value from procedures
+			V_SP_RET_CODE PLS_INTEGER;
+
+			--variable to store the constructed log source string for the current procedure's log messages:
+			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+
+			--variable to store the exception message:
+			V_EXC_MSG VARCHAR2(2000);
+
+			--variable to store the number of cruises that were successfully evaluated with the DVM
+			V_SUCC_COUNTER PLS_INTEGER := 0;
+
+			--variable to store the number of cruises that were not successfully evaluated with the DVM
+			V_ERR_COUNTER PLS_INTEGER := 0;
+
+			--exception for blank cruise name:
+			EXC_BLANK_REQ_PARAMS EXCEPTION;
+
+		BEGIN
+
+			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'.BATCH_EXEC_DVM_CRUISE_FY_SP (P_FISC_YEAR: '||P_FISC_YEAR||')';
+
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_FY_SP() procedure');
+
+
+			--check if the P_FISC_YEAR parameter is blank
+			IF (P_FISC_YEAR IS NULL) THEN
+				--the P_FISC_YEAR parameter is blank
+
+				--generate the exception message:
+				V_EXC_MSG := 'The Cruise Fiscal Year parameter was not specified';
+
+				--log the processing error:
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+				--raise the defined exception:
+				RAISE EXC_BLANK_REQ_PARAMS;
+
+
+			END IF;
+
+
+			--query for CRUISE_ID values for the specified fiscal year:
+			FOR rec IN (SELECT CRUISE_ID FROM ccd_cruise_agg_v where CRUISE_FISC_YEAR = P_FISC_YEAR)
+
+			--loop through each CRUISE_ID returned by the SELECT query to execute the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure:
+			 LOOP
+
+
+
+				--run the validator procedure on the given data stream(s) and primary key value:
+				EXEC_DVM_CRUISE_RC_SP(rec.CRUISE_ID, V_SP_RET_CODE, V_EXC_MSG);
+				IF (V_SP_RET_CODE = 1) THEN
+					--the DVM was executed successfully
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was validated successfully');
+
+					--increment the success counter:
+					V_SUCC_COUNTER := V_SUCC_COUNTER + 1;
+				ELSE
+					--the DVM was NOT executed successfully
+--					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was not validated successfully:'||chr(10)||V_EXC_MSG);
+
+
+					--increment the error counter:
+					V_ERR_COUNTER := V_ERR_COUNTER + 1;
+
+				END IF;
+
+			END LOOP;
+
+
+			--provide a summary of how many were successfully evaluated and were not successfully evaluated
+			DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
+
+--			DBMS_output.put_line('Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
+
+
+			EXCEPTION
+
+				--catch all PL/SQL database exceptions:
+
+				WHEN EXC_BLANK_REQ_PARAMS THEN
+					--The P_CRUISE_NAME parameter was not defined
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20527, V_EXC_MSG);
+
+
+				WHEN NO_DATA_FOUND THEN
+					--there are no cruise records retrieved by the
+
+					--provide a summary of how many were successfully evaluated and were not successfully evaluated
+					DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'There were no cruises in the specified fiscal year ('||P_FISC_YEAR||') returned by the batch DVM query, the DVM was not executed');
+
+--					DBMS_output.put_line('There were no cruises returned by the query, the DVM was not executed');
+
+				WHEN OTHERS THEN
+					--catch all other errors:
+
+					--generate the exception message:
+					V_EXC_MSG := 'The Batch DVM procedure did not complete successfully:'||chr(10)|| SQLERRM;
+
+					--log the procedure processing error:
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20528, V_EXC_MSG);
+
+		END BATCH_EXEC_DVM_CRUISE_FY_SP;
+
+
+
+		--this procedure executes the DVM for all CCD_CRUISES records
+		PROCEDURE BATCH_EXEC_DVM_CRUISE_YR_SP (P_CAL_YEAR IN PLS_INTEGER) IS
+
+			--variable to hold the return code value from procedures
+			V_SP_RET_CODE PLS_INTEGER;
+
+			--variable to store the constructed log source string for the current procedure's log messages:
+			V_TEMP_LOG_SOURCE DB_LOG_ENTRIES.LOG_SOURCE%TYPE;
+
+			--variable to store the exception message:
+			V_EXC_MSG VARCHAR2(2000);
+
+			--variable to store the number of cruises that were successfully evaluated with the DVM
+			V_SUCC_COUNTER PLS_INTEGER := 0;
+
+			--variable to store the number of cruises that were not successfully evaluated with the DVM
+			V_ERR_COUNTER PLS_INTEGER := 0;
+
+			--exception for blank cruise name:
+			EXC_BLANK_REQ_PARAMS EXCEPTION;
+
+		BEGIN
+
+			--construct the DB_LOG_ENTRIES.LOG_SOURCE value for all logging messages in this procedure based on the procedure/function name and parameters:
+			V_TEMP_LOG_SOURCE := PV_LOG_MSG_HEADER||'.BATCH_EXEC_DVM_CRUISE_YR_SP (P_CAL_YEAR: '||P_CAL_YEAR||')';
+
+--			DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'running the CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_YR_SP() procedure');
+
+			--check if the P_CAL_YEAR parameter is blank
+			IF (P_CAL_YEAR IS NULL) THEN
+				--the P_CAL_YEAR parameter is blank
+
+				--generate the exception message:
+				V_EXC_MSG := 'The Cruise Calendar Year parameter was not specified';
+
+				--log the processing error:
+				DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+				--raise the defined exception:
+				RAISE EXC_BLANK_REQ_PARAMS;
+
+
+			END IF;
+
+			--query for CRUISE_ID values for the specified calendar year:
+			FOR rec IN (SELECT CRUISE_ID FROM ccd_cruise_agg_v where CRUISE_YEAR = P_CAL_YEAR)
+
+			--loop through each CRUISE_ID returned by the SELECT query to execute the CCD_DVM_PKG.EXEC_DVM_CRUISE_SP() procedure:
+			 LOOP
+
+
+
+				--run the validator procedure on the given data stream(s) and primary key value:
+				EXEC_DVM_CRUISE_RC_SP(rec.CRUISE_ID, V_SP_RET_CODE, V_EXC_MSG);
+				IF (V_SP_RET_CODE = 1) THEN
+					--the DVM was executed successfully
+--					DB_LOG_PKG.ADD_LOG_ENTRY('DEBUG', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was validated successfully');
+
+					--increment the success counter:
+					V_SUCC_COUNTER := V_SUCC_COUNTER + 1;
+				ELSE
+					--the DVM was NOT executed successfully
+--					DB_LOG_PKG.ADD_LOG_ENTRY('ERROR', V_TEMP_LOG_SOURCE, 'The current cruise record ('||rec.CRUISE_ID||') was not validated successfully:'||chr(10)||V_EXC_MSG);
+
+
+					--increment the error counter:
+					V_ERR_COUNTER := V_ERR_COUNTER + 1;
+
+				END IF;
+
+			END LOOP;
+
+
+			--provide a summary of how many were successfully evaluated and were not successfully evaluated
+			DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
+
+--			DBMS_output.put_line('Out of '||(V_SUCC_COUNTER + V_ERR_COUNTER)||' total cruise records there were '||V_SUCC_COUNTER||' that were successfully processed and '||V_ERR_COUNTER||' that were unsuccessful');
+
+
+			EXCEPTION
+
+				--catch all PL/SQL database exceptions:
+
+				WHEN EXC_BLANK_REQ_PARAMS THEN
+					--The P_CRUISE_NAME parameter was not defined
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20525, V_EXC_MSG);
+
+
+				WHEN NO_DATA_FOUND THEN
+					--there are no cruise records retrieved by the
+
+					--provide a summary of how many were successfully evaluated and were not successfully evaluated
+					DB_LOG_PKG.ADD_LOG_ENTRY('INFO', V_TEMP_LOG_SOURCE, 'There were no cruises in the specified calendar year ('||P_CAL_YEAR||') returned by the batch DVM query, the DVM was not executed');
+
+--					DBMS_output.put_line('There were no cruises returned by the query, the DVM was not executed');
+
+				WHEN OTHERS THEN
+					--catch all other errors:
+
+					--generate the exception message:
+					V_EXC_MSG := 'The Batch DVM procedure did not complete successfully:'||chr(10)|| SQLERRM;
+
+					--log the procedure processing error:
+					DB_LOG_PKG.ADD_LOG_ENTRY ('ERROR', V_TEMP_LOG_SOURCE, V_EXC_MSG);
+
+					--raise a custom application error:
+					RAISE_APPLICATION_ERROR (-20526, V_EXC_MSG);
+
+		END BATCH_EXEC_DVM_CRUISE_YR_SP;
 
 		--procedure that executes the DVM for a given CCD_CRUISES record (based on P_CRUISE_ID)
 		--all error conditions will raise an application exception and will be logged in the database

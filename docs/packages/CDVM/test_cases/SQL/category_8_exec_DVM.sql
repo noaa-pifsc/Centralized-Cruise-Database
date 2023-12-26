@@ -708,3 +708,54 @@ BEGIN
 	--rollback;
 END;
 /
+
+
+
+--Batch Process Cruise Fiscal Year - blank fiscal year parameter (ORA-20525)
+DECLARE
+	V_FISC_YEAR PLS_INTEGER := NULL;
+	V_EXC_CODE VARCHAR2(30) :=  'ORA-20525';
+
+BEGIN
+	DBMS_OUTPUT.PUT_LINE ('executing test case (V_FISC_YEAR) for '||V_EXC_CODE);
+
+
+	CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_FY_SP (V_FISC_YEAR);
+	DBMS_output.put_line('The cruises for the fiscal year ('||V_FISC_YEAR||') were validated with the DVM successfully');
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The cruises for the specified fiscal year were NOT processed successfully');
+
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+	--rollback;
+END;
+/
+
+
+--Batch Process Cruise Calendar Year - blank calendar year parameter (ORA-20527)
+DECLARE
+	V_CAL_YEAR PLS_INTEGER := NULL;
+	V_EXC_CODE VARCHAR2(30) :=  'ORA-20527';
+
+BEGIN
+	DBMS_OUTPUT.PUT_LINE ('executing test case (V_CAL_YEAR) for '||V_EXC_CODE);
+
+
+	CCD_DVM_PKG.BATCH_EXEC_DVM_CRUISE_YR_SP (V_CAL_YEAR);
+	DBMS_output.put_line('The cruises for the calendar year ('||V_CAL_YEAR||') were validated with the DVM successfully');
+
+	EXCEPTION
+		WHEN OTHERS THEN
+			DBMS_output.put_line('The cruises for the specified calendar year were NOT processed successfully');
+
+			DBMS_output.put_line(SQLERRM);
+
+			DBMS_OUTPUT.PUT_LINE ('completed test case for '||V_EXC_CODE);
+
+	--rollback;
+END;
+/

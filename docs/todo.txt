@@ -196,9 +196,9 @@ X fix bug in filtered shuttle page items
 		X define shuttle SQL queries
 		X add dynamic actions for checkboxes
 
-_ error tests for the function and business rules
+X error tests for the function and business rules
 
-_ create package procedures to allow a specific cruise or specific cruise year to be validated
+_ create package procedures to allow a X specific cruise or _ specific cruise year to be validated
 
 ** _ (_ document this) known issue: the APEX page 220 load event will generate the SQL query for each shuttle twice (and possibly execute it twice) -> couldn't find where it was causing this
 
