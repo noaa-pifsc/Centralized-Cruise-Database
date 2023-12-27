@@ -28,12 +28,12 @@ prompt APPLICATION 287 - PIFSC Cruise Data Management Application
 -- Application Export:
 --   Application:     287
 --   Name:            PIFSC Cruise Data Management Application
---   Date and Time:   20:23 Wednesday December 27, 2023
+--   Date and Time:   21:14 Wednesday December 27, 2023
 --   Exported By:     CRUISE_JESSE
 --   Flashback:       0
 --   Export Type:     Application Export
 --     Pages:                     44
---       Items:                  171
+--       Items:                  170
 --       Computations:            18
 --       Validations:             10
 --       Processes:              153
@@ -120,7 +120,7 @@ wwv_flow_imp.create_flow(
 ,p_tokenize_row_search=>'N'
 ,p_friendly_url=>'N'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231227201155'
+,p_last_upd_yyyymmddhh24miss=>'20231227205905'
 ,p_file_prefix => nvl(wwv_flow_application_install.get_static_app_file_prefix,'')
 ,p_files_version=>235
 ,p_print_server_type=>'INSTANCE'
@@ -17860,7 +17860,7 @@ wwv_flow_imp_page.create_page(
 ,p_required_role=>wwv_flow_imp.id(1520576684753169562)
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231227181327'
+,p_last_upd_yyyymmddhh24miss=>'20231227204533'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(370050190793650918)
@@ -22110,31 +22110,38 @@ wwv_flow_imp_page.create_page_process(
 '',
 '    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Load Cruise Info PL/SQL block'', ''Running Load Cruise Info'');',
 '',
-'	SELECT * INTO V_CRUISE_SUMM_ISS_V FROM CCD_CRUISE_ISS_SUMM_V',
-'WHERE ',
-'	cruise_id = :P220_CRUISE_ID;',
+'    --check if the :P220_CRUISE_ID parameter has been defined',
+'    IF (:P220_CRUISE_ID IS NOT NULL) THEN',
+'        --the :P220_CRUISE_ID parameter has been defined',
 '',
-'	:P220_START_DATE_DISP := V_CRUISE_SUMM_ISS_V.cruise_start_date;',
-':P220_END_DATE_DISP := V_CRUISE_SUMM_ISS_V.cruise_end_date;',
-':P220_FISCAL_YEAR_DISP := V_CRUISE_SUMM_ISS_V.cruise_fisc_year;',
-':P220_CRUISE_DAS_DISP := V_CRUISE_SUMM_ISS_V.cruise_das;',
-':P220_NUM_LEGS_DISP := V_CRUISE_SUMM_ISS_V.NUM_LEGS;',
-':P220_LEG_NAMES_DISP := V_CRUISE_SUMM_ISS_V.leg_name_dates_br_list;',
-':P220_PRIM_SVY_CAT_DISP := V_CRUISE_SUMM_ISS_V.prim_svy_cat_name_br_list;',
-':P220_SEC_SVY_CAT_DISP := V_CRUISE_SUMM_ISS_V.sec_svy_cat_name_br_list;',
-':P220_TGT_ESA_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_esa_name_br_list;',
-':P220_TGT_MMPA_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_mmpa_name_br_list;',
-':P220_TGT_FSSI_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_fssi_name_br_list;',
-':P220_EXP_SPP_CAT_DISP := V_CRUISE_SUMM_ISS_V.exp_spp_name_br_list;',
-':P220_TGT_OTH_SPP_DISP := V_CRUISE_SUMM_ISS_V.oth_spp_cname_br_list;',
-':P220_LEG_ECOSYSTEMS_DISP := V_CRUISE_SUMM_ISS_V.ECOSYSTEM_BR_LIST;',
-':P220_LEG_GEAR_DISP := V_CRUISE_SUMM_ISS_V.GEAR_BR_LIST;',
-':P220_LEG_REGIONS_DISP := V_CRUISE_SUMM_ISS_V.REGION_NAME_BR_LIST;',
-':P220_ACT_ERRORS := V_CRUISE_SUMM_ISS_V.NUM_ACTIVE_ERRORS;',
-':P220_ANNOT_ERRORS := V_CRUISE_SUMM_ISS_V.NUM_ANNOT_ERRORS;',
-':P220_ACTIVE_WARNINGS := V_CRUISE_SUMM_ISS_V.NUM_ACTIVE_ERRORS;',
-':P220_ANNOT_WARNINGS := V_CRUISE_SUMM_ISS_V.NUM_ANNOT_WARNINGS;',
-':P220_VALID_YN := ''<span class="''||(CASE WHEN V_CRUISE_SUMM_ISS_V.CRUISE_VALID_YN = ''Y'' THEN ''valid_cruise'' ELSE ''invalid_cruise'' END)||''">''||(CASE WHEN V_CRUISE_SUMM_ISS_V.CRUISE_VALID_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END)||''</span>'';',
+'        --retrieve all cruise summary information ',
+'    	SELECT * INTO V_CRUISE_SUMM_ISS_V FROM CCD_CRUISE_ISS_SUMM_V',
+'        WHERE ',
+'    	cruise_id = :P220_CRUISE_ID;',
+'',
+'        --populate the readonly cruise summary information with the query results',
+'    	:P220_START_DATE_DISP := V_CRUISE_SUMM_ISS_V.cruise_start_date;',
+'        :P220_END_DATE_DISP := V_CRUISE_SUMM_ISS_V.cruise_end_date;',
+'        :P220_FISCAL_YEAR_DISP := V_CRUISE_SUMM_ISS_V.cruise_fisc_year;',
+'        :P220_CRUISE_DAS_DISP := V_CRUISE_SUMM_ISS_V.cruise_das;',
+'        :P220_NUM_LEGS_DISP := V_CRUISE_SUMM_ISS_V.NUM_LEGS;',
+'        :P220_LEG_NAMES_DISP := V_CRUISE_SUMM_ISS_V.leg_name_dates_br_list;',
+'        :P220_PRIM_SVY_CAT_DISP := V_CRUISE_SUMM_ISS_V.prim_svy_cat_name_br_list;',
+'        :P220_SEC_SVY_CAT_DISP := V_CRUISE_SUMM_ISS_V.sec_svy_cat_name_br_list;',
+'        :P220_TGT_ESA_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_esa_name_br_list;',
+'        :P220_TGT_MMPA_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_mmpa_name_br_list;',
+'        :P220_TGT_FSSI_SPP_DISP := V_CRUISE_SUMM_ISS_V.spp_fssi_name_br_list;',
+'        :P220_EXP_SPP_CAT_DISP := V_CRUISE_SUMM_ISS_V.exp_spp_name_br_list;',
+'        :P220_TGT_OTH_SPP_DISP := V_CRUISE_SUMM_ISS_V.oth_spp_cname_br_list;',
+'        :P220_LEG_ECOSYSTEMS_DISP := V_CRUISE_SUMM_ISS_V.ECOSYSTEM_BR_LIST;',
+'        :P220_LEG_GEAR_DISP := V_CRUISE_SUMM_ISS_V.GEAR_BR_LIST;',
+'        :P220_LEG_REGIONS_DISP := V_CRUISE_SUMM_ISS_V.REGION_NAME_BR_LIST;',
+'        :P220_ACT_ERRORS := V_CRUISE_SUMM_ISS_V.NUM_ACTIVE_ERRORS;',
+'        :P220_ANNOT_ERRORS := V_CRUISE_SUMM_ISS_V.NUM_ANNOT_ERRORS;',
+'        :P220_ACTIVE_WARNINGS := V_CRUISE_SUMM_ISS_V.NUM_ACTIVE_ERRORS;',
+'        :P220_ANNOT_WARNINGS := V_CRUISE_SUMM_ISS_V.NUM_ANNOT_WARNINGS;',
+'        :P220_VALID_YN := ''<span class="''||(CASE WHEN V_CRUISE_SUMM_ISS_V.CRUISE_VALID_YN = ''Y'' THEN ''valid_cruise'' ELSE ''invalid_cruise'' END)||''">''||(CASE WHEN V_CRUISE_SUMM_ISS_V.CRUISE_VALID_YN = ''Y'' THEN ''Yes'' ELSE ''No'' END)||''</span>'';',
+'    END IF;',
 '',
 'END;'))
 ,p_process_clob_language=>'PLSQL'
@@ -23034,7 +23041,7 @@ wwv_flow_imp_page.create_page(
 ,p_protection_level=>'C'
 ,p_page_component_map=>'02'
 ,p_last_updated_by=>'CRUISE_JESSE'
-,p_last_upd_yyyymmddhh24miss=>'20231227180933'
+,p_last_upd_yyyymmddhh24miss=>'20231227205905'
 );
 wwv_flow_imp_page.create_page_plug(
  p_id=>wwv_flow_imp.id(370050280399650919)
@@ -25298,17 +25305,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_05=>'PLAIN'
 );
 wwv_flow_imp_page.create_page_item(
- p_id=>wwv_flow_imp.id(1457945459607379258)
-,p_name=>'P230_CRUISE_INFO'
-,p_item_sequence=>140
-,p_item_plug_id=>wwv_flow_imp.id(1457738017072183445)
-,p_source=>'P230_CRUISE_INFO'
-,p_source_type=>'ITEM'
-,p_display_as=>'NATIVE_HIDDEN'
-,p_encrypt_session_state_yn=>'N'
-,p_attribute_01=>'Y'
-);
-wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1457945511194379259)
 ,p_name=>'P230_SCIENCE_CENTER'
 ,p_item_sequence=>20
@@ -25825,9 +25821,6 @@ wwv_flow_imp_page.create_page_item(
 ,p_attribute_01=>'NONE'
 ,p_attribute_02=>'N'
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1459175139189123153)
 ,p_name=>'P230_REGION_SHUTTLE'
@@ -25847,6 +25840,9 @@ wwv_flow_imp_page.create_page_item(
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'ALL'
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_item(
  p_id=>wwv_flow_imp.id(1459175315159123155)
 ,p_name=>'P230_REGION_PRESETS'
@@ -26633,9 +26629,6 @@ wwv_flow_imp_page.create_page_da_action(
 ,p_affected_elements_type=>'REGION'
 ,p_affected_region_id=>wwv_flow_imp.id(1459175535459123157)
 );
-end;
-/
-begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1456887098388484293)
 ,p_name=>'Change Gear'
@@ -26697,6 +26690,9 @@ wwv_flow_imp_page.create_page_da_action(
 '}',
 ''))
 );
+end;
+/
+begin
 wwv_flow_imp_page.create_page_da_event(
  p_id=>wwv_flow_imp.id(1456887290107484295)
 ,p_name=>'Leg Start/End Date Change'
@@ -26949,14 +26945,22 @@ wwv_flow_imp_page.create_page_process(
 '',
 '    DB_LOG_PKG.ADD_LOG_ENTRY(''DEBUG'', ''Load Cruise Summary Leg Info PL/SQL block'', ''Running Load Cruise Leg Info'');',
 '',
-'	SELECT * INTO V_LEG_DELIM_V FROM CCD_LEG_DELIM_V WHERE cruise_leg_id = :P230_CRUISE_LEG_ID;',
+'    --check if the :P230_CRUISE_LEG_ID parameter has been defined',
+'    IF (:P230_CRUISE_LEG_ID IS NOT NULL) THEN',
+'        --the :P230_CRUISE_LEG_ID parameter has been defined',
 '',
-'	:P230_LEG_FISC_YEAR := V_LEG_DELIM_V.LEG_FISC_YEAR;',
-'	:P230_LEG_DAS := V_LEG_DELIM_V.LEG_DAS;',
-'	:P230_LEG_REG_ECOSYS := V_LEG_DELIM_V.REG_ECOSYSTEM_BR_LIST;',
-'	:P230_LEG_GEAR := V_LEG_DELIM_V.GEAR_NAME_BR_LIST;',
-'	:P230_LEG_REGIONS := V_LEG_DELIM_V.REGION_NAME_BR_LIST;',
-'	:P230_LEG_ALIASES := V_LEG_DELIM_V.LEG_ALIAS_BR_LIST;',
+'        --retrieve the leg summary information',
+'    	SELECT * INTO V_LEG_DELIM_V FROM CCD_LEG_DELIM_V WHERE cruise_leg_id = :P230_CRUISE_LEG_ID;',
+'',
+'        --set the page items in the leg summary region with the retrieved values',
+'    	:P230_LEG_FISC_YEAR := V_LEG_DELIM_V.LEG_FISC_YEAR;',
+'    	:P230_LEG_DAS := V_LEG_DELIM_V.LEG_DAS;',
+'    	:P230_LEG_REG_ECOSYS := V_LEG_DELIM_V.REG_ECOSYSTEM_BR_LIST;',
+'    	:P230_LEG_GEAR := V_LEG_DELIM_V.GEAR_NAME_BR_LIST;',
+'    	:P230_LEG_REGIONS := V_LEG_DELIM_V.REGION_NAME_BR_LIST;',
+'    	:P230_LEG_ALIASES := V_LEG_DELIM_V.LEG_ALIAS_BR_LIST;',
+'',
+'    END IF;',
 '',
 'END;',
 ''))
@@ -27451,7 +27455,7 @@ wwv_flow_imp_page.create_page_process(
 'BEGIN',
 '',
 '    --check if there are no cruise leg ID parameter values specified for the page:',
-'    IF (:P230_CRUISE_LEG_ID IS NULL AND :P220_CRUISE_LEG_ID_COPY IS NULL) THEN',
+'    IF (:P230_CRUISE_LEG_ID IS NULL AND :P230_CRUISE_LEG_ID_COPY IS NULL) THEN',
 '        --there are no cruise leg ID parameter values specified for the page:',
 '',
 '',

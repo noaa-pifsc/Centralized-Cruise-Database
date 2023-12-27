@@ -253,6 +253,10 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
     -   Authentication/Authorization: Requires Data Admin Role (CR-DMA-004)
     -   Description: Simple read-only interactive grid report that displays all Feedback Form submissions.
 
+## Known Issues
+-   Running the "Deep Copy" process while logged out will show a generic "...unexpected internal application error..." but allow the user to continue to use the page.  This happens when the PL/SQL process executes and checks that the user is not logged in/authorized to perform the action
+-   
+
 ## Application Security:
 -   [Standard APEX Security Documentation](security/APEX%20Security%20Documentation.md)
     -   This project utilizes the security documentation from version 0.5 (Git tag: APX_sec_v0.5) of the [APEX security project](https://picgitlab.nmfs.local/centralized-data-tools/apex_tools/-/blob/master/Security/APEX%20Security%20Documentation.md)
