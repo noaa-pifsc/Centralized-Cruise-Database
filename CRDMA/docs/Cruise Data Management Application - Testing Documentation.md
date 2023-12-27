@@ -38,31 +38,44 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Confirm that the Copy link opens the View/Edit Cruise Form with the copied cruise information and cruise attributes pre-populated with the copied Cruise's information
 -   Page 220
     -   Page Loading
-        -   Logout in new browser tab and load the page (session has expired error)
-        -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
-        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
-        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
+        -   X Logout in new browser tab and load the page (session has expired error)
+        -   X Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
+        -   X Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   X Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
         -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
-    -   Confirmed authorized users can insert/update/delete records
-        -   Logout in new browser tab and click Save button (session has expired error)
-        -   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
-        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
-        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
-        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+    -   Confirm authorized users can perform record operations
+        -   Create
+            -   X Logout in new browser tab and click Save button (generic popup error)
+            -   X Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   X Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+        -   Create Another
+            -   X Logout in new browser tab and click Save button (generic popup error)
+            -   X Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   X Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+        -   Update
+            -   X Logout in new browser tab and click Save button (generic popup error)
+            -   X Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   X Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+            -   X Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+            -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
     -   Invalid Page Arguments:
         -   X Confirm the page displays a "You have reached this page incorrectly" when the P220_CRUISE_ID, or P220_CRUISE_ID_COPY parameters are invalid (not a cruise_ID for an existing cruise record)
     -   View/Edit Cruise Form
         -   X Confirm the tab tooltips are working properly
         -   Data Form
             -   X Confirm form field tooltips are working properly
-            -   Confirm the select field filtering checkbox works properly
-            -   Data Model QA:
-                -   Confirm required fields
-                -   Confirm unique keys
-        -   Confirm the different attribute presets (e.g. ESA Target Species) work properly
-            -   Confirm the attribute filtering checkboxes work properly
-                -   Confirm the processing gif is shown and the form fields are disabled until the results are returned
-                -   Confirm that the shuttle fields are updated and the selected options are retained
+            -   X Confirm the select field filtering checkbox works properly
+            -   X Data Model QA:
+                -   X Confirm required fields
+                -   X Confirm unique keys
+        -   X Confirm the different attribute presets (e.g. ESA Target Species) work properly
+            -   X Confirm the attribute filtering checkboxes work properly
+                -   X Confirm the processing gif is shown and the form fields are disabled until the results are returned
+                -   X Confirm that the shuttle fields are updated and the selected options are retained
         -   Confirm the Target Species - Other Species interactive grid works properly
             -   Confirm the tooltips are working properly
         -   New Cruise
@@ -103,11 +116,11 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Delete Cruise
                 -   Confirm the deletion works properly if there are no related record (cruise record only)
                     -   Confirm the deletion works properly if there are attributes associated with the cruise leg and the field options are de-selected and the delete button is clicked
-                -   Confirm the deletion fails if there are related records (leg or cruise attributes)
+                -   X Confirm the deletion fails if there are related records (leg or cruise attributes)
                 -   Confirmed that unauthorized users cannot commit changes to the database
-                    -   Logout in new browser tab and click Save button (session has expired error)
-                    -   Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
-                    -   Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
+                    -   X Logout in new browser tab and click Save button (session has expired error)
+                    -   X Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
+                    -   X Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
                     -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
                     -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
                 -   Consult [CRDMA CDVM Testing Documentation](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md) for a testing SOP for the "Delete Cruise" functionality
@@ -115,17 +128,17 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
                 -   Confirm the tooltip is working properly
                 -   Consult [CCD Oracle Package (CCDP) Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md) for a testing SOP for the "Deep Copy" functionality
                 -   Confirmed that unauthorized users cannot perform "deep copy" in the app
-                    -   Logout in new browser tab and click Save button (session has expired error)
-                    -   Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
-                    -   Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
-                    -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
+                    -   X Logout in new browser tab and click Save button (session has expired error)
+                    -   X Update user group to [remove all permissions](#appendix) and click the delete button (error - not authorized)
+                    -   X Update user group to [assign the CCD READ role](#ccd-read) and then click the delete button (error - not authorized)
+                    -   X Update user group to [assign the CCD WRITE role](#ccd-write) and then click the save button (ok)
                     -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the save button (ok)
 -   Page 230
     -   Confirmed that if there is no CRUISE_ID argument then the page shows a warning
     -   Page Loading
         -   Logout in new browser tab and load the page (session has expired error)
         -   Update user group to [remove all permissions](#appendix) and load the page (error - not authorized)
-        -   Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
+        -   X Update user group to [assign the CCD READ role](#ccd-read) and load the page (ok - readonly)
         -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
         -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
     -   Confirmed authorized users can insert/update/delete records

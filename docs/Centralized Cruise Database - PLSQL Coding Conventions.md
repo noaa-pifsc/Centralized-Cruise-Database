@@ -19,6 +19,7 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   PV: Package Variable
 -   ### Abbreviations:
     -   ASSOC: Associated
+    -   CAL: Calendar
     -   CATS: Categories
     -   CONT: Contact
     -   CURR: Current
@@ -33,9 +34,11 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   EXEC: Execute
     -   EXP: Expected
     -   FIL: Filtered
+    -   FISC: Fiscal
     -   FRAG: Fragment
     -   FREQ: Frequency
     -   FSSI: Fish Stock Sustainability Index
+    -   FY: Fiscal Year
     -   ID: Identifier
     -   INCL: Include
     -   MMPA: Marine Mammal Protection Act
@@ -62,3 +65,4 @@ When developing PL/SQL code it is important to use consistent coding conventions
     -   TEMP: Temporary
     -   TGT: Target
     -   VAL: Value
+    -   YR: Year
