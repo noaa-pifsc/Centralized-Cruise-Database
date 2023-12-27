@@ -5,7 +5,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
 
 ## Resources:
 -   CCD Version Control Information:
-    -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git
+    -   URL: https://github.com/noaa-pifsc/Centralized-Cruise-Database
     -   Database: 1.0 (Git tag: cen_cruise_db_v1.0)
 -   [CCD View Comments](./centralized_cruise_DB_view_comments.xlsx)
 -   [Cruise Data Management Application (CRDMA)](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md)
@@ -40,10 +40,9 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Grant the permissions on the objects in the MOUSS schema to the defined MOUSS roles by executing the [grant_CCD_role_permissions.sql](../SQL/queries/grant_CCD_role_permissions.sql) script
     -   (Development and Test only) Load the MOUSS test data by executing the test data script [load_dev_test_ref_data.sql](../SQL/queries/load_dev_test_ref_data.sql)
     -   (Production only) Load the MOUSS data by executing the test data script [load_ref_data.sql](../SQL/queries/load_ref_data.sql)
-		-   Load the configuration values by executing the appropriate configuration script (e.g. [load_config_values.prod.sql](../shared_SQL/scripts/load_config_values.prod.sql) for the production server)
+    -   Load the configuration values by executing the appropriate configuration script (e.g. [load_config_values.prod.sql](../SQL/queries/load_config_values.prod.sql) for the production server)
         -   Configuration values description:
             -   Database Logging Module Configuration (business rule: CR-DB-023)
-    -   Load the configuration values by executing the [load_config_values.sql](../SQL/queries/load_config_values.sql) script
 -   Cruise/reference data can be purged and reloaded for development purposes using [refresh_ref_data.sql](../SQL/queries/refresh_ref_data.sql)
 -   Grant external schemas permissions to the Centralized Cruise Database
     -   Modify the Centralized Cruise Database's [grant_external_schema_privs.sql](../SQL/queries/grant_external_schema_privs.sql) to replace the [EXTERNAL SCHEMA] placeholders with the given schema name and execute using the CEN_CRUISE schema
@@ -78,7 +77,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/apex-feedback-form.git
     -   Version: 0.1 (git tag: apex_feedback_form_db_v0.1)
 -   Centralized Configuration (CC) project
-    -   Repository URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-configuration.git
+    -   Repository URL: https://github.com/noaa-pifsc/Centralized-Configuration/
     -   Version: 1.0 (git tag: centralized_configuration_db_v1.0)
 -   Data history tracking package
     -   Version Control Information:
@@ -108,7 +107,7 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   The database role permissions are listed in [CCD_Role_Permissions.xlsx](./CCD_Role_Permissions.xlsx)
 
 ## Custom CCD Oracle Packages:
--   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module) to implement specific business rules defined for the CCD and associated modules
+-   The [CDVM](./packages/CDVM/CDVM%20Documentation.md) was developed to extend the functionality of an existing [Data Validation Module (DVM)](https://github.com/noaa-pifsc/PIFSC-DataValidationModule) to implement specific business rules defined for the CCD and associated modules
 -   The [CCDP](./packages/CCDP/CCDP%20Documentation.md) was developed to provide functions and stored procedures for the CCD to provide functionality for the database and associated module(s)
 
 ## Cruise Database Reference Data:
@@ -121,6 +120,6 @@ The Centralized Cruise Database (CCD) is used to track information about each PI
     -   An [APEX application](../CRDMA/docs/Cruise%20Data%20Management%20Application%20-%20Technical%20Documentation.md) is available to manage the cruises, cruise legs, and leg aliases
 
 ## Test Data Set:
--   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script using the CCD data schema (CEN_CRUISE) to provide the test data for [version 0.27](https://picgitlab.nmfs.local/centralized-data-tools/centralized-cruise-database/-/tags/cen_cruise_db_v0.27) of the CCD for the [Centralized Utilities Database (CUD)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities) [Data Package (UDP)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/blob/master/docs/packages/UDP_UDLP/UDP%20UDLP%20Documentation.md) starting in [version 0.10](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/tags/cen_utils_db_v0.10) of the CUD  
+-   [Centralized CTD Database](https://picgitlab.nmfs.local/centralized-data-tools/centralized-ctd) test data can be reloaded by executing the [CTD_test_case_reload_ref_data.sql](../SQL/queries/Centralized%20CTD/CTD_test_case_reload_ref_data.sql) script using the CCD data schema (CEN_CRUISE) to provide the test data for [version 0.27](https://github.com/noaa-pifsc/Centralized-Cruise-Database/releases/tag/cen_cruise_db_v0.27) of the CCD for the [Centralized Utilities Database (CUD)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities) [Data Package (UDP)](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/blob/master/docs/packages/UDP_UDLP/UDP%20UDLP%20Documentation.md) starting in [version 0.10](https://picgitlab.nmfs.local/centralized-data-tools/centralized-utilities/-/tags/cen_utils_db_v0.10) of the CUD  
     -   **\*\*Note**: Do not execute this script on a production database.  DVM rules and data will be purged from the database.  The automated CTD database test cases require this script to be executed on a development/test instance.
-    -   The [test_data-cen_utils_db_v0.10](https://picgitlab.nmfs.local/centralized-data-tools/centralized-cruise-database/-/tags/test_data-cen_utils_db_v0.10) tag on the CCD repository indicates the version of the CCD that was developed for version 0.10 of the CUD
+    -   The [test_data-cen_utils_db_v0.10](https://github.com/noaa-pifsc/Centralized-Cruise-Database/releases/tag/test_data-cen_utils_db_v0.10) tag on the CCD repository indicates the version of the CCD that was developed for version 0.10 of the CUD

@@ -153,7 +153,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                 -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise Leg functionality:
                     -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
     -   (Page ID: 250) Data QC Validation Issues
-        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
+        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "Issue Category" (Business rule: CR-DB-003) select fields, changing these values will reload the page with the filtered validation issues.
             -   [DVM Issue Policies](#dvm-issue-policies)
         -   Clicking on the "Save" button will attempt to save the modified records.
     -   Reference List Management Pages (Requires Data Admin Role: CR-DMA-004)

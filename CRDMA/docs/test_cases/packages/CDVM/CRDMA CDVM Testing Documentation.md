@@ -29,7 +29,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   SOP:
             -   Execute the corresponding DVM test script(s)
             -   Generate the data reports
-                -   Execute the [validation issue verification query](#validation_issue_verification_query) for the given test case category and export the results in a .csv file with the specified naming convention
+                -   Execute the [validation issue verification query](#validation-issue-verification-query) for the given test case category and export the results in a .csv file with the specified naming convention
             -   Open a diff tool (e.g. WinMerge) and compare the exported query results (e.g. category_1_DVM_issue_verification20200423.csv for a report generated on 4/23/2020) with the corresponding Verification Export (e.g. [category_1_CRDMA_CDVM_issue_verification.csv](./verification_templates/automated/category_1_CRDMA_CDVM_issue_verification.csv)) in the [verification_templates\automated](./verification_templates/automated) folder
                 -   If the two files' content matches exactly then the test cases have been verified successfully
 -   Manual Verification:
@@ -105,7 +105,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Delete Cruise Leg:
                 -   Create the cruise leg with the indicated Leg name
     -   Validation Issues:
-        -   Execute the [Validation Issue Verification Query](#validation_issue_verification_query)
+        -   Execute the [Validation Issue Verification Query](#validation-issue-verification-query)
         -   Verification Files:
             -   Template: [category_1_CRDMA_CDVM_issue_verification.xlsx](./verification_templates/category_1_CRDMA_CDVM_issue_verification.xlsx)
             -   Export: [category_1_CRDMA_CDVM_issue_verification.csv](./verification_templates/automated/category_1_CRDMA_CDVM_issue_verification.csv)
@@ -122,5 +122,5 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm the error message displayed matches the "Expected Result" column value for each Cruise
 
 ## Appendix:
--   <span id="validation_issue_verification_query" class="anchor"></span>Validation Issue Verification Query:
+-   ### Validation Issue Verification Query
 > select cruise_name, LEG_NAME_CD_LIST, iss_severity_code, iss_type_name, iss_type_desc, ISS_DESC, IND_FIELD_NAME from CCD_CRUISE_SUMM_ISS_V order by cruise_name, iss_severity_code, iss_type_name, TO_CHAR(iss_desc);

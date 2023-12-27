@@ -30,6 +30,12 @@ Version 1.0
 		
 
 
+update documentation
+	X update to reference the github versions of CCM and CCD
+	
+
+
+
 X update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)
 
 X document business rules:

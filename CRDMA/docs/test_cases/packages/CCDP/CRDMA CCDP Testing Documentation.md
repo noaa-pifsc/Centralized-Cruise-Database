@@ -29,7 +29,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   SOP:
             -   Execute the corresponding CCDP test(s)
             -   Generate the data reports
-                -   Execute the corresponding verification query (e.g. [CCDP verification query](#CCDP_verification_query)) for the given test case category and export the results in a .csv file with the specified naming convention
+                -   Execute the corresponding verification query (e.g. [CCDP verification query](#ccdp-verification-query)) for the given test case category and export the results in a .csv file with the specified naming convention
             -   Open a diff tool (e.g. WinMerge) and compare the exported query results (e.g. category_2_CRDMA_CCDP_verification20200423.csv for a report generated on 4/23/2020) with the corresponding Verification Export (e.g. [category_2_CRDMA_CCDP_verification.csv](./verification_templates/automated/category_2_CRDMA_CCDP_verification.csv)) in the [verification_templates\automated](./verification_templates/automated) folder
                 -   If the two files' content matches exactly then the test cases have been verified successfully
 -   Manual Verification:
@@ -88,19 +88,19 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm the View/Edit Cruise page is opened to the newly copied Cruise
     -   Verify the Cruise and associated data:
         -   Worksheet name: "Category 2 Cruise Tests"
-        -   Execute the [CCDP Verification Query](#CCDP_verification_query)
+        -   Execute the [CCDP Verification Query](#ccdp-verification-query)
         -   Verification Files:
             -   Template: [category_2_CRDMA_CCDP_verification.xlsx](./verification_templates/category_2_CRDMA_CCDP_verification.xlsx)
             -   Export: [category_2_CRDMA_CCDP_verification.csv](./verification_templates/automated/category_2_CRDMA_CCDP_verification.csv)
     -   Verify the Validation Issues:
         -   Worksheet name: "Category 2 DVM Tests"
-        -   Execute the [DVM Verification Query](#DVM_verification_query)
+        -   Execute the [DVM Verification Query](#dvm-verification-query)
         -   Verification Files:
             -   Template: [category_2_CRDMA_DVM_verification.xlsx](./verification_templates/category_2_CRDMA_DVM_verification.xlsx)
             -   Export: [category_2_CRDMA_DVM_verification.csv](./verification_templates/automated/category_2_CRDMA_DVM_verification.csv)
 
 ## Appendix:
--   <span id="CCDP_verification_query" class="anchor"></span>CCDP Verification Query:
+-   ### CCDP Verification Query
 > Select * from CCD_CCDP_DEEP_COPY_CMP_V order by 1, 3;
--   <span id="DVM_verification_query" class="anchor"></span>DVM Verification Query:
+-   ### DVM Verification Query
 > select cruise_name, LEG_NAME_CD_LIST, iss_severity_code, iss_type_name, iss_type_desc, ISS_DESC, IND_FIELD_NAME from CCD_CRUISE_SUMM_ISS_V order by cruise_name, iss_severity_code, iss_type_name, TO_CHAR(iss_desc);

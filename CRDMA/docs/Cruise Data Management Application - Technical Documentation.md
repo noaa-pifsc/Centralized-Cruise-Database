@@ -5,7 +5,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Resources:
 -   Version Control Information:
-    -   URL: git@picgitlab.nmfs.local:centralized-data-tools/centralized-cruise-database.git in the [CRDMA](../) folder
+    -   URL: https://github.com/noaa-pifsc/Centralized-Cruise-Database in the [CRDMA](https://github.com/noaa-pifsc/Centralized-Cruise-Database/tree/master/CRDMA) folder
     -   Application: 1.0 (Git tag: cen_cruise_web_app_v1.0)
 -   [End User Documentation](./Cruise%20Data%20Management%20Application%20-%20End%20User%20Documentation.md)
 -   [Testing Documentation](./Cruise%20Data%20Management%20Application%20-%20Testing%20Documentation.md)
@@ -13,7 +13,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 -   [Database Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Technical%20Documentation.md)
 -   [Business Rule Documentation](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20Documentation.md)
     -   [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx)
--   [Data Validation Module (DVM)](https://picgitlab.nmfs.local/centralized-data-tools/data-validation-module)
+-   [Data Validation Module (DVM)](https://github.com/noaa-pifsc/PIFSC-DataValidationModule)
 -   [CCD Oracle Package (CCDP) Documentation](../../docs/packages/CCDP/CCDP%20Documentation.md)
     -   [CRDMA CCDP Testing Documentation](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
 -   [CCD DVM (CDVM) Documentation](../../docs/packages/CDVM/CDVM%20Documentation.md)
@@ -69,7 +69,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
         -   The [Automated APEX Deployment SOP](https://picgitlab.nmfs.local/centralized-data-tools/automated-app-deployments/-/blob/master/apex/automated_APEX_deployment_SOP.md) is utilized to automate the deployment of the current version of the application to a given database instance.
         -   Use SQL*Plus to execute the appropriate deployment script for the corresponding database instance (e.g.  [deploy_apex_dev.sql](../../SQL/deploy_apex_dev.sql) for the development server)
 -   Load the CAS configuration data
-    -   The [load_config_values.sql](../../SQL/queries/load_config_values.sql) defines the CAS configuration for the CRDMA
+    -   Define the CAS configuration for the CRDMA by executing the appropriate load configuration values script based on the server instance the application is being deployed to (e.g. [load_config_values.dev.sql](../../SQL/queries/load_config_values.dev.sql) for the development instance) script using the CCD data schema
 
 ## DVM Issue Policies:
 -   The DVM QC validation criteria is listed in the [Business Rule List](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) with a "Scope" of "Data QC"
@@ -212,7 +212,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
                 -   The following [Business Rules](../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) are implemented for the delete Cruise Leg functionality:
                     -   Automated Cruise Leg Deletion Data Validation Policy (CR-DMA-015)
     -   (Page ID: 250) Data QC Validation Issues
-        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "[Issue Category](#issue_categories)" select fields, changing these values will reload the page with the filtered validation issues.
+        -   This page contains an interactive grid report that displays all QC validation issues identified by the DVM so they can be reviewed and/or annotated. The validation issues can be filtered by selecting values from the "Fiscal Year" and "Issue Category" (Business rule: CR-DB-003) select fields, changing these values will reload the page with the filtered validation issues.
             -   [DVM Issue Policies](#dvm-issue-policies)
         -   Clicking on the "Save" button will attempt to save the modified records.
     -   Reference List Management Pages (Requires Data Admin Role: CR-DMA-004)
