@@ -14,8 +14,10 @@ X update the cruise leg start/end date field comments to say in local timezone (
 		X QC for invalid timezone value
 
 
-
-
+Bug:
+	Copy Cruise ID is not copying the target species other values correctly
+		Something is wrong with the JSON that manipulates the DOM.  get_oth_spp_cruise_copy() in cruise_functions.js needs to be altered in some way, the JSON is being generated and received properly.  It may have to do with selecting the right IG region
+	
 
 Version 1.0
 	Tags: 

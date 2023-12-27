@@ -66,7 +66,7 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   X Confirm the page displays a "You have reached this page incorrectly" when the P220_CRUISE_ID, or P220_CRUISE_ID_COPY parameters are invalid (not a cruise_ID for an existing cruise record)
     -   View/Edit Cruise Form
         -   X Confirm the tab tooltips are working properly
-        -   Data Form
+        -   X Data Form
             -   X Confirm form field tooltips are working properly
             -   X Confirm the select field filtering checkbox works properly
             -   X Data Model QA:
@@ -82,8 +82,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm "Cruise Summary", and "QC Validation Issues", and "Cruise Legs" tabs are not visible
             -   Copy Cruise Functionality:
                 -   Confirm the copied cruise information is displayed in the form and the cruise attribute information is also populated
-            -   New Cruise Functionality:
-                -   Confirm the cruise form has no values are pre-populated except for "Survey Type" (NMFS Survey)
+            -   X New Cruise Functionality:
+                -   X Confirm the cruise form has no values are pre-populated except for "Survey Type" (NMFS Survey)
             -   Confirm "Create Another" button will clear the form and allow another cruise to be created
                 -   Confirm the cruise and attributes were saved successfully
                 -   Confirm QC Validation Issues are added (if any warnings)

@@ -155,6 +155,8 @@ grant select on CCD_CRUISE_SUMM_ISS_V to CCD_APP_ROLE;
 grant select on CCD_CRUISE_ISS_SUMM_V to CCD_APP_ROLE;
 grant select on CCD_QC_LEG_OVERLAP_V to CCD_APP_ROLE;
 
+grant select on CCD_LEG_DATA_SETS_MIN_V to CCD_APP_ROLE;
+
 
 grant select, insert, update, delete on CCD_LEG_DATA_SETS to CCD_APP_ROLE;
 grant select, insert, update, delete on CCD_DATA_SETS to CCD_APP_ROLE;

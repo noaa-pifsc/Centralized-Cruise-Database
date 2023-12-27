@@ -1,98 +1,105 @@
-
+//function to send the ajax request for leg aliases of the cruise leg that is being copied (if any)
 function get_leg_alias_copy (cruise_leg_id_copy)
 {
-    console.log('this is the get leg aliases initialization code');
+    console.log('this is the get_leg_alias_copy() initialization code:');
+	console.log(cruise_leg_id_copy);
 
+	//check if the cruise_leg_id_copy is blank
+    if (cruise_leg_id_copy != "")
+	{
+		//the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg
+		
+		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
+		
+		apex.server.process(
+		'get_leg_alias_copy',                             // Process or AJAX Callback name
+		{x01: cruise_leg_id_copy},  // Parameter "x01"
+		{
+		  success: function (pData) 
+		  {             
+				// Success Javascript
+
+				console.log('the value of pData is: '+pData);  
+			  
+				//parse the json array to get each record's value:
+				var json_array = jQuery.parseJSON(pData);
+				  
+				//update the interactive grid based on the JSON data returned from the Ajax request
+				update_interactive_grid(json_array, 'leg_attributes_region', 'leg_alias_id');
+
+		  },
+		  dataType: "text"                        // Response type (here: plain text)
+		}
+	  );    
+	}
     
-    apex.server.process(
-    'get_leg_alias_copy',                             // Process or AJAX Callback name
-    {x01: cruise_leg_id_copy},  // Parameter "x01"
-    {
-      success: function (pData) 
-      {             
-            // Success Javascript
-
-            console.log('the value of pData is: '+pData);  
-          
-            //parse the json array to get each record's value:
-            var json_array = jQuery.parseJSON(pData);
-          
-            console.log('the value of the selected tab (li) is: '+$('#leg_attributes_region li[aria-selected="true"]').attr('id'));
-
-            console.log('the value of the selected tab (a href) is: '+$('#leg_attributes_region li[aria-selected="true"] > a ').attr('href'));
-          
-            var selected_tab_href = $('#leg_attributes_region li[aria-selected="true"] > a ').attr('href');
-
-            //in order to populate the tabular form it must be selected, switch to the leg alias tabular form and populate the values and then switch back to the tab that was selected when the page loaded
-          
-            //check if the leg alias tab is selected.
-            if (selected_tab_href != '#SR_leg_alias_id')
-            {
-                console.log ('the selected tab when the page loaded was not the leg alias tab, switch to the leg alias tab so it can be populated via ajax request');
-                $('#leg_attributes_region a[href="#SR_leg_alias_id"]').trigger('click');
-                console.log('selected the leg alias tab');  
-            }
-                
-                
-          
-            var ig$ = apex.region("leg_alias_id").widget();
-            console.log('ig is: '+ig$);
-            var model = ig$.interactiveGrid("getViews", "grid").model;
-            console.log('model is: '+model);
-
-            
-          
-            //create a new blank row for each associated other species records:
-            for (var i = 0; i < json_array['leg_alias'].length; i++)
-            {
-                console.log('add the new row ('+i+')');  
-
-                console.log(json_array['leg_alias'][i]);  
-                var temp = ig$.interactiveGrid("getActions").invoke("row-add-row");
-
-                console.log('the new row was added successfully');  
-            }
-          
-            //re-initialize the counter for setting the values for each record
-            i = 0;
-            model.forEach(function(r)
-            {
-                console.log('the current value of r is: ');
-                console.log(r);
-                
-                console.log('the value of row ID is: '+r[1]);
-                
-                
-                $.each(json_array['leg_alias'][i], function(i, item)
-                      {
-                            console.log('set the field ('+i+') value to item: '+item);
-                            model.setValue(r, i, item);
-                    
-                    
-                            console.log('set the focus to the newly set cell ("gotoCell", '+r[1]+', '+i+')');
-                            apex.region("leg_alias_id").widget().interactiveGrid("getViews").grid.view$.grid("gotoCell", r[1], i);
-
-                      }
-                      );
-                //increment the counter:
-                i ++;
-            });
-          
-            
-            //check if the leg alias tab was originally selected, if not switch back to the originally selected tab
-            if (selected_tab_href != '#SR_leg_alias_id')
-            {
-                $('#leg_attributes_region a[href="'+selected_tab_href+'"]').trigger('click');
-                console.log('selected the '+selected_tab_href+' tab');  
-            }
-
-            //set focus to the first enabled/visible form element:
-            $(document).find('input[type=text],textarea,select').filter(':visible:first').focus();
-      },
-      dataType: "text"                        // Response type (here: plain text)
-    }
-  );    
     
+}
+
+
+function ajax_request_leg_aliases ()
+{
+
+    console.log('running get_leg_alias_copy');
+   
+    console.log('running get_leg_alias_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
+
+//    console.log('the value of this.tabs$.id is: '+this.tabs$.id);    
+    
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+    get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));    
+    
+}
+
+
+//function to send the ajax request for leg data sets of the cruise leg that is being copied (if any)
+function get_leg_data_sets_copy (cruise_leg_id_copy)
+{
+    console.log('this is the get_leg_data_sets_copy() initialization code:');
+	console.log(cruise_leg_id_copy);
+
+	//check if the cruise_leg_id_copy is blank
+    if (cruise_leg_id_copy != "")
+	{
+		//the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg
+		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
+		
+		apex.server.process(
+		'get_leg_data_sets_copy',                             // Process or AJAX Callback name
+		{x01: cruise_leg_id_copy},  // Parameter "x01"
+		{
+		  success: function (pData) 
+		  {             
+				// Success Javascript
+
+				console.log('the value of pData is: '+pData);  
+			  
+				//parse the json array to get each record's value:
+				var json_array = jQuery.parseJSON(pData);
+			  
+				//update the interactive grid based on the JSON data returned from the Ajax request
+				update_interactive_grid(json_array, 'leg_attributes_region', 'leg_data_sets_id');
+
+		  },
+		  dataType: "text"                        // Response type (here: plain text)
+		}
+	  );    
+	}
+    
+    
+}
+
+function ajax_request_leg_data_sets ()
+{
+
+    console.log('running get_leg_data_sets_copy');
+   
+    console.log('running get_leg_data_sets_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
+
+//    console.log('the value of this.tabs$.id is: '+this.tabs$.id);    
+    
+    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
+    get_leg_data_sets_copy($v("P230_CRUISE_LEG_ID_COPY"));    
     
 }
 
@@ -152,9 +159,11 @@ apex.jQuery(window).on('theme42ready', function() {
     //call the initialize all tooltips code
     setTimeout(initialize_all_tooltips, 500);
     
-    //call the leg alias ajax code
+    //call the leg alias ajax code to retrieve the leg aliases if the current leg is being copied
     ajax_request_leg_aliases();
     
+    //call the leg data sets ajax code to retrieve the leg aliases if the current leg is being copied
+	ajax_request_leg_data_sets();
 
 });
 
@@ -212,21 +221,6 @@ function initialize_all_tooltips ()
             }
           });
 
-}
-
-
-function ajax_request_leg_aliases ()
-{
-
-    console.log('running get_leg_alias_copy');
-   
-    console.log('running get_leg_alias_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
-
-//    console.log('the value of this.tabs$.id is: '+this.tabs$.id);    
-    
-    //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
-    get_leg_alias_copy($v("P230_CRUISE_LEG_ID_COPY"));    
-    
 }
 
 
