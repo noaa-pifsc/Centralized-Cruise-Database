@@ -255,7 +255,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Known Issues
 -   Running the "Deep Copy" process while logged out will show a generic "...unexpected internal application error..." but allow the user to continue to use the page.  This happens when the PL/SQL process executes and checks that the user is not logged in/authorized to perform the action
--   
+-   When page 220 and 230 are loaded the shuttle queries are each run twice that use the CCD_CRUISE_PKG.GEN_FIL_OPTION_QUERY_FN function.  It is unclear why this is occurring after researching the issue online.
 
 ## Application Security:
 -   [Standard APEX Security Documentation](security/APEX%20Security%20Documentation.md)

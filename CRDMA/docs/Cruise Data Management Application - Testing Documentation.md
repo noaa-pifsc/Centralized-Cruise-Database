@@ -82,6 +82,13 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Confirm "Cruise Summary", and "QC Validation Issues", and "Cruise Legs" tabs are not visible
             -   Copy Cruise Functionality:
                 -   Confirm the copied cruise information is displayed in the form and the cruise attribute information is also populated
+                    -   Primary Survey Categories
+										-   Secondary Survey Categories
+										-   ESA Target Species
+										-   MMPA Target Species
+										-   FSSI Target Species
+										-   Expected Species Categories
+										-   Target Species - Other Species
             -   X New Cruise Functionality:
                 -   X Confirm the cruise form has no values are pre-populated except for "Survey Type" (NMFS Survey)
             -   Confirm "Create Another" button will clear the form and allow another cruise to be created
@@ -142,11 +149,24 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Update user group to [assign the CCD WRITE role](#ccd-write) and then load the page (ok - active form)
         -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then load the page (ok - active form)
     -   Confirmed authorized users can insert/update/delete records
-        -   Logout in new browser tab and click Save button (session has expired error)
-        -   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
-        -   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
-        -   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
-        -   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+				-   Create
+						-   Logout in new browser tab and click Save button (generic popup error)
+						-   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+						-   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+				-   Create Another
+						-   Logout in new browser tab and click Save button (generic popup error)
+						-   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+						-   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
+				-   Update
+						-   Logout in new browser tab and click Save button (generic popup error)
+						-   Update user group to [remove all permissions](#appendix) and click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD READ role](#ccd-read) and then click the Create/Create Another/Apply Changes button (error - not authorized)
+						-   Update user group to [assign the CCD WRITE role](#ccd-write) and then click the Create/Create Another/Apply Changes button (ok)
+						-   Update user group to [assign the CCD ADMIN role](#ccd-admin) and then click the Create/Create Another/Apply Changes button (ok)
     -   Invalid Page Arguments:
         -   Confirm the page displays a "You have reached this page incorrectly" when the P230_CRUISE_LEG_ID, or P230_CRUISE_LEG_ID_COPY parameters are invalid (not a cruise_leg_ID for an existing cruise leg record)
             -   This can be accomplished by opening the View/Edit Cruise Leg page with the Create Leg, Update Cruise Leg, and Copy Cruise Leg buttons and then deleting/reloading cruise/cruise leg data (e.g. execute [execute_all_CRDMA_test_scripts.sql](./test_cases/SQL/execute_all_CRDMA_test_scripts.sql))
@@ -175,9 +195,15 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   New Cruise Leg
             -   Copy Cruise Leg Functionality:
                 -   Confirm the copied cruise leg information is displayed in the form and the leg attribute information is also populated
+										-   Regional Ecosystems
+										-   Gear
+										-   Regions
+										-   Leg Aliases
+										-   Data Sets
             -   New Cruise Leg Functionality:
                 -   Confirm the cruise leg form has no values are pre-populated
             -   Confirm "Leg Summary" tab is not visible
+            -   Confirm "QC Validation Issues" tab is not visible
             -   Confirm "Create Another" button will clear the form and allow another cruise to be created
                 -   Confirm the cruise leg and attributes were saved successfully
                 -   Confirm QC Validation Issues are added (if any warnings)
