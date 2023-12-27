@@ -1,7 +1,7 @@
 //function to send the ajax request for leg aliases of the cruise leg that is being copied (if any)
 function get_leg_alias_copy (cruise_leg_id_copy)
 {
-    console.log('this is the get_leg_alias_copy() initialization code:');
+//    console.log('this is the get_leg_alias_copy() initialization code:');
 	console.log(cruise_leg_id_copy);
 
 	//check if the cruise_leg_id_copy is blank
@@ -9,7 +9,7 @@ function get_leg_alias_copy (cruise_leg_id_copy)
 	{
 		//the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg
 		
-		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
+//		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
 		
 		apex.server.process(
 		'get_leg_alias_copy',                             // Process or AJAX Callback name
@@ -19,7 +19,7 @@ function get_leg_alias_copy (cruise_leg_id_copy)
 		  {             
 				// Success Javascript
 
-				console.log('the value of pData is: '+pData);  
+//				console.log('the value of pData is: '+pData);  
 			  
 				//parse the json array to get each record's value:
 				var json_array = jQuery.parseJSON(pData);
@@ -40,9 +40,9 @@ function get_leg_alias_copy (cruise_leg_id_copy)
 function ajax_request_leg_aliases ()
 {
 
-    console.log('running get_leg_alias_copy');
+//    console.log('running get_leg_alias_copy');
    
-    console.log('running get_leg_alias_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
+//    console.log('running get_leg_alias_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
 //    console.log('the value of this.tabs$.id is: '+this.tabs$.id);    
     
@@ -55,14 +55,14 @@ function ajax_request_leg_aliases ()
 //function to send the ajax request for leg data sets of the cruise leg that is being copied (if any)
 function get_leg_data_sets_copy (cruise_leg_id_copy)
 {
-    console.log('this is the get_leg_data_sets_copy() initialization code:');
-	console.log(cruise_leg_id_copy);
+//    console.log('this is the get_leg_data_sets_copy() initialization code:');
+//	console.log(cruise_leg_id_copy);
 
 	//check if the cruise_leg_id_copy is blank
     if (cruise_leg_id_copy != "")
 	{
 		//the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg
-		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
+//		console.log ('the cruise_leg_id_copy is not blank, send the ajax request for the leg aliases for the copied cruise leg');
 		
 		apex.server.process(
 		'get_leg_data_sets_copy',                             // Process or AJAX Callback name
@@ -72,7 +72,7 @@ function get_leg_data_sets_copy (cruise_leg_id_copy)
 		  {             
 				// Success Javascript
 
-				console.log('the value of pData is: '+pData);  
+//				console.log('the value of pData is: '+pData);  
 			  
 				//parse the json array to get each record's value:
 				var json_array = jQuery.parseJSON(pData);
@@ -92,9 +92,9 @@ function get_leg_data_sets_copy (cruise_leg_id_copy)
 function ajax_request_leg_data_sets ()
 {
 
-    console.log('running get_leg_data_sets_copy');
+//    console.log('running get_leg_data_sets_copy');
    
-    console.log('running get_leg_data_sets_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
+//    console.log('running get_leg_data_sets_copy('+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
 //    console.log('the value of this.tabs$.id is: '+this.tabs$.id);    
     
@@ -170,7 +170,7 @@ apex.jQuery(window).on('theme42ready', function() {
 //initialize all tooltips
 function initialize_all_tooltips ()
 {
-    console.log ('running initialize_all_tooltips()');
+//    console.log ('running initialize_all_tooltips()');
     
     //tab tooltip definitions:
     $("#SR_leg_summary_tab > a.t-Tabs-link").attr("title", "Click to view the Summary information for the current Cruise Leg").addClass("custom_tooltip");
@@ -228,7 +228,7 @@ function initialize_all_tooltips ()
 //function to execute the ajax request
 function ajax_request_reg_ecosystems ()
 {
-    console.log('running ajax_request_reg_ecosystems('+$v("P230_REG_ECO_SHUTTLE")+', '+$v("P230_REG_ECO_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+//    console.log('running ajax_request_reg_ecosystems('+$v("P230_REG_ECO_SHUTTLE")+', '+$v("P230_REG_ECO_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
     //send an ajax request for all of the regional ecosystems records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_reg_ecosystem_options($v("P230_REG_ECO_SHUTTLE"), $v("P230_REG_ECO_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
@@ -237,7 +237,7 @@ function ajax_request_reg_ecosystems ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
 {
-    console.log('this is the get_reg_ecosystem_options() initialization code');
+//    console.log('this is the get_reg_ecosystem_options() initialization code');
 
 	//define the list of MMPA apex page items
 	var form_items = ["P230_REG_ECO_SHUTTLE", "P230_REG_ECO_SHOW_FILT_LIST", "P230_REG_ECO_PRESETS"];
@@ -290,7 +290,7 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
 //function to execute the ajax request
 function ajax_request_gear ()
 {
-    console.log('running ajax_request_gear('+$v("P230_GEAR_SHUTTLE")+', '+$v("P230_GEAR_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+//    console.log('running ajax_request_gear('+$v("P230_GEAR_SHUTTLE")+', '+$v("P230_GEAR_SHOW_FILT_LIST")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
     //send an ajax request for all of the gear records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_gear_options($v("P230_GEAR_SHUTTLE"), $v("P230_GEAR_SHOW_FILT_LIST"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
@@ -299,7 +299,7 @@ function ajax_request_gear ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
 {
-    console.log('running get_gear_options()');
+//    console.log('running get_gear_options()');
     
 	//define the list of MMPA apex page items
 	var form_items = ["P230_GEAR_SHUTTLE", "P230_GEAR_SHOW_FILT_LIST", "P230_GEAR_PRESETS"];
@@ -350,7 +350,7 @@ function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRU
 //function to execute the ajax request
 function ajax_request_vessels ()
 {
-    console.log('running ajax_request_VESSEL_ID('+$v("P230_VESSEL_ID")+', '+$v("P230_VESSEL_NAME_FILT")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+//    console.log('running ajax_request_VESSEL_ID('+$v("P230_VESSEL_ID")+', '+$v("P230_VESSEL_NAME_FILT")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
 
     //send an ajax request for all of the vessel records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
 	
@@ -360,7 +360,7 @@ function ajax_request_vessels ()
 //ajax request function to request the updated list of vessels
 function get_vessel_options (VESSEL_ID, VESSEL_NAME_FILT, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
 {
-    console.log('running get_vessel_options(VESSEL_ID: '+VESSEL_ID+', VESSEL_NAME_FILT: '+VESSEL_NAME_FILT+', CRUISE_LEG_ID: '+CRUISE_LEG_ID+', CRUISE_LEG_ID_COPY: '+ CRUISE_LEG_ID_COPY+')');
+//    console.log('running get_vessel_options(VESSEL_ID: '+VESSEL_ID+', VESSEL_NAME_FILT: '+VESSEL_NAME_FILT+', CRUISE_LEG_ID: '+CRUISE_LEG_ID+', CRUISE_LEG_ID_COPY: '+ CRUISE_LEG_ID_COPY+')');
 
 	//define the list of vessel form fields
 	var form_items = ["P230_VESSEL_ID", "P230_VESSEL_NAME_FILT"];

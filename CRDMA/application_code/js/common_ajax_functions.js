@@ -212,68 +212,66 @@ function disable_form_fields (item_array, button_array)
 }
 
 //function to update interactive grids based on JSON data (json_array) returned from Ajax callbacks.	The function is intended for use on a parent region with child regions implemented as tabs
-//update_region_id is the static region id for the interactive grid
+//parent_region_id is the parent region that implements the other regions as tabs
 //ig_id is the interactive grid's static id that will be updated based on the data in json_array
-function update_interactive_grid (json_array, update_region_id, ig_id)
+function update_interactive_grid (json_array, parent_region_id, ig_id)
 {
-	console.log('the value of the selected tab (li) is: '+$('#SR_'+update_region_id+' li[aria-selected="true"]').attr('id'));
+//	console.log('the value of the selected tab (a href) is: '+$('#'+parent_region_id+' a[aria-selected="true"]').attr('href'));
 
-	console.log('the value of the selected tab (a href) is: '+$('#SR_'+update_region_id+' li[aria-selected="true"] > a ').attr('href'));
-
-	var selected_tab_href = $('#SR_'+update_region_id+' li[aria-selected="true"] > a ').attr('href');
+	var selected_tab_href = $('#'+parent_region_id+' a[aria-selected="true"]').attr('href');
 
 	//in order to populate the tabular form it must be selected, switch to the update region tabular form and populate the values and then switch back to the tab that was selected when the page loaded
 
 	//check if the update region tab is selected.
-	if (selected_tab_href != '#'+update_region_id)
+	if (selected_tab_href != '#SR_'+ig_id)
 	{
-			console.log ('the selected tab when the page loaded was not the update region tab, switch to the update region tab so it can be populated via ajax request');
-			$('#SR_'+update_region_id+' a[href="#'+update_region_id+'"]').trigger('click');
-			console.log('selected the update region tab');
+//		console.log ('the selected tab when the page loaded was not the update region tab, switch to the update region tab so it can be populated via ajax request');
+		$('#'+parent_region_id+' a[href="#SR_'+ig_id+'"]').trigger('click');
+//		console.log('selected the update region tab');
 	}
 
 
 
 	var ig$ = apex.region(ig_id).widget();
-	console.log('ig is: '+ig$);
+//	console.log('ig is: '+ig$);
 	var model = ig$.interactiveGrid("getViews", "grid").model;
-	console.log('model is: '+model);
+//	console.log('model is: '+model);
 
 
 
 	//create a new blank row for each associated other species records:
 	for (var i = 0; i < json_array['options'].length; i++)
 	{
-			console.log('add the new row ('+i+')');
+//			console.log('add the new row ('+i+')');
 
-			console.log(json_array['options'][i]);
+//			console.log(json_array['options'][i]);
 			var temp = ig$.interactiveGrid("getActions").invoke("row-add-row");
 
-			console.log('the new row was added successfully');
+//			console.log('the new row was added successfully');
 	}
 
 	//re-initialize the counter for setting the values for each record
 	i = 0;
 	model.forEach(function(r, index, id)
 	{
-			console.log('the current value of r is: ');
-			console.log(r);
+//			console.log('the current value of r is: ');
+//			console.log(r);
 
-			console.log('the value of row ID is: '+r[1]);
+//			console.log('the value of row ID is: '+r[1]);
 
 
 			$.each(json_array['options'][i], function(i, item)
 						{
-									console.log('set the field ('+i+') value to item: '+item);
+//									console.log('set the field ('+i+') value to item: '+item);
 									
 									//set the value explicitly to a string value:
 									model.setValue(r, i, String(item));
 
 
-									console.log('set the focus to the newly set cell ("gotoCell", '+r[1]+', '+i+')');
+//									console.log('set the focus to the newly set cell ("gotoCell", '+r[1]+', '+i+')');
 									apex.region(ig_id).widget().interactiveGrid("getViews").grid.view$.grid("gotoCell", r[1], i);
 									
-									console.log('the focus has been successfully set to the newly set cell ("gotoCell", '+r[1]+', '+i+')');
+//									console.log('the focus has been successfully set to the newly set cell ("gotoCell", '+r[1]+', '+i+')');
 
 						}
 						);
@@ -286,10 +284,10 @@ function update_interactive_grid (json_array, update_region_id, ig_id)
 
 
 	//check if the update region tab was originally selected, if not switch back to the originally selected tab
-	if (selected_tab_href != '#'+update_region_id)
+	if (selected_tab_href != '#SR_'+ig_id)
 	{
-			$('#SR_'+update_region_id+' a[href="'+selected_tab_href+'"]').trigger('click');
-			console.log('selected the '+selected_tab_href+' tab');
+			$('#'+parent_region_id+' a[href="'+selected_tab_href+'"]').trigger('click');
+//			console.log('selected the '+selected_tab_href+' tab');
 	}
 
 	//set focus to the first enabled/visible form element:

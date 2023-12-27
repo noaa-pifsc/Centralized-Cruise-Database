@@ -2,8 +2,8 @@
 //function to send the ajax request for other target species of the cruise that is being copied (if any)
 function get_oth_spp_cruise_copy (cruise_id_copy)
 {
-    console.log('this is the get_oth_spp_cruise_copy() initialization code:');
-	console.log(cruise_id_copy);
+//    console.log('this is the get_oth_spp_cruise_copy() initialization code:');
+//	console.log(cruise_id_copy);
 
     
 	//check if the cruise_id_copy is blank
@@ -19,7 +19,7 @@ function get_oth_spp_cruise_copy (cruise_id_copy)
 		  {             
 				// Success Javascript
 
-				console.log('the value of pData is: '+pData);  
+//				console.log('the value of pData is: '+pData);  
 			  
 				//parse the json array to get each record's value:
 				var json_array = jQuery.parseJSON(pData);
@@ -41,7 +41,7 @@ function get_oth_spp_cruise_copy (cruise_id_copy)
 //function to execute the ajax request
 function ajax_request_oth_spp ()
 {
-    console.log('running get_oth_spp_cruise_copy('+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running get_oth_spp_cruise_copy('+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the associated other species records associated with the copied cruise ID: 
     get_oth_spp_cruise_copy($v("P220_CRUISE_ID_COPY"));    
@@ -98,7 +98,7 @@ function initialize_all_tooltips ()
 //function to execute the ajax request
 function ajax_request_mmpa_spp ()
 {
-    console.log('running ajax_request_mmpa_spp('+$v("P220_TGT_MMPA_SPP_SHUTTLE")+', '+$v("P220_MMPA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running ajax_request_mmpa_spp('+$v("P220_TGT_MMPA_SPP_SHUTTLE")+', '+$v("P220_MMPA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the MMPA species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_mmpa_spp_options($v("P220_TGT_MMPA_SPP_SHUTTLE"), $v("P220_MMPA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
@@ -107,7 +107,7 @@ function ajax_request_mmpa_spp ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('running get_mmpa_spp_options()');
+//    console.log('running get_mmpa_spp_options()');
 
 	//define the list of MMPA apex page items
 	var form_items = ["P220_TGT_MMPA_SPP_SHUTTLE", "P220_MMPA_SHOW_FILT_LIST", "P220_TGT_MMPA_SPP_PRESETS"];
@@ -161,7 +161,7 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
 //function to execute the ajax request
 function ajax_request_esa_spp ()
 {
-    console.log('running ajax_request_esa_spp('+$v("P220_TGT_ESA_SPP_SHUTTLE")+', '+$v("P220_ESA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running ajax_request_esa_spp('+$v("P220_TGT_ESA_SPP_SHUTTLE")+', '+$v("P220_ESA_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the ESA species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_esa_spp_options($v("P220_TGT_ESA_SPP_SHUTTLE"), $v("P220_ESA_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
@@ -170,7 +170,7 @@ function ajax_request_esa_spp ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('running get_esa_spp_options()');
+//    console.log('running get_esa_spp_options()');
 
 	//define the list of ESA apex page items
 	var form_items = ["P220_TGT_ESA_SPP_SHUTTLE", "P220_ESA_SHOW_FILT_LIST", "P220_TGT_ESA_SPP_PRESETS"];
@@ -228,7 +228,7 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
 //function to execute the ajax request
 function ajax_request_fssi_spp ()
 {
-    console.log('running ajax_request_fssi_spp('+$v("P220_TGT_FSSI_SPP_SHUTTLE")+', '+$v("P220_FSSI_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running ajax_request_fssi_spp('+$v("P220_TGT_FSSI_SPP_SHUTTLE")+', '+$v("P220_FSSI_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the FSSI species records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
     get_fssi_spp_options($v("P220_TGT_FSSI_SPP_SHUTTLE"), $v("P220_FSSI_SHOW_FILT_LIST"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
@@ -237,7 +237,7 @@ function ajax_request_fssi_spp ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('running get_fssi_spp_options()');
+//    console.log('running get_fssi_spp_options()');
 
     
 	//define the list of FSSI apex page items
@@ -300,7 +300,7 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
 //function to execute the ajax request
 function ajax_request_exp_spp_cat ()
 {
-    console.log('running ajax_request_exp_spp_cat('+$v("P220_EXP_SPP_CAT_SHUTTLE")+', '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running ajax_request_exp_spp_cat('+$v("P220_EXP_SPP_CAT_SHUTTLE")+', '+$v("P220_EXP_SPP_CAT_SHOW_FILT_LIST")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the expected species category records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
 	
@@ -310,7 +310,7 @@ function ajax_request_exp_spp_cat ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIST, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('running get_exp_spp_cat_options()');
+//    console.log('running get_exp_spp_cat_options()');
 
 	//define the list of MMPA apex page items
 	var form_items = ["P220_EXP_SPP_CAT_SHUTTLE", "P220_EXP_SPP_CAT_SHOW_FILT_LIST", "P220_EXP_SPP_CAT_PRESETS"];
@@ -367,7 +367,7 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
 //function to execute the ajax request
 function ajax_request_std_svy_name ()
 {
-    console.log('running ajax_request_std_svy_name('+$v("P220_STD_SVY_NAME")+', '+$v("P220_STD_SVY_NAME_FILT")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+//    console.log('running ajax_request_std_svy_name('+$v("P220_STD_SVY_NAME")+', '+$v("P220_STD_SVY_NAME_FILT")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
 
     //send an ajax request for all of the standard survey name records associated with the cruise ID, current selected field option, and based on the filtered flag: 
 	
@@ -377,7 +377,7 @@ function ajax_request_std_svy_name ()
 //function get_leg_alias_copy (cruise_leg_id_copy)
 function get_std_svy_name_options (STD_SVY_NAME, STD_SVY_NAME_FILT, CRUISE_ID, CRUISE_ID_COPY)
 {
-    console.log('running get_std_svy_name_options(STD_SVY_NAME: '+STD_SVY_NAME+', STD_SVY_NAME_FILT: '+STD_SVY_NAME_FILT+', CRUISE_ID: '+CRUISE_ID+', CRUISE_ID_COPY: '+ CRUISE_ID_COPY+')');
+//    console.log('running get_std_svy_name_options(STD_SVY_NAME: '+STD_SVY_NAME+', STD_SVY_NAME_FILT: '+STD_SVY_NAME_FILT+', CRUISE_ID: '+CRUISE_ID+', CRUISE_ID_COPY: '+ CRUISE_ID_COPY+')');
 
 	//define the list of standard survey name apex page items
 	var form_items = ["P220_STD_SVY_NAME", "P220_STD_SVY_NAME_FILT"];
