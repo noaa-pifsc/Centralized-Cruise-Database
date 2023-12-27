@@ -14,8 +14,8 @@ var lSpinner$;
 
 
 
-//function update_options will parse a json object (pData) and refresh an APEX shuttle item with an id of shuttle_id with the parsed option data 
-function update_options(pData, shuttle_id)
+//function update_shuttle_options will parse a json object (pData) and refresh an APEX shuttle item with an id of shuttle_id with the parsed option data 
+function update_shuttle_options(pData, shuttle_id)
 {
 
 //	console.log('the value of pData is: '+pData);  
@@ -115,8 +115,57 @@ function update_options(pData, shuttle_id)
 	
 }
 
+
+
+//function update_select_options will parse a json object (pData) and refresh an APEX select item with an id of select_id with the parsed option data.  The function will also set the selected option before the request to the selected option after the Ajax request has been processed
+function update_select_options(pData, select_id)
+{
+
+//	console.log('the value of pData is: '+pData);  
+  
+	console.log ('running update_select_options: '+select_id);
+
+	//parse the json array to get each record's value:
+	var json_array = jQuery.parseJSON(pData);
+  
+  
+//	console.log (json_array);
+
+//	console.log ('the value of \$v("'+select_id+'") is: '+$v(select_id));
+
+//	console.log ($("#"+select_id));
+
+	//save the currently selected select form field option 
+	var selected_option = $v(select_id);
+//	console.log('the value of the selected option is: '+selected_option);
+	
+	//clear the options from the select element
+	var select_item = $("#"+select_id).empty();
+	
+	//add the blank default option:
+	var current_option = '<option value="">-</option>';
+	
+	//add the current option to the select item
+	select_item.append(current_option);
+
+//	alert('the select options have been cleared');
+	
+	//create a new blank row for each associated other species records:
+	for (var i = 0; i < json_array['options'].length; i++)
+	{
+		//construct the HTML for the current option value, if it matches the currently selected item then add the "selected" attribute to the HTML element
+		current_option = '<option value="'+json_array['options'][i]['OPTION_ID']+'"'+(selected_option == json_array['options'][i]['OPTION_ID'] ? " selected" : "")+'>'+json_array['options'][i]['OPTION_VALUE']+'</option>';
+		
+		
+		//add the current option to the select item
+		select_item.append(current_option);
+//		console.log ('the value of current_option is: '+current_option);
+	}
+	
+}
+
 //function that hides the spinner and re-enables the apex items in the item_array and enables the buttons for the HTML element id properties stored in the button_array
-function enable_shuttle_form (item_array, button_array)
+function enable_form_fields (item_array, button_array)
 {
 
 	//re-enable all items in the item_array variable
@@ -138,9 +187,9 @@ function enable_shuttle_form (item_array, button_array)
 }
 
 
-function disable_shuttle_form (item_array, button_array)
+function disable_form_fields (item_array, button_array)
 {
-	console.log ('running disable_shuttle_form()');
+	console.log ('running disable_form_fields()');
    	//show the spinner to indicate a request has been sent to the server
 	lSpinner$ = apex.util.showSpinner(); 
 

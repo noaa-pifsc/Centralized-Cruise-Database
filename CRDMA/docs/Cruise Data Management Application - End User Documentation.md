@@ -5,7 +5,7 @@ The Cruise Data Management Application (CRDMA) was developed to allow all PIFSC 
 
 ## Application URLs:
 -   Test Application: http://picmidt.nmfs.local/pict/f?p=287
--   Production Application: https://picmid1.nmfs.local/pic/f?p=CCD
+-   Production Application: https://picmid1.nmfs.local/pic/f?p=200
 
 ## Requirements:
 -   A connection to the PIFSC network is required to access the application

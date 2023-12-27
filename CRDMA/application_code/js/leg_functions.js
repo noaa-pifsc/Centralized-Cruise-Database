@@ -246,13 +246,13 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
     console.log('this is the get_reg_ecosystem_options() initialization code');
 
 	//define the list of MMPA apex page items
-	var shuttle_items = ["P230_REG_ECO_SHUTTLE", "P230_REG_ECO_SHOW_FILT_LIST", "P230_REG_ECO_PRESETS"];
+	var form_items = ["P230_REG_ECO_SHUTTLE", "P230_REG_ECO_SHOW_FILT_LIST", "P230_REG_ECO_PRESETS"];
 
 	//define the list of MMPA apex buttons
-	var shuttle_buttons = ["reg_eco_preset_button_id"];
+	var form_buttons = ["reg_eco_preset_button_id"];
 
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
     
     apex.server.process(
     'get_reg_ecosystem_options',                             // Process or AJAX Callback name
@@ -266,10 +266,10 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
             // Success Javascript
 		
 		//update the shuttle options
-		update_options(pData, 'P230_REG_ECO_SHUTTLE');
+		update_shuttle_options(pData, 'P230_REG_ECO_SHUTTLE');
 
 		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -277,7 +277,7 @@ function get_reg_ecosystem_options (REG_ECO_SHUTTLE, REG_ECO_SHOW_FILT_LIST, CRU
         // handle error
 
 		//re-enable the MMPA shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
@@ -308,13 +308,13 @@ function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRU
     console.log('running get_gear_options()');
     
 	//define the list of MMPA apex page items
-	var shuttle_items = ["P230_GEAR_SHUTTLE", "P230_GEAR_SHOW_FILT_LIST", "P230_GEAR_PRESETS"];
+	var form_items = ["P230_GEAR_SHUTTLE", "P230_GEAR_SHOW_FILT_LIST", "P230_GEAR_PRESETS"];
 
 	//define the list of MMPA apex buttons
-	var shuttle_buttons = ["gear_preset_button_id"];
+	var form_buttons = ["gear_preset_button_id"];
 
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
 
     apex.server.process(
     'get_gear_options',                             // Process or AJAX Callback name
@@ -328,10 +328,10 @@ function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRU
             // Success Javascript
 		
 		//update the shuttle options
-		update_options(pData, 'P230_GEAR_SHUTTLE');
+		update_shuttle_options(pData, 'P230_GEAR_SHUTTLE');
 
 		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -339,10 +339,72 @@ function get_gear_options (GEAR_SHUTTLE, GEAR_SHOW_FILT_LIST, CRUISE_LEG_ID, CRU
         // handle error
 
 		//re-enable the MMPA shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
+
+	  },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
+
+//function to execute the ajax request
+function ajax_request_vessels ()
+{
+    console.log('running ajax_request_VESSEL_ID('+$v("P230_VESSEL_ID")+', '+$v("P230_VESSEL_NAME_FILT")+', '+$v("P230_CRUISE_LEG_ID")+', '+$v("P230_CRUISE_LEG_ID_COPY")+')');
+
+    //send an ajax request for all of the vessel records associated with the cruise ID, current selected shuttle options, and based on the filtered flag: 
+	
+    get_vessel_options($v("P230_VESSEL_ID"), $v("P230_VESSEL_NAME_FILT"), $v("P230_CRUISE_LEG_ID"), $v("P230_CRUISE_LEG_ID_COPY"));    
+}
+
+//ajax request function to request the updated list of vessels
+function get_vessel_options (VESSEL_ID, VESSEL_NAME_FILT, CRUISE_LEG_ID, CRUISE_LEG_ID_COPY)
+{
+    console.log('running get_vessel_options(VESSEL_ID: '+VESSEL_ID+', VESSEL_NAME_FILT: '+VESSEL_NAME_FILT+', CRUISE_LEG_ID: '+CRUISE_LEG_ID+', CRUISE_LEG_ID_COPY: '+ CRUISE_LEG_ID_COPY+')');
+
+	//define the list of vessel form fields
+	var form_items = ["P230_VESSEL_ID", "P230_VESSEL_NAME_FILT"];
+
+	//define the list of vessel apex buttons
+	var form_buttons = [];
+
+	//disable the vessel form fields
+	disable_form_fields(form_items, form_buttons);
+    
+	//send the Ajax request
+    apex.server.process(
+    'get_vessel_options',                             // Process or AJAX Callback name
+    {x01: VESSEL_ID,
+	x02: VESSEL_NAME_FILT,
+	x03: CRUISE_LEG_ID,
+	x04: CRUISE_LEG_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the vessel field options
+		update_select_options(pData, 'P230_VESSEL_ID');
+
+		//re-enable the vessel form fields
+		enable_form_fields(form_items, form_buttons);
+
+      },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the vessel form fields
+		enable_form_fields(form_items, form_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the select options, please try again.  If the error persists contact the application administrator');
 
 	  },
       dataType: "text"                        // Response type (here: plain text)

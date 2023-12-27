@@ -55,11 +55,11 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   X Confirm the tab tooltips are working properly
         -   Data Form
             -   X Confirm form field tooltips are working properly
-            -   X Confirm the select field filtering checkbox works properly
+            -   Confirm the select field filtering checkbox works properly
             -   Data Model QA:
                 -   Confirm required fields
                 -   Confirm unique keys
-        -   X Confirm the different attribute presets (e.g. ESA Target Species) work properly
+        -   Confirm the different attribute presets (e.g. ESA Target Species) work properly
             -   Confirm the attribute filtering checkboxes work properly
                 -   Confirm the processing gif is shown and the form fields are disabled until the results are returned
                 -   Confirm that the shuttle fields are updated and the selected options are retained

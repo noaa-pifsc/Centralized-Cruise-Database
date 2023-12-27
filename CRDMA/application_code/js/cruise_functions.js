@@ -167,13 +167,13 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
     console.log('running get_mmpa_spp_options()');
 
 	//define the list of MMPA apex page items
-	var shuttle_items = ["P220_TGT_MMPA_SPP_SHUTTLE", "P220_MMPA_SHOW_FILT_LIST", "P220_TGT_MMPA_SPP_PRESETS"];
+	var form_items = ["P220_TGT_MMPA_SPP_SHUTTLE", "P220_MMPA_SHOW_FILT_LIST", "P220_TGT_MMPA_SPP_PRESETS"];
 
 	//define the list of MMPA apex buttons
-	var shuttle_buttons = ["mmpa_preset_button_id"];
+	var form_buttons = ["mmpa_preset_button_id"];
 
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
 
 	//send the ajax request to the ajax callback
     apex.server.process(
@@ -188,10 +188,10 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
             // Success Javascript
 		
 		//update the shuttle options
-		update_options(pData, 'P220_TGT_MMPA_SPP_SHUTTLE');
+		update_shuttle_options(pData, 'P220_TGT_MMPA_SPP_SHUTTLE');
 
 		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -199,7 +199,7 @@ function get_mmpa_spp_options (TGT_MMPA_SPP_SHUTTLE, MMPA_SHOW_FILT_LIST, CRUISE
         // handle error
 
 		//re-enable the MMPA shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
@@ -230,13 +230,13 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
     console.log('running get_esa_spp_options()');
 
 	//define the list of ESA apex page items
-	var shuttle_items = ["P220_TGT_ESA_SPP_SHUTTLE", "P220_ESA_SHOW_FILT_LIST", "P220_TGT_ESA_SPP_PRESETS"];
+	var form_items = ["P220_TGT_ESA_SPP_SHUTTLE", "P220_ESA_SHOW_FILT_LIST", "P220_TGT_ESA_SPP_PRESETS"];
 
 	//define the list of ESA apex buttons
-	var shuttle_buttons = ["esa_preset_button_id"];
+	var form_buttons = ["esa_preset_button_id"];
 
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
 
     apex.server.process(
     'get_esa_spp_options',                             // Process or AJAX Callback name
@@ -250,10 +250,10 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
             // Success Javascript
 		
 		//update the shuttle options
-		update_options(pData, 'P220_TGT_ESA_SPP_SHUTTLE');
+		update_shuttle_options(pData, 'P220_TGT_ESA_SPP_SHUTTLE');
 
 		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -261,7 +261,7 @@ function get_esa_spp_options (TGT_ESA_SPP_SHUTTLE, ESA_SHOW_FILT_LIST, CRUISE_ID
         // handle error
 
 		//re-enable the MMPA shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
@@ -298,13 +298,13 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
 
     
 	//define the list of FSSI apex page items
-	var shuttle_items = ["P220_TGT_FSSI_SPP_SHUTTLE", "P220_FSSI_SHOW_FILT_LIST", "P220_TGT_FSSI_SPP_PRESETS"];
+	var form_items = ["P220_TGT_FSSI_SPP_SHUTTLE", "P220_FSSI_SHOW_FILT_LIST", "P220_TGT_FSSI_SPP_PRESETS"];
 
 	//define the list of FSSI apex buttons
-	var shuttle_buttons = ["fssi_preset_button_id"];
+	var form_buttons = ["fssi_preset_button_id"];
 	
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
 
 	
     apex.server.process(
@@ -319,10 +319,10 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
             // Success Javascript
 		
 		//update the shuttle options
-		update_options(pData, 'P220_TGT_FSSI_SPP_SHUTTLE');
+		update_shuttle_options(pData, 'P220_TGT_FSSI_SPP_SHUTTLE');
 
 		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -330,7 +330,7 @@ function get_fssi_spp_options (TGT_FSSI_SPP_SHUTTLE, FSSI_SHOW_FILT_LIST, CRUISE
         // handle error
 
 		//re-enable the FSSI shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
@@ -370,13 +370,13 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
     console.log('running get_exp_spp_cat_options()');
 
 	//define the list of MMPA apex page items
-	var shuttle_items = ["P220_EXP_SPP_CAT_SHUTTLE", "P220_EXP_SPP_CAT_SHOW_FILT_LIST", "P220_EXP_SPP_CAT_PRESETS"];
+	var form_items = ["P220_EXP_SPP_CAT_SHUTTLE", "P220_EXP_SPP_CAT_SHOW_FILT_LIST", "P220_EXP_SPP_CAT_PRESETS"];
 
 	//define the list of MMPA apex buttons
-	var shuttle_buttons = ["exp_spp_cat_preset_button_id"];
+	var form_buttons = ["exp_spp_cat_preset_button_id"];
 
 	//disable the shuttle form
-	disable_shuttle_form(shuttle_items, shuttle_buttons);
+	disable_form_fields(form_items, form_buttons);
     
     apex.server.process(
     'get_exp_spp_cat_options',                             // Process or AJAX Callback name
@@ -389,11 +389,11 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
       {             
             // Success Javascript
 		
-		//update the shuttle options
-		update_options(pData, 'P220_EXP_SPP_CAT_SHUTTLE');
+		//update the select options
+		update_shuttle_options(pData, 'P220_EXP_SPP_CAT_SHUTTLE');
 
-		//re-enable the shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		//re-enable the select form fields
+		enable_form_fields(form_items, form_buttons);
 
       },
 	  error: function( jqXHR, textStatus, errorThrown ) 
@@ -401,7 +401,7 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
         // handle error
 
 		//re-enable the expected species category shuttle form
-		enable_shuttle_form(shuttle_items, shuttle_buttons);
+		enable_form_fields(form_items, form_buttons);
 		
 		//alert the user to the error
 		alert ('there was an error refreshing the shuttle options, please try again.  If the error persists contact the application administrator');
@@ -413,3 +413,72 @@ function get_exp_spp_cat_options (EXP_SPP_CAT_SHUTTLE, EXP_SPP_CAT_SHOW_FILT_LIS
     
     
 }
+
+
+
+
+
+
+
+
+//function to execute the ajax request
+function ajax_request_std_svy_name ()
+{
+    console.log('running ajax_request_std_svy_name('+$v("P220_STD_SVY_NAME")+', '+$v("P220_STD_SVY_NAME_FILT")+', '+$v("P220_CRUISE_ID")+', '+$v("P220_CRUISE_ID_COPY")+')');
+
+    //send an ajax request for all of the standard survey name records associated with the cruise ID, current selected field option, and based on the filtered flag: 
+	
+    get_std_svy_name_options($v("P220_STD_SVY_NAME"), $v("P220_STD_SVY_NAME_FILT"), $v("P220_CRUISE_ID"), $v("P220_CRUISE_ID_COPY"));    
+}
+
+//function get_leg_alias_copy (cruise_leg_id_copy)
+function get_std_svy_name_options (STD_SVY_NAME, STD_SVY_NAME_FILT, CRUISE_ID, CRUISE_ID_COPY)
+{
+    console.log('running get_std_svy_name_options(STD_SVY_NAME: '+STD_SVY_NAME+', STD_SVY_NAME_FILT: '+STD_SVY_NAME_FILT+', CRUISE_ID: '+CRUISE_ID+', CRUISE_ID_COPY: '+ CRUISE_ID_COPY+')');
+
+	//define the list of standard survey name apex page items
+	var form_items = ["P220_STD_SVY_NAME", "P220_STD_SVY_NAME_FILT"];
+
+	//define the list of standard survey name apex buttons
+	var form_buttons = [];
+
+	//disable the standard survey name form fields
+	disable_form_fields(form_items, form_buttons);
+    
+	//send the Ajax request:
+    apex.server.process(
+    'get_std_svy_name_options',                             // Process or AJAX Callback name
+    {x01: STD_SVY_NAME,
+	x02: STD_SVY_NAME_FILT,
+	x03: CRUISE_ID,
+	x04: CRUISE_ID_COPY},
+    {
+      success: function (pData) 
+      {             
+            // Success Javascript
+		
+		//update the standard survey name field options
+		update_select_options(pData, 'P220_STD_SVY_NAME');
+
+		//re-enable the standard survey name form fields
+		enable_form_fields(form_items, form_buttons);
+
+      },
+	  error: function( jqXHR, textStatus, errorThrown ) 
+	  {
+        // handle error
+
+		//re-enable the standard survey name form fields
+		enable_form_fields(form_items, form_buttons);
+		
+		//alert the user to the error
+		alert ('there was an error refreshing the select options, please try again.  If the error persists contact the application administrator');
+
+	  },
+      dataType: "text"                        // Response type (here: plain text)
+    }
+  );    
+    
+    
+}
+
