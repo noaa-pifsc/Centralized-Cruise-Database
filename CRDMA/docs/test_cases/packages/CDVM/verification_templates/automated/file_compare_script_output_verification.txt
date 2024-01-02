@@ -1,0 +1,3 @@
+Comparing files category_1_CRDMA_CDVM_issue_verification.csv and CATEGORY_1_CRDMA_CDVM_ISSUE_VERIFICATION-2.CSV
+FC: no differences encountered
+

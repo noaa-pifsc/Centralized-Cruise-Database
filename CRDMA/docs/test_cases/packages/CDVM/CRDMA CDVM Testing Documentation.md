@@ -20,7 +20,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
 ## Test Case Verification SOP:
 -   Setup Test Cases:
     -   Purge CCD and DVM records from the database
-        -   Execute [delete_all_DVM_recs.sql](../../../../../SQL/queries/delete_all_DVM_recs.sql)
+        -   Execute [delete_DVM_data.sql](../../../../../SQL/queries/delete_DVM_data.sql)
+        -   Execute [delete_DVM_rules.sql](../../../../../SQL/queries/delete_DVM_rules.sql)
         -   Execute [delete_ref_data.sql](../../../../../SQL/queries/delete_ref_data.sql)
     -   Load test data
         -   Execute the corresponding test CCD data and DVM rule loading scripts
@@ -90,6 +91,27 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Test data: [category_5_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_5_load_test_data.sql)
             -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
             -   Execute the DVM script: [category_1_exec_DVM.sql](./SQL/category_1_exec_DVM.sql)
+    -   Use Oracle SQL*Plus to prepare the category 1 test cases
+        -   Open a command line window
+        -   cd into the [CRDMA\docs\test_cases\packages\CDVM\SQL](./SQL) directory
+        -   Start SQL*Plus with the "nolog" option:
+
+            ```
+            sqlplus /nolog
+            ```
+
+        -   Execute the [setup_category_1_tests.sql](./SQL/setup_category_1_tests.sql) with the following command:
+
+            ```
+            @setup_category_1_tests.sql
+            ```
+
+        -   Specify the credentials for the database instance and schema in the following format:
+
+            ```
+            USER/PASSWORD@HOSTNAME/SID
+            ```
+
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CDVM%20Test%20Cases.xlsx):
         -   Open the "Category 1 DVM Tests" worksheet and execute the indicated process for each of the cruises or cruise legs listed on the spreadsheet:
             -   Insert Cruise:
@@ -105,10 +127,37 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Delete Cruise Leg:
                 -   Create the cruise leg with the indicated Leg name
     -   Validation Issues:
-        -   Execute the [Validation Issue Verification Query](#validation-issue-verification-query)
-        -   Verification Files:
-            -   Template: [category_1_CRDMA_CDVM_issue_verification.xlsx](./verification_templates/category_1_CRDMA_CDVM_issue_verification.xlsx)
-            -   Export: [category_1_CRDMA_CDVM_issue_verification.csv](./verification_templates/automated/category_1_CRDMA_CDVM_issue_verification.csv)
+        -   Execute the [export_category_1_data.sql](./SQL/export_category_1_data.sql) script using SQL*Plus to export the data in .csv format for verification
+            -   Open a command line window
+            -   cd into the [CRDMA\docs\test_cases\packages\CDVM\SQL](./SQL) directory
+            -   Start SQL*Plus with the "nolog" option:
+
+                ```
+                sqlplus /nolog
+                ```
+
+            -   Execute the [setup_category_1_tests.sql](./SQL/setup_category_1_tests.sql) with the following command:
+
+                ```
+                @export_category_1_data.sql
+                ```
+
+            -   Specify the credentials for the database instance and schema in the following format:
+
+                ```
+                USER/PASSWORD@HOSTNAME/SID
+                ```
+
+        -   Execute the [verification_script.bat](./verification_templates/automated/verification_script.bat)
+            -   This script uses fc to confirm the expected results of each test case category (e.g. category_1_CRDMA_CDVM_issue_verification.csv) matches the actual results of the corresponding test case category (e.g. category_1_CRDMA_CDVM_issue_verification-2.csv) and saves the results in file_compare_script_output_verification-2.txt
+            -   The script will then compare the expected output for all test case categories [file_compare_script_output_verification.txt](./verification_templates/automated/file_compare_script_output_verification.txt) with the actual results of all test case categories (file_compare_script_output_verification-2.txt)
+        -   Verify that the output of the script indicates that file_compare_script_output_verification.txt and file_compare_script_output_verification-2.txt are identical:
+
+            ```
+            Comparing files file_compare_script_output_verification.txt and FILE_COMPARE_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+            FC: no differences encountered
+            ```
+
 -   Category 2 Cases (Manual verification)
     -   Description: These test cases verify that the CCD_DVM_PKG package procedures' error handling test cases that are feasible to test in the CRDMA based on the [CDVM Business Rules](../../../../../docs/Centralized%20Cruise%20Database%20-%20Business%20Rule%20List.xlsx) where the "Scope" column values are "CCD Custom DVM Errors" and "Test Case Exists?" column values are "yes"
     -   To streamline the test case verification process a single script was compiled to purge the CCD and DVM data as well as execute the individual scripts listed below for this test case category: [category_2_exec_all_scripts.sql](./SQL/category_2_exec_all_scripts.sql)
