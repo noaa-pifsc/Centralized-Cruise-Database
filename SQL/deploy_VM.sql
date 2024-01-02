@@ -42,7 +42,7 @@ PROMPT granting privileges to CCD roles:
 @@queries/grant_CCD_role_permissions.sql
 
 PROMPT loading data
-@@queries/load_VM_test_ref_data.sql
+@@queries/load_dev_test_ref_data.sql
 @@queries/load_DVM_rules.sql
 @@queries/load_config_values.VM.sql
 
