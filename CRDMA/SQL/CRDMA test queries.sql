@@ -1,0 +1,35 @@
+--Remove/Restore CCD ADMIN role (using CAS database schema):
+
+--to setup test
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN');
+ 
+--to restore after test
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN'));
+
+--Remove/Restore CCD WRITE role (using CAS database schema):
+
+--to setup test
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE');
+ 
+--to restore after test
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE'));
+
+--Remove/Restore CCD READ role (using CAS database schema):
+
+--to setup test
+DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ');
+ 
+--to restore after test
+INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ'));
+
+--Activate/Deactivate User Account (using CAS database schema):
+
+--to deactivate the user account
+UPDATE AUTH_APP_USERS SET APP_USER_ACTIVE_YN = 'N' WHERE APP_USER_NAME = :username;
+ 
+--to activate the user account
+UPDATE AUTH_APP_USERS SET APP_USER_ACTIVE_YN = 'Y' WHERE APP_USER_NAME = :username;
+
+
+--check the CCD roles for the given user:
+select app_group_code from auth_app_user_groups_v where app_user_name = :username and app_group_code like 'CCD%';

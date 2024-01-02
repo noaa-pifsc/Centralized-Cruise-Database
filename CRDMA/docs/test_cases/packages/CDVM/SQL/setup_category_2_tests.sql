@@ -1,5 +1,5 @@
 /************************************************************************************
- Filename   : setup_category_1_tests.sql
+ Filename   : setup_category_2_tests.sql
  Purpose    : Automated script for executing test cases for the Centralized Cruise DB
 ************************************************************************************/
 SET FEEDBACK OFF
@@ -63,7 +63,7 @@ SET TERMOUT ON;
 --SET FEEDBACK OFF;
 --SET ECHO OFF;
 --SPOOL ./logs/&V_LOG_FILE_NAME. append;
-PROMPT &V_CURR_DATE_TIME_VALUE. - Running automated DVM test cases: setup_category_1_tests.sql
+PROMPT &V_CURR_DATE_TIME_VALUE. - Running automated DVM test cases: setup_category_2_tests.sql
 PROMPT &V_CURR_DATE_TIME_VALUE. - Connected as &_USER
 --SPOOL OFF;
 --SET ECHO ON;
@@ -75,14 +75,14 @@ PROMPT &V_CURR_DATE_TIME_VALUE. - Connected as &_USER
 --SET DEFINE OFF;
 
 --category 1 scripts:
-PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 1 test setup scripts
+PROMPT &V_CURR_DATE_TIME_VALUE. - Run category 2 test setup scripts
 
 SET TERMOUT OFF;
 SET FEEDBACK OFF;
 SET ECHO OFF;
 
 --@@ODS_export.sql "&V_LOG_FILE_NAME" "&V_EXPORT_FILE_PREFIX" "&V_CURR_DATE_TIME_VALUE"
-@@category_1_exec_all_scripts.sql
+@@category_2_exec_all_scripts.sql
 
 
 
@@ -97,7 +97,7 @@ SELECT to_char(SYSDATE, 'YYYYMMDD HH:MI:SS AM') AS END_DATE_TIME_VALUE from dual
 SET TERMOUT ON;
 SET DEFINE ON;
 
-PROMPT &V_CURR_DATE_TIME_VALUE. - The Category 1 setup has completed
+PROMPT &V_CURR_DATE_TIME_VALUE. - The Category 2 setup has completed
 
 
 SET TERMOUT OFF;
@@ -117,7 +117,7 @@ SELECT TRIM(ROUND((to_date('&&V_END_DATE_TIME_VALUE', 'YYYYMMDD HH:MI:SS AM') - 
 SET TERMOUT ON;
 
 
-PROMPT &V_END_DATE_TIME_VALUE. - category 1 test case setup has completed, the entire process took &V_ELAPSED_TIME_MIN. minutes
+PROMPT &V_END_DATE_TIME_VALUE. - category 2 test case setup has completed, the entire process took &V_ELAPSED_TIME_MIN. minutes
 
 
 DISCONNECT;

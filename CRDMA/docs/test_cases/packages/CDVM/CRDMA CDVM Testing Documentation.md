@@ -164,6 +164,27 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Load test data:
             -   Test data: [category_1_load_test_data.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_test_data.sql)
             -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
+		-   Use Oracle SQL*Plus to prepare the category 2 test cases
+        -   Open a command line window
+        -   cd into the [CRDMA\docs\test_cases\packages\CDVM\SQL](./SQL) directory
+        -   Start SQL*Plus with the "nolog" option:
+
+            ```
+            sqlplus /nolog
+            ```
+
+        -   Execute the [setup_category_2_tests.sql](./SQL/setup_category_2_tests.sql) with the following command:
+
+            ```
+            @setup_category_2_tests.sql
+            ```
+
+        -   Specify the credentials for the database instance and schema in the following format:
+
+            ```
+            USER/PASSWORD@HOSTNAME/SID
+            ```
+
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CDVM%20Test%20Cases.xlsx):
         -   Open the "Category 2 DVM Tests" worksheet and execute the following process for each of the cruises listed on the spreadsheet:
             -   For "Delete Leg Overlap" test cases open the View/Edit Cruise Leg page for the specified Leg Name and click the "Delete" button and click the "OK" button to confirm
