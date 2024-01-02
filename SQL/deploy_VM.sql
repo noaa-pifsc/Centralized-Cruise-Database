@@ -1,5 +1,5 @@
 /************************************************************************************
- Filename   : deploy_dev.sql
+ Filename   : deploy_VM.sql
  Author     :
  Purpose    : Automated deployment script for the Centralized Cruise database, this is intended for use on the development environment
  Description: The release included: data model deployment on a blank schema
@@ -24,7 +24,7 @@ CONNECT &apps_credentials
 
 
 COL spool_fname NEW_VALUE spoolname NOPRINT
-SELECT 'centralized_cruise_deploy_dev_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
+SELECT 'centralized_cruise_deploy_VM_' || TO_CHAR( SYSDATE, 'yyyymmdd' ) spool_fname FROM DUAL;
 SPOOL logs/&spoolname APPEND
 
 
@@ -42,7 +42,7 @@ PROMPT granting privileges to CCD roles:
 @@queries/grant_CCD_role_permissions.sql
 
 PROMPT loading data
-@@queries/load_dev_test_ref_data.sql
+@@queries/load_VM_test_ref_data.sql
 @@queries/load_DVM_rules.sql
 @@queries/load_config_values.VM.sql
 
