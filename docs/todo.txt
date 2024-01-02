@@ -33,7 +33,8 @@ Version 1.0
 update documentation
 	X update to reference the github versions of CCM and CCD
 	
-
+X check on the CRDMA test cases (CCDP and CDVM to see if they're still valid or need to be updated too)
+	X Updated test cases and documentation
 
 
 X update technical documentation to reference specific business rules defined in the sheet by their IDs (to make it easier to maintain the business rule documentation)

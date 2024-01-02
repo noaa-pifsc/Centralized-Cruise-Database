@@ -10,6 +10,9 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
 -   [CRDMA QA Testing](./test_cases/CRDMA%20QA%20Testing%20Documentation.md)
 
 ## Test Cases:
+-   Semi-Automated Test Cases
+    -   [CRDMA CCD Oracle Package (CCDP) Testing](./test_cases/packages/CCDP/CRDMA%20CCDP%20Testing%20Documentation.md)
+    -   [CRDMA CCD DVM (CDVM) Testing](./test_cases/packages/CDVM/CRDMA%20CDVM%20Testing%20Documentation.md)
 -   Page 1
     -   Confirmed that the charts and report table contents are rendered correctly
     -   Confirmed that the chart functionality is working properly
@@ -72,6 +75,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   X Data Model QA:
                 -   X Confirm required fields
                 -   X Confirm unique keys
+            -   Custom form QA:
+								-   Confirm the corresponding QA test cases defined in [CRDMA QA Testing](./test_cases/CRDMA%20QA%20Testing%20Documentation.md) that have a "CRDMA Page" column value of "View/Edit Cruise"
         -   X Confirm the different attribute presets (e.g. ESA Target Species) work properly
             -   X Confirm the attribute filtering checkboxes work properly
                 -   X Confirm the processing gif is shown and the form fields are disabled until the results are returned
@@ -184,6 +189,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
             -   Data Model QA:
                 -   Confirm required fields
                 -   Confirm unique keys
+						-   Custom form QA:
+								-   Confirm the corresponding QA test cases defined in [CRDMA QA Testing](./test_cases/CRDMA%20QA%20Testing%20Documentation.md) that have a "CRDMA Page" column value of "View/Edit Cruise Leg"
         -   Confirm the different attribute presets (e.g. Gear) work properly
             -   Confirm the attribute filtering checkboxes work properly
                 -   Confirm the processing gif is shown and the form fields are disabled until the results are returned
@@ -357,30 +364,30 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
     -   \*Note: The queries must be run from the Centralized Authorization System database schema (CAS)
     -   #### CCD Admin
 
-		```
-		--to setup test
-		DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN');
+    ```
+    --to setup test
+    DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN');
 
-		--to restore after test
-		INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN'));
-		```
+    --to restore after test
+    INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD ADMIN'));
+    ```
 
     -   #### CCD Write
 
-		```
-		--to setup test
-		DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE');
+    ```
+    --to setup test
+    DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE');
 
-		--to restore after test
-		INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE'));
-		```
+    --to restore after test
+    INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD WRITE'));
+    ```
 
     -   #### CCD Read
 
-		```
-		--to setup test
-		DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ');
+    ```
+    --to setup test
+    DELETE FROM AUTH_APP_USER_GROUPS where app_user_id IN (SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username) AND APP_GROUP_ID IN (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ');
 
-		--to restore after test
-		INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ'));
-		```
+    --to restore after test
+    INSERT INTO AUTH_APP_USER_GROUPS (APP_USER_ID, APP_GROUP_ID) VALUES ((SELECT APP_USER_ID FROM AUTH_APP_USERS WHERE APP_USER_NAME = :username), (SELECT APP_GROUP_ID FROM AUTH_APP_GROUPS WHERE APP_GROUP_CODE = 'CCD READ'));
+    ```

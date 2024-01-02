@@ -20,7 +20,8 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
 ## Test Case Verification SOP:
 -   Setup Test Cases:
     -   Purge CCD and DVM records from the database
-        -   Execute [delete_all_DVM_recs.sql](../../../../../SQL/queries/delete_all_DVM_recs.sql)
+        -   Execute [delete_DVM_data.sql](../../../../../SQL/queries/delete_DVM_data.sql)
+        -   Execute [delete_DVM_rules.sql](../../../../../SQL/queries/delete_DVM_rules.sql)
         -   Execute [delete_ref_data.sql](../../../../../SQL/queries/delete_ref_data.sql)
     -   Load test data
         -   Execute the corresponding test CCD data and DVM rule loading scripts
@@ -69,6 +70,27 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Load test data:
             -   Test data: [category_1_load_test_data.sql](../../../../../docs/packages/CCDP/test_cases/SQL/category_1_load_test_data.sql)
             -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
+    -   Use Oracle SQL*Plus to prepare the category 1 test cases
+        -   Open a command line window
+        -   cd into the [CRDMA\docs\test_cases\packages\CCDP\SQL](./SQL) directory
+        -   Start SQL*Plus with the "nolog" option:
+
+            ```
+            sqlplus /nolog
+            ```
+
+        -   Execute the [setup_category_1_tests.sql](./SQL/setup_category_1_tests.sql) with the following command:
+
+            ```
+            @setup_category_1_tests.sql
+            ```
+
+        -   Specify the credentials for the database instance and schema in the following format:
+
+            ```
+            USER/PASSWORD@HOSTNAME/SID
+            ```
+
     -   Perform the following actions in the CRDMA for the corresponding worksheets of the [test cases workbook](./CRDMA%20CCDP%20Test%20Cases.xlsx):
         -   Open the "Category 1 Test Cases" worksheet and execute the following process for each of the cruises listed on the spreadsheet:
             -   Open the View/Edit Cruise page for the specified Cruise
@@ -80,24 +102,77 @@ The Cruise Data Management Application (CRDMA) has a series of tests on each of 
         -   Load test data:
             -   Test data: [category_1_load_test_data.sql](../../../../../docs/packages/CCDP/test_cases/SQL/category_1_load_test_data.sql)
             -   DVM rules: [category_1_load_DVM_rules.sql](../../../../../docs/packages/CDVM/test_cases/SQL/category_1_load_DVM_rules.sql)
+    -   Use Oracle SQL*Plus to prepare the category 2 test cases
+        -   Open a command line window
+        -   cd into the [CRDMA\docs\test_cases\packages\CCDP\SQL](./SQL) directory
+        -   Start SQL*Plus with the "nolog" option:
+
+            ```
+            sqlplus /nolog
+            ```
+
+        -   Execute the [setup_category_2_tests.sql](./SQL/setup_category_2_tests.sql) with the following command:
+
+            ```
+            @setup_category_2_tests.sql
+            ```
+
+        -   Specify the credentials for the database instance and schema in the following format:
+
+            ```
+            USER/PASSWORD@HOSTNAME/SID
+            ```
+
     -   Perform the actions in the CRDMA for the corresponding worksheet of the [test cases workbook](./CRDMA%20CCDP%20Test%20Cases.xlsx):
         -   Open the "Category 2 Cruise Tests" worksheet and execute the following process for each of the cruises listed on the spreadsheet:
             -   Open the View/Edit Cruise page for the specified Cruise
             -   Click the "Deep Copy" button
             -   Confirm the success message displayed matches the "Expected Result" column value for each Cruise
             -   Confirm the View/Edit Cruise page is opened to the newly copied Cruise
-    -   Verify the Cruise and associated data:
-        -   Worksheet name: "Category 2 Cruise Tests"
-        -   Execute the [CCDP Verification Query](#ccdp-verification-query)
-        -   Verification Files:
-            -   Template: [category_2_CRDMA_CCDP_verification.xlsx](./verification_templates/category_2_CRDMA_CCDP_verification.xlsx)
-            -   Export: [category_2_CRDMA_CCDP_verification.csv](./verification_templates/automated/category_2_CRDMA_CCDP_verification.csv)
-    -   Verify the Validation Issues:
-        -   Worksheet name: "Category 2 DVM Tests"
-        -   Execute the [DVM Verification Query](#dvm-verification-query)
-        -   Verification Files:
-            -   Template: [category_2_CRDMA_DVM_verification.xlsx](./verification_templates/category_2_CRDMA_DVM_verification.xlsx)
-            -   Export: [category_2_CRDMA_DVM_verification.csv](./verification_templates/automated/category_2_CRDMA_DVM_verification.csv)
+    -   Validation Issues/Cruise Data:
+        -   Execute the [export_category_2_data.sql](./SQL/export_category_2_data.sql) script using SQL*Plus to export the data in .csv format for verification
+            -   Open a command line window
+            -   cd into the [CRDMA\docs\test_cases\packages\CDVM\SQL](./SQL) directory
+            -   Start SQL*Plus with the "nolog" option:
+
+                ```
+                sqlplus /nolog
+                ```
+
+            -   Execute the [export_category_2_data.sql](./SQL/export_category_2_data.sql) with the following command:
+
+                ```
+                @export_category_2_data.sql
+                ```
+
+            -   Specify the credentials for the database instance and schema in the following format:
+
+                ```
+                USER/PASSWORD@HOSTNAME/SID
+                ```
+
+        -   Execute the [verification_script.bat](./verification_templates/automated/verification_script.bat)
+            -   This script uses fc to confirm the expected results of each test case category (e.g. category_2_CRDMA_CDVM_issue_verification.csv) matches the actual results of the corresponding test case category (e.g. category_2_CRDMA_CDVM_issue_verification-2.csv) and saves the results in file_compare_script_output_verification-2.txt
+            -   The script will then compare the expected output for all test case categories [file_compare_script_output_verification.txt](./verification_templates/automated/file_compare_script_output_verification.txt) with the actual results of all test case categories (file_compare_script_output_verification-2.txt)
+        -   Verify that the output of the script indicates that file_compare_script_output_verification.txt and file_compare_script_output_verification-2.txt are identical:
+
+        ```
+        Comparing files file_compare_script_output_verification.txt and FILE_COMPARE_SCRIPT_OUTPUT_VERIFICATION-2.TXT
+        FC: no differences encountered
+        ```
+
+        -   Cruise and Associated Data Verification:
+            -   Worksheet name: "Category 2 Cruise Tests"
+            -   Execute the [CCDP Verification Query](#ccdp-verification-query)
+            -   Verification Files:
+                -   Template: [category_2_CRDMA_CCDP_verification.xlsx](./verification_templates/category_2_CRDMA_CCDP_verification.xlsx)
+                -   Export: [category_2_CRDMA_CCDP_verification.csv](./verification_templates/automated/category_2_CRDMA_CCDP_verification.csv)
+        -   Validation Issue Verification:
+            -   Worksheet name: "Category 2 DVM Tests"
+            -   Execute the [DVM Verification Query](#dvm-verification-query)
+            -   Verification Files:
+                -   Template: [category_2_CRDMA_DVM_verification.xlsx](./verification_templates/category_2_CRDMA_DVM_verification.xlsx)
+                -   Export: [category_2_CRDMA_DVM_verification.csv](./verification_templates/automated/category_2_CRDMA_DVM_verification.csv)
 
 ## Appendix:
 -   ### CCDP Verification Query

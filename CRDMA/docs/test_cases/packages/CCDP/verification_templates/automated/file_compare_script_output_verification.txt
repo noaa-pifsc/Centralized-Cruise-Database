@@ -1,0 +1,6 @@
+Comparing files category_2_CRDMA_CCDP_verification.csv and CATEGORY_2_CRDMA_CCDP_VERIFICATION-2.CSV
+FC: no differences encountered
+
+Comparing files category_2_CRDMA_DVM_verification.csv and CATEGORY_2_CRDMA_DVM_VERIFICATION-2.CSV
+FC: no differences encountered
+
